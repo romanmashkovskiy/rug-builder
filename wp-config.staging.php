@@ -7,6 +7,9 @@
  * 
  */
 
+define('WP_HOME','http://vps.89hosting.co.uk/~crucialtrading');
+define('WP_SITEURL','http://vps.89hosting.co.uk/~crucialtrading');  
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', 'crucialt_prod_db');
