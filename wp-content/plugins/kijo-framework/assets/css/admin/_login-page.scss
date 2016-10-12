@@ -1,0 +1,155 @@
+/************************************************************************************
+** Custom Log-In Page
+*************************************************************************************/
+								
+	body.login {
+		//background-color: #36b6df;
+	}
+	
+	p.message.register {
+		display:none;
+	}
+
+// Logo
+
+	#login {
+		width: 350px;
+	}
+
+	#login h1 {
+		overflow: visible;
+		padding-bottom: 40px;
+	}
+
+	#login h1 a {
+		width: 100% !important;
+	}
+
+	.login h1 a {
+		width: 350px;
+		height: 87px;
+		background-size: 350px 87px;
+		background-position: center center;
+		background-repeat: no-repeat;
+		text-indent: -9999px;
+		display: block;
+		margin: auto;
+	}
+	
+	@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (max--moz-device-pixel-ratio: 2) {
+		.login h1 a {
+			width: 350px;
+			height: 87px;
+			background-size: 350px 87px;
+			background-repeat: no-repeat;
+			text-indent: -9999px;
+		}
+	
+	}
+
+// Login Form
+
+	#loginform {
+		padding: 30px;
+	}
+	
+	.login form {
+		box-shadow: none;
+	}
+	
+	#loginform p label {
+		color: #444;
+	}
+	
+	#login form p.submit {
+		margin-top:20px;
+	}
+	
+	#login form p.forgetmenot {
+		margin-top:20px;
+	}
+	
+	.login input:focus {
+		border-color: $accent-color;
+		box-shadow: 0 0 0px $accent-color;
+	}
+	
+	// Error and Success Messages
+	
+	.login #login_error, 
+	.login .message {
+		margin-top:20px;
+		border-left: 4px solid $accent-color;
+	}
+	
+	// Password, back links & remember me
+	
+	.login #backtoblog a, 
+	.login #nav a, 
+	.login h1, 
+	.login #nav a {
+		color:#444;
+		transition: all ease-in-out 0.2s;
+	}
+	
+	.login #backtoblog a:hover, 
+	.login #nav a:hover, 
+	.login h1 a:hover {
+		color: $accent-color;
+	}
+	
+	.login #nav, 
+	.login #backtoblog {
+		text-align:center;
+	}
+
+	p#backtoblog {
+		display: none;
+	}
+
+	.forgetmenot {
+		width: 100%;
+		text-align: center;
+		margin-top: 0 !important;
+	}
+
+	#lostpasswordform {
+		background: none;
+	}
+
+
+	// Buttons 
+	
+	.login.wp-core-ui .button-primary {
+		color: #FFF !important;
+		box-shadow: inset 0 0px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.2);
+		background: $accent-color;
+		border-color: $accent-color;
+		width: 100%; 
+		margin-top: 20px !important;
+		text-decoration: none;
+		width: 100%;
+		height: 50px !important; 
+		font-size: 1.5em !important; 
+		font-weight: normal;
+		text-shadow: none;
+	}
+	
+	.login.wp-core-ui .button-primary:hover {
+		background-color: $accent-color-light;
+		border-color: $accent-color-light;
+		box-shadow: inset 0 0px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.2);
+		color: #FFF;
+		text-decoration: none;
+	}
+	
+	.login.wp-core-ui .button-primary:focus {
+		background-color: #f6f6f6;
+		border-color: #25acce;
+		-webkit-box-shadow: inset 0 2px 0 rgba(0,0,0,.2),0 0px 0 rgba(0,0,0,.2);
+		box-shadow: inset 0 2px 0 rgba(0,0,0,.2),0 0px 0 rgba(0,0,0,.2);
+		color: #fff;
+		text-decoration: none;
+	}
+
+

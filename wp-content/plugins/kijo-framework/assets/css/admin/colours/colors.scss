@@ -1,0 +1,7 @@
+$base-color: #404041;
+//$highlight-color: darken( desaturate( #eabe3f, 10% ), 5% );
+$highlight-color: #7b9547;
+$notification-color: lighten( $highlight-color, 40% );
+$action-color: lighten( $base-color, 40% );
+
+@import "_admin.scss";

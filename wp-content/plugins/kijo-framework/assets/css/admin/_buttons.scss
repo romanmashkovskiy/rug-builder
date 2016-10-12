@@ -1,0 +1,40 @@
+/************************************************************************************
+** Main Admin Buttons
+*************************************************************************************/
+
+.wp-core-ui .button-primary {
+background: #24b7eb;
+border-color: #23a6d4;
+-webkit-box-shadow: inset 0 1px 0 rgba(33,158,202,.5),0 1px 0 rgba(0,0,0,.15);
+box-shadow: inset 0 1px 0 rgba(33,158,202,.5),0 1px 0 rgba(0,0,0,.15);
+color: #FFF;
+text-decoration: none;
+}
+
+.wp-core-ui .button-primary:hover, .wp-core-ui .button-primary:focus {
+background: #23a6d4;
+border-color: #24b7eb;
+color: white;
+-webkit-box-shadow: inset 0 1px 0 rgba(36,183,235,.5),0 1px 0 rgba(0,0,0,.15);
+box-shadow: inset 0 1px 0 rgba(36,183,235,.5),0 1px 0 rgba(0,0,0,.15);
+}
+
+.wp-core-ui .button-primary:active, .wp-core-ui .button-primary.disabled {
+background: #1e8fb7;
+}
+
+.wp-core-ui .button-group.button-large .button, .wp-core-ui .button.button-large {
+height: 30px;
+line-height: 28px;
+padding: 0 20px 2px;
+}
+
+.wp-core-ui .button-primary-disabled, .wp-core-ui .button-primary.disabled, .wp-core-ui .button-primary:disabled, .wp-core-ui .button-primary[disabled] {
+color: #b3c9c9 !important;
+background: #a0b3b3 !important;
+border-color: #768686 !important;
+-webkit-box-shadow: none!important;
+box-shadow: none!important;
+text-shadow: 0 -1px 0 rgba(0,0,0,.1)!important;
+cursor: default;
+}

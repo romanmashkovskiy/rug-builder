@@ -1,0 +1,115 @@
+// Variables
+$accent-color: #7b9547;
+$accent-color-light: lighten( $accent-color, 10% );
+$accent-color-dark: darken( $accent-color, 10% );
+$accent-color-dark-text: darken( $accent-color, 15% );
+
+// Imports 
+@import '_buttons.scss';
+@import '_login-page.scss'; 
+
+
+/************************************************************************************
+* Link Colour
+*************************************************************************************/
+
+.wp-core-ui a {
+	color: $accent-color;
+}
+
+.wp-core-ui a:hover, 
+.wp-core-ui a:active, 
+.wp-core-ui a:focus {
+	color: $accent-color-dark;
+}
+
+.wrap .page-title-action { // Add new button 
+	color: $accent-color-dark;
+}
+
+/************************************************************************************
+* Buttons
+*************************************************************************************/
+	
+.wp-core-ui .button-primary {
+	color: #FFF;
+	box-shadow: inset 0 0px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.2);
+	background: $accent-color;
+	border-color: $accent-color;
+	text-decoration: none;
+	font-weight: normal;
+	text-shadow: none;
+}
+
+.wp-core-ui .button-primary:hover {
+	background-color: $accent-color-light;
+	border-color: $accent-color-light;
+	box-shadow: inset 0 0px 0 rgba(120,200,230,.5),0 1px 0 rgba(0,0,0,.2);
+	text-decoration: none;
+}
+
+.wp-core-ui .button-primary:focus {
+	background-color: $accent-color-dark;
+	border-color: $accent-color-dark;
+	-webkit-box-shadow: inset 0 2px 0 rgba(0,0,0,.2),0 0px 0 rgba(0,0,0,.2);
+	box-shadow: inset 0 2px 0 rgba(0,0,0,.2),0 0px 0 rgba(0,0,0,.2);
+	color: $accent-color-light;
+	text-decoration: none;
+}
+
+.wrap .add-new-h2:hover, 
+.wrap .page-title-action:hover {
+	border-color: $accent-color-light;
+	background: $accent-color-light;
+	color: #FFF;
+}
+
+/************************************************************************************
+Project Specific Styles
+*************************************************************************************/
+
+#wpadminbar #wp-admin-bar-lambda {display: none;}
+
+/************************************************************************************
+Admin Dashboard Styles
+*************************************************************************************/
+
+#kijo_dashboard_widget .kijo-dash-container {text-align: center;padding: 10px;padding-top: 30px;padding-bottom: 30px;}
+#kijo_dashboard_widget .kijo-dash-container img {width: 350px;height: auto;}
+
+#kijo_dashboard_widget .kijo-dash-title {color: #525252;font-weight: bold;line-height:35px;font-weight:400;margin-top: 30px;}
+#kijo_dashboard_widget .kijo-dash-title .site-name {color: $accent-color;display: block;font-weight:600;}
+
+/************************************************************************************
+Update plugins count
+*************************************************************************************/
+
+#adminmenu .awaiting-mod, #adminmenu .update-plugins {color: #fff;background: #00adef;}
+.plugin-update-tr.active td, .plugins .active th.check-column {border-color: $accent-color;}
+.plugins .active td, .plugins .active th {background-color: lighten( $accent-color, 50%)}
+
+/************************************************************************************
+Hide Help Menu
+*************************************************************************************/
+
+#contextual-help-link-wrap 	{display: none;}
+
+/************************************************************************************
+Remove Main Text Box
+*************************************************************************************/
+
+/*#postdivrich {display: none;}*/
+
+/************************************************************************************
+Remove WP Logo from Admin Bar
+*************************************************************************************/
+
+#wpadminbar ul#wp-admin-bar-root-default>li#wp-admin-bar-wp-logo {display: none;}
+#wp-admin-bar-wp-logo {display: none;}
+
+/************************************************************************************
+Remove Trackbacks Link
+*************************************************************************************/
+
+#commentstatusdiv #ping_status {display:none;}
+#commentstatusdiv label[for=ping_status] {display:none;}
