@@ -1,16 +1,10 @@
 *.log
-wp-config.default.php
-wp-config.local.php
-wp-config.production.php
-wp-config.staging.php
-wp-config.aws.php
-wp-config.php
-wp-config.multi.php
-wp-config.php
-wp-config-local.php
-wp-config-aws.php
-wp-config-aws.php
-wp-config-single.php
+
+#wp-config.production.php
+#wp-config.staging.php
+#wp-config.php
+#wp-config.default.php
+#wp-config.local.php
 
 wp-content/advanced-cache.php
 wp-content/backup-db/

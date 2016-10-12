@@ -30,16 +30,15 @@ switch ($hostname) {
         define('WP_ENV', 'staging');
         break;
     
-    case 'park-it-systems.com':
+    case 'crucial-trading.com':
         define('WP_ENV', 'production');
         break;
         
-    case 'www.park-it-systems.com':
+    case 'http://crucialtrading-env-test.eu-west-1.elasticbeanstalk.com':
         define('WP_ENV', 'production');
         break;
 
-    case 'parkit-env.elasticbeanstalk.com':
+    case 'http://crucialtrading-env-prod.eu-west-1.elasticbeanstalk.com':
     default: 
         define('WP_ENV', 'production');
 }
-
