@@ -22,7 +22,7 @@
 
 define('DISALLOW_FILE_EDIT', TRUE); 
 define('WP_POST_REVISIONS', 5);
-define('WP_MEMORY_LIMIT', '96M');
+define('WP_MEMORY_LIMIT', '256M');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
