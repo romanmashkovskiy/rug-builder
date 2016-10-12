@@ -1,0 +1,44 @@
+#RewriteRule ^wp-content/uploads/(.*)$ https://d3e9otd2swdmyo.cloudfront.net/wp-content/uploads/$1 [R=301,L]
+
+# Security scan report fixes
+
+<ifModule mod_headers.c>
+Header set X-XSS-Protection "1; mode=block"
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-Content-Type-Options: "nosniff"
+</ifModule>
+
+
+# BEGIN WordPress
+
+<IfModule mod_rewrite.c>
+RewriteRule . - [E=rwbase:/]
+RewriteCond %{HTTP_HOST} localhost$
+RewriteRule . - [E=rwbase:crucial/]
+RewriteCond %{HTTP_HOST} vps.89hosting.co.uk$
+RewriteRule . - [E=rwbase:~crucialtrading/]
+RewriteCond %{HTTP_HOST} crucial-trading.com$
+RewriteRule . - [E=rwbase:]
+
+RewriteEngine On
+RewriteBase /%{ENV:rwbase}
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /%{ENV:rwbase}index.php [L]
+</IfModule>
+
+# END WordPress
+
+
+# Disable XML-RPC - Security > Settings > WordPress Tweaks > XML-RPC
+
+<files xmlrpc.php>
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</files>

@@ -22,8 +22,7 @@ multi-config/*
 
 config.codekit
 
-/.htaccess
-/.htaccess-local
+#/.htaccess
 /license.txt
 /readme.html
 /sitemap.xml
