@@ -61,41 +61,6 @@ add_action( 'init', 'kijo_change_post_object' );
 
 
 /************************************************************************************
-* Change Admin User Interface for Custom Post Types
-*************************************************************************************/
-
-/*add_action('do_meta_boxes', 'slider_image_box');
-function slider_image_box() {
-
-	$post_types = array(
-		'slider',
-		'kitchens',
-		'page',
-	);
-
-	remove_meta_box( 'postimagediv', $post_types, 'side' );
-	remove_meta_box( 'revisionsdiv', $post_types, 'normal' );
-	
-	add_meta_box('postimagediv', __('Header Background Image'), 'post_thumbnail_meta_box', $post_types, 'advanced', 'high');
-
-}
-
-
-// Remove featured image box completely 
-add_action('do_meta_boxes', 'remove_slider_image_box');
-function remove_slider_image_box() {
-
-	$post_types = array(
-		'casestudies'
-	);
-
-	remove_meta_box( 'postimagediv', $post_types, 'side' );
-	remove_meta_box( 'revisionsdiv', $post_types, 'normal' );
-
-}*/
-
-
-/************************************************************************************
 **  Excerpt Length 
 *************************************************************************************/
 

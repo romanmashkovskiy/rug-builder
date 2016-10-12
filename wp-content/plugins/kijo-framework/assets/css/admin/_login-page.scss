@@ -3,7 +3,7 @@
 *************************************************************************************/
 								
 	body.login {
-		//background-color: #36b6df;
+		//background-color: $accent-color;
 	}
 	
 	p.message.register {
@@ -21,14 +21,14 @@
 		padding-bottom: 40px;
 	}
 
-	#login h1 a {
+	/*#login h1 a {
 		width: 100% !important;
-	}
+	}*/
 
 	.login h1 a {
-		width: 350px;
-		height: 87px;
-		background-size: 350px 87px;
+		width: 335px;
+		height: 59px;
+		background-size: 335px 59px;
 		background-position: center center;
 		background-repeat: no-repeat;
 		text-indent: -9999px;
@@ -38,9 +38,9 @@
 	
 	@media screen and (-webkit-min-device-pixel-ratio: 2), screen and (max--moz-device-pixel-ratio: 2) {
 		.login h1 a {
-			width: 350px;
-			height: 87px;
-			background-size: 350px 87px;
+			width: 335px;
+			height: 59px;
+			background-size: 335px 59px;
 			background-repeat: no-repeat;
 			text-indent: -9999px;
 		}

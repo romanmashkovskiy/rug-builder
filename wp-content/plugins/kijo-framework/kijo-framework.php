@@ -42,7 +42,7 @@ function kijo_framework_version() {
 
 function kijo_framework_sitename() {
 
-	$kijo_framework_sitename = 'spearhead-elearning';
+	$kijo_framework_sitename = 'crucial-trading';
 
 	return $kijo_framework_sitename;
 
@@ -56,7 +56,7 @@ function kijo_framework_logo() { // Normal
 		
 	global $plugins_url;
 	
-	$kijo_framework_logo_location = ''.$plugins_url.'/assets/images/spearhead-logo@2x.png';
+	$kijo_framework_logo_location = ''.$plugins_url.'/assets/images/crucial-logo@2x.png';
 	
 	return $kijo_framework_logo_location;
 
@@ -66,7 +66,7 @@ function kijo_framework_logo_retina() { // Retina
 		
 	global $plugins_url;
 	
-	$kijo_framework_logo_location_retina = ''.$plugins_url.'/assets/images/spearhead-logo@2x.png';
+	$kijo_framework_logo_location_retina = ''.$plugins_url.'/assets/images/crucial-logo@2x.png';
 	
 	return $kijo_framework_logo_location_retina;
 

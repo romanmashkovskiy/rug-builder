@@ -10,8 +10,13 @@ Version 0.1
 ** No Core Update Alerts
 *************************************************************************************/
 
-//add_filter( 'pre_site_transient_update_core', create_function( '$a', "return null;" ) ); 
+add_action( 'plugins_loaded', 'disable_core_update_alerts' );
 
+function disable_core_update_alerts() {
+	if ( current_user_can('manage_plugins') ) {
+		add_filter( 'pre_site_transient_update_core', create_function( '$a', "return null;" ) ); 
+	}
+}
 
 /************************************************************************************
 **  Admin Area - Custom Footer Version Number
@@ -54,7 +59,7 @@ add_filter('xmlrpc_enabled', '__return_false');
 **  Email From Name
 *************************************************************************************/
 
-if ( !class_exists('wp_mail_from') ) {
+/*if ( !class_exists('wp_mail_from') ) {
 	class wp_mail_from {
 		function wp_mail_from() {
 			add_filter( 'wp_mail_from', array(&$this, 'fb_mail_from') );
@@ -76,7 +81,7 @@ if ( !class_exists('wp_mail_from') ) {
 		}
 	}
 	$wp_mail_from = new wp_mail_from();
-}
+}*/
 
 
 /************************************************************************************
