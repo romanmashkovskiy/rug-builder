@@ -10,7 +10,7 @@ Version 0.1
 ** Add Class to homepage in nav menu 
 *************************************************************************************/
 
-function add_slug_class_to_menu_item($output){
+/*function add_slug_class_to_menu_item($output){
 	$ps = get_option('permalink_structure');
 	if(!empty($ps)){
 		$idstr = preg_match_all('/<li id="menu-item-(\d+)/', $output, $matches);
@@ -22,7 +22,7 @@ function add_slug_class_to_menu_item($output){
 	}
 	return $output;
 }
-add_filter('wp_nav_menu', 'add_slug_class_to_menu_item');
+add_filter('wp_nav_menu', 'add_slug_class_to_menu_item');*/
 
 
 /************************************************************************************
@@ -58,6 +58,46 @@ function kijo_change_post_object() {
  
 add_action( 'admin_menu', 'kijo_change_post_label' );
 add_action( 'init', 'kijo_change_post_object' );
+
+
+/************************************************************************************
+**  Change name of woocommerce
+*************************************************************************************/
+
+add_action( 'admin_menu', 'rename_woocoomerce_wpse_100758', 999 );
+
+function rename_woocoomerce_wpse_100758() 
+{
+    global $menu;
+
+    // Pinpoint menu item
+    $woo = recursive_array_search_php_91365( 'WooCommerce', $menu );
+
+    // Validate
+    if( !$woo )
+        return;
+
+    $menu[$woo][0] = 'Store Settings';
+}
+
+function recursive_array_search_php_91365( $needle, $haystack ) 
+{
+    foreach( $haystack as $key => $value ) 
+    {
+        $current_key = $key;
+        if( 
+            $needle === $value 
+            OR ( 
+                is_array( $value )
+                && recursive_array_search_php_91365( $needle, $value ) !== false 
+            )
+        ) 
+        {
+            return $current_key;
+        }
+    }
+    return false;
+}
 
 
 /************************************************************************************
