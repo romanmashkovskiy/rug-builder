@@ -39,8 +39,8 @@ function send_file_function() {
 	$ftp_connection = ftp_connect('195.102.23.61');
 	$login_result   = ftp_login($ftp_connection, 'KJOCRU', 'Cr0k1J0s');
 
-	$remote_file = './'
-	$local_file  = get_template_directory() . '/inc/woocommerce/cru04/cru04.' . $extension
+	$remote_file = './';
+	$local_file  = get_template_directory() . '/inc/woocommerce/cru04/cru04.' . $extension;
 
 	if (ftp_put($ftp_connection, $remote_file, $local_file, FTP_ASCII)) {
 		echo "successfully uploaded $file\n";
