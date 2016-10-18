@@ -35,4 +35,18 @@ function send_file_function() {
 	fwrite( $file, 'T|' . $number );
 
 	fclose( $file );
+
+	$ftp_connection = ftp_connect('195.102.23.61');
+	$login_result   = ftp_login($ftp_connection, 'KJOCRU', 'Cr0k1J0s');
+
+	$remote_file = './'
+	$local_file  = get_template_directory() . '/inc/woocommerce/cru04/cru04.' . $extension
+
+	if (ftp_put($ftp_connection, $remote_file, $local_file, FTP_ASCII)) {
+		echo "successfully uploaded $file\n";
+	} else {
+		echo "There was a problem while uploading $file\n";
+	}
+
+	ftp_close($conn_id);
 }
