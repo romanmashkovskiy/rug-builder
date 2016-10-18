@@ -23,6 +23,7 @@
  */
 switch ($hostname) {
     case 'localhost':
+    case 'localhost:8888':
         define('WP_ENV', 'local');
         break;
     

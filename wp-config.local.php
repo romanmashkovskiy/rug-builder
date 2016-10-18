@@ -7,8 +7,8 @@
  * 
  */
 
-define('WP_HOME','http://localhost/crucial');
-define('WP_SITEURL','http://localhost/crucial');  
+define('WP_HOME','http://localhost:8888/crucial-trading');
+define('WP_SITEURL','http://localhost:8888/crucial-trading');  
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
@@ -21,7 +21,7 @@ define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
 
 /** MySQL hostname */
-define('DB_HOST', ':/Applications/MAMP/tmp/mysql/mysql.sock');
+define('DB_HOST', 'localhost');
 
 /**
  * For developers: WordPress debugging mode.
