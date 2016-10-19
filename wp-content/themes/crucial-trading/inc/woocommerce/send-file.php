@@ -86,10 +86,11 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 
 			ftp_close($conn_id);
 */
-			// Write result of ftp and time file sent to logs
+			// Write result of ftp and time file sent to logs, clean orders.txt file
 /*
 			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/upload.log', $result, FILE_APPEND );
 */			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/send.log', time() );
+			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/orders.txt', '' );
 		}
 	}
 }
