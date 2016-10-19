@@ -5,3 +5,39 @@
 	Created by: KIJO Creative <hello@kijo.co>
 
 *************************************************************************************************************************/
+
+body {
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+h1 {
+	@include typography-standards(#000000, $font-header, 52px, 2px);
+	margin: 0;
+
+	&.home-banner-header {
+		@include typography-standards(#ffffff, $font-crucial, 70px, 4px);
+		text-shadow: 1px 0px 30px #aaaaaa;
+		text-transform: uppercase;
+	}
+
+	&.standard-banner-header {
+		font-size: 75px;
+	}
+}
+
+h2 {
+	@include typography-standards(#000000, $font-header, 38px, 2px);
+	margin: 0;
+
+	&.material-header {
+		font-size: 75px;
+	}
+}
+
+h3 {
+	@include typography-standards(#000000, $font-sub-header, 14px, 4px);
+	margin: 0;
+	opacity: 40%;
+	text-transform: uppercase; 
+}

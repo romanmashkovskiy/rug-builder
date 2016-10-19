@@ -88,6 +88,12 @@ Update plugins count
 .plugin-update-tr.active td, .plugins .active th.check-column {border-color: $accent-color;}
 .plugins .active td, .plugins .active th {background-color: lighten( $accent-color, 50%)}
 
+// Number alert colour
+#adminmenu .awaiting-mod, 
+#adminmenu .update-plugins {
+	background: $accent-color;
+}
+
 /************************************************************************************
 Hide Help Menu
 *************************************************************************************/

@@ -1,0 +1,16 @@
+{
+  "name": "crucial-trading-assets",
+  "version": "1.0.0",
+  "description": "Crucial Trading website assets",
+  "main": "gulpfile.js",
+  "author": "KIJO <hello@kijo.co>",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sass-glob": "^1.0.6",
+    "gulp-sourcemaps": "^2.1.1"
+  }
+}

@@ -1,0 +1,55 @@
+a {
+	@include typography-standards(#000000, $font-sub-header, 17px, 2.5px);
+	opacity: 50%;
+	text-decoration: none;
+	text-transform: uppercase;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+p {
+	@include typography-standards(#000000, $font-copy, 17px, 0.5px);
+}
+
+dfn, cite, em, i {
+	font-style: italic;
+}
+
+blockquote {
+	margin: 0 1.5em;
+}
+
+address {
+	margin: 0 0 1.5em;
+}
+
+pre {
+	background: #eee;
+	font-family: monospace;
+	font-size: 0.9375;
+	margin-bottom: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6em;
+}
+
+code, kbd, tt, var {
+	font-family: monospace;
+	font-size: 0.9375;
+}
+
+abbr, acronym {
+	border-bottom: 1px dotted black;
+	cursor: help;
+}
+
+mark, ins {
+	background: black;
+	text-decoration: none;
+}
+
+big {
+	font-size: 125%;
+}
