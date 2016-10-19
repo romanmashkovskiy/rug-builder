@@ -88,7 +88,7 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 				$result = 'failure';
 			}
 
-			ftp_close($conn_id);
+			ftp_close( $ftp_connection );
 
 			// Write result of ftp and time file sent to logs, clean orders.txt file
 
