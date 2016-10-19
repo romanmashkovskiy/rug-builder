@@ -23,6 +23,10 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 
 			// Scan the files in the cru04 directory to work out the next incremental extension
 
+			if ( !file_exists( get_template_directory() . '/inc/woocommerce/cru04' ) ) {
+				mkdir( get_template_directory() . '/inc/woocommerce/cru04', 0777, true );
+			}
+
 			$directory = get_template_directory() . '/inc/woocommerce/cru04';
 			$scan      = array_values(array_diff(scandir($directory), array('..', '.')));
 
