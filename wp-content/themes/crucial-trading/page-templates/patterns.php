@@ -12,7 +12,7 @@ echo '
 	padding-bottom: 5px;
 }
 </style>';
-echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/dist/master.css">';
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/dist/master.min.css">';
 
 $directory = get_template_directory() . '/patterns';
 $scan      = array_values(array_diff(scandir($directory), array('..', '.', 'functions.php')));
