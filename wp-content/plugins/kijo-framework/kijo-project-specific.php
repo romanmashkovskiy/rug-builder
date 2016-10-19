@@ -188,7 +188,7 @@ function yoursite_pre_user_query($user_search) {
   }
 }
 
-
+/*
 class JPB_User_Caps {
 
   // Add our filters
@@ -243,6 +243,6 @@ class JPB_User_Caps {
 }
 
 $jpb_user_caps = new JPB_User_Caps();
-
+*/
 
 ?>
