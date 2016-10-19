@@ -33,7 +33,7 @@ function broadway_custom_slider()
     'labels' => $labels,
     'description' => 'Used to construct the full screen homepage slider.',
     'public' => true,
-	  'query_var' => "slider", // This goes to the WP_Query schema
+	  'query_var' => "super-slider", // This goes to the WP_Query schema
     'publicly_queryable' => false,
     'exclude_from_search' => true,
     'show_ui' => true, 
@@ -49,5 +49,5 @@ function broadway_custom_slider()
 		//'rewrite' => array("slug" => "slider"), // Permalinks format
 		'supports' => array('title','thumbnail','revisions','page-attributes')
   ); 
-  register_post_type('slider',$args);
+  register_post_type('super-slider',$args);
 }
