@@ -4,7 +4,7 @@ wp-config.production.php
 wp-config.staging.php
 #wp-config.php
 wp-config.default.php
-wp-config.local.php
+#wp-config.local.php
 
 wp-content/advanced-cache.php
 wp-content/backup-db/
