@@ -16,12 +16,6 @@ require get_template_directory() . '/inc/post-types/include.php';
  */
 require get_template_directory() . '/inc/woocommerce/include.php';
 
-/**
- * Load patterns.
- */
-require get_template_directory() . '/patterns/functions.php';
-create_pattern_pages();
-
 
 if ( ! function_exists( 'crucial_trading_setup' ) ) :
 /**
