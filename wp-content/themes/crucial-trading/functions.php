@@ -2,10 +2,22 @@
 /**
  * Crucial Trading functions and definitions.
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
  * @package Crucial_Trading
  */
+
+
+/**
+ * Load Custom Post Types
+ */
+require get_template_directory() . '/inc/post-types/include.php';
+
+/**
+ * Load Woocommerce files.
+ */
+require get_template_directory() . '/inc/woocommerce/include.php';
+
+
+
 
 if ( ! function_exists( 'crucial_trading_setup' ) ) :
 /**
@@ -127,7 +139,7 @@ require get_template_directory() . '/inc/template-tags.php';
 /**
  * Custom functions that act independently of the theme templates.
  */
-require get_template_directory() . '/inc/extras.php';
+//require get_template_directory() . '/inc/extras.php';
 
 /**
  * Customizer additions.
@@ -137,9 +149,4 @@ require get_template_directory() . '/inc/customizer.php';
 /**
  * Load Jetpack compatibility file.
  */
-require get_template_directory() . '/inc/jetpack.php';
-
-/**
- * Load Woocommerce files.
- */
-require get_template_directory() . '/inc/woocommerce/include.php';
+//require get_template_directory() . '/inc/jetpack.php';
