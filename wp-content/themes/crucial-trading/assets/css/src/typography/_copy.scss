@@ -15,10 +15,9 @@ address {
 }
 
 pre {
-	background: $color__background-pre;
-	font-family: $font__pre;
-	@include font-size(0.9375);
-	line-height: $font__line-height-pre;
+	background: #eee;
+	font-family: monospace;
+	font-size: 0.9375;
 	margin-bottom: 1.6em;
 	max-width: 100%;
 	overflow: auto;
@@ -26,8 +25,8 @@ pre {
 }
 
 code, kbd, tt, var {
-	font-family: $font__code;
-	@include font-size(0.9375);
+	font-family: monospace;
+	font-size: 0.9375;
 }
 
 abbr, acronym {
