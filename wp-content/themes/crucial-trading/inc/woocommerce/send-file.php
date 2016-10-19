@@ -73,7 +73,7 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 			fclose( $file );
 
 			// Send file via ftp
-/*
+
 			$ftp_connection = ftp_connect('195.102.23.61');
 			$login_result   = ftp_login($ftp_connection, 'KJOCRU', 'Cr0k1J0s');
 
@@ -89,11 +89,11 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 			}
 
 			ftp_close($conn_id);
-*/
+
 			// Write result of ftp and time file sent to logs, clean orders.txt file
-/*
+
 			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/upload.log', $result, FILE_APPEND );
-*/			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/send.log', time() );
+			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/send.log', time() );
 			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/orders.txt', '' );
 		}
 	}
