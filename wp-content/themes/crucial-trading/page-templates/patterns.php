@@ -5,11 +5,20 @@
 echo '
 <style>
 .pattern-title {
-	border-bottom: 2px solid #333;
+	border-bottom: 2px solid #333 !important;
+	color: #333 !important;
+	display: inline-block !important;
+	font-family: Sans-Serif !important;
+	font-size: 20px !important;
+	padding-bottom: 5px !important;
+}
+h6 {
+	background: #ddd;
 	color: #333;
-	display: inline-block;
 	font-family: Sans-Serif;
-	padding-bottom: 5px;
+	font-size: 18px;
+	margin: 0;
+	padding: 6px;
 }
 </style>';
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/master.min.css">';
@@ -31,3 +40,5 @@ for ( $i=0; $i<count($scan); $i++ ) {
 	
 	include( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php' );
 }
+
+?>

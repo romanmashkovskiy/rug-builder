@@ -1,5 +1,16 @@
-p {
+a {
+	@include typography-standards(#000000, $font-sub-header, 17px, 2.5px)
+	opacity: 50%;
+	text-decoration: none;
+	text-transform: uppercase;
 
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+p {
+	@include typography-standards(#000000, $font-copy, 17px, 0.5px)
 }
 
 dfn, cite, em, i {
