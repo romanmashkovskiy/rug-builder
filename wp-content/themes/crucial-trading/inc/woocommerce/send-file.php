@@ -1,5 +1,20 @@
 <?php
 
+/**
+* Create and send the cru04 files every 24 hours
+* Contents:
+* Get the contents of the send log to see when the file was sent
+* If the last sent was over a day (84000 seconds) ago, or the last sent log is empty (therefore it has not yet been sent)
+* Get the contents of the orders.txt file (containing all the orders made since the file was last sent)
+* Scan the files in the cru04 directory to work out the next incremental extension
+* Write the contents of the orders.txt file in the cru04 file, surrounded by the header and trailer
+* Send file via ftp
+* Write result of ftp and time file sent to logs, clean orders.txt file
+*
+* @package Crucial Trading
+* @since Crucial Trading 1.0
+*/
+
 if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) && 
 	 file_exists( get_template_directory() . '/inc/woocommerce/send.log' ) ) {
 

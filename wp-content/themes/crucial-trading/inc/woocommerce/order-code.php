@@ -1,6 +1,21 @@
 <?php
 
+/**
+* Create an order code every time an order is made
+*
+* Contents:
+* Add WooCommerce Action
+* Create Order Code
+*
+* @package Crucial Trading
+* @since Crucial Trading 1.0
+*/
+
+// Add WooCommerce Action 
+
 add_action( 'woocommerce_checkout_order_processed', 'create_order_code' );
+
+// Create Order Code
 
 function create_order_code($order_id) {
 
