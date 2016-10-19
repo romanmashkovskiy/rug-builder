@@ -2,6 +2,9 @@
 
 /* Template Name: Patterns */
 
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/bootstrap.min.css">';
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/animate.min.css">';
+
 echo '
 <style>
 .pattern-title {
@@ -13,14 +16,15 @@ echo '
 	padding-bottom: 5px !important;
 }
 h6 {
-	background: #ddd;
-	color: #333;
-	font-family: Sans-Serif;
-	font-size: 18px;
-	margin: 0;
-	padding: 6px;
+	background: #ddd !important;
+	color: #333 !important;
+	font-family: Sans-Serif !important;
+	font-size: 18px !important;
+	margin: 0 !important;
+	padding: 6px !important;
 }
 </style>';
+
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/master.min.css">';
 
 $directory = get_template_directory() . '/patterns';
