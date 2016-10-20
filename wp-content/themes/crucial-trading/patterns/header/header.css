@@ -1,0 +1,9 @@
+header {
+  background: #383838; }
+  header.small {
+    height: 500px; }
+  header.large {
+    height: 750px; }
+  header h1 {
+    color: white;
+    text-align: center; }

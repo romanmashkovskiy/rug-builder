@@ -1,0 +1,16 @@
+header {
+	background: #383838;
+
+	&.small {
+		height: 500px;
+	}
+
+	&.large {
+		height: 750px;
+	}
+
+	h1 {
+		color: white;
+		text-align: center;
+	}
+}
