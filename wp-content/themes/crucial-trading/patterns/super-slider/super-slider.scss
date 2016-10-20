@@ -74,6 +74,10 @@
 	li:not(.active) span {
 		background: #cccccc;
 	}
+
+	.slide__numbers li {
+		cursor: pointer;
+	}
 }
 
 .slide__center {

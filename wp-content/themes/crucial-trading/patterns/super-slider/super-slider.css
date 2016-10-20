@@ -52,6 +52,8 @@
     color: #cccccc; }
   .nav_next li:not(.active) span {
     background: #cccccc; }
+  .nav_next .slide__numbers li {
+    cursor: pointer; }
 
 .slide__center {
   text-align: center; }
