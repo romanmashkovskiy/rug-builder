@@ -29,11 +29,13 @@ function crucial_slider_slides() {
 
 		while ( $query->have_posts() ) : $query->the_post();
 
-			$src       = '';
-			$alt       = '';
-			$title     = '';
-			$link_url  = '';
-			$link_text = '';
+			$post_id = get_the_ID();
+
+			$src       = wp_get_attachment_image_url( $post_id, 'full' );
+			$title     = get_the_title();
+			$link_url  = rwmb_meta( 'link' );
+			$link_text = rwmb_meta( 'link-text' );
+			$alt       = 'Crucial Trading - ' . $link_text;
 
 			$html .= '<li class="slide">';
 			$html .= '<img src="' . $src . '" alt="' . $alt . '">';

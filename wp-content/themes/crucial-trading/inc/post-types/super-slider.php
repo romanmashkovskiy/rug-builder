@@ -66,6 +66,11 @@ function super_slider_meta_boxes($meta_boxes) {
 		'post_types' => 'super-slider',
 		'fields'     => array(
 			array(
+				'name'      => 'Link Text',
+				'id'        => 'link-text',
+				'type'      => 'text',
+			),
+			array(
 				'name'      => 'Link',
 				'id'        => 'link',
 				'type'      => 'post',
