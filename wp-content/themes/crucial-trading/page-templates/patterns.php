@@ -4,7 +4,9 @@
 
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/bootstrap.min.css">';
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/animate.min.css">';
-echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/js/vendor/super-slider.min.css">';
+
+echo '<script src="http://localhost:8888/crucial-trading/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>';
+echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"></script>';
 
 echo '
 <style>

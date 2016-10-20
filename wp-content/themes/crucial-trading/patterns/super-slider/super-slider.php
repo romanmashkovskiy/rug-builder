@@ -22,12 +22,16 @@ function crucial_slider_slides() {
 
 	$query = new WP_Query( $args );
 
+	$post_count = $query->post_count;
+
 	if ( $query->have_posts() ) :
 
-		$html .= '<div class="super-slider">';
+		$html .= '<div id="super-slider">';
 		$html .= '<ul class="slides-container">';
 
 		while ( $query->have_posts() ) : $query->the_post();
+
+			$current_post = $query->current_post;
 
 			$post_id       = get_the_ID();
 			$attachment_id = get_post_thumbnail_id( $post_id );
@@ -39,26 +43,86 @@ function crucial_slider_slides() {
 			$srcset    = wp_get_attachment_image_srcset( $attachment_id );
 			$alt       = 'Crucial Trading - ' . $link_text;
 
-			$html .= '<li class="slide">';
-			$html .= '<img src="' . $src . '" srcset="' . $srcset . '" sizes="100vw" alt="' . $alt . '">';
+			$arrow_left = '
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31px" height="59px" viewBox="0 0 31 59" version="1.1" class="slide__arrow--left">
+				<g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+					<g id="vivid" transform="translate(-45.000000, -553.000000)" stroke="#FFFFFF">
+						<g id="slider-arrow" transform="translate(60.500000, 582.000000) rotate(-180.000000) translate(-60.500000, -582.000000) translate(46.000000, 553.000000)">
+							<path d="M0.201388889,0.201388889 L28.8071201,28.8071201" id="Line"/>
+							<path d="M0,57.6057312 L28.6057312,29" id="Line"/>
+						</g>
+					</g>
+				</g>
+			</svg>
+			';
 
-			$html .= '<div class="slide__left">';
-			$html .= '<p><</p>';
-			$html .= '<p>' . $title . '</p>';
+			$arrow_right = '
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31px" height="58px" viewBox="0 0 31 58" version="1.1" class="slide__arrow--right">
+				<g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+					<g id="vivid" transform="translate(-1556.000000, -553.000000)" stroke="#FFFFFF">
+						<g id="slider-arrow" transform="translate(1557.000000, 553.000000)">
+							<path d="M0.201388889,0.201388889 L28.8071201,28.8071201" id="Line"/>
+							<path d="M0,57.6057312 L28.6057312,29" id="Line"/>
+						</g>
+					</g>
+				</g>
+			</svg>
+			';
+
+			$arrow_down = '
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="57.404px" height="28.605px" viewBox="-13.299 14.5 57.404 28.605" enable-background="new -13.299 14.5 57.404 28.605" xml:space="preserve" class="slide__arrow--down">
+				<g id="Home">
+					<g id="vivid" transform="translate(-1556.000000, -553.000000)">
+						<g id="slider-arrow" transform="translate(1557.000000, 553.000000)">
+							<path id="Line" fill="none" stroke="#FFFFFF" stroke-linecap="square" d="M43.105,14.701L14.5,43.307"/>
+							<path id="Line_1_" fill="none" stroke="#FFFFFF" stroke-linecap="square" d="M-14.299,14.5l28.605,28.605"/>
+						</g>
+					</g>
+				</g>
+			</svg>
+			';
+
+			$slide_numbers = '<ul class="slide__numbers">';
+
+			for ( $i=0; $i<$post_count; $i++ ) {
+
+				$num    = $i+1;
+				$active = $i == $current_post ? 'active' : '';
+
+				$slide_numbers .= '<li class="' . $active . '"><h3>0' . $num . '.</h3><span></span></li>';
+			}
+
+			$slide_numbers .= '</ul>';
+
+			$html .= '<li class="slide">';
+			$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+
+			$html .= '<nav class="slides-navigation vertical-align">';
+
+			$html .= '<div class="nav_prev">';
+			$html .= '<a href="#" class="prev">';
+			$html .= $arrow_left;
+			$html .= '</a>';
+			$html .= '<h3>' . $title . '</h3>';
 			$html .= '</div>';
 
-			$html .= '<div class="slide__center">';
-			$html .= '<p>' . $title . '</p>';
+			$html .= '<div class="nav_next">';
+			$html .= '<a href="#" class="next">';
+			$html .= $arrow_right;
+			$html .= '</a>';
+			$html .= $slide_numbers;
+			$html .= '</div>';
+
+			$html .= '</nav>';
+
+			$html .= '<div class="slide__center vertical-align">';
+			$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
 			$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
 			$html .= '</div>';
 
-			$html .= '<div class="slide__right">';
-			$html .= '<p>></p>';
-			$html .= '</div>';
-
 			$html .= '<div class="slide__bottom">';
-			$html .= '<p>+</p>';
-			$html .= '<p>Scroll Down</p>';
+			$html .= $arrow_down;
+			$html .= '<h3>Scroll Down</h3>';
 			$html .= '</div>';
 
 			$html .= '</li>';
