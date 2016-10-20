@@ -36,6 +36,8 @@
 .nav_next {
   right: 0;
   padding-right: 35px; }
+  .nav_next a {
+    text-align: right; }
   .nav_next ul {
     padding-left: 0; }
   .nav_next li {
