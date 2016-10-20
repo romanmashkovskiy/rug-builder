@@ -4,6 +4,7 @@
 
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/bootstrap.min.css">';
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/animate.min.css">';
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/js/vendor/super-slider.min.css">';
 
 echo '
 <style>
