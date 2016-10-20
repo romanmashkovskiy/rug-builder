@@ -1,5 +1,8 @@
 #super-slider {
   max-height: 100vh !important; }
+  #super-slider .slide img {
+    -o-object-fit: cover;
+    object-fit: cover; }
 
 .slides-navigation {
   position: relative;

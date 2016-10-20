@@ -1,5 +1,9 @@
 #super-slider {
 	max-height: 100vh !important;
+
+	.slide img {
+		object-fit: cover;
+	}
 }
 
 .slides-navigation {

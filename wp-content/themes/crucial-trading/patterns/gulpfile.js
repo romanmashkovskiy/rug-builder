@@ -6,6 +6,7 @@ var gulp          = require('gulp'),
 gulp.task('build-patterns-css', function() {
 
 	var files = fs.readdirSync('./');
+	var gulps = [];
 
 	for ( var i = 0; i < files.length; i++ ) {
 
@@ -16,13 +17,18 @@ gulp.task('build-patterns-css', function() {
 
 			if ( dirFiles.indexOf(files[i] + '.scss') > -1 ) {
 
-				return gulp.src('./' + files[i] + '/' + files[i] + '.scss')
+				var thisGulp = gulp.src('./' + files[i] + '/' + files[i] + '.scss')
 					.pipe(autoprefixer())
 					.pipe(sass())
 					.pipe(gulp.dest('./' + files[i] + '/'));
+
+
+				gulps.push(thisGulp)
 			}
 		}
 	}
+
+	return gulps;
 });
 
 gulp.task('watch-patterns-css', function() {
