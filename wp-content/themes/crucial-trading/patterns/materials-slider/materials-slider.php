@@ -31,7 +31,7 @@ function materials_slider() {
 			$mat_src  = $mat_post->guid;
 			$mat_alt  = $mat_post->post_title;
 
-			$all_materials .= '<li><img src="' . $mat_src . '" alt="' . $mat_alt . '"></li>';
+			$all_materials .= '<li data-slide="' . $i . '"><img src="' . $mat_src . '" alt="' . $mat_alt . '"></li>';
 		}
 
 		$html .= '<ul class="materials-slider">';
@@ -47,26 +47,28 @@ function materials_slider() {
 			$post_id = $post->ID;
 
 			$title    = ucwords( $alt );
-			$subtitle = $post->description;
+			$subtitle = $cat->description;
 
 			$html .= '<li class="material-slide">';
 
-			$html .= '<h3 class="slide__title">Our Materials</h3>';
+			$html .= '<h3 class="slide__title ' . $alt . '">Our Materials</h3>';
 
 			$html .= '<ul class="slide__list">';
 			$html .= $all_materials;
 			$html .= '</ul>';
 
-			$html .= '<div class="slide__content vertical-align">';
-			$html .= '<div class="content__left">';
+			$html .= '<div class="abc">';
+
+			$html .= '<div class="content__left vertical-align">';
 			$html .= '<img src="' . $icon . '" alt="' . $alt . '">';
 			$html .= '</div>';
-			$html .= '<div class="content__right">';
+			$html .= '<div class="content__right vertical-align ' . $alt . '">';
 			$html .= '<h3>True Survivor</h3>';
 			$html .= '<h1>' . $title . '</h1>';
 			$html .= '<p>' . $subtitle . '</p>';
 			$html .= '<a href="#">Read More</a>';
 			$html .= '</div>';
+
 			$html .= '</div>';
 
 			$html .= '</li>';

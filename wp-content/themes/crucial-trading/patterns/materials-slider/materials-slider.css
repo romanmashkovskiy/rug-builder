@@ -1,0 +1,90 @@
+.materials-slider {
+  margin: 0 !important;
+  padding: 0 !important; }
+
+.material-slide {
+  background: #383838;
+  position: relative; }
+  .material-slide .slide__title {
+    left: -45px;
+    position: absolute;
+    top: 110px;
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg); }
+    .material-slide .slide__title.coir {
+      color: #6F533D; }
+    .material-slide .slide__title.jute {
+      color: #4B3B2E; }
+    .material-slide .slide__title.seagrass {
+      color: #6B6551; }
+    .material-slide .slide__title.sisal {
+      color: #454F44; }
+    .material-slide .slide__title.sisool {
+      color: #817E62; }
+    .material-slide .slide__title.wool {
+      color: #665F4D; }
+  .material-slide .slide__list {
+    margin: 25px 0 0;
+    padding: 0; }
+    .material-slide .slide__list li {
+      cursor: pointer;
+      display: inline;
+      left: calc(50% - 5px);
+      list-style: none;
+      padding: 0 5px;
+      position: relative; }
+      .material-slide .slide__list li img {
+        height: 45px;
+        width: 45px; }
+  .material-slide .content__left,
+  .material-slide .content__right {
+    float: left;
+    padding: 150px 0 195px;
+    width: 50%; }
+  .material-slide .content__left {
+    padding-right: 100px;
+    text-align: right; }
+  .material-slide .content__right {
+    padding-right: 10%; }
+    .material-slide .content__right a {
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      padding: 0 0 15px; }
+    .material-slide .content__right a:hover {
+      text-decoration: none; }
+    .material-slide .content__right.coir h1, .material-slide .content__right.coir p {
+      color: #B28865; }
+    .material-slide .content__right.coir h3, .material-slide .content__right.coir a, .material-slide .content__right.coir a:hover, .material-slide .content__right.coir a:visited {
+      color: #6F533D; }
+    .material-slide .content__right.coir a {
+      border-bottom-color: #6F533D; }
+    .material-slide .content__right.jute h1, .material-slide .content__right.jute p {
+      color: #907259; }
+    .material-slide .content__right.jute h3, .material-slide .content__right.jute a, .material-slide .content__right.jute a:hover, .material-slide .content__right.jute a:visited {
+      color: #4B3B2E; }
+    .material-slide .content__right.jute a {
+      border-bottom-color: #4B3B2E; }
+    .material-slide .content__right.seagrass h1, .material-slide .content__right.seagrass p {
+      color: #A99A71; }
+    .material-slide .content__right.seagrass h3, .material-slide .content__right.seagrass a, .material-slide .content__right.seagrass a:hover, .material-slide .content__right.seagrass a:visited {
+      color: #6B6551; }
+    .material-slide .content__right.seagrass a {
+      border-bottom-color: #6B6551; }
+    .material-slide .content__right.sisal h1, .material-slide .content__right.sisal p {
+      color: #6D7C61; }
+    .material-slide .content__right.sisal h3, .material-slide .content__right.sisal a, .material-slide .content__right.sisal a:hover, .material-slide .content__right.sisal a:visited {
+      color: #454F44; }
+    .material-slide .content__right.sisal a {
+      border-bottom-color: #454F44; }
+    .material-slide .content__right.sisool h1, .material-slide .content__right.sisool p {
+      color: #A9A791; }
+    .material-slide .content__right.sisool h3, .material-slide .content__right.sisool a, .material-slide .content__right.sisool a:hover, .material-slide .content__right.sisool a:visited {
+      color: #817E62; }
+    .material-slide .content__right.sisool a {
+      border-bottom-color: #817E62; }
+    .material-slide .content__right.wool h1, .material-slide .content__right.wool p {
+      color: #EBD5B7; }
+    .material-slide .content__right.wool h3, .material-slide .content__right.wool a, .material-slide .content__right.wool a:hover, .material-slide .content__right.wool a:visited {
+      color: #665F4D; }
+    .material-slide .content__right.wool a {
+      border-bottom-color: #665F4D; }
