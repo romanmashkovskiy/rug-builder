@@ -154,6 +154,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
+ * Page subtitles.
+ */
+require get_template_directory() . '/inc/page-subtitle.php';
+
+/**
  * Load Jetpack compatibility file.
  */
 //require get_template_directory() . '/inc/jetpack.php';
