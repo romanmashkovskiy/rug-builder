@@ -138,5 +138,3 @@ function crucial_slider_slides() {
 }
 
 add_shortcode( 'super-slider', 'crucial_slider_slides' );
-
-echo do_shortcode( '[super-slider]' );

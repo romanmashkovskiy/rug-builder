@@ -42,5 +42,3 @@ function logo_nav_shortcode( $atts = '' ) {
 }
 
 add_shortcode( 'logo-nav', 'logo_nav_shortcode' );
-
-echo do_shortcode( '[logo-nav pattern="true"]' );

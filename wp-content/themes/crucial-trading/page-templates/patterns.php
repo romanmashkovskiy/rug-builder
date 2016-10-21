@@ -50,7 +50,22 @@ for ( $i=0; $i<count($scan); $i++ ) {
 		echo '<script src="' . get_template_directory_uri() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.js"></script>';
 	}
 	
-	include( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php' );
+	include_once( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php' );
+
+	if ( $scan[$i] == 'header' ) {
+		echo '<h6>Header Small</h6>';
+		echo do_shortcode( '[header]' );
+		echo '<h6>Header Large</h6>';
+		echo do_shortcode( '[header size="large"]' );
+		echo '<h6>Header Material</h6>';
+		echo do_shortcode( '[header-material material="coir"]' );
+	}
+	else if ( $scan[$i] == 'logo-nav' ) {
+		echo do_shortcode( '[logo-nav pattern="true"]' );
+	}
+	else {
+		echo do_shortcode( '[' . $scan[$i] . ']' );
+	}
 }
 
 wp_footer();
