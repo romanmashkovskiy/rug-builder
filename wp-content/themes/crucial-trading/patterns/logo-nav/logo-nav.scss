@@ -1,0 +1,62 @@
+.top-bar {
+	background: transparent;
+	height: 100px;
+	position: relative;
+	width: 100%;
+	z-index: 9999;
+}
+
+.top-bar__left,
+.top-bar__right {
+	position: absolute;
+}
+
+.top-bar__left {
+	left: 40px;
+}
+
+.top-bar__right {
+	right: 40px;
+
+	h3 {
+		color: white;
+
+		@media screen and (max-width: 480px) {
+			display: none;
+		}
+	}
+
+	.burger {
+		left: -45px;
+		position: absolute;
+		top: 2px;
+
+		span {
+			background: white;
+			border-radius: 5px;
+			display: block;
+			height: 2px;
+			margin-bottom: 5px;
+			width: 31px;
+		}
+
+		@media screen and (max-width: 480px) {
+			left: 0;
+			top: -7px;
+		}
+	}
+}
+
+@media screen and (min-width: 768px) {
+
+	.mobi-logo {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 768px) {
+
+	.full-logo {
+		display: none;
+	}
+}

@@ -36,7 +36,11 @@ $scan      = array_values(array_diff(scandir($directory), array('..', '.', '.git
 
 for ( $i=0; $i<count($scan); $i++ ) {
 
-	echo '<h1 class="pattern-title">Pattern: ' . ucwords( $scan[$i] ) . '</h1>';
+	if ( ucwords( $scan[$i] ) == 'Super-slider' ) {
+		echo '<h1 class="pattern-title" style="">Pattern: ' . ucwords( $scan[$i] ) . '</h1>';
+	} else {
+		echo '<h1 class="pattern-title">Pattern: ' . ucwords( $scan[$i] ) . '</h1>';
+	}
 
 	if ( file_exists( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.css' ) ) {
 		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.css">';
