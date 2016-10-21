@@ -7,3 +7,59 @@ header {
   header h1 {
     color: white;
     text-align: center; }
+
+header.material {
+  position: relative; }
+  header.material .material__icon,
+  header.material .material__info {
+    float: left;
+    width: 50%; }
+  header.material .material__icon {
+    padding-right: 100px;
+    text-align: right; }
+    header.material .material__icon img {
+      height: 210px;
+      width: 210px; }
+  header.material .material__info {
+    padding-right: 20%; }
+    header.material .material__info h1 {
+      text-align: left; }
+    header.material .material__info.coir h1, header.material .material__info.coir p {
+      color: #B28865; }
+    header.material .material__info.coir h3 {
+      color: #6F533D; }
+    header.material .material__info.jute h1, header.material .material__info.jute p {
+      color: #907259; }
+    header.material .material__info.jute h3 {
+      color: #4B3B2E; }
+    header.material .material__info.seagrass h1, header.material .material__info.seagrass p {
+      color: #A99A71; }
+    header.material .material__info.seagrass h3 {
+      color: #6B6551; }
+    header.material .material__info.sisal h1, header.material .material__info.sisal p {
+      color: #6D7C61; }
+    header.material .material__info.sisal h3 {
+      color: #454F44; }
+    header.material .material__info.sisool h1, header.material .material__info.sisool p {
+      color: #A9A791; }
+    header.material .material__info.sisool h3 {
+      color: #817E62; }
+    header.material .material__info.wool h1, header.material .material__info.wool p {
+      color: #EBD5B7; }
+    header.material .material__info.wool h3 {
+      color: #665F4D; }
+  header.material .material__sidememu {
+    position: absolute;
+    right: 35px;
+    text-align: center;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); }
+    header.material .material__sidememu ul {
+      padding-left: 0; }
+    header.material .material__sidememu li {
+      list-style: none; }
+    header.material .material__sidememu img {
+      height: 45px;
+      margin-bottom: 10px;
+      width: 45px; }

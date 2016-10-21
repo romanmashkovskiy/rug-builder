@@ -14,7 +14,7 @@ function header_shortcode($atts = '') {
 
 	$header_size = 'small';
 
-	if ( $atts != '' && $atts['size'] == 'large' ) {
+	if ( $atts != '' && array_key_exists('size', $atts) && $atts['size'] == 'large' ) {
 		$header_size = 'large';
 	}
 
@@ -34,6 +34,66 @@ function header_shortcode($atts = '') {
 
 add_shortcode( 'header', 'header_shortcode' );
 
+function header_material_shortcode($atts = '') {
+
+	echo '<style>pre{font-size:20px!important;}</style>';
+
+	$html = '';
+
+	if ( $atts != '' && array_key_exists('material', $atts) ) {
+
+		$material  = $atts['material'];
+		$umaterial = ucwords( $atts['material'] );
+
+		$args = array(
+			'hide_empty' => false,
+			'orderby'    => 'name',
+		);
+
+		$categories = get_terms( 'product_cat', $args );
+
+		$this_cat          = get_term_by( 'slug', $material, 'product_cat' );
+		$this_cat_post_id  = get_term_meta( $this_cat->term_id, 'thumbnail_id', true );
+		$this_cat_thumb    = get_post( $this_cat_post_id )->guid;
+
+		$html .= '<header class="large material clearfix">';
+
+		$html .= '<div class="material__icon vertical-align">';
+		$html .= '<img src="' . $this_cat_thumb . '" alt="' . $material . '">';
+		$html .= '</div>';
+
+		$html .= '<div class="material__info ' . $material . ' vertical-align">';
+		$html .= '<h3>True Survivor</h3>';
+		$html .= '<h1>' . $umaterial . '</h1>';
+		$html .= '<p>' . $this_cat->description . '</p>';
+		$html .= '</div>';
+
+		$html .= '<div class="material__sidememu">';
+		$html .= '<ul>';
+
+		for ( $i=0; $i<count($categories); $i++ ) {
+
+			$cat  = $categories[$i];
+			$post = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+			$src  = get_post( $post )->guid;
+			$alt  = $cat->slug; 
+
+			$html .= '<li>';
+			$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+			$html .= '<li>';
+		}
+
+		$html .= '</ul>';
+		$html .= '</div>';
+
+		$html .= '</header>';
+	}
+
+	return $html;
+}
+
+add_shortcode( 'header-material', 'header_material_shortcode' );
+
 ?>
 <h6>Header Small</h6>
 <?php
@@ -42,3 +102,7 @@ echo do_shortcode( '[header]' );
 <h6>Header Large</h6>
 <?php
 echo do_shortcode( '[header size="large"]' );
+?>
+<h6>Header Material</h6>
+<?php
+echo do_shortcode( '[header-material material="coir"]' );
