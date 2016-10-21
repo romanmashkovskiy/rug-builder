@@ -32,7 +32,7 @@ h6 {
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/master.min.css">';
 
 $directory = get_template_directory() . '/patterns';
-$scan      = array_values(array_diff(scandir($directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules')));
+$scan      = array_values(array_diff(scandir($directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store')));
 
 for ( $i=0; $i<count($scan); $i++ ) {
 
