@@ -58,6 +58,10 @@ function header_material_shortcode($atts = '') {
 
 		$html .= '<header class="large material clearfix">';
 
+		$html .= '<div class="material__name ' . $material . '">';
+		$html .= '<h3>' . $material . '</h3>';
+		$html .= '</div>';
+
 		$html .= '<div class="material__icon vertical-align">';
 		$html .= '<img src="' . $this_cat_thumb . '" alt="' . $material . '">';
 		$html .= '</div>';

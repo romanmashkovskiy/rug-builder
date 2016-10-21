@@ -7,9 +7,15 @@ header {
   header h1 {
     color: white;
     text-align: center; }
+  @media screen and (max-width: 600px) {
+    header.small, header.large {
+      height: 300px; } }
 
 header.material {
   position: relative; }
+  @media screen and (max-width: 600px) {
+    header.material {
+      height: 420px; } }
   header.material .material__icon,
   header.material .material__info {
     float: left;
@@ -18,8 +24,25 @@ header.material {
     padding-right: 100px;
     text-align: right; }
     header.material .material__icon img {
-      height: 210px;
-      width: 210px; }
+      height: 230px;
+      width: 230px; }
+    @media screen and (max-width: 700px) {
+      header.material .material__icon {
+        padding-left: 10px; } }
+    @media screen and (max-width: 600px) {
+      header.material .material__icon {
+        float: none;
+        margin: 0;
+        margin-top: 80px;
+        padding: 0;
+        text-align: center;
+        top: 0;
+        -webkit-transform: none;
+        transform: none;
+        width: 100%; }
+        header.material .material__icon img {
+          height: 140px;
+          width: 140px; } }
   header.material .material__info {
     padding-right: 20%; }
     header.material .material__info h1 {
@@ -48,14 +71,49 @@ header.material {
       color: #EBD5B7; }
     header.material .material__info.wool h3 {
       color: #665F4D; }
+    @media screen and (max-width: 600px) {
+      header.material .material__info {
+        margin-top: 20px;
+        padding: 0 10px;
+        text-align: center;
+        top: 0;
+        -webkit-transform: none;
+        transform: none;
+        width: 100%; }
+        header.material .material__info h1 {
+          line-height: 1.2;
+          text-align: center; } }
+  header.material .material__name,
   header.material .material__sidememu {
     position: absolute;
-    right: 35px;
     text-align: center;
     top: 50%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%); }
+  header.material .material__name {
+    left: 15px; }
+    header.material .material__name h3 {
+      -webkit-transform: rotate(270deg);
+      transform: rotate(270deg); }
+    header.material .material__name.coir h3 {
+      color: #6F533D; }
+    header.material .material__name.jute h3 {
+      color: #4B3B2E; }
+    header.material .material__name.seagrass h3 {
+      color: #6B6551; }
+    header.material .material__name.sisal h3 {
+      color: #454F44; }
+    header.material .material__name.sisool h3 {
+      color: #817E62; }
+    header.material .material__name.wool h3 {
+      color: #665F4D; }
+    @media screen and (max-width: 792px) {
+      header.material .material__name {
+        display: none; } }
+  header.material .material__sidememu {
+    right: 35px; }
     header.material .material__sidememu ul {
+      margin: 0;
       padding-left: 0; }
     header.material .material__sidememu li {
       list-style: none; }
@@ -63,3 +121,13 @@ header.material {
       height: 45px;
       margin-bottom: 10px;
       width: 45px; }
+    @media screen and (max-width: 600px) {
+      header.material .material__sidememu {
+        top: 10px;
+        -webkit-transform: none;
+        transform: none;
+        left: 0;
+        right: 0; }
+        header.material .material__sidememu li {
+          display: inline;
+          padding: 0 2px; } }

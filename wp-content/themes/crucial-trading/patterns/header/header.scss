@@ -26,10 +26,21 @@ header {
 		color: white;
 		text-align: center;
 	}
+
+	@media screen and (max-width: 600px) {
+		&.small,
+		&.large {
+			height: 300px;
+		}
+	}
 }
 
 header.material {
 	position: relative;
+
+	@media screen and (max-width: 600px) {
+		height: 420px;
+	}
 
 	.material__icon,
 	.material__info {
@@ -42,8 +53,28 @@ header.material {
 		text-align: right;
 
 		img {
-			height: 210px;
-			width: 210px;
+			height: 230px;
+			width: 230px;
+		}
+
+		@media screen and (max-width: 700px) {
+			padding-left: 10px;
+		}
+
+		@media screen and (max-width: 600px) {
+			float: none;
+			margin: 0;
+			margin-top: 80px;
+			padding: 0;
+			text-align: center;
+			top: 0;
+			transform: none;
+			width: 100%;
+
+			img {
+				height: 140px;
+				width: 140px;
+			}			
 		}
 	}
 
@@ -119,17 +150,73 @@ header.material {
 				color: $color-wool-dark;
 			}
 		}
+
+		@media screen and (max-width: 600px) {
+			margin-top: 20px;
+			padding: 0 10px;
+			text-align: center;
+			top: 0;
+			transform: none;
+			width: 100%;
+			
+			h1 {
+				line-height: 1.2;
+				text-align: center;
+			}
+			
+		}
 	}
 
+	.material__name,
 	.material__sidememu {
 		position: absolute;
-		right: 35px;
 		text-align: center;
 		top: 50%;
 		-webkit-transform: translateY(-50%);
 		transform: translateY(-50%);
+	}
+
+	.material__name {
+		left: 15px;
+
+		h3 {
+			transform: rotate(270deg);
+		}
+
+		&.coir h3 {
+			color: $color-coir-dark;
+		}
+
+		&.jute h3 {
+			color: $color-jute-dark;
+		}
+
+		&.seagrass h3 {
+			color: $color-seagrass-dark;
+		}
+
+		&.sisal h3 {
+			color: $color-sisal-dark;
+		}
+
+		&.sisool h3 {
+			color: $color-sisool-dark;
+		}
+
+		&.wool h3 {
+			color: $color-wool-dark;
+		}
+
+		@media screen and (max-width: 792px) {
+			display: none;
+		}
+	}
+
+	.material__sidememu {
+		right: 35px;
 
 		ul {
+			margin: 0;
 			padding-left: 0;
 		}
 
@@ -141,6 +228,19 @@ header.material {
 			height: 45px;
 			margin-bottom: 10px;
 			width: 45px;
+		}
+
+		@media screen and (max-width: 600px) {
+
+			top: 10px;
+			transform: none;
+			left: 0;
+			right: 0;
+
+			li {
+				display: inline;
+				padding: 0 2px;
+			}
 		}
 	}
 }
