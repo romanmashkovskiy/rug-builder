@@ -18,7 +18,8 @@ function header_shortcode($atts = '') {
 		$header_size = 'large';
 	}
 
-	$title = get_the_title();
+	$title    = get_the_title();
+	$subtitle = rwmb_meta( 'subtitle' );
 
 	$attachment_id = has_post_thumbnail() ? get_post_thumbnail_id() : false;
 	$background    = $attachment_id ? wp_get_attachment_image_url( $attachment_id, 'full' ) : '';
@@ -26,6 +27,8 @@ function header_shortcode($atts = '') {
 	$html = '';
 
 	$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
+	$html .= '<h3 class="vertical-align side-title">' . $title . '</h3>';
+	$html .= '<h3 class="vertical-align subtitle">' . $subtitle . '</h3>';
 	$html .= '<h1 class="vertical-align">' . $title . '</h1>';
 	$html .= '</header>';
 

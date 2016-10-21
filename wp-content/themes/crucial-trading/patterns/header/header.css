@@ -1,12 +1,25 @@
 header {
-  background: #383838; }
+  background: #383838;
+  position: relative; }
   header.small {
     height: 500px; }
+    header.small h3.subtitle {
+      top: 43% !important; }
   header.large {
     height: 750px; }
+    header.large h3.subtitle {
+      top: 45.5% !important; }
   header h1 {
     color: white;
     text-align: center; }
+  header h3 {
+    color: #7C7C7C;
+    text-align: center; }
+    header h3.side-title {
+      left: -13px;
+      position: absolute;
+      -webkit-transform: rotate(270deg);
+      transform: rotate(270deg); }
   @media screen and (max-width: 600px) {
     header.small, header.large {
       height: 300px; } }

@@ -13,18 +13,38 @@ $color-wool-dark     : #665F4D;
 
 header {
 	background: #383838;
+	position: relative;
 
 	&.small {
 		height: 500px;
+
+		h3.subtitle {
+			top: 43% !important;
+		}
 	}
 
 	&.large {
 		height: 750px;
+
+		h3.subtitle {
+			top: 45.5% !important;
+		}
 	}
 
 	h1 {
 		color: white;
 		text-align: center;
+	}
+
+	h3 {
+		color: #7C7C7C;
+		text-align: center;
+
+		&.side-title {
+			left: -13px;
+			position: absolute;
+			transform: rotate(270deg);
+		}
 	}
 
 	@media screen and (max-width: 600px) {
