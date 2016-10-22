@@ -8,10 +8,14 @@
  * @since Crucial Trading 1.0
  */
 
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+
 $main-menu-link-color: #a0a0a0;
+$main-menu-link-color-dark: darken($main-menu-link-color, 10%);
 $main-menu-bg-color: #2d2d2d;
 $main-menu-border-color: #3e3e3e;
-
+$main-menu-font-family: 	'Montserrat', sans-serif;
 
 
 html, 
@@ -22,32 +26,41 @@ body,
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	font-family: 'Montserrat' sans-serif;
+	font-family: $main-menu-font-family;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	-webkit-font-smoothing: antialiased;    
 }
 
 
+.transition-all {
+	transition: all ease-in-out 0.25s;
+  -webkit-transition: all ease-in-out 0.25s;
+}
 
 
-
-
- /*** Menu ***/
+/************** Main Menu **************/ 
  
 .main-menu__wrap {
 	position: absolute;
 	z-index: 1001;
-	width: 400px;
+	width: 370px;
 	height: 100%;
 	right: 0;
 	background: $main-menu-bg-color;
-	padding-top: 55px;
-	-webkit-transform: translate3d(400px,0,0);
-	transform: translate3d(400px,0,0);
+	padding-top: 50px;
+	-webkit-transform: translate3d(370px,0,0);
+	transform: translate3d(370px,0,0);
 	-webkit-transition: -webkit-transform 0.4s;
 	transition: transform 0.4s;
-	-webkit-transition-timing-function: cubic-bezier(0.55,0,0.3,1);
-	transition-timing-function: cubic-bezier(0.55,0,0.3,1);
-}
+	-webkit-transition-timing-function: cubic-bezier(0.62,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.62,0,0.3,1);
+	
+	@media all and (max-width: 1024px) {
+		padding-top: 10px;
+	}
 
+}
 
 /*** Shown menu animation ***/
 
@@ -61,7 +74,7 @@ body,
 }
 
 
-/*** Menu - General ***/ 
+/************** Menu Links - General **************/ 
 
 .main-menu__wrap a {
 	font-size: 16px;
@@ -75,9 +88,6 @@ body,
 	padding-left: 60px;
 	transition: color background-color ease-in-out 0.25s;
   -webkit-transition: color background-color ease-in-out 0.25s;
-	-webkit-backface-visibility: hidden;
-	-webkit-transform-style: preserve-3d;
-	-webkit-font-smoothing: antialiased;    
 	transform: translate(0,0);
 }
 
@@ -88,15 +98,36 @@ body,
 	background-color: #272727;
 }
 
+/*** Menu Link Text - Move on hover ***/ 
+
 .main-menu__wrap a span {
 	display: inline-block;
-	transition: all ease-in-out 0.25s;
-  -webkit-transition: all ease-in-out 0.25s;
+	@extend .transition-all;
 }
 
 .main-menu__wrap a:hover span {
 	transform: translate(5px,0);
 	-webkit-transform: translate(5px,0);
+}
+
+/*** Menu Links Line ***/ 
+
+.main-menu__wrap a::after {
+	width: 20px;
+	height: 1px;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	content: ' ';
+	background-color: darken($main-menu-link-color-dark, 15%);
+	transform: translate(20px, 0);
+	opacity: 0;
+	@extend .transition-all;
+}
+
+.main-menu__wrap a:hover::after {
+	transform: translate(0, 0);
+	opacity: 1;
 }
 
 
@@ -118,18 +149,33 @@ body,
 /*** Menu - Small ***/ 
 
 .main-menu__top__sm {
-	padding-top: 20px;
+	padding-top: 30px;
 	padding-bottom: 20px;
 }
 
+.main-menu__top__sm a {
+	padding-top: 15px;
+	padding-bottom: 15px;
+	color: $main-menu-link-color-dark;
+}
 
 
 /************** Menu Bottom**************/ 
 
 .main-menu__bottom {
 	position: absolute;
-	bottom: 100px;
+	bottom: 50px;
 	width: 100%;
+}
+
+/** Adjust colours **/
+
+.main-menu__wrap .main-menu__bottom a {
+	color: $main-menu-link-color-dark;
+}
+
+.main-menu__wrap .main-menu__bottom a:hover {
+	color: #FFF;
 }
 
 /*** Menu Bottom - Social ***/ 
@@ -139,16 +185,28 @@ body,
 	border-bottom: 1px solid $main-menu-border-color;
 }
 
-.main-menu__social i {
+.main-menu__social a i,
+.main-menu__social a {
+	@extend .transition-all;
+}
+
+.main-menu__social a {
+	padding: 15px;
+}
+
+.main-menu__social a::after {
+	display: none;
+}
+
+.main-menu__social a i {
 	display: block;
 	margin-bottom: 10px;
 	font-size: 22px;
 }
 
-.main-menu__social a {
-	padding: 15px;
-		transition: all ease-in-out 0.25s;
-  -webkit-transition: all ease-in-out 0.25s;
+.main-menu__social a:hover i {
+	transform: translate(0,4px);
+	-webkit-transform: translate(0,4px);
 }
 
 .main-menu__social--twitter, 
@@ -161,12 +219,75 @@ body,
 }
 
 .main-menu__social--twitter {
-		font-size: 0;
-		border-right: 1px solid $main-menu-border-color;
+	font-size: 0;
+	border-right: 1px solid $main-menu-border-color;
 }
 
 
 /*** Menu Bottom - Search ***/ 
+
+.main-menu__search label {
+	position: relative;
+}
+
+.main-menu__search label i {
+	position: absolute;
+	color: $main-menu-link-color-dark;
+	top: 0%;
+	font-size: 20px;
+	left: 20px;
+	transition: all ease-in-out 0.25s;
+  -webkit-transition: all ease-in-out 0.25s;
+  	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	-webkit-font-smoothing: antialiased;    
+}
+
+input.main-menu__search__input {
+	width: 100%;
+	font-size:  16px;
+	color: #FFF;
+	font-family: $main-menu-font-family;
+	background: $main-menu-bg-color;
+	margin: 0;
+	padding: 30px;
+	padding-left: 60px;
+	border: 0;
+	border-radius: 0;
+	border: none; 
+	outline: none;
+	box-sizing: border-box;        
+	border-bottom: 1px solid $main-menu-border-color;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	-webkit-font-smoothing: antialiased;    
+}
+
+::-webkit-input-placeholder {
+	font-family: $main-menu-font-family;
+	color: $main-menu-link-color-dark;
+}
+
+:-moz-placeholder {
+	font-family: $main-menu-font-family;
+	color: $main-menu-link-color-dark;
+}
+
+::-moz-placeholder {
+	font-family: $main-menu-font-family;
+	color: $main-menu-link-color-dark;
+}
+
+:-ms-input-placeholder {  
+	font-family: $main-menu-font-family;
+	color: $main-menu-link-color-dark;
+}
+
+input.main-menu__search__input:focus + i {
+	color: #FFF;
+	transform: translate(5px,0);
+	-webkit-transform: translate(5px,0);
+}
 
 
 
@@ -198,6 +319,7 @@ body,
 .menu-button:hover {
 	opacity: 0.6;
 }
+
 
 /* Close Button */
 .close-button {
