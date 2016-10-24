@@ -110,5 +110,3 @@ function materials_slider() {
 }
 
 add_shortcode( 'materials-slider', 'materials_slider' );
-
-echo do_shortcode( '[materials-slider]' );
