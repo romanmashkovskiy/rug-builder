@@ -1,4 +1,4 @@
-#RewriteRule ^wp-content/uploads/(.*)$ https://d3e9otd2swdmyo.cloudfront.net/wp-content/uploads/$1 [R=301,L]
+#RewriteRule ^wp-content/uploads/(.*)$ https://d105txpzekqrfa.cloudfront.net/uploads/$1 [R=301,L]
 
 # Security scan report fixes
 
