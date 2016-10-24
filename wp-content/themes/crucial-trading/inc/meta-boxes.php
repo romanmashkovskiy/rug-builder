@@ -38,11 +38,17 @@ function meta_boxes($meta_boxes) {
 		'fields'     => array(
 			array(
 				'name'       => 'Section Box',
-				'id'         => 'box',
+				'id'         => 'boxes',
 				'type'       => 'group',
 				'clone'      => true,
 				'sort_clone' => true,
 				'fields'     => array(
+					array(
+						'name'    => 'Image Side',
+						'id'      => 'side',
+						'type'    => 'select',
+						'options' => array( 'left' => 'Left', 'right' => 'Right' ),
+					),
 					array(
 						'name' => 'Title',
 						'id'   => 'title',

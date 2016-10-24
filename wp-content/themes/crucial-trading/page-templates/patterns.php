@@ -64,6 +64,9 @@ for ( $i=0; $i<count($scan); $i++ ) {
 	else if ( $scan[$i] == 'logo-nav' ) {
 		echo do_shortcode( '[logo-nav pattern="true"]' );
 	}
+	else if ( $scan[$i] == 'section-boxes' ) {
+		echo do_shortcode( '[section-boxes number=0]' );
+	}
 	else {
 		echo do_shortcode( '[' . $scan[$i] . ']' );
 	}

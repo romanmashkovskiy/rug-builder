@@ -16,20 +16,53 @@ function section_box( $atts = '' ) {
 
 	if ( $atts != '' ) {
 
-		$number = array_key_exists('number', $atts) ? $atts['number'] : false;
+		$numberMB = array_key_exists('number', $atts) ? $atts['number'] : false;
+		$number   = (int)$numberMB;
 
-		if ( $number ) {
+		if ( $number > -1 ) {
 
 			$boxes = rwmb_meta( 'boxes' );
-			$box   = $boxes[$number];
 
-			echo '<pre>';
-			print_r($box);
-			echo '</pre>';
+			if ( count( $boxes ) > 0 ) {
+
+				$box = $boxes[$number];
+
+				$title     = $box['title'];
+				$subtitle  = $box['subtitle'];
+				$text      = $box['text'];
+				$link_text = $box['link-text'];
+				$link      = $box['link-href'];
+
+				$side  = $box['side'];
+				$image = $box['image'][0];
+
+				$src = wp_get_attachment_image_src( $image, 'medium_large' )[0];
+				$alt = '';
+
+				$html .= '<section class="section-box clearfix">';
+
+				$html .= '<div class="box__image ';
+				$side == 'left' ? $html .= 'left' : $html .= 'right';
+				$html .= '">';
+				$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+				$html .= '</div>';
+
+				$html .= '<div class="box__content ';
+				$side == 'left' ? $html .= 'left' : $html .= 'right';
+				$html .= '">';
+				$html .= '<h3>' . $subtitle . '</h3>';
+				$html .= '<h1>' . $title . '</h1>';
+				$html .= '<span></span>';
+				$html .= '<p>' . $text . '</p>';
+				$html .= '<a href="' . $link . '">' . $link_text . '</a>';
+				$html .= '</div>';
+
+				$html .= '</section>';
+			}
 		}
 	}
 
 	return $html;
 }
 
-add_shortcode('section-box', 'section_box');
+add_shortcode('section-boxes', 'section_box');
