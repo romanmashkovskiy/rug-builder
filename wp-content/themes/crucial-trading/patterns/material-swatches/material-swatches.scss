@@ -1,0 +1,30 @@
+.swatches {
+	margin-left: 7%;
+	position: relative;
+	width: 86%;
+
+	.swatch {
+		float: left;
+		width: 23.5%;
+
+		&:not(:last-child) {
+			margin-right: 2%;
+		}
+
+		img {
+			height: auto;
+			margin-bottom: 10px;
+			width: 100%;
+		}
+
+		h3 {
+			color: #7C7C7C;
+			margin-bottom: 5px;
+			width: 60%;
+
+			&.code {
+				color: #BBBBBB;
+			}
+		}
+	}
+}

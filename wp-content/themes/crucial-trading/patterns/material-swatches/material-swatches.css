@@ -1,0 +1,19 @@
+.swatches {
+  margin-left: 7%;
+  position: relative;
+  width: 86%; }
+  .swatches .swatch {
+    float: left;
+    width: 23.5%; }
+    .swatches .swatch:not(:last-child) {
+      margin-right: 2%; }
+    .swatches .swatch img {
+      height: auto;
+      margin-bottom: 10px;
+      width: 100%; }
+    .swatches .swatch h3 {
+      color: #7C7C7C;
+      margin-bottom: 5px;
+      width: 60%; }
+      .swatches .swatch h3.code {
+        color: #BBBBBB; }
