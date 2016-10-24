@@ -100,16 +100,3 @@ function header_material_shortcode($atts = '') {
 }
 
 add_shortcode( 'header-material', 'header_material_shortcode' );
-
-?>
-<h6>Header Small</h6>
-<?php
-echo do_shortcode( '[header]' );
-?>
-<h6>Header Large</h6>
-<?php
-echo do_shortcode( '[header size="large"]' );
-?>
-<h6>Header Material</h6>
-<?php
-echo do_shortcode( '[header-material material="coir"]' );
