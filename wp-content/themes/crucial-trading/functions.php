@@ -16,6 +16,11 @@ require get_template_directory() . '/inc/post-types/include.php';
  */
 require get_template_directory() . '/inc/woocommerce/include.php';
 
+/**
+ * Load meta boxes.
+ */
+require get_template_directory() . '/inc/meta-boxes.php';
+
 
 if ( ! function_exists( 'crucial_trading_setup' ) ) :
 /**
@@ -152,11 +157,6 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Page subtitles.
- */
-require get_template_directory() . '/inc/page-subtitle.php';
 
 /**
  * Load Jetpack compatibility file.

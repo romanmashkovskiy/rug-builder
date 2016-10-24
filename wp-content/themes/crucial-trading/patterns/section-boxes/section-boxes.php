@@ -10,7 +10,7 @@
  * @since Crucial Trading 1.0
  */
 
-function section_box( $atts = ''; ) {
+function section_box( $atts = '' ) {
 
 	$html = '';
 
