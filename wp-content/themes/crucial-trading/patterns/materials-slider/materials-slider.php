@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Template Name: Super Slider
- * The large full size slider used on the homepage 
+ * Template Name: Material Slider
+ * The materials slider used on the homepage 
  *
  * Contents:
  *
