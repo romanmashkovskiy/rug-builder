@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Super Slider
  * The large full size slider used on the homepage 
@@ -9,52 +10,131 @@
  * @since Crucial Trading 1.0
  */
 
-function crucial_super_slider($atts) {
-	global $wpdb, $post;
+function crucial_slider_slides() {
 
-	// Get shortcode attachments - in this case what kind of testimonial taxonomy should be shown
-	$taxonomy_term = $atts['type'];
-
-	$html = '<div class="testimonials clearfix">';
-	
-	$args=array(
-	  'taxonomy' => 'testimonial', // Get custom taxonomy type
-	  'term' => $taxonomy_term, // Shortcode Terms
-	  'post_type' => 'super-slider',
-	  'post_status' => 'publish',
-	  //'posts_per_page' => 3,
-	  'orderby' => 'menu_order',
+	$args = array(
+		'post_type'   => 'super-slider',
+		'post_status' => 'publish',
+		'orderby'     => 'menu_order',
 	);
-	
-	$the_query = new WP_Query($args);
-	while ( $the_query->have_posts() ) : $the_query->the_post();
 
-			$date = get_the_date('l dS F Y');
-			$custom = get_post_custom();
-			$name = $custom['person'][0];
-			$rating = $custom['rating'][0];
-			$text = $custom['text'][0];
+	$html = '';
 
-			$stars = '';
-			for ( $i2=0; $i2<$rating; $i2++ ) {
-				$stars .= '<i class="fa fa-star"></i>';
+	$query = new WP_Query( $args );
+
+	$post_count = $query->post_count;
+
+	if ( $query->have_posts() ) :
+
+		$html .= '<div id="super-slider">';
+		$html .= '<ul class="slides-container">';
+
+		while ( $query->have_posts() ) : $query->the_post();
+
+			$current_post = $query->current_post;
+
+			$post_id       = get_the_ID();
+			$attachment_id = get_post_thumbnail_id( $post_id );
+
+			$title     = get_the_title();
+			$link_url  = rwmb_meta( 'link' );
+			$link_text = rwmb_meta( 'link-text' );
+			$src       = wp_get_attachment_image_url( $attachment_id, 'full' );
+			$srcset    = wp_get_attachment_image_srcset( $attachment_id );
+			$alt       = 'Crucial Trading - ' . $link_text;
+
+			$arrow_left = '
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31px" height="59px" viewBox="0 0 31 59" version="1.1" class="slide__arrow--left">
+				<g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+					<g id="vivid" transform="translate(-45.000000, -553.000000)" stroke="#FFFFFF">
+						<g id="slider-arrow" transform="translate(60.500000, 582.000000) rotate(-180.000000) translate(-60.500000, -582.000000) translate(46.000000, 553.000000)">
+							<path d="M0.201388889,0.201388889 L28.8071201,28.8071201" id="Line"/>
+							<path d="M0,57.6057312 L28.6057312,29" id="Line"/>
+						</g>
+					</g>
+				</g>
+			</svg>
+			';
+
+			$arrow_right = '
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31px" height="58px" viewBox="0 0 31 58" version="1.1" class="slide__arrow--right">
+				<g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+					<g id="vivid" transform="translate(-1556.000000, -553.000000)" stroke="#FFFFFF">
+						<g id="slider-arrow" transform="translate(1557.000000, 553.000000)">
+							<path d="M0.201388889,0.201388889 L28.8071201,28.8071201" id="Line"/>
+							<path d="M0,57.6057312 L28.6057312,29" id="Line"/>
+						</g>
+					</g>
+				</g>
+			</svg>
+			';
+
+			$arrow_down = '
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="57.404px" height="28.605px" viewBox="-13.299 14.5 57.404 28.605" enable-background="new -13.299 14.5 57.404 28.605" xml:space="preserve" class="slide__arrow--down">
+				<g id="Home">
+					<g id="vivid" transform="translate(-1556.000000, -553.000000)">
+						<g id="slider-arrow" transform="translate(1557.000000, 553.000000)">
+							<path id="Line" fill="none" stroke="#FFFFFF" stroke-linecap="square" d="M43.105,14.701L14.5,43.307"/>
+							<path id="Line_1_" fill="none" stroke="#FFFFFF" stroke-linecap="square" d="M-14.299,14.5l28.605,28.605"/>
+						</g>
+					</g>
+				</g>
+			</svg>
+			';
+
+			$slide_numbers = '<ul class="slide__numbers">';
+
+			for ( $i=0; $i<$post_count; $i++ ) {
+
+				$num    = $i+1;
+				$active = $i == $current_post ? 'active' : '';
+
+				$slide_numbers .= '<li class="' . $active . '"><h3>0' . $num . '.</h3><span></span></li>';
 			}
 
-			$html .= '<div class="col-md-4 testimonial retain-padding">';
-			$html .= '<p class="testimonial__name">' . $name. '</p>';
-			$html .= '<p class="testimonial__date">' . $date . '</p>';
-			$html .= '<p class="testimonial__stars">' . $stars . '</p>';
-			$html .= '<p class="testimonial__text">' . $text . '</p>';
+			$slide_numbers .= '</ul>';
+
+			$html .= '<li class="slide">';
+			$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+
+			$html .= '<nav class="slides-navigation vertical-align">';
+
+			$html .= '<div class="nav_prev">';
+			$html .= '<a href="#" class="prev">';
+			$html .= $arrow_left;
+			$html .= '</a>';
+			$html .= '<h3>' . $title . '</h3>';
 			$html .= '</div>';
 
-	endwhile;
-	wp_reset_postdata(); // Reset post data so that the main template loop continues to work
+			$html .= '<div class="nav_next">';
+			$html .= '<a href="#" class="next">';
+			$html .= $arrow_right;
+			$html .= '</a>';
+			$html .= $slide_numbers;
+			$html .= '</div>';
 
-	$html .= '</div>';
+			$html .= '</nav>';
+
+			$html .= '<div class="slide__center vertical-align">';
+			$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
+			$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
+			$html .= '</div>';
+
+			$html .= '<div class="slide__bottom">';
+			$html .= $arrow_down;
+			$html .= '<h3>Scroll Down</h3>';
+			$html .= '</div>';
+
+			$html .= '</li>';
+
+		endwhile;
+
+		$html .= '</ul>';
+		$html .= '</div>';
+
+	endif;
 
 	return $html;
 }
 
-// Add shortcode
-
-//add_shortcode('testimonials', 'testimonials_shortcode');
+add_shortcode( 'super-slider', 'crucial_slider_slides' );

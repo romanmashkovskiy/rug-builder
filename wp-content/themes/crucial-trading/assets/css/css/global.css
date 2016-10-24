@@ -26,7 +26,26 @@
 	Created by: KIJO Creative <hello@kijo.co>
 
 *************************************************************************************************************************/
+/* Colors */
 /* Typography */
+.vert-align {
+  display: inline-block;
+  float: none;
+  vertical-align: middle; }
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d; }
+
+.vertical-align-table {
+  display: table-cell;
+  float: none;
+  vertical-align: middle; }
+
 /************************************************************************************************************************
 	Headings
 	
@@ -91,6 +110,7 @@ a {
   text-decoration: none;
   text-transform: uppercase; }
   a:hover {
+    color: #000000;
     text-decoration: underline; }
 
 p {

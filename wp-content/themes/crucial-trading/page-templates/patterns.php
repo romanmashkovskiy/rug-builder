@@ -2,8 +2,13 @@
 
 /* Template Name: Patterns */
 
+wp_head();
+
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/bootstrap.min.css">';
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/animate.min.css">';
+
+echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"></script>';
+echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js"></script>';
 
 echo '
 <style>
@@ -28,11 +33,15 @@ h6 {
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/master.min.css">';
 
 $directory = get_template_directory() . '/patterns';
-$scan      = array_values(array_diff(scandir($directory), array('..', '.', 'functions.php')));
+$scan      = array_values(array_diff(scandir($directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store')));
 
 for ( $i=0; $i<count($scan); $i++ ) {
 
-	echo '<h1 class="pattern-title">Pattern: ' . ucwords( $scan[$i] ) . '</h1>';
+	if ( ucwords( $scan[$i] ) == 'Super-slider' ) {
+		echo '<h1 class="pattern-title" style="">Pattern: ' . ucwords( $scan[$i] ) . '</h1>';
+	} else {
+		echo '<h1 class="pattern-title">Pattern: ' . ucwords( $scan[$i] ) . '</h1>';
+	}
 
 	if ( file_exists( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.css' ) ) {
 		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.css">';
@@ -42,7 +51,27 @@ for ( $i=0; $i<count($scan); $i++ ) {
 		echo '<script src="' . get_template_directory_uri() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.js"></script>';
 	}
 	
-	include( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php' );
+	include_once( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php' );
+
+	if ( $scan[$i] == 'header' ) {
+		echo '<h6>Header Small</h6>';
+		echo do_shortcode( '[header]' );
+		echo '<h6>Header Large</h6>';
+		echo do_shortcode( '[header size="large"]' );
+		echo '<h6>Header Material</h6>';
+		echo do_shortcode( '[header-material material="coir"]' );
+	}
+	else if ( $scan[$i] == 'logo-nav' ) {
+		echo do_shortcode( '[logo-nav pattern="true"]' );
+	}
+	else if ( $scan[$i] == 'section-boxes' ) {
+		echo do_shortcode( '[section-boxes number=0]' );
+	}
+	else {
+		echo do_shortcode( '[' . $scan[$i] . ']' );
+	}
 }
+
+wp_footer();
 
 ?>

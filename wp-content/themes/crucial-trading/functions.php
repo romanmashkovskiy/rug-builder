@@ -16,6 +16,11 @@ require get_template_directory() . '/inc/post-types/include.php';
  */
 require get_template_directory() . '/inc/woocommerce/include.php';
 
+/**
+ * Load meta boxes.
+ */
+require get_template_directory() . '/inc/meta-boxes.php';
+
 
 if ( ! function_exists( 'crucial_trading_setup' ) ) :
 /**
@@ -123,6 +128,15 @@ function crucial_trading_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'crucial_trading_scripts' );
+
+/**
+ * Allow SVG upload.
+ */
+function cc_mime_types($mimes) {
+	$mimes['svg'] = 'image/svg+xml';
+	return $mimes;
+}
+add_filter('upload_mimes', 'cc_mime_types');
 
 /**
  * Implement the Custom Header feature.
