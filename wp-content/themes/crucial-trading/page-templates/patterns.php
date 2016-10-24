@@ -67,6 +67,9 @@ for ( $i=0; $i<count($scan); $i++ ) {
 	else if ( $scan[$i] == 'section-boxes' ) {
 		echo do_shortcode( '[section-boxes number=0]' );
 	}
+	else if ( $scan[$i] == 'material-swatches' ) {
+		echo do_shortcode( '[material-swatches material="coir"]' );
+	}
 	else {
 		echo do_shortcode( '[' . $scan[$i] . ']' );
 	}
