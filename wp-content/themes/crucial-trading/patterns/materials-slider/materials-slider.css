@@ -88,3 +88,22 @@
       color: #665F4D; }
     .material-slide .content__right.wool a {
       border-bottom-color: #665F4D; }
+  .material-slide .slide__nav {
+    display: inline-block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); }
+    .material-slide .slide__nav .next-slide {
+      cursor: pointer;
+      position: absolute;
+      right: 35px; }
+    .material-slide .slide__nav .prev-slide {
+      cursor: pointer;
+      left: 35px;
+      position: absolute; }
+
+.bx-controls {
+  display: none; }

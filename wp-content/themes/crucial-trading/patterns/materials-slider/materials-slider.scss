@@ -185,4 +185,29 @@ $color-wool-dark     : #665F4D;
 			}
 		}
 	}
+
+	.slide__nav {
+		display: inline-block;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+
+		.next-slide {
+			cursor: pointer;
+			position: absolute;
+			right: 35px;
+		}
+
+		.prev-slide {
+			cursor: pointer;
+			left: 35px;
+			position: absolute;
+		}
+	}
+}
+
+.bx-controls {
+	display: none;
 }

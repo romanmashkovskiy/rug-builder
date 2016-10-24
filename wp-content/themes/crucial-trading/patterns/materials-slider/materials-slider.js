@@ -2,7 +2,19 @@ var $ = jQuery;
 
 $(document).ready(function() {
 
-	$('.materials-slider').bxSlider();
+	var slider = $('.materials-slider').bxSlider();
 
-	$('.material-slide .abc').css('cssText', 'height: calc(100% - 60px)');
+	$('.next-slide').on('click', function() {
+		slider.goToNextSlide();
+	});
+
+	$('.prev-slide').on('click', function() {
+		slider.goToPrevSlide();
+	});
+
+	$('.slide__list li').on('click', function() {
+		slider.goToSlide( $(this).data('slide') );
+	});
+
+	$('.material-slide .slide__content').css('cssText', 'height: calc(100% - 60px)');
 });
