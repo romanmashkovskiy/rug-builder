@@ -1,5 +1,6 @@
 .section-box {
-  box-shadow: 0px 0px 18px 1px #CCCCCC;
+  -mox-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
   left: 50%;
   position: relative;
   -webkit-transform: translateX(-50%);
