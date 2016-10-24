@@ -99,6 +99,14 @@ $color-wool-dark     : transparentize($color-wool-main, 0.4);
 			text-decoration: none;
 		}
 
+		h1 {
+			margin-bottom: 48px;
+		}
+
+		p {
+			margin-bottom: 75px;
+		}
+
 		&.coir {
 
 			h1, p {
