@@ -18,17 +18,29 @@ echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/c
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/animate.min.css">';
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/master.min.css">';
 echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"></script>';
+echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js"></script>';
 
-include_once(get_template_directory() . '/patterns/header/header.php');
 include_once(get_template_directory() . '/patterns/super-slider/super-slider.php');
+include_once(get_template_directory() . '/patterns/section-boxes/section-boxes.php');
+include_once(get_template_directory() . '/patterns/materials-slider/materials-slider.php');
 
-echo '<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/header/header.css">';
 echo '<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/super-slider/super-slider.css">';
 echo '<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/super-slider/super-slider.js"></script>';
 
-echo do_shortcode( '[header]' );
+echo '<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/section-boxes/section-boxes.css">';
+
+echo '<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/materials-slider/materials-slider.css">';
+echo '<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/materials-slider/materials-slider.js"></script>';
+
+echo '<style>header{display:none;}</style>';
 
 echo do_shortcode( '[super-slider]' );
+
+echo do_shortcode( '[section-boxes number=0]' );
+
+echo do_shortcode( '[materials-slider]' );
+
+echo do_shortcode( '[section-boxes number=1]' );
 
 ?>
  

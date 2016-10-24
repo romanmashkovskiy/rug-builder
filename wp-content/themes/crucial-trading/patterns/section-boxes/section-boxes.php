@@ -12,6 +12,8 @@
 
 function section_box( $atts = '' ) {
 
+	wp_reset_postdata();
+
 	$html = '';
 
 	if ( $atts != '' ) {
@@ -27,24 +29,23 @@ function section_box( $atts = '' ) {
 
 				$box = $boxes[$number];
 
-				$title     = $box['title'];
-				$subtitle  = $box['subtitle'];
-				$text      = $box['text'];
-				$link_text = $box['link-text'];
-				$link      = $box['link-href'];
+				$title     = array_key_exists('title', $box) ? $box['title'] : '';
+				$subtitle  = array_key_exists('subtitle', $box) ? $box['subtitle'] : '';
+				$text      = array_key_exists('text', $box) ? $box['text'] : '';
+				$link_text = array_key_exists('link-text', $box) ? $box['link-text'] : '';
+				$link      = array_key_exists('link-href', $box) ? $box['link-href'] : '';
 
-				$side  = $box['side'];
-				$image = $box['image'][0];
+				$side  = array_key_exists('side', $box) ? $box['side'] : 'left';
+				$image = array_key_exists('image', $box) ? $box['image'][0] : '';
 
 				$src = wp_get_attachment_image_src( $image, 'medium_large' )[0];
-				$alt = '';
 
 				$html .= '<section class="section-box clearfix">';
 
 				$html .= '<div class="box__image ';
 				$side == 'left' ? $html .= 'left' : $html .= 'right';
 				$html .= '">';
-				$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+				$html .= '<img src="' . $src . '" alt="' . $subtitle . '">';
 				$html .= '</div>';
 
 				$html .= '<div class="box__content ';
