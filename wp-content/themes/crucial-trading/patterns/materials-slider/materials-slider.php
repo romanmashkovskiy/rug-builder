@@ -31,7 +31,9 @@ function materials_slider() {
 			$mat_src  = $mat_post->guid;
 			$mat_alt  = $mat_post->post_title;
 
-			$all_materials .= '<li data-slide="' . $i . '"><img src="' . $mat_src . '" alt="' . $mat_alt . '"></li>';
+			$active_class = $i == 0 ? 'active' : '';
+
+			$all_materials .= '<li data-slide="' . $i . '"><img src="' . $mat_src . '" alt="' . $mat_alt . '" class="' . $active_class . '"></li>';
 		}
 
 		$html .= '<ul class="materials-slider">';

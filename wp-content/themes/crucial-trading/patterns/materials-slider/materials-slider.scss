@@ -66,6 +66,10 @@ $color-wool-dark     : #665F4D;
 			img {
 				height: 45px;
 				width: 45px;
+
+				&:not(.active) {
+					opacity: 0.4;
+				}
 			}
 		}
 	}
