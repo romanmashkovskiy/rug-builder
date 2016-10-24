@@ -1,6 +1,8 @@
 #super-slider {
-  max-height: 100vh !important; }
+  max-height: 100vh !important;
+  min-height: 100vh !important; }
   #super-slider .slide img {
+    height: 100% !important;
     -o-object-fit: cover;
     object-fit: cover; }
 
