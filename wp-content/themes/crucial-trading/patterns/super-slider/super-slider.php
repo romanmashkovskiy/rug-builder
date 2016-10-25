@@ -103,7 +103,7 @@ function crucial_slider_slides() {
 			$html .= '<a href="#" class="prev">';
 			$html .= $arrow_left;
 			$html .= '</a>';
-			$html .= '<h3>' . $title . '</h3>';
+			$html .= '<h3 class="rotate">' . $title . '</h3>';
 			$html .= '</div>';
 
 			$html .= '<div class="nav_next">';

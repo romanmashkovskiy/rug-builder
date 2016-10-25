@@ -79,7 +79,7 @@ function materials_slider() {
 
 			$html .= '<li class="material-slide">';
 
-			$html .= '<h3 class="slide__title ' . $alt . '">Our Materials</h3>';
+			$html .= '<h3 class="slide__title rotate ' . $alt . '">Our Materials</h3>';
 
 			$html .= '<ul class="slide__list">';
 			$html .= $all_materials;

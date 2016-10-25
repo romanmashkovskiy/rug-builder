@@ -27,7 +27,7 @@ function header_shortcode($atts = '') {
 	$html = '';
 
 	$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
-	$html .= '<h3 class="vertical-align side-title">' . $title . '</h3>';
+	$html .= '<h3 class="vertical-align side-title rotate">' . $title . '</h3>';
 	$html .= '<h3 class="vertical-align subtitle">' . $subtitle . '</h3>';
 	$html .= '<h1 class="vertical-align">' . $title . '</h1>';
 	$html .= '</header>';
@@ -62,7 +62,7 @@ function header_material_shortcode($atts = '') {
 		$html .= '<header class="large material clearfix">';
 
 		$html .= '<div class="material__name ' . $material . '">';
-		$html .= '<h3>' . $material . '</h3>';
+		$html .= '<h3 class="rotate">' . $material . '</h3>';
 		$html .= '</div>';
 
 		$html .= '<div class="material__icon vertical-align">';
