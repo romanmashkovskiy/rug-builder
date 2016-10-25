@@ -67,6 +67,10 @@ $color-wool-dark     : transparentize($color-wool-main, 0.4);
 
 				&:not(.active) {
 					opacity: 0.4;
+
+					&:hover {
+						opacity: 1;
+					}
 				}
 			}
 		}

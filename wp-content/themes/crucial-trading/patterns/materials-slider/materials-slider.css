@@ -35,6 +35,8 @@
         width: 45px; }
         .material-slide .slide__list li img:not(.active) {
           opacity: 0.4; }
+          .material-slide .slide__list li img:not(.active):hover {
+            opacity: 1; }
   .material-slide .content__left,
   .material-slide .content__right {
     float: left;
