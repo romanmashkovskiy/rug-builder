@@ -107,6 +107,18 @@
       cursor: pointer;
       left: 35px;
       position: absolute; }
+    .material-slide .slide__nav svg.coir g {
+      stroke: #B28865; }
+    .material-slide .slide__nav svg.jute g {
+      stroke: #907259; }
+    .material-slide .slide__nav svg.seagrass g {
+      stroke: #A99A71; }
+    .material-slide .slide__nav svg.sisal g {
+      stroke: #6D7C61; }
+    .material-slide .slide__nav svg.sisool g {
+      stroke: #A9A791; }
+    .material-slide .slide__nav svg.wool g {
+      stroke: #EBD5B7; }
 
 .bx-controls {
   display: none; }

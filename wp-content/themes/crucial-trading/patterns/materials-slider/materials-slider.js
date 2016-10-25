@@ -4,8 +4,6 @@ $(document).ready(function() {
 
 	var slider = $('.materials-slider').bxSlider();
 
-	console.log(slider)
-
 	$('.next-slide').on('click', function() {
 		slider.goToNextSlide();
 

@@ -215,6 +215,33 @@ $color-wool-dark     : transparentize($color-wool-main, 0.4);
 			left: 35px;
 			position: absolute;
 		}
+
+		svg  {
+
+			&.coir g {
+				stroke: $color-coir-main;
+			}
+
+			&.jute g {
+				stroke: $color-jute-main;
+			}
+
+			&.seagrass g {
+				stroke: $color-seagrass-main;
+			}
+
+			&.sisal g {
+				stroke: $color-sisal-main;
+			}
+
+			&.sisool g {
+				stroke: $color-sisool-main;
+			}
+
+			&.wool g {
+				stroke: $color-wool-main;
+			}
+		}
 	}
 }
 
