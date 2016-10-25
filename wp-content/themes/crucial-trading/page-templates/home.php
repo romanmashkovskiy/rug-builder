@@ -24,13 +24,13 @@ include_once(get_template_directory() . '/patterns/super-slider/super-slider.php
 include_once(get_template_directory() . '/patterns/section-boxes/section-boxes.php');
 include_once(get_template_directory() . '/patterns/materials-slider/materials-slider.php');
 
-echo '<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/super-slider/super-slider.css">';
-echo '<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/super-slider/super-slider.js"></script>';
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/patterns/super-slider/super-slider.css">';
+echo '<script src="' . get_template_directory_uri() . '/patterns/super-slider/super-slider.js"></script>';
 
-echo '<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/section-boxes/section-boxes.css">';
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/patterns/section-boxes/section-boxes.css">';
 
-echo '<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/materials-slider/materials-slider.css">';
-echo '<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/patterns/materials-slider/materials-slider.js"></script>';
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/patterns/materials-slider/materials-slider.css">';
+echo '<script src="' . get_template_directory_uri() . '/patterns/materials-slider/materials-slider.js"></script>';
 
 echo '<style>header{display:none;}</style>';
 

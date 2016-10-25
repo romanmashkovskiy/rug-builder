@@ -1,15 +1,15 @@
 $color-coir-main     : #B28865;
-$color-coir-dark     : #6F533D;
+$color-coir-dark     : transparentize($color-coir-main, 0.4);
 $color-jute-main     : #907259;
-$color-jute-dark     : #4B3B2E;
+$color-jute-dark     : transparentize($color-jute-main, 0.4);
 $color-seagrass-main : #A99A71;
-$color-seagrass-dark : #6B6551;
-$color-sisool-main   : #A9A791;
+$color-seagrass-dark : transparentize($color-seagrass-main, 0.4);
 $color-sisal-main    : #6D7C61;
-$color-sisal-dark    : #454F44;
-$color-sisool-dark   : #817E62;
+$color-sisal-dark    : transparentize($color-sisal-main, 0.4);
+$color-sisool-main   : #A9A791;
+$color-sisool-dark   : transparentize($color-sisool-main, 0.4);
 $color-wool-main     : #EBD5B7;
-$color-wool-dark     : #665F4D;
+$color-wool-dark     : transparentize($color-wool-main, 0.4);
 
 .materials-slider {
 	margin: 0 !important;
@@ -66,6 +66,10 @@ $color-wool-dark     : #665F4D;
 			img {
 				height: 45px;
 				width: 45px;
+
+				&:not(.active) {
+					opacity: 0.4;
+				}
 			}
 		}
 	}
@@ -93,6 +97,14 @@ $color-wool-dark     : #665F4D;
 
 		a:hover {
 			text-decoration: none;
+		}
+
+		h1 {
+			margin-bottom: 48px;
+		}
+
+		p {
+			margin-bottom: 75px;
 		}
 
 		&.coir {
