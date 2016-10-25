@@ -1,4 +1,14 @@
-/*!
+/**
+ * main.js
+ * http://www.codrops.com
+ *
+ * Licensed under the MIT license.
+ * http://www.opensource.org/licenses/mit-license.php
+ * 
+ * Copyright 2014, Codrops
+ * http://www.codrops.com
+ */
+ /*!
  * classie - class helper functions
  * from bonzo https://github.com/ded/bonzo
  * 
@@ -80,22 +90,13 @@ if ( typeof define === 'function' && define.amd ) {
 })( window );
 
 
-/**
- * main.js
- * http://www.codrops.com
- *
- * Licensed under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- * 
- * Copyright 2014, Codrops
- * http://www.codrops.com
- */
+ 
 (function() {
 
 	var bodyEl = document.body,
 		content = document.querySelector( '.content-wrap' ),
 		openbtn = document.getElementById( 'open-button' ),
-		closebtn = document.getElementById( 'close-button' ),
+		closebtn = document.getElementById( '.main-menu__button' ),
 		isOpen = false;
 
 	function init() {
@@ -108,7 +109,7 @@ if ( typeof define === 'function' && define.amd ) {
 			closebtn.addEventListener( 'click', toggleMenu );
 		}
 
-		// close the menu element if the target it«s not the menu element or one of its descendants..
+		// close the menu element if the target it´s not the menu element or one of its descendants..
 		content.addEventListener( 'click', function(ev) {
 			var target = ev.target;
 			if( isOpen && target !== openbtn ) {
@@ -120,6 +121,7 @@ if ( typeof define === 'function' && define.amd ) {
 	function toggleMenu() {
 		if( isOpen ) {
 			classie.remove( bodyEl, 'show-menu' );
+			classie.remove( bodyEl, 'is-active' );
 		}
 		else {
 			classie.add( bodyEl, 'show-menu' );
@@ -128,5 +130,27 @@ if ( typeof define === 'function' && define.amd ) {
 	}
 
 	init();
+
+})();
+
+
+
+
+(function() {
+
+
+  var toggles = document.querySelectorAll(".main-menu__button");
+
+  for (var i = toggles.length - 1; i >= 0; i--) {
+    var toggle = toggles[i];
+    toggleHandler(toggle);
+  };
+
+  function toggleHandler(toggle) {
+    toggle.addEventListener( "click", function(e) {
+      e.preventDefault();
+      (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
+    });
+  }
 
 })();

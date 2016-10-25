@@ -13,8 +13,13 @@ function crucial_main_menu() {
 
 	$html = '';
 
-	$html .= '						<div class="main-menu">
+	$html .= '<div class="main-menu">
 				<div class="main-menu__wrap">
+					<div class="main-menu__button--wrap">
+						<button class="main-menu__button menu-button" id="open-button">
+							<span class="main-menu__button__icon"></span><span class="main-menu__button__text">menu</span><span class="main-menu__button__text--close">close</span>
+						</button>
+					</div>
 					<nav>
 						<div class="main-menu__top icon-list">
 							<div class="main-menu__top__lg">
@@ -47,13 +52,10 @@ function crucial_main_menu() {
 									<input type="text" class="main-menu__search__input" placeholder="Search..." value="" name="s" title="Search for:" />
 									<span class="main-menu__search__icon"><i class="fa fa-search" aria-hidden="true"></i></span>
 									</label>
-									<!--<input type="submit" class="search-submit" value="" />-->
 								</form>
 							</div>
 						</div>
 					</nav>
-					<!--<button class="close-button" id="close-button">Close</button>-->
-					<button class="menu-button" id="open-button">Menu</button>
 				</div>
 			</div>';
 
