@@ -21,7 +21,7 @@
 
 .box-shadow {
 	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
-	-mox-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 }
 
@@ -29,4 +29,9 @@
 	position: absolute;
 	-webkit-transform: rotate(270deg);
 	transform: rotate(270deg);
+}
+
+.transition-all {
+	transition: all ease-in-out 0.25s;
+  -webkit-transition: all ease-in-out 0.25s;
 }
