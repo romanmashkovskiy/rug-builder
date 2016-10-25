@@ -1,5 +1,9 @@
 .swatches {
+	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	-mox-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	margin-left: 7%;
+	padding: 100px 50px;
 	position: relative;
 	width: 86%;
 
@@ -7,9 +11,7 @@
 		float: left;
 		width: 23.5%;
 
-		&:not(:last-child) {
-			margin-right: 2%;
-		}
+		
 
 		img {
 			height: auto;
@@ -25,6 +27,25 @@
 			&.code {
 				color: #BBBBBB;
 			}
+		}
+
+		@media screen and (min-width: 992px) {
+
+			&:not(:nth-child(4n)) {
+				margin-right: 2%;
+			}
+		}
+
+		@media screen and (max-width: 992px) and (min-width: 600px) {
+			width: 49%;
+
+			&:not(:nth-child(2n)) {
+				margin-right: 2%;
+			}
+		}
+
+		@media screen and (max-width: 600px) {
+			width: 100%;
 		}
 	}
 }

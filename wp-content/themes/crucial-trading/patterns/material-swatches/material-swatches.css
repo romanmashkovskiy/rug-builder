@@ -1,12 +1,13 @@
 .swatches {
+  -mox-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
   margin-left: 7%;
+  padding: 100px 50px;
   position: relative;
   width: 86%; }
   .swatches .swatch {
     float: left;
     width: 23.5%; }
-    .swatches .swatch:not(:last-child) {
-      margin-right: 2%; }
     .swatches .swatch img {
       height: auto;
       margin-bottom: 10px;
@@ -17,3 +18,14 @@
       width: 60%; }
       .swatches .swatch h3.code {
         color: #BBBBBB; }
+    @media screen and (min-width: 992px) {
+      .swatches .swatch:not(:nth-child(4n)) {
+        margin-right: 2%; } }
+    @media screen and (max-width: 992px) and (min-width: 600px) {
+      .swatches .swatch {
+        width: 49%; }
+        .swatches .swatch:not(:nth-child(2n)) {
+          margin-right: 2%; } }
+    @media screen and (max-width: 600px) {
+      .swatches .swatch {
+        width: 100%; } }
