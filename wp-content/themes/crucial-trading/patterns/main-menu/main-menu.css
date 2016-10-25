@@ -57,8 +57,6 @@
   vertical-align: middle; }
 
 .box-shadow {
-  -webkit-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
-  -moz-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
   box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08); }
 
 .rotate {
@@ -189,6 +187,14 @@ button {
   -webkit-transform-style: preserve-3d;
   -webkit-font-smoothing: antialiased; }
 
+body,
+.content-wrap {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background-color: #CCC; }
+
 /************** Main Menu **************/
 .main-menu__wrap {
   position: absolute;
@@ -201,7 +207,9 @@ button {
   -webkit-transform: translate3d(370px, 0, 0);
   transform: translate3d(370px, 0, 0);
   -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
   transition: transform 0.4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
   -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
   transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
   @media all and (max-width: 1024px) {
@@ -213,7 +221,9 @@ button {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   -webkit-transition: -webkit-transform 0.65s;
+  transition: -webkit-transform 0.65s;
   transition: transform 0.65s;
+  transition: transform 0.65s, -webkit-transform 0.65s;
   -webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
   transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1); }
 
@@ -230,7 +240,8 @@ button {
   padding-left: 60px;
   transition: color background-color ease-in-out 0.25s;
   -webkit-transition: color background-color ease-in-out 0.25s;
-  transform: translate(0, 0); }
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0); }
 
 .main-menu__wrap a:hover,
 .main-menu__wrap a:focus,
@@ -255,11 +266,13 @@ button {
   top: 50%;
   content: ' ';
   background-color: #606060;
-  transform: translate(20px, 0);
+  -webkit-transform: translate(20px, 0);
+          transform: translate(20px, 0);
   opacity: 0; }
 
 .main-menu__wrap a:hover::after {
-  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
   opacity: 1; }
 
 /************** Menu Top - Links **************/
@@ -462,12 +475,16 @@ span.main-menu__button__icon::after {
 span.main-menu__button__icon::before {
   top: -11px;
   -webkit-transition-property: top, -webkit-transform;
-  transition-property: top, transform; }
+  transition-property: top, -webkit-transform;
+  transition-property: top, transform;
+  transition-property: top, transform, -webkit-transform; }
 
 span.main-menu__button__icon::after {
   bottom: -11px;
   -webkit-transition-property: bottom, -webkit-transform;
-  transition-property: bottom, transform; }
+  transition-property: bottom, -webkit-transform;
+  transition-property: bottom, transform;
+  transition-property: bottom, transform, -webkit-transform; }
 
 /*.main-menu__button:hover span.main-menu__button__icon,
 .main-menu__button:hover span.main-menu__button__icon::before,
@@ -481,13 +498,11 @@ span.main-menu__button__icon::after {
 .main-menu__button.is-active span.main-menu__button__icon::before {
   top: 0;
   -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
   transform: rotate(45deg); }
 
 .main-menu__button.is-active span.main-menu__button__icon::after {
   bottom: 0;
   -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
   transform: rotate(-45deg); }
 
 .main-menu__button.is-active span.main-menu__button__icon::before,
