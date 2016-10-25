@@ -2,7 +2,9 @@ var $ = jQuery;
 
 $(document).ready(function() {
 
-	var slider = $('.materials-slider').bxSlider();
+	var slider = $('.materials-slider').bxSlider({
+		mode: 'fade'
+	});
 
 	$('.next-slide').on('click', function() {
 		slider.goToNextSlide();
