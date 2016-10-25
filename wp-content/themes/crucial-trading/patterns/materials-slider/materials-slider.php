@@ -35,7 +35,7 @@ function materials_slider() {
 
 			$active_class = $i == 0 ? 'active' : '';
 
-			$all_materials .= '<li data-slide="' . $i . '"><img src="' . $mat_src . '" alt="' . $mat_alt . '" class="' . $active_class . '"></li>';
+			$all_materials .= '<li data-slide="' . $i . '"><img src="' . $mat_src . '" alt="' . $mat_alt . '" class="' . $active_class . ' transition"></li>';
 		}
 
 		$html .= '<ul class="materials-slider">';
