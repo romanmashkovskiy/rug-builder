@@ -36,10 +36,14 @@ function material_swatches( $atts = '' ) {
 
 			while ( $query->have_posts() ) : $query->the_post();
 
-			$title = get_the_title();
-			$code  = 'WS101';
+			$post_id   = get_the_ID();
+			$post_meta = get_post_meta( $post_id, '_product_attributes', true );
+			$post_code = array_key_exists( 'code', $post_meta ) ? $post_meta['code'] : false;
 
-			$thumb_id = get_post_thumbnail_id( get_the_ID() );
+			$title = get_the_title();
+			$code  = $post_code && array_key_exists( 'value', $post_code ) ? $post_code['value'] : '';
+
+			$thumb_id = get_post_thumbnail_id( $post_id );
 			$src      = wp_get_attachment_image_src( $thumb_id, 'medium' )[0];
 
 			echo '<div class="swatch">';
