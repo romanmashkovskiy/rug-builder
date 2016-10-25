@@ -38,8 +38,6 @@ echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/c
 echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"></script>';
 echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js"></script>';
 
-echo "<script>jQuery(document).ready(function(){jQuery('.section-box#about-crucial').css('z-index', '99')});</script>";
-
 /* Page content */
 
 echo do_shortcode( '[super-slider]' );
