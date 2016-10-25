@@ -1,3 +1,15 @@
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Typography */
 .bx-viewport {
   overflow: visible !important; }
 
@@ -20,32 +32,32 @@
     top: -30px;
     width: 1px; }
     .material-slide .theline.coir {
-      background: rgba(178, 136, 101, 0.6); }
+      background: #6F533D; }
     .material-slide .theline.jute {
-      background: rgba(144, 114, 89, 0.6); }
+      background: #4B3B2E; }
     .material-slide .theline.seagrass {
-      background: rgba(169, 154, 113, 0.6); }
+      background: #6B6551; }
     .material-slide .theline.sisal {
-      background: rgba(109, 124, 97, 0.6); }
+      background: #454F44; }
     .material-slide .theline.sisool {
-      background: rgba(169, 167, 145, 0.6); }
+      background: #817E62; }
     .material-slide .theline.wool {
-      background: rgba(235, 213, 183, 0.6); }
+      background: #665F4D; }
   .material-slide .slide__title {
     left: -45px;
     top: 110px; }
     .material-slide .slide__title.coir {
-      color: rgba(178, 136, 101, 0.6); }
+      color: #6F533D; }
     .material-slide .slide__title.jute {
-      color: rgba(144, 114, 89, 0.6); }
+      color: #4B3B2E; }
     .material-slide .slide__title.seagrass {
-      color: rgba(169, 154, 113, 0.6); }
+      color: #6B6551; }
     .material-slide .slide__title.sisal {
-      color: rgba(109, 124, 97, 0.6); }
+      color: #454F44; }
     .material-slide .slide__title.sisool {
-      color: rgba(169, 167, 145, 0.6); }
+      color: #817E62; }
     .material-slide .slide__title.wool {
-      color: rgba(235, 213, 183, 0.6); }
+      color: #665F4D; }
   .material-slide .slide__list {
     margin: 25px 0 0;
     padding: 0; }
@@ -86,39 +98,39 @@
     .material-slide .content__right.coir h1, .material-slide .content__right.coir p {
       color: #B28865; }
     .material-slide .content__right.coir h3, .material-slide .content__right.coir a, .material-slide .content__right.coir a:hover, .material-slide .content__right.coir a:visited {
-      color: rgba(178, 136, 101, 0.6); }
+      color: #6F533D; }
     .material-slide .content__right.coir a {
-      border-bottom-color: rgba(178, 136, 101, 0.6); }
+      border-bottom-color: #6F533D; }
     .material-slide .content__right.jute h1, .material-slide .content__right.jute p {
       color: #907259; }
     .material-slide .content__right.jute h3, .material-slide .content__right.jute a, .material-slide .content__right.jute a:hover, .material-slide .content__right.jute a:visited {
-      color: rgba(144, 114, 89, 0.6); }
+      color: #4B3B2E; }
     .material-slide .content__right.jute a {
-      border-bottom-color: rgba(144, 114, 89, 0.6); }
+      border-bottom-color: #4B3B2E; }
     .material-slide .content__right.seagrass h1, .material-slide .content__right.seagrass p {
       color: #A99A71; }
     .material-slide .content__right.seagrass h3, .material-slide .content__right.seagrass a, .material-slide .content__right.seagrass a:hover, .material-slide .content__right.seagrass a:visited {
-      color: rgba(169, 154, 113, 0.6); }
+      color: #6B6551; }
     .material-slide .content__right.seagrass a {
-      border-bottom-color: rgba(169, 154, 113, 0.6); }
+      border-bottom-color: #6B6551; }
     .material-slide .content__right.sisal h1, .material-slide .content__right.sisal p {
       color: #6D7C61; }
     .material-slide .content__right.sisal h3, .material-slide .content__right.sisal a, .material-slide .content__right.sisal a:hover, .material-slide .content__right.sisal a:visited {
-      color: rgba(109, 124, 97, 0.6); }
+      color: #454F44; }
     .material-slide .content__right.sisal a {
-      border-bottom-color: rgba(109, 124, 97, 0.6); }
+      border-bottom-color: #454F44; }
     .material-slide .content__right.sisool h1, .material-slide .content__right.sisool p {
       color: #A9A791; }
     .material-slide .content__right.sisool h3, .material-slide .content__right.sisool a, .material-slide .content__right.sisool a:hover, .material-slide .content__right.sisool a:visited {
-      color: rgba(169, 167, 145, 0.6); }
+      color: #817E62; }
     .material-slide .content__right.sisool a {
-      border-bottom-color: rgba(169, 167, 145, 0.6); }
+      border-bottom-color: #817E62; }
     .material-slide .content__right.wool h1, .material-slide .content__right.wool p {
       color: #EBD5B7; }
     .material-slide .content__right.wool h3, .material-slide .content__right.wool a, .material-slide .content__right.wool a:hover, .material-slide .content__right.wool a:visited {
-      color: rgba(235, 213, 183, 0.6); }
+      color: #665F4D; }
     .material-slide .content__right.wool a {
-      border-bottom-color: rgba(235, 213, 183, 0.6); }
+      border-bottom-color: #665F4D; }
 
 .slide__nav {
   display: inline-block !important;

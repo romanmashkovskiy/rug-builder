@@ -1,15 +1,4 @@
-$color-coir-main     : #B28865;
-$color-coir-dark     : transparentize($color-coir-main, 0.4);
-$color-jute-main     : #907259;
-$color-jute-dark     : transparentize($color-jute-main, 0.4);
-$color-seagrass-main : #A99A71;
-$color-seagrass-dark : transparentize($color-seagrass-main, 0.4);
-$color-sisal-main    : #6D7C61;
-$color-sisal-dark    : transparentize($color-sisal-main, 0.4);
-$color-sisool-main   : #A9A791;
-$color-sisool-dark   : transparentize($color-sisool-main, 0.4);
-$color-wool-main     : #EBD5B7;
-$color-wool-dark     : transparentize($color-wool-main, 0.4);
+@import '../../assets/css/src/_variables';
 
 .bx-viewport {
 	overflow: visible !important;
