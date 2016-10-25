@@ -28,8 +28,10 @@ function materials_slider() {
 		for ( $i=0; $i<count( $categories ); $i++ ) {
 
 			$mat_post = get_post( get_term_meta( $categories[$i]->term_id, 'thumbnail_id', true ) );
-			$mat_src  = $mat_post->guid;
-			$mat_alt  = $mat_post->post_title;
+
+			$mat_thumb_id = get_woocommerce_term_meta( $categories[$i]->term_id, 'thumbnail_id', true );
+			$mat_src      = wp_get_attachment_url( $mat_thumb_id );
+			$mat_alt      = $mat_post->post_title;
 
 			$active_class = $i == 0 ? 'active' : '';
 
@@ -43,8 +45,10 @@ function materials_slider() {
 			$cat = $categories[$i2];
 
 			$post = get_post( get_term_meta( $cat->term_id, 'thumbnail_id', true ) );
-			$icon = $post->guid;
-			$alt  = $post->post_title;
+
+			$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+			$icon     = wp_get_attachment_url( $thumb_id );
+			$alt      = $post->post_title;
 
 			$post_id = $post->ID;
 
@@ -79,7 +83,7 @@ function materials_slider() {
 
 			$html .= '<li class="material-slide">';
 
-			$html .= '<h3 class="slide__title ' . $alt . '">Our Materials</h3>';
+			$html .= '<h3 class="slide__title rotate ' . $alt . '">Our Materials</h3>';
 
 			$html .= '<ul class="slide__list">';
 			$html .= $all_materials;

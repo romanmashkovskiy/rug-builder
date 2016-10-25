@@ -40,7 +40,7 @@ function section_box( $atts = '' ) {
 
 				$src = wp_get_attachment_image_src( $image, 'medium_large' )[0];
 
-				$html .= '<section class="section-box clearfix">';
+				$html .= '<section class="section-box box-shadow clearfix">';
 
 				$html .= '<div class="box__image ';
 				$side == 'left' ? $html .= 'left' : $html .= 'right';

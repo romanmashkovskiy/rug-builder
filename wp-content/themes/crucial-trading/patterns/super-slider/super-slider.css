@@ -31,10 +31,7 @@
   .nav_prev h3 {
     color: white;
     left: 2px;
-    position: absolute;
-    top: 120px;
-    -webkit-transform: rotate(270deg);
-    transform: rotate(270deg); }
+    top: 120px; }
 
 .nav_next {
   right: 0;

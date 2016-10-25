@@ -27,7 +27,7 @@ function header_shortcode($atts = '') {
 	$html = '';
 
 	$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
-	$html .= '<h3 class="vertical-align side-title">' . $title . '</h3>';
+	$html .= '<h3 class="vertical-align side-title rotate">' . $title . '</h3>';
 	$html .= '<h3 class="vertical-align subtitle">' . $subtitle . '</h3>';
 	$html .= '<h1 class="vertical-align">' . $title . '</h1>';
 	$html .= '</header>';
@@ -57,12 +57,14 @@ function header_material_shortcode($atts = '') {
 
 		$this_cat          = get_term_by( 'slug', $material, 'product_cat' );
 		$this_cat_post_id  = get_term_meta( $this_cat->term_id, 'thumbnail_id', true );
-		$this_cat_thumb    = get_post( $this_cat_post_id )->guid;
+
+		$this_thumb_id       = get_woocommerce_term_meta( $this_cat->term_id, 'thumbnail_id', true );
+		$this_cat_thumb = wp_get_attachment_url( $this_thumb_id );
 
 		$html .= '<header class="large material clearfix">';
 
 		$html .= '<div class="material__name ' . $material . '">';
-		$html .= '<h3>' . $material . '</h3>';
+		$html .= '<h3 class="rotate">' . $material . '</h3>';
 		$html .= '</div>';
 
 		$html .= '<div class="material__icon vertical-align">';
@@ -82,8 +84,10 @@ function header_material_shortcode($atts = '') {
 
 			$cat  = $categories[$i];
 			$post = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-			$src  = get_post( $post )->guid;
-			$alt  = $cat->slug; 
+
+			$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+			$src      = wp_get_attachment_url( $thumb_id );
+			$alt      = $cat->slug; 
 
 			$html .= '<li>';
 			$html .= '<img src="' . $src . '" alt="' . $alt . '">';
