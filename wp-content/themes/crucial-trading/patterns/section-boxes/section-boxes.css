@@ -28,6 +28,7 @@
         .section-box .box__image.right {
           left: 0; } }
   .section-box .box__content {
+    background: white;
     padding: 100px 7%; }
     .section-box .box__content.left {
       margin-left: 50%; }
