@@ -5,7 +5,6 @@
  * @package Crucial_Trading
  */
 
-
 /**
  * Load Custom Post Types
  */
