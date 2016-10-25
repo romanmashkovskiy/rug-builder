@@ -11,6 +11,10 @@ $color-sisool-dark   : transparentize($color-sisool-main, 0.4);
 $color-wool-main     : #EBD5B7;
 $color-wool-dark     : transparentize($color-wool-main, 0.4);
 
+.bx-viewport {
+	overflow: visible !important;
+}
+
 .materials-slider-container {
 	position: relative;
 }
@@ -24,6 +28,39 @@ $color-wool-dark     : transparentize($color-wool-main, 0.4);
 .material-slide {
 	background: #383838;
 	position: relative;
+
+	.theline {
+		display: block;
+		height: 125px;
+		left: 32.5%;
+		position: absolute;
+		top: -30px;
+		width: 1px;
+
+		&.coir {
+			background: $color-coir-dark;
+		}
+
+		&.jute {
+			background: $color-jute-dark;
+		}
+
+		&.seagrass {
+			background: $color-seagrass-dark;
+		}
+
+		&.sisal {
+			background: $color-sisal-dark;
+		}
+
+		&.sisool {
+			background: $color-sisool-dark;
+		}
+
+		&.wool {
+			background: $color-wool-dark;
+		}
+	}
 
 	.slide__title {
 		left: -45px;

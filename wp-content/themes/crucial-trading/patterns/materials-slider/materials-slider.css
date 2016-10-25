@@ -1,3 +1,6 @@
+.bx-viewport {
+  overflow: visible !important; }
+
 .materials-slider-container {
   position: relative; }
 
@@ -9,6 +12,25 @@
 .material-slide {
   background: #383838;
   position: relative; }
+  .material-slide .theline {
+    display: block;
+    height: 125px;
+    left: 32.5%;
+    position: absolute;
+    top: -30px;
+    width: 1px; }
+    .material-slide .theline.coir {
+      background: rgba(178, 136, 101, 0.6); }
+    .material-slide .theline.jute {
+      background: rgba(144, 114, 89, 0.6); }
+    .material-slide .theline.seagrass {
+      background: rgba(169, 154, 113, 0.6); }
+    .material-slide .theline.sisal {
+      background: rgba(109, 124, 97, 0.6); }
+    .material-slide .theline.sisool {
+      background: rgba(169, 167, 145, 0.6); }
+    .material-slide .theline.wool {
+      background: rgba(235, 213, 183, 0.6); }
   .material-slide .slide__title {
     left: -45px;
     top: 110px; }
