@@ -11,7 +11,12 @@ $color-sisool-dark   : transparentize($color-sisool-main, 0.4);
 $color-wool-main     : #EBD5B7;
 $color-wool-dark     : transparentize($color-wool-main, 0.4);
 
+.materials-slider-container {
+	position: relative;
+}
+
 .materials-slider {
+	height: 100%;
 	margin: 0 !important;
 	padding: 0 !important;
 }
@@ -199,52 +204,54 @@ $color-wool-dark     : transparentize($color-wool-main, 0.4);
 			}
 		}
 	}
+}
 
-	.slide__nav {
-		display: inline-block;
-		left: 0;
+.slide__nav {
+	display: inline-block !important;
+	left: 0 !important;
+	margin-top: -59px;
+	opacity: 1 !important;
+	position: absolute !important;
+	right: 0 !important;
+	top: 50% !important;
+	z-index: 9999 !important;
+
+	.next-slide {
+		cursor: pointer;
 		position: absolute;
-		right: 0;
-		top: 50%;
-		transform: translateY(-50%);
+		right: 35px;
+	}
 
-		.next-slide {
-			cursor: pointer;
-			position: absolute;
-			right: 35px;
+	.prev-slide {
+		cursor: pointer;
+		left: 35px;
+		position: absolute;
+	}
+
+	svg {
+
+		&.coir g {
+			stroke: $color-coir-main;
 		}
 
-		.prev-slide {
-			cursor: pointer;
-			left: 35px;
-			position: absolute;
+		&.jute g {
+			stroke: $color-jute-main;
 		}
 
-		svg  {
+		&.seagrass g {
+			stroke: $color-seagrass-main;
+		}
 
-			&.coir g {
-				stroke: $color-coir-main;
-			}
+		&.sisal g {
+			stroke: $color-sisal-main;
+		}
 
-			&.jute g {
-				stroke: $color-jute-main;
-			}
+		&.sisool g {
+			stroke: $color-sisool-main;
+		}
 
-			&.seagrass g {
-				stroke: $color-seagrass-main;
-			}
-
-			&.sisal g {
-				stroke: $color-sisal-main;
-			}
-
-			&.sisool g {
-				stroke: $color-sisool-main;
-			}
-
-			&.wool g {
-				stroke: $color-wool-main;
-			}
+		&.wool g {
+			stroke: $color-wool-main;
 		}
 	}
 }
