@@ -2,15 +2,10 @@ var $ = jQuery;
 
 $(document).ready(function() {
 
-	console.log($('.material__info').offset())
-
 	function closeInfoBox() {
 
-		var boxWidth   = $('.material__info').width();
-		var totalWidth = boxWidth + 20;
-
 		$('.material__info').animate({
-			right: '-' + boxWidth + 'px'
+			right: '-274px'
 		})
 
 		$('#hide-material-info').text('Show')
@@ -18,8 +13,6 @@ $(document).ready(function() {
 	}
 
 	function openInfoBox() {
-
-		var boxHeight = $('.material__info').height();
 
 		$('.material__info').animate({
 			right: '20px'
