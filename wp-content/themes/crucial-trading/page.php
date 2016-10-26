@@ -12,27 +12,30 @@
  * @package Crucial_Trading
  */
 
-get_header(); ?>
+get_header();
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+// Will set this up properly but just for now will include links here
 
-			<?php
-			while ( have_posts() ) : the_post();
+include_once(get_template_directory() . '/patterns/header/header.php');
+include_once(get_template_directory() . '/patterns/logo-nav/logo-nav.php');
 
-				get_template_part( 'template-parts/content', 'page' );
+echo '<script src="' . get_template_directory_uri() . '/patterns/main-menu/main-menu.js"></script>';
 
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
+// Stuff that is (pretty much) set up properly
 
-			endwhile; // End of the loop.
-			?>
+/* Vendor CSS */
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/bootstrap.min.css">';
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/animate.min.css">';
 
-<?php
-get_sidebar();
-get_footer();
+/* Master and page CSS */
+
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/master.min.css">';
+echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/pages/default.min.css">';
+
+/* Page content */
+
+echo do_shortcode( '[header]' );
+echo do_shortcode( '[logo-nav]' );
+
+?>

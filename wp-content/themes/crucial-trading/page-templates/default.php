@@ -12,7 +12,7 @@
 
 <?php
 
-wp_head();
+get_header();
 
 // Will set this up properly but just for now will include links here
 

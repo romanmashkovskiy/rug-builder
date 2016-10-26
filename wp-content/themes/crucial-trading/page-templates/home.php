@@ -15,11 +15,14 @@
 // Will set this up properly but just for now will include links here
 
 include_once(get_template_directory() . '/patterns/super-slider/super-slider.php');
+include_once(get_template_directory() . '/patterns/super-slider/super-slider.php');
 include_once(get_template_directory() . '/patterns/section-boxes/section-boxes.php');
 include_once(get_template_directory() . '/patterns/materials-slider/materials-slider.php');
+include_once(get_template_directory() . '/patterns/logo-nav/logo-nav.php');
 
 echo '<script src="' . get_template_directory_uri() . '/patterns/super-slider/super-slider.js"></script>';
 echo '<script src="' . get_template_directory_uri() . '/patterns/materials-slider/materials-slider.js"></script>';
+echo '<script src="' . get_template_directory_uri() . '/patterns/main-menu/main-menu.js"></script>';
 
 // Stuff that is (pretty much) set up properly
 
@@ -39,6 +42,8 @@ echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/super-s
 echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js"></script>';
 
 /* Page content */
+
+echo do_shortcode( '[logo-nav]' );
 
 echo do_shortcode( '[super-slider]' );
 
