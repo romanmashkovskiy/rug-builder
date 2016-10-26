@@ -73,6 +73,9 @@ for ( $i=0; $i<count($scan); $i++ ) {
 	else if ( $scan[$i] == 'material-view' ) {
 		echo do_shortcode( '[material-view post_id="102"]' );
 	}
+	else if ( $scan[$i] == 'material-view-slider' ) {
+		echo do_shortcode( '[material-view-slider pattern="true"]' );
+	}
 	else {
 		echo do_shortcode( '[' . $scan[$i] . ']' );
 	}
