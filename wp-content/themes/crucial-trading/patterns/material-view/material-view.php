@@ -73,7 +73,7 @@ function material_view( $atts = '' ) {
 
 		if ( $post_material || $post_price || $post_size || $post_underlay ) {
 			$html .= '<div class="material__info clearfix">';
-			$html .= '<a href="#" id="hide-material-info">Hide</a>';
+			$html .= '<a href="#" id="hide-material-info" data-state="open">Hide</a>';
 			if ( $post_material ) {
 				$html .= '<div class="info__section">';
 				$html .= '<h3>' . $post_material . '</h3>';
