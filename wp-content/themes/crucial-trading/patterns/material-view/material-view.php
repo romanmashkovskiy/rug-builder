@@ -40,20 +40,20 @@ function material_view( $atts = '' ) {
 
 		$html .= '<div class="image-container">';
 		$html .= '<img src="" alt="">';
-		$html .= '<a href="#">Change View</a>';
+		$html .= '<a href="#" id="change-image-view">Change View</a>';
 
-			$html .= '<div class="material__info">';
-			$html .= '<a href="#">Hide</a>';
-			$html .= '<div class"info__section">';
+			$html .= '<div class="material__info clearfix">';
+			$html .= '<a href="#" id="hide-material-info">Hide</a>';
+			$html .= '<div class="info__section">';
 			$html .= '<h3>100% Coir</h3>';
 			$html .= '</div>';
-			$html .= '<div class"info__section">';
+			$html .= '<div class="info__section">';
 			$html .= '<h3>£200/m2</h3>';
 			$html .= '</div>';
-			$html .= '<div class"info__section">';
+			$html .= '<div class="info__section">';
 			$html .= '<h3>Up to 4m</h3>';
 			$html .= '</div>';
-			$html .= '<div class"info__section">';
+			$html .= '<div class="info__section">';
 			$html .= '<h3>Underlay</h3>';
 			$html .= '</div>';
 			$html .= '</div>';

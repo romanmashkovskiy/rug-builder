@@ -41,6 +41,63 @@
 		}
 	}
 
+	.image-container {
+		height: 450px;
+		position: relative;
+		width: 100%;
+
+		img {
+			height: 100%;
+			object-fit: cover;
+			width: 100%;
+		}
+
+		#change-image-view,
+		#hide-material-info {
+			background: rgba(0,0,0,0.675);
+			font-size: 12px;
+			letter-spacing: 2px;
+			padding: 7px;
+			position: absolute;
+			top: 0;
+		}
+
+		#change-image-view {
+			left: 20px;
+		}
+
+		#hide-material-info {
+			right: 100%;
+		}
+
+		.material__info {
+			background: rgba(0,0,0,0.675);
+			display: box;
+			display: flex;
+			flex-wrap: wrap;
+			right: 20px;
+			padding: 45px 27px;
+			position: absolute;
+			top: 0;
+			width: 274px;
+
+			.info__section {
+				float: left;
+				margin-bottom: 30px;
+				text-align: center;
+				width: 100px;
+
+				h3 {
+					text-align: center;
+				}
+
+				&:nth-child(even) {
+					margin-right: 20px;
+				}
+			}
+		}
+	}
+
 	&.coir {
 
 		.header__back a {
@@ -58,7 +115,10 @@
 			}
 		}
 
-		.header__links a {
+		.header__links a,
+		#change-image-view,
+		#hide-material-info,
+		.info__section h3 {
 			color: $color-coir-main;
 		}
 	}
@@ -80,7 +140,10 @@
 			}
 		}
 
-		.header__links a {
+		.header__links a,
+		#change-image-view,
+		#hide-material-info,
+		.info__section h3 {
 			color: $color-jute-main;
 		}
 	}
@@ -102,7 +165,10 @@
 			}
 		}
 
-		.header__links a {
+		.header__links a,
+		#change-image-view,
+		#hide-material-info,
+		.info__section h3 {
 			color: $color-seagrass-main;
 		}
 	}
@@ -124,7 +190,10 @@
 			}
 		}
 
-		.header__links a {
+		.header__links a,
+		#change-image-view,
+		#hide-material-info,
+		.info__section h3 {
 			color: $color-sisal-main;
 		}
 	}
@@ -146,7 +215,10 @@
 			}
 		}
 
-		.header__links a {
+		.header__links a,
+		#change-image-view,
+		#hide-material-info,
+		.info__section h3 {
 			color: $color-sisool-main;
 		}
 	}
@@ -168,7 +240,10 @@
 			}
 		}
 
-		.header__links a {
+		.header__links a,
+		#change-image-view,
+		#hide-material-info,
+		.info__section h3 {
 			color: $color-wool-main;
 		}
 	}	

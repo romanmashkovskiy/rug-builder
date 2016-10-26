@@ -33,13 +33,59 @@
     .material .header__links li a {
       display: block;
       text-align: center; }
+  .material .image-container {
+    height: 450px;
+    position: relative;
+    width: 100%; }
+    .material .image-container img {
+      height: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      width: 100%; }
+    .material .image-container #change-image-view,
+    .material .image-container #hide-material-info {
+      background: rgba(0, 0, 0, 0.675);
+      font-size: 12px;
+      letter-spacing: 2px;
+      padding: 7px;
+      position: absolute;
+      top: 0; }
+    .material .image-container #change-image-view {
+      left: 20px; }
+    .material .image-container #hide-material-info {
+      right: 100%; }
+    .material .image-container .material__info {
+      background: rgba(0, 0, 0, 0.675);
+      display: box;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      right: 20px;
+      padding: 45px 27px;
+      position: absolute;
+      top: 0;
+      width: 274px; }
+      .material .image-container .material__info .info__section {
+        float: left;
+        margin-bottom: 30px;
+        text-align: center;
+        width: 100px; }
+        .material .image-container .material__info .info__section h3 {
+          text-align: center; }
+        .material .image-container .material__info .info__section:nth-child(even) {
+          margin-right: 20px; }
   .material.coir .header__back a {
     color: rgba(178, 136, 101, 0.5); }
   .material.coir .header__titles h1 {
     color: #6F533D; }
   .material.coir .header__titles h3 {
     color: rgba(111, 83, 61, 0.7); }
-  .material.coir .header__links a {
+  .material.coir .header__links a,
+  .material.coir #change-image-view,
+  .material.coir #hide-material-info,
+  .material.coir .info__section h3 {
     color: #B28865; }
   .material.jute .header__back a {
     color: rgba(144, 114, 89, 0.5); }
@@ -47,7 +93,10 @@
     color: #4B3B2E; }
   .material.jute .header__titles h3 {
     color: rgba(75, 59, 46, 0.7); }
-  .material.jute .header__links a {
+  .material.jute .header__links a,
+  .material.jute #change-image-view,
+  .material.jute #hide-material-info,
+  .material.jute .info__section h3 {
     color: #907259; }
   .material.seagrass .header__back a {
     color: rgba(169, 154, 113, 0.5); }
@@ -55,7 +104,10 @@
     color: #6B6551; }
   .material.seagrass .header__titles h3 {
     color: rgba(107, 101, 81, 0.7); }
-  .material.seagrass .header__links a {
+  .material.seagrass .header__links a,
+  .material.seagrass #change-image-view,
+  .material.seagrass #hide-material-info,
+  .material.seagrass .info__section h3 {
     color: #A99A71; }
   .material.sisal .header__back a {
     color: rgba(109, 124, 97, 0.5); }
@@ -63,7 +115,10 @@
     color: #454F44; }
   .material.sisal .header__titles h3 {
     color: rgba(69, 79, 68, 0.7); }
-  .material.sisal .header__links a {
+  .material.sisal .header__links a,
+  .material.sisal #change-image-view,
+  .material.sisal #hide-material-info,
+  .material.sisal .info__section h3 {
     color: #6D7C61; }
   .material.sisool .header__back a {
     color: rgba(169, 167, 145, 0.5); }
@@ -71,7 +126,10 @@
     color: #817E62; }
   .material.sisool .header__titles h3 {
     color: rgba(129, 126, 98, 0.7); }
-  .material.sisool .header__links a {
+  .material.sisool .header__links a,
+  .material.sisool #change-image-view,
+  .material.sisool #hide-material-info,
+  .material.sisool .info__section h3 {
     color: #A9A791; }
   .material.wool .header__back a {
     color: rgba(235, 213, 183, 0.5); }
@@ -79,5 +137,8 @@
     color: #665F4D; }
   .material.wool .header__titles h3 {
     color: rgba(102, 95, 77, 0.7); }
-  .material.wool .header__links a {
+  .material.wool .header__links a,
+  .material.wool #change-image-view,
+  .material.wool #hide-material-info,
+  .material.wool .info__section h3 {
     color: #EBD5B7; }
