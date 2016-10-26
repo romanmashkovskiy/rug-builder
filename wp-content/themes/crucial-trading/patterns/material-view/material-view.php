@@ -14,7 +14,7 @@ function material_view( $atts = '' ) {
 
 	$html = '';
 
-	$html .= '<div class="material box-shadow">';
+	$html .= '<div class="material coir box-shadow">';
 	$html .= '<div class="material__header">';
 
 		$html .= '<div class="header__back">';

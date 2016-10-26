@@ -1,0 +1,126 @@
+@import '../../assets/css/src/_variables';
+
+.material {
+	margin-left: 10%;
+	padding: 30px;
+	position: relative;
+	width: 80%;
+
+	.header__titles {
+		text-align: center;
+
+		h1 {
+			margin: 10px 0;
+		}
+	}
+
+	&.coir {
+
+		.header__back a {
+			color: transparentize($color-coir-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-coir-main;
+			}
+
+			h3 {
+				color: transparentize($color-coir-dark, 0.3);
+			}
+		}
+	}
+
+	&.jute {
+		
+		.header__back a {
+			color: transparentize($color-jute-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-jute-main;
+			}
+
+			h3 {
+				color: transparentize($color-jute-dark, 0.3);
+			}
+		}
+	}
+
+	&.seagrass {
+		
+		.header__back a {
+			color: transparentize($color-seagrass-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-seagrass-main;
+			}
+
+			h3 {
+				color: transparentize($color-seagrass-dark, 0.3);
+			}
+		}
+	}
+
+	&.sisal {
+		
+		.header__back a {
+			color: transparentize($color-sisal-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-sisal-main;
+			}
+
+			h3 {
+				color: transparentize($color-sisal-dark, 0.3);
+			}
+		}
+	}
+
+	&.sisool {
+		
+		.header__back a {
+			color: transparentize($color-sisool-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-sisool-main;
+			}
+
+			h3 {
+				color: transparentize($color-sisool-dark, 0.3);
+			}
+		}
+	}
+
+	&.wool {
+		
+		.header__back a {
+			color: transparentize($color-wool-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-wool-main;
+			}
+
+			h3 {
+				color: transparentize($color-wool-dark, 0.3);
+			}
+		}
+	}
+
+		
+}

@@ -1,0 +1,57 @@
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Typography */
+.material {
+  margin-left: 10%;
+  padding: 30px;
+  position: relative;
+  width: 80%; }
+  .material .header__titles {
+    text-align: center; }
+    .material .header__titles h1 {
+      margin: 10px 0; }
+  .material.coir .header__back a {
+    color: rgba(178, 136, 101, 0.5); }
+  .material.coir .header__titles h1 {
+    color: #B28865; }
+  .material.coir .header__titles h3 {
+    color: rgba(111, 83, 61, 0.7); }
+  .material.jute .header__back a {
+    color: rgba(144, 114, 89, 0.5); }
+  .material.jute .header__titles h1 {
+    color: #907259; }
+  .material.jute .header__titles h3 {
+    color: rgba(75, 59, 46, 0.7); }
+  .material.seagrass .header__back a {
+    color: rgba(169, 154, 113, 0.5); }
+  .material.seagrass .header__titles h1 {
+    color: #A99A71; }
+  .material.seagrass .header__titles h3 {
+    color: rgba(107, 101, 81, 0.7); }
+  .material.sisal .header__back a {
+    color: rgba(109, 124, 97, 0.5); }
+  .material.sisal .header__titles h1 {
+    color: #6D7C61; }
+  .material.sisal .header__titles h3 {
+    color: rgba(69, 79, 68, 0.7); }
+  .material.sisool .header__back a {
+    color: rgba(169, 167, 145, 0.5); }
+  .material.sisool .header__titles h1 {
+    color: #A9A791; }
+  .material.sisool .header__titles h3 {
+    color: rgba(129, 126, 98, 0.7); }
+  .material.wool .header__back a {
+    color: rgba(235, 213, 183, 0.5); }
+  .material.wool .header__titles h1 {
+    color: #EBD5B7; }
+  .material.wool .header__titles h3 {
+    color: rgba(102, 95, 77, 0.7); }
