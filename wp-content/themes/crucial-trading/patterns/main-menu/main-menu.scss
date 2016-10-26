@@ -318,8 +318,6 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 
 
 
-
-
 /************** Animated Menu Button **************/ 
 
 .main-menu__button--wrap {
@@ -352,6 +350,7 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
   -webkit-transition: background 0.3s;
    transition: background 0.3s;
    background: transparent;
+   text-shadow: none;
 }
 
 .main-menu__button:focus,

@@ -24,35 +24,33 @@ function crucial_main_menu() {
 	// Start building HTML output
 	$html = '';
 	
-	$html .= '<div class="main-menu__button--wrap">
-	<button class="main-menu__button menu-button" id="open-button">
-		<span class="main-menu__button__icon"></span><span class="main-menu__button__text">menu</span><span class="main-menu__button__text--close">close</span>
-	</button>
-</div>';
-	
 	$html .= '<div class="main-menu">
 	<div class="main-menu__wrap">
 		<nav>
 			<div class="main-menu__top icon-list">
 				<div class="main-menu__top__lg">';
-					
+				
+				if (!empty($get_menu_top)) :
 					// Get Menu Top Items and Build Link 
 			    foreach ( (array) $get_menu_top as $key => $menu_item ) {
 			        $title = $menu_item->title;
 			        $url = $menu_item->url;
 			        $html .= '<a href="' . $url . '" title="'.$title.'"><span>' . $title . '</span></a>';
 			    }
+				endif;
 				
 			$html .= '</div>
 				<div class="main-menu__top__sm">';
-
+				
+				if (!empty($get_menu_bottom)) :
 					// Get Menu Bottom Items and Build Link 
 			    foreach ( (array) $get_menu_bottom as $key => $menu_item ) {
 			        $title = $menu_item->title;
 			        $url = $menu_item->url;
 			        $html .= '<a href="' . $url . '" title="'.$title.'"><span>' . $title . '</span></a>';
 			    }
-
+				endif;
+				
 			$html .=	'</div>
 			</div>
 			<div class="main-menu__bottom">
