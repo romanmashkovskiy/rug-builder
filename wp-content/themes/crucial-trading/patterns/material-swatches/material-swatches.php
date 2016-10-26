@@ -32,7 +32,7 @@ function material_swatches( $atts = '' ) {
 		
 		if ( $query->have_posts() ) :
 
-			echo '<div class="swatches clearfix">';
+			echo '<div class="swatches box-shadow clearfix">';
 
 			while ( $query->have_posts() ) : $query->the_post();
 

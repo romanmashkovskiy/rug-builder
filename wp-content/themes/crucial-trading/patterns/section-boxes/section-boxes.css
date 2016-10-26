@@ -1,6 +1,4 @@
 .section-box {
-  -mox-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
-  box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
   left: 50%;
   position: relative;
   -webkit-transform: translateX(-50%);
@@ -30,6 +28,7 @@
         .section-box .box__image.right {
           left: 0; } }
   .section-box .box__content {
+    background: white;
     padding: 100px 7%; }
     .section-box .box__content.left {
       margin-left: 50%; }

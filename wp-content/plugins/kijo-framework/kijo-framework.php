@@ -48,6 +48,15 @@ function kijo_framework_sitename() {
 
 }
 
+// Normal
+function kijo_framework_sitename_normal() {
+
+	$kijo_framework_sitename_normal = 'Crucial Trading';
+
+	return $kijo_framework_sitename_normal;
+
+}
+
 /************************************************************************************
 ** Logo Location
 *************************************************************************************/

@@ -7,7 +7,7 @@
 
 .top-bar__left,
 .top-bar__right {
-  position: absolute; }
+  position: absolute !important; }
 
 .top-bar__left {
   left: 40px; }

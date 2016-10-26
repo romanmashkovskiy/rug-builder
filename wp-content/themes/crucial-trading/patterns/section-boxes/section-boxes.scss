@@ -1,7 +1,4 @@
 .section-box {
-	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
-	-mox-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
-	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	left: 50%;
 	position: relative;
 	transform: translateX(-50%);
@@ -41,6 +38,7 @@
 	}
 
 	.box__content {
+		background: white;
 		padding: 100px 7%;
 
 		&.left {
