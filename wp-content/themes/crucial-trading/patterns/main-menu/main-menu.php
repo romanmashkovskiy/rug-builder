@@ -10,7 +10,18 @@
  */
 
 function crucial_main_menu() {
-
+	
+	// Get Menu - Main Menu Top
+	$get_menu_top = wp_get_nav_menu_items('main-menu-top');
+	
+	// Get Menu - Main Menu Bottom
+	$get_menu_bottom = wp_get_nav_menu_items('main-menu-bottom');
+	
+	// Get social links
+	$crucial_social_link_insta = 'https://instagram.com';
+	$crucial_social_link_twitter = 'https://twitter.com';
+	
+	// Start building HTML output
 	$html = '';
 	
 	$html .= '<div class="main-menu__button--wrap">
@@ -23,27 +34,33 @@ function crucial_main_menu() {
 	<div class="main-menu__wrap">
 		<nav>
 			<div class="main-menu__top icon-list">
-				<div class="main-menu__top__lg">
-					<a href="#" class="active"><span>our products</span></a>
-					<a href="#"><span>rug builder</span></a>
-					<a href="#"><span>about crucial</span></a>
-					<a href="#"><span>inspiration</span></a>
-					<a href="#"><span>find a retailer</span></a>
-				</div>
-				<div class="main-menu__top__sm">
-					<a href="#"><span>latest news</span></a>
-					<a href="#"><span>order brochure</span></a>
-					<a href="#"><span>care & maintenance</span></a>
-					<a href="#"><span>my account</span></a>
-					<a href="#"><span>contact us</span></a>
-				</div>
+				<div class="main-menu__top__lg">';
+					
+					// Get Menu Top Items and Build Link 
+			    foreach ( (array) $get_menu_top as $key => $menu_item ) {
+			        $title = $menu_item->title;
+			        $url = $menu_item->url;
+			        $html .= '<a href="' . $url . '" title="'.$title.'"><span>' . $title . '</span></a>';
+			    }
+				
+			$html .= '</div>
+				<div class="main-menu__top__sm">';
+
+					// Get Menu Bottom Items and Build Link 
+			    foreach ( (array) $get_menu_bottom as $key => $menu_item ) {
+			        $title = $menu_item->title;
+			        $url = $menu_item->url;
+			        $html .= '<a href="' . $url . '" title="'.$title.'"><span>' . $title . '</span></a>';
+			    }
+
+			$html .=	'</div>
 			</div>
 			<div class="main-menu__bottom">
 				<div class="main-menu__social">
 					<div class="main-menu__social--twitter">
-						<a href="#" class=""><i class="fa fa-twitter"></i>twitter</a>
+						<a href="'.$crucial_social_link_twitter.'" target="_blank"><i class="fa fa-twitter"></i>twitter</a>
 					</div><div class="main-menu__social--instagram">
-						<a href="#" class=""><i class="fa fa-instagram"></i>instagram</a>
+						<a href="'.$crucial_social_link_insta.'" target="_blank"><i class="fa fa-instagram"></i>instagram</a>
 					</div>
 				</div>
 				<div class="main-menu__search">

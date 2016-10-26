@@ -34,6 +34,7 @@ echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/c
 
 $directory = get_template_directory() . '/patterns';
 $scan      = array_values(array_diff(scandir($directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store')));
+//$scan      = array_values(array_diff(scandir($directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store', 'header','logo-nav', 'material-swatches','materials-slider','section-boxes', 'super-slider', 'typography')));
 
 for ( $i=0; $i<count($scan); $i++ ) {
 

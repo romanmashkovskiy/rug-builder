@@ -253,6 +253,7 @@ body {
 
 .main-menu__search label {
 	position: relative;
+	display: block;
 }
 
 .main-menu__search label span.main-menu__search__icon {
@@ -268,7 +269,8 @@ body {
 	-webkit-font-smoothing: antialiased;    
 }
 
-input.main-menu__search__input {
+input.main-menu__search__input,
+input.main-menu__search__input:focus {
 	width: 100%;
 	font-size:  16px;
 	color: #FFF;
@@ -352,12 +354,12 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
    background: transparent;
 }
 
-.main-menu__button:focus {
-  outline: none;
-}
-
+.main-menu__button:focus,
 .main-menu__button:hover {
-	background-color: transparent;
+  outline: none;
+  background-color: transparent;
+	box-shadow: none;
+	border: none;
 }
 
 /*.main-menu__button:hover span.main-menu__button__text,
