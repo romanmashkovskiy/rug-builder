@@ -8,6 +8,10 @@
 
 	.material__header {
 		margin-bottom: 40px;
+
+		@media screen and (max-width: 768px) {
+			margin-bottom: 20px;
+		}
 	}
 
 	.header__titles {
@@ -33,6 +37,11 @@
 			display: inline-block;
 			text-align: center;
 			width: 25%;
+
+			@media screen and (max-width: 768px) {
+				margin-bottom: 10px;
+				width: 50%;
+			}
 
 			a {
 				display: block;
@@ -82,11 +91,21 @@
 			top: 0;
 			width: 274px;
 
+			@media screen and (max-width: 768px) {
+				display: block;
+				width: 165px;
+			}
+
+			@media screen and (max-width: 600px) {
+				display: none;
+			}
+
 			.info__section {
 				float: left;
 				margin-bottom: 30px;
 				text-align: center;
 				width: 100px;
+				word-break: break-word;
 
 				h3 {
 					text-align: center;
@@ -94,6 +113,15 @@
 
 				&:nth-child(even) {
 					margin-right: 20px;
+				}
+
+				@media screen and (max-width: 768px) {
+					margin-bottom: 10px;
+					width: 100%;
+
+					&:nth-child(even) {
+						margin-right: 0;
+					}
 				}
 			}
 		}

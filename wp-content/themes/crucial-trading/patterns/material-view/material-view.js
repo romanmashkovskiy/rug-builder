@@ -4,8 +4,16 @@ $(document).ready(function() {
 
 	function closeInfoBox() {
 
+		var boxWidth;
+
+		if ( window.innerWidth > 768 ) {
+			boxWidth = 274;
+		} else {
+			boxWidth = 165;
+		}
+
 		$('.material__info').animate({
-			right: '-274px'
+			right: '-' + boxWidth + 'px'
 		})
 
 		$('#hide-material-info').text('Show')

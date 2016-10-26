@@ -17,6 +17,9 @@
   width: 80%; }
   .material .material__header {
     margin-bottom: 40px; }
+    @media screen and (max-width: 768px) {
+      .material .material__header {
+        margin-bottom: 20px; } }
   .material .header__titles {
     text-align: center; }
     .material .header__titles h1 {
@@ -30,6 +33,10 @@
     display: inline-block;
     text-align: center;
     width: 25%; }
+    @media screen and (max-width: 768px) {
+      .material .header__links li {
+        margin-bottom: 10px;
+        width: 50%; } }
     .material .header__links li a {
       display: block;
       text-align: center; }
@@ -68,15 +75,29 @@
       position: absolute;
       top: 0;
       width: 274px; }
+      @media screen and (max-width: 768px) {
+        .material .image-container .material__info {
+          display: block;
+          width: 165px; } }
+      @media screen and (max-width: 600px) {
+        .material .image-container .material__info {
+          display: none; } }
       .material .image-container .material__info .info__section {
         float: left;
         margin-bottom: 30px;
         text-align: center;
-        width: 100px; }
+        width: 100px;
+        word-break: break-word; }
         .material .image-container .material__info .info__section h3 {
           text-align: center; }
         .material .image-container .material__info .info__section:nth-child(even) {
           margin-right: 20px; }
+        @media screen and (max-width: 768px) {
+          .material .image-container .material__info .info__section {
+            margin-bottom: 10px;
+            width: 100%; }
+            .material .image-container .material__info .info__section:nth-child(even) {
+              margin-right: 0; } }
   .material.coir .header__back a {
     color: rgba(178, 136, 101, 0.5); }
   .material.coir .header__titles h1 {
