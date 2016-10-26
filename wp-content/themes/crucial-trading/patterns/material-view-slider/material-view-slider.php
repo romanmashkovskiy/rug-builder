@@ -21,14 +21,11 @@ function material_view_slider( $atts = '' ) {
 
 	$html = '';
 
-	// Array of all products to be shown, will be 5 length
+	// Array of all products to be shown
 	$posts = array();
 	
-	// Current product, to be shown, put in middle of 5 length array
-	$posts[2] = array(
-		'id'    => get_the_ID(),
-		'title' => get_the_title(),
-	);
+	// Current product ID
+	$current_product_id = get_the_ID();
 
 	// Get all WooCommerce products
 	$woocommerce_products = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC' ) );
@@ -40,12 +37,42 @@ function material_view_slider( $atts = '' ) {
 	}
 
 	// Find index of current product ID in $woocommerce_products_ids
-	$current_index = array_search( $posts[2]['id'], $woocommerce_products_ids );
+	$current_index = array_search( $current_product_id, $woocommerce_products_ids );
 
-	echo '<pre>';
-	print_r($woocommerce_products_ids);
-	print_r( $current_index);
-	echo '</pre>';
+	// Add previous and next two product IDs to $posts
+	if ( $current_index > 1 ) {
+		$posts[0] = isset( $woocommerce_products_ids[$current_index - 2] ) ? $woocommerce_products_ids[$current_index - 2] : false;
+		$posts[1] = isset( $woocommerce_products_ids[$current_index - 1] ) ? $woocommerce_products_ids[$current_index - 1] : false;
+		$posts[2] = $woocommerce_products_ids[$current_index];
+		$posts[3] = isset( $woocommerce_products_ids[$current_index + 1] ) ? $woocommerce_products_ids[$current_index + 1] : false;
+		$posts[4] = isset( $woocommerce_products_ids[$current_index + 2] ) ? $woocommerce_products_ids[$current_index + 2] : false;
+	}
+	else if ( $current_index == 1 ) {
+		$posts[0] = isset( $woocommerce_products_ids[$current_index - 1] ) ? $woocommerce_products_ids[$current_index - 1] : false;
+		$posts[1] = $woocommerce_products_ids[$current_index];
+		$posts[2] = isset( $woocommerce_products_ids[$current_index + 1] ) ? $woocommerce_products_ids[$current_index + 1] : false;
+		$posts[3] = isset( $woocommerce_products_ids[$current_index + 2] ) ? $woocommerce_products_ids[$current_index + 2] : false;
+		$posts[4] = isset( $woocommerce_products_ids[$current_index + 3] ) ? $woocommerce_products_ids[$current_index + 3] : false;
+	} else if ( $current_index == 0 ) {
+		$posts[0] = $woocommerce_products_ids[$current_index];
+		$posts[1] = isset( $woocommerce_products_ids[$current_index + 1] ) ? $woocommerce_products_ids[$current_index + 1] : false;
+		$posts[2] = isset( $woocommerce_products_ids[$current_index + 2] ) ? $woocommerce_products_ids[$current_index + 2] : false;
+		$posts[3] = isset( $woocommerce_products_ids[$current_index + 3] ) ? $woocommerce_products_ids[$current_index + 3] : false;
+		$posts[4] = isset( $woocommerce_products_ids[$current_index + 4] ) ? $woocommerce_products_ids[$current_index + 4] : false;
+	}
+
+	// Remove any empty entries from $posts
+	$posts = array_values( array_filter( $posts ) );
+
+	$html .= '<div class="material-view-slider">';
+	$html .= '<ul>';
+
+	for ( $i = 0; $i < count( $posts ); $i++ ) {
+		$html .= '<li>' . do_shortcode( '[material-view post_id="' . $posts[$i] . '"]' ) . '</li>';
+	}
+
+	$html .= '</ul>';
+	$html .= '</div>';
 
 	// If being shown in pattern library reset post data
 	if ( $atts != '' && array_key_exists( 'pattern', $atts ) ) {
