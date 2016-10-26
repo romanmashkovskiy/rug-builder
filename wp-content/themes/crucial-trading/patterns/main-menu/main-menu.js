@@ -4,6 +4,8 @@
  * jQuery for the main slide out menu 
  */
 
+var $ = jQuery;
+
 // Add classes - active tag to button and show menu to body	
 $(function() {                     
   $(".main-menu__button").click(function() { 
