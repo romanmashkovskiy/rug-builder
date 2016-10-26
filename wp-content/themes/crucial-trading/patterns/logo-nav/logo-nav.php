@@ -25,8 +25,8 @@ function logo_nav_shortcode( $atts = '' ) {
 	$html .= '<div class="top-bar" ' . $abs_style . '>';
 
 	$html .= '<div class="top-bar__left vertical-align">';
-	$html .= '<img src="' . get_site_url() . '/wp-content/uploads/logo.svg" alt="Crucial Trading - where inspiration begins" class="full-logo">';
-	$html .= '<img src="' . get_site_url() . '/wp-content/uploads/logo-mobile.svg" alt="Crucial Trading - where inspiration begins" class="mobi-logo">';
+	$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174004/logo.svg" alt="Crucial Trading - where inspiration begins" class="full-logo">';
+	$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174002/logo-mobile.svg" alt="Crucial Trading - where inspiration begins" class="mobi-logo">';
 	$html .= '</div>';
 
 	$html .= '<div class="main-menu__button--wrap">
