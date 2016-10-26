@@ -74,7 +74,7 @@
       padding: 45px 27px;
       position: absolute;
       top: 0;
-      width: 274px; }
+      width: 296px; }
       @media screen and (max-width: 768px) {
         .material .image-container .material__info {
           display: block;
@@ -86,7 +86,7 @@
         float: left;
         margin-bottom: 30px;
         text-align: center;
-        width: 100px;
+        width: 111px;
         word-break: break-word; }
         .material .image-container .material__info .info__section h3 {
           text-align: center; }
@@ -104,7 +104,8 @@
     color: #6F533D; }
   .material.coir .header__titles h3 {
     color: rgba(111, 83, 61, 0.7); }
-  .material.coir .header__links a,
+  .material.coir .header__links a {
+    color: #6F533D; }
   .material.coir #change-image-view,
   .material.coir #hide-material-info,
   .material.coir .info__section h3 {
@@ -115,7 +116,8 @@
     color: #4B3B2E; }
   .material.jute .header__titles h3 {
     color: rgba(75, 59, 46, 0.7); }
-  .material.jute .header__links a,
+  .material.jute .header__links a {
+    color: #4B3B2E; }
   .material.jute #change-image-view,
   .material.jute #hide-material-info,
   .material.jute .info__section h3 {
@@ -126,7 +128,8 @@
     color: #6B6551; }
   .material.seagrass .header__titles h3 {
     color: rgba(107, 101, 81, 0.7); }
-  .material.seagrass .header__links a,
+  .material.seagrass .header__links a {
+    color: #6B6551; }
   .material.seagrass #change-image-view,
   .material.seagrass #hide-material-info,
   .material.seagrass .info__section h3 {
@@ -137,7 +140,8 @@
     color: #454F44; }
   .material.sisal .header__titles h3 {
     color: rgba(69, 79, 68, 0.7); }
-  .material.sisal .header__links a,
+  .material.sisal .header__links a {
+    color: #454F44; }
   .material.sisal #change-image-view,
   .material.sisal #hide-material-info,
   .material.sisal .info__section h3 {
@@ -148,7 +152,8 @@
     color: #817E62; }
   .material.sisool .header__titles h3 {
     color: rgba(129, 126, 98, 0.7); }
-  .material.sisool .header__links a,
+  .material.sisool .header__links a {
+    color: #817E62; }
   .material.sisool #change-image-view,
   .material.sisool #hide-material-info,
   .material.sisool .info__section h3 {
@@ -159,7 +164,8 @@
     color: #665F4D; }
   .material.wool .header__titles h3 {
     color: rgba(102, 95, 77, 0.7); }
-  .material.wool .header__links a,
+  .material.wool .header__links a {
+    color: #665F4D; }
   .material.wool #change-image-view,
   .material.wool #hide-material-info,
   .material.wool .info__section h3 {

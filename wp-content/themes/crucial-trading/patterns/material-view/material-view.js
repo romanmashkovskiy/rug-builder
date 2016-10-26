@@ -7,7 +7,7 @@ $(document).ready(function() {
 		var boxWidth;
 
 		if ( window.innerWidth > 768 ) {
-			boxWidth = 274;
+			boxWidth = 296;
 		} else {
 			boxWidth = 165;
 		}

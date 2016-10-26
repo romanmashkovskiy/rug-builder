@@ -71,7 +71,7 @@ for ( $i=0; $i<count($scan); $i++ ) {
 		echo do_shortcode( '[material-swatches material="coir"]' );
 	}
 	else if ( $scan[$i] == 'material-view' ) {
-		echo do_shortcode( '[material-view pattern="true"]' );
+		echo do_shortcode( '[material-view post_id="102"]' );
 	}
 	else {
 		echo do_shortcode( '[' . $scan[$i] . ']' );

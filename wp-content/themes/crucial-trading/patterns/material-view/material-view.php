@@ -14,16 +14,13 @@ function material_view( $atts = '' ) {
 
 	global $post;
 
-	// If being viewed in the pattern library set $post to Boucle Bleached 3
-	if ( $atts != '' && array_key_exists( 'pattern', $atts ) ) {
-		if ( $atts['pattern'] == 'true' ) {
-			$post = get_post( 102 );
-		}
+	if ( $atts != '' && array_key_exists( 'post_id', $atts ) ) {
+		$post_id = $atts['post_id'];
+		$post    = get_post( $post_id );
 	}
 
 	$html = '';
-
-	$post_id    = get_the_ID();
+	
 	$post_title = get_the_title();
 
 	$post_meta     = get_post_meta( $post_id, '_product_attributes', true );
@@ -102,11 +99,8 @@ function material_view( $atts = '' ) {
 	$html .= '</div>';
 	$html .= '</div>';
 
-	// If being viewed in the pattern library reset $post
-	if ( $atts != '' && array_key_exists( 'pattern', $atts ) ) {
-		if ( $atts['pattern'] == 'true' ) {
-			wp_reset_postdata();
-		}
+	if ( $atts != '' && array_key_exists( 'post_id', $atts ) ) {
+		wp_reset_postdata();
 	}
 
 	return $html;
