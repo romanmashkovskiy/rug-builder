@@ -17,15 +17,19 @@
 @font-face {
   font-family: 'DIN';
   src: url("../../fonts/din/din.otf") format("OpenType"); }
+
 @font-face {
   font-family: 'Playfair Display';
   src: url("../../fonts/playfair-display/PlayfairDisplay-Regular.ttf") format("truetype"); }
+
 @font-face {
   font-family: 'Montserrat';
   src: url("../../fonts/montserrat/Montserrat-Regular.ttf") format("truetype"); }
+
 @font-face {
   font-family: 'Open Sans';
   src: url("../../fonts/open-sans/OpenSans-Regular.ttf") format("truetype"); }
+
 /************************************************************************************************************************
 	Variables
 	
@@ -241,7 +245,7 @@ body,
   transition: color background-color ease-in-out 0.25s;
   -webkit-transition: color background-color ease-in-out 0.25s;
   -webkit-transform: translate(0, 0);
-          transform: translate(0, 0); }
+  transform: translate(0, 0); }
 
 .main-menu__wrap a:hover,
 .main-menu__wrap a:focus,
@@ -267,12 +271,20 @@ body,
   content: ' ';
   background-color: #606060;
   -webkit-transform: translate(20px, 0);
+<<<<<<< HEAD
           transform: translate(20px, 0);
+=======
+  transform: translate(20px, 0);
+>>>>>>> ed4c13a2f61b9b17082f59e752360f522148e923
   opacity: 0; }
 
 .main-menu__wrap a:hover::after {
   -webkit-transform: translate(0, 0);
+<<<<<<< HEAD
           transform: translate(0, 0);
+=======
+  transform: translate(0, 0);
+>>>>>>> ed4c13a2f61b9b17082f59e752360f522148e923
   opacity: 1; }
 
 /************** Menu Top - Links **************/
