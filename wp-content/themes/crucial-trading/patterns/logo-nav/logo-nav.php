@@ -10,6 +10,8 @@
  * @since Crucial Trading 1.0
  */
 
+include_once(get_template_directory() . '/patterns/main-menu/main-menu.php');
+
 function logo_nav_shortcode( $atts = '' ) {
 
 	$abs_style = 'style="position:absolute;"';
@@ -34,6 +36,8 @@ function logo_nav_shortcode( $atts = '' ) {
 </div>';
 
 	$html .= '</div>';
+
+	$html .= do_shortcode( '[main-menu]' );
 
 	return $html;
 }
