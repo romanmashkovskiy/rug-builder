@@ -35,12 +35,14 @@ function section_box( $atts = '' ) {
 				$link_text = array_key_exists('link-text', $box) ? $box['link-text'] : '';
 				$link      = array_key_exists('link-href', $box) ? $box['link-href'] : '';
 
+				$id_title = str_replace( ' ', '-', strtolower( $title ) );
+
 				$side  = array_key_exists('side', $box) ? $box['side'] : 'left';
 				$image = array_key_exists('image', $box) ? $box['image'][0] : '';
 
 				$src = wp_get_attachment_image_src( $image, 'medium_large' )[0];
 
-				$html .= '<section class="section-box box-shadow clearfix">';
+				$html .= '<section class="section-box box-shadow clearfix" id="' . $id_title . '">';
 
 				$html .= '<div class="box__image ';
 				$side == 'left' ? $html .= 'left' : $html .= 'right';
