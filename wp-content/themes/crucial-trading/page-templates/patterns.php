@@ -70,6 +70,9 @@ for ( $i=0; $i<count($scan); $i++ ) {
 	else if ( $scan[$i] == 'material-swatches' ) {
 		echo do_shortcode( '[material-swatches material="coir"]' );
 	}
+	else if ( $scan[$i] == 'material-view' ) {
+		echo do_shortcode( '[material-view pattern="true"]' );
+	}
 	else {
 		echo do_shortcode( '[' . $scan[$i] . ']' );
 	}
