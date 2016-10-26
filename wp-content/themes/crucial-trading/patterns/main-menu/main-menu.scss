@@ -16,23 +16,26 @@ $main-menu-font-family: 	'Montserrat', sans-serif;
 
 @import '../../assets/css/src/global.scss';
 
-body, 
-.content-wrap {
-	overflow: hidden;
-	width: 100%;
-	height: 100%;
+body {
 	margin: 0;
-	background-color: #CCC;   
+	font-family: $main-menu-font-family;
+	-webkit-backface-visibility: hidden;
+	-webkit-transform-style: preserve-3d;
+	-webkit-font-smoothing: antialiased;  
+	overflow-x: hidden;
+	position: relative;
+	left: 0px;
 }
 
 /************** Main Menu **************/ 
  
 .main-menu__wrap {
-	position: absolute;
+	position: fixed;
 	z-index: 1001;
 	width: 370px;
 	height: 100%;
-	right: 0;
+	top: 0px;
+	right: 0px;
 	background: $main-menu-bg-color;
 	padding-top: 50px;
 	-webkit-transform: translate3d(370px,0,0);
@@ -45,7 +48,11 @@ body,
 	@media all and (max-width: 1024px) {
 		padding-top: 10px;
 	}
-
+	
+	@media all and (max-width: 769px) {
+		width: 320px;
+	}
+	
 }
 
 /*** Shown menu animation ***/
@@ -53,12 +60,21 @@ body,
 .show-menu .main-menu__wrap {
 	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
+	//position: 
 	-webkit-transition: -webkit-transform 0.65s;
 	transition: transform 0.65s;
 	-webkit-transition-timing-function: cubic-bezier(0.55,0,0.5,1);
 	transition-timing-function: cubic-bezier(0.55,0,0.5,1);
 }
 
+.show-menu .main-menu__button--wrap {
+	-webkit-transform: translate3d(-370px,0,0);
+	transform: translate3d(-370px,0,0);
+	-webkit-transition: -webkit-transform 0.65s;
+	transition: transform 0.65s;
+	-webkit-transition-timing-function: cubic-bezier(0.55,0,0.5,1);
+	transition-timing-function: cubic-bezier(0.55,0,0.5,1);
+}
 
 /************** Menu Links - General **************/ 
 
@@ -75,10 +91,15 @@ body,
 	transition: color background-color ease-in-out 0.25s;
   -webkit-transition: color background-color ease-in-out 0.25s;
 	transform: translate(0,0);
+		
+	@media all and (max-width: 769px) {
+		padding: 20px;
+		padding-left: 60px;
+	}
+	
 }
 
 .main-menu__wrap a:hover,
-.main-menu__wrap a:focus,
 .main-menu__wrap a.active {
 	color: #FFF;
 	background-color: #272727;
@@ -111,7 +132,8 @@ body,
 	@extend .transition-all;
 }
 
-.main-menu__wrap a:hover::after {
+.main-menu__wrap a:hover::after,
+.main-menu__wrap a.active::after {
 	transform: translate(0, 0);
 	opacity: 1;
 }
@@ -124,12 +146,22 @@ body,
 .main-menu__top__lg {
 	border-bottom: 1px solid $main-menu-border-color;
 	padding-bottom: 25px;
+	
+	@media all and (max-width: 769px) {
+		padding-bottom: 15px;
+	}
+	
 }
 
 .main-menu__top__lg a {
 	font-size: 16px;
 	letter-spacing: 2.5px;
 	text-transform: uppercase;
+	
+	@media all and (max-width: 769px) {
+		font-size: 15px;
+	}
+	
 }
 
 /*** Menu - Small ***/ 
@@ -137,6 +169,12 @@ body,
 .main-menu__top__sm {
 	padding-top: 30px;
 	padding-bottom: 20px;
+	
+	@media all and (max-width: 769px) {
+		padding-bottom: 15px;
+		padding-top: 15px;
+	}
+	
 }
 
 .main-menu__top__sm a {
@@ -198,6 +236,7 @@ body,
 .main-menu__social--twitter, 
 .main-menu__social--instagram {
 	width: 50%;
+	background-color: $main-menu-bg-color;
 	display: inline-block;
 	text-align: center;
 	font-size: 0;
@@ -276,12 +315,21 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 
 
 
+
+
+
 /************** Animated Menu Button **************/ 
 
 .main-menu__button--wrap {
 	position: absolute;
 	top: 0px;
-	left: -162px;
+	right: 0px;
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+	-webkit-transition: -webkit-transform 0.4s;
+	transition: transform 0.4s;
+	-webkit-transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 }
 
 .main-menu__button {
@@ -308,11 +356,11 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
   outline: none;
 }
 
-/*.main-menu__button:hover {
-	background-color: lighten($main-menu-bg-color, 50%);
+.main-menu__button:hover {
+	background-color: transparent;
 }
 
-.main-menu__button:hover span.main-menu__button__text,
+/*.main-menu__button:hover span.main-menu__button__text,
 .main-menu__button:hover span.main-menu__button__text--close {
   color: $main-menu-bg-color;
 }*/
