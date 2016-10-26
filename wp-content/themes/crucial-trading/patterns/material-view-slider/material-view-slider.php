@@ -65,13 +65,21 @@ function material_view_slider( $atts = '' ) {
 	$posts = array_values( array_filter( $posts ) );
 
 	$html .= '<div class="material-view-slider">';
-	$html .= '<ul>';
+	$html .= '<ul id="material-view-slider-list">';
 
 	for ( $i = 0; $i < count( $posts ); $i++ ) {
-		$html .= '<li>' . do_shortcode( '[material-view post_id="' . $posts[$i] . '"]' ) . '</li>';
+
+		$show_this = '';
+
+		if ( $posts[$i] == $current_product_id ) {
+			$show_this = ' data-show="' . $i . '" ';
+		}
+		$html .= '<li><span' . $show_this . '></span>' . do_shortcode( '[material-view post_id="' . $posts[$i] . '"]' ) . '</li>';
 	}
 
 	$html .= '</ul>';
+	$html .= '<span id="material-view-slider-next"></span>';
+	$html .= '<span id="material-view-slider-prev"></span>';
 	$html .= '</div>';
 
 	// If being shown in pattern library reset post data
