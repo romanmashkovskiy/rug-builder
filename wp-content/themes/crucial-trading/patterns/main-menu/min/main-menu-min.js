@@ -1,0 +1,1 @@
+jQuery(document).ready(function(){var $=jQuery;$(function(){$(".main-menu__button").click(function(){$(this).toggleClass("is-active"),$("body").toggleClass("show-menu")})}),$("html").click(function(){$("body").removeClass("show-menu"),$(".main-menu__button").removeClass("is-active")}),$(".main-menu, .main-menu__button").click(function(n){n.stopPropagation()})});

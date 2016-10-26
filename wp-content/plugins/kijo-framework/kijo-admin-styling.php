@@ -12,6 +12,8 @@ style-admin.css
 
 **/
 
+$sitename = kijo_framework_sitename();
+$sitename_normal = kijo_framework_sitename_normal();
 
 /************************************************************************************
 ** Custom Admin Area Stylesheet 
@@ -39,10 +41,10 @@ add_action('wp_head', 'load_custom_wp_admin_style');
 function additional_admin_color_schemes() {
 	
 	global $plugins_url;
+	global $sitename;
+	global $sitename_normal;
 	
-	$sitename = kijo_framework_sitename();
-	
-	wp_admin_css_color( 'broadway', __( 'Broadway' ), // New colour scheme name
+	wp_admin_css_color( $sitename, __( $sitename_normal ), // New colour scheme name
 		$plugins_url . '/assets/css/admin/colours/colors.css', // Path to stylesheet directory - including sass file
 		array( '#24b7eb', '#808f8f', '#000000', '#ffffff' ) // Colours array - displays in options
 	);
@@ -55,9 +57,10 @@ add_action('admin_init', 'additional_admin_color_schemes');
 add_filter( 'get_user_option_admin_color', function( $color_scheme ) {
  
 	global $_wp_admin_css_colors;
+ 	global $sitename;
  
 	if ( 'classic' == $color_scheme || 'fresh' == $color_scheme ) {
-		$color_scheme = 'broadway';
+		$color_scheme = $sitename;
 	}
  
 	return $color_scheme;

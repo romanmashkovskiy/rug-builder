@@ -53,7 +53,7 @@ if (!defined('ABSPATH')) {
 if (getenv('WP_ENV') !== false) {
     // Filter non-alphabetical characters for security
     define('WP_ENV', preg_replace('/[^a-z]/', '', getenv('WP_ENV')));
-} 
+}
 
 // Define site host
 if (isset($_SERVER['HTTP_X_FORWARDED_HOST']) && !empty($_SERVER['HTTP_X_FORWARDED_HOST'])) {

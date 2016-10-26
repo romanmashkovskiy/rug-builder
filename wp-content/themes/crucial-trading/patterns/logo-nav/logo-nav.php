@@ -10,6 +10,8 @@
  * @since Crucial Trading 1.0
  */
 
+include_once(get_template_directory() . '/patterns/main-menu/main-menu.php');
+
 function logo_nav_shortcode( $atts = '' ) {
 
 	$abs_style = 'style="position:absolute;"';
@@ -20,23 +22,24 @@ function logo_nav_shortcode( $atts = '' ) {
 
 	$html = '';
 
-	$html .= '<aside class="top-bar" ' . $abs_style . '>';
+	$html .= '<div class="top-bar" ' . $abs_style . '>';
 
 	$html .= '<div class="top-bar__left vertical-align">';
-	$html .= '<img src="' . get_site_url() . '/wp-content/uploads/logo.svg" alt="Crucial Trading - where inspiration begins" class="full-logo">';
-	$html .= '<img src="' . get_site_url() . '/wp-content/uploads/logo-mobile.svg" alt="Crucial Trading - where inspiration begins" class="mobi-logo">';
+	$html .= '<a href="'.site_url().'">';
+	$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174004/logo.svg" alt="Crucial Trading - where inspiration begins" class="full-logo">';
+	$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174002/logo-mobile.svg" alt="Crucial Trading - where inspiration begins" class="mobi-logo">';
+	$html .= '</a>';
 	$html .= '</div>';
 
-	$html .= '<div class="top-bar__right vertical-align">';
-	$html .= '<span class="burger">';
-	$html .= '<span></span>';
-	$html .= '<span></span>';
-	$html .= '<span></span>';
-	$html .= '</span>';
-	$html .= '<h3>Menu</h3>';
+	$html .= '<div class="main-menu__button--wrap">
+	<button class="main-menu__button menu-button" id="open-button">
+		<span class="main-menu__button__icon"></span><span class="main-menu__button__text">menu</span><span class="main-menu__button__text--close">close</span>
+	</button>
+</div>';
+
 	$html .= '</div>';
 
-	$html .= '</aside>';
+	$html .= do_shortcode( '[main-menu]' );
 
 	return $html;
 }

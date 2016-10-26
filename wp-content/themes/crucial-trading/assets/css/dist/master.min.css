@@ -1,2 +1,181 @@
-@font-face{font-family:DIN;src:url(../../fonts/din/din.otf) format("OpenType")}@font-face{font-family:Playfair Display;src:url(../../fonts/playfair-display/PlayfairDisplay-Regular.ttf) format("truetype")}@font-face{font-family:Montserrat;src:url(../../fonts/montserrat/Montserrat-Regular.ttf) format("truetype")}@font-face{font-family:Open Sans;src:url(../../fonts/open-sans/OpenSans-Regular.ttf) format("truetype")}.vert-align{display:inline-block;float:none;vertical-align:middle}.vertical-align{position:relative;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);-webkit-transform-style:preserve-3d;transform-style:preserve-3d}.vertical-align-table{display:table-cell;float:none;vertical-align:middle}body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}h1{color:#000;font-family:Playfair Display,serif;font-size:52px;letter-spacing:2px;margin:0}h1,h1.home-banner-header{font-weight:400;line-height:1.8}h1.home-banner-header{color:#fff;font-family:DIN,sans-serif;font-size:70px;letter-spacing:4px;text-shadow:1px 0 30px #aaa;text-transform:uppercase}h1.standard-banner-header{font-size:75px}h2{color:#000;font-family:Playfair Display,serif;font-size:38px;font-weight:400;letter-spacing:2px;line-height:1.8;margin:0}h2.material-header{font-size:75px}h3{font-size:14px;letter-spacing:4px;margin:0;opacity:40%}a,h3{color:#000;font-family:Montserrat,sans-serif;font-weight:400;line-height:1.8;text-transform:uppercase}a{font-size:17px;letter-spacing:2.5px;opacity:50%;text-decoration:none}a:hover{text-decoration:underline}a:hover,p{color:#000}p{font-family:Open Sans,sans-serif;font-size:17px;font-weight:400;letter-spacing:.5px;line-height:1.8}cite,dfn,em,i{font-style:italic}blockquote{margin:0 1.5em}address{margin:0 0 1.5em}pre{background:#eee;margin-bottom:1.6em;max-width:100%;overflow:auto;padding:1.6em}code,kbd,pre,tt,var{font-family:monospace;font-size:.9375}abbr,acronym{border-bottom:1px dotted #000;cursor:help}ins,mark{background:#000;text-decoration:none}big{font-size:125%}
-/*# sourceMappingURL=maps/master.min.css.map */
+/************************************************************************************************************************
+	
+	Crucial Trading - SASS Master File
+	
+	Created by: KIJO Creative <hello@kijo.co>
+	
+*************************************************************************************************************************/
+@import url(../../../patterns/main-menu/main-menu.css);
+@import url(../../../patterns/logo-nav/logo-nav.css);
+@font-face {
+  font-family: 'DIN';
+  src: url("../../fonts/din/din.otf") format("OpenType"); }
+@font-face {
+  font-family: 'Playfair Display';
+  src: url("../../fonts/playfair-display/PlayfairDisplay-Regular.ttf") format("truetype"); }
+@font-face {
+  font-family: 'Montserrat';
+  src: url("../../fonts/montserrat/Montserrat-Regular.ttf") format("truetype"); }
+@font-face {
+  font-family: 'Open Sans';
+  src: url("../../fonts/open-sans/OpenSans-Regular.ttf") format("truetype"); }
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Typography */
+.vert-align {
+  display: inline-block;
+  float: none;
+  vertical-align: middle; }
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d; }
+
+.vertical-align-table {
+  display: table-cell;
+  float: none;
+  vertical-align: middle; }
+
+.box-shadow {
+  -webkit-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08); }
+
+.rotate {
+  position: absolute;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+.transition-all {
+  transition: all ease-in-out 0.25s;
+  -webkit-transition: all ease-in-out 0.25s; }
+
+/************************************************************************************************************************
+	Headings
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+body {
+  -webkit-font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale; }
+
+h1 {
+  color: #000000;
+  font-family: "Playfair Display", serif;
+  font-size: 52px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  margin: 0; }
+  h1.home-banner-header {
+    color: #ffffff;
+    font-family: "DIN", sans-serif;
+    font-size: 70px;
+    font-weight: normal;
+    letter-spacing: 4px;
+    line-height: 1.8;
+    text-shadow: 1px 0px 30px #aaaaaa;
+    text-transform: uppercase; }
+  h1.standard-banner-header {
+    font-size: 75px; }
+
+h2 {
+  color: #000000;
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  margin: 0; }
+  h2.material-header {
+    font-size: 75px; }
+
+h3 {
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 4px;
+  line-height: 1.8;
+  margin: 0;
+  opacity: 40%;
+  text-transform: uppercase; }
+
+a {
+  color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+  font-weight: normal;
+  letter-spacing: 2.5px;
+  line-height: 1.8;
+  opacity: 50%;
+  text-decoration: none;
+  text-transform: uppercase; }
+  a:hover {
+    color: #000000;
+    text-decoration: underline; }
+
+p {
+  color: #000000;
+  font-family: "Open Sans", sans-serif;
+  font-size: 17px;
+  font-weight: normal;
+  letter-spacing: 0.5px;
+  line-height: 1.8; }
+
+dfn, cite, em, i {
+  font-style: italic; }
+
+blockquote {
+  margin: 0 1.5em; }
+
+address {
+  margin: 0 0 1.5em; }
+
+pre {
+  background: #eee;
+  font-family: monospace;
+  font-size: 0.9375;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  padding: 1.6em; }
+
+code, kbd, tt, var {
+  font-family: monospace;
+  font-size: 0.9375; }
+
+abbr, acronym {
+  border-bottom: 1px dotted black;
+  cursor: help; }
+
+mark, ins {
+  background: black;
+  text-decoration: none; }
+
+big {
+  font-size: 125%; }
+
+form,
+input,
+button {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  -webkit-font-smoothing: antialiased; }
