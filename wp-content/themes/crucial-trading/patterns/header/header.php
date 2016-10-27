@@ -90,7 +90,9 @@ function header_material_shortcode($atts = '') {
 			$alt      = $cat->slug; 
 
 			$html .= '<li>';
+			$html .= '<a href="' . get_site_url() . '/material/' . $alt . '">';
 			$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+			$html .= '</a>';
 			$html .= '<li>';
 		}
 
