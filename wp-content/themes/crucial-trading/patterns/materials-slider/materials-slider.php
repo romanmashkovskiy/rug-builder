@@ -100,7 +100,7 @@ function materials_slider() {
 			$html .= '<h3>True Survivor</h3>';
 			$html .= '<h1>' . $title . '</h1>';
 			$html .= '<p>' . $subtitle . '</p>';
-			$html .= '<a href="#">Read More</a>';
+			$html .= '<a href="' . get_site_url() . '/material/' . $alt . '">Read More</a>';
 			$html .= '</div>';
 			$html .= '</div>';
 
