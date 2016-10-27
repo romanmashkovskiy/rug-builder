@@ -3,7 +3,7 @@ $ = jQuery;
 $(document).ready(function() {
 
 	var slider = $('#super-slider').superslides({
-		play: 10000,
+		play: 1000000,
 		animation: 'fade',
 		animation_speed: 1200
 	});
