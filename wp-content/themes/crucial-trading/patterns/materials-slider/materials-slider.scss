@@ -159,16 +159,12 @@
 			transform: none;
 		}
 
-		a {
+/*		a {
 			border-bottom-width: 1px;
 			border-bottom-style: solid;
 			padding: 0 0 15px;
 		}
-
-		a:hover {
-			text-decoration: none;
-		}
-
+*/
 		h1 {
 			margin-bottom: 18px;
 		}
@@ -187,10 +183,14 @@
 				color: transparentize($color-coir-main, 0.5);
 			}
 
-			a {
+			a:before {
+				background-color: transparentize($color-coir-main, 0.5);
+			}
+
+/*			a {
 				border-bottom-color: transparentize($color-coir-main, 0.5);
 			}
-		}
+*/		}
 
 		&.jute {
 
@@ -202,10 +202,14 @@
 				color: transparentize($color-jute-main, 0.5);
 			}
 
-			a {
+			a:before {
+				background-color: transparentize($color-jute-main, 0.5);
+			}
+
+/*			a {
 				border-bottom-color: transparentize($color-jute-main, 0.5);
 			}
-		}
+*/		}
 
 		&.seagrass {
 
@@ -217,10 +221,14 @@
 				color: transparentize($color-seagrass-main, 0.5);
 			}
 
-			a {
+			a:before {
+				background-color: transparentize($color-seagrass-main, 0.5);
+			}
+
+/*			a {
 				border-bottom-color: transparentize($color-seagrass-main, 0.5);
 			}
-		}
+*/		}
 
 		&.sisal {
 
@@ -232,10 +240,14 @@
 				color: transparentize($color-sisal-main, 0.5);
 			}
 
-			a {
+			a:before {
+				background-color: transparentize($color-sisal-main, 0.5);
+			}
+
+/*			a {
 				border-bottom-color: transparentize($color-sisal-main, 0.5);
 			}
-		}
+*/		}
 
 		&.sisool {
 
@@ -247,10 +259,14 @@
 				color: transparentize($color-sisool-main, 0.5);
 			}
 
-			a {
+			a:before {
+				background-color: transparentize($color-sisool-main, 0.5);
+			}
+
+/*			a {
 				border-bottom-color: transparentize($color-sisool-main, 0.5);
 			}
-		}
+*/		}
 
 		&.wool {
 
@@ -262,10 +278,14 @@
 				color: transparentize($color-wool-main, 0.5);
 			}
 
-			a {
+			a:before {
+				background-color: transparentize($color-wool-main, 0.5);
+			}
+
+/*			a {
 				border-bottom-color: transparentize($color-wool-main, 0.5);
 			}
-		}
+*/		}
 	}
 }
 

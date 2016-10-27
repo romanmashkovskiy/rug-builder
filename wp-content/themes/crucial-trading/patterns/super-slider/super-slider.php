@@ -109,14 +109,14 @@ function crucial_slider_slides() {
 			$html .= '<nav class="slides-navigation vertical-align">';
 
 			$html .= '<div class="nav_prev">';
-			$html .= '<a href="#" class="prev">';
+			$html .= '<a href="#" class="prev no-effect">';
 			$html .= $arrow_left;
 			$html .= '</a>';
 			$html .= '<h3 class="rotate">' . $rotate . '</h3>';
 			$html .= '</div>';
 
 			$html .= '<div class="nav_next">';
-			$html .= '<a href="#" class="next">';
+			$html .= '<a href="#" class="next no-effect">';
 			$html .= $arrow_right;
 			$html .= '</a>';
 			$html .= $slide_numbers;

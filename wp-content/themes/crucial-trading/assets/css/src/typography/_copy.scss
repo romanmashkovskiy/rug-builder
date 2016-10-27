@@ -1,12 +1,33 @@
 a {
 	@include typography-standards(#000000, $font-sub-header, 17px, 2.5px);
-	opacity: 50%;
+	padding-bottom: 5px;
+	position: relative;
 	text-decoration: none;
 	text-transform: uppercase;
 
 	&:hover {
 		color: #000000;
-		text-decoration: underline;
+		text-decoration: none;
+	}
+
+	&:not(.no-effect):before {
+		bottom: 0;
+		content: "";
+		height: 2px;
+		left: 0;
+		position: absolute;
+		-webkit-transform: scaleX(0);
+		transform: scaleX(0);
+		-webkit-transition: all 0.25s ease-in-out 0s;
+		transition: all 0.25s ease-in-out 0s;
+		visibility: hidden;
+		width: 100%;
+	}
+
+	&:not(.no-effect):hover:before {
+		-webkit-transform: scaleX(1);
+		transform: scaleX(1);
+		visibility: visible;
 	}
 }
 
@@ -29,7 +50,6 @@ address {
 pre {
 	background: #eee;
 	font-family: monospace;
-	font-size: 0.9375;
 	margin-bottom: 1.6em;
 	max-width: 100%;
 	overflow: auto;

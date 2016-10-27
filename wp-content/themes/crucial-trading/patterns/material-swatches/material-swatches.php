@@ -49,7 +49,7 @@ function material_swatches( $atts = '' ) {
 			$src      = wp_get_attachment_image_src( $thumb_id, 'medium' )[0];
 
 			echo '<div class="swatch">';
-			echo '<a href="' . $link  . '">';
+			echo '<a href="' . $link  . '" class="no-effect">';
 			echo '<img src="' . $src . '" alt="' . $title . '">';
 			echo '<h3>' . $title . '</h3>';
 			echo '<h3 class="code">' . $code . '</h3>';
