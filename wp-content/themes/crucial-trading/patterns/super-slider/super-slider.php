@@ -134,7 +134,7 @@ function crucial_slider_slides() {
 			$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
 			$html .= '</div>';
 
-			$html .= '<div class="slide__bottom">';
+			$html .= '<div class="slide__bottom ' . $opening_class . '">';
 			$html .= $arrow_down;
 			$html .= '<h3>Scroll Down</h3>';
 			$html .= '</div>';

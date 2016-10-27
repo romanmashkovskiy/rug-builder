@@ -19,7 +19,8 @@
 				width: 100% !important;
 			}
 
-			svg g {
+			svg g,
+			svg g path {
 				stroke: black;
 			}
 
@@ -205,6 +206,13 @@
 
 	h3 {
 		color: white;
+	}
+
+	&.opening {
+
+		h3 {
+			color: black;
+		}
 	}
 }
 
