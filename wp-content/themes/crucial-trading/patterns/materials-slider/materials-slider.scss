@@ -56,27 +56,27 @@
 		top: 110px;
 
 		&.coir {
-			color: $color-coir-dark;
+			color: transparentize($color-coir-main, 0.5);
 		}
 
 		&.jute {
-			color: $color-jute-dark;
+			color: transparentize($color-jute-main, 0.5);
 		}
 
 		&.seagrass {
-			color: $color-seagrass-dark;
+			color: transparentize($color-seagrass-main, 0.5);
 		}
 
 		&.sisal {
-			color: $color-sisal-dark;
+			color: transparentize($color-sisal-main, 0.5);
 		}
 
 		&.sisool {
-			color: $color-sisool-dark;
+			color: transparentize($color-sisool-main, 0.5);
 		}
 
 		&.wool {
-			color: $color-wool-dark;
+			color: transparentize($color-wool-main, 0.5);
 		}
 	}
 
@@ -147,11 +147,11 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-coir-dark;
+				color: transparentize($color-coir-main, 0.5);
 			}
 
 			a {
-				border-bottom-color: $color-coir-dark;
+				border-bottom-color: transparentize($color-coir-main, 0.5);
 			}
 		}
 
@@ -162,11 +162,11 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-jute-dark;
+				color: transparentize($color-jute-main, 0.5);
 			}
 
 			a {
-				border-bottom-color: $color-jute-dark;
+				border-bottom-color: transparentize($color-jute-main, 0.5);
 			}
 		}
 
@@ -177,11 +177,11 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-seagrass-dark;
+				color: transparentize($color-seagrass-main, 0.5);
 			}
 
 			a {
-				border-bottom-color: $color-seagrass-dark;
+				border-bottom-color: transparentize($color-seagrass-main, 0.5);
 			}
 		}
 
@@ -192,11 +192,11 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-sisal-dark;
+				color: transparentize($color-sisal-main, 0.5);
 			}
 
 			a {
-				border-bottom-color: $color-sisal-dark;
+				border-bottom-color: transparentize($color-sisal-main, 0.5);
 			}
 		}
 
@@ -207,11 +207,11 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-sisool-dark;
+				color: transparentize($color-sisool-main, 0.5);
 			}
 
 			a {
-				border-bottom-color: $color-sisool-dark;
+				border-bottom-color: transparentize($color-sisool-main, 0.5);
 			}
 		}
 
@@ -222,11 +222,11 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-wool-dark;
+				color: transparentize($color-wool-main, 0.5);
 			}
 
 			a {
-				border-bottom-color: $color-wool-dark;
+				border-bottom-color: transparentize($color-wool-main, 0.5);
 			}
 		}
 	}
