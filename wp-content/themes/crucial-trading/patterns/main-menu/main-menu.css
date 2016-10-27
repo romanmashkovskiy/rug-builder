@@ -17,15 +17,19 @@
 @font-face {
   font-family: 'DIN';
   src: url("../../fonts/din/din.otf") format("OpenType"); }
+
 @font-face {
   font-family: 'Playfair Display';
   src: url("../../fonts/playfair-display/PlayfairDisplay-Regular.ttf") format("truetype"); }
+
 @font-face {
   font-family: 'Montserrat';
   src: url("../../fonts/montserrat/Montserrat-Regular.ttf") format("truetype"); }
+
 @font-face {
   font-family: 'Open Sans';
   src: url("../../fonts/open-sans/OpenSans-Regular.ttf") format("truetype"); }
+
 /************************************************************************************************************************
 	Variables
 	
@@ -57,6 +61,8 @@
   vertical-align: middle; }
 
 .box-shadow {
+  -webkit-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
   box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08); }
 
 .rotate {
@@ -257,7 +263,7 @@ body {
   transition: color background-color ease-in-out 0.25s;
   -webkit-transition: color background-color ease-in-out 0.25s;
   -webkit-transform: translate(0, 0);
-          transform: translate(0, 0); }
+  transform: translate(0, 0); }
   @media all and (max-width: 769px) {
     .main-menu__wrap a {
       padding: 20px;
@@ -286,13 +292,13 @@ body {
   content: ' ';
   background-color: #606060;
   -webkit-transform: translate(20px, 0);
-          transform: translate(20px, 0);
+  transform: translate(20px, 0);
   opacity: 0; }
 
 .main-menu__wrap a:hover::after,
 .main-menu__wrap a.active::after {
   -webkit-transform: translate(0, 0);
-          transform: translate(0, 0);
+  transform: translate(0, 0);
   opacity: 1; }
 
 /************** Menu Top - Links **************/

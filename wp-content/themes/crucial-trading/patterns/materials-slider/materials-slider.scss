@@ -84,6 +84,16 @@
 		margin: 25px 0 0;
 		padding: 0;
 
+		@media screen and (max-width: 768px) {
+			margin-left: 75%;
+			width: 25%;
+		}
+
+		@media screen and (max-width: 600px) {
+			margin-left: 63%;
+			width: 37%;
+		}
+
 		li {
 			cursor: pointer;
 			display: inline;
@@ -91,6 +101,12 @@
 			list-style: none;
 			padding: 0 5px;
 			position: relative;
+
+			@media screen and (max-width: 768px) {
+				display: inline-block;
+				left: 0;
+				margin-bottom: 7.5px;
+			}
 
 			img {
 				height: 45px;
@@ -112,15 +128,36 @@
 		float: left;
 		padding: 150px 0 195px;
 		width: 50%;
+
+		@media screen and (max-width: 768px) {
+			padding: 25px 0 0;
+			width: 100%;
+		}
 	}
 
 	.content__left {
 		padding-right: 100px;
 		text-align: right;
+
+		@media screen and (max-width: 768px) {
+			padding-right: 0;
+			text-align: center;
+			top: 0;
+			-webkit-transform: none;
+			transform: none;
+		}
 	}
 
 	.content__right {
 		padding-right: 10%;
+
+		@media screen and (max-width: 768px) {
+			padding: 25px;
+			text-align: center;
+			top: 0;
+			-webkit-transform: none;
+			transform: none;
+		}
 
 		a {
 			border-bottom-width: 1px;
