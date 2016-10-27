@@ -152,7 +152,10 @@
 	a {
 /*		border-bottom: 1px solid white;
 */		color: white;
-		padding: 0 10px 15px;
+
+		&:before {
+			background-color: white;
+		}
 
 /*		&:hover {
 			text-decoration: none;

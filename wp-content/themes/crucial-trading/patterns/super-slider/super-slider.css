@@ -104,11 +104,12 @@
     /*		border-bottom: 1px solid white;
 */
     color: white;
-    padding: 0 10px 15px;
     /*		&:hover {
 			text-decoration: none;
 		}
 */ }
+    .slide__center a:before {
+      background-color: white; }
   .slide__center.opening h1, .slide__center.opening p, .slide__center.opening a {
     color: black; }
   .slide__center.opening p.subtitle {
