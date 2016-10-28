@@ -12,25 +12,25 @@ $(document).ready(function() {
 			boxWidth = 165;
 		}
 
-		$('.material__info').animate({
+		$('.material__details').animate({
 			right: '-' + boxWidth + 'px'
 		})
 
-		$('#hide-material-info').text('Show')
-		$('#hide-material-info').data('state', 'closed');
+		$('.hide-material-info').text('Show')
+		$('.hide-material-info').data('state', 'closed');
 	}
 
 	function openInfoBox() {
 
-		$('.material__info').animate({
+		$('.material__details').animate({
 			right: '20px'
 		})
 
-		$('#hide-material-info').text('Hide')
-		$('#hide-material-info').data('state', 'open');
+		$('.hide-material-info').text('Hide')
+		$('.hide-material-info').data('state', 'open');
 	}
 
-	$('#hide-material-info').on('click', function(e) {
+	$('.hide-material-info').on('click', function(e) {
 
 		e.preventDefault();
 		e.stopPropagation();
