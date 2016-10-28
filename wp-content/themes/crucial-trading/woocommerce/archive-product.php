@@ -18,6 +18,8 @@ wp_head();
 
 echo do_shortcode( '[header-material material="' . $slug . '"]' );
 
+echo do_shortcode( '[logo-nav]' );
+
 echo do_shortcode( '[material-swatches material="' . $slug . '"]' );
 
 wp_footer();

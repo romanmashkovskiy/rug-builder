@@ -20,6 +20,8 @@ wp_head();
 
 echo do_shortcode( '[header-material material="' . $post_cat . '" size="small"]' );
 
+echo do_shortcode( '[logo-nav]' );
+
 echo do_shortcode( '[material-view-slider]' );
 
 wp_footer();

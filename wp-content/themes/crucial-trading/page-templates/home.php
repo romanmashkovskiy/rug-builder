@@ -10,6 +10,8 @@
  
 wp_head();
 
+echo do_shortcode( '[logo-nav]' );
+
 echo do_shortcode( '[super-slider]' );
 
 echo do_shortcode( '[section-boxes number=0]' );
