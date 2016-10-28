@@ -16,7 +16,7 @@ global $post;
 $post_id  = $post->ID;
 $post_cat = get_the_terms( $post->ID, 'product_cat' )[0]->slug;
 
-wp_head();
+get_header();
 
 echo do_shortcode( '[header-material material="' . $post_cat . '" size="small"]' );
 
@@ -24,4 +24,4 @@ echo do_shortcode( '[logo-nav]' );
 
 echo do_shortcode( '[material-view-slider]' );
 
-wp_footer();
+get_footer();

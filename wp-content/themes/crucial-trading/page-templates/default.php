@@ -8,10 +8,10 @@
  * @since Hogarths 1.0
  */
 
-wp_head();
+get_header();
 
 echo do_shortcode( '[header]' );
 
 echo do_shortcode( '[logo-nav]' );
 
-wp_footer();
+get_footer();

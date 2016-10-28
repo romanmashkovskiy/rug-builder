@@ -8,7 +8,7 @@
  * @since Hogarths 1.0
  */
  
-wp_head();
+get_header();
 
 echo do_shortcode( '[logo-nav]' );
 
@@ -20,4 +20,4 @@ echo do_shortcode( '[materials-slider]' );
 
 echo do_shortcode( '[section-boxes number=1]' );
 
-wp_footer();
+get_footer();

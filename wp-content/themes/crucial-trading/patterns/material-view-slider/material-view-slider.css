@@ -1,5 +1,7 @@
 .material-view-slider {
-  position: relative; }
+  background: white;
+  position: relative;
+  width: 100%; }
   .material-view-slider ul {
     margin: 0;
     padding: 0; }
