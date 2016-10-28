@@ -24,8 +24,6 @@ h6 {
 }
 </style>';
 
-echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/master.min.css">';
-
 $directory = get_template_directory() . '/patterns';
 $scan      = array_values(array_diff(scandir($directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store')));
 //$scan      = array_values(array_diff(scandir($directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store', 'header','logo-nav', 'material-swatches','materials-slider','section-boxes', 'super-slider', 'typography')));
@@ -37,16 +35,6 @@ for ( $i=0; $i<count($scan); $i++ ) {
 	} else {
 		echo '<h1 class="pattern-title">Pattern: ' . ucwords( $scan[$i] ) . '</h1>';
 	}
-
-	if ( file_exists( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.css' ) ) {
-		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.css">';
-	}
-
-	if ( file_exists( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.js' ) ) {
-		echo '<script src="' . get_template_directory_uri() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.js"></script>';
-	}
-	
-	include_once( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php' );
 
 	if ( $scan[$i] == 'header' ) {
 		echo '<h6>Header Small</h6>';
@@ -71,5 +59,3 @@ for ( $i=0; $i<count($scan); $i++ ) {
 }
 
 wp_footer();
-
-?>

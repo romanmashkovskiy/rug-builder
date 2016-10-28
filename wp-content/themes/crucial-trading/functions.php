@@ -129,6 +129,7 @@ function crucial_trading_scripts() {
 
 	wp_enqueue_script( 'super-slider', get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"', false );
 	wp_enqueue_script( 'bx-slider', get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js', false );
+	wp_enqueue_script( 'master', get_template_directory_uri() . '/assets/js/dist/master.min.js', false );
 }
 add_action( 'wp_enqueue_scripts', 'crucial_trading_scripts' );
 

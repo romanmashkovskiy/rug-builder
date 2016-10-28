@@ -10,9 +10,6 @@
  
 wp_head();
 
-echo '<script src="' . get_template_directory_uri() . '/patterns/super-slider/super-slider.js"></script>';
-echo '<script src="' . get_template_directory_uri() . '/patterns/materials-slider/materials-slider.js"></script>';
-
 echo do_shortcode( '[super-slider]' );
 
 echo do_shortcode( '[section-boxes number=0]' );
