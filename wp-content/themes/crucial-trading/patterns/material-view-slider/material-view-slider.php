@@ -78,8 +78,8 @@ function material_view_slider( $atts = '' ) {
 	}
 
 	$html .= '</ul>';
-	$html .= '<span id="material-view-slider-next"></span>';
-	$html .= '<span id="material-view-slider-prev"></span>';
+	$html .= '<span id="material-view-slider-prev" class="vertical-align"></span>';
+	$html .= '<span id="material-view-slider-next" class="vertical-align"></span>';
 	$html .= '</div>';
 
 	// If being shown in pattern library reset post data

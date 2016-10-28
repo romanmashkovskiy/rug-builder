@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var svgNext = [
+	var svgPrev = [
 		'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31px" height="59px" viewBox="0 0 31 59" version="1.1" class="prev-slide coir">',
 		'<g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">',
 		'<g id="vivid" transform="translate(-45.000000, -553.000000)" stroke="#7C7C7C">',
@@ -14,7 +14,7 @@ $(document).ready(function() {
 		'</svg>'
 	];
 
-	var svgPrev = [
+	var svgNext = [
 		'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31px" height="58px" viewBox="0 0 31 58" version="1.1" class="next-slide coir">',
 		'<g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">',
 		'<g id="vivid" transform="translate(-1556.000000, -553.000000)" stroke="#7C7C7C">',
@@ -42,11 +42,14 @@ $(document).ready(function() {
 	$('.material-view-slider ul#material-view-slider-list').bxSlider({
 		startSlide   : startIndex,
 
-		nextText     : svgPrev.join(''),
-		prevText     : svgNext.join(''),
-
-		nextSelector : '#material-view-slider-prev',
-		prevSelector : '#material-view-slider-next',
+		nextSelector : '#material-view-slider-next',
+		prevSelector : '#material-view-slider-prev',
 		
 	});
+
+	$('.bx-prev').addClass('no-effect');
+	$('.bx-next').addClass('no-effect');
+
+	$('.bx-prev').html(svgPrev.join(''));
+	$('.bx-next').html(svgNext.join(''));
 })
