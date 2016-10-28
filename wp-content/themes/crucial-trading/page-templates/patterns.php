@@ -41,7 +41,9 @@ for ( $i=0; $i<count($scan); $i++ ) {
 		echo do_shortcode( '[header]' );
 		echo '<h6>Header Large</h6>';
 		echo do_shortcode( '[header size="large"]' );
-		echo '<h6>Header Material</h6>';
+		echo '<h6>Header Material Small</h6>';
+		echo do_shortcode( '[header-material material="coir" size="small"]' );
+		echo '<h6>Header Material Large</h6>';
 		echo do_shortcode( '[header-material material="coir"]' );
 	}
 	else if ( $scan[$i] == 'logo-nav' ) {

@@ -13,6 +13,6 @@
 
 wp_head();
 
-echo do_shortcode( '[header-material material="coir"]' );
+echo do_shortcode( '[header-material material="coir" size="small"]' );
 
 wp_footer();
