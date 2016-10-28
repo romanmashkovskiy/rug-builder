@@ -118,15 +118,29 @@ add_action( 'widgets_init', 'crucial_trading_widgets_init' );
 function crucial_trading_scripts() {
 	wp_enqueue_style( 'crucial-trading-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'crucial-trading-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-	wp_enqueue_script( 'crucial-trading-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
-
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/vendor/bootstrap.min.css', false );
+	wp_enqueue_style( 'animate', get_template_directory_uri() . '/assets/css/vendor/animate.min.css', false );
+	wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/css/dist/master.min.css', false );
+
+	wp_enqueue_script( 'super-slider', get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"', false );
+	wp_enqueue_script( 'bx-slider', get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js', false );
+	wp_enqueue_script( 'master', get_template_directory_uri() . '/assets/js/dist/master.min.js', false );
 }
 add_action( 'wp_enqueue_scripts', 'crucial_trading_scripts' );
+
+/**
+ * Include patterns
+ */
+$patterns_directory = get_template_directory() . '/patterns';
+$scan               = array_values(array_diff(scandir($patterns_directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store')));
+
+for ( $i = 0; $i < count($scan); $i++ ) {
+	include_once(get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php');
+}
 
 /**
  * Allow SVG upload.

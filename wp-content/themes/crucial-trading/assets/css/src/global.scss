@@ -21,3 +21,9 @@
 
 // Typography
 @import 'forms/_form-general.scss';
+
+// Pages
+@import './pages/*.scss';
+
+// Patterns
+@import '../../../patterns/*/*.scss';

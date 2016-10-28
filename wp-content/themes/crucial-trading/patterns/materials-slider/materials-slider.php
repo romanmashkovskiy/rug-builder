@@ -61,7 +61,7 @@ function materials_slider() {
 
 			$active_class = $i == 0 ? 'active' : '';
 
-			$all_materials .= '<li data-slide="' . $i . '"><img src="' . $mat_src . '" alt="' . $mat_alt . '" class="' . $active_class . ' transition"></li>';
+			$all_materials .= '<li data-slide="' . $i . '"><img src="' . $mat_src . '" alt="' . $mat_alt . '" class="' . $active_class . ' transition-all"></li>';
 		}
 
 		$html .= '<div class="materials-slider-container">';
@@ -100,7 +100,7 @@ function materials_slider() {
 			$html .= '<h3>True Survivor</h3>';
 			$html .= '<h1>' . $title . '</h1>';
 			$html .= '<p>' . $subtitle . '</p>';
-			$html .= '<a href="#">Read More</a>';
+			$html .= '<a href="' . get_site_url() . '/material/' . $alt . '">Read More</a>';
 			$html .= '</div>';
 			$html .= '</div>';
 
