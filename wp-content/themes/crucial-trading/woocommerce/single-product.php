@@ -11,8 +11,15 @@
  * @since Crucial Trading 1.0
  */
 
+global $post;
+
+$post_id  = $post->ID;
+$post_cat = get_the_terms( $post->ID, 'product_cat' )[0]->slug;
+
 wp_head();
 
-echo do_shortcode( '[header-material material="coir" size="small"]' );
+echo do_shortcode( '[header-material material="' . $post_cat . '" size="small"]' );
+
+echo do_shortcode( '[material-view-slider]' );
 
 wp_footer();

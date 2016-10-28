@@ -11,10 +11,13 @@
  * @since Crucial Trading 1.0
  */
 
+$category = get_queried_object();
+$slug     = $category->slug;
+
 wp_head();
 
-echo do_shortcode( '[header-material material="coir"]' );
+echo do_shortcode( '[header-material material="' . $slug . '"]' );
 
-echo do_shortcode( '[material-swatches material="coir"]' );
+echo do_shortcode( '[material-swatches material="' . $slug . '"]' );
 
 wp_footer();
