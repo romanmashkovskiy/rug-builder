@@ -29,6 +29,7 @@ gulp.task('build-master-css', function() {
 gulp.task('watch-master-css', function() {
 	gulp.watch('./css/src/*.scss', ['build-master-css']);
 	gulp.watch('./css/src/*/*.scss', ['build-master-css']);
+	gulp.watch('../patterns/*/*.scss', ['build-master-css']);
 });
 
 gulp.task('build-master-js', function() {
