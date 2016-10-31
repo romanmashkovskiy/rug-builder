@@ -1,0 +1,173 @@
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Typography */
+.material-view {
+  background: white;
+  margin-left: 10%;
+  padding: 30px;
+  position: relative;
+  width: 80%; }
+  .material-view .material__header {
+    margin-bottom: 40px; }
+    @media screen and (max-width: 768px) {
+      .material-view .material__header {
+        margin-bottom: 20px; } }
+  .material-view .header__titles {
+    text-align: center; }
+    .material-view .header__titles h1 {
+      margin: 10px 0; }
+    .material-view .header__titles h3 {
+      margin-bottom: 60px; }
+  .material-view .header__links ul {
+    margin: 0;
+    padding: 0; }
+  .material-view .header__links li {
+    display: inline-block;
+    text-align: center;
+    width: 25%; }
+    @media screen and (max-width: 768px) {
+      .material-view .header__links li {
+        margin-bottom: 10px;
+        width: 50%; } }
+    .material-view .header__links li a {
+      display: block;
+      text-align: center; }
+  .material-view .image-container {
+    height: 450px;
+    overflow: hidden;
+    position: relative;
+    width: 100%; }
+    .material-view .image-container img {
+      height: 100%;
+      -o-object-fit: cover;
+      object-fit: cover;
+      width: 100%; }
+    .material-view .image-container #change-image-view,
+    .material-view .image-container .hide-material-info {
+      background: rgba(0, 0, 0, 0.675);
+      font-size: 12px;
+      letter-spacing: 2px;
+      padding: 7px;
+      position: absolute;
+      top: 0; }
+    .material-view .image-container #change-image-view {
+      left: 20px; }
+    .material-view .image-container .hide-material-info {
+      right: 100%; }
+    .material-view .image-container .material__details {
+      background: rgba(0, 0, 0, 0.675);
+      display: box;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      right: 20px;
+      padding: 45px 27px;
+      position: absolute;
+      top: 0;
+      width: 296px; }
+      @media screen and (max-width: 768px) {
+        .material-view .image-container .material__details {
+          display: block;
+          width: 165px; } }
+      @media screen and (max-width: 600px) {
+        .material-view .image-container .material__details {
+          display: none; } }
+      .material-view .image-container .material__details .info__section {
+        float: left;
+        margin-bottom: 30px;
+        text-align: center;
+        width: 111px;
+        word-break: break-word; }
+        .material-view .image-container .material__details .info__section h3 {
+          text-align: center; }
+        .material-view .image-container .material__details .info__section:nth-child(even) {
+          margin-right: 20px; }
+        @media screen and (max-width: 768px) {
+          .material-view .image-container .material__details .info__section {
+            margin-bottom: 10px;
+            width: 100%; }
+            .material-view .image-container .material__details .info__section:nth-child(even) {
+              margin-right: 0; } }
+  .material-view.coir .header__back a {
+    color: rgba(178, 136, 101, 0.5); }
+  .material-view.coir .header__titles h1 {
+    color: #6F533D; }
+  .material-view.coir .header__titles h3 {
+    color: rgba(111, 83, 61, 0.7); }
+  .material-view.coir .header__links a {
+    color: #6F533D; }
+  .material-view.coir #change-image-view,
+  .material-view.coir .hide-material-info,
+  .material-view.coir .info__section h3 {
+    color: #B28865; }
+  .material-view.jute .header__back a {
+    color: rgba(144, 114, 89, 0.5); }
+  .material-view.jute .header__titles h1 {
+    color: #4B3B2E; }
+  .material-view.jute .header__titles h3 {
+    color: rgba(75, 59, 46, 0.7); }
+  .material-view.jute .header__links a {
+    color: #4B3B2E; }
+  .material-view.jute #change-image-view,
+  .material-view.jute .hide-material-info,
+  .material-view.jute .info__section h3 {
+    color: #907259; }
+  .material-view.seagrass .header__back a {
+    color: rgba(169, 154, 113, 0.5); }
+  .material-view.seagrass .header__titles h1 {
+    color: #6B6551; }
+  .material-view.seagrass .header__titles h3 {
+    color: rgba(107, 101, 81, 0.7); }
+  .material-view.seagrass .header__links a {
+    color: #6B6551; }
+  .material-view.seagrass #change-image-view,
+  .material-view.seagrass .hide-material-info,
+  .material-view.seagrass .info__section h3 {
+    color: #A99A71; }
+  .material-view.sisal .header__back a {
+    color: rgba(109, 124, 97, 0.5); }
+  .material-view.sisal .header__titles h1 {
+    color: #454F44; }
+  .material-view.sisal .header__titles h3 {
+    color: rgba(69, 79, 68, 0.7); }
+  .material-view.sisal .header__links a {
+    color: #454F44; }
+  .material-view.sisal #change-image-view,
+  .material-view.sisal .hide-material-info,
+  .material-view.sisal .info__section h3 {
+    color: #6D7C61; }
+  .material-view.sisool .header__back a {
+    color: rgba(169, 167, 145, 0.5); }
+  .material-view.sisool .header__titles h1 {
+    color: #817E62; }
+  .material-view.sisool .header__titles h3 {
+    color: rgba(129, 126, 98, 0.7); }
+  .material-view.sisool .header__links a {
+    color: #817E62; }
+  .material-view.sisool #change-image-view,
+  .material-view.sisool .hide-material-info,
+  .material-view.sisool .info__section h3 {
+    color: #A9A791; }
+  .material-view.wool .header__back a {
+    color: rgba(235, 213, 183, 0.5); }
+  .material-view.wool .header__titles h1 {
+    color: #665F4D; }
+  .material-view.wool .header__titles h3 {
+    color: rgba(102, 95, 77, 0.7); }
+  .material-view.wool .header__links a {
+    color: #665F4D; }
+  .material-view.wool #change-image-view,
+  .material-view.wool .hide-material-info,
+  .material-view.wool .info__section h3 {
+    color: #EBD5B7; }

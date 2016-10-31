@@ -4,12 +4,6 @@
 
 wp_head();
 
-echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/bootstrap.min.css">';
-echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/vendor/animate.min.css">';
-
-echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"></script>';
-echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js"></script>';
-
 echo '
 <style>
 .pattern-title {
@@ -30,8 +24,6 @@ h6 {
 }
 </style>';
 
-echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/master.min.css">';
-
 $directory = get_template_directory() . '/patterns';
 $scan      = array_values(array_diff(scandir($directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store')));
 //$scan      = array_values(array_diff(scandir($directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store', 'header','logo-nav', 'material-swatches','materials-slider','section-boxes', 'super-slider', 'typography')));
@@ -44,22 +36,14 @@ for ( $i=0; $i<count($scan); $i++ ) {
 		echo '<h1 class="pattern-title">Pattern: ' . ucwords( $scan[$i] ) . '</h1>';
 	}
 
-	if ( file_exists( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.css' ) ) {
-		echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.css">';
-	}
-
-	if ( file_exists( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.js' ) ) {
-		echo '<script src="' . get_template_directory_uri() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.js"></script>';
-	}
-	
-	include_once( get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php' );
-
 	if ( $scan[$i] == 'header' ) {
 		echo '<h6>Header Small</h6>';
 		echo do_shortcode( '[header]' );
 		echo '<h6>Header Large</h6>';
 		echo do_shortcode( '[header size="large"]' );
-		echo '<h6>Header Material</h6>';
+		echo '<h6>Header Material Small</h6>';
+		echo do_shortcode( '[header-material material="coir" size="small"]' );
+		echo '<h6>Header Material Large</h6>';
 		echo do_shortcode( '[header-material material="coir"]' );
 	}
 	else if ( $scan[$i] == 'logo-nav' ) {
@@ -71,11 +55,15 @@ for ( $i=0; $i<count($scan); $i++ ) {
 	else if ( $scan[$i] == 'material-swatches' ) {
 		echo do_shortcode( '[material-swatches material="coir"]' );
 	}
+	else if ( $scan[$i] == 'material-view' ) {
+		echo do_shortcode( '[material-view post_id="102"]' );
+	}
+	else if ( $scan[$i] == 'material-view-slider' ) {
+		echo do_shortcode( '[material-view-slider pattern="true"]' );
+	}
 	else {
 		echo do_shortcode( '[' . $scan[$i] . ']' );
 	}
 }
 
 wp_footer();
-
-?>

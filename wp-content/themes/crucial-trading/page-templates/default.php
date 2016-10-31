@@ -7,9 +7,8 @@
  * @package Hogarths
  * @since Hogarths 1.0
  */
- 
-?>
 
+<<<<<<< HEAD
 <?php
 
 get_header();
@@ -34,8 +33,12 @@ echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/c
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/pages/default.min.css">';
 
 /* Page content */
+=======
+get_header();
+>>>>>>> staging
 
 echo do_shortcode( '[header]' );
+
 echo do_shortcode( '[logo-nav]' );
 
-?>
+get_footer();

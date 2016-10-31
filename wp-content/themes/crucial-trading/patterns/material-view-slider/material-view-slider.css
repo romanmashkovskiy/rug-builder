@@ -1,0 +1,14 @@
+.material-view-slider {
+  background: white;
+  position: relative;
+  width: 100%; }
+  .material-view-slider ul {
+    margin: 0;
+    padding: 0; }
+  .material-view-slider #material-view-slider-prev,
+  .material-view-slider #material-view-slider-next {
+    position: absolute; }
+  .material-view-slider #material-view-slider-prev {
+    left: 35px; }
+  .material-view-slider #material-view-slider-next {
+    right: 35px; }

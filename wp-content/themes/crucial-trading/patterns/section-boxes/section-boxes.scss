@@ -40,6 +40,7 @@
 	.box__content {
 		background: white;
 		padding: 100px 7%;
+		text-align: center;
 
 		&.left {
 			margin-left: 50%;
@@ -72,7 +73,10 @@
 
 		a {
 			color: #7C7C7C;
-			display: block;
+
+			&:before {
+				background-color: #7C7C7C;
+			}
 		}
 
 		@media screen and (max-width: 992px) {

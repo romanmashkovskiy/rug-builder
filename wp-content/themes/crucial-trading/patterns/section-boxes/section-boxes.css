@@ -29,7 +29,8 @@
           left: 0; } }
   .section-box .box__content {
     background: white;
-    padding: 100px 7%; }
+    padding: 100px 7%;
+    text-align: center; }
     .section-box .box__content.left {
       margin-left: 50%; }
     .section-box .box__content * {
@@ -48,8 +49,9 @@
     .section-box .box__content p {
       margin-bottom: 150px; }
     .section-box .box__content a {
-      color: #7C7C7C;
-      display: block; }
+      color: #7C7C7C; }
+      .section-box .box__content a:before {
+        background-color: #7C7C7C; }
     @media screen and (max-width: 992px) {
       .section-box .box__content {
         margin-top: 300px;
