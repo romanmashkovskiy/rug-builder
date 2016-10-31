@@ -60,7 +60,7 @@ function other_ranges( $atts = '' ) {
 
 	if ( count( $ranges_with_material > 0 ) ) {
 
-		$html .= '<div class="other-ranges">';
+		$html .= '<div class="other-ranges box-shadow">';
 		$html .= '<ul class="ranges__ul">';
 
 		foreach ( $ranges_with_material as $key => $value ) {
@@ -77,9 +77,11 @@ function other_ranges( $atts = '' ) {
 			$src            = wp_get_attachment_url( $this_thumb_id );
 			
 			$html .= '<li class="range">';
+			$html .= '<div>';
 			$html .= '<img src="' . $src . '" alt="' . $name . '">';
 			$html .= '<h3>' . $name . '</h3>';
 			$html .= '<h3>-' . $code . '</h3>';
+			$html .= '</div>';
 			$html .= '</li>';
 		}
 

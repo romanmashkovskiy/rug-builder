@@ -1,17 +1,29 @@
 .other-ranges {
-	height: 100px;
+	background: white;
+	height: 125px;
 	margin-left: 10%;
+	margin-top: 150px;
 	position: relative;
 	width: 80%;
 }
 
 .ranges__ul {
+	bottom: 0;
+	left: 0;
 	margin: 0;
 	padding: 0;
+	position: absolute;
+	right: 0;
 }
 
 .range {
 	display: inline-block;
 	padding: 10px;
 	width: 20%;
+
+	img {
+		height: 150px;
+		margin-bottom: 10px;
+		width: 150px;
+	}
 }
