@@ -19,6 +19,10 @@
 				width: 100% !important;
 			}
 
+			svg {
+				cursor: pointer;
+			}
+
 			svg g,
 			svg g path {
 				stroke: black;

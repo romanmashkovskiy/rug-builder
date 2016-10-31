@@ -21,6 +21,8 @@
   #super-slider .slide.opening img {
     left: 0 !important;
     width: 100% !important; }
+  #super-slider .slide.opening svg {
+    cursor: pointer; }
   #super-slider .slide.opening svg g,
   #super-slider .slide.opening svg g path {
     stroke: black; }

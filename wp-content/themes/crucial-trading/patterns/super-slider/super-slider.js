@@ -15,4 +15,14 @@ $(document).ready(function() {
 
 		$('#super-slider').superslides('animate', index)
 	});
+
+	$('.slide__arrow--down').on('click', function() {
+
+		var windowHeight = $(window).height();
+		var scrollTop    = windowHeight - 50;
+
+		$('body').animate({
+			scrollTop: scrollTop
+		}, 1100);
+	});
 });
