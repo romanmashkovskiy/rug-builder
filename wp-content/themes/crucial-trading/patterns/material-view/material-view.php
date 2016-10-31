@@ -24,11 +24,11 @@ function material_view( $atts = '' ) {
 	$post_title = get_the_title();
 
 	$post_meta     = get_post_meta( $post_id, '_product_attributes', true );
-	$meta_code     = array_key_exists( 'code', $post_meta ) ? $post_meta['code'] : false;
-	$meta_size     = array_key_exists( 'size', $post_meta ) ? $post_meta['size'] : false;
-	$meta_price    = array_key_exists( 'price', $post_meta ) ? $post_meta['price'] : false;
-	$meta_material = array_key_exists( 'material', $post_meta ) ? $post_meta['material'] : false;
-	$meta_underlay = array_key_exists( 'underlay', $post_meta ) ? $post_meta['underlay'] : false;
+	$meta_code     = is_array( $post_meta ) && array_key_exists( 'code', $post_meta ) ? $post_meta['code'] : false;
+	$meta_size     = is_array( $post_meta ) && array_key_exists( 'size', $post_meta ) ? $post_meta['size'] : false;
+	$meta_price    = is_array( $post_meta ) && array_key_exists( 'price', $post_meta ) ? $post_meta['price'] : false;
+	$meta_material = is_array( $post_meta ) && array_key_exists( 'material', $post_meta ) ? $post_meta['material'] : false;
+	$meta_underlay = is_array( $post_meta ) && array_key_exists( 'underlay', $post_meta ) ? $post_meta['underlay'] : false;
 
 	$post_code     = $meta_code && array_key_exists( 'value', $meta_code ) ? $meta_code['value'] : false;
 	$post_size     = $meta_size && array_key_exists( 'value', $meta_size ) ? $meta_size['value'] : false;
