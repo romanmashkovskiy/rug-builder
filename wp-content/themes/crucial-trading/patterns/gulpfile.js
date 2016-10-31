@@ -13,7 +13,7 @@ gulp.task('build-patterns-css', function() {
 
 		if ( ignore.indexOf(files[i]) === -1 ) {
 
-			var path = './' + files[i] + '/';
+			var path = './' + files[i] + '/'; 
 			var dirFiles = fs.readdirSync(path);
 
 			if ( dirFiles.indexOf(files[i] + '.scss') > -1 ) {

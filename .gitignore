@@ -29,3 +29,5 @@ config.codekit
 /sitemap.xml.gz
 
 *.zip
+
+node_modules 

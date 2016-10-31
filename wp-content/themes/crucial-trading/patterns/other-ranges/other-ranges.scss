@@ -1,0 +1,114 @@
+@import '../../assets/css/src/_variables';
+
+.other-ranges-title {
+	font-size: 38px;
+	text-align: center;
+
+	&.coir {
+		color: $color-coir-main;
+	}
+
+	&.jute {
+		color: $color-jute-main;
+	}
+
+	&.seagrass {
+		color: $color-seagrass-main;
+	}
+
+	&.sisal {
+		color: $color-sisal-main;
+	}
+
+	&.sisool {
+		color: $color-sisool-main;
+	}
+
+	&.wool {
+		color: $color-wool-main;
+	}
+}
+
+.other-ranges {
+	background: white;
+	height: 125px;
+	margin-left: 10%;
+	margin-top: 150px;
+	position: relative;
+	width: 80%;
+}
+
+.ranges__ul {
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
+}
+
+.range {
+	display: inline-block;
+	padding: 10px;
+
+	&.active {
+
+		img {
+			margin-bottom: 20px;
+		}
+	}
+
+	img {
+		height: 150px;
+		margin-bottom: 10px;
+		width: 150px;
+	}
+
+	&.coir h3 {
+		color: transparentize($color-coir-main, 0.35);
+	}
+
+	&.jute h3 {
+		color: transparentize($color-jute-main, 0.35);
+	}
+
+	&.seagrass h3 {
+		color: transparentize($color-seagrass-main, 0.35);
+	}
+
+	&.sisal h3 {
+		color: transparentize($color-sisal-main, 0.35);
+	}
+
+	&.sisool h3 {
+		color: transparentize($color-sisool-main, 0.35);
+	}
+
+	&.wool h3 {
+		color: transparentize($color-wool-main, 0.35);
+	}
+
+	&.coir.active h3 {
+		color: $color-coir-dark;
+	}
+
+	&.jute.active h3 {
+		color: $color-jute-dark;
+	}
+
+	&.seagrass.active h3 {
+		color: $color-seagrass-dark;
+	}
+
+	&.sisal.active h3 {
+		color: $color-sisal-dark;
+	}
+
+	&.sisool.active h3 {
+		color: $color-sisool-dark;
+	}
+
+	&.wool.active h3 {
+		colo: $color-wool-dark;
+	}
+}

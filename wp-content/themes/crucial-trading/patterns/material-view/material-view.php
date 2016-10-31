@@ -19,6 +19,12 @@ function material_view( $atts = '' ) {
 		$post    = get_post( $post_id );
 	}
 
+	$material = 'wool';
+
+	if ( $atts != '' && array_key_exists( 'material', $atts ) ) {
+		$material = $atts['material'];
+	}
+
 	$html = '';
 	
 	$post_title = get_the_title();
@@ -38,7 +44,7 @@ function material_view( $atts = '' ) {
 
 	$src = '';
 
-	$html .= '<div class="material-view coir box-shadow">';
+	$html .= '<div class="material-view ' . $material . ' box-shadow">';
 	$html .= '<div class="material__header">';
 
 		$html .= '<div class="header__back">';
