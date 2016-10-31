@@ -25,15 +25,51 @@ function material_view_slider( $atts = '' ) {
 	$posts = array();
 	
 	// Current product ID
-	$current_product_id = get_the_ID();
+	$current_product_id    = get_the_ID();
+	$current_product_terms = get_the_terms( $current_product_id, 'product_cat' );
+	$current_product_range = '';
+
+	for ( $c = 0; $c < count( $current_product_terms ); $c++ ) {
+
+		$parent_id = $current_product_terms[$c]->parent;
+		$parent    = get_term( $parent_id, 'product_cat' );
+
+		if ( $parent->slug == 'range-parent' ) {
+			$current_product_range = $current_product_terms[$c]->slug;
+			break;
+		}
+	}
 
 	// Get all WooCommerce products
-	$woocommerce_products = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC' ) );
+	$woocommerce_products          = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC' ) );
+	$woocommerce_products_in_range = array();
+
+	for ( $r = 0; $r < count( $woocommerce_products->posts ); $r++ ) {
+
+		$product = $woocommerce_products->posts[$r];
+
+		$categories = get_the_terms( $product->ID, 'product_cat' );
+
+		for ( $r2 = 0; $r2 < count( $categories ); $r2++ ) {
+
+			$cat_parent_id = $categories[$r2]->parent;
+			$cat_parent    = get_term( $cat_parent_id, 'product_cat' );
+
+			if ( $cat_parent->slug == 'range-parent' ) {
+
+				$range = $categories[$r2]->slug;
+
+				if ( $range == $current_product_range ) {
+					array_push( $woocommerce_products_in_range, $product );
+				}
+			}
+		}
+	}
 
 	// Get all WooCommerce product IDs
 	$woocommerce_products_ids = array();
-	for ( $w = 0; $w < $woocommerce_products->post_count; $w++ ) {
-		array_push( $woocommerce_products_ids, $woocommerce_products->posts[$w]->ID );
+	for ( $w = 0; $w < count( $woocommerce_products_in_range ); $w++ ) {
+		array_push( $woocommerce_products_ids, $woocommerce_products_in_range[$w]->ID );
 	}
 
 	// Find index of current product ID in $woocommerce_products_ids
