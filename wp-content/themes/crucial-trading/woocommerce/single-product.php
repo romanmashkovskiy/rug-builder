@@ -13,9 +13,13 @@
 
 global $post;
 
-$post_id   = $post->ID;
-$post_cats = get_the_terms( $post->ID, 'product_cat' );
-$post_cat  = '';
+$post_id           = $post->ID;
+$post_cats         = get_the_terms( $post->ID, 'product_cat' );
+
+$material_cat      = '';
+$material_cat_slug = '';
+$range_cat         = '';
+$range_cat_slug    = '';
 
 foreach ( $post_cats as $key => $value ) {
 	
@@ -23,19 +27,23 @@ foreach ( $post_cats as $key => $value ) {
 	$parent    = get_term( $parent_id, 'product_cat' );
 
 	if ( $parent->slug == 'material-parent' ) {
-		$post_cat = $value->name;
-		break;
+		$material_cat      = $value->name;
+		$material_cat_slug = $value->slug;
+	}
+	else if ( $parent->slug == 'range-parent' ) {
+		$range_cat      = $value->name;
+		$range_cat_slug = $value->slug;
 	}
 }
 
 get_header();
 
-echo do_shortcode( '[header-material material="' . $post_cat . '" size="small"]' );
+echo do_shortcode( '[header-material material="' . $material_cat . '" size="small"]' );
 
 echo do_shortcode( '[logo-nav]' );
 
 echo do_shortcode( '[material-view-slider]' );
 
-echo do_shortcode( '[other-ranges]' );
+echo do_shortcode( '[other-ranges material="' . $material_cat_slug . '" range="' . $range_cat_slug . '"]' );
 
 get_footer();

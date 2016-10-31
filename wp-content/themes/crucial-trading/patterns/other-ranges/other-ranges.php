@@ -13,6 +13,18 @@
 function other_ranges( $atts = '' ) {
 
 	$the_material = 'coir';
+	$the_range    = 'boucle-bleached';
+
+	if ( is_array( $atts ) ) {
+
+		if ( array_key_exists( 'material', $atts ) ) {
+			$the_material = $atts['material'];
+		}
+
+		if ( array_key_exists( 'range', $atts ) ) {
+			$the_range = $atts['range'];
+		}
+	}
 
 	function get_range_parent_category( $categories ) {
 
