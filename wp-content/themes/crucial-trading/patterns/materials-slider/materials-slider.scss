@@ -200,7 +200,11 @@
 			h3, a, a:hover, a:visited {
 				color: transparentize($color-jute-main, 0.5);
 			}
-
+			
+			a:hover {
+				color: $color-jute-main;
+			}
+			
 			a:before,
 			a:after {
 				background-color: transparentize($color-jute-main, 0.5);
@@ -220,7 +224,11 @@
 			h3, a, a:hover, a:visited {
 				color: transparentize($color-seagrass-main, 0.5);
 			}
-
+			
+			a:hover {
+				color: $color-seagrass-main;
+			}
+			
 			a:before,
 			a:after {
 				background-color: transparentize($color-seagrass-main, 0.5);
@@ -240,7 +248,11 @@
 			h3, a, a:hover, a:visited {
 				color: transparentize($color-sisal-main, 0.5);
 			}
-
+			
+			a:hover {
+				color: $color-sisal-main;
+			}
+			
 			a:before,
 			a:after {
 				background-color: transparentize($color-sisal-main, 0.5);
@@ -259,6 +271,10 @@
 
 			h3, a, a:hover, a:visited {
 				color: transparentize($color-sisool-main, 0.5);
+			}
+
+			a:hover {
+				color: $color-sisool-main;
 			}
 
 			a:before,
@@ -282,11 +298,11 @@
 			}
 			
 			a:hover {
-				color: transparentize($color-wool-main, 0.5);
+				color: $color-wool-main;
 			}
 			
 			a:before, 
-			a:after {
+			a:after { 
 				background-color: transparentize($color-wool-main, 0.5);
 			}
 		

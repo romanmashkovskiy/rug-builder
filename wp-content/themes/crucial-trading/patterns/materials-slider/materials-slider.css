@@ -143,6 +143,8 @@
         color: #907259; }
       .material-slide .content__right.jute h3, .material-slide .content__right.jute a, .material-slide .content__right.jute a:hover, .material-slide .content__right.jute a:visited {
         color: rgba(144, 114, 89, 0.5); }
+      .material-slide .content__right.jute a:hover {
+        color: #907259; }
       .material-slide .content__right.jute a:before,
       .material-slide .content__right.jute a:after {
         background-color: rgba(144, 114, 89, 0.5); }
@@ -155,6 +157,8 @@
         color: #A99A71; }
       .material-slide .content__right.seagrass h3, .material-slide .content__right.seagrass a, .material-slide .content__right.seagrass a:hover, .material-slide .content__right.seagrass a:visited {
         color: rgba(169, 154, 113, 0.5); }
+      .material-slide .content__right.seagrass a:hover {
+        color: #A99A71; }
       .material-slide .content__right.seagrass a:before,
       .material-slide .content__right.seagrass a:after {
         background-color: rgba(169, 154, 113, 0.5); }
@@ -167,6 +171,8 @@
         color: #6D7C61; }
       .material-slide .content__right.sisal h3, .material-slide .content__right.sisal a, .material-slide .content__right.sisal a:hover, .material-slide .content__right.sisal a:visited {
         color: rgba(109, 124, 97, 0.5); }
+      .material-slide .content__right.sisal a:hover {
+        color: #6D7C61; }
       .material-slide .content__right.sisal a:before,
       .material-slide .content__right.sisal a:after {
         background-color: rgba(109, 124, 97, 0.5); }
@@ -179,6 +185,8 @@
         color: #A9A791; }
       .material-slide .content__right.sisool h3, .material-slide .content__right.sisool a, .material-slide .content__right.sisool a:hover, .material-slide .content__right.sisool a:visited {
         color: rgba(169, 167, 145, 0.5); }
+      .material-slide .content__right.sisool a:hover {
+        color: #A9A791; }
       .material-slide .content__right.sisool a:before,
       .material-slide .content__right.sisool a:after {
         background-color: rgba(169, 167, 145, 0.5); }
@@ -187,7 +195,7 @@
     .material-slide .content__right.wool h3, .material-slide .content__right.wool a, .material-slide .content__right.wool a:hover, .material-slide .content__right.wool a:visited {
       color: rgba(235, 213, 183, 0.5); }
     .material-slide .content__right.wool a:hover {
-      color: rgba(235, 213, 183, 0.5); }
+      color: #EBD5B7; }
     .material-slide .content__right.wool a:before,
     .material-slide .content__right.wool a:after {
       background-color: rgba(235, 213, 183, 0.5); }
