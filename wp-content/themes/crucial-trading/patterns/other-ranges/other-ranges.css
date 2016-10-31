@@ -10,6 +10,22 @@
 /* Colors */
 /* Typography */
 /* Typography */
+.other-ranges-title {
+  font-size: 38px;
+  text-align: center; }
+  .other-ranges-title.coir {
+    color: #B28865; }
+  .other-ranges-title.jute {
+    color: #907259; }
+  .other-ranges-title.seagrass {
+    color: #A99A71; }
+  .other-ranges-title.sisal {
+    color: #6D7C61; }
+  .other-ranges-title.sisool {
+    color: #A9A791; }
+  .other-ranges-title.wool {
+    color: #EBD5B7; }
+
 .other-ranges {
   background: white;
   height: 125px;
@@ -28,8 +44,7 @@
 
 .range {
   display: inline-block;
-  padding: 10px;
-  width: 20%; }
+  padding: 10px; }
   .range.active img {
     margin-bottom: 20px; }
   .range img {
@@ -59,4 +74,4 @@
   .range.sisool.active h3 {
     color: #817E62; }
   .range.wool.active h3 {
-    color: #665F4D; }
+    colo: #665F4D; }

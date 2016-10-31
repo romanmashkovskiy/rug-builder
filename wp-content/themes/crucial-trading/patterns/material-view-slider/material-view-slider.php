@@ -23,21 +23,20 @@ function material_view_slider( $atts = '' ) {
 
 	// Array of all products to be shown
 	$posts = array();
-	
+
 	// Current product ID
-	$current_product_id    = get_the_ID();
-	$current_product_terms = get_the_terms( $current_product_id, 'product_cat' );
-	$current_product_range = '';
+	$current_product_id = get_the_ID();
 
-	for ( $c = 0; $c < count( $current_product_terms ); $c++ ) {
+	// Current product range and material
+	$current_product_material = 'wool';
+	$current_product_range    = 'affluence';
 
-		$parent_id = $current_product_terms[$c]->parent;
-		$parent    = get_term( $parent_id, 'product_cat' );
-
-		if ( $parent->slug == 'range-parent' ) {
-			$current_product_range = $current_product_terms[$c]->slug;
-			break;
-		}
+	if ( is_array( $atts ) && array_key_exists( 'range', $atts ) ) {
+		$current_product_range = $atts['range'];
+	}
+	
+	if ( is_array( $atts ) && array_key_exists( 'material', $atts ) ) {
+		$current_product_material = $atts['material'];
 	}
 
 	// Get all WooCommerce products
@@ -46,20 +45,13 @@ function material_view_slider( $atts = '' ) {
 
 	for ( $r = 0; $r < count( $woocommerce_products->posts ); $r++ ) {
 
-		$product = $woocommerce_products->posts[$r];
-
+		$product    = $woocommerce_products->posts[$r];
 		$categories = get_the_terms( $product->ID, 'product_cat' );
 
-		for ( $r2 = 0; $r2 < count( $categories ); $r2++ ) {
+		for ( $i2 = 0; $i2 < count( $categories ); $i2++ ) {
 
-			$cat_parent_id = $categories[$r2]->parent;
-			$cat_parent    = get_term( $cat_parent_id, 'product_cat' );
-
-			if ( $cat_parent->slug == 'range-parent' ) {
-
-				$range = $categories[$r2]->slug;
-
-				if ( $range == $current_product_range ) {
+			if ( $categories[$i2]->parent != 0 ) {
+				if ( $categories[$i2]->slug == $current_product_range ) {
 					array_push( $woocommerce_products_in_range, $product );
 				}
 			}
@@ -110,7 +102,7 @@ function material_view_slider( $atts = '' ) {
 		if ( $posts[$i] == $current_product_id ) {
 			$show_this = ' data-show="' . $i . '" ';
 		}
-		$html .= '<li><span' . $show_this . '></span>' . do_shortcode( '[material-view post_id="' . $posts[$i] . '"]' ) . '</li>';
+		$html .= '<li><span' . $show_this . '></span>' . do_shortcode( '[material-view post_id="' . $posts[$i] . '" material="' . $current_product_material . '"]' ) . '</li>';
 	}
 
 	$html .= '</ul>';

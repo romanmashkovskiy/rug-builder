@@ -1,5 +1,34 @@
 @import '../../assets/css/src/_variables';
 
+.other-ranges-title {
+	font-size: 38px;
+	text-align: center;
+
+	&.coir {
+		color: $color-coir-main;
+	}
+
+	&.jute {
+		color: $color-jute-main;
+	}
+
+	&.seagrass {
+		color: $color-seagrass-main;
+	}
+
+	&.sisal {
+		color: $color-sisal-main;
+	}
+
+	&.sisool {
+		color: $color-sisool-main;
+	}
+
+	&.wool {
+		color: $color-wool-main;
+	}
+}
+
 .other-ranges {
 	background: white;
 	height: 125px;
@@ -21,7 +50,6 @@
 .range {
 	display: inline-block;
 	padding: 10px;
-	width: 20%;
 
 	&.active {
 
@@ -81,6 +109,6 @@
 	}
 
 	&.wool.active h3 {
-		color: $color-wool-dark;
+		colo: $color-wool-dark;
 	}
 }
