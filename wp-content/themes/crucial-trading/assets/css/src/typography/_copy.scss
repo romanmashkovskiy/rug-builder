@@ -1,17 +1,39 @@
+/************************************************************************************************************************
+	Links
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+
 a {
 	@include typography-standards(#000000, $font-sub-header, 17px, 2.5px);
 	padding-bottom: 5px;
 	position: relative;
 	text-decoration: none;
 	text-transform: uppercase;
-
+	
 	&:hover {
 		color: #000000;
 		text-decoration: none;
 	}
-
+	
+	&:not(.no-effect):after {
+		bottom: 0px;
+		content: "";
+		height: 2px;
+		left: 0;
+		background-color: white;
+		position: absolute;
+		-webkit-transform: scaleX(1);
+		transform: scaleX(1);
+		visibility: visible;
+		opacity: 0.5;
+		width: 100%;
+	}
+	
 	&:not(.no-effect):before {
-		bottom: 0;
+		bottom: 0px;
 		content: "";
 		height: 2px;
 		left: 0;
@@ -20,7 +42,8 @@ a {
 		transform: scaleX(0);
 		-webkit-transition: all 0.25s ease-in-out 0s;
 		transition: all 0.25s ease-in-out 0s;
-		visibility: hidden;
+		visibility: visible;
+		opacity: 0.5;
 		width: 100%;
 	}
 
