@@ -110,7 +110,7 @@
 			text-decoration: none;
 		}
 */ }
-    .slide__center a:before {
+    .slide__center a:before, .slide__center a:after {
       background-color: white; }
   .slide__center.opening h1, .slide__center.opening p, .slide__center.opening a {
     color: black; }

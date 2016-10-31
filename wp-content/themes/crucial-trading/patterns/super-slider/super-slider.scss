@@ -157,7 +157,8 @@
 /*		border-bottom: 1px solid white;
 */		color: white;
 
-		&:before {
+		&:before,
+		&:after {
 			background-color: white;
 		}
 

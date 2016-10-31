@@ -57,7 +57,7 @@ function section_box( $atts = '' ) {
 				$html .= '<h1>' . $title . '</h1>';
 				$html .= '<span></span>';
 				$html .= '<p>' . $text . '</p>';
-				$html .= '<a href="' . $link . '">' . $link_text . '</a>';
+				$html .= '<a href="' . get_permalink($link) . '">' . $link_text . '</a>';
 				$html .= '</div>';
 
 				$html .= '</section>';

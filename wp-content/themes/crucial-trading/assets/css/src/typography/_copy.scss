@@ -14,26 +14,12 @@ a {
 	text-transform: uppercase;
 	
 	&:hover {
-		color: #000000;
 		text-decoration: none;
 	}
 	
-	&:not(.no-effect):after {
-		bottom: 0px;
-		content: "";
-		height: 2px;
-		left: 0;
-		background-color: white;
-		position: absolute;
-		-webkit-transform: scaleX(1);
-		transform: scaleX(1);
-		visibility: visible;
-		opacity: 0.5;
-		width: 100%;
-	}
-	
-	&:not(.no-effect):before {
-		bottom: 0px;
+	&::before,
+	&::after {
+		bottom: 3px;
 		content: "";
 		height: 2px;
 		left: 0;
@@ -43,8 +29,11 @@ a {
 		-webkit-transition: all 0.25s ease-in-out 0s;
 		transition: all 0.25s ease-in-out 0s;
 		visibility: visible;
-		opacity: 0.5;
 		width: 100%;
+	}
+	
+	&:not(.no-effect):after {
+		opacity: 1;
 	}
 
 	&:not(.no-effect):hover:before {
@@ -52,6 +41,14 @@ a {
 		transform: scaleX(1);
 		visibility: visible;
 	}
+	
+	&:not(.no-effect):hover:after {
+		-webkit-transform: scaleY(10px);
+		transform: scaleY(10px);
+		visibility: visible;
+	}
+	
+	
 }
 
 p {
