@@ -22,7 +22,15 @@
 // Typography
 @import 'forms/_form-general.scss';
 
+<<<<<<< HEAD
 // Patterns 
 
 @import '../../../patterns/main-menu/main-menu.css';
 @import '../../../patterns/logo-nav/logo-nav.css';
+=======
+// Pages
+@import './pages/*.scss';
+
+// Patterns
+@import '../../../patterns/*/*.scss';
+>>>>>>> 4245142cad0d54d0145fd74e5e5dbe79d26789ab

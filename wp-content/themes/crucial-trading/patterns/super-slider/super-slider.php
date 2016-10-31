@@ -36,8 +36,11 @@ function crucial_slider_slides() {
 			$post_id       = get_the_ID();
 			$attachment_id = get_post_thumbnail_id( $post_id );
 
-			$title     = get_the_title();
-			$link_url  = rwmb_meta( 'link' );
+			$post_title     = get_the_title();
+
+			$rotate    = $post_title == 'Opening' ? 'Your Journey' : $post_title;
+			$title     = $post_title == 'Opening' ? 'Crucial Trading' : $post_title;
+			$link_url  = $post_title == 'Opening' ? '#' : rwmb_meta( 'link' );
 			$link_text = rwmb_meta( 'link-text' );
 			$src       = wp_get_attachment_image_url( $attachment_id, 'full' );
 			$srcset    = wp_get_attachment_image_srcset( $attachment_id );
@@ -94,33 +97,44 @@ function crucial_slider_slides() {
 
 			$slide_numbers .= '</ul>';
 
-			$html .= '<li class="slide">';
+			$opening_class = '';
+
+			if ( $post_title == 'Opening' ) {
+				$opening_class = 'opening';
+			}
+
+			$html .= '<li class="slide ' . $opening_class . '">';
 			$html .= '<img src="' . $src . '" alt="' . $alt . '">';
 
 			$html .= '<nav class="slides-navigation vertical-align">';
 
 			$html .= '<div class="nav_prev">';
-			$html .= '<a href="#" class="prev">';
+			$html .= '<a href="#" class="prev no-effect">';
 			$html .= $arrow_left;
 			$html .= '</a>';
-			$html .= '<h3 class="rotate">' . $title . '</h3>';
+			$html .= '<h3 class="rotate">' . $rotate . '</h3>';
 			$html .= '</div>';
 
 			$html .= '<div class="nav_next">';
-			$html .= '<a href="#" class="next">';
+			$html .= '<a href="#" class="next no-effect">';
 			$html .= $arrow_right;
 			$html .= '</a>';
 			$html .= $slide_numbers;
 			$html .= '</div>';
 
 			$html .= '</nav>';
-
-			$html .= '<div class="slide__center vertical-align">';
+			
+			$html .= '<div class="slide__center vertical-align ' . $opening_class . '">';
 			$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
+			if ( $post_title == 'Opening' ) {
+				$html .= '<p class="subtitle">Where Inspiration Begins</p>';
+				$html .= '<p>Welcome to the start of your journey where imagination flourishes, ideas form and decisions are made. We aim to inspire and delight. Choose the right floorcovering and everything else falls into place.</p>';
+				$html .= '<span></span>';
+			}
 			$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
 			$html .= '</div>';
 
-			$html .= '<div class="slide__bottom">';
+			$html .= '<div class="slide__bottom ' . $opening_class . '">';
 			$html .= $arrow_down;
 			$html .= '<h3>Scroll Down</h3>';
 			$html .= '</div>';

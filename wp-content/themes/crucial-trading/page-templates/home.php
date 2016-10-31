@@ -8,9 +8,7 @@
  * @since Hogarths 1.0
  */
  
- get_header(); ?>
-
-<?php
+get_header();
 
 // Will set this up properly but just for now will include links here
 
@@ -42,7 +40,6 @@ echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/super-s
 echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js"></script>';
 
 /* Page content */
-
 echo do_shortcode( '[logo-nav]' );
 
 echo do_shortcode( '[super-slider]' );
@@ -53,6 +50,4 @@ echo do_shortcode( '[materials-slider]' );
 
 echo do_shortcode( '[section-boxes number=1]' );
 
-?>
- 
-<?php get_footer(); ?>
+get_footer();

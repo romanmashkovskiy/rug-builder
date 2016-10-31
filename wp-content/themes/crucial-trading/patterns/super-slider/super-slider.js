@@ -3,7 +3,7 @@ $ = jQuery;
 $(document).ready(function() {
 
 	var slider = $('#super-slider').superslides({
-		play: 10000,
+		play: 1000000,
 		animation: 'fade',
 		animation_speed: 1200
 	});
@@ -14,5 +14,15 @@ $(document).ready(function() {
 		var index = parseInt(thisText.replace('0', '').replace('.', '')) - 1;
 
 		$('#super-slider').superslides('animate', index)
+	});
+
+	$('.slide__arrow--down').on('click', function() {
+
+		var windowHeight = $(window).height();
+		var scrollTop    = windowHeight - 50;
+
+		$('body').animate({
+			scrollTop: scrollTop
+		}, 1100);
 	});
 });

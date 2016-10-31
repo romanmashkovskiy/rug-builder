@@ -1,31 +1,15 @@
-@import '../_variables.scss';
+.page-template-home {
 
-@import '../../../../patterns/super-slider/super-slider.scss';
-@import '../../../../patterns/section-boxes/section-boxes.scss';
-@import '../../../../patterns/materials-slider/materials-slider.scss';
+	.section-box {
 
-header, footer {
-	display: none;
-}
+		&#about-crucial {
+			margin-bottom: 76px;
+			top: -50px;
+			z-index: 99;
+		}
 
-.section-box {
-
-	&#about-crucial {
-		margin-bottom: 76px;
-		top: -50px;
-		z-index: 99;
-	}
-
-	&#build-your-own-rug {
-		margin-top: 110px;
-	}
-}
-
-.materials-slider {
-
-	.content__left,
-	.content__right {
-		-webkit-transform: none;
-		transform: none;
+		&#build-your-own-rug {
+			margin-top: 110px;
+		}
 	}
 }
