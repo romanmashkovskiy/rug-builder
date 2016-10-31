@@ -10,9 +10,6 @@
  
 get_header();
 
-<<<<<<< HEAD
-<?php
-
 // Will set this up properly but just for now will include links here
 
 include_once(get_template_directory() . '/patterns/super-slider/super-slider.php');
@@ -43,9 +40,8 @@ echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/super-s
 echo '<script src="' . get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js"></script>';
 
 /* Page content */
-=======
+
 echo do_shortcode( '[logo-nav]' );
->>>>>>> staging
 
 echo do_shortcode( '[logo-nav]' );
 

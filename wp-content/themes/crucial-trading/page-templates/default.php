@@ -8,9 +8,6 @@
  * @since Hogarths 1.0
  */
 
-<<<<<<< HEAD
-<?php
-
 get_header();
 
 // Will set this up properly but just for now will include links here
@@ -33,9 +30,8 @@ echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/c
 echo '<link rel="stylesheet" href="' . get_template_directory_uri() . '/assets/css/dist/pages/default.min.css">';
 
 /* Page content */
-=======
+
 get_header();
->>>>>>> staging
 
 echo do_shortcode( '[header]' );
 
