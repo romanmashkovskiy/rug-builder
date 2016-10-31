@@ -47,18 +47,18 @@ function other_ranges( $atts = '' ) {
 	$range_parent_key = get_range_parent_category( $all_categories );
 	$range_parent_id  = $all_categories[$range_parent_key]->term_id;
 
-	$ranges = array();
+	$all_ranges = array();
 
 	foreach ( $all_categories as $key => $value ) {
 
 		if ( $value->parent == $range_parent_id ) {
-			array_push( $ranges, $value );
+			array_push( $all_ranges, $value );
 		}
 	}
 
 	$ranges_with_material = array();
 
-	foreach ( $ranges as $key => $value ) {
+	foreach ( $all_ranges as $key => $value ) {
 
 		$range_id   = $value->term_id;
 		$range_meta = get_option( "taxonomy_$range_id" );
@@ -69,6 +69,44 @@ function other_ranges( $atts = '' ) {
 			array_push( $ranges_with_material, $value );
 		}
 	}
+
+	$num_of_ranges = count( $ranges_with_material );
+
+	$current_range_key = NULL;
+
+	foreach ( $ranges_with_material as $key => $value ) {
+
+		if ( $value->slug == $the_range ) {
+			$current_range_key = $key;
+		}
+	}
+
+	$ranges = array();
+
+	if ( !is_null( $current_range_key ) ) {
+
+		array_push( $ranges, $ranges_with_material[$current_range_key] );
+
+		for ( $i = $current_range_key-1; $i > -1; $i-- ) {
+			array_splice( $ranges, 0, 0, $ranges_with_material[$i] );
+		}
+
+		$cur_ranges_len  = count( $ranges );
+		$num_ranges_left = 6 - $cur_ranges_len;
+
+		$cur_ran_key_plus = $current_range_key+1;
+
+		for ( $i2 = $cur_ran_key_plus; $i2 < $cur_ran_key_plus + $num_ranges_left; $i2++ ) {
+
+			if ( isset( $ranges_with_material[$i2] ) ) {
+				array_push( $ranges, $ranges_with_material[$i2] );
+			}
+		}
+	}
+
+	echo '<pre>';
+	print_r($ranges);
+	echo '</pre>';
 
 	if ( count( $ranges_with_material > 0 ) ) {
 
