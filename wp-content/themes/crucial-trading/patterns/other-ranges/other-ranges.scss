@@ -1,3 +1,5 @@
+@import '../../assets/css/src/_variables';
+
 .other-ranges {
 	background: white;
 	height: 125px;
@@ -21,9 +23,64 @@
 	padding: 10px;
 	width: 20%;
 
+	&.active {
+
+		img {
+			margin-bottom: 20px;
+		}
+	}
+
 	img {
 		height: 150px;
 		margin-bottom: 10px;
 		width: 150px;
+	}
+
+	&.coir h3 {
+		color: transparentize($color-coir-main, 0.35);
+	}
+
+	&.jute h3 {
+		color: transparentize($color-jute-main, 0.35);
+	}
+
+	&.seagrass h3 {
+		color: transparentize($color-seagrass-main, 0.35);
+	}
+
+	&.sisal h3 {
+		color: transparentize($color-sisal-main, 0.35);
+	}
+
+	&.sisool h3 {
+		color: transparentize($color-sisool-main, 0.35);
+	}
+
+	&.wool h3 {
+		color: transparentize($color-wool-main, 0.35);
+	}
+
+	&.coir.active h3 {
+		color: $color-coir-dark;
+	}
+
+	&.jute.active h3 {
+		color: $color-jute-dark;
+	}
+
+	&.seagrass.active h3 {
+		color: $color-seagrass-dark;
+	}
+
+	&.sisal.active h3 {
+		color: $color-sisal-dark;
+	}
+
+	&.sisool.active h3 {
+		color: $color-sisool-dark;
+	}
+
+	&.wool.active h3 {
+		color: $color-wool-dark;
 	}
 }

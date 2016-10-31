@@ -12,20 +12,6 @@
 
 function other_ranges( $atts = '' ) {
 
-	$the_material = 'coir';
-	$the_range    = 'boucle-bleached';
-
-	if ( is_array( $atts ) ) {
-
-		if ( array_key_exists( 'material', $atts ) ) {
-			$the_material = $atts['material'];
-		}
-
-		if ( array_key_exists( 'range', $atts ) ) {
-			$the_range = $atts['range'];
-		}
-	}
-
 	function get_range_parent_category( $categories ) {
 
 		foreach ( $categories as $key => $value ) {
@@ -39,6 +25,20 @@ function other_ranges( $atts = '' ) {
 	}
 
 	$html = '';
+
+	$the_material = 'coir';
+	$the_range    = 'boucle-bleached';
+
+	if ( is_array( $atts ) ) {
+
+		if ( array_key_exists( 'material', $atts ) ) {
+			$the_material = $atts['material'];
+		}
+
+		if ( array_key_exists( 'range', $atts ) ) {
+			$the_range = $atts['range'];
+		}
+	}
 
 	$all_categories = get_terms( 'product_cat', array(
 		'hide_empty' => false,
@@ -104,16 +104,12 @@ function other_ranges( $atts = '' ) {
 		}
 	}
 
-	echo '<pre>';
-	print_r($ranges);
-	echo '</pre>';
-
-	if ( count( $ranges_with_material > 0 ) ) {
+	if ( count( $ranges > 0 ) ) {
 
 		$html .= '<div class="other-ranges box-shadow">';
 		$html .= '<ul class="ranges__ul">';
 
-		foreach ( $ranges_with_material as $key => $value ) {
+		foreach ( $ranges as $key => $value ) {
 
 			$name        = $value->name;
 			$name_as_arr = explode( ' ', $name );
@@ -125,10 +121,20 @@ function other_ranges( $atts = '' ) {
 
 			$this_thumb_id  = get_woocommerce_term_meta( $value->term_id, 'thumbnail_id', true );
 			$src            = wp_get_attachment_url( $this_thumb_id );
+
+			$active = $value->slug == $the_range;
+
+			$active_class = '';
+			$bxshdw_class = '';
+
+			if ( $active ) {
+				$active_class = 'active';
+				$bxshdw_class = 'class="box-shadow"';
+			}
 			
-			$html .= '<li class="range">';
+			$html .= '<li class="range ' . $the_material . ' ' . $active_class . '">';
 			$html .= '<div>';
-			$html .= '<img src="' . $src . '" alt="' . $name . '">';
+			$html .= '<img src="' . $src . '" alt="' . $name . '" ' . $bxshdw_class . '>';
 			$html .= '<h3>' . $name . '</h3>';
 			$html .= '<h3>-' . $code . '</h3>';
 			$html .= '</div>';
