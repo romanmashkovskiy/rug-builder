@@ -53,7 +53,7 @@ function header_material_shortcode($atts = '') {
 		$umaterial = ucwords( str_replace( '-', ' ', $atts['material'] ) );
 
 		$args = array(
-			'hide_empty' => false,
+			'hide_empty' => false, 
 			'orderby'    => 'name',
 		);
 
