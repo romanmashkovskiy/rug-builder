@@ -103,13 +103,7 @@
   .slide__center h1 {
     text-shadow: none; }
   .slide__center a {
-    /*		border-bottom: 1px solid white;
-*/
-    color: white;
-    /*		&:hover {
-			text-decoration: none;
-		}
-*/ }
+    color: white; }
     .slide__center a:before, .slide__center a:after {
       background-color: white; }
   .slide__center.opening h1, .slide__center.opening p, .slide__center.opening a {

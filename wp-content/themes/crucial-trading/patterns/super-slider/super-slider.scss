@@ -154,18 +154,13 @@
 	}
 
 	a {
-/*		border-bottom: 1px solid white;
-*/		color: white;
+		color: white;
 
 		&:before,
 		&:after {
 			background-color: white;
 		}
-
-/*		&:hover {
-			text-decoration: none;
-		}
-*/	}
+	}
 
 	&.opening {
 

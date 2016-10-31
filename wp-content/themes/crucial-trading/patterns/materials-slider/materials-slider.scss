@@ -159,12 +159,6 @@
 			transform: none;
 		}
 
-/*		a {
-			border-bottom-width: 1px;
-			border-bottom-style: solid;
-			padding: 0 0 15px;
-		}
-*/
 		h1 {
 			margin-bottom: 18px;
 		}
@@ -182,8 +176,13 @@
 			h3, a, a:hover, a:visited {
 				color: transparentize($color-coir-main, 0.5);
 			}
-
-			a:before {
+			
+			a:hover {
+				color: $color-coir-main;
+			}
+			
+			a:before,
+			a:after {
 				background-color: transparentize($color-coir-main, 0.5);
 			}
 
@@ -202,7 +201,8 @@
 				color: transparentize($color-jute-main, 0.5);
 			}
 
-			a:before {
+			a:before,
+			a:after {
 				background-color: transparentize($color-jute-main, 0.5);
 			}
 
@@ -221,7 +221,8 @@
 				color: transparentize($color-seagrass-main, 0.5);
 			}
 
-			a:before {
+			a:before,
+			a:after {
 				background-color: transparentize($color-seagrass-main, 0.5);
 			}
 
@@ -240,7 +241,8 @@
 				color: transparentize($color-sisal-main, 0.5);
 			}
 
-			a:before {
+			a:before,
+			a:after {
 				background-color: transparentize($color-sisal-main, 0.5);
 			}
 
@@ -259,7 +261,8 @@
 				color: transparentize($color-sisool-main, 0.5);
 			}
 
-			a:before {
+			a:before,
+			a:after {
 				background-color: transparentize($color-sisool-main, 0.5);
 			}
 
@@ -277,15 +280,17 @@
 			h3, a, a:hover, a:visited {
 				color: transparentize($color-wool-main, 0.5);
 			}
-
-			a:before {
+			
+			a:hover {
+				color: transparentize($color-wool-main, 0.5);
+			}
+			
+			a:before, 
+			a:after {
 				background-color: transparentize($color-wool-main, 0.5);
 			}
-
-/*			a {
-				border-bottom-color: transparentize($color-wool-main, 0.5);
-			}
-*/		}
+		
+		}
 	}
 }
 
