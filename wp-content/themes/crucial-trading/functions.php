@@ -135,7 +135,7 @@ add_action( 'wp_enqueue_scripts', 'crucial_trading_scripts' );
  * Include patterns
  */
 $patterns_directory = get_template_directory() . '/patterns';
-$scan               = array_values(array_diff(scandir($patterns_directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store')));
+$scan               = array_values(array_diff(scandir($patterns_directory), array('..', '.', '.gitignore', 'gulpfile.js', 'package.json', 'node_modules', '.DS_Store', 'css')));
 
 for ( $i = 0; $i < count($scan); $i++ ) {
 	include_once(get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php');
