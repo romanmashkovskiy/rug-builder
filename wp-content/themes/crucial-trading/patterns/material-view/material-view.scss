@@ -1,0 +1,298 @@
+@import '../../assets/css/src/_variables';
+
+.material-view {
+	background: white;
+	margin-left: 10%;
+	padding: 30px;
+	position: relative;
+	width: 80%;
+
+	.material__header {
+		margin-bottom: 40px;
+
+		@media screen and (max-width: 768px) {
+			margin-bottom: 20px;
+		}
+	}
+
+	.header__titles {
+		text-align: center;
+
+		h1 {
+			margin: 10px 0;
+		}
+
+		h3 {
+			margin-bottom: 60px;
+		}
+	}
+
+	.header__links {
+
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			display: inline-block;
+			text-align: center;
+			width: 25%;
+
+			@media screen and (max-width: 768px) {
+				margin-bottom: 10px;
+				width: 50%;
+			}
+
+			a {
+				display: block;
+				text-align: center;
+			}
+		}
+	}
+
+	.image-container {
+		height: 450px;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+
+		img {
+			height: 100%;
+			object-fit: cover;
+			width: 100%;
+		}
+
+		#change-image-view,
+		.hide-material-info {
+			background: rgba(0,0,0,0.675);
+			font-size: 12px;
+			letter-spacing: 2px;
+			padding: 7px;
+			position: absolute;
+			top: 0;
+		}
+
+		#change-image-view {
+			left: 20px;
+		}
+
+		.hide-material-info {
+			right: 100%;
+		}
+
+		.material__details {
+			background: rgba(0,0,0,0.675);
+			display: box;
+			display: flex;
+			flex-wrap: wrap;
+			right: 20px;
+			padding: 45px 27px;
+			position: absolute;
+			top: 0;
+			width: 296px;
+
+			@media screen and (max-width: 768px) {
+				display: block;
+				width: 165px;
+			}
+
+			@media screen and (max-width: 600px) {
+				display: none;
+			}
+
+			.info__section {
+				float: left;
+				margin-bottom: 30px;
+				text-align: center;
+				width: 111px;
+				word-break: break-word;
+
+				h3 {
+					text-align: center;
+				}
+
+				&:nth-child(even) {
+					margin-right: 20px;
+				}
+
+				@media screen and (max-width: 768px) {
+					margin-bottom: 10px;
+					width: 100%;
+
+					&:nth-child(even) {
+						margin-right: 0;
+					}
+				}
+			}
+		}
+	}
+
+	&.coir {
+
+		.header__back a {
+			color: transparentize($color-coir-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-coir-dark;
+			}
+
+			h3 {
+				color: transparentize($color-coir-dark, 0.3);
+			}
+		}
+
+		.header__links a {
+			color: $color-coir-dark;
+		}
+
+		#change-image-view,
+		.hide-material-info,
+		.info__section h3 {
+			color: $color-coir-main;
+		}
+	}
+
+	&.jute {
+		
+		.header__back a {
+			color: transparentize($color-jute-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-jute-dark;
+			}
+
+			h3 {
+				color: transparentize($color-jute-dark, 0.3);
+			}
+		}
+
+		.header__links a {
+			color: $color-jute-dark;
+		}
+
+		#change-image-view,
+		.hide-material-info,
+		.info__section h3 {
+			color: $color-jute-main;
+		}
+	}
+
+	&.seagrass {
+		
+		.header__back a {
+			color: transparentize($color-seagrass-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-seagrass-dark;
+			}
+
+			h3 {
+				color: transparentize($color-seagrass-dark, 0.3);
+			}
+		}
+
+		.header__links a {
+			color: $color-seagrass-dark;
+		}
+
+		#change-image-view,
+		.hide-material-info,
+		.info__section h3 {
+			color: $color-seagrass-main;
+		}
+	}
+
+	&.sisal {
+		
+		.header__back a {
+			color: transparentize($color-sisal-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-sisal-dark;
+			}
+
+			h3 {
+				color: transparentize($color-sisal-dark, 0.3);
+			}
+		}
+
+		.header__links a {
+			color: $color-sisal-dark;
+		}
+
+		#change-image-view,
+		.hide-material-info,
+		.info__section h3 {
+			color: $color-sisal-main;
+		}
+	}
+
+	&.sisool {
+		
+		.header__back a {
+			color: transparentize($color-sisool-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-sisool-dark;
+			}
+
+			h3 {
+				color: transparentize($color-sisool-dark, 0.3);
+			}
+		}
+
+		.header__links a {
+			color: $color-sisool-dark;
+		}
+
+		#change-image-view,
+		.hide-material-info,
+		.info__section h3 {
+			color: $color-sisool-main;
+		}
+	}
+
+	&.wool {
+		
+		.header__back a {
+			color: transparentize($color-wool-main, 0.5);
+		}
+
+		.header__titles {
+
+			h1 {
+				color: $color-wool-dark;
+			}
+
+			h3 {
+				color: transparentize($color-wool-dark, 0.3);
+			}
+		}
+
+		.header__links a {
+			color: $color-wool-dark;
+		}
+
+		#change-image-view,
+		.hide-material-info,
+		.info__section h3 {
+			color: $color-wool-main;
+		}
+	}	
+}

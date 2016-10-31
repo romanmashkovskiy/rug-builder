@@ -56,33 +56,43 @@
 		top: 110px;
 
 		&.coir {
-			color: $color-coir-dark;
+			color: transparentize($color-coir-main, 0.5);
 		}
 
 		&.jute {
-			color: $color-jute-dark;
+			color: transparentize($color-jute-main, 0.5);
 		}
 
 		&.seagrass {
-			color: $color-seagrass-dark;
+			color: transparentize($color-seagrass-main, 0.5);
 		}
 
 		&.sisal {
-			color: $color-sisal-dark;
+			color: transparentize($color-sisal-main, 0.5);
 		}
 
 		&.sisool {
-			color: $color-sisool-dark;
+			color: transparentize($color-sisool-main, 0.5);
 		}
 
 		&.wool {
-			color: $color-wool-dark;
+			color: transparentize($color-wool-main, 0.5);
 		}
 	}
 
 	.slide__list {
 		margin: 25px 0 0;
 		padding: 0;
+
+		@media screen and (max-width: 768px) {
+			margin-left: 75%;
+			width: 25%;
+		}
+
+		@media screen and (max-width: 600px) {
+			margin-left: 63%;
+			width: 37%;
+		}
 
 		li {
 			cursor: pointer;
@@ -91,6 +101,12 @@
 			list-style: none;
 			padding: 0 5px;
 			position: relative;
+
+			@media screen and (max-width: 768px) {
+				display: inline-block;
+				left: 0;
+				margin-bottom: 7.5px;
+			}
 
 			img {
 				height: 45px;
@@ -112,24 +128,35 @@
 		float: left;
 		padding: 150px 0 195px;
 		width: 50%;
+
+		@media screen and (max-width: 768px) {
+			padding: 25px 0 0;
+			width: 100%;
+		}
 	}
 
 	.content__left {
 		padding-right: 100px;
 		text-align: right;
+
+		@media screen and (max-width: 768px) {
+			padding-right: 0;
+			text-align: center;
+			top: 0;
+			-webkit-transform: none;
+			transform: none;
+		}
 	}
 
 	.content__right {
 		padding-right: 10%;
 
-		a {
-			border-bottom-width: 1px;
-			border-bottom-style: solid;
-			padding: 0 0 15px;
-		}
-
-		a:hover {
-			text-decoration: none;
+		@media screen and (max-width: 768px) {
+			padding: 25px;
+			text-align: center;
+			top: 0;
+			-webkit-transform: none;
+			transform: none;
 		}
 
 		h1 {
@@ -147,13 +174,22 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-coir-dark;
+				color: transparentize($color-coir-main, 0.5);
+			}
+			
+			a:hover {
+				color: $color-coir-main;
+			}
+			
+			a:before,
+			a:after {
+				background-color: transparentize($color-coir-main, 0.5);
 			}
 
-			a {
-				border-bottom-color: $color-coir-dark;
+/*			a {
+				border-bottom-color: transparentize($color-coir-main, 0.5);
 			}
-		}
+*/		}
 
 		&.jute {
 
@@ -162,13 +198,18 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-jute-dark;
+				color: transparentize($color-jute-main, 0.5);
 			}
 
-			a {
-				border-bottom-color: $color-jute-dark;
+			a:before,
+			a:after {
+				background-color: transparentize($color-jute-main, 0.5);
 			}
-		}
+
+/*			a {
+				border-bottom-color: transparentize($color-jute-main, 0.5);
+			}
+*/		}
 
 		&.seagrass {
 
@@ -177,13 +218,18 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-seagrass-dark;
+				color: transparentize($color-seagrass-main, 0.5);
 			}
 
-			a {
-				border-bottom-color: $color-seagrass-dark;
+			a:before,
+			a:after {
+				background-color: transparentize($color-seagrass-main, 0.5);
 			}
-		}
+
+/*			a {
+				border-bottom-color: transparentize($color-seagrass-main, 0.5);
+			}
+*/		}
 
 		&.sisal {
 
@@ -192,13 +238,18 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-sisal-dark;
+				color: transparentize($color-sisal-main, 0.5);
 			}
 
-			a {
-				border-bottom-color: $color-sisal-dark;
+			a:before,
+			a:after {
+				background-color: transparentize($color-sisal-main, 0.5);
 			}
-		}
+
+/*			a {
+				border-bottom-color: transparentize($color-sisal-main, 0.5);
+			}
+*/		}
 
 		&.sisool {
 
@@ -207,13 +258,18 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-sisool-dark;
+				color: transparentize($color-sisool-main, 0.5);
 			}
 
-			a {
-				border-bottom-color: $color-sisool-dark;
+			a:before,
+			a:after {
+				background-color: transparentize($color-sisool-main, 0.5);
 			}
-		}
+
+/*			a {
+				border-bottom-color: transparentize($color-sisool-main, 0.5);
+			}
+*/		}
 
 		&.wool {
 
@@ -222,12 +278,18 @@
 			}
 
 			h3, a, a:hover, a:visited {
-				color: $color-wool-dark;
+				color: transparentize($color-wool-main, 0.5);
 			}
-
-			a {
-				border-bottom-color: $color-wool-dark;
+			
+			a:hover {
+				color: transparentize($color-wool-main, 0.5);
 			}
+			
+			a:before, 
+			a:after {
+				background-color: transparentize($color-wool-main, 0.5);
+			}
+		
 		}
 	}
 }

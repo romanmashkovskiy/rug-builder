@@ -1,10 +1,12 @@
 const fs           = require('fs');
 const gulp         = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
+const concat       = require('gulp-concat');
 const rename       = require('gulp-rename');
 const sass         = require('gulp-sass');
 const sassGlob     = require('gulp-sass-glob');
 const sourcemaps   = require('gulp-sourcemaps');
+const uglify       = require('gulp-uglify');
 
 gulp.task('build-master-css', function() {
 
@@ -27,40 +29,40 @@ gulp.task('build-master-css', function() {
 gulp.task('watch-master-css', function() {
 	gulp.watch('./css/src/*.scss', ['build-master-css']);
 	gulp.watch('./css/src/*/*.scss', ['build-master-css']);
+	gulp.watch('./css/src/pages/*.scss', ['build-master-css']);
+	gulp.watch('../patterns/*/*.scss', ['build-master-css']);
 });
 
-gulp.task('build-pages-css', function() {
+gulp.task('build-master-js', function() {
 
-	var files  = fs.readdirSync('./css/src/pages');
-	var gulps  = [];
-	var ignore = [ '.gitignore', '.DS_Store' ];
+	var files  = [];
+	var ignore = [ '.gitignore', 'gulpfile.js', 'node_modules', 'package.json', '.DS_Store' ];
 
-	for ( var i = 0; i < files.length; i++ ) {
+	var patterns = fs.readdirSync('../patterns');
 
-		if ( ignore.indexOf(files[i]) === -1 ) {
+	for ( var i = 0; i < patterns.length; i++ ) {
 
-			var thisGulp = gulp.src('./css/src/pages/' + files[i])
-				.pipe(sourcemaps.init())
-				.pipe(sassGlob())
-				.pipe(sass({
-					outputStyle: 'compressed'
-				})
-				.on('error', sass.logError))
-				.pipe(autoprefixer())
-				.pipe(rename({
-					basename: files[i].substr(0, files[i].length-5),
-					suffix: '.min'
-				}))
-				.pipe(sourcemaps.write('maps'))
-				.pipe(gulp.dest('./css/dist/pages/'));
+		var pattern = patterns[i];
 
-			gulps.push(thisGulp)
+		if ( ignore.indexOf(pattern) === -1 ) {
+
+			var path      = '../patterns/' + pattern + '/';
+			var pathFiles = fs.readdirSync(path);
+
+			if ( pathFiles.indexOf(pattern + '.js') > -1 ) {
+				files.push('../patterns/' + pattern + '/' + pattern + '.js')
+			}
 		}
 	}
 
-	return gulps;
+	return gulp.src(files)
+		.pipe(sourcemaps.init())
+		.pipe(concat('master.min.js'))
+		.pipe(uglify().on('error', console.log))
+		.pipe(sourcemaps.write('maps'))
+		.pipe(gulp.dest('./js/dist'));
 });
 
-gulp.task('watch-pages-css', function() {
-	gulp.watch('./css/src/pages/*.scss', ['build-pages-css']);
+gulp.task('watch-master-js', function() {
+	gulp.watch('../patterns/*/*.js', ['build-master-js']);
 });

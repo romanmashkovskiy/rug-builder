@@ -6,7 +6,7 @@ $(document).ready(function() {
 		mode: 'fade'
 	});
 
-	$('.next-slide').on('click', function() {
+	$('.next-slide.--material-slider').on('click', function() {
 		slider.goToNextSlide();
 
 		var curActive;
@@ -38,7 +38,7 @@ $(document).ready(function() {
 		$('.prev-slide').addClass(newMaterial);
 	});
 
-	$('.prev-slide').on('click', function() {
+	$('.prev-slide.--material-slider').on('click', function() {
 		slider.goToPrevSlide();
 
 		var curActive;
