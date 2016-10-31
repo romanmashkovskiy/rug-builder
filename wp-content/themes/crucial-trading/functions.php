@@ -20,7 +20,6 @@ require get_template_directory() . '/inc/woocommerce/include.php';
  */
 require get_template_directory() . '/inc/meta-boxes.php';
 
-
 if ( ! function_exists( 'crucial_trading_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
