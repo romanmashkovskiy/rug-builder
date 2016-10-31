@@ -62,7 +62,7 @@ function header_material_shortcode($atts = '') {
 		$this_cat          = get_term_by( 'slug', $material, 'product_cat' );
 		$this_cat_post_id  = get_term_meta( $this_cat->term_id, 'thumbnail_id', true );
 
-		$this_thumb_id       = get_woocommerce_term_meta( $this_cat->term_id, 'thumbnail_id', true );
+		$this_thumb_id  = get_woocommerce_term_meta( $this_cat->term_id, 'thumbnail_id', true );
 		$this_cat_thumb = wp_get_attachment_url( $this_thumb_id );
 
 		$html .= '<header class="material ' . $header_size . ' clearfix">';
