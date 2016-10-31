@@ -50,7 +50,7 @@ function header_material_shortcode($atts = '') {
 	if ( $atts != '' && array_key_exists('material', $atts) ) {
 
 		$material  = $atts['material'];
-		$umaterial = ucwords( $atts['material'] );
+		$umaterial = ucwords( str_replace( '-', ' ', $atts['material'] ) );
 
 		$args = array(
 			'hide_empty' => false,
@@ -68,7 +68,7 @@ function header_material_shortcode($atts = '') {
 		$html .= '<header class="material ' . $header_size . ' clearfix">';
 
 		$html .= '<div class="material__name ' . $material . '">';
-		$html .= '<h3 class="rotate">' . $material . '</h3>';
+		$html .= '<h3 class="rotate">' . $umaterial . '</h3>';
 		$html .= '</div>';
 
 		$html .= '<div class="material__icon vertical-align">';
@@ -88,20 +88,24 @@ function header_material_shortcode($atts = '') {
 			$html .= '<div class="material__sidememu">';
 			$html .= '<ul>';
 
-			for ( $i=0; $i<count($categories); $i++ ) {
+			for ( $i=0; $i<count( $categories ); $i++ ) {
 
 				$cat  = $categories[$i];
-				$post = get_term_meta( $cat->term_id, 'thumbnail_id', true );
 
-				$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
-				$src      = wp_get_attachment_url( $thumb_id );
-				$alt      = $cat->slug; 
+				if ( $cat->parent == 0 ) {
 
-				$html .= '<li>';
-				$html .= '<a href="' . get_site_url() . '/material/' . $alt . '" class="no-effect">';
-				$html .= '<img src="' . $src . '" alt="' . $alt . '">';
-				$html .= '</a>';
-				$html .= '<li>';
+					$post = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+
+					$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+					$src      = wp_get_attachment_url( $thumb_id );
+					$alt      = $cat->slug; 
+
+					$html .= '<li>';
+					$html .= '<a href="' . get_site_url() . '/material/' . $alt . '" class="no-effect">';
+					$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+					$html .= '</a>';
+					$html .= '<li>';
+				}
 			}
 
 			$html .= '</ul>';
