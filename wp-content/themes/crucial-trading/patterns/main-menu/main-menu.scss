@@ -314,9 +314,6 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 
 
 
-
-
-
 /************** Animated Menu Button **************/ 
 
 .main-menu__button--wrap {
@@ -423,12 +420,6 @@ span.main-menu__button__icon::after {
 	-webkit-transition-property: bottom, -webkit-transform;
 	transition-property: bottom, transform;
 }
-
-/*.main-menu__button:hover span.main-menu__button__icon,
-.main-menu__button:hover span.main-menu__button__icon::before,
-.main-menu__button:hover span.main-menu__button__icon::after {
-	background-color: $main-menu-bg-color;
-}*/
 
 /* Active state - change icon  */
 

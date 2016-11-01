@@ -11,10 +11,10 @@
 function crucial_footer() {
 	
 	// Get Menu - Main Menu Top
-	$get_footer_menu_one = wp_get_nav_menu_items('main-menu-top');
+	$get_footer_menu_one = wp_get_nav_menu_items('footer-menu-one');
 	
 	// Get Menu - Main Menu Bottom
-	$get_menu_bottom = wp_get_nav_menu_items('main-menu-bottom');
+	$get_footer_menu_two = wp_get_nav_menu_items('footer-menu-two');
 	
 	// Get social links
 	$crucial_social_link_insta = 'https://instagram.com';
@@ -25,35 +25,46 @@ function crucial_footer() {
 	$html = '';
 	
 	$html .= '<footer> 
-		<div class="footer__col col-md-3">
-				<a href="'.$crucial_social_link_twitter.'" title="Twitter" target="_blank"><i class="icon-crucial-twitter"></i>twitter</a>
-				<a href="'.$crucial_social_link_insta.'" title="Instagram" target="_blank"><i class="icon-crucial-instagram"></i>instagram</a>
+		<div class="footer-columns clearfix">
+		<div class="footer__col footer__col--social col-md-4">
+			<ul>
+				<li><a href="'.$crucial_social_link_twitter.'" title="Twitter" target="_blank"><i class="icon-crucial-twitter"></i>twitter</a></li>
+				<li><a href="'.$crucial_social_link_insta.'" title="Instagram" target="_blank"><i class="icon-crucial-instagram"></i>instagram</a></li>
+				<li><a href="'.$crucial_social_link_tumblr.'" title="Instagram" target="_blank"><i class="icon-crucial-tumblr"></i>tumblr</a></li>
+			</ul>
 		</div>
-		<div class="footer__col col-md-3">';
+		<div class="footer__col footer__col--nav-1 col-md-4">
+			<ul>';
 			
-			if (!empty($get_menu_top)) :
+			if (!empty($get_footer_menu_one)) :
 				// Get Menu Top Items and Build Link 
-		    foreach ( (array) $get_menu_top as $key => $menu_item ) {
+		    foreach ( (array) $get_footer_menu_one as $key => $menu_item ) {
 		        $title = $menu_item->title;
 		        $url = $menu_item->url;
-		        $html .= '<a href="' . $url . '" title="'.$title.'"><span>' . $title . '</span></a>';
+		        $html .= '<li><a href="' . $url . '" title="'.$title.'"><span>' . $title . '</span></a></li>';
 		    }
 			endif;
 			
-		$html .= '</div>
-		<div class="footer_col col-md-3">';
+		$html .= '</ul></div>
+		<div class="footer__col footer__col--nav-2 col-md-4">
+			<ul>';
 
-			if (!empty($get_menu_top)) :
+			if (!empty($get_footer_menu_two)) :
 				// Get Menu Top Items and Build Link 
-		    foreach ( (array) $get_menu_top as $key => $menu_item ) {
+		    foreach ( (array) $get_footer_menu_two as $key => $menu_item ) {
 		        $title = $menu_item->title;
 		        $url = $menu_item->url;
-		        $html .= '<a href="' . $url . '" title="'.$title.'"><span>' . $title . '</span></a>';
+		        $html .= '<li><a href="' . $url . '" title="'.$title.'"><span>' . $title . '</span></a></li>';
 		    }
 			endif;
 
-		$html .= '</div>
-	</footer>';
+		$html .= '</ul></div></div>';
+		$html .= '
+		<div class="footer__info">
+			<span class="footer__info--copyright">&copy; Crucial Trading Ltd '.date("Y").'</span>
+			<span class="footer__info--design-agency"><a href="http://kijo.co" title="Design by KIJO in Birmingham">design by KIJO</a></span>
+		</div>';
+		$html .= '</footer>';
 
 	return $html;
 }

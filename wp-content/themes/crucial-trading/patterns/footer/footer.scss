@@ -10,9 +10,87 @@
 @import '../../assets/css/src/_variables.scss';
 @import '../../assets/css/src/_utilities.scss';
 
+
 footer {
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 12%;
+	padding-right: 12%;
+	padding-top: 5%;
 	background-color: $main-menu-bg-color;
-	height: 400px;
 }
+
+/************** Menu Links **************/ 
+
+.footer__col {
+	padding: 0;
+}
+
+.footer__col--nav-1 {
+	padding-left: 5%;
+}
+
+.footer__col--nav-2 {
+	padding-left: 8.5%;
+}
+
+/************** Menu Links **************/ 
+
+.footer__col ul {
+	margin: 0;
+	padding: 0;
+}
+
+.footer__col ul li {
+	display: block;
+}
+
+.footer__col a {
+	font-size: 16px;
+	display: inline-block;
+	letter-spacing: 2.5px;
+	text-transform: uppercase;
+	color: $main-menu-link-color;
+	font-weight: 400;
+	padding: 15px;
+	transition: color background-color ease-in-out 0.25s;
+	transform: translate(0,0);
+	
+	@media all and (max-width: 769px) {
+		font-size: 15px;
+	}
+	
+}
+
+.footer__col a:hover {
+	color: #FFF;
+}
+
+
+
+
+/************** Copyright & Design Credit **************/ 
+
+.footer__info, {
+	display: block;
+	padding-top: 5%;
+	padding-bottom: 2.5%;
+}
+
+.footer__info--copyright,
+.footer__info--design-agency a {
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	color: darken($main-menu-link-color, 25%);
+	font-family: $font-sub-header;
+	padding: 0;
+}
+
+.footer__info--copyright {
+	margin-right: 45px;
+}
+
+.footer__info--design-agency a:hover {
+	color: #FFF;
+}
+
+
