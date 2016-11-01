@@ -83,9 +83,6 @@
 
 		.material__details {
 			background: rgba(0,0,0,0.675);
-			display: box;
-			display: flex;
-			flex-wrap: wrap;
 			right: 20px;
 			padding: 45px 27px;
 			position: absolute;
@@ -107,6 +104,11 @@
 				text-align: center;
 				width: 111px;
 				word-break: break-word;
+
+				display:inline-block;
+				margin-left: 0px;
+				vertical-align:top;
+				margin-bottom:20px;
 
 				h3 {
 					text-align: center;
