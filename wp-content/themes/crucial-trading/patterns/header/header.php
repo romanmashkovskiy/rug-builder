@@ -76,7 +76,7 @@ function header_material_shortcode($atts = '') {
 		$html .= '</div>';
 
 		$html .= '<div class="material__info ' . $material . ' vertical-align">';
-		$html .= '<h3>True Survivor</h3>';
+		$html .= '<h3 class="subtitle">True Survivor</h3>';
 		$html .= '<h1>' . $umaterial . '</h1>';
 		if ( $header_size == 'large' ) {
 			$html .= '<p>' . $this_cat->description . '</p>';
