@@ -11,13 +11,30 @@
 	#material-view-slider-prev,
 	#material-view-slider-next {
 		position: absolute;
+
+		& + span {
+			position: absolute;
+			top: calc(50% + 50px);
+
+			h3 {
+				color: #7C7C7C;
+			}
+		}
 	}
 
 	#material-view-slider-prev {
 		left: 35px;
+
+		& + span {
+			left: 35px;
+		}
 	}
 
 	#material-view-slider-next {
 		right: 35px;
+
+		& + span {
+			right: 35px;
+		}
 	}
 }

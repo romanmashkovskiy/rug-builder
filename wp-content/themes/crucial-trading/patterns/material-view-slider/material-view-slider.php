@@ -95,19 +95,37 @@ function material_view_slider( $atts = '' ) {
 	$html .= '<div class="material-view-slider">';
 	$html .= '<ul id="material-view-slider-list">';
 
+	$current = 0;
+
 	for ( $i = 0; $i < count( $posts ); $i++ ) {
 
 		$show_this = '';
 
 		if ( $posts[$i] == $current_product_id ) {
 			$show_this = ' data-show="' . $i . '" ';
+			$current = $i + 1;
 		}
+
 		$html .= '<li><span' . $show_this . '></span>' . do_shortcode( '[material-view post_id="' . $posts[$i] . '" material="' . $current_product_material . '"]' ) . '</li>';
+	}
+
+	$prev  = $current - 1;
+	$next  = $current + 1;
+	$total = count( $posts );
+
+	if ( $prev == 0 ) {
+		$prev = $total;
+	}
+
+	if ( $next == $total + 1 ) {
+		$next = 1;
 	}
 
 	$html .= '</ul>';
 	$html .= '<span id="material-view-slider-prev" class="vertical-align"></span>';
+	$html .= '<span id="material-view-slider-prev-text"><h3 data-current="' . $current . '" data-total="' . $total . '">' . $prev . '/' . $total . '</h3></span>';
 	$html .= '<span id="material-view-slider-next" class="vertical-align"></span>';
+	$html .= '<span id="material-view-slider-next-text"><h3>' . $next . '/' . $total . '</h3></span>';
 	$html .= '</div>';
 
 	// If being shown in pattern library reset post data

@@ -1,0 +1,183 @@
+@import '../../assets/css/src/_variables';
+
+.share-links {
+	padding: 25px 12.5%;
+	position: relative;
+
+	.share-title {
+		left: 0;
+		position: absolute;
+		top: 45px;
+
+		span {
+			display: block;
+			height: 2px;
+			width: 30px;
+		}
+
+		h3 {
+			margin-left: 15px;
+		}
+
+		&.coir {
+
+			span {
+				background: transparentize($color-coir-dark, 0.5);
+			}
+
+			h3 {
+				color: transparentize($color-coir-dark, 0.5);
+			}
+		}
+
+		&.jute {
+
+			span {
+				background: transparentize($color-jute-dark, 0.5);
+			}
+
+			h3 {
+				color: transparentize($color-jute-dark, 0.5);
+			}
+		}
+
+		&.seagrass {
+
+			span {
+				background: transparentize($color-seagrass-dark, 0.5);
+			}
+
+			h3 {
+				color: transparentize($color-seagrass-dark, 0.5);
+			}
+		}
+
+		&.sisal {
+
+			span {
+				background: transparentize($color-sisal-dark, 0.5);
+			}
+
+			h3 {
+				color: transparentize($color-sisal-dark, 0.5);
+			}
+		}
+
+		&.sisool {
+
+			span {
+				background: transparentize($color-sisool-dark, 0.5);
+			}
+
+			h3 {
+				color: transparentize($color-sisool-dark, 0.5);
+			}
+		}
+
+		&.wool {
+
+			span {
+				background: transparentize($color-wool-dark, 0.5);
+			}
+
+			h3 {
+				color: transparentize($color-wool-dark, 0.5);
+			}
+		}
+	}
+
+	.link__container {
+		float: left;
+		text-align:center;
+		width: 25%;
+
+		&.coir {
+
+			i, a {
+				color: transparentize($color-coir-dark, 0.5);
+			}
+
+			&:hover {
+
+				i, a {
+					color: $color-coir-dark;
+				}
+			}
+		}
+
+		&.jute {
+
+			i, a {
+				color: transparentize($color-jute-dark, 0.5);
+			}
+
+			&:hover {
+
+				i, a {
+					color: $color-jute-dark;
+				}
+			}
+		}
+
+		&.seagrass {
+
+			i, a {
+				color: transparentize($color-seagrass-dark, 0.5);
+			}
+
+			&:hover {
+
+				i, a {
+					color: $color-seagrass-dark;
+				}
+			}
+		}
+
+		&.sisal {
+
+			i, a {
+				color: transparentize($color-sisal-dark, 0.5);
+			}
+
+			&:hover {
+
+				i, a {
+					color: $color-sisal-dark;
+				}
+			}
+		}
+
+		&.sisool {
+
+			i, a {
+				color: transparentize($color-sisool-dark, 0.5);
+			}
+
+			&:hover {
+
+				i, a {
+					color: $color-sisool-dark;
+				}
+			}
+		}
+
+		&.wool {
+
+			i, a {
+				color: transparentize($color-wool-dark, 0.5);
+			}
+
+			&:hover {
+
+				i, a {
+					color: $color-wool-dark;
+				}
+			}
+		}
+	}
+
+	.link__icon {
+		display: block;
+		margin-bottom: 20px;
+	}
+}

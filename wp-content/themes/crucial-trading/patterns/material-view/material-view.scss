@@ -83,9 +83,6 @@
 
 		.material__details {
 			background: rgba(0,0,0,0.675);
-			display: box;
-			display: flex;
-			flex-wrap: wrap;
 			right: 20px;
 			padding: 45px 27px;
 			position: absolute;
@@ -108,8 +105,23 @@
 				width: 111px;
 				word-break: break-word;
 
+				display:inline-block;
+				margin-left: 0px;
+				vertical-align:top;
+				margin-bottom:20px;
+
 				h3 {
 					text-align: center;
+				}
+
+				i {
+					border-radius: 50%;
+					color: rgba(0,0,0,0.675);
+					display: inline-block;
+					font-size: 24px;
+					height: 50px;
+					padding-top: 13px;
+					width: 50px;
 				}
 
 				&:nth-child(even) {
@@ -131,7 +143,7 @@
 	&.coir {
 
 		.header__back a {
-			color: transparentize($color-coir-main, 0.5);
+			color: transparentize($color-coir-dark, 0.3);
 		}
 
 		.header__titles {
@@ -154,12 +166,16 @@
 		.info__section h3 {
 			color: $color-coir-main;
 		}
+
+		.info__section i {
+			background: $color-coir-main;
+		}
 	}
 
 	&.jute {
 		
 		.header__back a {
-			color: transparentize($color-jute-main, 0.5);
+			color: transparentize($color-jute-dark, 0.3);
 		}
 
 		.header__titles {
@@ -182,12 +198,16 @@
 		.info__section h3 {
 			color: $color-jute-main;
 		}
+
+		.info__section i {
+			background: $color-jute-main;
+		}
 	}
 
 	&.seagrass {
 		
 		.header__back a {
-			color: transparentize($color-seagrass-main, 0.5);
+			color: transparentize($color-seagrass-dark, 0.3);
 		}
 
 		.header__titles {
@@ -210,12 +230,16 @@
 		.info__section h3 {
 			color: $color-seagrass-main;
 		}
+
+		.info__section i {
+			background: $color-seagrass-main;
+		}
 	}
 
 	&.sisal {
 		
 		.header__back a {
-			color: transparentize($color-sisal-main, 0.5);
+			color: transparentize($color-sisal-dark, 0.3);
 		}
 
 		.header__titles {
@@ -238,12 +262,16 @@
 		.info__section h3 {
 			color: $color-sisal-main;
 		}
+
+		.info__section i {
+			background: $color-sisal-main;
+		}
 	}
 
 	&.sisool {
 		
 		.header__back a {
-			color: transparentize($color-sisool-main, 0.5);
+			color: transparentize($color-sisool-dark, 0.3);
 		}
 
 		.header__titles {
@@ -266,12 +294,16 @@
 		.info__section h3 {
 			color: $color-sisool-main;
 		}
+
+		.info__section i {
+			background: $color-sisool-main;
+		}
 	}
 
 	&.wool {
 		
 		.header__back a {
-			color: transparentize($color-wool-main, 0.5);
+			color: transparentize($color-wool-dark, 0.3);
 		}
 
 		.header__titles {
@@ -293,6 +325,10 @@
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-wool-main;
+		}
+
+		.info__section i {
+			background: $color-wool-main;
 		}
 	}	
 }
