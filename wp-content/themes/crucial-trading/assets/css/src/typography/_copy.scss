@@ -1,39 +1,67 @@
+/************************************************************************************************************************
+	Copy and other typography stylings
+		
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+
 a {
 	@include typography-standards(#000000, $font-sub-header, 17px, 2.5px);
 	padding-bottom: 5px;
 	position: relative;
 	text-decoration: none;
 	text-transform: uppercase;
-
+	padding-top: 10px;
+	padding-bottom: 30px;
+	@extend .transition-all;
+	
 	&:hover {
-		color: #000000;
 		text-decoration: none;
 	}
+	
+} 
 
-	&:not(.no-effect):before {
-		bottom: 0;
-		content: "";
-		height: 2px;
-		left: 0;
-		position: absolute;
-		-webkit-transform: scaleX(0);
-		transform: scaleX(0);
-		-webkit-transition: all 0.25s ease-in-out 0s;
-		transition: all 0.25s ease-in-out 0s;
-		visibility: hidden;
-		width: 100%;
-	}
-
-	&:not(.no-effect):hover:before {
-		-webkit-transform: scaleX(1);
-		transform: scaleX(1);
-		visibility: visible;
-	}
+a::before, 
+a::after { 
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	transition: all 0.3s ease-in-out 0s;
+	content: '';	
 }
+
+a::before {
+	opacity: 0.45;
+	z-index: -1;
+}
+
+a::after {
+	z-index: 5;
+	transform: scaleX(0);
+	visibility: hidden;
+}
+
+a:hover::after {
+	visibility: visible;
+	transform: scaleX(1);
+}
+
+
+/**************************************************************
+	Copy and other typography stylings
+**************************************************************/
 
 p {
 	@include typography-standards(#000000, $font-copy, 17px, 0.5px);
 }
+
+
+/**************************************************************
+Default HTML Tag Styling - Adjusted slightly where required 
+**************************************************************/
 
 dfn, cite, em, i {
 	font-style: italic;

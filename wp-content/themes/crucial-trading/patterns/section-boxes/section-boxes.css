@@ -50,7 +50,7 @@
       margin-bottom: 150px; }
     .section-box .box__content a {
       color: #7C7C7C; }
-      .section-box .box__content a:before {
+      .section-box .box__content a:before, .section-box .box__content a:after {
         background-color: #7C7C7C; }
     @media screen and (max-width: 992px) {
       .section-box .box__content {

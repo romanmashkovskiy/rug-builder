@@ -29,3 +29,6 @@ config.codekit
 /sitemap.xml.gz
 
 *.zip
+
+/.sass-cache/*
+node_modules 

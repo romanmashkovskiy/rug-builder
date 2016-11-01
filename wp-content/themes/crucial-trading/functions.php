@@ -20,6 +20,8 @@ require get_template_directory() . '/inc/woocommerce/include.php';
  */
 require get_template_directory() . '/inc/meta-boxes.php';
 
+
+
 if ( ! function_exists( 'crucial_trading_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -131,6 +133,7 @@ function crucial_trading_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'crucial_trading_scripts' );
 
+
 /**
  * Include patterns
  */
@@ -141,6 +144,7 @@ for ( $i = 0; $i < count($scan); $i++ ) {
 	include_once(get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php');
 }
 
+
 /**
  * Allow SVG upload.
  */
@@ -149,6 +153,8 @@ function cc_mime_types($mimes) {
 	return $mimes;
 }
 add_filter('upload_mimes', 'cc_mime_types');
+
+
 
 /**
  * Implement the Custom Header feature.

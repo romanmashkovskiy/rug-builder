@@ -73,8 +73,9 @@
 
 		a {
 			color: #7C7C7C;
-
-			&:before {
+			
+			&:before,
+			&:after {
 				background-color: #7C7C7C;
 			}
 		}

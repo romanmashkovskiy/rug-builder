@@ -9,7 +9,6 @@
 *************************************************************************************************************************/
 /* Colors */
 /* Typography */
-/* Typography */
 #super-slider {
   max-height: 100vh !important;
   min-height: 100vh !important; }
@@ -103,14 +102,8 @@
   .slide__center h1 {
     text-shadow: none; }
   .slide__center a {
-    /*		border-bottom: 1px solid white;
-*/
-    color: white;
-    /*		&:hover {
-			text-decoration: none;
-		}
-*/ }
-    .slide__center a:before {
+    color: white; }
+    .slide__center a:before, .slide__center a:after {
       background-color: white; }
   .slide__center.opening h1, .slide__center.opening p, .slide__center.opening a {
     color: black; }
