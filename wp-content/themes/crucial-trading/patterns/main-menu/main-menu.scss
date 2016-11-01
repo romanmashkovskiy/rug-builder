@@ -13,7 +13,6 @@
 
 body {
 	margin: 0;
-	font-family: $main-menu-font-family;
 	-webkit-backface-visibility: hidden;
 	-webkit-transform-style: preserve-3d;
 	-webkit-font-smoothing: antialiased;  
@@ -23,8 +22,13 @@ body {
 }
 
 /************** Main Menu **************/ 
+
+.main-menu {
+	z-index: 9999;
+} 
  
 .main-menu__wrap {
+	font-family: $font-sub-header;
 	position: fixed;
 	z-index: 1001;
 	width: 370px;
@@ -39,6 +43,7 @@ body {
 	transition: transform 0.4s;
 	-webkit-transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	z-index: 9999;
 	
 	@media all and (max-width: 1024px) {
 		padding-top: 10px;
@@ -268,7 +273,7 @@ input.main-menu__search__input:focus {
 	width: 100%;
 	font-size:  16px;
 	color: #FFF;
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header; 
 	background: $main-menu-bg-color;
 	margin: 0;
 	padding: 30px;
@@ -282,22 +287,22 @@ input.main-menu__search__input:focus {
 }
 
 ::-webkit-input-placeholder {
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header;
 	color: $main-menu-link-color-dark;
 }
 
 :-moz-placeholder {
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header;
 	color: $main-menu-link-color-dark;
 }
 
 ::-moz-placeholder {
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header;
 	color: $main-menu-link-color-dark;
 }
 
 :-ms-input-placeholder {  
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header;
 	color: $main-menu-link-color-dark;
 }
 
@@ -363,7 +368,7 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 span.main-menu__button__text,
 span.main-menu__button__text--close {
 	font-size: 16px;
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header; 
 	color: #FFF;
 	text-indent: 0;
 	font-weight: normal;

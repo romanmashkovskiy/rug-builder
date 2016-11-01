@@ -56,9 +56,9 @@ function crucial_main_menu() {
 			<div class="main-menu__bottom">
 				<div class="main-menu__social">
 					<div class="main-menu__social--twitter">
-						<a href="'.$crucial_social_link_twitter.'" target="_blank"><i class="fa fa-twitter"></i>twitter</a>
+						<a href="'.$crucial_social_link_twitter.'" title="Twitter" target="_blank"><i class="icon-crucial-twitter"></i>twitter</a>
 					</div><div class="main-menu__social--instagram">
-						<a href="'.$crucial_social_link_insta.'" target="_blank"><i class="fa fa-instagram"></i>instagram</a>
+						<a href="'.$crucial_social_link_insta.'" title="Instagram" target="_blank"><i class="fa fa-instagram"></i>instagram</a>
 					</div>
 				</div>
 				<div class="main-menu__search">
@@ -66,7 +66,7 @@ function crucial_main_menu() {
 						<label>
 						<span class="screen-reader-text"></span>
 						<input type="text" class="main-menu__search__input" placeholder="Search..." value="" name="s" title="Search for:" />
-						<span class="main-menu__search__icon"><i class="fa fa-search" aria-hidden="true"></i></span>
+						<span class="main-menu__search__icon"><i class="icon-crucial-search" aria-hidden="true"></i></span>
 						</label>
 					</form>
 				</div>

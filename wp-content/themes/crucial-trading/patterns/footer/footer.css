@@ -1,1 +1,57 @@
-/* test */
+/**
+ * SASS - Footer  
+ *
+ * Contents:
+ *
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
+ */
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Main Navigation & Footer */
+.vert-align {
+  display: inline-block;
+  float: none;
+  vertical-align: middle; }
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d; }
+
+.vertical-align-table {
+  display: table-cell;
+  float: none;
+  vertical-align: middle; }
+
+.box-shadow {
+  -webkit-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08); }
+
+.rotate {
+  position: absolute;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+.transition-all {
+  transition: all ease-in-out 0.25s;
+  -webkit-transition: all ease-in-out 0.25s; }
+
+footer {
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: #2d2d2d;
+  height: 400px; }
