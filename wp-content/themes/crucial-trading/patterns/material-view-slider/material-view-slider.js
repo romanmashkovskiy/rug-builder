@@ -43,7 +43,62 @@ $(document).ready(function() {
 
 		nextSelector : '#material-view-slider-next',
 		prevSelector : '#material-view-slider-prev',
-		
+
+		onSlideNext  : function() {
+
+			var current = $('#material-view-slider-prev-text h3').data('current');
+			var total   = $('#material-view-slider-prev-text h3').data('total');
+
+			var newCurrent = current + 1;
+
+			if ( newCurrent === total + 1 ) {
+				newCurrent = 1;
+			}
+
+			var newNext = newCurrent + 1;
+			var newPrev = newCurrent - 1;
+
+			if ( newPrev === 0 ) {
+				newPrev = total;
+			}
+
+			if ( newNext === total + 1 ) {
+				newNext = 1;
+			}
+
+			$('#material-view-slider-prev-text h3').text(newPrev + '/' + total);
+			$('#material-view-slider-next-text h3').text(newNext + '/' + total);
+
+			$('#material-view-slider-prev-text h3').data('current', newCurrent);
+		},
+
+		onSlidePrev  : function() {
+
+			var current = $('#material-view-slider-prev-text h3').data('current');
+			var total   = $('#material-view-slider-prev-text h3').data('total');
+
+			var newCurrent = current - 1;
+
+			if ( newCurrent === 0 ) {
+				newCurrent = total;
+			}
+
+			var newNext = newCurrent + 1;
+			var newPrev = newCurrent - 1;
+
+			if ( newPrev === 0 ) {
+				newPrev = total;
+			}
+
+			if ( newNext === total + 1 ) {
+				newNext = 1;
+			}
+
+			$('#material-view-slider-prev-text h3').text(newPrev + '/' + total);
+			$('#material-view-slider-next-text h3').text(newNext + '/' + total);
+
+			$('#material-view-slider-prev-text h3').data('current', newCurrent);
+		},
 	});
 
 	$('.bx-prev').addClass('no-effect');
