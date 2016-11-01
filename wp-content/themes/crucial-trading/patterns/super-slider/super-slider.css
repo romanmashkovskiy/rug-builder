@@ -20,6 +20,10 @@
   #super-slider .slide.opening img {
     left: 0 !important;
     width: 100% !important; }
+    #super-slider .slide.opening img.opening-slide-logo {
+      margin-bottom: 40px;
+      position: static !important;
+      width: 500px !important; }
   #super-slider .slide.opening svg {
     cursor: pointer; }
   #super-slider .slide.opening svg g,

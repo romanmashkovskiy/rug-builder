@@ -17,6 +17,12 @@
 			img {
 				left: 0 !important;
 				width: 100% !important;
+
+				&.opening-slide-logo {
+					margin-bottom: 40px;
+					position: static !important;
+					width: 500px !important;
+				}
 			}
 
 			svg {

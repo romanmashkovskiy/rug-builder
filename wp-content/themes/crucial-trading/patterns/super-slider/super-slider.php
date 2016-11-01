@@ -125,9 +125,11 @@ function crucial_slider_slides() {
 			$html .= '</nav>';
 			
 			$html .= '<div class="slide__center vertical-align ' . $opening_class . '">';
-			$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
-			if ( $post_title == 'Opening' ) {
-				$html .= '<p class="subtitle">Where Inspiration Begins</p>';
+			if ( $post_title != 'Opening' ) {
+				$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
+			}
+			else {
+				$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/01155035/logo-black.png" alt="Crucial Trading - Where Inspiration Begins" class="opening-slide-logo">';
 				$html .= '<p>Welcome to the start of your journey where imagination flourishes, ideas form and decisions are made. We aim to inspire and delight. Choose the right floorcovering and everything else falls into place.</p>';
 				$html .= '<span></span>';
 			}
