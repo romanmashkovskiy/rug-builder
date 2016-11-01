@@ -45,4 +45,6 @@ echo do_shortcode( '[material-view-slider material="' . $material_cat_slug . '" 
 
 echo do_shortcode( '[other-ranges material="' . $material_cat_slug . '" range="' . $range_cat_slug . '"]' );
 
+echo do_shortcode( '[share-links material="' . $material_cat_slug . '"]' );
+
 get_footer();
