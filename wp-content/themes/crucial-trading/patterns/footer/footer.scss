@@ -1,0 +1,170 @@
+/**
+<<<<<<< HEAD
+ * SASS - Footer 
+=======
+ * SASS - Footer  
+>>>>>>> footer
+ *
+ * Contents:
+ *
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
+ */
+
+@import '../../assets/css/src/_variables.scss';
+@import '../../assets/css/src/_utilities.scss';
+
+
+footer {
+	padding-left: 12%;
+	padding-right: 12%;
+	padding-top: 5%;
+	background-color: $main-menu-bg-color;
+	position: relative;
+}
+
+/************** Footer Columns **************/ 
+
+.footer__col {
+	padding: 0;
+}
+
+.footer__col--nav-1 {
+	padding-left: 5%;
+}
+
+.footer__col--nav-2 {
+	padding-left: 8.5%;
+}
+
+@media all and (max-width: 769px) {
+	
+	.footer__col--nav-1 {
+		margin-top: 25px;
+		margin-bottom: 25px;
+	}
+	
+	.footer__col--nav-1, 
+	.footer__col--nav-2 {
+		padding-left: 0;
+	}
+
+}
+
+/************** Footer Social Columns **************/ 
+
+.footer__col--social {
+}
+
+
+/************** Footer Decorative Line **************/ 
+
+.footer__line {
+	height: 2px;
+	width: 90px;
+	background-color: $main-menu-link-color;
+	position: absolute;
+	top: 19%;
+	left: 0;
+	opacity: 0.2;
+}
+
+
+/************** Footer Menu Links **************/ 
+
+.footer__col ul {
+	margin: 0;
+	padding: 0;
+}
+
+.footer__col ul li {
+	display: block;
+}
+
+.footer__col a {
+	font-size: 16px;
+	display: inline-block;
+	letter-spacing: 2.5px;
+	text-transform: uppercase;
+	color: $main-menu-link-color;
+	font-weight: 400;
+	padding: 15px;
+	transition: color background-color ease-in-out 0.25s;
+	transform: translate(0,0);
+	
+	@media all and (max-width: 769px) {
+		font-size: 15px;
+		padding: 10px;
+		padding-left: 0;
+	}
+	
+}
+
+.footer__col a:hover {
+	color: #FFF;
+	transform: translate(5px,0);
+	-webkit-transform: translate(5px,0);
+}
+
+/*** Footer Links Hover Line ***/ 
+
+/*.footer__col a::after {
+	width: 23px;
+	height: 2px;
+	position: absolute;
+	left: -20px;
+	top: 50%;
+	content: ' ';
+	background-color: darken($main-menu-link-color-dark, 15%);
+	transform: translate(20px, 0);
+	opacity: 0;
+	@extend .transition-all;
+}
+
+.footer__col a:hover::after,
+.footer__col a.active::after {
+	transform: translate(0, 0);
+	opacity: 1;
+}*/
+
+/************** Copyright & Design Credit **************/ 
+
+.footer__info, {
+	display: block;
+	padding-top: 5%;
+	padding-bottom: 2.5%;
+	
+	@media all and (max-width: 992px) {
+		padding-top: 5%;
+		padding-bottom: 5%;
+	}
+	
+}
+
+.footer__info--copyright,
+.footer__info--design-agency a {
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	color: darken($main-menu-link-color, 25%);
+	font-family: $font-sub-header;
+	padding: 0;
+}
+
+.footer__info--copyright {
+	margin-right: 45px;
+}
+
+
+.footer__info--design-agency {
+	
+	@media all and (max-width: 769px) {
+		display: block;
+		margin-top: 15px;
+	}
+
+}
+
+.footer__info--design-agency a:hover {
+	color: #FFF;
+}
