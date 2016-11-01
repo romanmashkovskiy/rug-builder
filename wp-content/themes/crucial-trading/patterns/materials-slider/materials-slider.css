@@ -22,8 +22,7 @@
   padding: 0 !important; }
 
 .material-slide {
-  background: #383838;
-  position: relative; }
+  background: #383838; }
   .material-slide .theline {
     display: block;
     height: 125px;
