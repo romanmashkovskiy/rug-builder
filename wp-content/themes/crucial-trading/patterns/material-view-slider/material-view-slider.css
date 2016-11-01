@@ -8,7 +8,18 @@
   .material-view-slider #material-view-slider-prev,
   .material-view-slider #material-view-slider-next {
     position: absolute; }
+    .material-view-slider #material-view-slider-prev + span,
+    .material-view-slider #material-view-slider-next + span {
+      position: absolute;
+      top: calc(50% + 50px); }
+      .material-view-slider #material-view-slider-prev + span h3,
+      .material-view-slider #material-view-slider-next + span h3 {
+        color: #7C7C7C; }
   .material-view-slider #material-view-slider-prev {
     left: 35px; }
+    .material-view-slider #material-view-slider-prev + span {
+      left: 35px; }
   .material-view-slider #material-view-slider-next {
     right: 35px; }
+    .material-view-slider #material-view-slider-next + span {
+      right: 35px; }
