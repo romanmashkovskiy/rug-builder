@@ -170,3 +170,8 @@
   .material-view.wool .hide-material-info,
   .material-view.wool .info__section h3 {
     color: #EBD5B7; }
+
+.zoomContainer {
+  z-index: 99999; }
+  .zoomContainer > div.zoomLens {
+    border: 10px solid white !important; }

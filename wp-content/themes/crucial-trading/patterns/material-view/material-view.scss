@@ -296,3 +296,11 @@
 		}
 	}	
 }
+
+.zoomContainer {
+	z-index: 99999;
+
+	& > div.zoomLens {
+		border: 10px solid white !important;
+	}
+}

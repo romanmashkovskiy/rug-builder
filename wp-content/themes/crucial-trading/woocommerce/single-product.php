@@ -37,7 +37,7 @@ foreach ( $post_cats as $key => $value ) {
 
 get_header();
 
-echo do_shortcode( '[header-material material="' . $material_cat . '" size="small"]' );
+echo do_shortcode( '[header-material material="' . $material_cat_slug . '" size="small"]' );
 
 echo do_shortcode( '[logo-nav]' );
 

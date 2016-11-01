@@ -71,7 +71,7 @@ function material_view( $atts = '' ) {
 	$html .= '<div class="material__body">';
 
 		$html .= '<div class="image-container">';
-		$html .= '<img src="' . $src . '" alt="' . $post_title . '">';
+		$html .= '<img src="' . $src . '" alt="' . $post_title . '" class="material-img">';
 		$html .= '<a href="#" id="change-image-view">Change View</a>';
 
 		if ( $post_material || $post_price || $post_size || $post_underlay ) {

@@ -85,7 +85,7 @@
 	}
 
 	&.wool h3 {
-		color: $color-wool-main;
+		color: transparentize($color-wool-dark, 0.5);
 	}
 
 	&.coir.active h3 {
