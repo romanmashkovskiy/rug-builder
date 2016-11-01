@@ -112,6 +112,16 @@
 					text-align: center;
 				}
 
+				i {
+					border-radius: 50%;
+					color: rgba(0,0,0,0.675);
+					display: inline-block;
+					font-size: 24px;
+					height: 50px;
+					padding-top: 13px;
+					width: 50px;
+				}
+
 				&:nth-child(even) {
 					margin-right: 20px;
 				}
@@ -154,6 +164,10 @@
 		.info__section h3 {
 			color: $color-coir-main;
 		}
+
+		.info__section i {
+			background: $color-coir-main;
+		}
 	}
 
 	&.jute {
@@ -181,6 +195,10 @@
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-jute-main;
+		}
+
+		.info__section i {
+			background: $color-jute-main;
 		}
 	}
 
@@ -210,6 +228,10 @@
 		.info__section h3 {
 			color: $color-seagrass-main;
 		}
+
+		.info__section i {
+			background: $color-seagrass-main;
+		}
 	}
 
 	&.sisal {
@@ -237,6 +259,10 @@
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-sisal-main;
+		}
+
+		.info__section i {
+			background: $color-sisal-main;
 		}
 	}
 
@@ -266,6 +292,10 @@
 		.info__section h3 {
 			color: $color-sisool-main;
 		}
+
+		.info__section i {
+			background: $color-sisool-main;
+		}
 	}
 
 	&.wool {
@@ -293,6 +323,10 @@
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-wool-main;
+		}
+
+		.info__section i {
+			background: $color-wool-main;
 		}
 	}	
 }

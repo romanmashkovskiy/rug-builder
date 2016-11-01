@@ -79,21 +79,25 @@ function material_view( $atts = '' ) {
 			$html .= '<a href="#" class="hide-material-info" data-state="open">Hide</a>';
 			if ( $post_material ) {
 				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-basket"></i>';
 				$html .= '<h3>' . $post_material . '</h3>';
 				$html .= '</div>';
 			}
 			if ( $post_price ) {
 				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-metres"></i>';
 				$html .= '<h3>' . $post_price . '</h3>';
 				$html .= '</div>';
 			}
 			if ( $post_size ) {
 				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-measurement"></i>';
 				$html .= '<h3>' . $post_size . '</h3>';
 				$html .= '</div>';
 			}
 			if ( $post_underlay ) {
 				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-underlay"></i>';
 				$html .= '<h3>' . $post_underlay . '</h3>';
 				$html .= '</div>';
 			}
