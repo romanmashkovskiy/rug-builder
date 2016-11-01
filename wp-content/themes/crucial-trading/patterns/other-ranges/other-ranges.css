@@ -13,17 +13,17 @@
   font-size: 38px;
   text-align: center; }
   .other-ranges-title.coir {
-    color: #B28865; }
+    color: #6F533D; }
   .other-ranges-title.jute {
-    color: #907259; }
+    color: #4B3B2E; }
   .other-ranges-title.seagrass {
-    color: #A99A71; }
+    color: #6B6551; }
   .other-ranges-title.sisal {
-    color: #6D7C61; }
+    color: #454F44; }
   .other-ranges-title.sisool {
-    color: #A9A791; }
+    color: #817E62; }
   .other-ranges-title.wool {
-    color: #EBD5B7; }
+    color: #665F4D; }
 
 .other-ranges {
   background: white;
@@ -51,17 +51,17 @@
     margin-bottom: 10px;
     width: 150px; }
   .range.coir h3 {
-    color: rgba(178, 136, 101, 0.65); }
+    color: #B28865; }
   .range.jute h3 {
-    color: rgba(144, 114, 89, 0.65); }
+    color: #907259; }
   .range.seagrass h3 {
-    color: rgba(169, 154, 113, 0.65); }
+    color: #A99A71; }
   .range.sisal h3 {
-    color: rgba(109, 124, 97, 0.65); }
+    color: #6D7C61; }
   .range.sisool h3 {
-    color: rgba(169, 167, 145, 0.65); }
+    color: #A9A791; }
   .range.wool h3 {
-    color: rgba(235, 213, 183, 0.65); }
+    color: #EBD5B7; }
   .range.coir.active h3 {
     color: #6F533D; }
   .range.jute.active h3 {
@@ -73,4 +73,4 @@
   .range.sisool.active h3 {
     color: #817E62; }
   .range.wool.active h3 {
-    colo: #665F4D; }
+    color: #665F4D; }

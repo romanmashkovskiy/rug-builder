@@ -5,27 +5,27 @@
 	text-align: center;
 
 	&.coir {
-		color: $color-coir-main;
+		color: $color-coir-dark;
 	}
 
 	&.jute {
-		color: $color-jute-main;
+		color: $color-jute-dark;
 	}
 
 	&.seagrass {
-		color: $color-seagrass-main;
+		color: $color-seagrass-dark;
 	}
 
 	&.sisal {
-		color: $color-sisal-main;
+		color: $color-sisal-dark;
 	}
 
 	&.sisool {
-		color: $color-sisool-main;
+		color: $color-sisool-dark;
 	}
 
 	&.wool {
-		color: $color-wool-main;
+		color: $color-wool-dark;
 	}
 }
 
@@ -65,27 +65,27 @@
 	}
 
 	&.coir h3 {
-		color: transparentize($color-coir-main, 0.35);
+		color: $color-coir-main;
 	}
 
 	&.jute h3 {
-		color: transparentize($color-jute-main, 0.35);
+		color: $color-jute-main;
 	}
 
 	&.seagrass h3 {
-		color: transparentize($color-seagrass-main, 0.35);
+		color: $color-seagrass-main;
 	}
 
 	&.sisal h3 {
-		color: transparentize($color-sisal-main, 0.35);
+		color: $color-sisal-main;
 	}
 
 	&.sisool h3 {
-		color: transparentize($color-sisool-main, 0.35);
+		color: $color-sisool-main;
 	}
 
 	&.wool h3 {
-		color: transparentize($color-wool-main, 0.35);
+		color: $color-wool-main;
 	}
 
 	&.coir.active h3 {
@@ -109,6 +109,6 @@
 	}
 
 	&.wool.active h3 {
-		colo: $color-wool-dark;
+		color: $color-wool-dark;
 	}
 }

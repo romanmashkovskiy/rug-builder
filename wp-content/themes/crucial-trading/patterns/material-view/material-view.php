@@ -42,7 +42,7 @@ function material_view( $atts = '' ) {
 	$post_material = $meta_material && array_key_exists( 'value', $meta_material ) ? $meta_material['value'] : false;	
 	$post_underlay = $meta_underlay && array_key_exists( 'value', $meta_underlay ) ? $meta_underlay['value'] : false;
 
-	$src = '';
+	$src = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'single-post-thumbnail' )[0];
 
 	$html .= '<div class="material-view ' . $material . ' box-shadow">';
 	$html .= '<div class="material__header">';
