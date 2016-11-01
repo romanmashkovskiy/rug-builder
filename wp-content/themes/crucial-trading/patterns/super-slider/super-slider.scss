@@ -19,9 +19,10 @@
 				width: 100% !important;
 
 				&.opening-slide-logo {
-					margin-bottom: 40px;
+					margin-bottom: 30px;
 					position: static !important;
 					width: 500px !important;
+					z-index: 99;
 				}
 			}
 
