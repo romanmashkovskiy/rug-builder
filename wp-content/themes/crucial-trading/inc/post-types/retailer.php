@@ -7,6 +7,7 @@
  * Register Post Type
  * Meta Boxes
  * Custom Taxonomies
+ * Save Lat/Lng as Post Meta
  *
  * @package Crucial Trading
  * @since Crucial Trading 1.0
@@ -131,6 +132,19 @@ function register_retailer_taxnomies() {
 		);
 	}
 
+	$retailer_exists = term_exists( 'Retailer', 'retailer_type' );
+
+	if ( !$retailer_exists ) {
+		
+		$abc = wp_insert_term(
+			'Retailer',
+			'retailer_type',
+			array(
+				'slug' => 'retailer',
+			)
+		);
+	}
+
 	$online_exists = term_exists( 'Online', 'retailer_type' );
 
 	if ( !$online_exists ) {
@@ -157,3 +171,51 @@ function register_retailer_taxnomies() {
 		);
 	}
 }
+
+// Save Lat/Lng as Post Meta
+
+add_action( 'save_post', 'save_retailer_post', 10, 3 );
+
+function save_retailer_post( $post_id, $post, $update ) {
+
+	$post_type = get_post_type( $post_id );
+
+	if ( $post_type != 'retailer' ) {
+		return;
+	}
+
+	$address     = rwmb_meta( 'address', array(), $post_id );
+	$url_address = urlencode($address);
+
+	$url  = "http://maps.google.com/maps/api/geocode/json?address={$url_address}";
+	$json = file_get_contents($url);
+	$resp = json_decode($json, true);
+
+	if ( $resp['status'] != 'OK' ) {
+		return;
+	}
+
+	$lat = $resp['results'][0]['geometry']['location']['lat'];
+	$lng = $resp['results'][0]['geometry']['location']['lng'];
+
+	update_post_meta( $post_id, 'lat', $lat );
+	update_post_meta( $post_id, 'lng', $lng );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,6 +8,48 @@
  * @since Hogarths 1.0
  */
 
+if ( array_key_exists( 'get_retailers', $_GET ) ) {
+
+	$type = $_GET['get_retailers'];
+
+	$args = array(
+		'post_type' => 'retailer',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'retailer_type',
+				'field'    => 'slug',
+				'terms'    => $type,
+			),
+		),
+	);
+
+	$query = new WP_Query( $args );
+
+	for ( $i = 0; $i < $query->post_count; $i++ ) {
+
+		$post    = $query->posts[$i];
+		$post_id = $post->ID;
+
+		$address = rwmb_meta( 'address', array(), $post_id );
+		$phone   = rwmb_meta( 'phone', array(), $post_id );
+		$website = rwmb_meta( 'website', array(), $post_id );
+		$email   = rwmb_meta( 'email  ', array(), $post_id );
+		$lat     = get_post_meta( $post_id, 'lat', true );
+		$lng     = get_post_meta( $post_id, 'lng', true );
+
+		$post->address = $address;
+		$post->phone   = $phone;
+		$post->website = $website;
+		$post->email   = $email;
+		$post->lat     = $lat;
+		$post->lng     = $lng;
+	}
+
+	echo json_encode( $query->posts );
+
+	die();
+}
+
 $showroom_args = array(
 	'post_type' => 'retailer',
 	'tax_query' => array(
@@ -39,6 +81,8 @@ get_header();
 echo do_shortcode( '[header size="small"]' );
 
 echo do_shortcode( '[logo-nav]' );
+
+echo do_shortcode( '[retailer-search-box]' );
 
 echo do_shortcode( '[google-map]' );
 
