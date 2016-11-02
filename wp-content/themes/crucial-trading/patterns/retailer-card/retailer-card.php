@@ -38,17 +38,19 @@ function retailer_card( $atts = '' ) {
 	$email   = rwmb_meta( 'email  ', array(), $post_id );
 
 	$html .= '<div class="retailer">';
+	$html .= '<div class="border-div">';
 	$html .= '<p class="retailer__title">' . get_the_title( $post_id ) . '</p>';
-	$html .= '<p class="retailer__address">' . $address . '</p>';
+	$html .= '<p class="retailer__address">' . nl2br( $address ) . '</p>';
 	$html .= '<p class="retailer__phone">' . $phone . '</p>';
-	$html .= '<a class="retailer__email" href="mailto:' . $email . '">Send Email</p>';
+	$html .= '<a class="retailer__email" href="mailto:' . $email . '"><p>Send Email</p></a>';
 	$html .= '<a class="retailer_directions" href="#">Get Directions</a>';
 	if ( $distance ) {
-		$html .= '<h3>' . $distance . ' Miles</h3>';
+		$html .= '<h3 class="retailer_distance">' . $distance . ' Miles</h3>';
 	}
+	$html .= '</div>';
 	$html .= '</div>';
 
 	return $html;
 }
 
-add_shortcode( 'retailer-card', 'retailer_card' );
+add_shortcode( 'retailer-card', 'retailer_card' ); 

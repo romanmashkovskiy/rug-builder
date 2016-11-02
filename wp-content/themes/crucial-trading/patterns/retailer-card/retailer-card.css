@@ -1,0 +1,21 @@
+.retailer {
+  float: left;
+  min-height: 550px;
+  margin-left: 4%;
+  padding: 10px;
+  width: 28%; }
+  .retailer .border-div {
+    border: 2px solid #F7F7F7;
+    padding: 50px;
+    position: relative; }
+  .retailer .retailer__title {
+    font-weight: bold;
+    margin-bottom: 30px; }
+  .retailer .retailer__address,
+  .retailer .retailer__phone {
+    margin-bottom: 20px; }
+  .retailer .retailer__email {
+    text-transform: capitalize; }
+  .retailer .retailer_distance {
+    bottom: 20px;
+    position: absolute; }
