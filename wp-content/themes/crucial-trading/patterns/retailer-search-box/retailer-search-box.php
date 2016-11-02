@@ -14,7 +14,7 @@ function retailer_search_box( $atts = '' ) {
 
 	$html = '';
 
-	$html .= '<div class="retailer-search">';
+	$html .= '<div class="retailer-search box-shadow">';
 	$html .= '<h2>Filter Retailers</h2>';
 	$html .= '<span></span>';
 	$html .= '<input type="text" placeholder="Post Code">';

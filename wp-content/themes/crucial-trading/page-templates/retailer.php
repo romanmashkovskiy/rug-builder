@@ -92,31 +92,45 @@ echo do_shortcode( '[google-map ' . serialize( $results ) . ' loc="' . $loc . '"
 
 if ( $results ) {
 
+	echo '<h2 class="page-subtitle">Search Results</h2>';
+	echo '<span></span>';
+	echo '<div class="clearfix">';
+
 	for ( $i = 0; $i < count( $results ); $i++ ) {
 		$dash = strpos( $results[$i], '-' );
 		$id   = substr( $results[$i], 0, $dash );
 		$dist = substr( $results[$i], $dash + 1 );
 		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '"]' );
 	}
+
+	echo '</div>';
 }
 
 if ( $showroom_query->have_posts() ) :
 
-	echo '<h2>Our Showrooms</h2>';
+	echo '<h2 class="page-subtitle">Our Showrooms</h2>';
+	echo '<span></span>';
+	echo '<div class="clearfix">';
 
 	for ( $i2 = 0; $i2 < $showroom_query->post_count; $i2++ ) {
 		echo do_shortcode( '[showroom-card type="showroom" id="' . $showroom_query->posts[$i2]->ID . '"]' );
 	}
 
+	echo '</div>';
+
 endif;
 
 if ( $online_query->have_posts() ) :
 
-	echo '<h2>Online Retailers</h2>';
+	echo '<h2 class="page-subtitle">Online Retailers</h2>';
+	echo '<span></span>';
+	echo '<div class="clearfix">';
 
 	for ( $i3 = 0; $i3 < $online_query->post_count; $i3++ ) {
 		echo do_shortcode( '[showroom-card type="online" id="' . $online_query->posts[$i3]->ID . '"]' );
 	}
+
+	echo '</div>';
 
 endif;
 
