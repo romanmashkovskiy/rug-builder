@@ -1,7 +1,7 @@
 @import '../../assets/css/src/_variables';
 
 header {
-	background: #383838;
+	background: $page-header-background;
 	position: relative;
 
 	&.small {
