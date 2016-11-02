@@ -14,34 +14,21 @@ var $ = jQuery;
 	    $(this).toggleClass("is-active");
 	    $('body').toggleClass("show-about-timeline");    
 	    
-		    $(".is-active").click(function() {
-				  $('body').toggleClass("hide-about-scroller");
-			  });
+				  //$('.about__scroller__bg').toggleClass("minus-z");
 	     
 	  });
 	});
 	
 // Add classes for scroller
 	
-	
-	/*$('.about__scroller__btn').click(function(){
-    $(this).animate({width:'100%'});
-    $(this).toggleClass("is-active");
-	});
-	
-		$('.is-active').click(function(){
-	    $(this).animate({width:'50%'});
-	    $(this).toggleClass("is-active");
-		});*/
-	
 	$(function() {                     
 	  $(".about__scroller__btn").click(function() { 
 	    $(this).toggleClass("is-active");
 	    $('body').toggleClass("show-about-scroller");     
 	    
-	    $(".is-active").click(function() {
+	    /*$(".is-active").click(function() {
 			  $('body').toggleClass("hide-about-scroller");
-		  });
+		  });*/
 	    
 	  });
 	});
