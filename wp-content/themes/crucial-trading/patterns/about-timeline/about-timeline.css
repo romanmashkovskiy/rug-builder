@@ -61,7 +61,8 @@
   font-size: 0;
   height: 100vh;
   text-align: center;
-  z-index: 99; }
+  z-index: 99;
+  overflow: hidden; }
   @media all and (max-width: 769px) {
     .about__timeline,
     .about__scroller {
@@ -77,33 +78,45 @@
   background-color: #333333; }
 
 /************** Layout Adjustment & Transition **************/
-/** Timeline **/
-.about__timeline {
-  -webkit-transition: -webkit-transform 0.4s;
-  transition: -webkit-transform 0.4s;
-  transition: transform 0.4s;
-  transition: transform 0.4s, -webkit-transform 0.4s;
-  -webkit-transition-timing-function: cubic-bezier(0.5, 0.5, 0.5, 1);
-  transition-timing-function: cubic-bezier(0.5, 0.5, 0.5, 1); }
+/* Both */
+.about__timeline,
+.about__scroller {
+  -webkit-transition: width 0.25s ease-in-out;
+  transition: width 0.25s ease-in-out; }
 
+/** Timeline **/
 .show-about-timeline .about__timeline {
-  -webkit-animation: makeWider 1s ease-in-out;
-  animation: makeWider 1s ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards; }
+  /*animation: makeWider 1.25s ease-in-out;
+	animation-fill-mode: forwards;*/
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999; }
 
 .show-about-timeline .about__scroller {
-  visibility: hidden; }
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0; }
 
 /** Scroller **/
 .show-about-scroller .about__scroller {
-  -webkit-animation: makeWider 1s ease-in-out;
-  animation: makeWider 1s ease-in-out;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards; }
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999; }
 
 .show-about-scroller .about__timeline {
-  visibility: hidden; }
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
 
 /** Keyframes **/
 @-webkit-keyframes makeWider {
@@ -111,6 +124,12 @@
     width: 50%; }
   100% {
     width: 100%; } }
+
+@-webkit-keyframes makeLessWide {
+  0% {
+    width: 100%; }
+  100% {
+    width: 10%; } }
 
 /************** Side Title **************/
 .about .side-title {
@@ -141,15 +160,20 @@
   bottom: -30px;
   right: 0; }
 
-.about__timeline__subtitle {
+.about__scroller__subtitle {
   -webkit-transform: rotate(270deg);
-  transform: rotate(270deg); }
+  transform: rotate(270deg);
+  right: -30%;
+  bottom: 180px; }
 
 /** Subtitle **/
 .about a,
 .about a::before,
 .about a::after {
   color: #878787; }
+
+.about a::before {
+  color: #FFF; }
 
 .about a:hover {
   color: #FFF; }

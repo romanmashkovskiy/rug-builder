@@ -25,8 +25,8 @@ echo do_shortcode( '[logo-nav]' ); ?>
 		</div>
 		
 		<div class="about__scroller" id="about-scroller">
+			<h3 class="about__scroller__subtitle subtitle">Our Process</h3>
 			<div class="about__scroller__top vertical-align">
-				<h3 class="about__scroller__subtitle subtitle">Our Process</h3>
 				<h1 class="about__scroller__heading vertical-align">Our Process</h1>
 				<a href="#" title="Our Process" class="about__scroller__btn">Read More</a>
 			</div>
