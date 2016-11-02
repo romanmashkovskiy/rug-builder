@@ -46,4 +46,12 @@ $(document).ready(function() {
 
 		return false;
 	});
+
+	$('.material-img').each(function(i, v) {
+		$(v).elevateZoom({
+			zoomType  : 'lens',
+			lensShape : 'round',
+			lensSize  : 200
+		});
+	});
 });

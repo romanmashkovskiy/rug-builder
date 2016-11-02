@@ -1,0 +1,51 @@
+@font-face {
+	font-family: 'icon';
+	src: url('../../fonts/icon/icon.eot?xyp2qk');
+	src: url('../../fonts/icon/icon.eot?xyp2qk#iefix') format('embedded-opentype'),
+		 url('../../fonts/icon/icon.ttf?xyp2qk') format('truetype'),
+		 url('../../fonts/icon/icon.woff?xyp2qk') format('woff'),
+		 url('../../fonts/icon/icon.svg?xyp2qk#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icon' !important;
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-crucial-basket:before {
+	content: "\e900";
+}
+.icon-crucial-changeview:before {
+	content: "\e901";
+}
+.icon-crucial-facebook:before {
+	content: "\e902";
+}
+.icon-crucial-tumblr:before {
+	content: "\e903";
+}
+.icon-crucial-measurement:before {
+	content: "\e904";
+}
+.icon-crucial-metres:before {
+	content: "\e905";
+}
+.icon-crucial-search:before {
+	content: "\e906";
+}
+.icon-crucial-twitter:before {
+	content: "\e907";
+}
+.icon-crucial-underlay:before {
+	content: "\e908";
+}
+

@@ -17,6 +17,7 @@ function materials_slider() {
 	$args = array(
 		'hide_empty' => false,
 		'orderby'    => 'name',
+		'parent'     => 0,
 	);
 
 	$categories = get_terms( 'product_cat', $args );

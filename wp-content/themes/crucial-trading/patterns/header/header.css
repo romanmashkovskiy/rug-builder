@@ -28,6 +28,8 @@ header {
     text-align: center; }
     header h3.side-title {
       left: -13px; }
+    header h3.subtitle {
+      text-align: left; }
   @media screen and (max-width: 600px) {
     header.small, header.large {
       height: 300px; } }
