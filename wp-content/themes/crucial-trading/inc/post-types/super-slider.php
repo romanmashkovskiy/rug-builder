@@ -59,7 +59,7 @@ function regiser_super_slider_post_type() {
 
 add_filter( 'rwmb_meta_boxes', 'super_slider_meta_boxes' );
 
-function super_slider_meta_boxes($meta_boxes) {
+function super_slider_meta_boxes( $meta_boxes ) {
 
 	$meta_boxes[] = array(
 		'title'      => 'Slide',
