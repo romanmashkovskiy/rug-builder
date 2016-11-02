@@ -12,7 +12,34 @@
 
 function google_map( $atts = '' ) {
 
-	$html = '<div id="google-map"></div>';
+	$attr_ids = '';
+
+	if ( is_array( $atts ) && array_key_exists( 0, $atts ) ) {
+		$attr_ids = unserialize( $atts[0] );
+	}
+
+	$ids = array_filter( $attr_ids );
+
+	$coordinates = '';
+
+	for ( $i = 0; $i < count( $ids ); $i++ ) {
+
+		$dash = strpos( $ids[$i], '-' );
+		$id   = substr( $ids[$i], 0, $dash );
+
+		$lat = get_post_meta( $id, 'lat', true );
+		$lng = get_post_meta( $id, 'lng', true );
+
+		$coordinates .= $lat . ',' . $lng . '|';
+	}
+
+	$loc = '';
+
+	if ( is_array( $atts ) && array_key_exists( 'loc', $atts ) ) {
+		$loc = $atts['loc'];
+	}
+
+	$html = '<div id="google-map" data-coordinates="' . $coordinates . '" data-loc="' . $loc . '"></div>';
 
 	return $html;
 }

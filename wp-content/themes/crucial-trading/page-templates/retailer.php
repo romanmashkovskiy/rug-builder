@@ -42,6 +42,12 @@ if ( array_key_exists( 'get_retailers', $_GET ) ) {
 	die();
 }
 
+$results = array();
+
+if ( array_key_exists( 'results', $_GET ) ) {
+	$results = explode( ',', $_GET['results'] );
+}
+
 $showroom_args = array(
 	'post_type' => 'retailer',
 	'tax_query' => array(
@@ -76,18 +82,22 @@ echo do_shortcode( '[logo-nav]' );
 
 echo do_shortcode( '[retailer-search-box]' );
 
-echo do_shortcode( '[google-map]' );
+$loc = '';
 
-if ( array_key_exists( 'results', $_GET ) ) {
+if ( array_key_exists( 'loc', $_GET ) ) {
+	$loc = $_GET['loc'];
+}
 
-	$results = explode( ',', $_GET['results'] );
+echo do_shortcode( '[google-map ' . serialize( $results ) . ' loc="' . $loc . '"]' );
+
+if ( $results ) {
 
 	for ( $i = 0; $i < count( $results ); $i++ ) {
 		$dash = strpos( $results[$i], '-' );
 		$id   = substr( $results[$i], 0, $dash );
 		$dist = substr( $results[$i], $dash + 1 );
 		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '"]' );
-	}	
+	}
 }
 
 if ( $showroom_query->have_posts() ) :
