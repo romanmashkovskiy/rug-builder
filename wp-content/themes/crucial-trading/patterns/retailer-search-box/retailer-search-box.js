@@ -49,11 +49,19 @@ $(document).ready(function() {
 					var distance = distanceBetweenPoints(lat, lng, rLat, rLng);
 
 					if ( distance < 10 ) {
-						retailersInRange.push(retailer.ID);
+
+						var distanceRounded = Math.round( distance * 10 ) / 10;
+						retailersInRange.push([retailer.ID, distanceRounded.toFixed(0)]);
 					}
 				}
 
-				window.location.href = window.location.href + '?results=' + retailersInRange.join(',');
+				var newUrl = window.location.href + '?results=';
+
+				for ( var i2 = 0; i2 < retailersInRange.length; i2++ ) {
+					newUrl += retailersInRange[i2][0] + '-' +   retailersInRange[i2][1] + ',';
+				}
+
+				window.location.href = newUrl;
 			})
 			.fail(function(a, b, c) {
 				console.log(a)

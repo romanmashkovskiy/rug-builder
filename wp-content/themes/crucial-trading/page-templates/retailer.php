@@ -30,17 +30,9 @@ if ( array_key_exists( 'get_retailers', $_GET ) ) {
 		$post    = $query->posts[$i];
 		$post_id = $post->ID;
 
-		$address = rwmb_meta( 'address', array(), $post_id );
-		$phone   = rwmb_meta( 'phone', array(), $post_id );
-		$website = rwmb_meta( 'website', array(), $post_id );
-		$email   = rwmb_meta( 'email  ', array(), $post_id );
 		$lat     = get_post_meta( $post_id, 'lat', true );
 		$lng     = get_post_meta( $post_id, 'lng', true );
 
-		$post->address = $address;
-		$post->phone   = $phone;
-		$post->website = $website;
-		$post->email   = $email;
 		$post->lat     = $lat;
 		$post->lng     = $lng;
 	}
@@ -90,17 +82,20 @@ if ( array_key_exists( 'results', $_GET ) ) {
 
 	$results = explode( ',', $_GET['results'] );
 
-	echo '<pre>';
-	print_r($results);
-	echo '</pre>';
+	for ( $i = 0; $i < count( $results ); $i++ ) {
+		$dash = strpos( $results[$i], '-' );
+		$id   = substr( $results[$i], 0, $dash );
+		$dist = substr( $results[$i], $dash + 1 );
+		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '"]' );
+	}	
 }
 
 if ( $showroom_query->have_posts() ) :
 
 	echo '<h2>Our Showrooms</h2>';
 
-	for ( $i = 0; $i < $showroom_query->post_count; $i++ ) {
-		echo do_shortcode( '[showroom-card type="showroom" id="' . $showroom_query->posts[$i]->ID . '"]' );
+	for ( $i2 = 0; $i2 < $showroom_query->post_count; $i2++ ) {
+		echo do_shortcode( '[showroom-card type="showroom" id="' . $showroom_query->posts[$i2]->ID . '"]' );
 	}
 
 endif;
@@ -109,8 +104,8 @@ if ( $online_query->have_posts() ) :
 
 	echo '<h2>Online Retailers</h2>';
 
-	for ( $i = 0; $i < $online_query->post_count; $i++ ) {
-		echo do_shortcode( '[showroom-card type="online" id="' . $online_query->posts[$i]->ID . '"]' );
+	for ( $i3 = 0; $i3 < $online_query->post_count; $i3++ ) {
+		echo do_shortcode( '[showroom-card type="online" id="' . $online_query->posts[$i3]->ID . '"]' );
 	}
 
 endif;
