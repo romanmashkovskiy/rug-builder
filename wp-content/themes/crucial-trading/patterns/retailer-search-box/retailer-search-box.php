@@ -15,10 +15,11 @@ function retailer_search_box( $atts = '' ) {
 	$html = '';
 
 	$html .= '<div class="retailer-search">';
-	$html .= '<h2>Find Retailers</h2>';
+	$html .= '<h2>Filter Retailers</h2>';
 	$html .= '<span></span>';
 	$html .= '<input type="text" placeholder="Post Code">';
 	$html .= '<button type="button">Search</button>';
+	$html .= '<p class="overseas-partners">Overseas Partners</p>';
 	$html .= '</div>';
 
 	return $html;

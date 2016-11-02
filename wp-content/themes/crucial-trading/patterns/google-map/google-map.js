@@ -18,7 +18,7 @@ $(document).ready(function() {
 		}, function(result, status) {
 
 			var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
-			var zoom   = status === 'OK' ? 10 : 14;
+			var zoom   = status === 'OK' ? 11 : 14;
 
 			createMap( latLng, zoom, $map );
 		});
@@ -33,6 +33,8 @@ $(document).ready(function() {
 		createMap( latLng, 14, $map );
 	}
 });
+
+// http://localhost:8888/crucial-trading/wp-content/uploads/Combined-Shape-Copy.svg
 
 function createMap( latLng, zoom, $map ) {
 

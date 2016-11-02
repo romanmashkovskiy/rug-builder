@@ -1,0 +1,46 @@
+.retailer-search {
+	background: white;
+	padding: 30px 40px 10px;
+	width: 300px;
+
+	h2 {
+		font-size: 24px;
+		text-align: center;
+	}
+
+	span {
+		background: #7C7C7C;
+		display: block;
+		height: 2px;
+		margin: 20px auto 30px;
+		width: 75px;
+	}
+
+	input {
+		background: #F7F7F7;
+		border: 2px solid #DDDDDD;
+		border-radius: 0;
+		padding: 7px 15px;
+		width: 100%;
+	}
+
+	button {
+		background: #383838;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		color: white;
+		margin-top: 50px;
+		padding-bottom: 8px;
+		text-transform: uppercase;
+		width: 100%;
+	}
+
+	.overseas-partners {
+		color: #7C7C7C;
+		cursor: pointer;
+		font-size: 12px;
+		margin-top: 10px;
+		text-align: center;
+	}
+}
