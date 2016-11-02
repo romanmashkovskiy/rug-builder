@@ -15,7 +15,7 @@
 /************** Layout **************/ 
 
 .about {
-	//background-color: $page-header-background;
+	//overflow: hidden;
 }
 
 .about__timeline,
@@ -26,9 +26,10 @@
 	font-size: 0;
 	height: 100vh;
 	text-align: center;
-	z-index: 99;
-	overflow: hidden;
+	z-index: 9;
 	@extend .transition-all;
+	transition: transform 1.3s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 	
 	@media all and (max-width: 769px) {
 		width: 100%;
@@ -37,87 +38,103 @@
 	
 }
 
+/************** Fix Inline Block **************/ 
+
 .about__timeline {
 	margin-right: -4px;
-	background-color: $page-header-background;
 }
 
 .about__scroller {
 	margin-left: -0px;
+}
+
+/************** Backgrounds for scaling **************/ 
+
+.about__timeline__bg,
+.about__scroller__bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	transform: translate3d(0,0,0) scaleX(1);
+	transition: transform 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+}
+
+.about__timeline__bg {
+	background-color: $page-header-background;
+}
+
+.about__scroller__bg {
 	background-color: darken($page-header-background, 2%);
-}
-
-/************** Layout Adjustment & Transition **************/ 
-
-/* Both */ 
-
-.about__timeline,
-.about__scroller {
-	transition: width 0.25s ease-in-out;
-}
-
-/** Timeline **/ 
-
-.show-about-timeline .about__timeline {
-	/*animation: makeWider 1.25s ease-in-out;
-	animation-fill-mode: forwards;*/
-	width: 100%;
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	z-index: 999;
-}
-
-.show-about-timeline .about__scroller {
-	z-index: 9;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
+	visibility: visible;
 }
 
 
-/** Scroller **/ 
+/************** Text Initial Position **************/ 
 
+.about__timeline__text,
+.about__scroller__text {
+	transform: translate3d(0,0,0);
+	transition: transform 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+} 
+
+/************** Animate **************/ 
+
+
+/** Animate - Backgrounds **/ 
+
+.show-about-timeline .about__timeline, 
 .show-about-scroller .about__scroller {
-	//animation: makeWider 1.25s ease-in-out;
-	//animation-fill-mode: forwards;
-	//position: absolute;
-	width: 100%;
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
 	z-index: 999;
 }
 
-.show-about-scroller .about__timeline {
-	z-index: 9;
+.show-about-timeline .about__timeline__bg {
+	transform: translate3d(25%,0,0) scaleX(2.5);
+	transition: transform scale 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	z-index: 9999;
 	position: absolute;
 	top: 0;
-	left: 0;
-	bottom: 0;
 }
 
-/** Keyframes **/ 
-
-@-webkit-keyframes makeWider {
-  0% {
-    width: 50%;
-  }
-  100% {
-    width: 100%;
-  }
+.show-about-timeline .about__scroller__bg {
+	transition: transform scale 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 }
 
-@-webkit-keyframes makeLessWide {
-  0% {
-    width: 100%;
-  }
-  100% {
-    width: 10%;
-  }
+.show-about-scroller .about__scroller__bg {
+	transform: translate3d(-25%,0,0) scaleX(2.5);
+	transition: transform scale 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	z-index: 99;
+}
+
+
+
+/** Animate - Text **/ 
+
+.show-about-timeline .about__timeline__text {
+	z-index: 999999;
+	transform: translate3d(50%,-40%,0);
+	transition: transform 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+}
+
+.show-about-scroller .about__scroller__text {
+	z-index: 999;
+	transform: translate3d(-50%,-40%,0);
+	transition: transform 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+}
+
+.about__scroller__subtitle,
+.about__timeline__subtitle {
+	z-index: 999;
 }
 
 /************** Side Title **************/ 
@@ -126,8 +143,8 @@
 	color: #7C7C7C;
 	position: absolute;
 	left: -70px;
-	top: 33%;
-	z-index: 999;
+	top: 500px;
+	z-index: 99999;
 	
 	@media all and (max-width: 992px) {
 		display: none;
@@ -171,7 +188,7 @@
 .about a::before, 
 .about a::after {
 	color: $main-menu-link-color-dark;
-	//transform: scale(0);
+	text-decoration: none;
 }
 
 .about a::before {
