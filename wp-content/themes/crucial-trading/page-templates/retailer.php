@@ -40,6 +40,8 @@ echo do_shortcode( '[header size="small"]' );
 
 echo do_shortcode( '[logo-nav]' );
 
+echo do_shortcode( '[google-map]' );
+
 if ( $showroom_query->have_posts() ) :
 
 	echo '<h2>Our Showrooms</h2>';
