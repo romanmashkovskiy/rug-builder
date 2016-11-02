@@ -1,9 +1,5 @@
 /**
-<<<<<<< HEAD
- * SASS - Footer 
-=======
- * SASS - Footer  
->>>>>>> footer
+ * Main Website Footer 
  *
  * Contents:
  *
@@ -80,6 +76,15 @@ footer {
     padding-left: 0; } }
 
 /************** Footer Social Columns **************/
+.footer__col--social ul li a {
+  position: relative; }
+
+.footer__col--social i {
+  font-size: 21px;
+  position: absolute;
+  left: 210px;
+  top: 15px; }
+
 /************** Footer Decorative Line **************/
 .footer__line {
   height: 2px;
@@ -103,7 +108,7 @@ footer {
   display: inline-block;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #a0a0a0;
+  color: #878787;
   font-weight: 400;
   padding: 15px;
   -webkit-transition: color background-color ease-in-out 0.25s;

@@ -1,0 +1,182 @@
+/**
+ * About - Timeline 
+ * Full page scrolling timeline 
+ *
+ * Contents:
+ *
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
+ */
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Main Navigation & Footer */
+.vert-align {
+  display: inline-block;
+  float: none;
+  vertical-align: middle; }
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d; }
+
+.vertical-align-table {
+  display: table-cell;
+  float: none;
+  vertical-align: middle; }
+
+.box-shadow {
+  -webkit-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08); }
+
+.rotate {
+  position: absolute;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+.transition-all, .about__timeline,
+.about__scroller {
+  transition: all ease-in-out 0.25s;
+  -webkit-transition: all ease-in-out 0.25s; }
+
+/************** Layout **************/
+.about__timeline,
+.about__scroller {
+  width: 50%;
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+  height: 100vh;
+  text-align: center;
+  z-index: 99;
+  overflow: hidden; }
+  @media all and (max-width: 769px) {
+    .about__timeline,
+    .about__scroller {
+      width: 100%;
+      height: 50vh; } }
+
+.about__timeline {
+  margin-right: -4px;
+  background-color: #383838; }
+
+.about__scroller {
+  margin-left: -0px;
+  background-color: #333333; }
+
+/************** Layout Adjustment & Transition **************/
+/* Both */
+.about__timeline,
+.about__scroller {
+  -webkit-transition: width 0.25s ease-in-out;
+  transition: width 0.25s ease-in-out; }
+
+/** Timeline **/
+.show-about-timeline .about__timeline {
+  /*animation: makeWider 1.25s ease-in-out;
+	animation-fill-mode: forwards;*/
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999; }
+
+.show-about-timeline .about__scroller {
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0; }
+
+/** Scroller **/
+.show-about-scroller .about__scroller {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999; }
+
+.show-about-scroller .about__timeline {
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+/** Keyframes **/
+@-webkit-keyframes makeWider {
+  0% {
+    width: 50%; }
+  100% {
+    width: 100%; } }
+
+@-webkit-keyframes makeLessWide {
+  0% {
+    width: 100%; }
+  100% {
+    width: 10%; } }
+
+/************** Side Title **************/
+.about .side-title {
+  color: #7C7C7C;
+  position: absolute;
+  left: -70px;
+  top: 33%;
+  z-index: 999; }
+  @media all and (max-width: 992px) {
+    .about .side-title {
+      display: none; } }
+
+/************** Typography **************/
+.about h1,
+.about h2 {
+  color: #FFF; }
+
+/** Subtitle **/
+.about .subtitle {
+  font-size: 110px;
+  font-family: "Playfair Display", serif;
+  opacity: 0.02;
+  text-transform: capitalize;
+  color: #FFF;
+  position: absolute; }
+
+.about__timeline__subtitle {
+  bottom: -30px;
+  right: 0; }
+
+.about__scroller__subtitle {
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  right: -30%;
+  bottom: 180px; }
+
+/** Subtitle **/
+.about a,
+.about a::before,
+.about a::after {
+  color: #878787; }
+
+.about a::before {
+  color: #FFF; }
+
+.about a:hover {
+  color: #FFF; }
+
+.about a:target {
+  color: red; }

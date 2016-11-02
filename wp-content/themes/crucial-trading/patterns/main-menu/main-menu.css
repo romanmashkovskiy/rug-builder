@@ -250,7 +250,7 @@ body {
 .main-menu__search label span.main-menu__search__icon {
   position: absolute;
   color: #878787;
-  top: -3px;
+  top: 35%;
   font-size: 20px;
   left: 20px;
   transition: all ease-in-out 0.25s;

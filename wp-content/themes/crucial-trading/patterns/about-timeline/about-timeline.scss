@@ -1,0 +1,187 @@
+/**
+ * About - Timeline 
+ * Full page scrolling timeline 
+ *
+ * Contents:
+ *
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
+ */
+
+@import '../../assets/css/src/_variables.scss';
+@import '../../assets/css/src/_utilities.scss';
+
+
+/************** Layout **************/ 
+
+.about {
+	//background-color: $page-header-background;
+}
+
+.about__timeline,
+.about__scroller {
+	width: 50%;
+	position: relative;
+	display: inline-block;
+	font-size: 0;
+	height: 100vh;
+	text-align: center;
+	z-index: 99;
+	overflow: hidden;
+	@extend .transition-all;
+	
+	@media all and (max-width: 769px) {
+		width: 100%;
+		height: 50vh;
+	}
+	
+}
+
+.about__timeline {
+	margin-right: -4px;
+	background-color: $page-header-background;
+}
+
+.about__scroller {
+	margin-left: -0px;
+	background-color: darken($page-header-background, 2%);
+}
+
+/************** Layout Adjustment & Transition **************/ 
+
+/* Both */ 
+
+.about__timeline,
+.about__scroller {
+	transition: width 0.25s ease-in-out;
+}
+
+/** Timeline **/ 
+
+.show-about-timeline .about__timeline {
+	/*animation: makeWider 1.25s ease-in-out;
+	animation-fill-mode: forwards;*/
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 999;
+}
+
+.show-about-timeline .about__scroller {
+	z-index: 9;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+
+/** Scroller **/ 
+
+.show-about-scroller .about__scroller {
+	//animation: makeWider 1.25s ease-in-out;
+	//animation-fill-mode: forwards;
+	//position: absolute;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 999;
+}
+
+.show-about-scroller .about__timeline {
+	z-index: 9;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+}
+
+/** Keyframes **/ 
+
+@-webkit-keyframes makeWider {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@-webkit-keyframes makeLessWide {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 10%;
+  }
+}
+
+/************** Side Title **************/ 
+
+.about .side-title {
+	color: #7C7C7C;
+	position: absolute;
+	left: -70px;
+	top: 33%;
+	z-index: 999;
+	
+	@media all and (max-width: 992px) {
+		display: none;
+	}
+	
+}
+
+
+/************** Typography **************/ 
+
+.about h1, 
+.about h2 {
+	color: #FFF;
+}
+
+/** Subtitle **/
+
+.about .subtitle {
+	font-size: 110px;
+	font-family: $font-header;
+	opacity: 0.02;
+	text-transform: capitalize;
+	color: #FFF;
+	position: absolute;
+}
+
+.about__timeline__subtitle {
+	bottom: -30px;
+	right: 0;
+}
+
+.about__scroller__subtitle {
+	transform: rotate(270deg);
+	right: -30%;
+	bottom: 180px;
+}
+	
+/** Subtitle **/
+
+.about a,
+.about a::before, 
+.about a::after {
+	color: $main-menu-link-color-dark;
+	//transform: scale(0);
+}
+
+.about a::before {
+	color: #FFF;
+}
+
+.about a:hover {
+	color: #FFF;
+}
+
+.about a:target {
+	color: red;
+}

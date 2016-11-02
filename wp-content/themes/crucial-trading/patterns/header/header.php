@@ -10,6 +10,8 @@
  * @since Crucial Trading 1.0
  */
 
+/************** Normal Header **************/ 
+
 function header_shortcode($atts = '') {
 
 	$header_size = 'small';
@@ -36,6 +38,9 @@ function header_shortcode($atts = '') {
 }
 
 add_shortcode( 'header', 'header_shortcode' );
+
+
+/************** Materials Header **************/ 
 
 function header_material_shortcode($atts = '') {
 
