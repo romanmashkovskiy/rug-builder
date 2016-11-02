@@ -47,17 +47,26 @@
   -webkit-transform: rotate(270deg);
   transform: rotate(270deg); }
 
-.transition-all {
+.transition-all, .about__timeline,
+.about__scroller {
   transition: all ease-in-out 0.25s;
   -webkit-transition: all ease-in-out 0.25s; }
 
+/************** Layout **************/
 .about__timeline,
 .about__scroller {
   width: 50%;
+  position: relative;
   display: inline-block;
   font-size: 0;
   height: 100vh;
-  text-align: center; }
+  text-align: center;
+  z-index: 99; }
+  @media all and (max-width: 769px) {
+    .about__timeline,
+    .about__scroller {
+      width: 100%;
+      height: 50vh; } }
 
 .about__timeline {
   margin-right: -4px;
@@ -66,3 +75,84 @@
 .about__scroller {
   margin-left: -0px;
   background-color: #333333; }
+
+/************** Layout Adjustment & Transition **************/
+/** Timeline **/
+.about__timeline {
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  transition: transform 0.4s, -webkit-transform 0.4s;
+  -webkit-transition-timing-function: cubic-bezier(0.5, 0.5, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.5, 0.5, 0.5, 1); }
+
+.show-about-timeline .about__timeline {
+  -webkit-animation: makeWider 1s ease-in-out;
+  animation: makeWider 1s ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+.show-about-timeline .about__scroller {
+  visibility: hidden; }
+
+/** Scroller **/
+.show-about-scroller .about__scroller {
+  -webkit-animation: makeWider 1s ease-in-out;
+  animation: makeWider 1s ease-in-out;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+.show-about-scroller .about__timeline {
+  visibility: hidden; }
+
+/** Keyframes **/
+@-webkit-keyframes makeWider {
+  0% {
+    width: 50%; }
+  100% {
+    width: 100%; } }
+
+/************** Side Title **************/
+.about .side-title {
+  color: #7C7C7C;
+  position: absolute;
+  left: -70px;
+  top: 33%;
+  z-index: 999; }
+  @media all and (max-width: 992px) {
+    .about .side-title {
+      display: none; } }
+
+/************** Typography **************/
+.about h1,
+.about h2 {
+  color: #FFF; }
+
+/** Subtitle **/
+.about .subtitle {
+  font-size: 110px;
+  font-family: "Playfair Display", serif;
+  opacity: 0.02;
+  text-transform: capitalize;
+  color: #FFF;
+  position: absolute; }
+
+.about__timeline__subtitle {
+  bottom: -30px;
+  right: 0; }
+
+.about__timeline__subtitle {
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+/** Subtitle **/
+.about a,
+.about a::before,
+.about a::after {
+  color: #878787; }
+
+.about a:hover {
+  color: #FFF; }
+
+.about a:target {
+  color: red; }

@@ -17,10 +17,19 @@
 .about__timeline,
 .about__scroller {
 	width: 50%;
+	position: relative;
 	display: inline-block;
 	font-size: 0;
 	height: 100vh;
 	text-align: center;
+	z-index: 99;
+	@extend .transition-all;
+	
+	@media all and (max-width: 769px) {
+		width: 100%;
+		height: 50vh;
+	}
+	
 }
 
 .about__timeline {
@@ -33,9 +42,104 @@
 	background-color: darken($page-header-background, 2%);
 }
 
+/************** Layout Adjustment & Transition **************/ 
+
+/** Timeline **/ 
+
+.about__timeline {
+	transition: transform 0.4s;
+	transition-timing-function: cubic-bezier(0.5,0.5,0.5,1);
+}
+
+.show-about-timeline .about__timeline {
+	animation: makeWider 1s ease-in-out;
+	animation-fill-mode: forwards;
+	//transform: scaleX(1.5) translate3d(0,0,0);
+}
+
+.show-about-timeline .about__scroller {
+	visibility: hidden;
+}
+
+/** Scroller **/ 
+
+.show-about-scroller .about__scroller {
+	animation: makeWider 1s ease-in-out;
+	animation-fill-mode: forwards;
+}
+
+.show-about-scroller .about__timeline {
+	visibility: hidden;
+}
+
+
+/** Keyframes **/ 
+
+@-webkit-keyframes makeWider {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/************** Side Title **************/ 
+
+.about .side-title {
+	color: #7C7C7C;
+	position: absolute;
+	left: -70px;
+	top: 33%;
+	z-index: 999;
+	
+	@media all and (max-width: 992px) {
+		display: none;
+	}
+	
+}
+
+
 /************** Typography **************/ 
 
-h1, 
-h2 {
+.about h1, 
+.about h2 {
 	color: #FFF;
+}
+
+/** Subtitle **/
+
+.about .subtitle {
+	font-size: 110px;
+	font-family: $font-header;
+	opacity: 0.02;
+	text-transform: capitalize;
+	color: #FFF;
+	position: absolute;
+}
+
+.about__timeline__subtitle {
+	bottom: -30px;
+	right: 0;
+}
+
+.about__timeline__subtitle {
+	transform: rotate(270deg);
+}
+	
+/** Subtitle **/
+
+.about a,
+.about a::before, 
+.about a::after {
+	color: $main-menu-link-color-dark;
+	//transform: scale(0);
+}
+
+.about a:hover {
+	color: #FFF;
+}
+
+.about a:target {
+	color: red;
 }
