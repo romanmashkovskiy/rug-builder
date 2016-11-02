@@ -250,7 +250,7 @@ body {
 .main-menu__search label span.main-menu__search__icon {
   position: absolute;
   color: #878787;
-  top: -3px;
+  top: 35%;
   font-size: 20px;
   left: 20px;
   transition: all ease-in-out 0.25s;
@@ -398,11 +398,6 @@ span.main-menu__button__icon::after {
   transition-property: bottom, transform;
   transition-property: bottom, transform, -webkit-transform; }
 
-/*.main-menu__button:hover span.main-menu__button__icon,
-.main-menu__button:hover span.main-menu__button__icon::before,
-.main-menu__button:hover span.main-menu__button__icon::after {
-	background-color: $main-menu-bg-color;
-}*/
 /* Active state - change icon  */
 .main-menu__button.is-active span.main-menu__button__icon {
   background: none; }

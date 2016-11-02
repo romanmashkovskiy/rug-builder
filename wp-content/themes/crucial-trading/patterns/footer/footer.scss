@@ -53,7 +53,15 @@ footer {
 
 /************** Footer Social Columns **************/ 
 
-.footer__col--social {
+.footer__col--social ul li a {
+	position: relative;
+}
+
+.footer__col--social i {
+	font-size: 21px;
+	position: absolute;
+	left: 210px;
+	top: 15px;
 }
 
 
@@ -86,7 +94,7 @@ footer {
 	display: inline-block;
 	letter-spacing: 2.5px;
 	text-transform: uppercase;
-	color: $main-menu-link-color;
+	color: $main-menu-link-color-dark;
 	font-weight: 400;
 	padding: 15px;
 	transition: color background-color ease-in-out 0.25s;
