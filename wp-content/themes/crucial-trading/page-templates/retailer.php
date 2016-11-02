@@ -86,6 +86,15 @@ echo do_shortcode( '[retailer-search-box]' );
 
 echo do_shortcode( '[google-map]' );
 
+if ( array_key_exists( 'results', $_GET ) ) {
+
+	$results = explode( ',', $_GET['results'] );
+
+	echo '<pre>';
+	print_r($results);
+	echo '</pre>';
+}
+
 if ( $showroom_query->have_posts() ) :
 
 	echo '<h2>Our Showrooms</h2>';
