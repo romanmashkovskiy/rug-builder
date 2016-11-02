@@ -1,0 +1,41 @@
+/**
+ * About - Timeline 
+ * Full page scrolling timeline 
+ *
+ * Contents:
+ *
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
+ */
+
+@import '../../assets/css/src/_variables.scss';
+@import '../../assets/css/src/_utilities.scss';
+
+
+/************** Layout **************/ 
+
+.about__timeline,
+.about__scroller {
+	width: 50%;
+	display: inline-block;
+	font-size: 0;
+	height: 100vh;
+	text-align: center;
+}
+
+.about__timeline {
+	margin-right: -4px;
+	background-color: $page-header-background;
+}
+
+.about__scroller {
+	margin-left: -0px;
+	background-color: darken($page-header-background, 2%);
+}
+
+/************** Typography **************/ 
+
+h1, 
+h2 {
+	color: #FFF;
+}
