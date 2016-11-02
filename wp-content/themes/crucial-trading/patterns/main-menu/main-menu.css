@@ -398,11 +398,6 @@ span.main-menu__button__icon::after {
   transition-property: bottom, transform;
   transition-property: bottom, transform, -webkit-transform; }
 
-/*.main-menu__button:hover span.main-menu__button__icon,
-.main-menu__button:hover span.main-menu__button__icon::before,
-.main-menu__button:hover span.main-menu__button__icon::after {
-	background-color: $main-menu-bg-color;
-}*/
 /* Active state - change icon  */
 .main-menu__button.is-active span.main-menu__button__icon {
   background: none; }
