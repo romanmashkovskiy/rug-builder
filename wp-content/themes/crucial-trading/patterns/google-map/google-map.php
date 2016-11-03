@@ -39,7 +39,13 @@ function google_map( $atts = '' ) {
 		$loc = $atts['loc'];
 	}
 
-	$html = '<div id="google-map" data-coordinates="' . $coordinates . '" data-loc="' . $loc . '"></div>';
+	$country = '';
+
+	if ( is_array( $atts ) && array_key_exists( 'country', $atts ) ) {
+		$country = $atts['country'];
+	}
+
+	$html = '<div id="google-map" data-coordinates="' . $coordinates . '" data-loc="' . $loc . '" data-country="' . $country . '"></div>';
 
 	return $html;
 }

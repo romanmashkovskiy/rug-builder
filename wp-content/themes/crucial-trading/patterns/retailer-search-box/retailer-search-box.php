@@ -46,7 +46,7 @@ function retailer_search_box( $atts = '' ) {
 	$html .= '<option selected disabled">Select a Country</option>';
 
 	for ( $i2 = 0; $i2 < count( $countries ); $i2++ ) {
-		$html .= '<option value="' . strtolower( $countries[$i2] ) . '">' . $countries[$i2] . '</option>';
+		$html .= '<option value="' . $countries[$i2] . '">' . $countries[$i2] . '</option>';
 	}
 
 	$html .= '</select>';

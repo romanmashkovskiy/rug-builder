@@ -32,9 +32,11 @@ if ( array_key_exists( 'get_retailers', $_GET ) ) {
 
 		$lat     = get_post_meta( $post_id, 'lat', true );
 		$lng     = get_post_meta( $post_id, 'lng', true );
+		$country = rwmb_meta( 'country', array(), $post_id );
 
 		$post->lat     = $lat;
 		$post->lng     = $lng;
+		$post->country = $country;
 	}
 
 	echo json_encode( $query->posts );
@@ -46,6 +48,12 @@ $results = array();
 
 if ( array_key_exists( 'results', $_GET ) ) {
 	$results = explode( ',', $_GET['results'] );
+}
+
+$overseas_result = false;
+
+if ( array_key_exists( 'country', $_GET ) ) {
+	$overseas_result = array_key_exists( 'id', $_GET ) ? $_GET['id'] : 0;
 }
 
 $showroom_args = array(
@@ -88,7 +96,13 @@ if ( array_key_exists( 'loc', $_GET ) ) {
 	$loc = $_GET['loc'];
 }
 
-echo do_shortcode( '[google-map ' . serialize( $results ) . ' loc="' . $loc . '"]' );
+$country = '';
+
+if ( array_key_exists( 'country', $_GET ) ) {
+	$country = $_GET['country'];
+}
+
+echo do_shortcode( '[google-map ' . serialize( $results ) . ' loc="' . $loc . '" country="' . $country . '"]' );
 
 if ( $results ) {
 
@@ -104,6 +118,10 @@ if ( $results ) {
 	}
 
 	echo '</div>';
+}
+
+if ( $overseas_result ) {
+	echo do_shortcode( '[overseas-retailer-card id="' . $overseas_result . '"]' );
 }
 
 if ( $showroom_query->have_posts() ) :

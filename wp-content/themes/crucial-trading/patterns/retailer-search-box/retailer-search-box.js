@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 	$('.retailer-search button').on('click', function() {
 
-		if ( $('.retailer-search input').length === 1 ) {
+		if ( $('.overseas-partners').length === 1 ) {
 			
 			var postCode = $('.retailer-search input').val();
 
@@ -73,17 +73,27 @@ $(document).ready(function() {
 			});
 
 		}
-		else if ( $('.retailer-search select').length === 1 ) {
+		else if ( $('.uk-retailers').length === 1 ) {
 			
 			var country = $('.retailer-search select').val();
 
 			$.ajax({
 				type : 'GET',
-				url  : window.location.href + '?get_retailers=overseas&country=' + country
+				url  : window.location.href + '?get_retailers=overseas'
 			})
 			.done(function(result) {
 
-				var retailer = JSON.parse(result);
+				var retailers = JSON.parse(result);
+				var retailer;
+
+				for ( var i = 0; i < retailers.length; i++ ) {
+
+					if ( retailers[i].country === country ) {
+						retailer = retailers[i];
+						break;
+					}
+				}
+
 				var newUrl   = window.location.href + '?country=' + country + '&id=' + retailer.ID;
 
 				window.location.href = newUrl;

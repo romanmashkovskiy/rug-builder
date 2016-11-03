@@ -4,7 +4,8 @@ $(document).ready(function() {
 
 	var $map = document.getElementById('google-map');
 
-	var loc = $($map).data('loc');
+	var loc     = $($map).data('loc');
+	var country = $($map).data('country');
 
 	if ( loc !== '' ) {
 
@@ -19,6 +20,20 @@ $(document).ready(function() {
 
 			var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
 			var zoom   = status === 'OK' ? 11 : 14;
+
+			createMap( latLng, zoom, $map );
+		});
+	}
+	else if ( country !== '' ) {
+
+		var geocoder = new google.maps.Geocoder();
+
+		geocoder.geocode({ 
+			'address'               : country
+		}, function(result, status) {
+
+			var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
+			var zoom   = status === 'OK' ? 5 : 14;
 
 			createMap( latLng, zoom, $map );
 		});
@@ -40,6 +55,8 @@ function createMap( latLng, zoom, $map ) {
 
 	var coordStr    = $($map).data('coordinates');
 	var coordinates = coordStr !== '' ? coordStr.split('|') : false;
+
+	var country = $($map).data('country');
 
 	var map = new google.maps.Map($map, {
 		center           : latLng,
@@ -65,5 +82,12 @@ function createMap( latLng, zoom, $map ) {
 				});
 			}
 		}
+	}
+	else if ( country !== '' ) {
+		
+		var marker = new google.maps.Marker({
+			position: latLng,
+			map: map
+		});
 	}
 }
