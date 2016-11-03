@@ -128,8 +128,10 @@ function crucial_trading_scripts() {
 	wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/css/dist/master.min.css', false );
 
 	wp_enqueue_script( 'super-slider', get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"', false );
+	wp_enqueue_script( 'skrollr', get_template_directory_uri() . '/assets/js/vendor/skrollr.min.js"', false );
 	wp_enqueue_script( 'bx-slider', get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js', false );
 	wp_enqueue_script( 'zoom', get_template_directory_uri() . '/assets/js/vendor/jquery.elevatezoom.min.js', false );
+	wp_enqueue_script( 'wow', get_template_directory_uri() . '/assets/js/vendor/wow.min.js', false );
 	wp_enqueue_script( 'master', get_template_directory_uri() . '/assets/js/dist/master.min.js', false );
 }
 add_action( 'wp_enqueue_scripts', 'crucial_trading_scripts' );
