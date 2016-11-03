@@ -18,7 +18,7 @@ function google_map( $atts = '' ) {
 		$attr_ids = unserialize( $atts[0] );
 	}
 
-	$ids = array_filter( $attr_ids );
+	$ids = is_array( $attr_ids ) ? array_filter( $attr_ids ) : array();
 
 	$coordinates = '';
 

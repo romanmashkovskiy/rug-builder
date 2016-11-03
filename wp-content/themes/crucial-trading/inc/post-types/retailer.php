@@ -87,6 +87,11 @@ function retailer_meta_boxes( $meta_boxes ) {
 				'id'        => 'website',
 				'type'      => 'url',
 			),
+			array(
+				'name'      => 'Country',
+				'id'        => 'country',
+				'type'      => 'text',
+			),
 		),
 	);
 
