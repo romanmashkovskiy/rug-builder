@@ -1,0 +1,29 @@
+.showroom-card {
+  background: white;
+  float: left;
+  height: 400px;
+  margin-left: 4%;
+  padding: 10px;
+  width: 44%; }
+  .showroom-card .border-div {
+    border: 2px solid #F7F7F7;
+    height: 100%;
+    padding: 50px;
+    position: relative; }
+  .showroom-card .card__title {
+    margin-bottom: 25px; }
+  .showroom-card .card__underline {
+    background: #BBBBBB;
+    display: block;
+    height: 2px;
+    margin-bottom: 45px;
+    width: 100px; }
+  .showroom-card.showroom .card__address {
+    float: left;
+    width: 60%; }
+  .showroom-card .card__contact {
+    float: left;
+    width: 40%; }
+  .showroom-card .card__link {
+    bottom: 10px;
+    position: absolute; }
