@@ -110,6 +110,10 @@ if ( $results ) {
 	echo '<span></span>';
 	echo '<div class="clearfix">';
 
+	if ( count( $results ) == 1 ) {
+		echo '<h3 style="margin-left:4%;">Sorry, we could not find any retailers in your area.</h3>';
+	}
+
 	for ( $i = 0; $i < count( $results ); $i++ ) {
 		$dash = strpos( $results[$i], '-' );
 		$id   = substr( $results[$i], 0, $dash );
