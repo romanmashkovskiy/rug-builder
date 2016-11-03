@@ -96,13 +96,33 @@ $(document).ready(function() {
 		}			
 	});
 
-	$('.overseas-partners').on('click', function() {
+	document.querySelector('.overseas-partners').addEventListener('click', overseasPartners);
 
-		var select = '<select><option value="A">A</option><option value="B">B</option>';
+	function overseasPartners() {
 
-		$('.retailer-search input').after(select);
-		$('.retailer-search input').remove();
-	})
+		$('.retailer-search input').hide();
+		$('.retailer-search select').show();
+
+		$(this).text('UK Retailers');
+		$(this).removeClass('overseas-partners');
+		$(this).addClass('uk-retailers');
+
+		document.querySelector('.uk-retailers').removeEventListener('click', overseasPartners);
+		document.querySelector('.uk-retailers').addEventListener('click', ukRetailers);
+	}
+
+	function ukRetailers() {
+
+		$('.retailer-search select').hide();
+		$('.retailer-search input').show();
+
+		$(this).text('Overseas Partners');
+		$(this).removeClass('uk-retailers');
+		$(this).addClass('overseas-partners');
+
+		document.querySelector('.overseas-partners').removeEventListener('click', ukRetailers);
+		document.querySelector('.overseas-partners').addEventListener('click', overseasPartners);
+	}
 });
 
 function distanceBetweenPoints(lat1, lon1, lat2, lon2) {

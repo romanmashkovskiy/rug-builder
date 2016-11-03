@@ -36,7 +36,12 @@
 		width: 100%;
 	}
 
-	.overseas-partners {
+	select {
+		display: none;
+	}
+
+	.overseas-partners,
+	.uk-retailers {
 		color: #7C7C7C;
 		cursor: pointer;
 		font-size: 12px;
