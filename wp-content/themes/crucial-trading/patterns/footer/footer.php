@@ -1,11 +1,7 @@
 <?php
 /**
-<<<<<<< HEAD
  * Template Name: Footer
  * Main Website Footer 
-=======
- * Template Name: Footer 
->>>>>>> footer
  *
  * Contents:
  *

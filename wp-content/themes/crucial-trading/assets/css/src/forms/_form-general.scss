@@ -5,3 +5,34 @@ button {
 	-webkit-transform-style: preserve-3d;
 	-webkit-font-smoothing: antialiased; 
 }
+
+input {
+	background: #F7F7F7 !important;
+	border: 1px solid #E6E6E6 !important;
+	border-radius: 0 !important;
+	font-family: $font-copy !important;
+	padding: 8px 20px !important;
+}
+
+select {
+	-webkit-appearance: none;
+	appearance: none;
+	background: #F7F7F7;
+	border: 2px solid #DDDDDD;
+	border-radius: 0;
+	font-family: $font-copy;
+	padding: 7px 15px;
+}
+
+button {
+	background: #383838;
+	border: none;
+	border-radius: 0;
+	box-shadow: none !important;
+	color: white;
+	font-family: $font-sub-header;
+	letter-spacing: 3px;
+	padding-bottom: 8px;
+	text-shadow: none;
+	text-transform: uppercase;
+}
