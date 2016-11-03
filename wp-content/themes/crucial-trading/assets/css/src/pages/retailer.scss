@@ -17,6 +17,14 @@
 			margin-left: 150px;
 			width: 75px;
 		}
+
+		@media screen and (max-width: 768px) {
+			margin-left: 4%;
+
+			& + span {
+				margin-left: 4%;
+			}
+		}
 	}
 
 	.retailer-search {

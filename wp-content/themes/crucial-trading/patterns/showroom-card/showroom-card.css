@@ -26,4 +26,9 @@
     width: 40%; }
   .showroom-card .card__link {
     bottom: 10px;
+    left: 50px;
     position: absolute; }
+  @media screen and (max-width: 992px) {
+    .showroom-card {
+      margin-bottom: 30px;
+      width: 92%; } }

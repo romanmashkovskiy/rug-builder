@@ -45,3 +45,6 @@
     .retailer.overseas .retailer_directions {
       bottom: 0px;
       position: absolute; }
+  @media screen and (max-width: 992px) {
+    .retailer {
+      width: 92%; } }
