@@ -65,9 +65,25 @@ function createMap( latLng, zoom, $map ) {
 		zoomControl      : true
 	});
 
-	if ( coordinates ) {
+	var styles = [
+		{
+			stylers: [
+				{ hue        : '#64B253' },
+				{ saturation : -80 }
+			]
+		}
+	];
 
-		console.log(1)
+	map.setOptions({ styles: styles });
+
+	var image = {
+		scaledSize : new google.maps.Size(22, 30),
+		origin : new google.maps.Point(0, 0),
+		anchor : new google.maps.Point(11, 30),
+		url    : 'http://localhost:8888/crucial-trading/wp-content/uploads/Combined-Shape-Copy.svg'
+	}
+
+	if ( coordinates ) {
 
 		for ( var i = 0; i < coordinates.length; i++ ) {
 
@@ -79,8 +95,9 @@ function createMap( latLng, zoom, $map ) {
 				var lng = parseFloat(coordinates[i].substring(comma + 1, coordinates[i].length));
 
 				var marker = new google.maps.Marker({
-					position: { lat: lat, lng: lng },
-					map: map
+					position : { lat: lat, lng: lng },
+					map      : map,
+					icon     : image
 				});
 			}
 		}
@@ -88,8 +105,9 @@ function createMap( latLng, zoom, $map ) {
 	else if ( overseas && overseas !== '' ) {
 		
 		var marker = new google.maps.Marker({
-			position: latLng,
-			map: map
+			position : latLng,
+			map      : map,
+			icon     : image
 		});
 	}
 }
