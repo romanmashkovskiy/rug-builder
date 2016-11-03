@@ -32,7 +32,7 @@ $(document).ready(function() {
 
 				$.ajax({
 					type : 'GET',
-					url  : window.location.href + '?get_retailers=retailer'
+					url  : window.location.origin + window.location.pathname + '?get_retailers=retailer'
 				})
 				.done(function(result) {
 					
@@ -55,7 +55,7 @@ $(document).ready(function() {
 						}
 					}
 
-					var newUrl = window.location.href + '?results=';
+					var newUrl = window.location.origin + window.location.pathname + '?results=';
 
 					for ( var i2 = 0; i2 < retailersInRange.length; i2++ ) {
 						newUrl += retailersInRange[i2][0] + '-' +   retailersInRange[i2][1] + ',';
@@ -79,7 +79,7 @@ $(document).ready(function() {
 
 			$.ajax({
 				type : 'GET',
-				url  : window.location.href + '?get_retailers=overseas'
+				url  : window.location.origin + window.location.pathname + '?get_retailers=overseas'
 			})
 			.done(function(result) {
 
@@ -94,7 +94,7 @@ $(document).ready(function() {
 					}
 				}
 
-				var newUrl   = window.location.href + '?country=' + country + '&id=' + retailer.ID;
+				var newUrl   = window.location.origin + window.location.pathname + '?country=' + country + '&id=' + retailer.ID;
 
 				window.location.href = newUrl;
 			})

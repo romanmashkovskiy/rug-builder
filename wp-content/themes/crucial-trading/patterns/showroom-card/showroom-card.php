@@ -24,7 +24,22 @@ function showroom_card( $atts = '' ) {
 		return $html;
 	}
 
-	$title = $type == 'showroom' ? 'Crucial Trading - Notting Hill' : 'Online Retailer 1';
+	$post_id = 0;
+
+	if ( is_array( $atts ) && array_key_exists( 'id', $atts ) ) {
+		$post_id = $atts['id'];
+	}
+
+	$title = get_the_title( $post_id );
+
+	$address = rwmb_meta( 'address', array(), $post_id );
+	$phone   = rwmb_meta( 'phone', array(), $post_id );
+	$website = rwmb_meta( 'website', array(), $post_id );
+	$email   = rwmb_meta( 'email', array(), $post_id );
+
+	$lat = get_post_meta( $post_id, 'lat', true );
+	$lng = get_post_meta( $post_id, 'lng', true );
+	$url = 'http://maps.google.com/maps?q=' . $lat . ',' . $lng . '&ll=' . $lat . ',' . $lng . '&z=12';
 
 	$html .= '<div class="showroom-card ' . $type . '">';
 	$html .= '<div class="border-div clearfix">';
@@ -33,20 +48,20 @@ function showroom_card( $atts = '' ) {
 
 	if ( $type == 'showroom' ) {
 
-		$html .= '<p class="card__address">79 Westbourne Park Rd<br>London<br>W25QH</p>';
+		$html .= '<p class="card__address">' . nl2br( $address ) . '</p>';
 		$html .= '<div class="card__contact">';
-		$html .= '<p class="card__phone">020 7221 9000</p>';
-		$html .= '<p class="card__email">Send Email</p>';
+		$html .= '<p class="card__phone">' . $phone . '</p>';
+		$html .= '<a href="mailto:' . $email . '" class="card__email">Send Email</a>';
 		$html .= '</div>';
-		$html .= '<a href="#" class="card__link">Get Directions</a>';
+		$html .= '<a href="' . $url . '" class="card__link">Get Directions</a>';
 
 	}
 	else if ( $type == 'online' ) {
 
-		$html .= "<p class='card__address'>www.onlineretailer1.co.uk</p>";
-		$html .= '<p class="card__phone">020 7221 9000</p>';
-		$html .= '<p class="card__email">Send Email</p>';
-		$html .= '<a href="#" class="card__link">Visit Website</a>';
+		$html .= '<p class="card__address">' . $website . '</p>';
+		$html .= '<p class="card__phone">' . $phone . '</p>';
+		$html .= '<a href="mailto:' . $email . '" class="card__email">Send Email</a>';
+		$html .= '<a href="' . $website . '" class="card__link">Visit Website</a>';
 	}
 
 	$html .= '</div>';

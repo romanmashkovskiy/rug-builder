@@ -38,6 +38,10 @@ function retailer_card( $atts = '' ) {
 	$email   = rwmb_meta( 'email  ', array(), $post_id );
 	$country = rwmb_meta( 'country', array(), $post_id );
 
+	$lat = get_post_meta( $post_id, 'lat', true );
+	$lng = get_post_meta( $post_id, 'lng', true );
+	$url = 'http://maps.google.com/maps?q=' . $lat . ',' . $lng . '&ll=' . $lat . ',' . $lng . '&z=12';
+
 	if ( $distance != 'overseas' ) {
 
 		$html .= '<div class="retailer">';
@@ -50,7 +54,7 @@ function retailer_card( $atts = '' ) {
 		if ( $email != '' ) {
 			$html .= '<a class="retailer__email" href="mailto:' . $email . '"><p>Send Email</p></a>';
 		}
-		$html .= '<a class="retailer_directions" href="#">Get Directions</a>';
+		$html .= '<a class="retailer_directions" target="_blank" href="' . $url . '">Get Directions</a>';
 		if ( $distance ) {
 			$html .= '<h3 class="retailer_distance">' . $distance . ' Miles</h3>';
 		}
@@ -77,7 +81,7 @@ function retailer_card( $atts = '' ) {
 			$html .= '<a class="retailer__email" href="mailto:' . $email . '"><p>Send Email</p></a>';
 		}
 		$html .= '</div>';
-		$html .= '<a class="retailer_directions" href="#">Get Directions</a>';
+		$html .= '<a class="retailer_directions" href="' . $url . '">Get Directions</a>';
 		$html .= '</div>';
 		$html .= '</div>';
 	}

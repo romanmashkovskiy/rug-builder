@@ -51,7 +51,7 @@ function regiser_retailer_post_type() {
 		'hierarchical'        => false,
 		'menu_position'       => 5,
 		'menu_icon'           => 'dashicons-images-alt2',
-		'supports'            => array( 'title' ),
+		'supports'            => array( 'title', 'page-attributes' ),
 	); 
 
 	register_post_type( 'retailer', $args );

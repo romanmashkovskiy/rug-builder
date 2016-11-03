@@ -14,6 +14,8 @@ if ( array_key_exists( 'get_retailers', $_GET ) ) {
 
 	$args = array(
 		'post_type' => 'retailer',
+		'orderby'   => 'menu_order',
+		'order'     => 'ASC',
 		'tax_query' => array(
 			array(
 				'taxonomy' => 'retailer_type',
@@ -58,6 +60,8 @@ if ( array_key_exists( 'country', $_GET ) ) {
 
 $showroom_args = array(
 	'post_type' => 'retailer',
+	'orderby'   => 'menu_order',
+	'order'     => 'ASC',
 	'tax_query' => array(
 		array(
 			'taxonomy' => 'retailer_type',
@@ -71,6 +75,8 @@ $showroom_query = new WP_Query( $showroom_args );
 
 $online_args = array(
 	'post_type' => 'retailer',
+	'orderby'   => 'menu_order',
+	'order'     => 'ASC',
 	'tax_query' => array(
 		array(
 			'taxonomy' => 'retailer_type',
