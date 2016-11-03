@@ -125,6 +125,7 @@ function crucial_trading_scripts() {
 
 	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/vendor/bootstrap.min.css', false );
 	wp_enqueue_style( 'animate', get_template_directory_uri() . '/assets/css/vendor/animate.min.css', false );
+	wp_enqueue_style( 'flags', get_template_directory_uri() . '/assets/css/vendor/flag-icon.min.css', false );
 	wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/css/dist/master.min.css', false );
 
 	wp_enqueue_script( 'super-slider', get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"', false );

@@ -20,3 +20,28 @@
   .retailer .retailer_distance {
     bottom: 20px;
     position: absolute; }
+  .retailer.overseas {
+    float: none;
+    margin: 100px auto;
+    width: 700px; }
+    .retailer.overseas .border-div {
+      height: 400px;
+      padding-left: 200px;
+      position: relative; }
+    .retailer.overseas .flag-icon {
+      font-size: 20px;
+      left: 100px;
+      margin-top: 3px;
+      position: absolute; }
+    .retailer.overseas .retailer__address {
+      float: left;
+      width: 60%; }
+    .retailer.overseas .retailer__contact {
+      float: left;
+      width: 40%; }
+    .retailer.overseas .retailer__website {
+      line-height: 1.6;
+      margin-bottom: 20px; }
+    .retailer.overseas .retailer_directions {
+      bottom: 0px;
+      position: absolute; }

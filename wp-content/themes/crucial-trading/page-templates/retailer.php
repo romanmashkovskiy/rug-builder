@@ -96,13 +96,7 @@ if ( array_key_exists( 'loc', $_GET ) ) {
 	$loc = $_GET['loc'];
 }
 
-$country = '';
-
-if ( array_key_exists( 'country', $_GET ) ) {
-	$country = $_GET['country'];
-}
-
-echo do_shortcode( '[google-map ' . serialize( $results ) . ' loc="' . $loc . '" country="' . $country . '"]' );
+echo do_shortcode( '[google-map ' . serialize( $results ) . ' loc="' . $loc . '" overseas="' . $overseas_result . '"]' );
 
 if ( $results ) {
 
@@ -121,7 +115,7 @@ if ( $results ) {
 }
 
 if ( $overseas_result ) {
-	echo do_shortcode( '[overseas-retailer-card id="' . $overseas_result . '"]' );
+	echo do_shortcode( '[retailer-card id="' . $overseas_result . '" distance="overseas"]' );
 }
 
 if ( $showroom_query->have_posts() ) :

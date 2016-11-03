@@ -39,13 +39,13 @@ function google_map( $atts = '' ) {
 		$loc = $atts['loc'];
 	}
 
-	$country = '';
+	$overseas = '';
 
-	if ( is_array( $atts ) && array_key_exists( 'country', $atts ) ) {
-		$country = $atts['country'];
+	if ( is_array( $atts ) && array_key_exists( 'overseas', $atts ) ) {
+		$overseas = rwmb_meta( 'address', array(), $atts['overseas'] );
 	}
 
-	$html = '<div id="google-map" data-coordinates="' . $coordinates . '" data-loc="' . $loc . '" data-country="' . $country . '"></div>';
+	$html = '<div id="google-map" data-coordinates="' . $coordinates . '" data-loc="' . $loc . '" data-overseas="' . $overseas . '"></div>';
 
 	return $html;
 }

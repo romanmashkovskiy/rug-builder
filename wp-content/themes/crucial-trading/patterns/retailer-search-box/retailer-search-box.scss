@@ -37,7 +37,14 @@
 	}
 
 	select {
+		-webkit-appearance: none;
+		appearance: none;
+		background: #F7F7F7;
+		border: 2px solid #DDDDDD;
+		border-radius: 0;
 		display: none;
+		padding: 7px 15px;
+		width: 100%;
 	}
 
 	.overseas-partners,
