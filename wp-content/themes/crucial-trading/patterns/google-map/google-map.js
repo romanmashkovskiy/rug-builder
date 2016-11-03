@@ -2,50 +2,53 @@ var $ = jQuery;
 
 $(document).ready(function() {
 
-	var $map = document.getElementById('google-map');
+	if ( $('body').hasClass('page-template-retailer') ) {
 
-	var loc     = $($map).data('loc');
-	var overseas = $($map).data('overseas');
+		var $map = document.getElementById('google-map');
 
-	if ( loc !== '' ) {
+		var loc     = $($map).data('loc');
+		var overseas = $($map).data('overseas');
 
-		var geocoder = new google.maps.Geocoder();
+		if ( loc !== '' ) {
 
-		geocoder.geocode({ 
-			'address'               : loc,
-			'componentRestrictions' : {
-				country: 'UK'
-			}
-		}, function(result, status) {
+			var geocoder = new google.maps.Geocoder();
 
-			var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
-			var zoom   = status === 'OK' ? 11 : 14;
+			geocoder.geocode({ 
+				'address'               : loc,
+				'componentRestrictions' : {
+					country: 'UK'
+				}
+			}, function(result, status) {
 
-			createMap( latLng, zoom, $map );
-		});
-	}
-	else if ( overseas !== '' ) {
+				var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
+				var zoom   = status === 'OK' ? 11 : 14;
 
-		var geocoder = new google.maps.Geocoder();
+				createMap( latLng, zoom, $map );
+			});
+		}
+		else if ( overseas !== '' ) {
 
-		geocoder.geocode({ 
-			'address'               : overseas
-		}, function(result, status) {
+			var geocoder = new google.maps.Geocoder();
 
-			var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
-			var zoom   = status === 'OK' ? 5 : 14;
+			geocoder.geocode({ 
+				'address'               : overseas
+			}, function(result, status) {
 
-			createMap( latLng, zoom, $map );
-		});
-	}
-	else {
+				var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
+				var zoom   = status === 'OK' ? 5 : 14;
 
-		var latLng = {
-			lat: 51.475, 
-			lng: -0.1875
-		};
+				createMap( latLng, zoom, $map );
+			});
+		}
+		else {
 
-		createMap( latLng, 14, $map );
+			var latLng = {
+				lat: 51.475, 
+				lng: -0.1875
+			};
+
+			createMap( latLng, 14, $map );
+		}
 	}
 });
 
@@ -54,7 +57,7 @@ $(document).ready(function() {
 function createMap( latLng, zoom, $map ) {
 
 	var coordStr    = $($map).data('coordinates');
-	var coordinates = coordStr !== '' ? coordStr.split('|') : false;
+	var coordinates = coordStr && coordStr !== '' ? coordStr.split('|') : false;
 
 	var overseas = $($map).data('overseas');
 

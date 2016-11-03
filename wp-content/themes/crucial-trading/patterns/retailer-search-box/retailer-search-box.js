@@ -120,7 +120,11 @@ $(document).ready(function() {
 		}			
 	});
 
-	document.querySelector('.overseas-partners').addEventListener('click', overseasPartners);
+	var $overseasPartners = document.querySelector('.overseas-partners');
+
+	if ( $overseasPartners ) {
+		$overseasPartners.addEventListener('click', overseasPartners);
+	}
 
 	function overseasPartners() {
 
@@ -131,8 +135,12 @@ $(document).ready(function() {
 		$(this).removeClass('overseas-partners');
 		$(this).addClass('uk-retailers');
 
-		document.querySelector('.uk-retailers').removeEventListener('click', overseasPartners);
-		document.querySelector('.uk-retailers').addEventListener('click', ukRetailers);
+		var $ukRetailers = document.querySelector('.uk-retailers');
+
+		if ( $ukRetailers ) {
+			$ukRetailers.removeEventListener('click', overseasPartners);
+			$ukRetailers.addEventListener('click', ukRetailers);
+		}
 	}
 
 	function ukRetailers() {
@@ -144,8 +152,12 @@ $(document).ready(function() {
 		$(this).removeClass('uk-retailers');
 		$(this).addClass('overseas-partners');
 
-		document.querySelector('.overseas-partners').removeEventListener('click', ukRetailers);
-		document.querySelector('.overseas-partners').addEventListener('click', overseasPartners);
+		var $overseasPartners = document.querySelector('.overseas-partners');
+
+		if ( $overseasPartners ) {
+			$overseasPartners.removeEventListener('click', ukRetailers);
+			$overseasPartners.addEventListener('click', overseasPartners);
+		}
 	}
 });
 
