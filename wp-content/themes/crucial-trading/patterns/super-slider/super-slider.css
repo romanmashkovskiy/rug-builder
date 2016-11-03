@@ -25,7 +25,7 @@
       margin-bottom: 30px;
       position: static !important;
       width: 500px !important;
-      z-index: 99; }
+      z-index: 99 !important; }
   #super-slider .slide.opening svg {
     cursor: pointer; }
   #super-slider .slide.opening svg g,
