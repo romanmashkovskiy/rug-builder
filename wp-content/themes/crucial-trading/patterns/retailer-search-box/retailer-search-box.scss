@@ -1,3 +1,5 @@
+@import '../../assets/css/src/_variables.scss';
+
 .retailer-search {
 	background: white;
 	padding: 30px 40px 10px;
@@ -12,15 +14,16 @@
 		background: #7C7C7C;
 		display: block;
 		height: 2px;
-		margin: 20px auto 30px;
+		margin: 15px auto 35px;
 		width: 75px;
 	}
 
 	input {
 		background: #F7F7F7;
-		border: 2px solid #DDDDDD;
+		border: 1px solid #E6E6E6;
 		border-radius: 0;
-		padding: 7px 15px;
+		font-family: $font-copy;
+		padding: 8px 20px;
 		width: 100%;
 	}
 
@@ -30,8 +33,11 @@
 		border-radius: 0;
 		box-shadow: none;
 		color: white;
+		font-family: $font-sub-header;
+		letter-spacing: 3px;
 		margin-top: 50px;
 		padding-bottom: 8px;
+		text-shadow: none;
 		text-transform: uppercase;
 		width: 100%;
 	}
@@ -43,6 +49,7 @@
 		border: 2px solid #DDDDDD;
 		border-radius: 0;
 		display: none;
+		font-family: $font-copy;
 		padding: 7px 15px;
 		width: 100%;
 	}
