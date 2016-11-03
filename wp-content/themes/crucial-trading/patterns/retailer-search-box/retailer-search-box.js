@@ -54,12 +54,26 @@ $(document).ready(function() {
 							retailersInRange.push([retailer.ID, distanceRounded.toFixed(0)]);
 						}
 					}
-
+/*
 					var newUrl = window.location.origin + window.location.pathname + '?results=';
 
 					for ( var i2 = 0; i2 < retailersInRange.length; i2++ ) {
 						newUrl += retailersInRange[i2][0] + '-' +   retailersInRange[i2][1] + ',';
 					}
+
+					newUrl += '&loc=' + encodeURIComponent(postCode);
+*/
+					var urlBase = window.location.origin + window.location.pathname + '?results=';
+
+					var results = '';
+
+					for ( var i2 = 0; i2 < retailersInRange.length; i2++ ) {
+						results += retailersInRange[i2][0] + '-' +   retailersInRange[i2][1] + ',';
+					}
+
+					var resultsEnc = window.btoa(results);
+
+					var newUrl = urlBase + resultsEnc;
 
 					newUrl += '&loc=' + encodeURIComponent(postCode);
 

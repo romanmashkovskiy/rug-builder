@@ -49,7 +49,7 @@ if ( array_key_exists( 'get_retailers', $_GET ) ) {
 $results = array();
 
 if ( array_key_exists( 'results', $_GET ) ) {
-	$results = explode( ',', $_GET['results'] );
+	$results = explode( ',', base64_decode( $_GET['results'] ) );
 }
 
 $overseas_result = false;
@@ -124,32 +124,35 @@ if ( $overseas_result ) {
 	echo do_shortcode( '[retailer-card id="' . $overseas_result . '" distance="overseas"]' );
 }
 
-if ( $showroom_query->have_posts() ) :
+if ( !$overseas_result ) {
 
-	echo '<h2 class="page-subtitle">Our Showrooms</h2>';
-	echo '<span></span>';
-	echo '<div class="clearfix">';
+	if ( $showroom_query->have_posts() ) :
 
-	for ( $i2 = 0; $i2 < $showroom_query->post_count; $i2++ ) {
-		echo do_shortcode( '[showroom-card type="showroom" id="' . $showroom_query->posts[$i2]->ID . '"]' );
-	}
+		echo '<h2 class="page-subtitle">Our Showrooms</h2>';
+		echo '<span></span>';
+		echo '<div class="clearfix">';
 
-	echo '</div>';
+		for ( $i2 = 0; $i2 < $showroom_query->post_count; $i2++ ) {
+			echo do_shortcode( '[showroom-card type="showroom" id="' . $showroom_query->posts[$i2]->ID . '"]' );
+		}
 
-endif;
+		echo '</div>';
 
-if ( $online_query->have_posts() ) :
+	endif;
 
-	echo '<h2 class="page-subtitle">Online Retailers</h2>';
-	echo '<span></span>';
-	echo '<div class="clearfix">';
+	if ( $online_query->have_posts() ) :
 
-	for ( $i3 = 0; $i3 < $online_query->post_count; $i3++ ) {
-		echo do_shortcode( '[showroom-card type="online" id="' . $online_query->posts[$i3]->ID . '"]' );
-	}
+		echo '<h2 class="page-subtitle">Online Retailers</h2>';
+		echo '<span></span>';
+		echo '<div class="clearfix">';
 
-	echo '</div>';
+		for ( $i3 = 0; $i3 < $online_query->post_count; $i3++ ) {
+			echo do_shortcode( '[showroom-card type="online" id="' . $online_query->posts[$i3]->ID . '"]' );
+		}
 
-endif;
+		echo '</div>';
+
+	endif;
+}
 
 get_footer();
