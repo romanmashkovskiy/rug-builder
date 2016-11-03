@@ -20,6 +20,7 @@ function contact_select() {
 	$html .= '<select>';
 	$html .= '<option value="general">General enquiry</option>';
 	$html .= '<option value="press">Press enquiry</option>';
+	$html .= '<option value="trade">Trade enquiry</option>';
 	$html .= '</select>';
 	$html .= '</div>';
 

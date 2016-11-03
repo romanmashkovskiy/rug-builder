@@ -4,10 +4,26 @@ $(document).ready(function() {
 
 	$('.contact-select select').change(function() {
 
-		var value     = $('.contact-select select').val();
-		var prevValue = value === 'press' ? 'general' : 'press';
+		var value = $('.contact-select select').val();
 		
-		$('.contact-form #' + prevValue).hide();
+		switch (value) {
+
+			case 'general' :
+				$('.contact-form #press').hide();
+				$('.contact-form #trade').hide();
+				break;
+
+			case 'press' :
+				$('.contact-form #trade').hide();
+				$('.contact-form #general').hide();
+				break;
+
+			case 'trade' :
+				$('.contact-form #press').hide();
+				$('.contact-form #general').hide();
+				break;
+		}
+		
 		$('.contact-form #' + value).show();
 	});
 });

@@ -36,6 +36,11 @@ function contact_form() {
 	$html .= '</div>';
 	$html .= '</div>';
 
+	$html .= '<div id="trade">';
+	$html .= '<div class="border-left">';
+	$html .= '</div>';
+	$html .= '</div>';
+
 	$html .= '</div>';
 
 	return $html;
