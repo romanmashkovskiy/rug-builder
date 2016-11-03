@@ -32,3 +32,5 @@ config.codekit
 
 /.sass-cache/*
 node_modules 
+
+*.map

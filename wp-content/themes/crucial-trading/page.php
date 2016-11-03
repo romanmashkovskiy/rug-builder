@@ -18,4 +18,9 @@ echo do_shortcode( '[header]' );
 
 echo do_shortcode( '[logo-nav]' );
 
-get_footer();
+?>
+
+<main>
+</main>
+
+<?php get_footer();

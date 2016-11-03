@@ -18,6 +18,7 @@
 *************************************************************************************************************************/
 /* Colors */
 /* Typography */
+/* Main Navigation & Footer */
 .vert-align {
   display: inline-block;
   float: none;
@@ -54,7 +55,6 @@ span.main-menu__button__text--close {
 
 body {
   margin: 0;
-  font-family: "Montserrat", sans-serif;
   -webkit-backface-visibility: hidden;
   -webkit-transform-style: preserve-3d;
   -webkit-font-smoothing: antialiased;
@@ -63,7 +63,11 @@ body {
   left: 0px; }
 
 /************** Main Menu **************/
+.main-menu {
+  z-index: 9999; }
+
 .main-menu__wrap {
+  font-family: "Montserrat", sans-serif;
   position: fixed;
   z-index: 1001;
   width: 370px;
@@ -79,7 +83,8 @@ body {
   transition: transform 0.4s;
   transition: transform 0.4s, -webkit-transform 0.4s;
   -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
-  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  z-index: 9999; }
   @media all and (max-width: 1024px) {
     .main-menu__wrap {
       padding-top: 10px; } }
@@ -245,7 +250,7 @@ body {
 .main-menu__search label span.main-menu__search__icon {
   position: absolute;
   color: #878787;
-  top: -3px;
+  top: 35%;
   font-size: 20px;
   left: 20px;
   transition: all ease-in-out 0.25s;
@@ -393,11 +398,6 @@ span.main-menu__button__icon::after {
   transition-property: bottom, transform;
   transition-property: bottom, transform, -webkit-transform; }
 
-/*.main-menu__button:hover span.main-menu__button__icon,
-.main-menu__button:hover span.main-menu__button__icon::before,
-.main-menu__button:hover span.main-menu__button__icon::after {
-	background-color: $main-menu-bg-color;
-}*/
 /* Active state - change icon  */
 .main-menu__button.is-active span.main-menu__button__icon {
   background: none; }

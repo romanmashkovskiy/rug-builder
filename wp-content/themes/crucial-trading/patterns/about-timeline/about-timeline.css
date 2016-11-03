@@ -1,0 +1,226 @@
+/**
+ * About - Timeline 
+ * Full page scrolling timeline 
+ *
+ * Contents:
+ *
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
+ */
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Main Navigation & Footer */
+.vert-align {
+  display: inline-block;
+  float: none;
+  vertical-align: middle; }
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d; }
+
+.vertical-align-table {
+  display: table-cell;
+  float: none;
+  vertical-align: middle; }
+
+.box-shadow {
+  -webkit-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08); }
+
+.rotate {
+  position: absolute;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+.transition-all, .about__timeline,
+.about__scroller {
+  transition: all ease-in-out 0.25s;
+  -webkit-transition: all ease-in-out 0.25s; }
+
+/************** Layout **************/
+.about__timeline,
+.about__scroller {
+  width: 50%;
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+  height: 100vh;
+  text-align: center;
+  z-index: 99;
+  -webkit-transition: -webkit-transform 1.3s;
+  transition: -webkit-transform 1.3s;
+  transition: transform 1.3s;
+  transition: transform 1.3s, -webkit-transform 1.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
+  @media all and (max-width: 769px) {
+    .about__timeline,
+    .about__scroller {
+      width: 100%;
+      height: 50vh; } }
+
+/************** Fix Inline Block **************/
+.about__timeline {
+  margin-right: -4px; }
+
+.about__scroller {
+  margin-left: -0px; }
+
+/************** Backgrounds for scaling **************/
+.about__timeline__bg,
+.about__scroller__bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-transform: translate3d(0, 0, 0) scaleX(1);
+  transform: translate3d(0, 0, 0) scaleX(1);
+  -webkit-transition: -webkit-transform 1.2s;
+  transition: -webkit-transform 1.2s;
+  transition: transform 1.2s;
+  transition: transform 1.2s, -webkit-transform 1.2s;
+  -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
+
+.about__timeline__bg {
+  background-color: #383838;
+  z-index: 9999; }
+
+.about__scroller__bg {
+  background-color: #333333; }
+
+/************** Text Initial Position **************/
+.about__timeline__text,
+.about__scroller__text {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 1.2s;
+  transition: -webkit-transform 1.2s;
+  transition: transform 1.2s;
+  transition: transform 1.2s, -webkit-transform 1.2s;
+  -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
+
+/************** Animate **************/
+/** Animate - Backgrounds **/
+.show-about-timeline .about__timeline,
+.show-about-scroller .about__scroller {
+  z-index: 999; }
+
+.show-about-timeline .about__timeline__bg {
+  -webkit-transform: translate3d(25%, 0, 0) scaleX(2.5);
+  transform: translate3d(25%, 0, 0) scaleX(2.5);
+  -webkit-transition: -webkit-transform 1.2s;
+  transition: -webkit-transform 1.2s;
+  transition: transform 1.2s;
+  transition: transform 1.2s, -webkit-transform 1.2s;
+  -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  z-index: 999; }
+
+.show-about-scroller .about__scroller__bg {
+  -webkit-transform: translate3d(-25%, 0, 0) scaleX(2.5);
+  transform: translate3d(-25%, 0, 0) scaleX(2.5);
+  -webkit-transition: -webkit-transform 1.2s;
+  transition: -webkit-transform 1.2s;
+  transition: transform 1.2s;
+  transition: transform 1.2s, -webkit-transform 1.2s;
+  -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  z-index: 998; }
+
+/** Animate - Text **/
+.show-about-timeline .about__timeline__text {
+  z-index: 99999;
+  -webkit-transform: translate3d(50%, -40%, 0);
+  transform: translate3d(50%, -40%, 0);
+  -webkit-transition: -webkit-transform 1.2s;
+  transition: -webkit-transform 1.2s;
+  transition: transform 1.2s;
+  transition: transform 1.2s, -webkit-transform 1.2s;
+  -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
+
+.show-about-scroller .about__scroller__text {
+  z-index: 9999;
+  -webkit-transform: translate3d(-50%, -40%, 0);
+  transform: translate3d(-50%, -40%, 0);
+  -webkit-transition: -webkit-transform 1.2s;
+  transition: -webkit-transform 1.2s;
+  transition: transform 1.2s;
+  transition: transform 1.2s, -webkit-transform 1.2s;
+  -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
+
+.about__scroller__subtitle,
+.about__timeline__subtitle {
+  z-index: 9999; }
+
+/************** Side Title **************/
+.about .side-title {
+  color: #7C7C7C;
+  position: absolute;
+  left: -70px;
+  top: 500px;
+  z-index: 99999; }
+  @media all and (max-width: 992px) {
+    .about .side-title {
+      display: none; } }
+
+/************** Typography **************/
+.about h1,
+.about h2 {
+  color: #FFF; }
+
+/** Subtitle **/
+.about .subtitle {
+  font-size: 110px;
+  font-family: "Playfair Display", serif;
+  opacity: 0.02;
+  text-transform: capitalize;
+  color: #FFF;
+  position: absolute; }
+
+.about__timeline__subtitle {
+  bottom: -30px;
+  right: 0; }
+
+.about__scroller__subtitle {
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  right: -30%;
+  bottom: 180px; }
+
+/** Subtitle **/
+.about a,
+.about a::before,
+.about a::after {
+  color: #878787;
+  text-decoration: none; }
+
+.about a::before {
+  color: #FFF; }
+
+.about a:hover {
+  color: #FFF; }
+
+.about a:target {
+  color: red; }

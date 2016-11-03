@@ -11,6 +11,8 @@
 
 ?>
 
+			<?php echo do_shortcode( '[footer]' ); ?>
+
 			</div>
 		</div>
 		<?php wp_footer(); ?>

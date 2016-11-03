@@ -8,29 +8,27 @@
  * @since Crucial Trading 1.0
  */
 
-$main-menu-link-color: #a0a0a0;
-$main-menu-link-color-dark: darken($main-menu-link-color, 10%);
-$main-menu-bg-color: #2d2d2d;
-$main-menu-border-color: #3e3e3e;
-$main-menu-font-family: 	'Montserrat', sans-serif;
-
 @import '../../assets/css/src/_variables.scss';
 @import '../../assets/css/src/_utilities.scss';
 
 body {
 	margin: 0;
-	font-family: $main-menu-font-family;
 	-webkit-backface-visibility: hidden;
 	-webkit-transform-style: preserve-3d;
 	-webkit-font-smoothing: antialiased;  
 	overflow-x: hidden;
 	position: relative;
-	left: 0px;
+	left: 0px; 
 }
 
 /************** Main Menu **************/ 
+
+.main-menu {
+	z-index: 9999;
+} 
  
 .main-menu__wrap {
+	font-family: $font-sub-header;
 	position: fixed;
 	z-index: 1001;
 	width: 370px;
@@ -45,6 +43,7 @@ body {
 	transition: transform 0.4s;
 	-webkit-transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	z-index: 9999;
 	
 	@media all and (max-width: 1024px) {
 		padding-top: 10px;
@@ -59,20 +58,14 @@ body {
 /*** Shown menu animation ***/
 
 .show-menu .main-menu__wrap {
-	-webkit-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
-	-webkit-transition: -webkit-transform 0.65s;
 	transition: transform 0.65s;
-	-webkit-transition-timing-function: cubic-bezier(0.55,0,0.5,1);
 	transition-timing-function: cubic-bezier(0.55,0,0.5,1);
 }
 
 .show-menu .main-menu__button--wrap {
-	-webkit-transform: translate3d(-370px,0,0);
 	transform: translate3d(-370px,0,0);
-	-webkit-transition: -webkit-transform 0.65s;
 	transition: transform 0.65s;
-	-webkit-transition-timing-function: cubic-bezier(0.55,0,0.5,1);
 	transition-timing-function: cubic-bezier(0.55,0,0.5,1);
 }
 
@@ -259,7 +252,7 @@ body {
 .main-menu__search label span.main-menu__search__icon {
 	position: absolute;
 	color: $main-menu-link-color-dark;
-	top: -3px;
+	top: 35%;
 	font-size: 20px;
 	left: 20px;
 	transition: all ease-in-out 0.25s;
@@ -274,7 +267,7 @@ input.main-menu__search__input:focus {
 	width: 100%;
 	font-size:  16px;
 	color: #FFF;
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header; 
 	background: $main-menu-bg-color;
 	margin: 0;
 	padding: 30px;
@@ -288,22 +281,22 @@ input.main-menu__search__input:focus {
 }
 
 ::-webkit-input-placeholder {
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header;
 	color: $main-menu-link-color-dark;
 }
 
 :-moz-placeholder {
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header;
 	color: $main-menu-link-color-dark;
 }
 
 ::-moz-placeholder {
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header;
 	color: $main-menu-link-color-dark;
 }
 
 :-ms-input-placeholder {  
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header;
 	color: $main-menu-link-color-dark;
 }
 
@@ -312,9 +305,6 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 	transform: translate(5px,0);
 	-webkit-transform: translate(5px,0);
 }
-
-
-
 
 
 
@@ -369,7 +359,7 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 span.main-menu__button__text,
 span.main-menu__button__text--close {
 	font-size: 16px;
-	font-family: $main-menu-font-family;
+	font-family: $font-sub-header; 
 	color: #FFF;
 	text-indent: 0;
 	font-weight: normal;
@@ -424,12 +414,6 @@ span.main-menu__button__icon::after {
 	-webkit-transition-property: bottom, -webkit-transform;
 	transition-property: bottom, transform;
 }
-
-/*.main-menu__button:hover span.main-menu__button__icon,
-.main-menu__button:hover span.main-menu__button__icon::before,
-.main-menu__button:hover span.main-menu__button__icon::after {
-	background-color: $main-menu-bg-color;
-}*/
 
 /* Active state - change icon  */
 

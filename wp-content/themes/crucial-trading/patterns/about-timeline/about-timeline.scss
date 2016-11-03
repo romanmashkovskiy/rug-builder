@@ -1,0 +1,204 @@
+/**
+ * About - Timeline 
+ * Full page scrolling timeline 
+ *
+ * Contents:
+ *
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
+ */
+
+@import '../../assets/css/src/_variables.scss';
+@import '../../assets/css/src/_utilities.scss';
+
+
+/************** Layout **************/ 
+
+.about {
+	//overflow: hidden;
+}
+
+.about__timeline,
+.about__scroller {
+	width: 50%;
+	position: relative;
+	display: inline-block;
+	font-size: 0;
+	height: 100vh;
+	text-align: center;
+	z-index: 9;
+	@extend .transition-all;
+	transition: transform 1.3s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	
+	@media all and (max-width: 769px) {
+		width: 100%;
+		height: 50vh;
+	}
+	
+}
+
+/************** Fix Inline Block **************/ 
+
+.about__timeline {
+	margin-right: -4px;
+}
+
+.about__scroller {
+	margin-left: -0px;
+}
+
+/************** Backgrounds for scaling **************/ 
+
+.about__timeline__bg,
+.about__scroller__bg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	transform: translate3d(0,0,0) scaleX(1);
+	transition: transform 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+}
+
+.about__timeline__bg {
+	background-color: $page-header-background;
+}
+
+.about__scroller__bg {
+	background-color: darken($page-header-background, 2%);
+	visibility: visible;
+}
+
+
+/************** Text Initial Position **************/ 
+
+.about__timeline__text,
+.about__scroller__text {
+	transform: translate3d(0,0,0);
+	transition: transform 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+} 
+
+/************** Animate **************/ 
+
+
+/** Animate - Backgrounds **/ 
+
+.show-about-timeline .about__timeline, 
+.show-about-scroller .about__scroller {
+	z-index: 999;
+}
+
+.show-about-timeline .about__timeline__bg {
+	transform: translate3d(25%,0,0) scaleX(2.5);
+	transition: transform scale 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	z-index: 9999;
+	position: absolute;
+	top: 0;
+}
+
+.show-about-timeline .about__scroller__bg {
+	transition: transform scale 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+}
+
+.show-about-scroller .about__scroller__bg {
+	transform: translate3d(-25%,0,0) scaleX(2.5);
+	transition: transform scale 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	z-index: 99;
+}
+
+
+
+/** Animate - Text **/ 
+
+.show-about-timeline .about__timeline__text {
+	z-index: 999999;
+	transform: translate3d(50%,-40%,0);
+	transition: transform 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+}
+
+.show-about-scroller .about__scroller__text {
+	z-index: 999;
+	transform: translate3d(-50%,-40%,0);
+	transition: transform 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+}
+
+.about__scroller__subtitle,
+.about__timeline__subtitle {
+	z-index: 999;
+}
+
+/************** Side Title **************/ 
+
+.about .side-title {
+	color: #7C7C7C;
+	position: absolute;
+	left: -70px;
+	top: 500px;
+	z-index: 99999;
+	
+	@media all and (max-width: 992px) {
+		display: none;
+	}
+	
+}
+
+
+/************** Typography **************/ 
+
+.about h1, 
+.about h2 {
+	color: #FFF;
+}
+
+/** Subtitle **/
+
+.about .subtitle {
+	font-size: 110px;
+	font-family: $font-header;
+	opacity: 0.02;
+	text-transform: capitalize;
+	color: #FFF;
+	position: absolute;
+}
+
+.about__timeline__subtitle {
+	bottom: -30px;
+	right: 0;
+}
+
+.about__scroller__subtitle {
+	transform: rotate(270deg);
+	right: -30%;
+	bottom: 180px;
+}
+	
+/** Subtitle **/
+
+.about a,
+.about a::before, 
+.about a::after {
+	color: $main-menu-link-color-dark;
+	text-decoration: none;
+}
+
+.about a::before {
+	color: #FFF;
+}
+
+.about a:hover {
+	color: #FFF;
+}
+
+.about a:target {
+	color: red;
+}
