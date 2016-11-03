@@ -11,7 +11,9 @@
 /* Typography */
 /* Main Navigation & Footer */
 .contact-select {
+  background: white;
   margin-left: 25%;
+  padding-top: 30px;
   width: 50%; }
   .contact-select h2 {
     text-align: center; }
