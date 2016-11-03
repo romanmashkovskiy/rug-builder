@@ -37,7 +37,7 @@ function contact_form() {
 	$html .= '</div>';
 
 	$html .= '<div id="trade">';
-	$html .= '<div class="border-left">';
+	$html .= '<div class="border-div">';
 	$html .= '</div>';
 	$html .= '</div>';
 
