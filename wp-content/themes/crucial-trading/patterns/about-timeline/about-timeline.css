@@ -61,7 +61,7 @@
   font-size: 0;
   height: 100vh;
   text-align: center;
-  z-index: 99;
+  z-index: 9;
   -webkit-transition: -webkit-transform 1.3s;
   transition: -webkit-transform 1.3s;
   transition: transform 1.3s;
@@ -101,11 +101,11 @@
   transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
 
 .about__timeline__bg {
-  background-color: #383838;
-  z-index: 9999; }
+  background-color: #383838; }
 
 .about__scroller__bg {
-  background-color: #333333; }
+  background-color: #333333;
+  visibility: visible; }
 
 /************** Text Initial Position **************/
 .about__timeline__text,
@@ -128,28 +128,38 @@
 .show-about-timeline .about__timeline__bg {
   -webkit-transform: translate3d(25%, 0, 0) scaleX(2.5);
   transform: translate3d(25%, 0, 0) scaleX(2.5);
-  -webkit-transition: -webkit-transform 1.2s;
-  transition: -webkit-transform 1.2s;
-  transition: transform 1.2s;
-  transition: transform 1.2s, -webkit-transform 1.2s;
+  -webkit-transition: -webkit-transform scale 1.2s;
+  transition: -webkit-transform scale 1.2s;
+  transition: transform scale 1.2s;
+  transition: transform scale 1.2s, -webkit-transform scale 1.2s;
   -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
   transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
-  z-index: 999; }
+  z-index: 9999;
+  position: absolute;
+  top: 0; }
+
+.show-about-timeline .about__scroller__bg {
+  -webkit-transition: -webkit-transform scale 1.2s;
+  transition: -webkit-transform scale 1.2s;
+  transition: transform scale 1.2s;
+  transition: transform scale 1.2s, -webkit-transform scale 1.2s;
+  -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
 
 .show-about-scroller .about__scroller__bg {
   -webkit-transform: translate3d(-25%, 0, 0) scaleX(2.5);
   transform: translate3d(-25%, 0, 0) scaleX(2.5);
-  -webkit-transition: -webkit-transform 1.2s;
-  transition: -webkit-transform 1.2s;
-  transition: transform 1.2s;
-  transition: transform 1.2s, -webkit-transform 1.2s;
+  -webkit-transition: -webkit-transform scale 1.2s;
+  transition: -webkit-transform scale 1.2s;
+  transition: transform scale 1.2s;
+  transition: transform scale 1.2s, -webkit-transform scale 1.2s;
   -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
   transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
-  z-index: 998; }
+  z-index: 99; }
 
 /** Animate - Text **/
 .show-about-timeline .about__timeline__text {
-  z-index: 99999;
+  z-index: 999999;
   -webkit-transform: translate3d(50%, -40%, 0);
   transform: translate3d(50%, -40%, 0);
   -webkit-transition: -webkit-transform 1.2s;
@@ -160,7 +170,7 @@
   transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
 
 .show-about-scroller .about__scroller__text {
-  z-index: 9999;
+  z-index: 999;
   -webkit-transform: translate3d(-50%, -40%, 0);
   transform: translate3d(-50%, -40%, 0);
   -webkit-transition: -webkit-transform 1.2s;
@@ -172,7 +182,7 @@
 
 .about__scroller__subtitle,
 .about__timeline__subtitle {
-  z-index: 9999; }
+  z-index: 999; }
 
 /************** Side Title **************/
 .about .side-title {

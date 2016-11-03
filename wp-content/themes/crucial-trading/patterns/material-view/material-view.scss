@@ -143,7 +143,7 @@
 	&.coir {
 
 		.header__back a {
-			color: transparentize($color-coir-dark, 0.3);
+			color: transparentize($color-coir-main, 0.3);
 		}
 
 		.header__titles {
@@ -175,7 +175,7 @@
 	&.jute {
 		
 		.header__back a {
-			color: transparentize($color-jute-dark, 0.3);
+			color: transparentize($color-jute-main, 0.3);
 		}
 
 		.header__titles {
@@ -207,7 +207,7 @@
 	&.seagrass {
 		
 		.header__back a {
-			color: transparentize($color-seagrass-dark, 0.3);
+			color: transparentize($color-seagrass-main, 0.3);
 		}
 
 		.header__titles {
@@ -239,7 +239,7 @@
 	&.sisal {
 		
 		.header__back a {
-			color: transparentize($color-sisal-dark, 0.3);
+			color: transparentize($color-sisal-main, 0.3);
 		}
 
 		.header__titles {
@@ -271,7 +271,7 @@
 	&.sisool {
 		
 		.header__back a {
-			color: transparentize($color-sisool-dark, 0.3);
+			color: transparentize($color-sisool-main, 0.3);
 		}
 
 		.header__titles {
@@ -288,7 +288,6 @@
 		.header__links a {
 			color: $color-sisool-dark;
 		}
-
 		#change-image-view,
 		.hide-material-info,
 		.info__section h3 {
@@ -303,7 +302,7 @@
 	&.wool {
 		
 		.header__back a {
-			color: transparentize($color-wool-dark, 0.3);
+			color: transparentize($color-wool-main, 0.3);
 		}
 
 		.header__titles {
