@@ -318,7 +318,7 @@ body {
 	padding-bottom: 10%;
 	position: relative;
 	z-index: 999;
-	height: 6000px;
+	//height: 6000px;
 }
 
 .show-about-timeline .about__timeline__content {
@@ -388,12 +388,12 @@ body {
 
 .timeline__event:nth-child(odd) {
 	float: left;
-	margin-top: 7%;
+	margin-top: 30%;
 }
 
 .timeline__event:nth-child(even) {
 	float: right;
-	margin-top: 2%;
+	margin-top: 11%;
 }
 
 /************** Event Details **************/ 
