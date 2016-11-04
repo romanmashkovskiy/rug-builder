@@ -27,3 +27,7 @@
     margin-bottom: 50px;
     margin-left: calc(50% - 125px);
     width: 250px; }
+    @media screen and (max-width: 600px) {
+      .contact-select select {
+        margin-left: 5%;
+        width: 90%; } }

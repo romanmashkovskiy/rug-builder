@@ -20,6 +20,14 @@
 
 		ul li:not(:last-child) {
 			width: 47.5%;
+
+			label {
+				display: none;
+			}
+
+			@media screen and (max-width: 768px) {
+				width: 100%;
+			}
 		}
 
 		ul li:last-child {
@@ -28,6 +36,16 @@
 			right: 0;
 			top: 0;
 			width: 47.5%;
+
+			label {
+				display: none;
+			}
+
+			@media screen and (max-width: 768px) {
+				margin-top: 17px;
+				position: static;
+				width: 100%;
+			}
 		}
 	}
 
@@ -37,14 +55,38 @@
 			padding: 8px 0 7px 19px;
 		}
 
+		ul li {
+			margin-top: 9px !important;
+
+			label {
+				display: none;
+			}
+		}
+
 		ul li:not(:last-child) {
 			clear: none;
 			float: left;
 			width: 47.5%;
+
+			@media screen and (max-width: 768px) {
+				width: 100%;
+			}
 		}
 
 		ul li:nth-child(even) {
 			margin-left: 5% !important;
+
+			@media screen and (max-width: 768px) {
+				margin-left: 0 !important;
+			}
+		}
+
+		@media screen and (max-width: 768px) {
+
+			ul li:last-child {
+				position: relative;
+				top: 17px;
+			}
 		}
 
 		ul li:last-child .ginput_container {
@@ -87,6 +129,13 @@
 			}
 		}
 
+		ul li {
+
+			label {
+				display: none;
+			}
+		}
+
 		.press__link {
 			font-family: $font-copy;
 			font-size: 17px;
@@ -100,15 +149,28 @@
 			float: left;
 			padding: 50px;
 			width: 48%;
+
+			@media screen and (max-width: 768px) {
+				width: 100%;
+			}
 		}
 
 		.border-left {
 			height: 100%;
 			position: absolute;
+
+			@media screen and (max-width: 768px) {
+				position: static;
+			}
 		}
 
 		.border-right {
 			margin-left: 52%;
+
+			@media screen and (max-width: 768px) {
+				margin-left: 0;
+				margin-top: 10px;
+			}
 		}
 
 		& > .press__or {
@@ -132,6 +194,10 @@
 				position: absolute;
 				top: calc(50% - 30px);
 				width: 14px;
+			}
+
+			@media screen and (max-width: 768px) {
+				display: none;
 			}
 		}
 	}

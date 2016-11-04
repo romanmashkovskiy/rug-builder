@@ -23,20 +23,46 @@
     display: none; }
   .contact-form #general form ul li:not(:last-child) {
     width: 47.5%; }
+    .contact-form #general form ul li:not(:last-child) label {
+      display: none; }
+    @media screen and (max-width: 768px) {
+      .contact-form #general form ul li:not(:last-child) {
+        width: 100%; } }
   .contact-form #general form ul li:last-child {
     margin-top: 0;
     position: absolute;
     right: 0;
     top: 0;
     width: 47.5%; }
+    .contact-form #general form ul li:last-child label {
+      display: none; }
+    @media screen and (max-width: 768px) {
+      .contact-form #general form ul li:last-child {
+        margin-top: 17px;
+        position: static;
+        width: 100%; } }
   .contact-form #trade form select {
     padding: 8px 0 7px 19px; }
+  .contact-form #trade form ul li {
+    margin-top: 9px !important; }
+    .contact-form #trade form ul li label {
+      display: none; }
   .contact-form #trade form ul li:not(:last-child) {
     clear: none;
     float: left;
     width: 47.5%; }
+    @media screen and (max-width: 768px) {
+      .contact-form #trade form ul li:not(:last-child) {
+        width: 100%; } }
   .contact-form #trade form ul li:nth-child(even) {
     margin-left: 5% !important; }
+    @media screen and (max-width: 768px) {
+      .contact-form #trade form ul li:nth-child(even) {
+        margin-left: 0 !important; } }
+  @media screen and (max-width: 768px) {
+    .contact-form #trade form ul li:last-child {
+      position: relative;
+      top: 17px; } }
   .contact-form #trade form ul li:last-child .ginput_container {
     margin-top: 24px; }
   .contact-form input[type="submit"] {
@@ -58,6 +84,8 @@
         margin-bottom: 30px; }
       .contact-form #press h2.press__subtitle {
         font-size: 16px; }
+    .contact-form #press ul li label {
+      display: none; }
     .contact-form #press .press__link {
       font-family: "Open Sans", sans-serif;
       font-size: 17px;
@@ -69,11 +97,22 @@
       float: left;
       padding: 50px;
       width: 48%; }
+      @media screen and (max-width: 768px) {
+        .contact-form #press .border-left,
+        .contact-form #press .border-right {
+          width: 100%; } }
     .contact-form #press .border-left {
       height: 100%;
       position: absolute; }
+      @media screen and (max-width: 768px) {
+        .contact-form #press .border-left {
+          position: static; } }
     .contact-form #press .border-right {
       margin-left: 52%; }
+      @media screen and (max-width: 768px) {
+        .contact-form #press .border-right {
+          margin-left: 0;
+          margin-top: 10px; } }
     .contact-form #press > .press__or {
       background: #E6E6E6;
       height: 100%;
@@ -94,3 +133,6 @@
         position: absolute;
         top: calc(50% - 30px);
         width: 14px; }
+      @media screen and (max-width: 768px) {
+        .contact-form #press > .press__or {
+          display: none; } }
