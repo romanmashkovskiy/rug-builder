@@ -11,6 +11,7 @@
 /* Typography */
 /* Main Navigation & Footer */
 .contact-form {
+  background: white;
   margin-left: 13%;
   padding: 10px;
   position: relative;
@@ -81,7 +82,7 @@
       position: absolute;
       width: 1px; }
       .contact-form #press > .press__or > .press__or--text {
-        background: #f7f7f7;
+        background: white;
         color: #AFAFAF;
         display: block;
         font-family: "Montserrat", sans-serif;

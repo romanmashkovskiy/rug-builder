@@ -1,6 +1,7 @@
 @import '../../assets/css/src/_variables.scss';
 
 .contact-form {
+	background: white;
 	margin-left: 13%;
 	padding: 10px;
 	position: relative;
@@ -119,7 +120,7 @@
 			width: 1px;
 
 			& > .press__or--text {
-				background: #f7f7f7;
+				background: white;
 				color: #AFAFAF;
 				display: block;
 				font-family: $font-sub-header;
