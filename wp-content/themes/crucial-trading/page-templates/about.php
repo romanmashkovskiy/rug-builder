@@ -27,6 +27,7 @@ echo do_shortcode( '[logo-nav]' ); ?>
 		
 		<div class="about__scroller" id="about-scroller">
 			<div class="about__scroller__bg"></div>
+			<div class="about__scroller__btn--close"></div>
 			<h3 class="about__scroller__subtitle subtitle">Our Process</h3>
 			<div class="about__scroller__text vertical-align">
 				<h1 class="about__scroller__heading vertical-align">Our Process</h1>
@@ -38,7 +39,7 @@ echo do_shortcode( '[logo-nav]' ); ?>
 		<div class="about__timeline__content clearfix">
 			<div class="timeline__centre-line"></div>
 				
-				<div class="timeline__event" id="one">
+				<div class="timeline__event" id="one" data-300="transform: translate(450px,-10px);opacity: 0.1;" data-500="transform: translate(300px,-50px);opacity:0.5;" data-1000="transform: translate(0,0px);opacity:1;" data-1500="transform: translate(0,250px);" data-2000="transform: translate(0,500px);">
 					<div class="timeline__event__line"><span class="timeline__event__ball"></span></div>
 					<h4 class="timeline__event__heading"><span class="timeline__event__date">1999.</span> Where It Started</h4>
 					<div class="timeline__event__img"><img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/24193927/build-your-rug-image.jpg" alt="" /></div>

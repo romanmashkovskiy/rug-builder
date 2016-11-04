@@ -152,10 +152,13 @@
 
 /** Button Opacoty **/ 
 
-.about__scroller__btn {
-	
+.show-about-timeline .about__timeline__btn {
+	opacity: 0;
 }
 
+.show-about-scroller .about__scroller__btn {
+	opacity: 0;	
+}
 
 
 /************** Side Title **************/ 

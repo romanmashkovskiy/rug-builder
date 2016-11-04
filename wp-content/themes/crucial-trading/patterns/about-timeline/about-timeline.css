@@ -203,6 +203,12 @@
   z-index: 110; }
 
 /** Button Opacoty **/
+.show-about-timeline .about__timeline__btn {
+  opacity: 0; }
+
+.show-about-scroller .about__scroller__btn {
+  opacity: 0; }
+
 /************** Side Title **************/
 .about .side-title {
   color: #7C7C7C;
