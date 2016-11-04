@@ -5,3 +5,43 @@ button {
 	-webkit-transform-style: preserve-3d;
 	-webkit-font-smoothing: antialiased; 
 }
+
+input,
+textarea {
+	background: #F7F7F7 !important;
+	border: 1px solid #E6E6E6 !important;
+	border-radius: 0 !important;
+	font-family: $font-copy !important;
+	padding: 8px 20px !important;
+}
+
+select {
+	-webkit-appearance: none;
+	appearance: none;
+	background: #F7F7F7;
+	background-image: url('http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/04151010/crucial-drop-down-arrow.png');
+	background-position: 95%;
+	background-repeat: no-repeat;
+	background-size: 5%;
+	border: 1px solid #E6E6E6 !important;
+	border-radius: 0;
+	font-family: $font-copy;
+	padding: 7px 15px;
+}
+
+button,
+input[type="submit"] {
+	background: #383838 !important;
+	border: none !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+	color: white !important;
+	font-family: $font-sub-header !important;
+	font-size: 14px !important;
+	height: 36px !important;
+	letter-spacing: 3px !important;
+	padding-bottom: 8px !important;
+	text-shadow: none !important;
+	text-transform: uppercase !important;
+	width: 220px !important;
+}

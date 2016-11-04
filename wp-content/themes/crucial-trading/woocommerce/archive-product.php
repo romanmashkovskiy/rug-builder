@@ -24,7 +24,7 @@ echo do_shortcode( '[logo-nav]' );
 if ( $parent == 0 ) {
 	echo do_shortcode( '[range-swatches material="' . $slug . '"]' );
 } else {
-//	echo do_shortcode( '[range-swatches material="' . $slug . '"]' );
+	echo do_shortcode( '[material-swatches range="' . $slug . '"]' );
 }
 
 

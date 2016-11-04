@@ -24,35 +24,12 @@
     margin: 15px auto 35px;
     width: 75px; }
   .retailer-search input {
-    background: #F7F7F7;
-    border: 1px solid #E6E6E6;
-    border-radius: 0;
-    font-family: "Open Sans", sans-serif;
-    padding: 8px 20px;
     width: 100%; }
   .retailer-search button {
-    background: #383838;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    color: white;
-    font-family: "Montserrat", sans-serif;
-    letter-spacing: 3px;
     margin-top: 50px;
-    padding-bottom: 8px;
-    text-shadow: none;
-    text-transform: uppercase;
     width: 100%; }
   .retailer-search select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background: #F7F7F7;
-    border: 2px solid #DDDDDD;
-    border-radius: 0;
     display: none;
-    font-family: "Open Sans", sans-serif;
-    padding: 7px 15px;
     width: 100%; }
   .retailer-search .overseas-partners,
   .retailer-search .uk-retailers {

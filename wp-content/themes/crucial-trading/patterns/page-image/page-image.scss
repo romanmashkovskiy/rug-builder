@@ -1,0 +1,15 @@
+.page-image {
+	height: 500px;
+	margin-left: 13%;
+	width: 74%;
+
+	.page-image__img {
+		height: 100%;
+		object-fit: cover;
+		width: 100%;
+
+		&.--hidden {
+			display: none;
+		}
+	}
+}
