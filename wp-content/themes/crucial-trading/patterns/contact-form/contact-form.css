@@ -1,3 +1,95 @@
-.contact-form #press,
-.contact-form #trade {
-  display: none; }
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Main Navigation & Footer */
+.contact-form {
+  margin-left: 13%;
+  padding: 10px;
+  position: relative;
+  width: 74%; }
+  .contact-form .gform_wrapper,
+  .contact-form .gform_heading {
+    margin: 0 !important; }
+  .contact-form form .gfield_required {
+    display: none; }
+  .contact-form #general form ul li:not(:last-child) {
+    width: 47.5%; }
+  .contact-form #general form ul li:last-child {
+    margin-top: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 47.5%; }
+  .contact-form #trade form select {
+    padding: 8px 0 7px 19px; }
+  .contact-form #trade form ul li:not(:last-child) {
+    clear: none;
+    float: left;
+    width: 47.5%; }
+  .contact-form #trade form ul li:nth-child(even) {
+    margin-left: 5% !important; }
+  .contact-form #trade form ul li:last-child .ginput_container {
+    margin-top: 24px; }
+  .contact-form input[type="submit"] {
+    left: calc(50% - 110px);
+    position: relative; }
+  .contact-form #press,
+  .contact-form #trade {
+    display: none; }
+  .contact-form #general .border-div,
+  .contact-form #trade .border-div {
+    border: 1px solid #E6E6E6;
+    padding: 50px; }
+  .contact-form #press {
+    position: relative; }
+    .contact-form #press h2 {
+      font-weight: bold; }
+      .contact-form #press h2.press__title {
+        font-size: 20px;
+        margin-bottom: 30px; }
+      .contact-form #press h2.press__subtitle {
+        font-size: 16px; }
+    .contact-form #press .press__link {
+      font-family: "Open Sans", sans-serif;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      text-transform: lowercase; }
+    .contact-form #press .border-left,
+    .contact-form #press .border-right {
+      border: 1px solid #E6E6E6;
+      float: left;
+      padding: 50px;
+      width: 48%; }
+    .contact-form #press .border-left {
+      height: 100%;
+      position: absolute; }
+    .contact-form #press .border-right {
+      margin-left: 52%; }
+    .contact-form #press > .press__or {
+      background: #E6E6E6;
+      height: 100%;
+      display: block;
+      left: calc(50% - 0.5px);
+      position: absolute;
+      width: 1px; }
+      .contact-form #press > .press__or > .press__or--text {
+        background: white;
+        color: #AFAFAF;
+        display: block;
+        font-family: "Montserrat", sans-serif;
+        height: 60px;
+        left: -8px;
+        letter-spacing: 1px;
+        line-height: 0.4;
+        padding-top: 26px;
+        position: absolute;
+        top: calc(50% - 30px);
+        width: 14px; }

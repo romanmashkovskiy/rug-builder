@@ -1,7 +1,141 @@
+@import '../../assets/css/src/_variables.scss';
+
 .contact-form {
+	margin-left: 13%;
+	padding: 10px;
+	position: relative;
+	width: 74%;
+
+	.gform_wrapper,
+	.gform_heading {
+		margin: 0 !important;
+	}
+
+	form .gfield_required {
+		display: none;
+	}
+
+	#general form {
+
+		ul li:not(:last-child) {
+			width: 47.5%;
+		}
+
+		ul li:last-child {
+			margin-top: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 47.5%;
+		}
+	}
+
+	#trade form {
+
+		select {
+			padding: 8px 0 7px 19px;
+		}
+
+		ul li:not(:last-child) {
+			clear: none;
+			float: left;
+			width: 47.5%;
+		}
+
+		ul li:nth-child(even) {
+			margin-left: 5% !important;
+		}
+
+		ul li:last-child .ginput_container {
+			margin-top: 24px;
+		}
+	}
+
+	input[type="submit"] {
+		left: calc(50% - 110px);
+		position: relative;
+	}
 
 	#press,
 	#trade {
 		display: none;
+	}
+
+	#general,
+	#trade {
+
+		.border-div {
+			border: 1px solid #E6E6E6;
+			padding: 50px;
+		}
+	}
+
+	#press {
+		position: relative;
+
+		h2 {
+			font-weight: bold;
+
+			&.press__title {
+				font-size: 20px;
+				margin-bottom: 30px;
+			}
+
+			&.press__subtitle {
+				font-size: 16px;
+			}
+		}
+
+		.press__link {
+			font-family: $font-copy;
+			font-size: 17px;
+			letter-spacing: 0.5px;
+			text-transform: lowercase;
+		}
+
+		.border-left,
+		.border-right {
+			border: 1px solid #E6E6E6;
+			float: left;
+			padding: 50px;
+			width: 48%;
+		}
+
+		.border-left {
+			height: 100%;
+			position: absolute;
+		}
+
+		.border-right {
+			margin-left: 52%;
+		}
+
+		& > .press__or {
+			background: #E6E6E6;
+			height: 100%;
+			display: block;
+			left: calc(50% - 0.5px);
+			position: absolute;
+			width: 1px;
+
+			& > .press__or--text {
+				background: white;
+				color: #AFAFAF;
+				display: block;
+				font-family: $font-sub-header;
+				height: 60px;
+				left: -8px;
+				letter-spacing: 1px;
+				line-height: 0.4;
+				padding-top: 26px;
+				position: absolute;
+				top: calc(50% - 30px);
+				width: 14px;
+			}
+		}
+	}
+
+	#trade {
+
 	}
 }
