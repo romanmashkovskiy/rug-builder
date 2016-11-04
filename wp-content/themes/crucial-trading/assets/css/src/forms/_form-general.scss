@@ -23,6 +23,18 @@ select {
 	border-radius: 0;
 	font-family: $font-copy;
 	padding: 7px 15px;
+
+	&:before {
+		font-family: 'icon';
+		content: "\e909a";
+		font-weight: normal;
+		font-style: normal;
+		display: inline-block;
+		text-decoration: inherit;
+		font-size: 24px;
+		position: absolute;
+		right: 15px;
+	}
 }
 
 button,

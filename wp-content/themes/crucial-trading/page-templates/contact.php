@@ -18,4 +18,8 @@ echo do_shortcode( '[contact-select]' );
 
 echo do_shortcode( '[contact-form]' );
 
+echo do_shortcode( '[page-image]' );
+
+echo do_shortcode( '[share-links]' );
+
 get_footer();
