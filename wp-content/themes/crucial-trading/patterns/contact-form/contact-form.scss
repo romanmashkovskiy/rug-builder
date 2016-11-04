@@ -47,6 +47,10 @@
 				width: 100%;
 			}
 		}
+
+		.top_label div.ginput_container {
+			margin-top: 0 !important;
+		}
 	}
 
 	#trade form {
@@ -81,12 +85,10 @@
 			}
 		}
 
-		@media screen and (max-width: 768px) {
 
-			ul li:last-child {
-				position: relative;
-				top: 17px;
-			}
+		ul li:last-child {
+			position: relative;
+			top: 17px;
 		}
 
 		ul li:last-child .ginput_container {

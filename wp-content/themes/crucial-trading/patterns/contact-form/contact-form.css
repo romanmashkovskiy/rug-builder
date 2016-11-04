@@ -41,6 +41,8 @@
         margin-top: 17px;
         position: static;
         width: 100%; } }
+  .contact-form #general form .top_label div.ginput_container {
+    margin-top: 0 !important; }
   .contact-form #trade form select {
     padding: 8px 0 7px 19px; }
   .contact-form #trade form ul li {
@@ -59,10 +61,9 @@
     @media screen and (max-width: 768px) {
       .contact-form #trade form ul li:nth-child(even) {
         margin-left: 0 !important; } }
-  @media screen and (max-width: 768px) {
-    .contact-form #trade form ul li:last-child {
-      position: relative;
-      top: 17px; } }
+  .contact-form #trade form ul li:last-child {
+    position: relative;
+    top: 17px; }
   .contact-form #trade form ul li:last-child .ginput_container {
     margin-top: 24px; }
   .contact-form input[type="submit"] {
