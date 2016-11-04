@@ -81,7 +81,7 @@
       position: absolute;
       width: 1px; }
       .contact-form #press > .press__or > .press__or--text {
-        background: white;
+        background: #f7f7f7;
         color: #AFAFAF;
         display: block;
         font-family: "Montserrat", sans-serif;
