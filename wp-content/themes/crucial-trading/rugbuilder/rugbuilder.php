@@ -34,12 +34,16 @@
 	</script>
 	<script>
 
+	// Set up some vars
+
 	var loadSingle    = function() { alert('Not loaded yet!'); }
 	var loadSingleLow = function() { alert('Not loaded yet!'); }
 	var loadDouble    = function() { alert('Not loaded yet!'); }
 	var loadDoubleLow = function() { alert('Not loaded yet!'); }
 
 	var biscayne, cotton, bmap, bmap2;
+
+	// Load bump maps
 
 	new THREE.TextureLoader().load(
 		'<?php echo get_template_directory_uri(); ?>/rugbuilder/img/biscayne-bs105-bmap.jpg',
@@ -65,6 +69,8 @@
 		}
 	);
 
+	// Set up basic THREE stuff
+
 	var scene    = new THREE.Scene();
 	var camera   = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 10000 );
 	var renderer = new THREE.WebGLRenderer();
@@ -79,83 +85,26 @@
 
 	renderer.setSize( window.innerWidth, window.innerHeight );
 
-	/*
-	spotlight
-
-	{
-                "uuid": "168E9E98-9DF4-4C85-9AC9-78A88FB6ED02",
-                "type": "SpotLight",
-                "name": "SpotLight 1",
-                "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,177.8850860595703,295.90283203125,-383.4111022949219,1],
-                "color": 16777215,
-                "intensity": 1,
-                "distance": 0,
-                "angle": 0.3141592653589793,
-                "decay": 1,
-                "penumbra": 0,
-                "shadow": {
-                    "camera": {
-                        "uuid": "85704523-A9B4-4C92-81ED-3FEBC628891B",
-                        "type": "PerspectiveCamera",
-                        "fov": 50,
-                        "zoom": 1,
-                        "near": 0.5,
-                        "far": 500,
-                        "focus": 10,
-                        "aspect": 1,
-                        "filmGauge": 35,
-                        "filmOffset": 0
-                    }
-                }
-            },
-            {
-                "uuid": "B9B2AF87-BC59-44B4-B451-44893197C5B1",
-                "type": "SpotLight",
-                "name": "SpotLight 2",
-                "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,385.489501953125,224.93087768554688,-143.64881896972656,1],
-                "color": 16777215,
-                "intensity": 0.28,
-                "distance": 0,
-                "angle": 0.3141592653589793,
-                "decay": 1,
-                "penumbra": 0,
-                "shadow": {
-                    "camera": {
-                        "uuid": "E684C3B5-C7A0-4442-A5AC-BC3BCEDC9168",
-                        "type": "PerspectiveCamera",
-                        "fov": 50,
-                        "zoom": 1,
-                        "near": 0.5,
-                        "far": 500,
-                        "focus": 10,
-                        "aspect": 1,
-                        "filmGauge": 35,
-                        "filmOffset": 0
-                    }
-	*/
-
+	var spotLight        = new THREE.SpotLight( 0xffffff, 1, 0, 0.3141592653589793, 0, 1 );
+	var spotLight2       = new THREE.SpotLight( 0xffffff, 0.28, 0, 0.3141592653589793, 0, 1 );
 	var ambientLight     = new THREE.AmbientLight( 0xffffff );
 	var directionalLight = new THREE.DirectionalLight( 0xffffff );
 
+	spotLight.position.set( 216.55, 238.95, -217.97 );
+	spotLight2.position.set( 307.15, 157.37, -80.38 );
+
 	directionalLight.position.set( 0, 0, 1 );
 
-	scene.add( camera )
-	scene.add( ambientLight );
-	scene.add( directionalLight );
+	scene.add( camera );
+	scene.add( spotLight );
+	scene.add( spotLight2 );
+//	scene.add( ambientLight );
+//	scene.add( directionalLight );
+
+	// Load single JSON files (default view)
 
 	var singleFiles   = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 	var singleObjects = [];
-
-	var manager = new THREE.LoadingManager();
-	manager.onLoad = function(a,b,c) {
-		console.log('onload')
-		console.log(a)
-		console.log(b)
-		console.log(c)
-	}
-	manager.onProgress = function ( item, loaded, total ) {
-		console.log( item, loaded, total );
-	};
 
 	function loadCompleted( name ) {
 		return function( texture ) {
@@ -180,6 +129,8 @@
 
 	var interval = setInterval(function() {
 
+		// When all single files loaded do loaded() function
+
 		if ( singleFiles.length === singleObjects.length ) {
 			loaded();
 		}
@@ -189,9 +140,13 @@
 
 		clearInterval( interval );
 
+		// Add single JSON to scene
+
 		for ( var i2 = 0; i2 < singleObjects.length; i2++ ) {
 			scene.add( singleObjects[i2] );
 		}
+
+		// Load biscayne and cotton materials
 
 		new THREE.TextureLoader().load(
 
@@ -249,6 +204,8 @@
 			}
 		);
 
+		// Set loadSingle function (click handler)
+
 		loadSingle = function() {
 
 			var length = scene.children.length;
@@ -262,7 +219,11 @@
 			}
 		}
 
+		// Add orbitControls
+
 		var orbitControls = new THREE.OrbitControls( camera );
+
+		// Render
 
 		function render() {
 			requestAnimationFrame( render );
@@ -272,6 +233,8 @@
 		render();
 
 		function loadOtherJSON() {
+
+			// Load the rest of the JSON - Single Low, Double, Double Low
 
 			function loadCompleted2( name, obj ) {
 				return function( texture ) {
@@ -327,6 +290,8 @@
 					}
 				}
 			}
+
+			// Set other click handlers for changing between JSON
 
 			var interval2 = setInterval(function() {
 
