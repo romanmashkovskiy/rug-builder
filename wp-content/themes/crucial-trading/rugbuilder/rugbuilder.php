@@ -39,7 +39,7 @@
 	var loadDouble    = function() { alert('Not loaded yet!'); }
 	var loadDoubleLow = function() { alert('Not loaded yet!'); }
 
-	var biscayne, bmap;
+	var biscayne, cotton, bmap, bmap2;
 
 	new THREE.TextureLoader().load(
 		'<?php echo get_template_directory_uri(); ?>/rugbuilder/img/biscayne-bs105-bmap.jpg',
@@ -48,8 +48,20 @@
 			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 			texture.anisotropy = renderer.getMaxAnisotropy();
 			texture.repeat.set(5,5);
-			
+
 			bmap = texture;
+		}
+	);
+
+	new THREE.TextureLoader().load(
+		'<?php echo get_template_directory_uri(); ?>/rugbuilder/img/cotton-herringbone-bmap.jpg',
+		function( texture ) {
+
+			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+			texture.anisotropy = renderer.getMaxAnisotropy();
+			texture.repeat.set(5,5);
+
+			bmap2 = texture;
 		}
 	);
 
@@ -67,6 +79,61 @@
 
 	renderer.setSize( window.innerWidth, window.innerHeight );
 
+	/*
+	spotlight
+
+	{
+                "uuid": "168E9E98-9DF4-4C85-9AC9-78A88FB6ED02",
+                "type": "SpotLight",
+                "name": "SpotLight 1",
+                "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,177.8850860595703,295.90283203125,-383.4111022949219,1],
+                "color": 16777215,
+                "intensity": 1,
+                "distance": 0,
+                "angle": 0.3141592653589793,
+                "decay": 1,
+                "penumbra": 0,
+                "shadow": {
+                    "camera": {
+                        "uuid": "85704523-A9B4-4C92-81ED-3FEBC628891B",
+                        "type": "PerspectiveCamera",
+                        "fov": 50,
+                        "zoom": 1,
+                        "near": 0.5,
+                        "far": 500,
+                        "focus": 10,
+                        "aspect": 1,
+                        "filmGauge": 35,
+                        "filmOffset": 0
+                    }
+                }
+            },
+            {
+                "uuid": "B9B2AF87-BC59-44B4-B451-44893197C5B1",
+                "type": "SpotLight",
+                "name": "SpotLight 2",
+                "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,385.489501953125,224.93087768554688,-143.64881896972656,1],
+                "color": 16777215,
+                "intensity": 0.28,
+                "distance": 0,
+                "angle": 0.3141592653589793,
+                "decay": 1,
+                "penumbra": 0,
+                "shadow": {
+                    "camera": {
+                        "uuid": "E684C3B5-C7A0-4442-A5AC-BC3BCEDC9168",
+                        "type": "PerspectiveCamera",
+                        "fov": 50,
+                        "zoom": 1,
+                        "near": 0.5,
+                        "far": 500,
+                        "focus": 10,
+                        "aspect": 1,
+                        "filmGauge": 35,
+                        "filmOffset": 0
+                    }
+	*/
+
 	var ambientLight     = new THREE.AmbientLight( 0xffffff );
 	var directionalLight = new THREE.DirectionalLight( 0xffffff );
 
@@ -79,21 +146,36 @@
 	var singleFiles   = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 	var singleObjects = [];
 
+	var manager = new THREE.LoadingManager();
+	manager.onLoad = function(a,b,c) {
+		console.log('onload')
+		console.log(a)
+		console.log(b)
+		console.log(c)
+	}
+	manager.onProgress = function ( item, loaded, total ) {
+		console.log( item, loaded, total );
+	};
+
+	function loadCompleted( name ) {
+		return function( texture ) {
+
+			var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+			var object   = new THREE.Mesh(texture, material);
+
+			object.name = name;
+
+			singleObjects.push(object)
+		}
+	}
+
+
 	for ( var i = 0; i < singleFiles.length; i++ ) {
 
-		new THREE.BufferGeometryLoader().load(
+		var url  = '<?php echo get_template_directory_uri(); ?>/rugbuilder/json/single/' + singleFiles[i] + '.json';
+		var name = singleFiles[i];
 
-			'<?php echo get_template_directory_uri(); ?>/rugbuilder/json/single/' + singleFiles[i] + '.json',
-			function( texture ) {
-
-				var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
-				var object   = new THREE.Mesh(texture, material);
-
-				object.name = singleFiles[i];
-
-				singleObjects.push(object)
-			}
-		)
+		new THREE.BufferGeometryLoader().load(url, loadCompleted(name));
 	}
 
 	var interval = setInterval(function() {
@@ -118,20 +200,51 @@
 
 				for ( var t = 3; t < scene.children.length; t++ ) {
 
-					console.log(bmap)
+					if ( scene.children[t].name === 'center' ) {
 
-					texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-					texture.anisotropy = renderer.getMaxAnisotropy();
-					texture.repeat.set(5,5);
+						texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+						texture.anisotropy = renderer.getMaxAnisotropy();
+						texture.repeat.set(5,5);
 
-					var mesh = new THREE.MeshPhongMaterial({
-						map     : texture,
-						bumpMap : bmap
-					});
+						var mesh = new THREE.MeshPhongMaterial({
+							map       : texture,
+							bumpMap   : bmap,
+							bumpScale : 2,
+							shininess : 15
+						});
 
-					scene.children[t].material = mesh;
+						scene.children[t].material = mesh;
 
-					biscayne = mesh;
+						biscayne = mesh;
+					}
+				}
+			}
+		);
+
+		new THREE.TextureLoader().load(
+
+			'<?php echo get_template_directory_uri(); ?>/rugbuilder/img/cotton-herringbone.jpg',
+			function( texture ) {
+
+				for ( var t = 3; t < scene.children.length; t++ ) {
+
+					if ( scene.children[t].name !== 'center' ) {
+
+						texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+						texture.anisotropy = renderer.getMaxAnisotropy();
+						texture.repeat.set(5,5);
+
+						var mesh = new THREE.MeshPhongMaterial({
+							map       : texture,
+							bumpMap   : bmap2,
+							bumpScale : 2,
+							shininess : 15
+						});
+
+						scene.children[t].material = mesh;
+
+						cotton = mesh;
+					}						
 				}
 			}
 		);
@@ -160,6 +273,18 @@
 
 		function loadOtherJSON() {
 
+			function loadCompleted2( name, obj ) {
+				return function( texture ) {
+
+					var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+					var object   = new THREE.Mesh(texture, material);
+
+					object.name = name;
+
+					obj.push(object)
+				}				
+			}
+
 			var singleLowFiles   = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 			var singleLowObjects = [];
 
@@ -171,52 +296,35 @@
 
 			for ( var i3 = 0; i3 < singleLowFiles.length; i3++ ) {
 
-				new THREE.BufferGeometryLoader().load(
+				var url  = '<?php echo get_template_directory_uri(); ?>/rugbuilder/json/single-low/' + singleLowFiles[i3] + '.json';
+				var name = singleLowFiles[i3];
 
-					'<?php echo get_template_directory_uri(); ?>/rugbuilder/json/single-low/' + singleLowFiles[i3] + '.json',
-					function( texture ) {
-
-						var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
-						var object   = new THREE.Mesh(texture, material);
-
-						singleLowObjects.push(object)
-					}
-				)
+				new THREE.BufferGeometryLoader().load(url, loadCompleted2(name, singleLowObjects));
 			}
 
 			for ( var i4 = 0; i4 < doubleFiles.length; i4++ ) {
 
-				new THREE.BufferGeometryLoader().load(
+				var url  = '<?php echo get_template_directory_uri(); ?>/rugbuilder/json/double/' + doubleFiles[i4] + '.json';
+				var name = doubleFiles[i4];
 
-					'<?php echo get_template_directory_uri(); ?>/rugbuilder/json/double/' + doubleFiles[i4] + '.json',
-					function( texture ) {
-
-						var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
-						var object   = new THREE.Mesh(texture, material);
-
-						doubleObjects.push(object)
-					}
-				)
+				new THREE.BufferGeometryLoader().load(url, loadCompleted2(name, doubleObjects));
 			}
 
 			for ( var i5 = 0; i5 < doubleLowFiles.length; i5++ ) {
 
-				new THREE.BufferGeometryLoader().load(
+				var url  = '<?php echo get_template_directory_uri(); ?>/rugbuilder/json/double-low/' + doubleLowFiles[i5] + '.json';
+				var name = doubleLowFiles[i5];
 
-					'<?php echo get_template_directory_uri(); ?>/rugbuilder/json/double-low/' + doubleLowFiles[i5] + '.json',
-					function( texture ) {
-
-						var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
-						var object   = new THREE.Mesh(texture, material);
-
-						doubleLowObjects.push(object)
-					}
-				)
+				new THREE.BufferGeometryLoader().load(url, loadCompleted2(name, doubleLowObjects));
 			}
 
 			function addMaterial() {
 				for ( var t = 3; t < scene.children.length; t++ ) {
-					scene.children[t].material = biscayne;
+					if ( scene.children[t].name === 'center' ) {
+						scene.children[t].material = biscayne;
+					} else {
+						scene.children[t].material = cotton;
+					}
 				}
 			}
 
