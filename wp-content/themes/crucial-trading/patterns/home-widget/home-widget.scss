@@ -9,39 +9,6 @@
 		width: 50%;
 	}
 
-	.widget__image {
-
-		& > div {
-			background-size: cover;
-			height: 520px;
-			position: absolute;
-			width: calc(50% - 100px);
-
-			.border-box {
-				border: 2px solid rgba(255,255,255,0.3);
-				height: calc(100% - 20px);
-				margin: 10px;
-				width: calc(100% - 20px);
-			}
-
-			.info {
-				margin-top: 70%;
-				padding: 0 20px 0 60px;
-				position: relative;
-				top: -100%;
-
-				h2 {
-					color: white;
-					font-size: 30px;
-				}
-
-				h3 {
-					color: #DDDDDD;
-				}
-			}
-		}
-	}
-
 	.widget__text {
 		margin-left: 50%;
 		padding-left: 75px;

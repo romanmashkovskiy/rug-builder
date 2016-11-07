@@ -16,17 +16,7 @@ function home_widget( $atts = '' ) {
 
 	$html .= '<div class="home-widget clearfix">';
 
-	$html .= '<div class="widget__image">';
-	$html .= '<div style="background-image:url(';
-	$html .= "'http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/24200959/organic-slide.jpg'";
-	$html .= ')" class="box-shadow">';
-	$html .= '<div class="border-box"></div>';
-	$html .= '<div class="info">';
-	$html .= '<h2>Our new floor is so beautiful!</h2>';
-	$html .= '<h3>4 Days Ago</h3>';
-	$html .= '</div>';
-	$html .= '</div>';
-	$html .= '</div>';
+	$html .= do_shortcode( '[social-post image="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/24200959/organic-slide.jpg" title="Our new floor is so beautiful!" time="4 Days Ago"]' );
 
 	$html .= '<div class="widget__text">';
 	$html .= '<h3>Social Satisfaction</h3>';

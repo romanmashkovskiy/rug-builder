@@ -1,0 +1,61 @@
+.page-template-inspiration {
+	background: #383838;
+
+	.share-links * {
+		color: white;
+	}
+
+	.posts {
+		height: 1900px;
+		margin-top: 50px;
+		width: 100%;
+	}
+
+	@media screen and (min-width: 992px) {
+
+		#post-1 > div > div {
+			top: 10px;
+			left: 30px;
+		}
+
+		#post-2 > div > div {
+			top: 50px;
+			right: 30px;
+		}
+
+		#post-3 > div > div {
+			top: 650px;
+			left: 60px;
+			width: calc(100% - 200px);
+		}
+
+		#post-4 > div > div {
+			top: 1230px;
+			left: 45px;
+		}
+
+		#post-5 > div > div {
+			top: 1270px;
+			right: 45px;
+		}
+	}
+
+	@media screen and (max-width: 992px) {
+
+		.posts {
+			height: auto;
+		}
+
+		.post > div > div {
+			margin-bottom: 30px;
+			margin-left: 10%;
+			position: relative;
+			width: 80%;
+
+			.info {
+				margin-top: 0;
+				top: -35%;
+			}
+		}
+	}
+}
