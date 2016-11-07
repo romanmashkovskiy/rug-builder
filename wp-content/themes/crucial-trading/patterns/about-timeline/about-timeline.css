@@ -37,7 +37,7 @@
   float: none;
   vertical-align: middle; }
 
-.box-shadow, .timeline__event__img {
+.box-shadow {
   -webkit-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
   -moz-box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
   box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08); }
@@ -402,15 +402,15 @@ body {
   position: relative;
   padding-left: 12%;
   padding-right: 12%;
-  padding-top: 6%; }
+  padding-top: 8%; }
 
 .timeline__event:nth-child(odd) {
   float: left;
-  margin-top: 7%; }
+  margin-top: 30%; }
 
 .timeline__event:nth-child(even) {
   float: right;
-  margin-top: 2%; }
+  margin-top: 11%; }
 
 /************** Event Details **************/
 h4.timeline__event__heading {
