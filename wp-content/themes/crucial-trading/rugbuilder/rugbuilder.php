@@ -86,6 +86,9 @@
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.setClearColor(0xf3f3f3)
 
+	renderer.gammaInput = true;
+renderer.gammaOutput = true;
+
 	var spotLight        = new THREE.SpotLight( 0xffffff, 1, 0, 0.3141592653589793, 0, 1 );
 	var spotLight2       = new THREE.SpotLight( 0xffffff, 0.7, 0, 0.3141592653589793, 0, 1 );
 	var ambientLight     = new THREE.AmbientLight( 0xffffff );
