@@ -39,6 +39,20 @@
 	var loadDouble    = function() { alert('Not loaded yet!'); }
 	var loadDoubleLow = function() { alert('Not loaded yet!'); }
 
+	var biscayne, bmap;
+
+	new THREE.TextureLoader().load(
+		'<?php echo get_template_directory_uri(); ?>/rugbuilder/img/biscayne-bs105-bmap.jpg',
+		function( texture ) {
+
+			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+			texture.anisotropy = renderer.getMaxAnisotropy();
+			texture.repeat.set(5,5);
+			
+			bmap = texture;
+		}
+	);
+
 	var scene    = new THREE.Scene();
 	var camera   = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 0.1, 10000 );
 	var renderer = new THREE.WebGLRenderer();
@@ -75,6 +89,8 @@
 				var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
 				var object   = new THREE.Mesh(texture, material);
 
+				object.name = singleFiles[i];
+
 				singleObjects.push(object)
 			}
 		)
@@ -89,13 +105,36 @@
 
 	function loaded() {
 
-		setInterval(function(){console.log(camera.position);console.log('---');console.log(camera.rotation);console.log('---------------------------');},2500)
-
 		clearInterval( interval );
 
 		for ( var i2 = 0; i2 < singleObjects.length; i2++ ) {
 			scene.add( singleObjects[i2] );
 		}
+
+		new THREE.TextureLoader().load(
+
+			'<?php echo get_template_directory_uri(); ?>/rugbuilder/img/biscayne-bs105.jpg',
+			function( texture ) {
+
+				for ( var t = 3; t < scene.children.length; t++ ) {
+
+					console.log(bmap)
+
+					texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+					texture.anisotropy = renderer.getMaxAnisotropy();
+					texture.repeat.set(5,5);
+
+					var mesh = new THREE.MeshPhongMaterial({
+						map     : texture,
+						bumpMap : bmap
+					});
+
+					scene.children[t].material = mesh;
+
+					biscayne = mesh;
+				}
+			}
+		);
 
 		loadSingle = function() {
 
@@ -111,8 +150,6 @@
 		}
 
 		var orbitControls = new THREE.OrbitControls( camera );
-
-		console.log(orbitControls)
 
 		function render() {
 			requestAnimationFrame( render );
@@ -177,11 +214,15 @@
 				)
 			}
 
+			function addMaterial() {
+				for ( var t = 3; t < scene.children.length; t++ ) {
+					scene.children[t].material = biscayne;
+				}
+			}
+
 			var interval2 = setInterval(function() {
 
 				if ( singleLowFiles.length === singleLowObjects.length ) {
-
-					console.log('loaded')
 
 					loadSingleLow = function() {
 
@@ -194,6 +235,8 @@
 						for ( l = 0; l < singleLowObjects.length; l++ ) {
 							scene.add( singleLowObjects[l] );
 						}
+
+						addMaterial();
 					}
 
 					clearInterval( interval2 );
@@ -203,8 +246,6 @@
 			var interval3 = setInterval(function() {
 
 				if ( doubleFiles.length === doubleObjects.length ) {
-
-					console.log('loaded')
 
 					loadDouble = function() {
 
@@ -217,6 +258,8 @@
 						for ( l = 0; l < doubleObjects.length; l++ ) {
 							scene.add( doubleObjects[l] );
 						}
+
+						addMaterial();
 					}
 
 					clearInterval( interval3 );
@@ -226,8 +269,6 @@
 			var interval4 = setInterval(function() {
 
 				if ( doubleLowFiles.length === doubleLowObjects.length ) {
-
-					console.log('loaded')
 
 					loadDoubleLow = function() {
 
@@ -240,6 +281,8 @@
 						for ( l = 0; l < doubleLowObjects.length; l++ ) {
 							scene.add( doubleLowObjects[l] );
 						}
+
+						addMaterial();
 					}
 
 					clearInterval( interval4 );
