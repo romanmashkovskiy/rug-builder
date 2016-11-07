@@ -47,7 +47,7 @@ echo do_shortcode( '[logo-nav]' ); ?>
 					data-0="transform: translate(0,0%);opacity: 0.5;" 
 					data-500="transform: translate(0,10%);opacity: 1;" 
 					data-1000="transform: translate(0,20%);"
-					data-2000="transform: translate(0,30%);"	
+					data-2000="transform: translate(0,55%);"	
 					>
 				<div class="timeline__event__line"><span class="timeline__event__ball"></span></div>
 				<h4 class="timeline__event__heading"><span class="timeline__event__date">1999.</span> Where It Started</h4>
