@@ -84,9 +84,10 @@
 	camera.rotation.z = -0.25090904322969587;
 
 	renderer.setSize( window.innerWidth, window.innerHeight );
+	renderer.setClearColor(0xf3f3f3)
 
 	var spotLight        = new THREE.SpotLight( 0xffffff, 1, 0, 0.3141592653589793, 0, 1 );
-	var spotLight2       = new THREE.SpotLight( 0xffffff, 0.28, 0, 0.3141592653589793, 0, 1 );
+	var spotLight2       = new THREE.SpotLight( 0xffffff, 0.7, 0, 0.3141592653589793, 0, 1 );
 	var ambientLight     = new THREE.AmbientLight( 0xffffff );
 	var directionalLight = new THREE.DirectionalLight( 0xffffff );
 
@@ -160,12 +161,23 @@
 						texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 						texture.anisotropy = renderer.getMaxAnisotropy();
 						texture.repeat.set(5,5);
-
+						texture.flipX = false;
+/*
 						var mesh = new THREE.MeshPhongMaterial({
 							map       : texture,
 							bumpMap   : bmap,
 							bumpScale : 2,
 							shininess : 15
+						});
+*/
+						var mesh = new THREE.MeshStandardMaterial( {
+							map       : texture,
+							bumpMap   : bmap,
+							roughness: 0.8,
+							color: 0xffffff,
+							metalness: 0.2,
+							bumpScale: 0.0005,
+							shininess: 5
 						});
 
 						scene.children[t].material = mesh;
@@ -193,7 +205,7 @@
 							map       : texture,
 							bumpMap   : bmap2,
 							bumpScale : 2,
-							shininess : 15
+							shininess : 5
 						});
 
 						scene.children[t].material = mesh;
