@@ -9,6 +9,10 @@
 		height: 1900px;
 		margin-top: 50px;
 		width: 100%;
+
+		@media screen and (min-width: 992px) {
+			margin-top: 0;
+		}
 	}
 
 	@media screen and (min-width: 992px) {
