@@ -58,7 +58,7 @@ function crucial_main_menu() {
 					<div class="main-menu__social--twitter">
 						<a href="'.$crucial_social_link_twitter.'" title="Twitter" target="_blank"><i class="icon-crucial-twitter"></i>twitter</a>
 					</div><div class="main-menu__social--instagram">
-						<a href="'.$crucial_social_link_insta.'" title="Instagram" target="_blank"><i class="fa fa-instagram"></i>instagram</a>
+						<a href="'.$crucial_social_link_insta.'" title="Instagram" target="_blank"><i class="icon-crucial-instagram"></i>instagram</a>
 					</div>
 				</div>
 				<div class="main-menu__search">

@@ -61,6 +61,12 @@ for ( $i=0; $i<count($scan); $i++ ) {
 	else if ( $scan[$i] == 'material-view-slider' ) {
 		echo do_shortcode( '[material-view-slider pattern="true"]' );
 	}
+	else if ( $scan[$i] == 'showroom-card' ) {
+		echo '<div class="clearfix" style="background:#F7F7F7;">';
+		echo do_shortcode( '[showroom-card type="showroom"]' );
+		echo do_shortcode( '[showroom-card type="online"]' );
+		echo '</div>';
+	}
 	else {
 		echo do_shortcode( '[' . $scan[$i] . ']' );
 	}

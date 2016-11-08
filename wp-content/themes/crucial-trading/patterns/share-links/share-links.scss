@@ -9,6 +9,10 @@
 		position: absolute;
 		top: 45px;
 
+		@media screen and (max-width: 768px) {
+			display: none;
+		}
+
 		span {
 			display: block;
 			height: 2px;
@@ -90,6 +94,11 @@
 		float: left;
 		text-align:center;
 		width: 25%;
+
+		@media screen and (max-width: 768px) {
+			margin-bottom: 10px;
+			width: 100%;
+		}
 
 		&.coir {
 

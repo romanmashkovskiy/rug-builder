@@ -1,0 +1,43 @@
+@import '../../assets/css/src/_variables.scss';
+
+.retailer-search {
+	background: white;
+	padding: 30px 40px 10px;
+	width: 300px;
+
+	h2 {
+		font-size: 24px;
+		text-align: center;
+	}
+
+	span {
+		background: #7C7C7C;
+		display: block;
+		height: 2px;
+		margin: 15px auto 35px;
+		width: 75px;
+	}
+
+	input {
+		width: 100%;
+	}
+
+	button {
+		margin-top: 50px;
+		width: 100%;
+	}
+
+	select {
+		display: none;
+		width: 100%;
+	}
+
+	.overseas-partners,
+	.uk-retailers {
+		color: #7C7C7C;
+		cursor: pointer;
+		font-size: 12px;
+		margin-top: 10px;
+		text-align: center;
+	}
+}

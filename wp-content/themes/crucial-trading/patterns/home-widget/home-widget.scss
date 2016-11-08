@@ -1,0 +1,42 @@
+.home-widget {
+	background: #383838;
+	margin-bottom: 50px;
+	padding: 100px;
+
+	.widget__image,
+	.widget__text {
+		float: left;
+		width: 50%;
+	}
+
+	.widget__text {
+		margin-left: 50%;
+		padding-left: 75px;
+
+		h3 {
+			color: #7C7C7C;
+		}
+
+		h2 {
+			color: white;
+			margin-bottom: 25px;
+		}
+
+		span {
+			background: #7C7C7C;
+			display: block;
+			height: 2px;
+			margin-bottom: 40px;
+			width: 75px;
+		}
+
+		p {
+			color: #DDDDDD;
+			margin-bottom: 100px;
+		}
+
+		a {
+			color: #DDDDDD;
+		}
+	}
+}

@@ -1,0 +1,48 @@
+.collection-swatches {
+	background: white;
+	margin-left: 7%;
+	padding: 75px;
+	width: 86%;
+
+	.collection__title {
+		font-size: 48px;
+		margin-bottom: 100px;
+		text-align: center;
+	}
+
+	.swatch-container .swatch {
+		float: left;
+		margin-bottom: 20px;
+		width: 23.5%;
+
+		&:not(:nth-child(4n)) {
+			margin-right: 2%;
+		}
+
+		img {
+			height: 200px;
+			margin-bottom: 10px;
+			object-fit: cover;
+			width: 200px;
+
+			@media screen and (max-width: 992px) {
+				height: 125px;
+				width: 125px;
+			}
+		}
+
+		.swatch__title {
+			color: #7C7C7C;
+		}
+
+		.swatch__code {
+			color: transparentize(#7C7C7C, 0.4);
+		}
+	}
+
+	p {
+		clear: both;
+		padding: 50px 10% 0;
+		text-align: center;
+	}
+}

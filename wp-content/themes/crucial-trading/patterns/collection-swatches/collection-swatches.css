@@ -1,0 +1,33 @@
+.collection-swatches {
+  background: white;
+  margin-left: 7%;
+  padding: 75px;
+  width: 86%; }
+  .collection-swatches .collection__title {
+    font-size: 48px;
+    margin-bottom: 100px;
+    text-align: center; }
+  .collection-swatches .swatch-container .swatch {
+    float: left;
+    margin-bottom: 20px;
+    width: 23.5%; }
+    .collection-swatches .swatch-container .swatch:not(:nth-child(4n)) {
+      margin-right: 2%; }
+    .collection-swatches .swatch-container .swatch img {
+      height: 200px;
+      margin-bottom: 10px;
+      -o-object-fit: cover;
+      object-fit: cover;
+      width: 200px; }
+      @media screen and (max-width: 992px) {
+        .collection-swatches .swatch-container .swatch img {
+          height: 125px;
+          width: 125px; } }
+    .collection-swatches .swatch-container .swatch .swatch__title {
+      color: #7C7C7C; }
+    .collection-swatches .swatch-container .swatch .swatch__code {
+      color: rgba(124, 124, 124, 0.6); }
+  .collection-swatches p {
+    clear: both;
+    padding: 50px 10% 0;
+    text-align: center; }

@@ -17,6 +17,9 @@
     left: 0;
     position: absolute;
     top: 45px; }
+    @media screen and (max-width: 768px) {
+      .share-links .share-title {
+        display: none; } }
     .share-links .share-title span {
       display: block;
       height: 2px;
@@ -51,6 +54,10 @@
     float: left;
     text-align: center;
     width: 25%; }
+    @media screen and (max-width: 768px) {
+      .share-links .link__container {
+        margin-bottom: 10px;
+        width: 100%; } }
     .share-links .link__container.coir i, .share-links .link__container.coir a {
       color: rgba(111, 83, 61, 0.5); }
     .share-links .link__container.coir:hover i, .share-links .link__container.coir:hover a {

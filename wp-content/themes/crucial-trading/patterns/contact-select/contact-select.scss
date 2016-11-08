@@ -1,0 +1,31 @@
+@import '../../assets/css/src/_variables.scss';
+
+.contact-select {
+	background: white;
+	margin-left: 25%;
+	padding-top: 30px;
+	width: 50%;
+
+	h2 {
+		text-align: center;
+	}
+
+	span {
+		background: #D2D2D2;
+		display: block;
+		height: 2px;
+		margin: 10px auto 40px;
+		width: 75px;
+	}
+
+	select {
+		margin-bottom: 50px;
+		margin-left: calc(50% - 125px);
+		width: 250px;
+
+		@media screen and (max-width: 600px) {
+			margin-left: 5%;
+			width: 90%;
+		}
+	}
+}

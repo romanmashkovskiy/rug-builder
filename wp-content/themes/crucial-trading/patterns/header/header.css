@@ -29,8 +29,6 @@ header {
     text-align: center; }
     header h3.side-title {
       left: -13px; }
-    header h3.subtitle {
-      text-align: left; }
   @media screen and (max-width: 600px) {
     header.small, header.large {
       height: 300px; } }
@@ -142,6 +140,10 @@ header.material {
       height: 45px;
       margin-bottom: 10px;
       width: 45px; }
+      header.material .material__sidememu img:not(.active) {
+        opacity: 0.4; }
+      header.material .material__sidememu img:not(.active):hover {
+        opacity: 1; }
     @media screen and (max-width: 600px) {
       header.material .material__sidememu {
         top: 10px;
