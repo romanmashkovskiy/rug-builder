@@ -23,11 +23,13 @@
 	.material__right {
 		float: left;
 		height: 100%;
+		padding-left: 25px;
 		position: relative;
 		width: 70%;
 
 		@media screen and (max-width: 992px) {
 			height: auto;
+			padding-left: 0;
 			width: 100%;
 		}
 	}
