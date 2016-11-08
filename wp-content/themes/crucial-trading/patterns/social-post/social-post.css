@@ -1,0 +1,28 @@
+.social__post {
+  position: relative; }
+  .social__post > div {
+    background-size: cover;
+    height: 520px;
+    position: absolute;
+    width: calc(50% - 100px); }
+    .social__post > div .border-box {
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      height: calc(100% - 20px);
+      margin: 10px;
+      width: calc(100% - 20px); }
+    .social__post > div i {
+      color: white;
+      font-size: 20px;
+      left: 30px;
+      position: absolute;
+      top: 20px; }
+    .social__post > div .info {
+      margin-top: 70%;
+      padding: 0 20px 0 60px;
+      position: relative;
+      top: -100%; }
+      .social__post > div .info h2 {
+        color: white;
+        font-size: 30px; }
+      .social__post > div .info h3 {
+        color: #DDDDDD; }

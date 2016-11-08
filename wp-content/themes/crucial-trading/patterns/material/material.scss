@@ -1,0 +1,101 @@
+.material-box {
+	height: 550px;
+	margin-left: 7%;
+	padding: 100px 100px 0;
+	width: 86%;
+
+	@media screen and (max-width: 992px) {
+		height: auto;
+		padding: 25px 25px 0;
+	}
+
+	.material__left {
+		float: left;
+		height: 100%;
+		width: 30%;
+
+		@media screen and (max-width: 992px) {
+			height: auto;
+			width: 100%;
+		}
+	}
+
+	.material__right {
+		float: left;
+		height: 100%;
+		padding-left: 25px;
+		position: relative;
+		width: 70%;
+
+		@media screen and (max-width: 992px) {
+			height: auto;
+			padding-left: 0;
+			width: 100%;
+		}
+	}
+
+	.material__img {
+		height: 150px;
+		width: 150px;
+
+		@media screen and (max-width: 992px) {
+			-webkit-transform: none !important;
+			transform: none !important;
+			margin-left: calc(50% - 75px);
+			position: static;
+		}
+	}
+
+	.material__desc {
+		margin-top: 25px;
+
+		@media screen and (max-width: 992px) {
+			margin-bottom: 25px;
+		}
+	}
+
+	.material__link {
+		bottom: 50px;
+		position: absolute;
+
+		@media screen and (max-width: 992px) {
+			position: static;
+		}
+	}
+
+	span {
+		background: #EFEFEF;
+		display: block;
+		float: left;
+		height: 2px;
+		width: 100%;
+
+		@media screen and (max-width: 992px) {
+			margin-top: 25px;
+		}
+	}
+
+	&.coir * {
+		color: $color-coir-dark;
+	}
+
+	&.jute * {
+		color: $color-jute-dark;
+	}
+
+	&.seagrass * {
+		color: $color-seagrass-dark;
+	}
+
+	&.sisal * {
+		color: $color-sisal-dark;
+	}
+
+	&.sisool * {
+		color: $color-sisool-dark;
+	}
+
+	&.wool * {
+		color: $color-wool-dark;
+	}
+}

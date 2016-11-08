@@ -20,4 +20,6 @@ echo do_shortcode( '[materials-slider]' );
 
 echo do_shortcode( '[section-boxes number=1]' );
 
+echo do_shortcode( '[home-widget]' );
+
 get_footer();

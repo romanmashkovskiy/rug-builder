@@ -1,0 +1,27 @@
+.home-widget {
+  background: #383838;
+  margin-bottom: 50px;
+  padding: 100px; }
+  .home-widget .widget__image,
+  .home-widget .widget__text {
+    float: left;
+    width: 50%; }
+  .home-widget .widget__text {
+    margin-left: 50%;
+    padding-left: 75px; }
+    .home-widget .widget__text h3 {
+      color: #7C7C7C; }
+    .home-widget .widget__text h2 {
+      color: white;
+      margin-bottom: 25px; }
+    .home-widget .widget__text span {
+      background: #7C7C7C;
+      display: block;
+      height: 2px;
+      margin-bottom: 40px;
+      width: 75px; }
+    .home-widget .widget__text p {
+      color: #DDDDDD;
+      margin-bottom: 100px; }
+    .home-widget .widget__text a {
+      color: #DDDDDD; }

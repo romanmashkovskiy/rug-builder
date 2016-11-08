@@ -92,7 +92,6 @@ $(document).ready(function() {
 	$('.material-slide .slide__content').css('cssText', 'height: calc(100% - 60px)');
 
 	setTimeout(function() {
-		console.log(1)
 		$('.material-slide').each(function(i, v) {
 			$(v).css({
 				top: 0,

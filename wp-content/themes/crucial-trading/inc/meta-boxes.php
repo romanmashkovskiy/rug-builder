@@ -86,5 +86,45 @@ function meta_boxes($meta_boxes) {
 		),
 	);
 
+	// Page Images
+
+	$meta_boxes[] = array(
+		'title'      => 'Page Images',
+		'post_types' => 'page',
+		'fields'     => array(
+			array(
+				'name'        => 'Standard Image',
+				'id'          => 'standard_image',
+				'type'        => 'image_advanced',
+				'max_uploads' => 1,
+			),
+			array(
+				'name' => 'Tag',
+				'id'   => 'standard_tag',
+				'type' => 'text',
+			),
+			array(
+				'name'       => 'Other Images',
+				'id'         => 'other_images',
+				'type'       => 'group',
+				'clone'      => true,
+				'sort_clone' => true,
+				'fields'     => array(
+					array(
+						'name'        => 'Image',
+						'id'          => 'other_image',
+						'type'        => 'image_advanced',
+						'max_uploads' => 1,
+					),
+					array(
+						'name' => 'Tag',
+						'id'   => 'image_tag',
+						'type' => 'text',
+					),
+				),
+			),
+		),
+	);
+
 	return $meta_boxes;
 }

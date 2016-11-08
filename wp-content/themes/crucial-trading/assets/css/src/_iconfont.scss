@@ -21,31 +21,36 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-crucial-left-arrow:before {
+  content: "\e909a";
+}
+.icon-crucial-right-arrow:before {
+  content: "\e909";
+}
 .icon-crucial-basket:before {
-	content: "\e900";
+  content: "\e900";
 }
 .icon-crucial-changeview:before {
-	content: "\e901";
+  content: "\e901";
 }
 .icon-crucial-facebook:before {
-	content: "\e902";
-}
-.icon-crucial-tumblr:before {
-	content: "\e903";
+  content: "\e902";
 }
 .icon-crucial-measurement:before {
-	content: "\e904";
+  content: "\e903";
 }
 .icon-crucial-metres:before {
-	content: "\e905";
+  content: "\e904";
 }
 .icon-crucial-search:before {
-	content: "\e906";
+  content: "\e905";
+}
+.icon-crucial-tumblr:before {
+  content: "\e906";
 }
 .icon-crucial-twitter:before {
-	content: "\e907";
+  content: "\e907";
 }
 .icon-crucial-underlay:before {
-	content: "\e908";
+  content: "\e908";
 }
-

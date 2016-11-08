@@ -104,7 +104,7 @@ function crucial_slider_slides() {
 			}
 
 			$html .= '<li class="slide ' . $opening_class . '">';
-			$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+			$html .= '<img src="' . $src . '" alt="' . $alt . '">'; 
 
 			$html .= '<nav class="slides-navigation vertical-align">';
 
