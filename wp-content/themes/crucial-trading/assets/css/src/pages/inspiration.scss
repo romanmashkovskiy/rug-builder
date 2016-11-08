@@ -5,6 +5,40 @@
 		color: white;
 	}
 
+	.fts-tweeter-wrap  {
+
+		.fts-twitter-image,
+		.fts-twitter-reply-wrap {
+			display: none;
+		}
+
+//		.right {
+//			position: relative;
+
+			.uppercase.bold,
+			.time {
+				display: none;
+			}
+
+			.fts-twitter-text,
+			.fts-twitter-text * {
+				color: white;
+				font-family: "Playfair Display",serif;
+				font-size: 18px;
+				font-weight: normal;
+				letter-spacing: 2px;
+				line-height: 1.8;
+				margin: 0;
+			}
+
+			img {
+				border-radius: 0;
+				height: 520px;
+				width: calc(50% - 100px);
+			}
+//		}
+	}
+
 	.posts {
 		height: 1900px;
 		margin-top: 50px;

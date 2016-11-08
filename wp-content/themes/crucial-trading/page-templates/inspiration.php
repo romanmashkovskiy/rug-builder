@@ -41,3 +41,5 @@ echo '</div>';
 echo '</div>';
 
 get_footer();
+
+echo do_shortcode( '[fts_twitter twitter_name=crucialtrading tweets_count=1 show_retweets=yes]' );
