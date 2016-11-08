@@ -1,0 +1,28 @@
+.material-box {
+  height: 550px;
+  margin-left: 7%;
+  padding: 100px 100px 0;
+  width: 86%; }
+  .material-box .material__left {
+    float: left;
+    height: 100%;
+    width: 30%; }
+  .material-box .material__right {
+    float: left;
+    height: 100%;
+    position: relative;
+    width: 70%; }
+  .material-box .material__img {
+    height: 150px;
+    width: 150px; }
+  .material-box .material__desc {
+    margin-top: 25px; }
+  .material-box .material__link {
+    bottom: 50px;
+    position: absolute; }
+  .material-box span {
+    background: #EFEFEF;
+    display: block;
+    float: left;
+    height: 2px;
+    width: 100%; }
