@@ -92,7 +92,7 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 			$ftp_connection = ftp_connect('195.102.23.61');
 			$login_result   = ftp_login($ftp_connection, 'KJOCRU', 'Cr0k1J0s');
 
-			$remote_file = './';
+			$remote_file = './cru04.' . $extension;
 			$local_file  = get_template_directory() . '/inc/woocommerce/cru04/cru04.' . $extension;
 
 			$result = '';
