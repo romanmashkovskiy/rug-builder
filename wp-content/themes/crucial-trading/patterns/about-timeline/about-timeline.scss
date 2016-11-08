@@ -385,6 +385,11 @@ body {
 	padding-top: 8%;
 }
 
+.timeline__event#three,
+.timeline__event#four {
+	padding-top: 10%;
+}
+
 .timeline__event:nth-child(odd) {
 	float: left;
 	margin-top: 30%;
