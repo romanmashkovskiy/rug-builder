@@ -65,7 +65,11 @@ function create_order_code($order_id) {
 
 	for ( $i=0; $i<count($items); $i++ ) {
 
-		$item = $items[$i];
+		$item      = $items[$i];
+		$item_id   = $item['product_id'];
+		$item_meta = get_post_meta( $item_id, '_product_attributes', true );
+
+		$gpc = is_array($item_meta) && array_key_exists( 'gpc', $item_meta ) ? $item_meta['gpc']['value'] : '';
 
 		$order_line = array(
 			'recordTypeIdentifier' => 'L',
@@ -73,7 +77,7 @@ function create_order_code($order_id) {
 			'distributorAccNo'     => 0,
 			'distributorAddrNo'    => 0,
 			'orderType'            => 'S',
-			'gpcCode'              => 'AAA99999999',
+			'gpcCode'              => $gpc,
 			'quantity'             => $item['qty'],
 			'deliveryDate'         => '',
 			'consumerCostPrice'    => 0,
