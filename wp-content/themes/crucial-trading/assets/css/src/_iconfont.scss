@@ -21,6 +21,12 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-crucial-email:before {
+  content: "\e90a";
+}
+.icon-crucial-instagram:before {
+  content: "\e90b";
+}
 .icon-crucial-left-arrow:before {
   content: "\e909a";
 }

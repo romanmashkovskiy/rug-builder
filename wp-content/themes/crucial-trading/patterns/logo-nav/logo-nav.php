@@ -21,7 +21,7 @@ function logo_nav_shortcode( $atts = '' ) {
 	}
 
 	$html = '';
-
+	
 	$html .= '<div class="top-bar" ' . $abs_style . '>';
 
 	$html .= '<div class="top-bar__left vertical-align">';
