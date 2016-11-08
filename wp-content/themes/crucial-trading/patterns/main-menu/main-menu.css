@@ -199,7 +199,7 @@ body {
 /************** Menu Bottom**************/
 .main-menu__bottom {
   position: absolute;
-  bottom: 50px;
+  bottom: 0px;
   width: 100%; }
 
 /** Adjust colours **/
@@ -265,13 +265,13 @@ input.main-menu__search__input:focus {
   font-size: 16px;
   color: #FFF;
   font-family: "Montserrat", sans-serif;
-  background: #2d2d2d;
+  background-color: #2d2d2d !important;
   margin: 0;
-  padding: 30px;
-  padding-left: 60px;
+  padding: 30px !important;
+  padding-left: 60px !important;
   border: 0;
   border-radius: 0;
-  border: none;
+  border: none !important;
   outline: none;
   box-sizing: border-box;
   border-bottom: 1px solid #3e3e3e; }
