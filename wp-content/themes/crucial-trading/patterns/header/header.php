@@ -105,9 +105,11 @@ function header_material_shortcode($atts = '') {
 					$src      = wp_get_attachment_url( $thumb_id );
 					$alt      = $cat->slug; 
 
+					$active_class = $material == $alt ? 'class="active"' : '';
+
 					$html .= '<li>';
 					$html .= '<a href="' . get_site_url() . '/material/' . $alt . '" class="no-effect">';
-					$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+					$html .= '<img src="' . $src . '" alt="' . $alt . '" ' . $active_class . '>';
 					$html .= '</a>';
 					$html .= '<li>';
 				}
@@ -124,3 +126,33 @@ function header_material_shortcode($atts = '') {
 }
 
 add_shortcode( 'header-material', 'header_material_shortcode' );
+
+/************** Collection Header **************/ 
+
+function header_collection_shortcode($atts = '') {
+
+	$html = '';
+
+	if ( $atts != '' && array_key_exists('collection', $atts) ) {
+
+		$collection = $atts['collection'];
+		$name       = strtoupper( $collection );
+
+		$html .= '<header class="material large clearfix">';
+
+		$html .= '<div class="material__name ' . $collection . '">';
+		$html .= '<h3 class="rotate">' . $name . '</h3>';
+		$html .= '</div>';
+
+		$html .= '</header>';
+	}
+
+	return $html;
+}
+
+add_shortcode( 'header-collection', 'header_collection_shortcode' );
+
+
+
+
+

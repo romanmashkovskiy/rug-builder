@@ -14,34 +14,38 @@ var $ = jQuery;
 	    $(this).toggleClass("is-active");
 	    $('body').toggleClass("show-about-timeline");    
 	    
-				  //$('.about__scroller__bg').toggleClass("minus-z");
+		    $(".is-active").click(function() {
+				  $('body').toggleClass("hide-about-timeline");
+			  });
+	     
+				var s = skrollr.init({
+				render: function(data) {
+					//Debugging - Log the current scroll position.
+					console.log(data.curTop);
+					}
+				});
 	     
 	  });
 	});
 	
-// Add classes for scroller
-	
+	// Add classes for scroller
 	$(function() {                     
 	  $(".about__scroller__btn").click(function() { 
 	    $(this).toggleClass("is-active");
 	    $('body').toggleClass("show-about-scroller");     
 	    
-	    /*$(".is-active").click(function() {
+	    $(".is-active").click(function() {
 			  $('body').toggleClass("hide-about-scroller");
-		  });*/
+		  });
 	    
 	  });
 	});
-		
-	// Remove classes and close menu when page is clicked 	
-	/*$("html").click(function() {
-		$('body').removeClass("show-menu");
-		$('.main-menu__button').removeClass("is-active");
-	});
-	
-	// Ignore above for menu and menu button 
-	$('.main-menu, .main-menu__button').click(function(event){
-	    event.stopPropagation();
-	});*/
+
+  var s = skrollr.init({
+      render: function(data) {
+          //Debugging - Log the current scroll position.
+          console.log(data.curTop);
+      }
+  });
 
 });

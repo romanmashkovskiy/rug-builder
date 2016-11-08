@@ -32,10 +32,6 @@ header {
 		&.side-title {
 			left: -13px;
 		}
-
-		&.subtitle {
-			text-align: left;
-		}
 	}
 
 	@media screen and (max-width: 600px) {
@@ -235,6 +231,14 @@ header.material {
 			height: 45px;
 			margin-bottom: 10px;
 			width: 45px;
+
+			&:not(.active) {
+				opacity: 0.4;
+			}
+
+			&:not(.active):hover {
+				opacity: 1;
+			}
 		}
 
 		@media screen and (max-width: 600px) {

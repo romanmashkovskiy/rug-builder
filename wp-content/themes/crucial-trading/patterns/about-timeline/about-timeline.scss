@@ -15,7 +15,8 @@
 /************** Layout **************/ 
 
 .about {
-	//overflow: hidden;
+	overflow: hidden;
+	-webkit-backface-visibility: hidden;
 }
 
 .about__timeline,
@@ -26,8 +27,6 @@
 	font-size: 0;
 	height: 100vh;
 	text-align: center;
-	z-index: 9;
-	@extend .transition-all;
 	transition: transform 1.3s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 	
@@ -77,7 +76,7 @@
 
 .about__timeline__text,
 .about__scroller__text {
-	transform: translate3d(0,0,0);
+	transform: translate(0,0);
 	transition: transform 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 } 
@@ -89,43 +88,82 @@
 
 .show-about-timeline .about__timeline, 
 .show-about-scroller .about__scroller {
-	z-index: 999;
 }
+
+
+/**  Timeline  **/
 
 .show-about-timeline .about__timeline__bg {
-	transform: translate3d(25%,0,0) scaleX(2.5);
+	transform: translate(25%,0) scale(2.5);
 	transition: transform scale 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
-	z-index: 9999;
-	position: absolute;
-	top: 0;
+	-webkit-backface-visibility: hidden;
 }
 
-.show-about-timeline .about__scroller__bg {
+body {
+	height: 100% !important;
+}
+
+.show-about-timeline .about__scroller__bg,
+.hide-about-timeline .about__scroller__bg,
+.show-about-timeline .about__scroller__text,
+.hide-about-timeline .about__scroller__text {
+	transform: translate(98.9%,0);
+	transition: transform scale 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.6,1);
+	z-index: -9;
+	-webkit-backface-visibility: hidden;
+}
+
+.show-about-timeline .about__scroller__subtitle,
+.hide-about-timeline .about__scroller__subtitle {
+	transform: translate(98.9%,0);
 	transition: transform scale 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	-webkit-backface-visibility: hidden;
 }
+
+
+/**  Scroller  **/
 
 .show-about-scroller .about__scroller__bg {
-	transform: translate3d(-25%,0,0) scaleX(2.5);
+	transform: translate(-25%,0) scale(2.5);
 	transition: transform scale 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
-	z-index: 99;
+	-webkit-backface-visibility: hidden;
 }
 
+.show-about-scroller .about__timeline__bg,
+.hide-about-scroller .about__timeline__bg,
+.show-about-scroller .about__timeline__text,
+.hide-about-scroller .about__timeline__text {
+	transform: translate(-98%,0);
+	transition: transform scale 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	z-index: -9;
+	-webkit-backface-visibility: hidden;
+}
+
+.show-about-scroller .about__timeline__subtitle,
+.hide-about-scroller .about__timeline__subtitle {
+	transform: translate(-98%,0);
+	transition: transform scale 1.2s;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	-webkit-backface-visibility: hidden;
+}
 
 
 /** Animate - Text **/ 
 
 .show-about-timeline .about__timeline__text {
-	z-index: 999999;
+	//z-index: 109;
 	transform: translate3d(50%,-40%,0);
 	transition: transform 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 }
 
 .show-about-scroller .about__scroller__text {
-	z-index: 999;
+	//z-index: 109;
 	transform: translate3d(-50%,-40%,0);
 	transition: transform 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
@@ -133,8 +171,20 @@
 
 .about__scroller__subtitle,
 .about__timeline__subtitle {
-	z-index: 999;
+	z-index: 110;
 }
+
+
+/** Button Opacity **/ 
+
+.show-about-timeline .about__timeline__btn {
+	opacity: 0;
+}
+
+.show-about-scroller .about__scroller__btn {
+	opacity: 0;	
+}
+
 
 /************** Side Title **************/ 
 
@@ -168,6 +218,11 @@
 	text-transform: capitalize;
 	color: #FFF;
 	position: absolute;
+	
+	@media all and (max-width: 769px) {
+		font-size: 80px;
+	}
+	
 }
 
 .about__timeline__subtitle {
@@ -177,27 +232,226 @@
 
 .about__scroller__subtitle {
 	transform: rotate(270deg);
-	right: -30%;
+	right: -220px;
 	bottom: 180px;
 }
 	
-/** Subtitle **/
+@media all and (max-width: 769px) {
+	
+	.about__timeline__subtitle {
+		right: 0px;
+		bottom: -30px;
+	}
+	
+	.about__scroller__subtitle {
+		transform: rotate(0deg);
+		right: 0px;
+		bottom: -50px;
+	}
+	
+}
+	
+/** Open Button **/
 
-.about a,
-.about a::before, 
-.about a::after {
+.about a{
 	color: $main-menu-link-color-dark;
 	text-decoration: none;
 }
 
-.about a::before {
+.about a:before, 
+.about a:after {
+	background-color: $main-menu-link-color-dark;
+	text-decoration: none;
+}
+
+.about a:hover  {
 	color: #FFF;
 }
 
-.about a:hover {
+.about a:hover:after {
+	background-color: #FFF;
+	opacity: 1.0;
+}
+
+/** Close Button **/
+
+.about__timeline__btn--close,
+.about__scroller__btn--close {
+	position: absolute;
+	left: 60px;
+	top:220px;
+	opacity: 0;
+	z-index: 9999;
+	transition: opacity 1.2s;
+}
+
+.show-about-timeline .about__timeline__btn--close {
+	opacity: 1;
+}
+
+.show-about-timeline .about__scroller__btn--close {
+	display: none;
+}
+
+.show-about-scroller .about__scroller__btn--close {
+	opacity: 1;
+}
+
+.show-about-scroller .about__timeline__btn--close {
+	display: none;
+}
+
+
+
+
+/****************************************************************************
+*     Timeline Page Layout 
+****************************************************************************/ 
+
+.about__timeline__content {
+	//display: none;
+	//opacity: 0;
+	opacity: 1;
+	display: block;
+	background-color: $page-header-background;
+	padding-bottom: 10%;
+	position: relative;
+	z-index: 999;
+}
+
+.show-about-timeline .about__timeline__content {
+	opacity: 1;
+	display: block;
+}
+
+/************** Lines **************/ 
+
+.timeline__centre-line {
+	height: 100%;
+	width: 1px;
+	background-color: $main-menu-link-color-dark;
+	z-index: 99;
+	position: absolute;
+	left: 50%;
+}
+
+.timeline__top-line {
+	height: 15%;
+	width: 1px;
+	background-color: $main-menu-link-color-dark;
+	z-index: 999;
+	position: absolute;
+	left: 100%;
+	bottom: 0%;
+	transform: scaleY(0);
+	transition: transform 1.2s;
+	transform-origin: bottom;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+}
+
+.timeline__top-line--horizontal {
+	height: 1px;
+	width: 100px;
+	top: 0%;
+	position: relative;
+	left: -50px;
+	transform: scaleX(0);
+	visibility: hidden;
+}
+
+/*** Animate Lines ***/ 
+
+.show-about-timeline .timeline__top-line {
+	transform: scaleY(1);
+}
+
+.show-about-timeline .timeline__top-line--horizontal {
+	transform: scaleX(1);
+	visibility: visible;
+	transition: transform 1.8s;
+	transform-origin: bottom;
+	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+}
+
+/************** Event Card **************/ 
+
+.timeline__event {
+	color: #FFF;
+	width: 50%;
+	position: relative;
+	padding-left: 12%;
+	padding-right: 12%;
+	padding-top: 8%;
+}
+
+.timeline__event:nth-child(odd) {
+	float: left;
+	margin-top: 30%;
+}
+
+.timeline__event:nth-child(even) {
+	float: right;
+	margin-top: 11%;
+}
+
+/************** Event Details **************/ 
+
+h4.timeline__event__heading {
+	font-family: $font-header;
+	font-size: 30px;
+	margin-bottom: 25px;
+	position: relative;
+}
+
+.timeline__event__date {
+	font-weight: bold;
+	font-size: 18px;
+	position: absolute;
+	left: -70px;
+	top: 7px;
+}
+
+.timeline__event__img {
+}
+
+.timeline__event__description {
+	margin-top: 35px;
+}
+
+.timeline__event__description p {
 	color: #FFF;
 }
 
-.about a:target {
-	color: red;
+/************** Event Connecting Line & Ball **************/ 
+
+.timeline__event__line {
+	width: 18%;
+	height: 1px;
+	background-color: $main-menu-link-color-dark;
+	z-index: 99;
+	position: absolute;
+	right: -0.1%;
+	top: 17.5%;
 }
+
+.timeline__event__ball {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	display: block;
+	position: relative;
+	top: -4px;
+	left: 96%;
+	background-color: $main-menu-link-color-dark;
+}
+	
+.timeline__event:nth-child(even) .timeline__event__line {
+	left: -0.1%;
+	transform: rotate(180deg);
+}
+
+
+
+
+
+
