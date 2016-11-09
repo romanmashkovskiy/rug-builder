@@ -284,7 +284,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 
 			const OPEN           = _this.state.open ? 'open' : 'closed';
-			const DRAWER_CLASSES = 'drawer__content ' + OPEN;
+			const DRAWER_CLASSES = 'drawer__content ' + OPEN + ' ' + this.state.content;
 
 			return (
 				<div className="react-container drawer__container">
