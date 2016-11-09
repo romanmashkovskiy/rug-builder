@@ -14,7 +14,9 @@ RugBuilder.prototype.btnCollectionComponent = function() {
 			
 			return (
 				<li>
-					<a href="#" onClick={ this.handleClick }>{ this.props.collection }</a>
+					<a href="#" onClick={ this.handleClick }>
+						<h3>{ this.props.collection }</h3>
+					</a>
 				</li>
 			);
 		}

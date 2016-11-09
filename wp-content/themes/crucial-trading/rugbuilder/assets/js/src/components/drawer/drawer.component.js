@@ -301,7 +301,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 								</ul>
 							</div>
 							<div className="drawer__collections__collections">
-								<ul>
+								<ul className="clearfix">
 									{ COLLECTIONS_HTML() }
 								</ul>
 							</div>
