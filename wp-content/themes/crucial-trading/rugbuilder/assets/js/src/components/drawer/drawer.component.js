@@ -148,8 +148,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		render: function() {
 
 			const _this = this;
-
-			setInterval(function(){console.log(_this.state)},1000)
 			
 			// Functions for creating the dynamic HTML sections of the content
 
