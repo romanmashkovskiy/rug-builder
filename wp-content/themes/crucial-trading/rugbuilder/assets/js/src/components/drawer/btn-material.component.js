@@ -1,5 +1,7 @@
 RugBuilder.prototype.btnMaterialComponent = function() {
 
+	const R = rugBuilder;
+
 	const BtnMaterialComponent = React.createClass({
 
 		handleClick: function() {

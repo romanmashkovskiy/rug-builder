@@ -11,7 +11,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				open : false,
 				text : 'Expand',
 
-				chosenMaterial   : undefined,
+				chosenMaterial   : 'Wool',
 				chosenCollection : undefined,
 				chosenSwatch     : undefined
 			}
@@ -160,7 +160,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					// Create a BtnMaterialComponent for each material in the MATERIALS_ARR array
 
 					return MATERIALS_ARR.map((material, index) => {
-						return <BtnMaterialComponent key={ index } material={ material } updateContent={ _this.updateContentState } updateMaterial={ _this.updateMaterialChoice } />
+						return <BtnMaterialComponent key={ index } index={ index } material={ material } updateContent={ _this.updateContentState } updateMaterial={ _this.updateMaterialChoice } chosenMaterial={ _this.state.chosenMaterial } />
 					});
 				}
 			}
