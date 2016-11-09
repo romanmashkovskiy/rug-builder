@@ -14,6 +14,10 @@
 		font-size: 12px;
 		padding: 0;
 		position: absolute;
+
+		@media screen and (max-width: 550px) {
+			display: none;
+		}
 	}
 
 	.progress-menu__restart {
