@@ -55,7 +55,28 @@
 
 		@media screen and (max-width: 768px) {
 			display: inline-block;
-			width: calc((100% / 5) * 0.8);
+			width: 16%;
+
+			&.next {
+
+				.progress-menu__stage__link {
+					text-align: left;
+				}
+			}
+
+			&.prev {
+
+				.progress-menu__stage__link {
+					text-align: right;
+				}
+			}
+		}
+
+		&.active {
+
+			.progress-menu__stage__link {
+				color: $main-body-text-color;
+			}
 		}
 	}
 
@@ -66,9 +87,5 @@
 		text-align: center;
 		padding: 0;
 		width: 100%;
-
-		&.active {
-			color: $main-body-text-color;
-		}
 	}
 }
