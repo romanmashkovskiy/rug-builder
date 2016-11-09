@@ -305,6 +305,9 @@ body {
 
 
 
+
+
+
 /****************************************************************************
 *     Timeline Page Layout 
 ****************************************************************************/ 
@@ -318,6 +321,7 @@ body {
 	padding-bottom: 10%;
 	position: relative;
 	z-index: 999;
+	height: 7000px;
 }
 
 .show-about-timeline .about__timeline__content {
@@ -382,13 +386,12 @@ body {
 	position: relative;
 	padding-left: 12%;
 	padding-right: 12%;
-	padding-top: 8%;
 }
 
-.timeline__event#three,
+/*.timeline__event#three,
 .timeline__event#four {
-	padding-top: 10%;
-}
+	padding-top: 30%;
+}*/
 
 .timeline__event:nth-child(odd) {
 	float: left;
@@ -397,7 +400,7 @@ body {
 
 .timeline__event:nth-child(even) {
 	float: right;
-	margin-top: 11%;
+	margin-top: 15%;
 }
 
 /************** Event Details **************/ 

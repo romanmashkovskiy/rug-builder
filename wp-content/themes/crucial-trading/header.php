@@ -19,6 +19,9 @@
 		<?php wp_head(); ?>
 		<script src="<?php echo get_template_directory_uri() ?>/assets/js/vendor/jquery.parallax-scroll.js"></script>
 	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+	
 	</head>
 	<body <?php body_class(); ?>>
 		<div id="page" class="site">

@@ -45,10 +45,10 @@ echo do_shortcode( '[logo-nav]' ); ?>
 				
 			<div class="timeline__event" id="one" 
 					data-0="transform: translate(0,0%);opacity: 0.5;" 
-					data-500="transform: translate(0,10%);opacity: 1;" 
-					data-1000="transform: translate(0,20%);"
-					data-2000="transform: translate(0,55%);"
-					data-2500="opacity: 0.5;"
+					data-500="transform: translate(0,-30%);opacity: 1;" 
+					data-1000="transform: translate(0,-20%);"
+					data-2000="transform: translate(0,70%);"
+					data-2500="opacity: 0.3;"
 					>
 				<div class="timeline__event__line"><span class="timeline__event__ball"></span></div>
 				<h4 class="timeline__event__heading"><span class="timeline__event__date">1999.</span> Where It Started</h4>
@@ -57,7 +57,9 @@ echo do_shortcode( '[logo-nav]' ); ?>
 					data-400="transform: translate(0,-200px);opacity: 0.3;" 
 					data-600="transform: translate(0,-100px);opacity: 0.6;" 
 					data-800="transform: translate(0,0);opacity: 0.8;" 
-					data-1000="transform: translate(0,0px);opacity:1;"
+					data-1200="transform: translate(0,0px);opacity:1;"
+					data-1500="transform: translate(0,50px);opacity:0.3;"	
+					data-2500="transform: translate(0,100px);opacity:0;"
 				><img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/24193927/build-your-rug-image.jpg" alt="" /></div>
 				<div class="timeline__event__description">
 					<p>We cant improve on nature?s creations. But we can gather them together from all four corners and give them the respect they deserve by weaving them into something as beautiful and pure as the settings from which they came.</p>
@@ -65,12 +67,12 @@ echo do_shortcode( '[logo-nav]' ); ?>
 			</div>
 		
 			<div class="timeline__event" id="two"
-					data-500="transform: translate(0,0%);opacity: 0.5;" 
-					data-1000="transform: translate(0,10%);opacity: 1;" 
-					data-1500="transform: translate(0,15%);"
-					data-2500="transform: translate(0,80%);"	
-					data-2750="opacity: 0.5;"	
-				  >
+					data-1000="transform: translate(0,0%);opacity: 0.5;" 
+					data-1500="transform: translate(0,10%);opacity: 1;" 
+					data-2000="transform: translate(0,75%);"
+					data-3000="transform: translate(0,100%);"	
+					data-3500="opacity: 0.3;"	
+				>
 				<div class="timeline__event__line"><span class="timeline__event__ball"></span></div>
 				<h4 class="timeline__event__heading"><span class="timeline__event__date">2010.</span> Where It Started</h4>
 				<div class="timeline__event__img"
@@ -79,6 +81,8 @@ echo do_shortcode( '[logo-nav]' ); ?>
 					data-100="transform: translate(0,-100px);opacity: 0.6;" 
 					data-1200="transform: translate(0,0);opacity: 0.8;" 
 					data-1400="transform: translate(0,0px);opacity:1;"
+					data-2600="transform: translate(0,50px);opacity:0.3;"
+					data-3000="transform: translate(0,10px);opacity:0;"
 				><img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/24193927/build-your-rug-image.jpg" alt="" /></div>
 				<div class="timeline__event__description">
 					<p>We cant improve on nature?s creations. But we can gather them together from all four corners and give them the respect they deserve by weaving them into something as beautiful and pure as the settings from which they came.</p>
@@ -87,27 +91,34 @@ echo do_shortcode( '[logo-nav]' ); ?>
 
 		
 			<div class="timeline__event" id="three"
-				data-2000="transform: translate(0,25%);opacity: 0.5;" 
-				data-2500="transform: translate(0,35%);opacity: 1;" 
-				data-3500="transform: translate(0,65%);"
-				data-4000="transform: translate(0,80%);"	
+				data-2000="transform: translate(0,60%);opacity: 0.5;" 
+				data-2500="transform: translate(0,75%);opacity: 1;" 
+				data-3500="transform: translate(0,130%);"
+				data-4000="transform: translate(0,120%);"	
 				data-4500="opacity: 0.5;"	
-				 >
+				>
 				<div class="timeline__event__line"><span class="timeline__event__ball"></span></div>
 				<h4 class="timeline__event__heading"><span class="timeline__event__date">1999.</span> Where It Started</h4>
 				<div class="timeline__event__img" 
-					data-1000="transform: translate(0,-300px);opacity: 0.1;" 
-					data-1200="transform: translate(0,-200px);opacity: 0.3;" 
-					data-1400="transform: translate(0,-100px);opacity: 0.6;" 
-					data-1600="transform: translate(0,0);opacity: 0.8;" 
-					data-1800="transform: translate(0,0px);opacity:1;"
+					data-2000="transform: translate(0,-300px);opacity: 0.1;" 
+					data-2200="transform: translate(0,-200px);opacity: 0.3;" 
+					data-2300="transform: translate(0,-100px);opacity: 0.6;" 
+					data-3000="transform: translate(0,0px);opacity:1;"
+					data-3400="transform: translate(0,50px);opacity:0.3;"
+					data-3800="transform: translate(0,10px);opacity:0;"
 				><img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/24193927/build-your-rug-image.jpg" alt="" /></div>
 				<div class="timeline__event__description">
 					<p>We cant improve on nature?s creations. But we can gather them together from all four corners and give them the respect they deserve by weaving them into something as beautiful and pure as the settings from which they came.</p>
 				</div>
 			</div>
 		
-			<div class="timeline__event" id="four">
+			<div class="timeline__event" id="four"
+				data-2000="transform: translate(0,25%);opacity: 0.5;" 
+				data-2500="transform: translate(0,35%);opacity: 1;" 
+				data-3500="transform: translate(0,65%);"
+				data-4000="transform: translate(0,80%);"	
+				data-4500="opacity: 0.5;"
+				>
 				<div class="timeline__event__line"><span class="timeline__event__ball"></span></div>
 				<h4 class="timeline__event__heading"><span class="timeline__event__date">1999.</span> Where It Started</h4>
 				<div class="timeline__event__img"><img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/24193927/build-your-rug-image.jpg" alt="" /></div>
