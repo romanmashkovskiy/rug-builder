@@ -1,0 +1,86 @@
+@font-face {
+	font-family: 'DIN';
+	src: url('../../fonts/din/din.otf') format('OpenType');
+}
+
+@font-face {
+	font-family: 'Playfair Display';
+	src: url('../../fonts/playfair-display/PlayfairDisplay-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Montserrat';
+	src: url('../../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('../../fonts/open-sans/OpenSans-Regular.ttf') format('truetype');
+}
+
+@mixin typography-standards($color, $font, $size, $spacing) {
+	color: $color;
+	font-family: $font;
+	font-size: $size;
+	font-weight: normal;
+	letter-spacing: $spacing;
+	line-height: 1.8;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-webkit-backface-visibility: hidden;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale; 
+}
+
+h1 {
+	@include typography-standards(#000000, $font-header, 52px, 2px);
+	margin: 0;
+
+	&.home-banner-header {
+		@include typography-standards(#ffffff, $font-crucial, 70px, 4px);
+		text-shadow: 1px 0px 30px #aaaaaa;
+		text-transform: uppercase;
+	}
+
+	&.standard-banner-header {
+		font-size: 75px;
+	}
+}
+
+h2 {
+	@include typography-standards(#000000, $font-header, 38px, 2px);
+	margin: 0;
+
+	&.material-header {
+		font-size: 75px;
+	}
+}
+
+h3 {
+	@include typography-standards(#000000, $font-sub-header, 14px, 4px);
+	margin: 0;
+	opacity: 40%;
+	text-transform: uppercase; 
+}
+
+a {
+	@include typography-standards(#000000, $font-sub-header, 17px, 2.5px);
+	padding-bottom: 5px;
+	position: relative;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding-top: 10px;
+	padding-bottom: 30px;
+	transition: all ease-in-out 0.25s;
+	-webkit-transition: all ease-in-out 0.25s;
+	
+	&:hover {
+		text-decoration: none;
+	}	
+}
+
+p {
+	@include typography-standards(#000000, $font-copy, 17px, 0.5px);
+}

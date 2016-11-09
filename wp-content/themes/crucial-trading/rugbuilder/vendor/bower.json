@@ -1,0 +1,24 @@
+{
+  "name": "rugbuilder-vendor",
+  "description": "Manager third party libraries required for Rug Builder",
+  "main": "index.js",
+  "authors": [
+    "Elliot Lewis <elliot@kijo.co>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~15.3.2",
+    "PubSub": "pubsub#~1.0.0",
+    "three.js": "threejs#*"
+  }
+}
