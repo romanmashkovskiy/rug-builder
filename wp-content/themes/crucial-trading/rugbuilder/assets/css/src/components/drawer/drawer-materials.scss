@@ -38,7 +38,24 @@
 
 	a {
 		display: block;
+		padding: 0 30px;
 		text-align: center;
 		width: 100%;
+
+		img {
+			width: 100%;
+		}
+
+		h3 {
+			display: none;
+		}
+
+		&:hover {
+			margin-top: -13px;
+
+			h3 {
+				display: block;
+			}
+		}
 	}
 }

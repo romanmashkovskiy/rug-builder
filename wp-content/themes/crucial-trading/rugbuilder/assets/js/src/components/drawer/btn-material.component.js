@@ -15,7 +15,10 @@ RugBuilder.prototype.btnMaterialComponent = function() {
 		render: function() {
 			return (
 				<li>
-					<a href="#" onClick={ this.handleClick }>{ this.props.material }</a>
+					<a href="#" onClick={ this.handleClick }>
+						<img src={ this.props.thumb } alt={ this.props.material } />
+						<h3>{ this.props.material }</h3>
+					</a>
 				</li>
 			);
 		}

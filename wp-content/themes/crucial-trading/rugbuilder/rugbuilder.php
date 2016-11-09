@@ -14,11 +14,20 @@
 $terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
 
 $materials = array();
-for ( $i = 0; $i < count( $terms ); $i++ ) {
+for ( $m = 0; $m < count( $terms ); $m++ ) {
 
-	if ( $terms[$i]->parent == 0 ) {
-		array_push( $materials, $terms[$i] );
+	if ( $terms[$m]->parent == 0 ) {
+		array_push( $materials, $terms[$m] );
 	}
+}
+for ( $m2 = 0; $m2 < count( $materials ); $m2++ ) {
+
+	$material_id = $materials[$m2]->term_id;
+
+	$thumb_id = get_woocommerce_term_meta( $material_id, 'thumbnail_id', true );
+	$thumb    = wp_get_attachment_url( $thumb_id );
+
+	$materials[$m2]->thumb = $thumb;
 }
 
 ?>

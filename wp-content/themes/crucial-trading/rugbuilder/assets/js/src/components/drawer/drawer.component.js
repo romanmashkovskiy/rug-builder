@@ -7,7 +7,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			let materials = [];
 
 			for ( let i = 0; i < WC_MATERIALS.length; i++ ) {
-				materials.push( WC_MATERIALS[i].name );
+				materials.push( { name : WC_MATERIALS[i].name, thumb : WC_MATERIALS[i].thumb } );
 			}
 
 			// Set initial state
@@ -104,7 +104,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		updateOpenState: function(open) {
 
-			// Function for updating the open/closed state
+			// Function for updating the open/closed state of the drawer
 			// Gets passed to expand-collapse button as props.onUpdate.
 			// If open is true, update state to closed, and vice-versa.
 			if ( open ) {
@@ -124,7 +124,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		updateContentState: function(content) {
 
 			// Function for updating the content state.
-			// Gets passed to all of the content componentsas props.
+			// Gets passed to all of the content components as props.
 			// Updates the content state to whatever is given to it by the component.
 			this.setState({ content: content });
 		},
@@ -168,7 +168,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					// Create a BtnMaterialComponent for each material in the MATERIALS_ARR array
 
 					return MATERIALS_ARR.map((material, index) => {
-						return <BtnMaterialComponent key={ index } index={ index } material={ material } updateContent={ _this.updateContentState } updateMaterial={ _this.updateMaterialChoice } chosenMaterial={ _this.state.chosenMaterial } />
+						return <BtnMaterialComponent key={ index } index={ index } material={ material.name } thumb={ material.thumb } updateContent={ _this.updateContentState } updateMaterial={ _this.updateMaterialChoice } chosenMaterial={ _this.state.chosenMaterial } />
 					});
 				}
 			}
@@ -182,7 +182,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					// Create a SideMenuComponent for each material in the MATERIALS_ARR array
 
 					return MATERIALS_ARR.map((material, index) => {
-						return <SideMenuComponent key={ index } material={ material } onUpdate={ _this.updateMaterialChoice } />;
+						return <SideMenuComponent key={ index } material={ material.name } thumb={ material.thumb } onUpdate={ _this.updateMaterialChoice } />;
 					});
 				} 
 				else if ( _this.state.content === 'swatches' && caller === 'swatches' ) {
@@ -190,7 +190,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					// Create a SideMenuComponent for each material in the MATERIALS_ARR array
 
 					return MATERIALS_ARR.map((material, index) => {
-						return <SideMenuComponent key={ index } material={ material } updateContent={ _this.updateContentState } onUpdate={ _this.updateMaterialChoice } />;
+						return <SideMenuComponent key={ index } material={ material.name } thumb={ material.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateMaterialChoice } />;
 					});
 				}
 				else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
