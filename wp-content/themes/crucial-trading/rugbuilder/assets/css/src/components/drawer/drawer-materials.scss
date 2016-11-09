@@ -42,19 +42,34 @@
 		text-align: center;
 		width: 100%;
 
+		@media screen and (max-width: 768px) {
+			padding: 0;
+		}
+
 		img {
 			width: 100%;
+
+			@media screen and (max-width: 768px) {
+				width: 40%;
+			}
 		}
 
 		h3 {
 			display: none;
+
+			@media screen and (max-width: 768px) {
+				display: block
+			}
 		}
 
-		&:hover {
-			margin-top: -13px;
+		@media screen and (min-width: 768px) {
 
-			h3 {
-				display: block;
+			&:hover {
+				margin-top: -13px;
+
+				h3 {
+					display: block;
+				}
 			}
 		}
 	}

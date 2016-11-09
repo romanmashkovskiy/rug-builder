@@ -1,0 +1,67 @@
+.drawer__collections__sidebar,
+.drawer__swatches__sidebar {
+
+	@media screen and (min-width: 768px) {
+
+		ul {
+			padding-left: 30px;
+		}
+
+		li {
+			list-style: none;
+			margin-bottom: 10px;
+
+			&:hover:before {
+				background: #000;
+				content: '';
+				display: block;
+				height: 1px;
+				left: 0;
+				margin-top: 22px;
+				position: absolute;
+				width: 13px;
+			}
+
+			img {
+				display: inline;
+				width: 45px;
+			}
+
+			h3 {
+				display: inline;
+				left: 15px;
+				position: relative;
+				top: -17px;
+			}
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+
+		ul {
+			display: block;
+			margin: 0;
+			padding: 0;
+			width: 500%;
+		}
+
+		li {
+			display: inline-block;
+			width: calc(768px / 6);
+
+			&:first-child {
+				margin-left: calc(50vw - (100vw - 16%));
+			}
+
+			a {
+				display: block;
+				text-align: center;
+				width: 100%;
+			}
+
+			img {
+				width: 40%;
+			}
+		}
+	}
+}

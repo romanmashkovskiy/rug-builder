@@ -7,9 +7,6 @@
  * @package Hogarths
  * @since Hogarths 1.0
  */
-?>
-
-<?php
 
 $terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
 
@@ -41,6 +38,7 @@ for ( $m2 = 0; $m2 < count( $materials ); $m2++ ) {
 	<title>Crucial Trading RugBuilder</title>
 	<style>body{margin:0}</style>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/css/dist/style.min.css">
+
 	<script>var WC_MATERIALS = <?php echo json_encode( $materials ); ?></script>
 </head>
 <body>
