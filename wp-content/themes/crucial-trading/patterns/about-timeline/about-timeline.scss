@@ -318,7 +318,6 @@ body {
 	padding-bottom: 10%;
 	position: relative;
 	z-index: 999;
-	//height: 6000px;
 }
 
 .show-about-timeline .about__timeline__content {
@@ -383,7 +382,7 @@ body {
 	position: relative;
 	padding-left: 12%;
 	padding-right: 12%;
-	padding-top: 6%;
+	padding-top: 8%;
 }
 
 .timeline__event:nth-child(odd) {
@@ -414,7 +413,6 @@ h4.timeline__event__heading {
 }
 
 .timeline__event__img {
-	//@extend .box-shadow;
 }
 
 .timeline__event__description {

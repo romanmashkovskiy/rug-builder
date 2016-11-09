@@ -1,0 +1,46 @@
+.page-template-checkout {
+
+	form {
+		background: white;
+		margin-bottom: 100px;
+		margin-left: 7%;
+		margin-top: -50px;
+		padding: 75px;
+		position: relative;
+		width: 86%;
+		z-index: 999;
+
+		p {
+			padding: 0;
+		}
+
+		label {
+			color: #000000;
+			font-family: $font-copy;
+			font-size: 17px;
+			font-weight: normal;
+			letter-spacing: 0.5px;
+
+			abbr {
+				color: #E75A7C !important;
+				font-size: 16px;
+				font-weight: normal !important;
+			}
+		}
+
+		.select2-container a {
+			-webkit-appearance: none;
+			appearance: none;
+			background: #F7F7F7;
+			border: 1px solid #E6E6E6 !important;
+			border-radius: 0;
+			font-family: $font-copy;
+			font-weight: normal;
+			padding: 7px 15px;
+		}
+	}
+
+	.place-order {
+		text-align: center;
+	}
+}
