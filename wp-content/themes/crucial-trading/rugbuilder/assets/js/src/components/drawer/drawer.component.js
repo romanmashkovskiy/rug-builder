@@ -4,6 +4,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		getInitialState: function() {
 
+			let materials = [];
+
+			for ( let i = 0; i < WC_MATERIALS.length; i++ ) {
+				materials.push( WC_MATERIALS[i].name );
+			}
+
 			// Set initial state
 			return {
 				content : 'materials',
@@ -13,13 +19,15 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				chosenMaterial   : 'Wool',
 				chosenCollection : undefined,
-				chosenSwatch     : undefined
+				chosenSwatch     : undefined,
+
+				_materials   : materials,
+				_collections : {},
+				_swatches    : {}
 			}
 		},
 
 		placeholderData: {
-
-			materials : [ 'Sisal', 'Wool', 'Sisool', 'Coir', 'Seagrass', 'Jute' ],
 
 			collections : {
 				Sisal: [ 'Sisal Collection 1', 'Sisal Collection 2' ],
@@ -153,7 +161,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			const MATERIAL_HTML = function() {
 
-				const MATERIALS_ARR = _this.placeholderData.materials;
+				const MATERIALS_ARR = _this.state._materials;
 
 				if ( _this.state.content === 'materials' ) {
 
@@ -167,7 +175,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			const SIDEBAR_HTML = function(caller) {
 
-				const MATERIALS_ARR = _this.placeholderData.materials;
+				const MATERIALS_ARR = _this.state._materials;
 
 				if ( _this.state.content === 'collections' && caller === 'collections' ) {
 
