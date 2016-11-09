@@ -116,7 +116,7 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 			$to      = 'elliot@kijo.co, jord@kijo.co';
 			$subject = 'FTP Send Result';
 			$message = '';
-
+ 
 			$br = "\r\n";
 
 			$message .= 'Timestamp: ' . time() . $br;
