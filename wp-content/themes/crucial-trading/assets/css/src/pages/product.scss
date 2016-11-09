@@ -11,4 +11,16 @@
 	.share-links {
 		margin-top: 75px;
 	}
+
+	form.cart {
+		text-align: center;
+
+		.quantity {
+			display: none;
+		}
+
+		button {
+			margin-bottom: 25px;
+		}
+	}
 }

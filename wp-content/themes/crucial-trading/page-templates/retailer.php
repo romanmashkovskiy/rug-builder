@@ -53,9 +53,11 @@ if ( array_key_exists( 'results', $_GET ) ) {
 }
 
 $overseas_result = false;
+$country         = '';
 
 if ( array_key_exists( 'country', $_GET ) ) {
 	$overseas_result = array_key_exists( 'id', $_GET ) ? $_GET['id'] : 0;
+	$country         = $_GET['country'];
 }
 
 $showroom_args = array(
@@ -94,13 +96,13 @@ echo do_shortcode( '[header size="small"]' );
 
 echo do_shortcode( '[logo-nav]' );
 
-echo do_shortcode( '[retailer-search-box]' );
-
 $loc = '';
 
 if ( array_key_exists( 'loc', $_GET ) ) {
 	$loc = $_GET['loc'];
 }
+
+echo do_shortcode( '[retailer-search-box loc="' . $loc . '" country="' . $country . '"]' );
 
 echo do_shortcode( '[google-map ' . serialize( $results ) . ' loc="' . $loc . '" overseas="' . $overseas_result . '"]' );
 
