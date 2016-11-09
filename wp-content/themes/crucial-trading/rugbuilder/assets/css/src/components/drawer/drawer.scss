@@ -1,0 +1,16 @@
+#drawer {
+
+	.drawer__content {
+
+		&.materials {
+
+		}
+
+		&.collections {
+
+			.drawer__content__material {
+				padding: 0;
+			}
+		}
+	}
+}

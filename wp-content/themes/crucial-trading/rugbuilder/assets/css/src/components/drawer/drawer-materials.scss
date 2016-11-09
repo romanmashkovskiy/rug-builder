@@ -1,0 +1,76 @@
+.drawer__content__material {
+	padding: 40px 100px;
+
+	@media screen and (max-width: 992px) {
+		padding: 40px 0;
+	}
+
+	@media screen and (max-width: 768px) {
+		overflow: hidden;
+	}
+
+	ul {
+		display: flex;
+		margin: 0;
+		padding: 0;
+
+		@media screen and (max-width: 768px) {
+			display: block;
+			width: 500%;
+		}
+	}
+
+	li {
+		display: flex;
+		flex-basis: 0;
+		flex-direction: row;
+		flex-grow: 1;
+
+		@media screen and (max-width: 768px) {
+			display: inline-block;
+			width: calc(768px / 6);
+
+			&:first-child {
+				margin-left: calc(50vw - (100vw - 16%));
+			}
+		}
+	}
+
+	a {
+		display: block;
+		padding: 0 30px;
+		text-align: center;
+		width: 100%;
+
+		@media screen and (max-width: 768px) {
+			padding: 0;
+		}
+
+		img {
+			width: 100%;
+
+			@media screen and (max-width: 768px) {
+				width: 40%;
+			}
+		}
+
+		h3 {
+			display: none;
+
+			@media screen and (max-width: 768px) {
+				display: block
+			}
+		}
+
+		@media screen and (min-width: 768px) {
+
+			&:hover {
+				margin-top: -13px;
+
+				h3 {
+					display: block;
+				}
+			}
+		}
+	}
+}

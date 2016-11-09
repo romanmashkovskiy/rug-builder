@@ -64,6 +64,13 @@
   font-size: 0;
   height: 100vh;
   text-align: center;
+<<<<<<< HEAD
+<<<<<<< HEAD
+  z-index: 9;
+=======
+>>>>>>> cd4132d11a7708e16788e69362fc97082bbe235c
+=======
+>>>>>>> 3b4843eb1313d275efa4f6485972982c217c92f5
   -webkit-transition: -webkit-transform 1.3s;
   transition: -webkit-transform 1.3s;
   transition: transform 1.3s;
@@ -125,15 +132,43 @@
 /** Animate - Backgrounds **/
 /**  Timeline  **/
 .show-about-timeline .about__timeline__bg {
+<<<<<<< HEAD
+<<<<<<< HEAD
+  -webkit-transform: translate3d(25%, 0, 0) scaleX(2.5);
+  transform: translate3d(25%, 0, 0) scaleX(2.5);
+=======
   -webkit-transform: translate(25%, 0) scale(2.5);
   transform: translate(25%, 0) scale(2.5);
+>>>>>>> cd4132d11a7708e16788e69362fc97082bbe235c
+=======
+  -webkit-transform: translate(25%, 0) scale(2.5);
+  transform: translate(25%, 0) scale(2.5);
+>>>>>>> 3b4843eb1313d275efa4f6485972982c217c92f5
   -webkit-transition: -webkit-transform scale 1.2s;
   transition: -webkit-transform scale 1.2s;
   transition: transform scale 1.2s;
   transition: transform scale 1.2s, -webkit-transform scale 1.2s;
   -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
   transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+<<<<<<< HEAD
+<<<<<<< HEAD
+  z-index: 9999;
+  position: absolute;
+  top: 0; }
+
+.show-about-timeline .about__scroller__bg {
+  -webkit-transition: -webkit-transform scale 1.2s;
+  transition: -webkit-transform scale 1.2s;
+  transition: transform scale 1.2s;
+  transition: transform scale 1.2s, -webkit-transform scale 1.2s;
+  -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+  transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
+=======
   -webkit-backface-visibility: hidden; }
+>>>>>>> cd4132d11a7708e16788e69362fc97082bbe235c
+=======
+  -webkit-backface-visibility: hidden; }
+>>>>>>> 3b4843eb1313d275efa4f6485972982c217c92f5
 
 body {
   height: 100% !important; }
@@ -167,6 +202,13 @@ body {
 
 /**  Scroller  **/
 .show-about-scroller .about__scroller__bg {
+<<<<<<< HEAD
+<<<<<<< HEAD
+  -webkit-transform: translate3d(-25%, 0, 0) scaleX(2.5);
+  transform: translate3d(-25%, 0, 0) scaleX(2.5);
+=======
+=======
+>>>>>>> 3b4843eb1313d275efa4f6485972982c217c92f5
   -webkit-transform: translate(-25%, 0) scale(2.5);
   transform: translate(-25%, 0) scale(2.5);
   -webkit-transition: -webkit-transform scale 1.2s;
@@ -196,16 +238,35 @@ body {
 .hide-about-scroller .about__timeline__subtitle {
   -webkit-transform: translate(-98%, 0);
   transform: translate(-98%, 0);
+<<<<<<< HEAD
+>>>>>>> cd4132d11a7708e16788e69362fc97082bbe235c
+=======
+>>>>>>> 3b4843eb1313d275efa4f6485972982c217c92f5
   -webkit-transition: -webkit-transform scale 1.2s;
   transition: -webkit-transform scale 1.2s;
   transition: transform scale 1.2s;
   transition: transform scale 1.2s, -webkit-transform scale 1.2s;
   -webkit-transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
   transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1);
+<<<<<<< HEAD
+<<<<<<< HEAD
+  z-index: 99; }
+
+/** Animate - Text **/
+.show-about-timeline .about__timeline__text {
+  z-index: 999999;
+=======
   -webkit-backface-visibility: hidden; }
 
 /** Animate - Text **/
 .show-about-timeline .about__timeline__text {
+>>>>>>> cd4132d11a7708e16788e69362fc97082bbe235c
+=======
+  -webkit-backface-visibility: hidden; }
+
+/** Animate - Text **/
+.show-about-timeline .about__timeline__text {
+>>>>>>> 3b4843eb1313d275efa4f6485972982c217c92f5
   -webkit-transform: translate3d(50%, -40%, 0);
   transform: translate3d(50%, -40%, 0);
   -webkit-transition: -webkit-transform 1.2s;
@@ -216,6 +277,13 @@ body {
   transition-timing-function: cubic-bezier(0.62, 0, 0.5, 1); }
 
 .show-about-scroller .about__scroller__text {
+<<<<<<< HEAD
+<<<<<<< HEAD
+  z-index: 999;
+=======
+>>>>>>> cd4132d11a7708e16788e69362fc97082bbe235c
+=======
+>>>>>>> 3b4843eb1313d275efa4f6485972982c217c92f5
   -webkit-transform: translate3d(-50%, -40%, 0);
   transform: translate3d(-50%, -40%, 0);
   -webkit-transition: -webkit-transform 1.2s;
@@ -227,6 +295,12 @@ body {
 
 .about__scroller__subtitle,
 .about__timeline__subtitle {
+<<<<<<< HEAD
+<<<<<<< HEAD
+  z-index: 999; }
+=======
+=======
+>>>>>>> 3b4843eb1313d275efa4f6485972982c217c92f5
   z-index: 110; }
 
 /** Button Opacity **/
@@ -235,6 +309,10 @@ body {
 
 .show-about-scroller .about__scroller__btn {
   opacity: 0; }
+<<<<<<< HEAD
+>>>>>>> cd4132d11a7708e16788e69362fc97082bbe235c
+=======
+>>>>>>> 3b4843eb1313d275efa4f6485972982c217c92f5
 
 /************** Side Title **************/
 .about .side-title {
