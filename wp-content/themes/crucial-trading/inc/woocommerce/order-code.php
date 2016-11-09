@@ -25,12 +25,13 @@ function create_order_code($order_id) {
 	$customer_data = $customer->data;
 	$_items        = $order->get_items();
 	$items         = array_values($_items);
+	$cor           = 90000 + $order_id;
 
 	$order_header = array(
 		'recordTypeIdentifier'    => 'O',
 		'dateOfOrder'             => date( 'dmY' ),
 		'timeOfOrder'             => date( 'His' ),
-		'customerOrderReference'  => $order_id,
+		'customerOrderReference'  => $cor,
 		'retailerAddressLine1'    => '',
 		'retailerAddressLine2'    => '',
 		'retailerAddressLine3'    => '',
