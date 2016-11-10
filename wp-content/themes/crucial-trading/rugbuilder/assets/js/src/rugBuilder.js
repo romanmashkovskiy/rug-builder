@@ -1,6 +1,13 @@
 class RugBuilder {
 
-	constructor() {
+	constructor( context ) {
+
+		// Context
+		this.context = context;
+
+		// WC Data
+		this.materials   = [];
+		this.collections = {};
 
 		// Screen Dimensions
 		this.screenWidth  = window.innerWidth;

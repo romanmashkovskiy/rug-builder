@@ -1,30 +1,13 @@
 RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent) {
 
+	const R = rugBuilder;
+
 	const DrawerComponent = React.createClass({
 
 		getInitialState: function() {
 
-			let materials = [];
-
-			for ( let i = 0; i < WC_MATERIALS.length; i++ ) {
-				materials.push( { name : WC_MATERIALS[i].name, thumb : WC_MATERIALS[i].thumb } );
-			}
-
-			let collections = {};
-
-			for ( let i2 = 0; i2 < WC_MATERIALS.length; i2++ ) {
-
-				const MATERIAL    = WC_MATERIALS[i2].name;
-				const COLLECTIONS = WC_COLLECTIONS[MATERIAL];
-
-				let arr = [];
-
-				for ( let i3 = 0; i3 < COLLECTIONS.length; i3++ ) {
-					arr.push( { name : COLLECTIONS[i3].name } )
-				}
-
-				collections[MATERIAL] = arr;
-			}
+			let materials   = R.materials;
+			let collections = R.collections;
 
 			// Set initial state
 			return {
