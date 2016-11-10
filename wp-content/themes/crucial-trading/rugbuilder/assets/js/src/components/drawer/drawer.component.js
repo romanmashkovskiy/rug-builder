@@ -84,6 +84,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Get passed to the Swatch Button Components as props.
 			// Updates the chosenSwatch state to whatever is given to it by the component.
 			this.setState({ chosenSwatch: swatch });
+
+			// Update the actual rug
+			R.displayTexture(swatch)
 		},
 
 		render: function() {
