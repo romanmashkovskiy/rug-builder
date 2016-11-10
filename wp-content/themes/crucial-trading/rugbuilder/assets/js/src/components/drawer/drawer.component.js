@@ -28,6 +28,18 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 		},
 
+		componentDidMount: function() {
+			this.stageChange = PubSub.subscribe( 'stageChange', this.updateStageState );
+		},
+
+		componentWillUnmount: function() {
+			PubSub.unsubscribe( this.newSearch_token );
+		},
+
+		updateStageState: function(stage) {
+			this.setState({ stage : stage });
+		},
+
 		updateOpenState: function(open) {
 
 			// Function for updating the open/closed state of the drawer
@@ -95,6 +107,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			// Function for creating the drawer material content
 
+			if ( this.state.stage !== 0 ) {
+				return;
+			}
+
 			const MATERIALS_ARR = this.state._materials;
 
 			if ( this.state.content === 'materials' ) {
@@ -110,6 +126,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		createSidebarHTML: function(caller) {
 
 			// Function for creating the drawer sidemenu content
+
+			if ( this.state.stage !== 0 ) {
+				return;
+			}
 
 			const MATERIALS_ARR = this.state._materials;
 
@@ -141,6 +161,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			// Function for creating the drawer collections content
 
+			if ( this.state.stage !== 0 ) {
+				return;
+			}
+
 			// Get the collections for the user selected material
 
 			const COLLECTIONS = this.state._collections;
@@ -159,6 +183,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		createSwatchesHTML: function(caller) {
 
 			// Function for creating the drawer swatches content
+
+			if ( this.state.stage !== 0 ) {
+				return;
+			}
 
 			// Get the swatches for the user selected collection
 
@@ -263,6 +291,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		createBorderHTML: function() {
 
+			if ( this.state.stage !== 1 ) {
+				return;
+			}
+
 			if ( this.state.content === 'border' ) {
 				return <p>abc</p>;
 			}
@@ -272,7 +304,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			const _this = this;
 
-//			setInterval(function(){console.log(_this.state.chosenSwatch)},2000)
+			setInterval(function(){console.log(_this.state.stage)},2000)
 			
 			// Create the dynamic HTML sections of the content
 
@@ -334,7 +366,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							</div>
 						</div>
 						<div className="drawer__content__border">
-							{ BORDER_HTML }
+							<ul>
+								{ BORDER_HTML }
+							</ul>
 						</div>
 					</div>
 					<BtnExpandCollapseComponent onUpdate={ this.updateOpenState } currentState={ this.state }/>

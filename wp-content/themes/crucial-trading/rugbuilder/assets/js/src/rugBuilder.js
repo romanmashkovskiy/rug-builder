@@ -122,6 +122,8 @@ class RugBuilder {
 		}
 
 		this.currentStage = NEXT_STAGE;
+
+		PubSub.publish('stageChange', NEXT_STAGE);
 	}
 
 	prevStage() {
