@@ -38,6 +38,19 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		updateStageState: function(stage) {
 			this.setState({ stage : stage });
+
+			let content;
+
+			switch( stage ) {
+
+				case 0 : content = 'material'; break;
+				case 1 : content = 'border'; break;
+				case 2 : content = ''; break;
+				case 3 : content = ''; break;
+				case 4 : content = ''; break;
+			}
+
+			this.updateContentState(content);
 		},
 
 		updateOpenState: function(open) {
