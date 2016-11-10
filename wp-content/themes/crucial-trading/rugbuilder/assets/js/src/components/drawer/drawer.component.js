@@ -26,72 +26,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 		},
 
-		placeholderData: {
-
-			swatches : {
-				SisalCollection1: [ 
-					'Sisal 1 Swatch 1', 'Sisal 1 Swatch 2', 'Sisal 1 Swatch 3', 'Sisal 1 Swatch 4',
-					'Sisal 1 Swatch 5', 'Sisal 1 Swatch 6', 'Sisal 1 Swatch 7', 'Sisal 1 Swatch 8',
-					'Sisal 1 Swatch 9', 'Sisal 1 Swatch 10'
-				],
-				SisalCollection2: [ 
-					'Sisal 2 Swatch 1', 'Sisal 2 Swatch 2', 'Sisal 2 Swatch 3', 'Sisal 2 Swatch 4',
-					'Sisal 2 Swatch 5', 'Sisal 2 Swatch 6', 'Sisal 2 Swatch 7', 'Sisal 2 Swatch 8',
-					'Sisal 2 Swatch 9', 'Sisal 2 Swatch 10'
-				],
-				WoolCollection1: [ 
-					'Wool 1 Swatch 1', 'Wool 1 Swatch 2', 'Wool 1 Swatch 3', 'Wool 1 Swatch 4',
-					'Wool 1 Swatch 5', 'Wool 1 Swatch 6', 'Wool 1 Swatch 7', 'Wool 1 Swatch 8',
-					'Wool 1 Swatch 9', 'Wool 1 Swatch 10'
-				],
-				WoolCollection2: [ 
-					'Wool 2 Swatch 1', 'Wool 2 Swatch 2', 'Wool 2 Swatch 1', 'Wool 2 Swatch 2',
-					'Wool 2 Swatch 1', 'Wool 2 Swatch 2', 'Wool 2 Swatch 1', 'Wool 2 Swatch 2',
-					'Wool 2 Swatch 1', 'Wool 2 Swatch 2'
-				],
-				SisoolCollection1: [ 
-					'Sisool 1 Swatch 1', 'Sisool 1 Swatch 2', 'Sisool 1 Swatch 3', 'Sisool 1 Swatch 4',
-					'Sisool 1 Swatch 5', 'Sisool 1 Swatch 6', 'Sisool 1 Swatch 7', 'Sisool 1 Swatch 8',
-					'Sisool 1 Swatch 9', 'Sisool 1 Swatch 10'
-				],
-				SisoolCollection2: [ 
-					'Sisool 2 Swatch 1', 'Sisool 2 Swatch 2', 'Sisool 2 Swatch 3', 'Sisool 2 Swatch 4',
-					'Sisool 2 Swatch 5', 'Sisool 2 Swatch 6', 'Sisool 2 Swatch 7', 'Sisool 2 Swatch 8',
-					'Sisool 2 Swatch 9', 'Sisool 2 Swatch 10'
-				],
-				CoirCollection1: [ 
-					'Coir 1 Swatch 1', 'Coir 1 Swatch 2', 'Coir 1 Swatch 3', 'Coir 1 Swatch 4',
-					'Coir 1 Swatch 5', 'Coir 1 Swatch 6', 'Coir 1 Swatch 7', 'Coir 1 Swatch 8',
-					'Coir 1 Swatch 9', 'Coir 1 Swatch 10'
-				],
-				CoirCollection2: [ 
-					'Coir 2 Swatch 1', 'Coir 2 Swatch 2', 'Coir 2 Swatch 3', 'Coir 2 Swatch 4',
-					'Coir 2 Swatch 5', 'Coir 2 Swatch 6', 'Coir 2 Swatch 7', 'Coir 2 Swatch 8',
-					'Coir 2 Swatch 9', 'Coir 2 Swatch 10'
-				],
-				SeagrassCollection1: [ 
-					'Seagrass 1 Swatch 1', 'Seagrass 1 Swatch 2', 'Seagrass 1 Swatch 3', 'Seagrass 1 Swatch 4', 
-					'Seagrass 1 Swatch 5', 'Seagrass 1 Swatch 6', 'Seagrass 1 Swatch 7', 'Seagrass 1 Swatch 8',
-					'Seagrass 1 Swatch 9', 'Seagrass 1 Swatch 10'
-				],
-				SeagrassCollection2: [ 
-					'Seagrass 2 Swatch 1', 'Seagrass 2 Swatch 2', 'Seagrass 2 Swatch 3', 'Seagrass 2 Swatch 4', 
-					'Seagrass 2 Swatch 5', 'Seagrass 2 Swatch 6', 'Seagrass 2 Swatch 7', 'Seagrass 2 Swatch 8',
-					'Seagrass 2 Swatch 9', 'Seagrass 2 Swatch 10'
-				],
-				JuteCollection1: [ 
-					'Jute 1 Swatch 1', 'Jute 1 Swatch 2', 'Jute 1 Swatch 3', 'Jute 1 Swatch 4',
-					'Jute 1 Swatch 5', 'Jute 1 Swatch 6', 'Jute 1 Swatch 7', 'Jute 1 Swatch 8',
-					'Jute 1 Swatch 9', 'Jute 1 Swatch 10'
-				],
-				JuteCollection2: [ 
-					'Jute 2 Swatch 1', 'Jute 2 Swatch 2', 'Jute 2 Swatch 3', 'Jute 2 Swatch 4',
-					'Jute 2 Swatch 5', 'Jute 2 Swatch 6', 'Jute 2 Swatch 7', 'Jute 2 Swatch 8',
-					'Jute 2 Swatch 9', 'Jute 2 Swatch 10'
-				],
-			}
-		},
-
 		updateOpenState: function(open) {
 
 			// Function for updating the open/closed state of the drawer
@@ -129,13 +63,19 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		updateCollectionChoice: function(collection) {
 
-			// Function for updating the chosenCollection state.
+			// Function for updating the chosenCollection state and getting swatch data.
 			// Get passed to the Collection Button Components as props.
 			// Updates the chosenCollection state to whatever is given to it by the component.
 			this.setState({ chosenCollection: collection });
 
+			// Then gets the swatches for the chosen collection.
+			// Once it has the swatches, it then adds them to state._swatches
+			// and forces a re-render of the component
 			R.getSwatchData(collection)
-				.then((swatches) => {  this.state._swatches[collection] = swatches; this.forceUpdate(); });
+				.then((swatches) => {
+					this.state._swatches[collection] = swatches;
+					this.forceUpdate();
+				});
 		},
 
 		updateSwatchChoice: function(swatch) {
@@ -222,6 +162,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				if ( _this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
 
+					// Since the state._swatches[chosenCollection] is an object, not an array, we
+					// can't just run map on it. Instead run map on each of the keys, then use that
+					// key to get the individual swatches from the object
+
 					return Object.keys(SWATCH).map((swatch, index) => {
 
 						const CURRENT_SWATCH = SWATCH[swatch];
@@ -230,14 +174,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 						const code  = CURRENT_SWATCH.code;
 						const thumb = CURRENT_SWATCH.thumb;
 
+						// Create a BtnSwatchComponent for each swatch in the SWATCH object
+
 						return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } code={ code } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
 					})
-
-					// Create a BtnSwatchComponent for each swatch in the SWATCH array
-
-	//				return SWATCH.map((swatch, index) => {
-	//					return <BtnSwatchComponent key={ index } swatch={ swatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
-	//				});
 				}
 				else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
 

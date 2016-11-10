@@ -1,5 +1,7 @@
 RugBuilder.prototype.getCollectionsData = function() {
 
+	// Get all of the collections, returning a promise
+
 	return new Promise((res, rej) => {
 
 		const R       = rugBuilder;
@@ -8,6 +10,9 @@ RugBuilder.prototype.getCollectionsData = function() {
 		switch ( CONTEXT ) {
 
 			case 'website' :
+
+				// On the website, send an XMLHttpRequest to get the data
+				// then save it in R.collections
 
 				function loaded() {
 					

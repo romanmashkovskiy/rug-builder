@@ -45,8 +45,9 @@ RugBuilder.prototype.btnStageComponent = function() {
 
 		calcMargin: function() {
 
-			// If not the first stage, if < 768px calculate a margin-left
-			// to apply to the first stage button to move the scroller along
+			// If not the first stage and if < 768px :
+			// calculate a margin-left to apply to the first 
+			// stage button to move the scroller along
 
 			if ( this.props.index > 0 ) {
 				return;

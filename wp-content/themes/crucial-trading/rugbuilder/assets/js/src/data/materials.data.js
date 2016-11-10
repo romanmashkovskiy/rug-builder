@@ -1,5 +1,7 @@
 RugBuilder.prototype.getMaterialsData = function() {
 
+	// Get all of the materials, returning a promise
+
 	return new Promise((res, rej) => {
 
 		const R       = rugBuilder;
@@ -8,6 +10,9 @@ RugBuilder.prototype.getMaterialsData = function() {
 		switch ( CONTEXT ) {
 
 			case 'website' :
+
+				// On the website, send an XMLHttpRequest to get the data
+				// then save it in R.materials
 
 				function loaded() {
 					
