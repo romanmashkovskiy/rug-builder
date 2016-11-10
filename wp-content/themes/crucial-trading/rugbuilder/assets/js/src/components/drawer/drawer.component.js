@@ -133,6 +133,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Get passed to the Collection Button Components as props.
 			// Updates the chosenCollection state to whatever is given to it by the component.
 			this.setState({ chosenCollection: collection });
+
+			R.getSwatchData(collection)
+				.then((swatches) => {  this.state._swatches[collection] = swatches; this.forceUpdate(); });
 		},
 
 		updateSwatchChoice: function(swatch) {
@@ -146,6 +149,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		render: function() {
 
 			const _this = this;
+
+//			setInterval(function(){console.log(_this.state._swatches)},2000)
 			
 			// Functions for creating the dynamic HTML sections of the content
 
@@ -212,10 +217,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				// Get the swatches for the user selected collection
 
-				const SWATCHES = _this.placeholderData.swatches;
+				const SWATCHES = _this.state._swatches;
 				const SWATCH   = SWATCHES[ _this.state.chosenCollection ];
 
-				if ( _this.state.content === 'swatches' && caller === 'swatches' ) {
+				if ( _this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
 
 					// Create a BtnSwatchComponent for each swatch in the SWATCH array
 

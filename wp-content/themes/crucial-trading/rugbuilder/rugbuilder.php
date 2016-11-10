@@ -13,11 +13,11 @@ if ( array_key_exists( 'request', $_GET ) ) {
 	$request = $_GET['request'];
 	$res     = array();
 
-	$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
-
 	switch ( $request ) {
 
 		case 'materials' :
+
+			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
 
 			for ( $m = 0; $m < count( $terms ); $m++ ) {
 				if ( $terms[$m]->parent == 0 ) {
@@ -37,6 +37,8 @@ if ( array_key_exists( 'request', $_GET ) ) {
 			break;
 
 		case 'collections' :
+
+			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
 
 			$material_ids = array();
 			for ( $m = 0; $m < count( $terms ); $m++ ) {
@@ -59,6 +61,27 @@ if ( array_key_exists( 'request', $_GET ) ) {
 			}
 
 			break;
+
+		case 'swatches' :
+
+			$collection = $_GET['collection'];
+
+			$args = array(
+				'post_type' => 'product',
+				'tax_query' => array(
+					'taxonomy' => 'product_cat',
+					'field'    => 'slug',
+					'terms'    => $collection,
+				),
+			);
+
+			$query    = new WP_Query( $args );
+			$products = $query->posts;
+
+			for ( $s = 0; $s < $query->post_count; $s++ ) {
+				$name = $products[$s]->post_title;
+				array_push( $res, $name );
+			}
 	}
 
 	echo json_encode( $res );
@@ -94,7 +117,7 @@ if ( array_key_exists( 'request', $_GET ) ) {
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/js/dist/rugbuilder.min.js"></script>
 
 	<script>
-		var rugBuilder = new RugBuilder( 'website' );
+		var rugBuilder = new RugBuilder('website');
 		rugBuilder.start();
 	</script>
 </body>
