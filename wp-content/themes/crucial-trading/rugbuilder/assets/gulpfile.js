@@ -31,16 +31,19 @@ gulp.task('js', function() {
 	gulp.src([
 		'./js/src/rugBuilder.js',
 		'./js/src/startRugbuilder.js',
+		'./js/src/data/materials.data.js',
+		'./js/src/data/collections.data.js',
+		'./js/src/data/swatches.data.js',
 		'./js/src/init.js',
 		'./js/src/animate.js',
-		'./js/src/displayTexture.function.js',
-		'./js/src/error.function.js',
-		'./js/src/loadJSON.function.js',
-		'./js/src/rugs.init.js',
-		'./js/src/lights.init.js',
-		'./js/src/scene.init.js',
-		'./js/src/orbit.init.js',
-		'./js/src/helpers.init.js',
+		'./js/src/functions/displayTexture.function.js',
+		'./js/src/functions/error.function.js',
+		'./js/src/functions/loadJSON.function.js',
+		'./js/src/init/rugs.init.js',
+		'./js/src/init/lights.init.js',
+		'./js/src/init/scene.init.js',
+		'./js/src/init/orbit.init.js',
+		'./js/src/init/helpers.init.js',
 		'./js/src/components/*.js',
 		'./js/src/components/drawer/*.js',
 		'./js/src/components/progress-menu/*.js'
@@ -63,6 +66,7 @@ gulp.task('watch', function() {
 	gulp.watch('./css/src/components/drawer/*.scss', ['css']);
 
 	gulp.watch('./js/src/*.js',                          ['js']);
+	gulp.watch('./js/src/data/*.js',                     ['js']);
 	gulp.watch('./js/src/functions/*.js',                ['js']);
 	gulp.watch('./js/src/init/*.js',                     ['js']);
 	gulp.watch('./js/src/components/*.js',               ['js']);

@@ -1,23 +1,44 @@
 .drawer__collections__collections {
-	padding-top: 30px;
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	a {
+		display: block;
+		height: 100%;
+		padding: 0;
+		width: 100%;
+
+		h3 {
+			font-size: 14px;
+			position: relative;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			width: 55%;
+		}
+	}
 	
 	@media screen and (min-width: 768px) {
 		float: left;
+		padding-top: 30px;
 		width: 75%;
 
 		ul {
-			margin: 0;
-			padding: 0;
 			padding-right: 100px;
 		}
 
 		li {
 			border: 1px solid #EDEDED;
+			box-sizing: border-box;
 			float: left;
+			height: 110px;
 			list-style: none;
 			margin-bottom: 25px;
 			padding: 15px;
-			width: 31.6%;
+			width: 32%;
 
 			&:not(:nth-child(3n)) {
 				margin-right: 2%;
@@ -31,15 +52,15 @@
 			}
 		}
 
-		a {
-			display: block;
-			padding: 0;
-			width: 100%;
+		
+	}
 
-			h3 {
-				font-size: 14px;
-				width: 55%;
-			}
+	@media screen and (max-width: 768px) {
+
+		li {
+			border-bottom: 2px solid #EAEAEA;
+			height: 60px;
+			padding: 15px;
 		}
 	}
 }

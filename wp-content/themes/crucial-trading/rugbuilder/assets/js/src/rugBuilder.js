@@ -1,6 +1,13 @@
 class RugBuilder {
 
-	constructor() {
+	constructor( context ) {
+
+		// Context
+		this.context = context;
+
+		// WC Data
+		this.materials   = [];
+		this.collections = {};
 
 		// Screen Dimensions
 		this.screenWidth  = window.innerWidth;
@@ -115,6 +122,8 @@ class RugBuilder {
 		}
 
 		this.currentStage = NEXT_STAGE;
+
+		PubSub.publish('stageChange', NEXT_STAGE);
 	}
 
 	prevStage() {
@@ -129,6 +138,8 @@ class RugBuilder {
 		}
 
 		this.currentStage = PREV_STAGE;
+
+		PubSub.publish('stageChange', PREV_STAGE);
 	}
 
 	updateStage(stage) {
@@ -157,6 +168,8 @@ class RugBuilder {
 		}
 
 		this.currentStage = stage;
+
+		PubSub.publish('stageChange', stage);
 	}
 
 	startAgain() {
@@ -220,5 +233,7 @@ class RugBuilder {
 				stitches    : undefined
 			}
 		};
+
+		PubSub.publish('stageChange', 0);
 	}
 }

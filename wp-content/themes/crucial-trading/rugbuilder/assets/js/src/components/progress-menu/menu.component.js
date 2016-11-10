@@ -2,6 +2,14 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 
 	const MenuComponent = React.createClass({
 
+		componentDidMount: function() {
+			this.stageChange = PubSub.subscribe( 'stageChange', this.stageHasChanged );
+		},
+
+		stageHasChanged: function() {
+			this.forceUpdate();
+		},
+
 		render: function() {
 
 			const STAGES      = [ 'Center', 'Border Type', 'Inner Border', 'Outer Border', 'Rug Size' ];
