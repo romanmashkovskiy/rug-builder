@@ -29,7 +29,7 @@ RugBuilder.prototype.getMaterialsData = function() {
 					let req = new XMLHttpRequest();
 
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', 'http://localhost:8888/crucial-trading/rugbuilder/?request=materials' );
+					req.open( 'GET', window.location.href + '?request=materials' );
 					req.send();
 				}
 
