@@ -222,11 +222,22 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				if ( _this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
 
+					return Object.keys(SWATCH).map((swatch, index) => {
+
+						const CURRENT_SWATCH = SWATCH[swatch];
+
+						const name  = CURRENT_SWATCH.name;
+						const code  = CURRENT_SWATCH.code;
+						const thumb = CURRENT_SWATCH.thumb;
+
+						return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } code={ code } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+					})
+
 					// Create a BtnSwatchComponent for each swatch in the SWATCH array
 
-					return SWATCH.map((swatch, index) => {
-						return <BtnSwatchComponent key={ index } swatch={ swatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
-					});
+	//				return SWATCH.map((swatch, index) => {
+	//					return <BtnSwatchComponent key={ index } swatch={ swatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+	//				});
 				}
 				else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
 

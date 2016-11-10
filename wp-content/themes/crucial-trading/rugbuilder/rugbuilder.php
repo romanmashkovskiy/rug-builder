@@ -79,8 +79,22 @@ if ( array_key_exists( 'request', $_GET ) ) {
 			$products = $query->posts;
 
 			for ( $s = 0; $s < $query->post_count; $s++ ) {
-				$name = $products[$s]->post_title;
-				array_push( $res, $name );
+
+				$arr = array();
+
+				$product_id   = $products[$s]->ID;
+				$product_meta = get_post_meta( $product_id, '_product_attributes', true );
+
+				$name  = $products[$s]->post_title;
+				$key   = str_replace( ' ', '', $name );
+				$code  = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : '';
+				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'single-post-thumbnail' )[0];
+
+				$arr['name']  = $name;
+				$arr['code']  = $code;
+				$arr['thumb'] = $thumb;
+
+				$res[$key] = $arr;
 			}
 	}
 
