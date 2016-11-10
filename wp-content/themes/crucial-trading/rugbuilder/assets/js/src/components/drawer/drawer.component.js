@@ -33,7 +33,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		},
 
 		componentWillUnmount: function() {
-			PubSub.unsubscribe( this.newSearch_token );
+			PubSub.unsubscribe( this.stageChange );
 		},
 
 		updateStageState: function(stage) {
