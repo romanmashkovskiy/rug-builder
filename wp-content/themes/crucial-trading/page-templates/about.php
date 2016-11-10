@@ -79,14 +79,15 @@ echo do_shortcode( '[logo-nav]' ); ?>
 			</div>
 
 		
-			<!--<div class="timeline__event" id="three"
+			<div class="timeline__event" id="three"
 				data-1000="transform: translate(0,600px);opacity: 0;" 
 				data-2000="transform: translate(0,1000px);opacity: 0.4;" 
 				data-2500="transform: translate(0,1000px);opacity: 1;" 
 				data-3000="transform: translate(0,1000px);"
-				data-4000="transform: translate(0,1500px);"	
-				data-4500="opacity: 0.5;"
-				data-5000="opacity: 0;"	
+				data-4000="transform: translate(0,1700px);"	
+				data-5000="transform: translate(0,2300px);"
+				data-5300="opacity: 0.5;"	
+			  data-5600="opacity: 0;"	
 				>
 				<div class="timeline__event__line"><span class="timeline__event__ball"></span></div>
 				<h4 class="timeline__event__heading"><span class="timeline__event__date">1999.</span> Where It Started</h4>
@@ -98,11 +99,12 @@ echo do_shortcode( '[logo-nav]' ); ?>
 			</div>
 		
 			<div class="timeline__event" id="four"
-				data-3000="transform: translate(0,800px);opacity: 0.2;" 
-				data-4000="transform: translate(0,2000px);opacity: 1;" 
-				data-4500="transform: translate(0,65%);"
-				data-5000="transform: translate(0,80%);"	
-				data-6500="opacity: 0.5;"
+				data-3500="transform: translate(0,1700px);opacity: 0.2;" 
+				data-4500="transform: translate(0,2100px);opacity: 0.5;" 
+				data-5000="transform: translate(0,2300px);opacity: 1;" 
+				data-5500="transform: translate(0,2700px);"
+				data-6000="transform: translate(0,3200px);opacity: 0.5;"	
+				data-7500="opacity: 0;"
 				>
 				<div class="timeline__event__line"><span class="timeline__event__ball"></span></div>
 				<h4 class="timeline__event__heading"><span class="timeline__event__date">1999.</span> Where It Started</h4>
@@ -110,9 +112,17 @@ echo do_shortcode( '[logo-nav]' ); ?>
 				<div class="timeline__event__description">
 					<p>We cant improve on nature?s creations. But we can gather them together from all four corners and give them the respect they deserve by weaving them into something as beautiful and pure as the settings from which they came.</p>
 				</div>
-			</div>-->
+			</div>
 
 		</div>
+		
+		
+		<div class="about__scroller__content clearfix">
+			
+			
+
+		</div>
+
 		
 </div>
 

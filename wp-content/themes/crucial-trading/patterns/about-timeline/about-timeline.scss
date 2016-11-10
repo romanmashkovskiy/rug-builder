@@ -233,8 +233,8 @@ body {
 
 .about__scroller__subtitle {
 	transform: rotate(270deg);
-	right: -220px;
-	bottom: 180px;
+	right: -230px;
+	bottom: 220px;
 }
 	
 @media all and (max-width: 769px) {
@@ -313,15 +313,15 @@ body {
 ****************************************************************************/ 
 
 .about__timeline__content {
-	//display: none;
-	//opacity: 0;
-	opacity: 1;
-	display: block;
+	display: none;
+	opacity: 0;
+	//opacity: 1;
+	//display: block;
 	background-color: $page-header-background;
 	padding-bottom: 10%;
 	position: relative;
 	z-index: 999;
-	height: 7000px;
+	height: 6000px;
 }
 
 .show-about-timeline .about__timeline__content {
