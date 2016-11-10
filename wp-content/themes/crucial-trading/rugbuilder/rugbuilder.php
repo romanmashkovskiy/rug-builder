@@ -128,7 +128,7 @@ if ( array_key_exists( 'request', $_GET ) ) {
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/three.js/build/three.js"></script>
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/orbitcontrols/orbitcontrols.js"></script>
 
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/js/dist/rugbuilder.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/js/dist/rugBuilder.min.js"></script>
 
 	<script>
 		var templateDirectoryUri = '<?php echo get_template_directory_uri(); ?>';
