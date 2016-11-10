@@ -90,7 +90,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			const _this = this;
 
-//			setInterval(function(){console.log(_this.state._swatches)},2000)
+//			setInterval(function(){console.log(_this.state.chosenSwatch)},2000)
 			
 			// Functions for creating the dynamic HTML sections of the content
 
@@ -181,43 +181,77 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				}
 				else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
 
-					// Get the selected swatch and work on it's index in the corresponding swatch array
-					// Will need changing - production swatches won't end in numbers
+					const SELECTED_SWATCH     = _this.state.chosenSwatch;
+					const SELECTED_COLLECTION = _this.state._swatches[_this.state.chosenCollection];
 
-					const SELECTED_SWATCH = _this.state.chosenSwatch;
-					const SWATCH_LENGTH   = SELECTED_SWATCH.length;
-					const SWATCH_NUMBER   = SELECTED_SWATCH.substr(SWATCH_LENGTH-1, 1);
-					const SWATCH_INDEX    = SWATCH_NUMBER - 1;
+					let allSwatches = [];
+					let swatchIndex;
 
-					// Create array of 5 swatches to be shown (with the selected swatch having a tick)
+					let i = 0;
+
+					Object.keys(SELECTED_COLLECTION).forEach((key) => {
+
+						if ( key === SELECTED_SWATCH ) {
+							swatchIndex = i;
+						}
+
+						allSwatches[i] = SELECTED_COLLECTION[key];
+						i++;
+					});
 
 					let swatchArr = [];
 
-					if ( SWATCH_INDEX > 1 ) {
+					if ( swatchIndex <= 1 ) {
 
-						for ( let i = SWATCH_INDEX - 2; i < SWATCH_INDEX + 3; i++ ) {
+						for ( let i = 0; i < swatchIndex; i++ ) {
+							if ( allSwatches[i] !== undefined ) {
+								swatchArr.push(allSwatches[i]);
+							}
+						}
 
-							let tick = i === SWATCH_INDEX ? ' tick' : '';
-							swatchArr.push(SWATCHES[_this.state.chosenCollection][i] + tick);
+						swatchArr.push(allSwatches[swatchIndex]);
+
+						for ( let i2 = swatchIndex + 1; i2 < 5; i2++ ) {
+							if ( allSwatches[i2] !== undefined ) {
+								swatchArr.push(allSwatches[i2]);
+							}
+						}
+					}
+					else if ( swatchIndex > allSwatches.length - 2 ) {
+
+						let extra    = swatchIndex === allSwatches.length ? 2 : 1;
+						let subtract = 2 + extra;
+
+						for ( let i = swatchIndex - subtract; i < swatchIndex; i++ ) {
+							if ( allSwatches[i] !== undefined ) {
+								swatchArr.push(allSwatches[i]);
+							}
+						}
+
+						swatchArr.push(allSwatches[swatchIndex]);
+
+						let left = 5 - swatchArr.length;
+						let top  = 1 + left;
+
+						for ( let i2 = swatchIndex + 1; i2 < top; i2++ ) {
+							if ( allSwatches[i2] !== undefined ) {
+								swatchArr.push(allSwatches[i2]);
+							}
 						}
 					}
 					else {
 
-						for ( let i = 0; i < SWATCH_INDEX; i++ ) {
-							swatchArr.push(SWATCHES[_this.state.chosenCollection][i]);
-						}
-
-						swatchArr.push(SWATCHES[_this.state.chosenCollection][SWATCH_INDEX] + ' (tick)');
-
-						for ( let i2 = SWATCH_INDEX + 1; i2 < 5; i2++ ) {
-							swatchArr.push(SWATCHES[_this.state.chosenCollection][i2]);
+						for ( let i2 = swatchIndex - 2; i2 < swatchIndex + 3; i2++ ) {
+							if ( allSwatches[i2] !== undefined ) {
+								swatchArr.push(allSwatches[i2]);
+							}
 						}
 					}
 
 					// Create a BtnSwatchComponent for each swatch in the swatchArr array
 
 					return swatchArr.map((swatch, index) => {
-						return <BtnSwatchComponent key={ index } swatch={ swatch } />
+						return <BtnSwatchComponent key={ index } swatch={ swatch.name } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
 					});
 				}
 			}
