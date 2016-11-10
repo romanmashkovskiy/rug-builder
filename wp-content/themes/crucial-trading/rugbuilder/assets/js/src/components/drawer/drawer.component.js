@@ -252,14 +252,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 								</ul>
 							</div>
 						</div>
-						<div className="drawer__content__swatches">
+						<div className="drawer__content__swatches clearfix">
 							<div className="drawer__swatches__sidebar">
 								<ul>
 									{ SIDEBAR_HTML('swatches') }
 								</ul>
 							</div>
 							<div className="drawer__swatches__swatches">
-								<ul>
+								<ul className="clearfix">
 									{ SWATCHES_HTML('swatches') }
 								</ul>
 							</div>
