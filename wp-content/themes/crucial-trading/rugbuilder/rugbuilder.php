@@ -88,7 +88,7 @@ if ( array_key_exists( 'request', $_GET ) ) {
 				$name  = $products[$s]->post_title;
 				$key   = str_replace( ' ', '', $name );
 				$code  = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : '';
-				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'single-post-thumbnail' )[0];
+				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0];
 
 				$arr['name']  = $name;
 				$arr['code']  = $code;

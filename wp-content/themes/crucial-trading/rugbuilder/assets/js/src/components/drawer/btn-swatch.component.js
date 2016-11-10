@@ -14,7 +14,10 @@ RugBuilder.prototype.btnSwatchComponent = function() {
 			
 			return (
 				<li>
-					<a href="#" onClick={ this.handleClick }>{ this.props.swatch }</a>
+					<a href="#" onClick={ this.handleClick }>
+						<img src={ this.props.thumb } alt={ this.props.swatch } />
+						<h3>{ this.props.code }</h3>
+					</a>
 				</li>
 			);
 		}
