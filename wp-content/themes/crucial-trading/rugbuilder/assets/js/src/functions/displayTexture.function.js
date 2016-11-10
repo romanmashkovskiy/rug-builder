@@ -1,10 +1,10 @@
-RugBuilder.prototype.displayTexture = function(texture) {
+RugBuilder.prototype.displayTexture = function(texture, thumb) {
 
 	const R = rugBuilder;
 
 	let _texture = texture === 'AudreyRug1' ? 'cotton-herringbone' : 'biscayne-bs105';
 
-	let img_url  = templateDirectoryUri + '/rugbuilder/img/' + _texture + '.jpg';
+	let img_url  = thumb;
 	let bmap_url = templateDirectoryUri + '/rugbuilder/img/' + _texture + '-bmap.jpg';
 
 	new THREE.TextureLoader().load(

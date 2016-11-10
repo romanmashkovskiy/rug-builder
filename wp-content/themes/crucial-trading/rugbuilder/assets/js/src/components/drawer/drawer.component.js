@@ -78,7 +78,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				});
 		},
 
-		updateSwatchChoice: function(swatch) {
+		updateSwatchChoice: function(swatch, thumb) {
 
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
@@ -86,7 +86,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			this.setState({ chosenSwatch: swatch });
 
 			// Update the actual rug
-			R.displayTexture(swatch)
+			R.displayTexture(swatch, thumb)
 		},
 
 		render: function() {
