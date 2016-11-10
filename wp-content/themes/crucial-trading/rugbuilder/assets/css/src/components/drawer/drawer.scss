@@ -6,7 +6,8 @@
 
 			.drawer__content__collections,
 			.drawer__content__swatches,
-			.drawer__content__swatches--selected {
+			.drawer__content__swatches--selected,
+			.drawer__content__border {
 				display: none;
 			}
 		}
@@ -15,7 +16,8 @@
 
 			.drawer__content__material,
 			.drawer__content__swatches,
-			.drawer__content__swatches--selected {
+			.drawer__content__swatches--selected,
+			.drawer__content__border {
 				display: none;
 			}
 		}
@@ -24,7 +26,8 @@
 
 			.drawer__content__material,
 			.drawer__content__collections,
-			.drawer__content__swatches--selected {
+			.drawer__content__swatches--selected,
+			.drawer__content__border {
 				display: none;
 			}
 		}
@@ -33,7 +36,18 @@
 
 			.drawer__content__material,
 			.drawer__content__collections,
-			.drawer__content__swatches {
+			.drawer__content__swatches,
+			.drawer__content__border {
+				display: none;
+			}
+		}
+
+		&.border {
+
+			.drawer__content__material,
+			.drawer__content__collections,
+			.drawer__content__swatches,
+			.drawer__content__swatches--selected {
 				display: none;
 			}
 		}

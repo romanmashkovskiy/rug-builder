@@ -1,4 +1,4 @@
-RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent) {
+RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent, BtnBorderComponent) {
 
 	const R = rugBuilder;
 
@@ -24,7 +24,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				_materials   : materials,
 				_collections : collections,
-				_swatches    : {}
+				_swatches    : {},
+				_borders     : ['Single Border', 'Single & Piping', 'Double Border']
 			}
 		},
 
@@ -116,25 +117,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			R.displayTexture(swatch, thumb)
 		},
 
-		createMaterialHTML: function() {
-
-			// Function for creating the drawer material content
-
-			if ( this.state.stage !== 0 ) {
-				return;
-			}
-
-			const MATERIALS_ARR = this.state._materials;
-
-			if ( this.state.content === 'materials' ) {
-
-				// Create a BtnMaterialComponent for each material in the MATERIALS_ARR array
-
-				return MATERIALS_ARR.map((material, index) => {
-					return <BtnMaterialComponent key={ index } index={ index } material={ material.name } thumb={ material.thumb } updateContent={ this.updateContentState } updateMaterial={ this.updateMaterialChoice } chosenMaterial={ this.state.chosenMaterial } />
-				});
-			}
-		},
+		createMaterialHTML: function() { return _createMaterialHTML(this, BtnMaterialComponent) },
 
 		createSidebarHTML: function(caller) {
 
@@ -309,7 +292,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 
 			if ( this.state.content === 'border' ) {
-				return <p>abc</p>;
+
+				const BORDER_ARR = this.state._borders;
+				
+				return BORDER_ARR.map((border, index) => {
+					return <BtnBorderComponent key={ index } border={ border } />
+				});
 			}
 		},
 
@@ -391,4 +379,22 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 	});
 
 	ReactDOM.render( <DrawerComponent />, document.querySelector( '#drawer' ) );
+}
+
+function _createMaterialHTML(_this, BtnMaterialComponent) {
+
+	if ( _this.state.stage !== 0 ) {
+		return;
+	}
+
+	const MATERIALS_ARR = _this.state._materials;
+
+	if ( _this.state.content === 'materials' ) {
+
+		// Create a BtnMaterialComponent for each material in the MATERIALS_ARR array
+
+		return MATERIALS_ARR.map((material, index) => {
+			return <BtnMaterialComponent key={ index } index={ index } material={ material.name } thumb={ material.thumb } updateContent={ _this.updateContentState } updateMaterial={ _this.updateMaterialChoice } chosenMaterial={ _this.state.chosenMaterial } />
+		});
+	}
 }

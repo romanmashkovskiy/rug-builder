@@ -24,8 +24,9 @@ RugBuilder.prototype.start = function() {
 		const BtnMaterialComponent       = R.btnMaterialComponent();
 		const BtnCollectionComponent     = R.btnCollectionComponent();
 		const BtnSwatchComponent         = R.btnSwatchComponent();
+		const BtnBorderComponent         = R.btnBorderComponent();
 		const SideMenuComponent          = R.sideMenuComponent();
-		R.drawerComponent(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent);
+		R.drawerComponent(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent, BtnBorderComponent);
 
 
 		/******** START INITIAL THREE JS ********/
