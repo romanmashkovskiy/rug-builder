@@ -10,6 +10,22 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				materials.push( { name : WC_MATERIALS[i].name, thumb : WC_MATERIALS[i].thumb } );
 			}
 
+			let collections = {};
+
+			for ( let i2 = 0; i2 < WC_MATERIALS.length; i2++ ) {
+
+				const MATERIAL    = WC_MATERIALS[i2].name;
+				const COLLECTIONS = WC_COLLECTIONS[MATERIAL];
+
+				let arr = [];
+
+				for ( let i3 = 0; i3 < COLLECTIONS.length; i3++ ) {
+					arr.push( { name : COLLECTIONS[i3].name } )
+				}
+
+				collections[MATERIAL] = arr;
+			}
+
 			// Set initial state
 			return {
 				content : 'materials',
@@ -22,21 +38,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				chosenSwatch     : undefined,
 
 				_materials   : materials,
-				_collections : {},
+				_collections : collections,
 				_swatches    : {}
 			}
 		},
 
 		placeholderData: {
-
-			collections : {
-				Sisal: [ 'Sisal Collection 1', 'Sisal Collection 2' ],
-				Wool: [ 'Wool Collection 1', 'Wool Collection 2' ],
-				Sisool: [ 'Sisool Collection 1', 'Sisool Collection 2' ],
-				Coir: [ 'Coir Collection 1', 'Coir Collection 2' ],
-				Seagrass: [ 'Seagrass Collection 1', 'Seagrass Collection 2' ],
-				Jute: [ 'Jute Collection 1', 'Jute Collection 2' ]
-			},
 
 			swatches : {
 				SisalCollection1: [ 
@@ -205,7 +212,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				// Get the collections for the user selected material
 
-				const COLLECTIONS = _this.placeholderData.collections;
+				const COLLECTIONS = _this.state._collections;
 				const COLLECTION  = COLLECTIONS[ _this.state.chosenMaterial ];
 
 				if ( _this.state.content === 'collections' ) {
@@ -213,7 +220,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					// Create a BtnCollectionComponent for each collection in the COLLECTION array
 
 					return COLLECTION.map((collection, index) => {
-						return <BtnCollectionComponent key={ index } collection={ collection } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } />
+						return <BtnCollectionComponent key={ index } collection={ collection.name } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } />
 					});
 				}
 			}

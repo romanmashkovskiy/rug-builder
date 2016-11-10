@@ -10,11 +10,13 @@
 
 $terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
 
-$materials = array();
+$materials    = array();
+$material_ids = array();
 for ( $m = 0; $m < count( $terms ); $m++ ) {
 
 	if ( $terms[$m]->parent == 0 ) {
 		array_push( $materials, $terms[$m] );
+		$material_ids[$terms[$m]->term_id] = $terms[$m];
 	}
 }
 for ( $m2 = 0; $m2 < count( $materials ); $m2++ ) {
@@ -25,6 +27,21 @@ for ( $m2 = 0; $m2 < count( $materials ); $m2++ ) {
 	$thumb    = wp_get_attachment_url( $thumb_id );
 
 	$materials[$m2]->thumb = $thumb;
+}
+
+$collections = array();
+for ( $c = 0; $c < count( $materials ); $c++ ) {
+	$collections[$materials[$c]->name] = array();
+}
+for ( $c2 = 0; $c2 < count( $terms ); $c2++ ) {
+
+	if ( $terms[$c2]->parent != 0 ) {
+
+		$parent_id = $terms[$c2]->parent;
+		$parent    = $material_ids[$parent_id]->name;
+
+		array_push( $collections[$parent], $terms[$c2] );
+	}
 }
 
 ?>
@@ -39,7 +56,9 @@ for ( $m2 = 0; $m2 < count( $materials ); $m2++ ) {
 	<style>body{margin:0}</style>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/css/dist/style.min.css">
 
-	<script>var WC_MATERIALS = <?php echo json_encode( $materials ); ?></script>
+	<script>var WC_MATERIALS   = <?php echo json_encode( $materials ); ?></script>
+	<script>var WC_COLLECTIONS = <?php echo json_encode( $collections ); ?></script>
+	<script>console.log(WC_COLLECTIONS)</script>
 </head>
 <body>
 
