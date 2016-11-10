@@ -254,7 +254,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					// Create a BtnSwatchComponent for each swatch in the swatchArr array
 
 					return swatchArr.map((swatch, index) => {
-						return <BtnSwatchComponent key={ index } swatch={ swatch.name } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+						return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
 					});
 				}
 			}
