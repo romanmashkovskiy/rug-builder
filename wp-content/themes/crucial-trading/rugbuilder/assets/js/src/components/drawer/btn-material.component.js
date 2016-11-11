@@ -11,7 +11,7 @@ RugBuilder.prototype.btnMaterialComponent = function() {
 			if ( this.props.currentStage === 0 ) {
 				content = 'collections';
 			}
-			else if ( this.props.currentStage === 2 ) {
+			else if ( this.props.currentStage === 2 || this.props.currentStage === 3 ) {
 				content = 'swatches'
 			}
 

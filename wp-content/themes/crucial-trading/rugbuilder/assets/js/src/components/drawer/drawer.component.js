@@ -73,8 +73,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							_materials       : [],
 							chosenMaterial   : undefined,
 							chosenCollection : undefined,
-							chosenSwatch     : undefined,
-							chosenBorder     : undefined
+							chosenSwatch     : undefined
 						})
 
 						this.getBorderMaterials();
@@ -96,8 +95,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 						_materials : R.WCborderMaterials,
 							chosenMaterial   : undefined,
 							chosenCollection : undefined,
-							chosenSwatch     : undefined,
-							chosenBorder     : undefined
+							chosenSwatch     : undefined
 					})
 
 					break;
@@ -153,7 +151,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Updates the chosenMaterial state to whatever is given to it by the component.
 			this.setState({ chosenMaterial: material, chosenCollection: undefined });
 
-			if ( this.state.stage === 2 ) {
+			if ( this.state.stage === 2 || this.state.stage === 3 ) {
 				R.getSwatchData(material)
 					.then((swatches) => {
 						this.state._swatches[material] = swatches;
