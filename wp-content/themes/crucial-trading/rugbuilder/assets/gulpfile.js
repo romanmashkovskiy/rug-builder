@@ -21,7 +21,9 @@ gulp.task('css', function() {
 		.on('error', sass.logError))
 		.pipe(autoprefixer())
 		.pipe(rename({ suffix: '.min' }))
-		.pipe(cssnano())
+		.pipe(cssnano({
+			zindex: false
+		}))
 		.pipe(sourcemaps.write('maps'))
 		.pipe(gulp.dest('./css/dist'));
 });
