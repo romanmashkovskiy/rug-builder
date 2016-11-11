@@ -73,26 +73,17 @@ class RugBuilder {
 			}
 		};
 
-		// User Material Choices
+		// User Choices
 		this.loadedTextures  = {};
+
+		this.borderType      = undefined;
 		this.centerMaterial  = undefined;
 		this.borderMaterials = {
-			single : {
-				border   : undefined,
-				center   : undefined,
-				stitches : undefined
-			},
+			single : undefined,
+			piping : undefined,
 			double : {
-				center      : undefined,
-				innerBorder : undefined,
-				outerBorder : undefined,
-				stitches    : undefined
-			},
-			piping : {
-				center      : undefined,
-				innerBorder : undefined,
-				outerBorder : undefined,
-				stitches    : undefined
+				inner : undefined,
+				outer : undefined
 			}
 		};
 

@@ -12,10 +12,12 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches'];
 
+				R.borderType = 'single';
+
 				_loadFiles(files, R, 'single', 'single')
-					.then(() => { return _updateScene(R, 'single') })
-					.then(()        => { res() })
-					.catch(()       => { alert('error loading border') });
+					.then(()  => { return _updateScene(R, 'single') })
+					.then(()  => { res() })
+					.catch(() => { alert('error loading border') });
 
 				break;
 
@@ -23,10 +25,12 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 
+				R.borderType = 'piping';
+
 				_loadFiles(files, R, 'single', 'piping')
-					.then(() => { return _updateScene(R, 'piping') })
-					.then(()        => { res() })
-					.catch(()       => { alert('error loading border') });
+					.then(()  => { return _updateScene(R, 'piping') })
+					.then(()  => { res() })
+					.catch(() => { alert('error loading border') });
 
 				break;
 
@@ -34,10 +38,12 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 				files = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west', 'border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west', 'center', 'stitches'];
 
+				R.borderType = 'double';
+
 				_loadFiles(files, R, 'double', 'double')
-					.then(() => { return _updateScene(R, 'double') })
-					.then(()        => { res() })
-					.catch(()       => { alert('error loading border') });
+					.then(()  => { return _updateScene(R, 'double') })
+					.then(()  => { res() })
+					.catch(() => { alert('error loading border') });
 
 				break;
 		}
@@ -118,6 +124,8 @@ function _updateScene(R, type) {
 			}
 		})
 
+		PubSub.publish('borderUpdate', type);
+		
 		res();
 	})
 }
