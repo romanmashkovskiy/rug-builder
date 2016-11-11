@@ -31,10 +31,10 @@ RugBuilder.prototype.displayTexture = function(texture, thumb) {
 						shininess : 5
 					});
 
-					for ( let i = 0; i < R._singleObjects.length; i++ ) {
+					for ( let i = 0; i < R._objects.length; i++ ) {
 
-						if ( R._singleObjects[i].name === 'center' ) {
-							R._singleObjects[i].material = material;
+						if ( R._objects[i].name === 'center' ) {
+							R._objects[i].material = material;
 						}
 					}
 				}

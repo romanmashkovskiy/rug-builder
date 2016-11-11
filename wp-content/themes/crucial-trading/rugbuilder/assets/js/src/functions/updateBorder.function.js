@@ -4,38 +4,44 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 	let files = [];
 
-	switch (border) {
+	return new Promise((res, rej) => {
 
-		case 'Single Border' :
+		switch (border) {
 
-			files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches'];
+			case 'Single Border' :
 
-			_loadFiles(files, 'single')
-				.then((objects) => { _updateScene(objects, R) })
-				.catch(()       => { alert('error loading border') });
+				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches'];
 
-			break;
+				_loadFiles(files, 'single')
+					.then((objects) => { return _updateScene(objects, R) })
+					.then(()        => { res() })
+					.catch(()       => { alert('error loading border') });
 
-		case 'Single & Piping' :
+				break;
 
-			files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
+			case 'Single & Piping' :
 
-			_loadFiles(files, 'single')
-				.then((objects) => { _updateScene(objects, R) })
-				.catch(()       => { alert('error loading border') });
+				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 
-			break;
+				_loadFiles(files, 'single')
+					.then((objects) => { return _updateScene(objects, R) })
+					.then(()        => { res() })
+					.catch(()       => { alert('error loading border') });
 
-		case 'Double Border' :
+				break;
 
-			files = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west', 'border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west', 'center', 'stitches'];
+			case 'Double Border' :
 
-			_loadFiles(files, 'double')
-				.then((objects) => { _updateScene(objects, R) })
-				.catch(()       => { alert('error loading border') });
+				files = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west', 'border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west', 'center', 'stitches'];
 
-			break;
-	}
+				_loadFiles(files, 'double')
+					.then((objects) => { return _updateScene(objects, R) })
+					.then(()        => { res() })
+					.catch(()       => { alert('error loading border') });
+
+				break;
+		}
+	});
 }
 
 function _loadFiles(files, type) {
@@ -69,6 +75,7 @@ function _loadFiles(files, type) {
 
 			if ( files.length === objects.length ) {
 				res(objects);
+				clearInterval(interval)
 			}
 		}, 1000)
 	});
@@ -76,25 +83,30 @@ function _loadFiles(files, type) {
 
 function _updateScene(objects, R) {
 
-	R._objects = objects;
+	return new Promise((res, rej) => {
 
-	const CHILDREN_LENGTH = R._scene.children.length;
+		R._objects = objects;
 
-	let firstMesh;
+		const CHILDREN_LENGTH = R.scene.children.length;
 
-	for ( let i = 0; i < CHILDREN_LENGTH; i++ ) {
-		
-		if ( R._scene.children[i].type === 'Mesh' ) {
-			firstMesh = i;
-			break;
+		let firstMesh;
+
+		for ( let i = 0; i < CHILDREN_LENGTH; i++ ) {
+			
+			if ( R.scene.children[i].type === 'Mesh' ) {
+				firstMesh = i;
+				break;
+			}
 		}
-	}
 
-	for ( let i2 = 0; i2 < CHILDREN_LENGTH; i2++ ) {
-		R._scene.remove(R._scene.children[firstMesh]);
-	}
+		for ( let i2 = 0; i2 < CHILDREN_LENGTH; i2++ ) {
+			R.scene.remove(R.scene.children[firstMesh]);
+		}
 
-	for ( let i3 = 0; i3 < R._objects.length; i3++ ) {
-		R._scene.add(R._objects[i3]);
-	}
+		for ( let i3 = 0; i3 < R._objects.length; i3++ ) {
+			R.scene.add(R._objects[i3]);
+		}
+
+		res();
+	})
 }

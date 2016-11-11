@@ -5,10 +5,6 @@ class RugBuilder {
 		// Context
 		this.context = context;
 
-		// WC Data
-		this.materials   = [];
-		this.collections = {};
-
 		// Screen Dimensions
 		this.screenWidth  = window.innerWidth;
 		this.screenHeight = window.innerHeight;
@@ -19,8 +15,8 @@ class RugBuilder {
 		this.stageVisited = [ true, false, false, false, false ];
 
 		// Three.js
-		this.renderer = undefined;
 		this.scene    = undefined;
+		this.renderer = undefined;
 
 		this.camera        = undefined;
 		this.cameraOptions = {
@@ -36,11 +32,9 @@ class RugBuilder {
 			spotLight : undefined
 		};
 
-		this.lights = {
-			ambientLight     : undefined,
-			directionalLight : undefined,
-			spotLight        : undefined
-		};
+		this.lights = {};
+
+		this.orbitControls = undefined;
 
 		// JSON
 		this.center = undefined;
@@ -71,11 +65,11 @@ class RugBuilder {
 				innerBorderNorth : undefined,
 				innerBorderSouth : undefined,
 				innerBorderWest  : undefined,
-				outerBorderEast  : undefined,
-				outerBorderNorth : undefined,
-				outerBorderSouth : undefined,
-				outerBorderWest  : undefined,
-				stitches         : undefined
+				stitches         : undefined,
+				trimEast         : undefined,
+				trimNorth        : undefined,
+				trimSouth        : undefined,
+				trimWest         : undefined
 			}
 		};
 
