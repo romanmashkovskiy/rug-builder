@@ -35,7 +35,7 @@ RugBuilder.prototype.getCollectionsData = function() {
 					}
 
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', urlBase + '&request=collections' );
+					req.open( 'GET', urlBase + '?request=collections' );
 					req.send();
 				}
 

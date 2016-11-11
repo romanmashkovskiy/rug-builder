@@ -65,7 +65,7 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 					}
 
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', urlBase + '&request=' + request );
+					req.open( 'GET', urlBase + '?request=' + request );
 					req.send();
 				}
 
