@@ -110,7 +110,12 @@ function _updateScene(R, type) {
 		}
 
 		Object.keys(R.json[type]).forEach((key) => {
+
 			R.scene.add(R.json[type][key]);
+
+			if ( R.centerMaterial !== undefined && key === 'center' ) {
+				R.scene.children[R.scene.children.length-1].material = R.loadedTextures[R.centerMaterial];
+			}
 		})
 
 		res();
