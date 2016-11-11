@@ -70,7 +70,7 @@ RugBuilder.prototype.start = function() {
 		// Load single JSON files (default view)
 
 		var singleFiles   = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
-		R._singleObjects = [];
+		R._objects = [];
 
 		function loadCompleted( name ) {
 			return function( texture ) {
@@ -80,7 +80,7 @@ RugBuilder.prototype.start = function() {
 
 				object.name = name;
 
-				R._singleObjects.push(object)
+				R._objects.push(object)
 			}
 		}
 
@@ -96,7 +96,7 @@ RugBuilder.prototype.start = function() {
 
 			// When all single files loaded do loaded() function
 
-			if ( singleFiles.length === R._singleObjects.length ) {
+			if ( singleFiles.length === R._objects.length ) {
 				loaded();
 			}
 		}, 1000)
@@ -107,8 +107,8 @@ RugBuilder.prototype.start = function() {
 
 			// Add single JSON to scene
 
-			for ( var i2 = 0; i2 < R._singleObjects.length; i2++ ) {
-				R._scene.add( R._singleObjects[i2] );
+			for ( var i2 = 0; i2 < R._objects.length; i2++ ) {
+				R._scene.add( R._objects[i2] );
 			}
 
 			// Add orbitControls
