@@ -11,10 +11,20 @@ RugBuilder.prototype.btnBorderComponent = function() {
 		},
 
 		render: function() {
+
+			let url;
+
+			switch ( this.props.border ) {
+
+				case 'Single Border' : url = 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174349/single-border-icon.svg'; break;
+				case 'Single & Piping' : url = 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174352/single-piping-icon.svg'; break;
+				case 'Double Border' : url = 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174338/double-border-icon.svg'; break;
+			}
 			
 			return (
 				<li>
 					<a href="#" onClick={ this.handleClick }>
+						<img src={ url } alt={ this.props.border } />
 						<h3>{ this.props.border }</h3>
 					</a>
 				</li>

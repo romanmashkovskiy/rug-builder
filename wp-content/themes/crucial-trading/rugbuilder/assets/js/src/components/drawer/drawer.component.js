@@ -6,8 +6,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		getInitialState: function() {
 
-			let materials   = R.materials;
-			let collections = R.collections;
+			let materials   = R.WCmaterials;
+			let collections = R.WCcollections;
 
 			// Set initial state
 			return {
@@ -45,14 +45,76 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			switch( stage ) {
 
-				case 0 : content = 'material'; break;
-				case 1 : content = 'border'; break;
-				case 2 : content = ''; break;
-				case 3 : content = ''; break;
-				case 4 : content = ''; break;
+				case 0 : 
+
+					content = 'materials';
+
+					this.setState({
+						_materials   : R.WCmaterials,
+						_collections : R.WCcollections,
+						_swatches    : {}
+					});
+
+					break;
+
+				case 1 : 
+
+					content = 'border';
+
+					break;
+
+				case 2 : 
+
+					content = 'materials';
+
+					if ( R.WCborderMaterials.length === 0 ) {
+
+						this.setState({
+							_materials       : [],
+							chosenMaterial   : undefined,
+							chosenCollection : undefined,
+							chosenSwatch     : undefined
+						})
+
+						this.getBorderMaterials();
+					}
+					else {
+
+						this.setState({
+							_materials : R.WCborderMaterials
+						})
+					}
+
+					break;
+
+				case 3 : 
+
+					content = 'materials';
+
+					this.setState({
+						_materials : R.WCborderMaterials,
+							chosenMaterial   : undefined,
+							chosenCollection : undefined,
+							chosenSwatch     : undefined
+					})
+
+					break;
+
+				case 4 : 
+
+					content = ''; 
+
+					break;
 			}
 
 			this.updateContentState(content);
+		},
+
+		getBorderMaterials: function() {
+
+			R.getMaterialsData('border')
+				.then((res) => { this.setState({ _materials: R.WCborderMaterials }) })
+				.catch(()   => { alert('Loading material error') });
 		},
 
 		updateOpenState: function(open) {
@@ -88,6 +150,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Get passed to the Material Button Components as props.
 			// Updates the chosenMaterial state to whatever is given to it by the component.
 			this.setState({ chosenMaterial: material, chosenCollection: undefined });
+
+			if ( this.state.stage === 2 || this.state.stage === 3 ) {
+				R.getSwatchData(material)
+					.then((swatches) => {
+						this.state._swatches[material] = swatches;
+						this.forceUpdate();
+					});
+			}
 		},
 
 		updateCollectionChoice: function(collection) {
@@ -115,7 +185,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			this.setState({ chosenSwatch: swatch });
 
 			// Update the actual rug
-			R.displayTexture(swatch, thumb)
+			R.displayTexture(swatch, thumb, this.state.stage);
 		},
 
 		updateBorderChoice: function(border) {
@@ -147,7 +217,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			const _this = this;
 
-//			setInterval(function(){console.log(_this.state.stage)},2000)
+//			setInterval(function(){console.log(_this)},5000)
 			
 			// Create the dynamic HTML sections of the content
 
@@ -161,13 +231,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			const BORDER_HTML = _this.createBorderHTML();
 
-			const OPEN           = _this.state.open ? 'open' : 'closed';
-			const DRAWER_CLASSES = 'drawer__content ' + OPEN + ' ' + this.state.content;
+			const OPEN             = _this.state.open ? 'open' : 'closed';
+			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.content;
+			const MATERIAL_CLASSES = 'drawer__content__material stage' + this.state.stage;
 
 			return (
 				<div className="react-container drawer__container">
 					<div className={ DRAWER_CLASSES }>
-						<div className="drawer__content__material">
+						<div className={ MATERIAL_CLASSES }>
 							<ul>
 								{ MATERIAL_HTML }
 							</ul>
@@ -196,14 +267,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 								</ul>
 							</div>
 						</div>
-						<div className="drawer__content__swatches--selected">
+						<div className="drawer__content__swatches--selected clearfix">
 							<div className="drawer__swatches--selected__sidebar">
 								<ul>
 									{ SIDEBAR_HTML('swatches--selected') }
 								</ul>
 							</div>
 							<div className="drawer__swatches--selected__swatches">
-								<ul>
+								<ul className="clearfix">
 									{ SWATCHES_HTML('swatches--selected') }
 								</ul>
 							</div>
@@ -227,7 +298,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 function _createMaterialHTML(_this, BtnMaterialComponent) {
 
-	if ( _this.state.stage !== 0 ) {
+	if ( _this.state.stage === 1 ) {
 		return;
 	}
 
@@ -238,7 +309,7 @@ function _createMaterialHTML(_this, BtnMaterialComponent) {
 		// Create a BtnMaterialComponent for each material in the MATERIALS_ARR array
 
 		return MATERIALS_ARR.map((material, index) => {
-			return <BtnMaterialComponent key={ index } index={ index } material={ material.name } thumb={ material.thumb } updateContent={ _this.updateContentState } updateMaterial={ _this.updateMaterialChoice } chosenMaterial={ _this.state.chosenMaterial } />
+			return <BtnMaterialComponent key={ index } index={ index } material={ material.name } thumb={ material.thumb } currentStage={ _this.state.stage } updateContent={ _this.updateContentState } updateMaterial={ _this.updateMaterialChoice } />
 		});
 	}
 }
@@ -247,7 +318,7 @@ function _createSidebarHTML(_this, SideMenuComponent, caller) {
 
 	// Function for creating the drawer sidemenu content
 
-	if ( _this.state.stage !== 0 ) {
+	if ( _this.state.stage === 1 ) {
 		return;
 	}
 
@@ -273,7 +344,12 @@ function _createSidebarHTML(_this, SideMenuComponent, caller) {
 
 		// Create a SideMenuComponent for the user selected material
 
-		return <SideMenuComponent material={ _this.state.chosenMaterial } />;
+		return MATERIALS_ARR.map((material, index) => {
+
+			if ( material.name === _this.state.chosenMaterial ) {
+				return <SideMenuComponent key={ index } material={ _this.state.chosenMaterial } thumb={ material.thumb } />;
+			}
+		});		
 	}
 }
 
@@ -304,14 +380,14 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 
 	// Function for creating the drawer swatches content
 
-	if ( _this.state.stage !== 0 ) {
+	if ( _this.state.stage === 1 ) {
 		return;
 	}
 
 	// Get the swatches for the user selected collection
 
 	const SWATCHES = _this.state._swatches;
-	const SWATCH   = SWATCHES[ _this.state.chosenCollection ];
+	const SWATCH   = _this.state.stage === 0 ? SWATCHES[ _this.state.chosenCollection ] : SWATCHES[ _this.state.chosenMaterial ];
 
 	if ( _this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
 
@@ -335,7 +411,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
 
 		const SELECTED_SWATCH     = _this.state.chosenSwatch;
-		const SELECTED_COLLECTION = _this.state._swatches[_this.state.chosenCollection];
+		const SELECTED_COLLECTION = _this.state.stage === 0 ? _this.state._swatches[ _this.state.chosenCollection ] : _this.state._swatches[ _this.state.chosenMaterial ];
 
 		let allSwatches = [];
 		let swatchIndex;

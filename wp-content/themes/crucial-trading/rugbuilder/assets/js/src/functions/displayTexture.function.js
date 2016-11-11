@@ -1,44 +1,109 @@
-RugBuilder.prototype.displayTexture = function(texture, thumb) {
+RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
+
+	/* TO-DO: LOAD BUMP MAP ONCE IT HAS BEEN ADDED AS A WP META BOX */
+
+	if ( stageCode === 1 || stageCode === 4 ) {
+		return;
+	}
 
 	const R = rugBuilder;
 
-	let _texture = texture === 'AudreyRug1' ? 'cotton-herringbone' : 'biscayne-bs105';
+	const BORDER_TYPE = R.borderType;
 
-	let img_url  = thumb;
-	let bmap_url = templateDirectoryUri + '/rugbuilder/img/' + _texture + '-bmap.jpg';
+	let stageObj;
+	let stageObj2;
+	let stageObj3;
+	let sceneChildren;
 
-	new THREE.TextureLoader().load(
-		bmap_url,
-		function( bmap ) {
+	switch (stageCode) {
 
-			bmap.wrapS = bmap.wrapT = THREE.RepeatWrapping;
-			bmap.anisotropy = R._renderer.getMaxAnisotropy();
-			bmap.repeat.set(5,5);
+		case 0 : stageObj = 'centerMaterial'; sceneChildren = ['center']; break;
+		case 2 : 
 
-			new THREE.TextureLoader().load(
-				img_url,
-				function( texture ) {
+			if ( BORDER_TYPE === 'single' ) {
 
-					texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-					texture.anisotropy = R._renderer.getMaxAnisotropy();
-					texture.repeat.set(5,5);
+				stageObj      = 'borderMaterials';
+				stageObj2     = 'single';
+				sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west'];
+			}
+			else if ( BORDER_TYPE === 'piping' ) {
 
-					var material = new THREE.MeshPhongMaterial( {
-						map       : texture,
-						bumpMap   : bmap,
-						color     : 0xffffff,
-						bumpScale : 0.0005,
-						shininess : 5
-					});
+				stageObj      = 'borderMaterials';
+				stageObj2     = 'piping';
+				sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
+			}
+			else {
 
-					for ( let i = 0; i < R._singleObjects.length; i++ ) {
+				stageObj      = 'borderMaterials';
+				stageObj2     = 'double';
+				stageObj3     = 'inner';
+				sceneChildren = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west'];
+			}
 
-						if ( R._singleObjects[i].name === 'center' ) {
-							R._singleObjects[i].material = material;
-						}
+			break;
+
+		case 3 :
+
+			stageObj      = 'borderMaterials';
+			stageObj2     = 'double';
+			stageObj3     = 'outer';
+			sceneChildren = ['border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west'];
+	}
+
+	return new Promise((res, rej) => {
+
+		if ( R.loadedTextures[swatch] === undefined ) {
+
+			new THREE.TextureLoader().load( thumb, (texture) => {
+
+				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+				texture.anisotropy = R.renderer.getMaxAnisotropy();
+				texture.repeat.set(5,5);
+
+				let material = new THREE.MeshPhongMaterial( {
+					map       : texture,
+					color     : 0xffffff,
+					shininess : 5
+				});
+
+				R.loadedTextures[swatch] = material;
+
+				if ( stageObj3 !== undefined ) {
+					R[stageObj][stageObj2][stageObj3] = swatch;
+				}
+				else if ( stageObj2 !== undefined ) {
+					R[stageObj][stageObj2] = swatch;
+				}
+				else {
+					R[stageObj] = swatch;
+				}
+
+				for ( let i = 0; i < R.scene.children.length; i++ ) {
+					
+					if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
+						R.scene.children[i].material = R.loadedTextures[swatch];
 					}
 				}
-			);
+			});
 		}
-	);
+		else {
+
+			if ( stageObj3 !== undefined ) {
+				R[stageObj][stageObj2][stageObj3] = swatch;
+			}
+			else if ( stageObj2 !== undefined ) {
+				R[stageObj][stageObj2] = swatch;
+			}
+			else {
+				R[stageObj] = swatch;
+			}
+
+			for ( let i = 0; i < R.scene.children.length; i++ ) {
+				
+				if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
+					R.scene.children[i].material = R.loadedTextures[swatch];
+				}
+			}
+		}
+	});
 }

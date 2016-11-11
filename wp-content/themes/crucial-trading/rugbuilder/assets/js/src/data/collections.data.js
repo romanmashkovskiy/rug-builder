@@ -20,7 +20,7 @@ RugBuilder.prototype.getCollectionsData = function() {
 						rej(1);
 					}
 
-					R.collections = JSON.parse( this.response );
+					R.WCcollections = JSON.parse( this.response );
 					res(true);
 				}
 

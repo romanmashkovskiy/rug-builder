@@ -96,6 +96,31 @@ if ( array_key_exists( 'request', $_GET ) ) {
 
 				$res[$key] = $arr;
 			}
+
+			break;
+
+		case 'border' :
+
+			/* TO-DO: Implement border cats into WC and get them instead of normal material cats */
+
+			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
+
+			for ( $m = 0; $m < count( $terms ); $m++ ) {
+				if ( $terms[$m]->parent == 0 ) {
+					array_push( $res, $terms[$m] );
+				}
+			}
+			for ( $m2 = 0; $m2 < count( $res ); $m2++ ) {
+
+				$material_id = $res[$m2]->term_id;
+
+				$thumb_id = get_woocommerce_term_meta( $material_id, 'thumbnail_id', true );
+				$thumb    = wp_get_attachment_url( $thumb_id );
+
+				$res[$m2]->thumb = $thumb;
+			}
+
+			break;
 	}
 
 	echo json_encode( $res );

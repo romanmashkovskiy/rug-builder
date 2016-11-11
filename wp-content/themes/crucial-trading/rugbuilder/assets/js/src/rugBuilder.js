@@ -5,10 +5,6 @@ class RugBuilder {
 		// Context
 		this.context = context;
 
-		// WC Data
-		this.materials   = [];
-		this.collections = {};
-
 		// Screen Dimensions
 		this.screenWidth  = window.innerWidth;
 		this.screenHeight = window.innerHeight;
@@ -18,9 +14,16 @@ class RugBuilder {
 		this.stages       = [ 'center', 'borderType', 'innerBorder', 'outerBorder', 'size' ];
 		this.stageVisited = [ true, false, false, false, false ];
 
+		// WC Data
+		this.WCmaterials       = [];
+		this.WCcollections     = [];
+		this.WCswatches        = {};
+		this.WCborderMaterials = [];
+		this.WCborderSwatches  = {};
+
 		// Three.js
-		this.renderer = undefined;
 		this.scene    = undefined;
+		this.renderer = undefined;
 
 		this.camera        = undefined;
 		this.cameraOptions = {
@@ -36,69 +39,57 @@ class RugBuilder {
 			spotLight : undefined
 		};
 
-		this.lights = {
-			ambientLight     : undefined,
-			directionalLight : undefined,
-			spotLight        : undefined
-		};
+		this.lights = {};
+
+		this.orbitControls = undefined;
 
 		// JSON
-		this.center = undefined;
 		this.json = {
 			single : {
-				borderEast  : undefined,
-				borderNorth : undefined,
-				borderSouth : undefined,
-				borderWest  : undefined,
-				center      : undefined,
-				stitches    : undefined
+				'border-east'  : undefined,
+				'border-north' : undefined,
+				'border-south' : undefined,
+				'border-west'  : undefined,
+				'center'       : undefined,
+				'stitches'     : undefined
 			},
 			double : {
-				center           : undefined,
-				innerBorderEast  : undefined,
-				innerBorderNorth : undefined,
-				innerBorderSouth : undefined,
-				innerBorderWest  : undefined,
-				outerBorderEast  : undefined,
-				outerBorderNorth : undefined,
-				outerBorderSouth : undefined,
-				outerBorderWest  : undefined,
-				stitches         : undefined
+				'border-inner-east'  : undefined,
+				'border-inner-north' : undefined,
+				'border-inner-south' : undefined,
+				'border-inner-west'  : undefined,
+				'border-outer-east'  : undefined,
+				'border-outer-north' : undefined,
+				'border-outer-south' : undefined,
+				'border-outer-west'  : undefined,
+				'center'             : undefined,
+				'stitches'           : undefined
 			},
 			piping : {
-				center           : undefined,
-				innerBorderEast  : undefined,
-				innerBorderNorth : undefined,
-				innerBorderSouth : undefined,
-				innerBorderWest  : undefined,
-				outerBorderEast  : undefined,
-				outerBorderNorth : undefined,
-				outerBorderSouth : undefined,
-				outerBorderWest  : undefined,
-				stitches         : undefined
+				'center'       : undefined,
+				'border-east'  : undefined,
+				'border-north' : undefined,
+				'border-south' : undefined,
+				'border-west'  : undefined,
+				'stitches'     : undefined,
+				'trim-east'    : undefined,
+				'trim-north'   : undefined,
+				'trim-south'   : undefined,
+				'trim-west'    : undefined
 			}
 		};
 
-		// User Material Choices
-		this.centerMaterial = undefined;
-		this.loadedTextures = {};
-		this.materialChoice = {
-			single : {
-				border   : undefined,
-				center   : undefined,
-				stitches : undefined
-			},
+		// User Choices
+		this.loadedTextures  = {};
+
+		this.borderType      = undefined;
+		this.centerMaterial  = undefined;
+		this.borderMaterials = {
+			single : undefined,
+			piping : undefined,
 			double : {
-				center      : undefined,
-				innerBorder : undefined,
-				outerBorder : undefined,
-				stitches    : undefined
-			},
-			piping : {
-				center      : undefined,
-				innerBorder : undefined,
-				outerBorder : undefined,
-				stitches    : undefined
+				inner : undefined,
+				outer : undefined
 			}
 		};
 

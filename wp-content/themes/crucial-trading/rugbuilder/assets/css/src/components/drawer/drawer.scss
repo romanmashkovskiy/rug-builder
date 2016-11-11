@@ -1,4 +1,10 @@
 #drawer {
+	background: white;
+	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	position: relative;
+	z-index: 1;
 
 	.drawer__content {
 
@@ -43,6 +49,7 @@
 		}
 
 		&.border {
+			margin-top: -16px;
 
 			.drawer__content__material,
 			.drawer__content__collections,
