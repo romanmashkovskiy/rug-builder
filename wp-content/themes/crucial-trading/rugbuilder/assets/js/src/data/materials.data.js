@@ -21,7 +21,25 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 					}
 
 					if ( type === 'border' ) {
-						R.WCborderMaterials = JSON.parse(this.response);
+//						R.WCborderMaterials = JSON.parse(this.response);
+						R.WCborderMaterials = [
+							{
+								name: 'Cotton',
+								thumb: 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174335/cotton-icon.svg'
+							},
+							{
+								name: 'Leather',
+								thumb: 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174333/leather-icon.svg'
+							},
+							{
+								name: 'Linen',
+								thumb: 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174343/linen-icon.svg'
+							},
+							{
+								name: 'Suede',
+								thumb: 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174422/suede-icon.svg'
+							},
+						];
 					}
 					else {
 						R.WCmaterials = JSON.parse(this.response);

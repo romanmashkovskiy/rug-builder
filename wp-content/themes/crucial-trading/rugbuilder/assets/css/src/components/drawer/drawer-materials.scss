@@ -1,6 +1,11 @@
 .drawer__content__material {
 	padding: 40px 100px;
 
+	&.stage2 ul {
+		margin-left: calc(33.3333333% / 2)!important;
+		width: 66.6666666% !important;
+	}
+
 	@media screen and (max-width: 992px) {
 		padding: 40px 0;
 	}
@@ -18,7 +23,7 @@
 			display: block;
 			width: 500%;
 		}
-	}
+	}	
 
 	li {
 		display: flex;
