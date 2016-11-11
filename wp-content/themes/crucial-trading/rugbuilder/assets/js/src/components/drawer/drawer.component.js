@@ -67,17 +67,30 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 					content = 'materials';
 
-					this.setState({
-						_materials : []
-					})
+					if ( R.WCborderMaterials.length === 0 ) {
 
-					this.getBorderMaterials();
+						this.setState({
+							_materials : []
+						})
+
+						this.getBorderMaterials();
+					}
+					else {
+
+						this.setState({
+							_materials : R.WCborderMaterials
+						})
+					}
 
 					break;
 
 				case 3 : 
 
-					content = ''; 
+					content = 'materials';
+
+					this.setState({
+						_materials : R.WCborderMaterials
+					})
 
 					break;
 
