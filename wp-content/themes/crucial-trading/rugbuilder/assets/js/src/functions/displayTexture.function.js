@@ -7,6 +7,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 	const BORDER_TYPE = R.borderType;
 
 	let stageObj;
+	let stageObj2;
 	let sceneChildren;
 
 	switch (stageCode) {
@@ -16,12 +17,14 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 
 			if ( BORDER_TYPE === 'single' ) {
 
-				stageObj      = 'borderMaterials.single';
+				stageObj      = 'borderMaterials';
+				stageObj2     = 'single';
 				sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west'];
 			}
 			else if ( BORDER_TYPE === 'piping' ) {
 
-				stageObj      = 'borderMaterials.piping';
+				stageObj      = 'borderMaterials';
+				stageObj2     = 'piping';
 				sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 			}
 //			else {
@@ -47,7 +50,11 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 
 				R.loadedTextures[swatch] = material;
 
-				R[stageObj] = swatch;
+				if ( stageObj2 === undefined ) {
+					R[stageObj] = swatch;
+				} else {
+					R[stageObj][stageObj2] = swatch;
+				}
 
 				for ( let i = 0; i < R.scene.children.length; i++ ) {
 					
@@ -59,7 +66,11 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 		}
 		else {
 
-			R[stageObj] = swatch;
+			if ( stageObj2 === undefined ) {
+				R[stageObj] = swatch;
+			} else {
+				R[stageObj][stageObj2] = swatch;
+			}
 
 			for ( let i = 0; i < R.scene.children.length; i++ ) {
 				
