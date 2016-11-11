@@ -4,12 +4,29 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 
 	const R = rugBuilder;
 
+	const BORDER_TYPE = R.borderType;
+
 	let stageObj;
 	let sceneChildren;
 
 	switch (stageCode) {
 
 		case 0 : stageObj = 'centerMaterial'; sceneChildren = ['center']; break;
+		case 2 : 
+
+			if ( BORDER_TYPE === 'single' ) {
+
+				stageObj      = 'borderMaterials.single';
+				sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west'];
+			}
+			else if ( BORDER_TYPE === 'piping' ) {
+
+				stageObj      = 'borderMaterials.piping';
+				sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
+			}
+//			else {
+
+//			}
 	}
 
 	return new Promise((res, rej) => {

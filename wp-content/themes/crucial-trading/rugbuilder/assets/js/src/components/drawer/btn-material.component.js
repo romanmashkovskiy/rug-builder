@@ -6,9 +6,18 @@ RugBuilder.prototype.btnMaterialComponent = function() {
 
 		handleClick: function() {
 
+			let content;
+
+			if ( this.props.currentStage === 0 ) {
+				content = 'collections';
+			}
+			else if ( this.props.currentStage === 2 ) {
+				content = 'swatches'
+			}
+
 			// On click, update state of drawer component to:
 			// { content: 'collection', chosenCollection: the material clicked on }
-			this.props.updateContent('collections');
+			this.props.updateContent(content);
 			this.props.updateMaterial(this.props.material);
 		},
 
