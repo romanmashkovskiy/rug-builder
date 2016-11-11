@@ -39,6 +39,7 @@ gulp.task('js', function() {
 		'./js/src/functions/displayTexture.function.js',
 		'./js/src/functions/error.function.js',
 		'./js/src/functions/loadJSON.function.js',
+		'./js/src/functions/updateBorder.function.js',
 		'./js/src/init/rugs.init.js',
 		'./js/src/init/lights.init.js',
 		'./js/src/init/scene.init.js',

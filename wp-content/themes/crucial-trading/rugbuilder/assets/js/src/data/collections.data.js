@@ -28,8 +28,14 @@ RugBuilder.prototype.getCollectionsData = function() {
 
 					let req = new XMLHttpRequest();
 
+					let urlBase = window.location.href;
+
+					if ( urlBase[urlBase.length-1] === '#' ) {
+						urlBase = urlBase.substr(0, urlBase.length-1);
+					}
+
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', window.location.href + '&request=collections' );
+					req.open( 'GET', urlBase + '&request=collections' );
 					req.send();
 				}
 

@@ -18,9 +18,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				open : false,
 				text : 'Expand',
 
-				chosenMaterial   : 'Wool',
+				chosenMaterial   : undefined,
 				chosenCollection : undefined,
 				chosenSwatch     : undefined,
+				chosenBorder     : undefined,
 
 				_materials   : materials,
 				_collections : collections,
@@ -117,189 +118,30 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			R.displayTexture(swatch, thumb)
 		},
 
+		updateBorderChoice: function(border) {
+
+			// Function for updating the chosenBorder state.
+			// Get passed to the Border Button Components as props.
+			// Updates the chosenBorder state to whatever is given to it by the component.
+			this.setState({ chosenBorder: border });
+
+			// Update the actual rug
+			R.updateBorder(border);
+		},
+
+		// Functions used for creating the dynamic HTML content of the drawer - 
+		// they return what is returned from the functions at the bottom of this file
+		// (search for "Create dynamic drawer HTML content functions")
+
 		createMaterialHTML: function() { return _createMaterialHTML(this, BtnMaterialComponent) },
 
-		createSidebarHTML: function(caller) {
+		createSidebarHTML: function(caller) { return _createSidebarHTML(this, SideMenuComponent, caller) },
 
-			// Function for creating the drawer sidemenu content
+		createCollectionsHTML: function() { return _createCollectionsHTML(this, BtnCollectionComponent) },
 
-			if ( this.state.stage !== 0 ) {
-				return;
-			}
+		createSwatchesHTML: function(caller) { return _createSwatchesHTML(this, BtnSwatchComponent, caller) },
 
-			const MATERIALS_ARR = this.state._materials;
-
-			if ( this.state.content === 'collections' && caller === 'collections' ) {
-
-				// Create a SideMenuComponent for each material in the MATERIALS_ARR array
-
-				return MATERIALS_ARR.map((material, index) => {
-					return <SideMenuComponent key={ index } material={ material.name } thumb={ material.thumb } onUpdate={ this.updateMaterialChoice } />;
-				});
-			} 
-			else if ( this.state.content === 'swatches' && caller === 'swatches' ) {
-
-				// Create a SideMenuComponent for each material in the MATERIALS_ARR array
-
-				return MATERIALS_ARR.map((material, index) => {
-					return <SideMenuComponent key={ index } material={ material.name } thumb={ material.thumb } updateContent={ this.updateContentState } onUpdate={ this.updateMaterialChoice } />;
-				});
-			}
-			else if ( this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
-
-				// Create a SideMenuComponent for the user selected material
-
-				return <SideMenuComponent material={ this.state.chosenMaterial } />;
-			}
-		},
-
-		createCollectionsHTML: function() {
-
-			// Function for creating the drawer collections content
-
-			if ( this.state.stage !== 0 ) {
-				return;
-			}
-
-			// Get the collections for the user selected material
-
-			const COLLECTIONS = this.state._collections;
-			const COLLECTION  = COLLECTIONS[ this.state.chosenMaterial ];
-
-			if ( this.state.content === 'collections' ) {
-
-				// Create a BtnCollectionComponent for each collection in the COLLECTION array
-
-				return COLLECTION.map((collection, index) => {
-					return <BtnCollectionComponent key={ index } collection={ collection.name } updateContent={ this.updateContentState } onUpdate={ this.updateCollectionChoice } />
-				});
-			}
-		},
-
-		createSwatchesHTML: function(caller) {
-
-			// Function for creating the drawer swatches content
-
-			if ( this.state.stage !== 0 ) {
-				return;
-			}
-
-			// Get the swatches for the user selected collection
-
-			const SWATCHES = this.state._swatches;
-			const SWATCH   = SWATCHES[ this.state.chosenCollection ];
-
-			if ( this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
-
-				// Since the state._swatches[chosenCollection] is an object, not an array, we
-				// can't just run map on it. Instead run map on each of the keys, then use that
-				// key to get the individual swatches from the object
-
-				return Object.keys(SWATCH).map((swatch, index) => {
-
-					const CURRENT_SWATCH = SWATCH[swatch];
-
-					const name  = CURRENT_SWATCH.name;
-					const code  = CURRENT_SWATCH.code;
-					const thumb = CURRENT_SWATCH.thumb;
-
-					// Create a BtnSwatchComponent for each swatch in the SWATCH object
-
-					return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } code={ code } updateContent={ this.updateContentState } onUpdate={ this.updateSwatchChoice } />
-				})
-			}
-			else if ( this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
-
-				const SELECTED_SWATCH     = this.state.chosenSwatch;
-				const SELECTED_COLLECTION = this.state._swatches[this.state.chosenCollection];
-
-				let allSwatches = [];
-				let swatchIndex;
-
-				let i = 0;
-
-				Object.keys(SELECTED_COLLECTION).forEach((key) => {
-
-					if ( key === SELECTED_SWATCH ) {
-						swatchIndex = i;
-					}
-
-					allSwatches[i] = SELECTED_COLLECTION[key];
-					i++;
-				});
-
-				let swatchArr = [];
-
-				if ( swatchIndex <= 1 ) {
-
-					for ( let i = 0; i < swatchIndex; i++ ) {
-						if ( allSwatches[i] !== undefined ) {
-							swatchArr.push(allSwatches[i]);
-						}
-					}
-
-					swatchArr.push(allSwatches[swatchIndex]);
-
-					for ( let i2 = swatchIndex + 1; i2 < 5; i2++ ) {
-						if ( allSwatches[i2] !== undefined ) {
-							swatchArr.push(allSwatches[i2]);
-						}
-					}
-				}
-				else if ( swatchIndex > allSwatches.length - 2 ) {
-
-					let extra    = swatchIndex === allSwatches.length ? 2 : 1;
-					let subtract = 2 + extra;
-
-					for ( let i = swatchIndex - subtract; i < swatchIndex; i++ ) {
-						if ( allSwatches[i] !== undefined ) {
-							swatchArr.push(allSwatches[i]);
-						}
-					}
-
-					swatchArr.push(allSwatches[swatchIndex]);
-
-					let left = 5 - swatchArr.length;
-					let top  = 1 + left;
-
-					for ( let i2 = swatchIndex + 1; i2 < top; i2++ ) {
-						if ( allSwatches[i2] !== undefined ) {
-							swatchArr.push(allSwatches[i2]);
-						}
-					}
-				}
-				else {
-
-					for ( let i2 = swatchIndex - 2; i2 < swatchIndex + 3; i2++ ) {
-						if ( allSwatches[i2] !== undefined ) {
-							swatchArr.push(allSwatches[i2]);
-						}
-					}
-				}
-
-				// Create a BtnSwatchComponent for each swatch in the swatchArr array
-
-				return swatchArr.map((swatch, index) => {
-					return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } updateContent={ this.updateContentState } onUpdate={ this.updateSwatchChoice } />
-				});
-			}
-		},
-
-		createBorderHTML: function() {
-
-			if ( this.state.stage !== 1 ) {
-				return;
-			}
-
-			if ( this.state.content === 'border' ) {
-
-				const BORDER_ARR = this.state._borders;
-				
-				return BORDER_ARR.map((border, index) => {
-					return <BtnBorderComponent key={ index } border={ border } />
-				});
-			}
-		},
+		createBorderHTML: function() { return _createBorderHTML(this, BtnBorderComponent) },
 
 		render: function() {
 
@@ -381,6 +223,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 	ReactDOM.render( <DrawerComponent />, document.querySelector( '#drawer' ) );
 }
 
+// Create dynamic drawer HTML content functions
+
 function _createMaterialHTML(_this, BtnMaterialComponent) {
 
 	if ( _this.state.stage !== 0 ) {
@@ -395,6 +239,188 @@ function _createMaterialHTML(_this, BtnMaterialComponent) {
 
 		return MATERIALS_ARR.map((material, index) => {
 			return <BtnMaterialComponent key={ index } index={ index } material={ material.name } thumb={ material.thumb } updateContent={ _this.updateContentState } updateMaterial={ _this.updateMaterialChoice } chosenMaterial={ _this.state.chosenMaterial } />
+		});
+	}
+}
+
+function _createSidebarHTML(_this, SideMenuComponent, caller) {
+
+	// Function for creating the drawer sidemenu content
+
+	if ( _this.state.stage !== 0 ) {
+		return;
+	}
+
+	const MATERIALS_ARR = _this.state._materials;
+
+	if ( _this.state.content === 'collections' && caller === 'collections' ) {
+
+		// Create a SideMenuComponent for each material in the MATERIALS_ARR array
+
+		return MATERIALS_ARR.map((material, index) => {
+			return <SideMenuComponent key={ index } material={ material.name } thumb={ material.thumb } onUpdate={ _this.updateMaterialChoice } />;
+		});
+	} 
+	else if ( _this.state.content === 'swatches' && caller === 'swatches' ) {
+
+		// Create a SideMenuComponent for each material in the MATERIALS_ARR array
+
+		return MATERIALS_ARR.map((material, index) => {
+			return <SideMenuComponent key={ index } material={ material.name } thumb={ material.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateMaterialChoice } />;
+		});
+	}
+	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
+
+		// Create a SideMenuComponent for the user selected material
+
+		return <SideMenuComponent material={ _this.state.chosenMaterial } />;
+	}
+}
+
+function _createCollectionsHTML(_this, BtnCollectionComponent) {
+
+	// Function for creating the drawer collections content
+
+	if ( _this.state.stage !== 0 ) {
+		return;
+	}
+
+	// Get the collections for the user selected material
+
+	const COLLECTIONS = _this.state._collections;
+	const COLLECTION  = COLLECTIONS[ _this.state.chosenMaterial ];
+
+	if ( _this.state.content === 'collections' ) {
+
+		// Create a BtnCollectionComponent for each collection in the COLLECTION array
+
+		return COLLECTION.map((collection, index) => {
+			return <BtnCollectionComponent key={ index } collection={ collection.name } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } />
+		});
+	}
+}
+
+function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
+
+	// Function for creating the drawer swatches content
+
+	if ( _this.state.stage !== 0 ) {
+		return;
+	}
+
+	// Get the swatches for the user selected collection
+
+	const SWATCHES = _this.state._swatches;
+	const SWATCH   = SWATCHES[ _this.state.chosenCollection ];
+
+	if ( _this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
+
+		// Since the state._swatches[chosenCollection] is an object, not an array, we
+		// can't just run map on it. Instead run map on each of the keys, then use that
+		// key to get the individual swatches from the object
+
+		return Object.keys(SWATCH).map((swatch, index) => {
+
+			const CURRENT_SWATCH = SWATCH[swatch];
+
+			const name  = CURRENT_SWATCH.name;
+			const code  = CURRENT_SWATCH.code;
+			const thumb = CURRENT_SWATCH.thumb;
+
+			// Create a BtnSwatchComponent for each swatch in the SWATCH object
+
+			return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } code={ code } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+		})
+	}
+	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
+
+		const SELECTED_SWATCH     = _this.state.chosenSwatch;
+		const SELECTED_COLLECTION = _this.state._swatches[_this.state.chosenCollection];
+
+		let allSwatches = [];
+		let swatchIndex;
+
+		let i = 0;
+
+		Object.keys(SELECTED_COLLECTION).forEach((key) => {
+
+			if ( key === SELECTED_SWATCH ) {
+				swatchIndex = i;
+			}
+
+			allSwatches[i] = SELECTED_COLLECTION[key];
+			i++;
+		});
+
+		let swatchArr = [];
+
+		if ( swatchIndex <= 1 ) {
+
+			for ( let i = 0; i < swatchIndex; i++ ) {
+				if ( allSwatches[i] !== undefined ) {
+					swatchArr.push(allSwatches[i]);
+				}
+			}
+
+			swatchArr.push(allSwatches[swatchIndex]);
+
+			for ( let i2 = swatchIndex + 1; i2 < 5; i2++ ) {
+				if ( allSwatches[i2] !== undefined ) {
+					swatchArr.push(allSwatches[i2]);
+				}
+			}
+		}
+		else if ( swatchIndex > allSwatches.length - 2 ) {
+
+			let extra    = swatchIndex === allSwatches.length ? 2 : 1;
+			let subtract = 2 + extra;
+
+			for ( let i = swatchIndex - subtract; i < swatchIndex; i++ ) {
+				if ( allSwatches[i] !== undefined ) {
+					swatchArr.push(allSwatches[i]);
+				}
+			}
+
+			swatchArr.push(allSwatches[swatchIndex]);
+
+			let left = 5 - swatchArr.length;
+			let top  = 1 + left;
+
+			for ( let i2 = swatchIndex + 1; i2 < top; i2++ ) {
+				if ( allSwatches[i2] !== undefined ) {
+					swatchArr.push(allSwatches[i2]);
+				}
+			}
+		}
+		else {
+
+			for ( let i2 = swatchIndex - 2; i2 < swatchIndex + 3; i2++ ) {
+				if ( allSwatches[i2] !== undefined ) {
+					swatchArr.push(allSwatches[i2]);
+				}
+			}
+		}
+
+		// Create a BtnSwatchComponent for each swatch in the swatchArr array
+
+		return swatchArr.map((swatch, index) => {
+			return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+		});
+	}
+}
+
+function _createBorderHTML(_this, BtnBorderComponent) {
+
+	if ( _this.state.stage !== 1 ) {
+		return;
+	}
+
+	if ( _this.state.content === 'border' ) {
+
+		const BORDER_ARR = _this.state._borders;
+		
+		return BORDER_ARR.map((border, index) => {
+			return <BtnBorderComponent key={ index } border={ border } onUpdate={ _this.updateBorderChoice } />
 		});
 	}
 }
