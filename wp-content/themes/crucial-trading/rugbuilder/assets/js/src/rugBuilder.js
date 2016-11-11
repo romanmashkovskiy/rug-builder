@@ -14,6 +14,13 @@ class RugBuilder {
 		this.stages       = [ 'center', 'borderType', 'innerBorder', 'outerBorder', 'size' ];
 		this.stageVisited = [ true, false, false, false, false ];
 
+		// WC Data
+		this.WCmaterials       = {};
+		this.WCcollections     = {};
+		this.WCswatches        = {};
+		this.WCborderMaterials = {};
+		this.WCborderSwatches  = {};
+
 		// Three.js
 		this.scene    = undefined;
 		this.renderer = undefined;
@@ -37,7 +44,6 @@ class RugBuilder {
 		this.orbitControls = undefined;
 
 		// JSON
-		this.center = undefined;
 		this.json = {
 			single : {
 				'border-east'  : undefined,

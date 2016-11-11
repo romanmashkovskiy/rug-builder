@@ -6,8 +6,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		getInitialState: function() {
 
-			let materials   = R.materials;
-			let collections = R.collections;
+			let materials   = R.WCmaterials;
+			let collections = R.WCcollections;
 
 			// Set initial state
 			return {
@@ -45,14 +45,57 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			switch( stage ) {
 
-				case 0 : content = 'material'; break;
-				case 1 : content = 'border'; break;
-				case 2 : content = ''; break;
-				case 3 : content = ''; break;
-				case 4 : content = ''; break;
+				case 0 : 
+
+					content = 'materials';
+
+					this.setState({
+						_materials   : R.WCmaterials,
+						_collections : R.WCcollections,
+						_swatches    : {}
+					});
+
+					break;
+
+				case 1 : 
+
+					content = 'border';
+
+					break;
+
+				case 2 : 
+
+					content = 'materials';
+
+					this.setState({
+						_materials : []
+					})
+
+					this.getBorderMaterials();
+
+					break;
+
+				case 3 : 
+
+					content = ''; 
+
+					break;
+
+				case 4 : 
+
+					content = ''; 
+
+					break;
 			}
 
 			this.updateContentState(content);
+		},
+
+		getBorderMaterials: function() {
+
+			R.getMaterialsData('border')
+				.then((res) => { this.setState({ _materials: R.WCborderMaterials }) })
+				.catch(()   => { alert('Loading material error') });
 		},
 
 		updateOpenState: function(open) {
@@ -147,7 +190,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			const _this = this;
 
-//			setInterval(function(){console.log(_this.state.stage)},2000)
+//			setInterval(function(){console.log(_this)},2000)
 			
 			// Create the dynamic HTML sections of the content
 
@@ -227,7 +270,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 function _createMaterialHTML(_this, BtnMaterialComponent) {
 
-	if ( _this.state.stage !== 0 ) {
+	if ( _this.state.stage === 1 ) {
 		return;
 	}
 
