@@ -20,7 +20,7 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 						rej(0);
 					}
 
-//					R.swatches = JSON.parse( this.response );
+					R.swatches = JSON.parse( this.response );
 					res(JSON.parse( this.response ));
 				}
 
@@ -29,7 +29,7 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 					let req = new XMLHttpRequest();
 
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', window.location.href + '?request=swatches&collection=' + collection );
+					req.open( 'GET', window.location.href + '&request=swatches&collection=' + collection );
 					req.send();
 				}
 

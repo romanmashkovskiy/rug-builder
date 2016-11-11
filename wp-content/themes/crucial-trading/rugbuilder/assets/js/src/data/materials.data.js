@@ -29,7 +29,7 @@ RugBuilder.prototype.getMaterialsData = function() {
 					let req = new XMLHttpRequest();
 
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', window.location.href + '?request=materials' );
+					req.open( 'GET', window.location.href + '&request=materials' );
 					req.send();
 				}
 
