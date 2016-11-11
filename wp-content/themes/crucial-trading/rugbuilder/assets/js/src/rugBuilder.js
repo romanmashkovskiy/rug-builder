@@ -74,9 +74,9 @@ class RugBuilder {
 		};
 
 		// User Material Choices
-		this.centerMaterial = undefined;
-		this.loadedTextures = {};
-		this.materialChoice = {
+		this.loadedTextures  = {};
+		this.centerMaterial  = undefined;
+		this.borderMaterials = {
 			single : {
 				border   : undefined,
 				center   : undefined,

@@ -115,7 +115,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			this.setState({ chosenSwatch: swatch });
 
 			// Update the actual rug
-			R.displayTexture(swatch, thumb)
+			R.displayTexture(swatch, thumb, this.state.stage);
 		},
 
 		updateBorderChoice: function(border) {

@@ -1,44 +1,55 @@
-RugBuilder.prototype.displayTexture = function(texture, thumb) {
+RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
+
+	/* TO-DO: LOAD BUMP MAP ONCE IT HAS BEEN ADDED AS A WP META BOX */
 
 	const R = rugBuilder;
 
-	let _texture = texture === 'AudreyRug1' ? 'cotton-herringbone' : 'biscayne-bs105';
+	let stageObj;
+	let sceneChildren;
 
-	let img_url  = thumb;
-	let bmap_url = templateDirectoryUri + '/rugbuilder/img/' + _texture + '-bmap.jpg';
+	switch (stageCode) {
 
-	new THREE.TextureLoader().load(
-		bmap_url,
-		function( bmap ) {
+		case 0 : stageObj = 'centerMaterial'; sceneChildren = ['center']; break;
+	}
 
-			bmap.wrapS = bmap.wrapT = THREE.RepeatWrapping;
-			bmap.anisotropy = R._renderer.getMaxAnisotropy();
-			bmap.repeat.set(5,5);
+	return new Promise((res, rej) => {
 
-			new THREE.TextureLoader().load(
-				img_url,
-				function( texture ) {
+		if ( R.loadedTextures[swatch] === undefined ) {
 
-					texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-					texture.anisotropy = R._renderer.getMaxAnisotropy();
-					texture.repeat.set(5,5);
+			new THREE.TextureLoader().load( thumb, (texture) => {
 
-					var material = new THREE.MeshPhongMaterial( {
-						map       : texture,
-						bumpMap   : bmap,
-						color     : 0xffffff,
-						bumpScale : 0.0005,
-						shininess : 5
-					});
+				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+				texture.anisotropy = R.renderer.getMaxAnisotropy();
+				texture.repeat.set(5,5);
 
-					for ( let i = 0; i < R._objects.length; i++ ) {
+				let material = new THREE.MeshPhongMaterial( {
+					map       : texture,
+					color     : 0xffffff,
+					shininess : 5
+				});
 
-						if ( R._objects[i].name === 'center' ) {
-							R._objects[i].material = material;
-						}
+				R.loadedTextures[swatch] = material;
+
+				R[stageObj] = swatch;
+
+				for ( let i = 0; i < R.scene.children.length; i++ ) {
+					
+					if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
+						R.scene.children[i].material = R.loadedTextures[swatch];
 					}
 				}
-			);
+			});
 		}
-	);
+		else {
+
+			R[stageObj] = swatch;
+
+			for ( let i = 0; i < R.scene.children.length; i++ ) {
+				
+				if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
+					R.scene.children[i].material = R.loadedTextures[swatch];
+				}
+			}
+		}
+	});
 }

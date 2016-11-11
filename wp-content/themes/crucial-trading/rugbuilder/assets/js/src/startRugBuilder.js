@@ -55,8 +55,6 @@ RugBuilder.prototype.start = function() {
 
 	function error( err ) {
 
-		console.log(R)
-
 		let stage;
 
 		switch ( err ) {
