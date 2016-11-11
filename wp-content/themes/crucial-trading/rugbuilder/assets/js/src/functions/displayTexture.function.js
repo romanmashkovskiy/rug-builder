@@ -2,12 +2,17 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 
 	/* TO-DO: LOAD BUMP MAP ONCE IT HAS BEEN ADDED AS A WP META BOX */
 
+	if ( stageCode === 1 || stageCode === 4 ) {
+		return;
+	}
+
 	const R = rugBuilder;
 
 	const BORDER_TYPE = R.borderType;
 
 	let stageObj;
 	let stageObj2;
+	let stageObj3;
 	let sceneChildren;
 
 	switch (stageCode) {
@@ -27,9 +32,22 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 				stageObj2     = 'piping';
 				sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 			}
-//			else {
+			else {
 
-//			}
+				stageObj      = 'borderMaterials';
+				stageObj2     = 'double';
+				stageObj3     = 'inner';
+				sceneChildren = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west'];
+			}
+
+			break;
+
+		case 3 :
+
+			stageObj      = 'borderMaterials';
+			stageObj2     = 'double';
+			stageObj3     = 'outer';
+			sceneChildren = ['border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west'];
 	}
 
 	return new Promise((res, rej) => {
@@ -50,10 +68,14 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 
 				R.loadedTextures[swatch] = material;
 
-				if ( stageObj2 === undefined ) {
-					R[stageObj] = swatch;
-				} else {
+				if ( stageObj3 !== undefined ) {
+					R[stageObj][stageObj2][stageObj3] = swatch;
+				}
+				else if ( stageObj2 !== undefined ) {
 					R[stageObj][stageObj2] = swatch;
+				}
+				else {
+					R[stageObj] = swatch;
 				}
 
 				for ( let i = 0; i < R.scene.children.length; i++ ) {
@@ -66,10 +88,14 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 		}
 		else {
 
-			if ( stageObj2 === undefined ) {
-				R[stageObj] = swatch;
-			} else {
+			if ( stageObj3 !== undefined ) {
+				R[stageObj][stageObj2][stageObj3] = swatch;
+			}
+			else if ( stageObj2 !== undefined ) {
 				R[stageObj][stageObj2] = swatch;
+			}
+			else {
+				R[stageObj] = swatch;
 			}
 
 			for ( let i = 0; i < R.scene.children.length; i++ ) {
