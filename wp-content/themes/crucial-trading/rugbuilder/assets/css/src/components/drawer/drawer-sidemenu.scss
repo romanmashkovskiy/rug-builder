@@ -1,5 +1,6 @@
 .drawer__collections__sidebar,
-.drawer__swatches__sidebar {
+.drawer__swatches__sidebar,
+.drawer__swatches--selected__sidebar {
 	padding-top: 30px;
 
 	@media screen and (min-width: 768px) {
@@ -67,4 +68,8 @@
 			}
 		}
 	}
+}
+
+.drawer__swatches--selected__sidebar {
+	margin-top: 40px;
 }

@@ -266,14 +266,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 								</ul>
 							</div>
 						</div>
-						<div className="drawer__content__swatches--selected">
+						<div className="drawer__content__swatches--selected clearfix">
 							<div className="drawer__swatches--selected__sidebar">
 								<ul>
 									{ SIDEBAR_HTML('swatches--selected') }
 								</ul>
 							</div>
 							<div className="drawer__swatches--selected__swatches">
-								<ul>
+								<ul className="clearfix">
 									{ SWATCHES_HTML('swatches--selected') }
 								</ul>
 							</div>
@@ -343,7 +343,12 @@ function _createSidebarHTML(_this, SideMenuComponent, caller) {
 
 		// Create a SideMenuComponent for the user selected material
 
-		return <SideMenuComponent material={ _this.state.chosenMaterial } />;
+		return MATERIALS_ARR.map((material, index) => {
+
+			if ( material.name === _this.state.chosenMaterial ) {
+				return <SideMenuComponent key={ index } material={ _this.state.chosenMaterial } thumb={ material.thumb } />;
+			}
+		});		
 	}
 }
 
