@@ -12,8 +12,8 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches'];
 
-				_loadFiles(files, 'single')
-					.then((objects) => { return _updateScene(objects, R) })
+				_loadFiles(files, R, 'single', 'single')
+					.then(() => { return _updateScene(R, 'single') })
 					.then(()        => { res() })
 					.catch(()       => { alert('error loading border') });
 
@@ -23,8 +23,8 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 
-				_loadFiles(files, 'single')
-					.then((objects) => { return _updateScene(objects, R) })
+				_loadFiles(files, R, 'single', 'piping')
+					.then(() => { return _updateScene(R, 'piping') })
 					.then(()        => { res() })
 					.catch(()       => { alert('error loading border') });
 
@@ -34,8 +34,8 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 				files = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west', 'border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west', 'center', 'stitches'];
 
-				_loadFiles(files, 'double')
-					.then((objects) => { return _updateScene(objects, R) })
+				_loadFiles(files, R, 'double', 'double')
+					.then(() => { return _updateScene(R, 'double') })
 					.then(()        => { res() })
 					.catch(()       => { alert('error loading border') });
 
@@ -44,48 +44,54 @@ RugBuilder.prototype.updateBorder = function(border) {
 	});
 }
 
-function _loadFiles(files, type) {
+function _loadFiles(files, R, folder, type) {
 
 	return new Promise((res, rej) => {
 
-		var objects = [];
+		let objects = [];
 
 		function loadCompleted(name) {
 
 			return function( texture ) {
 
-				var material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
-				var object   = new THREE.Mesh(texture, material);
+				let material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
+				let object   = new THREE.Mesh(texture, material);
 
 				object.name = name;
 
 				objects.push(object);
+				R.json[type][name] = object;
 			}
 		}
 
-		for ( var i = 0; i < files.length; i++ ) {
+		for ( let i = 0; i < files.length; i++ ) {
 
-			var url  = templateDirectoryUri + '/rugbuilder/json/' + type + '/' + files[i] + '.json';
-			var name = files[i];
+			if ( R.json[type][files[i]] === undefined ) {
 
-			new THREE.BufferGeometryLoader().load(url, loadCompleted(name));
+				let url  = templateDirectoryUri + '/rugbuilder/json/' + folder + '/' + files[i] + '.json';
+				let name = files[i];
+
+				new THREE.BufferGeometryLoader().load(url, loadCompleted(name));
+			}
+			else {
+				objects.push(R.json[type][files[i]]);
+			}
+				
 		}
 
-		var interval = setInterval(function() {
+		let interval = setInterval(function() {
 
 			if ( files.length === objects.length ) {
-				res(objects);
+				res();
 				clearInterval(interval)
 			}
-		}, 1000)
+		}, 100)
 	});
 }
 
-function _updateScene(objects, R) {
+function _updateScene(R, type) {
 
 	return new Promise((res, rej) => {
-
-		R._objects = objects;
 
 		const CHILDREN_LENGTH = R.scene.children.length;
 
@@ -103,9 +109,9 @@ function _updateScene(objects, R) {
 			R.scene.remove(R.scene.children[firstMesh]);
 		}
 
-		for ( let i3 = 0; i3 < R._objects.length; i3++ ) {
-			R.scene.add(R._objects[i3]);
-		}
+		Object.keys(R.json[type]).forEach((key) => {
+			R.scene.add(R.json[type][key]);
+		})
 
 		res();
 	})

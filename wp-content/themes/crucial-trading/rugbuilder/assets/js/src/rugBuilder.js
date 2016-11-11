@@ -40,36 +40,36 @@ class RugBuilder {
 		this.center = undefined;
 		this.json = {
 			single : {
-				borderEast  : undefined,
-				borderNorth : undefined,
-				borderSouth : undefined,
-				borderWest  : undefined,
-				center      : undefined,
-				stitches    : undefined
+				'border-east'  : undefined,
+				'border-north' : undefined,
+				'border-south' : undefined,
+				'border-west'  : undefined,
+				'center'       : undefined,
+				'stitches'     : undefined
 			},
 			double : {
-				center           : undefined,
-				innerBorderEast  : undefined,
-				innerBorderNorth : undefined,
-				innerBorderSouth : undefined,
-				innerBorderWest  : undefined,
-				outerBorderEast  : undefined,
-				outerBorderNorth : undefined,
-				outerBorderSouth : undefined,
-				outerBorderWest  : undefined,
-				stitches         : undefined
+				'border-inner-east'  : undefined,
+				'border-inner-north' : undefined,
+				'border-inner-south' : undefined,
+				'border-inner-west'  : undefined,
+				'border-outer-east'  : undefined,
+				'border-outer-north' : undefined,
+				'border-outer-south' : undefined,
+				'border-outer-west'  : undefined,
+				'center'             : undefined,
+				'stitches'           : undefined
 			},
 			piping : {
-				center           : undefined,
-				innerBorderEast  : undefined,
-				innerBorderNorth : undefined,
-				innerBorderSouth : undefined,
-				innerBorderWest  : undefined,
-				stitches         : undefined,
-				trimEast         : undefined,
-				trimNorth        : undefined,
-				trimSouth        : undefined,
-				trimWest         : undefined
+				'center'       : undefined,
+				'border-east'  : undefined,
+				'border-north' : undefined,
+				'border-south' : undefined,
+				'border-west'  : undefined,
+				'stitches'     : undefined,
+				'trim-east'    : undefined,
+				'trim-north'   : undefined,
+				'trim-south'   : undefined,
+				'trim-west'    : undefined
 			}
 		};
 
