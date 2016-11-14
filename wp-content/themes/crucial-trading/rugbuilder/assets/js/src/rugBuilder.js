@@ -153,6 +153,9 @@ class RugBuilder {
 		else if ( this.stageVisited[ stage - 1 ] ) {
 			stageValid = true;
 		}
+		else if ( ( this.borderType === 'single' || this.borderType === 'piping' ) && this.currentStage === 2 && stage === 4 ) {
+			stageValid = true;
+		}
 
 		if ( !stageValid ) {
 			return;

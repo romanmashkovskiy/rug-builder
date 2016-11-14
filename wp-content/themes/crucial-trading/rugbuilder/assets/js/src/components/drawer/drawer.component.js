@@ -102,7 +102,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				case 4 : 
 
-					content = ''; 
+					content = 'size'; 
 
 					break;
 			}
@@ -203,15 +203,17 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		// they return what is returned from the functions at the bottom of this file
 		// (search for "Create dynamic drawer HTML content functions")
 
-		createMaterialHTML: function() { return _createMaterialHTML(this, BtnMaterialComponent) },
+		createMaterialHTML    : function() { return _createMaterialHTML(this, BtnMaterialComponent) },
 
-		createSidebarHTML: function(caller) { return _createSidebarHTML(this, SideMenuComponent, caller) },
+		createSidebarHTML     : function(caller) { return _createSidebarHTML(this, SideMenuComponent, caller) },
 
-		createCollectionsHTML: function() { return _createCollectionsHTML(this, BtnCollectionComponent) },
+		createCollectionsHTML : function() { return _createCollectionsHTML(this, BtnCollectionComponent) },
 
-		createSwatchesHTML: function(caller) { return _createSwatchesHTML(this, BtnSwatchComponent, caller) },
+		createSwatchesHTML    : function(caller) { return _createSwatchesHTML(this, BtnSwatchComponent, caller) },
 
-		createBorderHTML: function() { return _createBorderHTML(this, BtnBorderComponent) },
+		createBorderHTML      : function() { return _createBorderHTML(this, BtnBorderComponent) },
+
+		createSizeHTML        : function() { return _createSizeHTML(this) },
 
 		render: function() {
 
@@ -221,15 +223,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			
 			// Create the dynamic HTML sections of the content
 
-			const MATERIAL_HTML = _this.createMaterialHTML();
-
-			const SIDEBAR_HTML = function(caller) { return _this.createSidebarHTML(caller); }
-
+			const MATERIAL_HTML    = _this.createMaterialHTML();
+			const SIDEBAR_HTML     = function(caller) { return _this.createSidebarHTML(caller); }
 			const COLLECTIONS_HTML = _this.createCollectionsHTML();
-
-			const SWATCHES_HTML = function(caller) { return _this.createSwatchesHTML(caller); }
-
-			const BORDER_HTML = _this.createBorderHTML();
+			const SWATCHES_HTML    = function(caller) { return _this.createSwatchesHTML(caller); }
+			const BORDER_HTML      = _this.createBorderHTML();
+			const SIZE_HTML        = _this.createSizeHTML();
 
 			const OPEN             = _this.state.open ? 'open' : 'closed';
 			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.content;
@@ -283,6 +282,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							<ul>
 								{ BORDER_HTML }
 							</ul>
+						</div>
+						<div className="drawer__content__size">
+							{ SIZE_HTML }
 						</div>
 					</div>
 					<BtnExpandCollapseComponent onUpdate={ this.updateOpenState } currentState={ this.state }/>
@@ -499,4 +501,18 @@ function _createBorderHTML(_this, BtnBorderComponent) {
 			return <BtnBorderComponent key={ index } border={ border } onUpdate={ _this.updateBorderChoice } />
 		});
 	}
+}
+
+function _createSizeHTML(_this) {
+
+	if ( _this.state.stage !== 4 ) {
+		return;
+	}
+
+	return (
+		<span>
+			<input type="text" name="length" placeholder="Enter Length (m)" />
+			<input type="text" name="width" placeholder="Enter Width (m)" />
+		</span>
+	);
 }
