@@ -34,7 +34,7 @@ RugBuilder.prototype.viewControls = function() {
 				R.camera.rotation.y = 0;
 				R.camera.rotation.z = 0;
 
-				this.setState({ view : 1 });
+				this.setState({ view : 1, zoom : 1 });
 			}
 			else if ( CURRENT_VIEW === 1 ) {
 
@@ -48,7 +48,7 @@ RugBuilder.prototype.viewControls = function() {
 				R.camera.rotation.y = -0.33334042300972533;
 				R.camera.rotation.z = -0.25090904322969587;
 
-				this.setState({ view : 0 });
+				this.setState({ view : 0, zoom : 1 });
 			}
 		},
 
@@ -60,6 +60,8 @@ RugBuilder.prototype.viewControls = function() {
 
 			const CURRENT_ZOOM = this.state.zoom;
 			const ZOOM_IN      = CURRENT_ZOOM + 1;
+
+			console.log(ZOOM_IN)
 
 			if ( ZOOM_IN > 6 ){
 				// If trying to zoom in to more than zoom level 6, return as that is the max zoom
