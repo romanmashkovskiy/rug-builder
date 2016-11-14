@@ -28,6 +28,12 @@ RugBuilder.prototype.start = function() {
 		const SideMenuComponent          = R.sideMenuComponent();
 		R.drawerComponent(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent, BtnBorderComponent);
 
+		// Other
+		R.priceComponent();
+
+		// View Controls
+		R.viewControls();
+
 		// Init THREE.js
 		R.initThree();
 		R.initLights();
@@ -41,6 +47,14 @@ RugBuilder.prototype.start = function() {
 
 			R.initOrbit();
 //			R.initHelpers();
+
+			R.camera.position.x = 0;
+			R.camera.position.y = 170;
+			R.camera.position.z = -55;
+
+			R.camera.rotation.x = -1.5708;
+			R.camera.rotation.z = 0;
+			R.camera.rotation.z = 0;
 
 			// Render
 

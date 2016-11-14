@@ -26,16 +26,22 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				_materials   : materials,
 				_collections : collections,
 				_swatches    : {},
-				_borders     : ['Single Border', 'Single & Piping', 'Double Border']
+				_borders     : ['Single Border', 'Single & Piping', 'Double Border'],
+
+				length : '',
+				width  : '',
+				price  : false
 			}
 		},
 
 		componentDidMount: function() {
 			this.stageChange = PubSub.subscribe( 'stageChange', this.updateStageState );
+			this.newPrice    = PubSub.subscribe( 'newPrice', this.showNewPrice );
 		},
 
 		componentWillUnmount: function() {
 			PubSub.unsubscribe( this.stageChange );
+			PubSub.unsubscribe( this.newPrice );
 		},
 
 		updateStageState: function(stage) {
@@ -102,12 +108,23 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				case 4 : 
 
-					content = ''; 
+					content = 'size'; 
 
 					break;
 			}
 
 			this.updateContentState(content);
+		},
+
+		showNewPrice: function(price) {
+
+			if ( price === 0 ) {
+				this.setState({ price : false });
+				return;
+			}
+
+			this.setState({ price: price });
+			return;
 		},
 
 		getBorderMaterials: function() {
@@ -199,37 +216,66 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			R.updateBorder(border);
 		},
 
+		handleSizeInputChange: function(event) {
+
+			// Update the length/width state when a value is inputted to the inputs
+
+			if ( event.target.value === undefined ) {
+				return;
+			}
+
+			if ( event.target.name === 'length' ) {
+				this.setState({ length: event.target.value });
+			}
+			else if ( event.target.name === 'width' ) {
+				this.setState({ width: event.target.value });
+			}
+
+			if ( ( this.state.length !== '' && event.target.name === 'width' ) || ( this.state.width !== '' && event.target.name === 'length' ) ) {
+
+				const _this = this;
+
+				setTimeout(function() {
+					R.calculatePrice(_this.state.length, _this.state.width);
+				}, 250)
+			}
+
+			return;
+		},
+
 		// Functions used for creating the dynamic HTML content of the drawer - 
 		// they return what is returned from the functions at the bottom of this file
 		// (search for "Create dynamic drawer HTML content functions")
 
-		createMaterialHTML: function() { return _createMaterialHTML(this, BtnMaterialComponent) },
+		createMaterialHTML    : function() { return _createMaterialHTML(this, BtnMaterialComponent) },
 
-		createSidebarHTML: function(caller) { return _createSidebarHTML(this, SideMenuComponent, caller) },
+		createSidebarHTML     : function(caller) { return _createSidebarHTML(this, SideMenuComponent, caller) },
 
-		createCollectionsHTML: function() { return _createCollectionsHTML(this, BtnCollectionComponent) },
+		createCollectionsHTML : function() { return _createCollectionsHTML(this, BtnCollectionComponent) },
 
-		createSwatchesHTML: function(caller) { return _createSwatchesHTML(this, BtnSwatchComponent, caller) },
+		createSwatchesHTML    : function(caller) { return _createSwatchesHTML(this, BtnSwatchComponent, caller) },
 
-		createBorderHTML: function() { return _createBorderHTML(this, BtnBorderComponent) },
+		createBorderHTML      : function() { return _createBorderHTML(this, BtnBorderComponent) },
+
+		createSizeHTML        : function() { return _createSizeHTML(this) },
+
+		createPriceHTML       : function() { return _createPriceHTML(this) },
 
 		render: function() {
 
 			const _this = this;
 
-//			setInterval(function(){console.log(_this)},5000)
+//			setInterval(function(){console.log(_this.state)},5000)
 			
 			// Create the dynamic HTML sections of the content
 
-			const MATERIAL_HTML = _this.createMaterialHTML();
-
-			const SIDEBAR_HTML = function(caller) { return _this.createSidebarHTML(caller); }
-
+			const MATERIAL_HTML    = _this.createMaterialHTML();
+			const SIDEBAR_HTML     = function(caller) { return _this.createSidebarHTML(caller); }
 			const COLLECTIONS_HTML = _this.createCollectionsHTML();
-
-			const SWATCHES_HTML = function(caller) { return _this.createSwatchesHTML(caller); }
-
-			const BORDER_HTML = _this.createBorderHTML();
+			const SWATCHES_HTML    = function(caller) { return _this.createSwatchesHTML(caller); }
+			const BORDER_HTML      = _this.createBorderHTML();
+			const SIZE_HTML        = _this.createSizeHTML();
+			const PRICE_HTML       = _this.createPriceHTML();
 
 			const OPEN             = _this.state.open ? 'open' : 'closed';
 			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.content;
@@ -283,6 +329,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							<ul>
 								{ BORDER_HTML }
 							</ul>
+						</div>
+						<div className="drawer__content__size">
+							{ SIZE_HTML }
+							{ PRICE_HTML }
 						</div>
 					</div>
 					<BtnExpandCollapseComponent onUpdate={ this.updateOpenState } currentState={ this.state }/>
@@ -499,4 +549,29 @@ function _createBorderHTML(_this, BtnBorderComponent) {
 			return <BtnBorderComponent key={ index } border={ border } onUpdate={ _this.updateBorderChoice } />
 		});
 	}
+}
+
+function _createSizeHTML(_this) {
+
+	if ( _this.state.stage !== 4 ) {
+		return;
+	}
+
+	return (
+		<span>
+			<input type="number" onChange={ _this.handleSizeInputChange } value={ _this.state.length } name="length" placeholder="Enter Length (m)" />
+			<input type="number" onChange={ _this.handleSizeInputChange } value={ _this.state.width } name="width" placeholder="Enter Width (m)" />
+		</span>
+	);
+}
+
+function _createPriceHTML(_this) {
+
+	if ( _this.state.stage !== 4 || !_this.state.price ) {
+		return;
+	}
+
+	return (
+		<h3 className="drawer-price">Price: £{ _this.state.price }</h3>
+	);
 }

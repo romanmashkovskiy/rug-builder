@@ -20,7 +20,7 @@ if ( array_key_exists( 'request', $_GET ) ) {
 			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
 
 			for ( $m = 0; $m < count( $terms ); $m++ ) {
-				if ( $terms[$m]->parent == 0 ) {
+				if ( $terms[$m]->parent == 0 && $terms[$m]->slug != 'border-materials' ) {
 					array_push( $res, $terms[$m] );
 				}
 			}
@@ -69,9 +69,11 @@ if ( array_key_exists( 'request', $_GET ) ) {
 			$args = array(
 				'post_type' => 'product',
 				'tax_query' => array(
-					'taxonomy' => 'product_cat',
-					'field'    => 'slug',
-					'terms'    => $collection,
+					array(
+						'taxonomy' => 'product_cat',
+						'field'    => 'slug',
+						'terms'    => $collection,
+					)
 				),
 			);
 
@@ -101,14 +103,13 @@ if ( array_key_exists( 'request', $_GET ) ) {
 
 		case 'border' :
 
-			/* TO-DO: Implement border cats into WC and get them instead of normal material cats */
+			$parent_term = get_term_by( 'slug', 'border-materials', 'product_cat' );
+			$parent_id   = $parent_term->term_id;
 
-			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
+			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => $parent_id ) );
 
 			for ( $m = 0; $m < count( $terms ); $m++ ) {
-				if ( $terms[$m]->parent == 0 ) {
-					array_push( $res, $terms[$m] );
-				}
+				array_push( $res, $terms[$m] );
 			}
 			for ( $m2 = 0; $m2 < count( $res ); $m2++ ) {
 
@@ -144,6 +145,9 @@ if ( array_key_exists( 'request', $_GET ) ) {
 
 	<div id="progress-menu"></div>
 	<div id="drawer"></div>
+	<div id="view-controls"></div>
+	<div id="price"></div>
+	<div id="order-screen"></div>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/PubSub/pubsub.min.js"></script>
 

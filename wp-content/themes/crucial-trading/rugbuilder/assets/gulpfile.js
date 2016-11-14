@@ -36,6 +36,7 @@ gulp.task('js', function() {
 		'./js/src/data/materials.data.js',
 		'./js/src/data/collections.data.js',
 		'./js/src/data/swatches.data.js',
+		'./js/src/data/price.data.js',
 		'./js/src/init.js',
 		'./js/src/animate.js',
 		'./js/src/functions/displayTexture.function.js',
