@@ -27,6 +27,16 @@ RugBuilder.prototype.priceComponent = function() {
 			return;
 		},
 
+		goToOrderScreen: function() {
+
+			R.camera.position.y = 120;
+			R.camera.position.z = 0;
+
+			setTimeout(function() {
+				R.orderScreenComponent();
+			}, 10)
+		},
+
 		render: function() {
 
 			let HTML;
@@ -37,7 +47,7 @@ RugBuilder.prototype.priceComponent = function() {
 			else {
 				HTML = <span>
 					<h3>£ { this.state.price }</h3>
-					<a href="#">Finish Building</a>
+					<a href="#" onClick={ this.goToOrderScreen }>Finish Building</a>
 				</span>;
 			}
 

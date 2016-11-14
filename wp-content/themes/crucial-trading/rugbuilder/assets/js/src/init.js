@@ -5,7 +5,9 @@ RugBuilder.prototype.initThree = function() {
 	const CAMERA_OPTIONS = R.cameraOptions;
 
 	const SCENE    = new THREE.Scene();
-	const RENDERER = new THREE.WebGLRenderer();
+	const RENDERER = new THREE.WebGLRenderer({
+	    preserveDrawingBuffer: true 
+	});
 	const CAMERA   = new THREE.PerspectiveCamera(
 		CAMERA_OPTIONS.viewAngle,
 		CAMERA_OPTIONS.aspectRatio,

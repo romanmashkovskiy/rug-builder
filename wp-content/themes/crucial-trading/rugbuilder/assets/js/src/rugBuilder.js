@@ -93,6 +93,11 @@ class RugBuilder {
 			}
 		};
 
+		this.length = 0;
+		this.width  = 0;
+
+		this.price = 0;
+
 		// React Components
 		this.reactComponents = {};
 	};
@@ -438,6 +443,10 @@ class RugBuilder {
 
 			totalPrice = CENTER_PRICE + INNER_PRICE + OUTER_PRICE;
 		}
+
+		this.length = LENGTH;
+		this.width  = WIDTH;
+		this.price  = totalPrice;
 
 		PubSub.publish('newPrice', totalPrice);
 		return;
