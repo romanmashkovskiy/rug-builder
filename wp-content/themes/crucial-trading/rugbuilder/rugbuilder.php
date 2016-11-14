@@ -20,7 +20,7 @@ if ( array_key_exists( 'request', $_GET ) ) {
 			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
 
 			for ( $m = 0; $m < count( $terms ); $m++ ) {
-				if ( $terms[$m]->slug != 'border-materials' ) {
+				if ( $terms[$m]->slug != 'rug-borders' ) {
 					array_push( $res, $terms[$m] );
 				}
 			}
