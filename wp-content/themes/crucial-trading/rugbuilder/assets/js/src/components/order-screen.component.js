@@ -34,6 +34,34 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			return obj;
 		},
 
+		edit: function() {
+
+			R.camera.position.x = this.state.cameraPosition.x;
+			R.camera.position.y = this.state.cameraPosition.y;
+			R.camera.position.z = this.state.cameraPosition.z;
+			R.camera.rotation.x = this.state.cameraRotation.x;
+			R.camera.rotation.y = this.state.cameraRotation.y;
+			R.camera.rotation.z = this.state.cameraRotation.z;
+
+			R.updateStage(4);
+
+			// ¯\_(ツ)_/¯
+
+			ReactDOM.unmountComponentAtNode(document.querySelector( '#order-screen' ));
+		},
+
+		print: function() {
+
+		},
+
+		order: function() {
+
+		},
+
+		basket: function() {
+
+		},
+
 		render: function() {
 
 			let materialObj = {};
@@ -82,6 +110,12 @@ RugBuilder.prototype.orderScreenComponent = function() {
 								<p>£{ this.state.price }</p>
 							</div>
 						</div>
+					</div>
+					<div className="order__links">
+						<a href="#" className="link__edit" onClick={ this.edit }>Edit Rug</a>
+						<a href="#" className="link__print" onClick={ this.print }>Print Details</a>
+						<a href="#" className="link__order" onClick={ this.order }>Order Samples</a>
+						<a href="#" className="link__basket" onClick={ this.basket }>Add to Basket</a>
 					</div>
 				</div>
 			);
