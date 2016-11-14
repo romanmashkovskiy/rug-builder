@@ -511,8 +511,8 @@ function _createSizeHTML(_this) {
 
 	return (
 		<span>
-			<input type="text" name="length" placeholder="Enter Length (m)" />
-			<input type="text" name="width" placeholder="Enter Width (m)" />
+			<input type="number" name="length" placeholder="Enter Length (m)" />
+			<input type="number" name="width" placeholder="Enter Width (m)" />
 		</span>
 	);
 }
