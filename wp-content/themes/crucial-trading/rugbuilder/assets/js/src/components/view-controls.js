@@ -7,7 +7,7 @@ RugBuilder.prototype.viewControls = function() {
 		getInitialState: function() {
 
 			// Set initial state:
-			// View: 0 (the angled view - top view is represented by value of 1)
+			// View: 0 (current view - 0: above vertical, 1: above horizontal, 2: angled, 3: angled-horizontal )
 			// Zoom: 1 (zoom level - can zoom out no less than value of 0, zoom in no more than value of 6)
 
 			return {
@@ -16,144 +16,70 @@ RugBuilder.prototype.viewControls = function() {
 			};
 		},
 
+		iconURLS: [
+			templateDirectoryUri + '/rugbuilder/assets/icons/above-horizontal.svg',
+			templateDirectoryUri + '/rugbuilder/assets/icons/angled.svg',
+			templateDirectoryUri + '/rugbuilder/assets/icons/angled-horizontal.svg',
+			templateDirectoryUri + '/rugbuilder/assets/icons/above-vertical.svg'
+		],
+
 		changeView: function() {
 
-			// Change View button click handler
+			const NEW_VIEW = R.changeView(this.state.view);
 
-			const CURRENT_VIEW = this.state.view;
-
-			if ( CURRENT_VIEW === 0 ) {
-
-				// Change to top view
-
-				R.camera.position.x = 0;
-				R.camera.position.y = 170;
-				R.camera.position.z = -55;
-
-				R.camera.rotation.x = -1.5708;
-				R.camera.rotation.y = 0;
-				R.camera.rotation.z = 0;
-
-				this.setState({ view : 1, zoom : 1 });
-			}
-			else if ( CURRENT_VIEW === 1 ) {
-
-				// Change to angled view
-
-				R.camera.position.x = -58.25551669838936;
-				R.camera.position.y = 103.7487525991614;
-				R.camera.position.z = 132.44381733713013;
-
-				R.camera.rotation.x = -0.6645005541912388;
-				R.camera.rotation.y = -0.33334042300972533;
-				R.camera.rotation.z = -0.25090904322969587;
-
-				this.setState({ view : 0, zoom : 1 });
-			}
+			this.setState({ view : NEW_VIEW, zoom : 1 });
 		},
 
 		zoomIn: function() {
 
 			// Zoom In button click handler
 
-			const CURRENT_VIEW = this.state.view;
+			const NEW_ZOOM = R.zoomIn(this.state.view, this.state.zoom);
 
-			const CURRENT_ZOOM = this.state.zoom;
-			const ZOOM_IN      = CURRENT_ZOOM + 1;
-
-			console.log(ZOOM_IN)
-
-			if ( ZOOM_IN > 6 ){
-				// If trying to zoom in to more than zoom level 6, return as that is the max zoom
+			if ( !NEW_ZOOM ) {
 				return;
 			}
 
-			if ( CURRENT_VIEW === 1 ) {
-
-				// If top view, simply subtract 30 from the camera's Y position
-
-				const CURRENT_Y = R.camera.position.y;
-				const ZOOM_Y    = CURRENT_Y - 30;
-
-				R.camera.position.y = ZOOM_Y;
-			}
-			else if ( CURRENT_VIEW === 0 ) {
-
-				// If angled view, it's a bit more complicated, adding to the X position, but subtracting from the Y and Z positions
-
-				const CURRENT_X = R.camera.position.x;
-				const CURRENT_Y = R.camera.position.y;
-				const CURRENT_Z = R.camera.position.z;
-
-				const ZOOM_X = CURRENT_X + 10;
-				const ZOOM_Y = CURRENT_Y - 20;
-				const ZOOM_Z = CURRENT_Z - 20;
-
-				R.camera.position.x = ZOOM_X;
-				R.camera.position.y = ZOOM_Y;
-				R.camera.position.z = ZOOM_Z;
-			}
-
-			this.setState({ zoom : ZOOM_IN });
+			this.setState({ zoom : NEW_ZOOM });
 		},
 
 		zoomOut: function() {
 
 			// Zoom Out button click handler
 
-			const CURRENT_VIEW = this.state.view;
+			const NEW_ZOOM = R.zoomOut(this.state.view, this.state.zoom);
 
-			const CURRENT_ZOOM = this.state.zoom;
-			const ZOOM_OUT     = CURRENT_ZOOM - 1;
-
-			if ( ZOOM_OUT < 0 ) {
-				// If trying to zoom out to less than zoom level 0, return as that is the min zoom
+			if ( NEW_ZOOM === false ) {
 				return;
 			}
 
-			if ( CURRENT_VIEW === 1 ) {
-
-				// If top view, simply add 30 to the camera's Y position
-
-				const CURRENT_Y = R.camera.position.y;
-				const ZOOM_Y    = CURRENT_Y + 30;
-
-				R.camera.position.y = ZOOM_Y;
-			}
-			else if ( CURRENT_VIEW === 0 ) {
-
-				// If angled view, it's a bit more complicated, subtracting from the X position, but adding to the Y and Z positions
-
-				const CURRENT_X = R.camera.position.x;
-				const CURRENT_Y = R.camera.position.y;
-				const CURRENT_Z = R.camera.position.z;
-
-				const ZOOM_X = CURRENT_X - 10;
-				const ZOOM_Y = CURRENT_Y + 20;
-				const ZOOM_Z = CURRENT_Z + 20;
-
-				R.camera.position.x = ZOOM_X;
-				R.camera.position.y = ZOOM_Y;
-				R.camera.position.z = ZOOM_Z;
-			}
-
-			this.setState({ zoom : ZOOM_OUT });
-
+			this.setState({ zoom : NEW_ZOOM });
 		},
 
 		render: function() {
 
+			const ICON_URL = this.iconURLS[this.state.view];
+			const ZOOM_IN  = templateDirectoryUri + '/rugbuilder/assets/icons/zoom-in.svg';
+			const ZOOM_OUT = templateDirectoryUri + '/rugbuilder/assets/icons/zoom-out.svg';
+			const CLASS    = 'view' + this.state.view;
+
 			return (
 				<div className="controls__container">
-					<a className="controls__link" onClick={ this.changeView }>
-						<img src="" alt="Change View" />
-					</a>
-					<a className="controls__link" onClick={ this.zoomIn }>
-						<img src="" alt="Zoom In" />
-					</a>
-					<a className="controls__link" onClick={ this.zoomOut }>
-						<img src="" alt="Zoom Out" />
-					</a>
+					<div className="control">
+						<a className="control__link" onClick={ this.changeView }>
+							<img src={ ICON_URL } alt="Change View" className={ CLASS } />
+						</a>
+					</div>
+					<div className="control">
+						<a className="control__link" onClick={ this.zoomIn }>
+							<img src={ ZOOM_IN } alt="Zoom In" className="zoom" />
+						</a>
+					</div>
+					<div className="control">
+						<a className="control__link" onClick={ this.zoomOut }>
+							<img src={ ZOOM_OUT } alt="Zoom Out" className="zoom" />
+						</a>
+					</div>
 				</div>
 			);
 		}

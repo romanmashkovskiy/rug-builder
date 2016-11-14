@@ -45,6 +45,14 @@ RugBuilder.prototype.start = function() {
 			R.initOrbit();
 //			R.initHelpers();
 
+			R.camera.position.x = 0;
+			R.camera.position.y = 170;
+			R.camera.position.z = -55;
+
+			R.camera.rotation.x = -1.5708;
+			R.camera.rotation.z = 0;
+			R.camera.rotation.z = 0;
+
 			// Render
 
 			function render() {
