@@ -69,9 +69,11 @@ if ( array_key_exists( 'request', $_GET ) ) {
 			$args = array(
 				'post_type' => 'product',
 				'tax_query' => array(
-					'taxonomy' => 'product_cat',
-					'field'    => 'slug',
-					'terms'    => $collection,
+					array(
+						'taxonomy' => 'product_cat',
+						'field'    => 'slug',
+						'terms'    => $collection,
+					)
 				),
 			);
 

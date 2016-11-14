@@ -34,8 +34,10 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 						urlBase = urlBase.substr(0, urlBase.length-1);
 					}
 
+					let search = collection.toLowerCase();
+
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', urlBase + '&request=swatches&collection=' + collection );
+					req.open( 'GET', urlBase + '&request=swatches&collection=' + search );
 					req.send();
 				}
 
