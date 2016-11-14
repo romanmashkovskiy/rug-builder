@@ -17,10 +17,10 @@ if ( array_key_exists( 'request', $_GET ) ) {
 
 		case 'materials' :
 
-			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
+			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
 
 			for ( $m = 0; $m < count( $terms ); $m++ ) {
-				if ( $terms[$m]->parent == 0 && $terms[$m]->slug != 'border-materials' ) {
+				if ( $terms[$m]->slug != 'border-materials' ) {
 					array_push( $res, $terms[$m] );
 				}
 			}
