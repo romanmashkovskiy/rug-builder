@@ -1,0 +1,19 @@
+#view-controls {
+	bottom: 0;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+
+	.controls__container {
+		bottom: 0;
+		position: absolute;
+		right: 0;
+
+		a {
+			cursor: pointer;
+			position: relative;
+			z-index: 9;
+		}
+	}
+}

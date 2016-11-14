@@ -103,8 +103,6 @@ if ( array_key_exists( 'request', $_GET ) ) {
 
 		case 'border' :
 
-			/* TO-DO: Implement border cats into WC and get them instead of normal material cats */
-
 			$parent_term = get_term_by( 'slug', 'border-materials', 'product_cat' );
 			$parent_id   = $parent_term->term_id;
 
@@ -147,6 +145,7 @@ if ( array_key_exists( 'request', $_GET ) ) {
 
 	<div id="progress-menu"></div>
 	<div id="drawer"></div>
+	<div id="view-controls"></div>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/PubSub/pubsub.min.js"></script>
 
