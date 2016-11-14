@@ -34,6 +34,14 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 
 
 # BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /crucial/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /crucial/index.php [L]
+</IfModule>
 
 # END WordPress
 
