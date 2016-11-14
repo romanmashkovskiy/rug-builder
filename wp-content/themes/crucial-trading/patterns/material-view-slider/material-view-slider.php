@@ -38,12 +38,19 @@ function material_view_slider( $atts = '' ) {
 	if ( is_array( $atts ) && array_key_exists( 'material', $atts ) ) {
 		$current_product_material = $atts['material'];
 	}
-
+	
 	// Get all WooCommerce products
-	$woocommerce_products          = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC' ) );
-	$woocommerce_products_in_range = array();
+	$woocommerce_products          = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC', 'tax_query' => array(
+		array(
+			'taxonomy' => 'product_cat',
+			'field'    => 'slug',
+			'terms'    => $current_product_range,
+		),
+	), ) );
+	
+	//$woocommerce_products_in_range = array();
 
-	for ( $r = 0; $r < count( $woocommerce_products->posts ); $r++ ) {
+	/*for ( $r = 0; $r < count( $woocommerce_products->posts ); $r++ ) {
 
 		$product    = $woocommerce_products->posts[$r];
 		$categories = get_the_terms( $product->ID, 'product_cat' );
@@ -56,19 +63,19 @@ function material_view_slider( $atts = '' ) {
 				}
 			}
 		}
-	}
+	}*/
 
 	// Get all WooCommerce product IDs
-	$woocommerce_products_ids = array();
+	/*$woocommerce_products_ids = array();
 	for ( $w = 0; $w < count( $woocommerce_products_in_range ); $w++ ) {
 		array_push( $woocommerce_products_ids, $woocommerce_products_in_range[$w]->ID );
 	}
 
 	// Find index of current product ID in $woocommerce_products_ids
-	$current_index = array_search( $current_product_id, $woocommerce_products_ids );
+	$current_index = array_search( $current_product_id, $woocommerce_products_ids );*/
 
 	// Add previous and next two product IDs to $posts
-	if ( $current_index > 1 ) {
+	/*if ( $current_index > 1 ) {
 		$posts[0] = isset( $woocommerce_products_ids[$current_index - 2] ) ? $woocommerce_products_ids[$current_index - 2] : false;
 		$posts[1] = isset( $woocommerce_products_ids[$current_index - 1] ) ? $woocommerce_products_ids[$current_index - 1] : false;
 		$posts[2] = $woocommerce_products_ids[$current_index];
@@ -87,17 +94,25 @@ function material_view_slider( $atts = '' ) {
 		$posts[2] = isset( $woocommerce_products_ids[$current_index + 2] ) ? $woocommerce_products_ids[$current_index + 2] : false;
 		$posts[3] = isset( $woocommerce_products_ids[$current_index + 3] ) ? $woocommerce_products_ids[$current_index + 3] : false;
 		$posts[4] = isset( $woocommerce_products_ids[$current_index + 4] ) ? $woocommerce_products_ids[$current_index + 4] : false;
-	}
+	}*/
 
 	// Remove any empty entries from $posts
-	$posts = array_values( array_filter( $posts ) );
+	//$posts = array_values( array_filter( $posts ) );
 
 	$html .= '<div class="material-view-slider">';
 	$html .= '<ul id="material-view-slider-list">';
 
 	$current = 0;
+	
+	$total = sizeof($woocommerce_products);
+	
+	while ( $woocommerce_products->have_posts() ) : $woocommerce_products->the_post();
+		
+		$html .= '<li>' . do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '"]' ) . '</li>';
 
-	for ( $i = 0; $i < count( $posts ); $i++ ) {
+	endwhile;
+
+	/*for ( $i = 0; $i < count( $posts ); $i++ ) {
 
 		$show_this = '';
 
@@ -107,12 +122,11 @@ function material_view_slider( $atts = '' ) {
 		}
 
 		$html .= '<li><span' . $show_this . '></span>' . do_shortcode( '[material-view post_id="' . $posts[$i] . '" material="' . $current_product_material . '"]' ) . '</li>';
-	}
+	}*/
 
 	$prev  = $current - 1;
 	$next  = $current + 1;
-	$total = count( $posts );
-
+	
 	if ( $prev == 0 ) {
 		$prev = $total;
 	}
