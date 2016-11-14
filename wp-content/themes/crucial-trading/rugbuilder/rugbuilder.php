@@ -103,7 +103,7 @@ if ( array_key_exists( 'request', $_GET ) ) {
 
 		case 'border' :
 
-			$parent_term = get_term_by( 'slug', 'border-materials', 'product_cat' );
+			$parent_term = get_term_by( 'slug', 'rug-borders', 'product_cat' );
 			$parent_id   = $parent_term->term_id;
 
 			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => $parent_id ) );
