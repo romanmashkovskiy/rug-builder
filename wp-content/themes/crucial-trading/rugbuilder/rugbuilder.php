@@ -146,6 +146,7 @@ if ( array_key_exists( 'request', $_GET ) ) {
 	<div id="progress-menu"></div>
 	<div id="drawer"></div>
 	<div id="view-controls"></div>
+	<div id="price"></div>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/PubSub/pubsub.min.js"></script>
 

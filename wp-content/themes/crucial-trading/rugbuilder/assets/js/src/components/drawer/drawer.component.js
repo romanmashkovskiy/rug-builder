@@ -120,9 +120,11 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			if ( price === 0 ) {
 				this.setState({ price : false });
+				return;
 			}
 
 			this.setState({ price: price });
+			return;
 		},
 
 		getBorderMaterials: function() {

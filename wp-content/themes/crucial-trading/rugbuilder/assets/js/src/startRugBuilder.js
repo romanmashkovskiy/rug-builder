@@ -28,6 +28,9 @@ RugBuilder.prototype.start = function() {
 		const SideMenuComponent          = R.sideMenuComponent();
 		R.drawerComponent(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent, BtnBorderComponent);
 
+		// Other
+		R.priceComponent();
+
 		// View Controls
 		R.viewControls();
 
