@@ -1,5 +1,6 @@
 .drawer__content__size {
 	padding: 50px;
+	position: relative;
 	text-align: center;
 
 	input {
@@ -39,5 +40,13 @@
 	input:-moz-placeholder {
 		font-family: $font-copy;
 		font-size: 14px;
+	}
+
+	.drawer-price {
+		position: absolute;
+		right: 100px;
+		top: 50%;
+		-webkit-transform: translateY(-50%);
+		transform: translateY(-50%);
 	}
 }

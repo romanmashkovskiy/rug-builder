@@ -397,5 +397,56 @@ class RugBuilder {
 		};
 
 		PubSub.publish('stageChange', 0);
+		return;
 	};
+
+	calculatePrice(LENGTH, WIDTH) {
+
+		let totalPrice;
+
+		if ( LENGTH === 0 || LENGTH === '' || WIDTH === 0 || WIDTH === '' ) {
+			PubSub.publish('newPrice', 0);
+			return;
+		}
+
+		const CURRENT_CENTER_MATERIAL = this.centerMaterial;
+		const CENTER_PRICE_PER_m2     = this.getPriceData(CURRENT_CENTER_MATERIAL);
+		const AREA                    = LENGTH * WIDTH;
+		const CENTER_PRICE            = CENTER_PRICE_PER_m2 * AREA;
+
+		const CURRENT_BORDER_TYPE     = this.borderType;
+
+		if ( CURRENT_BORDER_TYPE === 'single' || CURRENT_BORDER_TYPE === 'piping' ) {
+
+			const CURRENT_BORDER_MATERIAL = this.borderMaterials[CURRENT_BORDER_TYPE];
+			const BORDER_PRICE_PER_m2     = this.getPriceData(CURRENT_BORDER_MATERIAL);
+
+			const BORDER_PRICE = 0;
+
+			totalPrice = CENTER_PRICE + BORDER_PRICE;
+		}
+		else if ( CURRENT_BORDER_TYPE === 'double' ) {
+
+			const CURRENT_INNER_MATERIAL = this.borderMaterials.double.inner;
+			const CURRENT_OUTER_MATERIAL = this.borderMaterials.double.outer;
+
+			const INNER_PRICE_PER_m2 = this.getPriceData(CURRENT_INNER_MATERIAL);
+			const OUTER_PRICE_PER_m2 = this.getPriceData(CURRENT_OUTER_MATERIAL);
+
+			const INNER_PRICE = 0;
+			const OUTER_PRICE = 0;
+
+			totalPrice = CENTER_PRICE + INNER_PRICE + OUTER_PRICE;
+		}
+
+		PubSub.publish('newPrice', totalPrice);
+		return;
+	}
 }
+
+
+
+
+
+
+
