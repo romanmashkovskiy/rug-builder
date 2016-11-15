@@ -67,8 +67,8 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 			else if ( stageCode === 2 || stageCode === 3 ) {
 				// Border
 				texture.repeat.set(10,10);
-				texture.flipY = true;
-				texture.repeat.x = - 1;
+	//			texture.flipY = true;
+	//			texture.repeat.x = - 1;
 			}
 
 			let material = new THREE.MeshPhongMaterial( {
