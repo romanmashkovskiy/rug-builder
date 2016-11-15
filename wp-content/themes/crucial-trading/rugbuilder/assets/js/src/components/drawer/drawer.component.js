@@ -166,6 +166,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		updateContentState: function(content) {
 
+			console.log(this.state)
+
 			// Function for updating the content state.
 			// Gets passed to all of the content components as props.
 			// Updates the content state to whatever is given to it by the component.
@@ -429,7 +431,7 @@ function _createSidebarHTML(_this, SideMenuComponent, caller, R) {
 		return MATERIALS_ARR.map((material, index) => {
 
 			if ( material.name === _this.state.chosenMaterial ) {
-				return <SideMenuComponent key={ index } material={ _this.state.chosenMaterial } thumb={ material.thumb } />;
+				return <SideMenuComponent key={ index } material={ _this.state.chosenMaterial } thumb={ material.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateMaterialChoice } />;
 			}
 		});		
 	}
