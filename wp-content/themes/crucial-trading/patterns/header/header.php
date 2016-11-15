@@ -29,15 +29,17 @@ function header_shortcode($atts = '') {
 	$html = '';
 
 	$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
-	$html .= '<h3 class="vertical-align side-title rotate">' . $title . '</h3>';
-	$html .= '<h3 class="vertical-align subtitle">' . $subtitle . '</h3>';
-	$html .= '<h1 class="vertical-align">' . $title . '</h1>';
-	$html .= '</header>';
+	$html .= '<div class="vertical-align">';
+	$html .= '<h3 class="side-title rotate">' . $title . '</h3>';
+	$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';
+	$html .= '<h1>' . $title . '</h1>';
+	$html .= '</div></header>';
 
 	return $html;
 }
 
 add_shortcode( 'header', 'header_shortcode' );
+
 
 
 /************** Materials Header **************/ 
@@ -126,6 +128,8 @@ function header_material_shortcode($atts = '') {
 }
 
 add_shortcode( 'header-material', 'header_material_shortcode' );
+
+
 
 /************** Collection Header **************/ 
 

@@ -9,7 +9,7 @@ header {
 
 		h3.subtitle {
 			//top: 43% !important;
-			text-align: left;
+			text-align: center;
 		}
 	}
 
@@ -18,7 +18,7 @@ header {
 
 		h3.subtitle {
 			//top: 45.5% !important;
-			text-align: left;
+			text-align: center;
 		}
 	}
 
@@ -89,6 +89,10 @@ header.material {
 
 	.material__info {
 		padding-right: 20%;
+
+		.subtitle {
+			text-align: left;
+		}
 
 		h1 {
 			text-align: left;

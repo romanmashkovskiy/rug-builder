@@ -16,11 +16,11 @@ header {
   header.small {
     height: 500px; }
     header.small h3.subtitle {
-      text-align: left; }
+      text-align: center; }
   header.large {
     height: 750px; }
     header.large h3.subtitle {
-      text-align: left; }
+      text-align: center; }
   header h1 {
     color: white;
     text-align: center; }
@@ -67,6 +67,8 @@ header.material {
           width: 140px; } }
   header.material .material__info {
     padding-right: 20%; }
+    header.material .material__info .subtitle {
+      text-align: left; }
     header.material .material__info h1 {
       text-align: left; }
     header.material .material__info.coir h1, header.material .material__info.coir p {
