@@ -180,10 +180,11 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			this.setState({ chosenMaterial: material, chosenCollection: undefined });
 
 			if ( this.state.stage === 2 || this.state.stage === 3 ) {
-				R.getSwatchData(material)
-					.then((swatches) => {
-						this.state._swatches[material] = swatches;
-						this.forceUpdate();
+
+				R.getCollectionsData(material)
+					.then((collections) => {
+						this.state._collections[material] = collections;
+						this.forceUpdate()
 					});
 			}
 		},
@@ -438,7 +439,7 @@ function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 
 	// Function for creating the drawer collections content
 
-	if ( _this.state.stage !== 0 ) {
+	if ( _this.state.stage === 1 || _this.state.stage === 4 ) {
 		return;
 	}
 
@@ -446,6 +447,8 @@ function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 
 	const COLLECTIONS = _this.state._collections;
 	const COLLECTION  = COLLECTIONS[ _this.state.chosenMaterial ];
+
+
 
 	if ( _this.state.content === 'collections' ) {
 
@@ -468,7 +471,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 	// Get the swatches for the user selected collection
 
 	const SWATCHES = _this.state._swatches;
-	const SWATCH   = _this.state.stage === 0 ? SWATCHES[ _this.state.chosenCollection ] : SWATCHES[ _this.state.chosenMaterial ];
+	const SWATCH   = SWATCHES[ _this.state.chosenCollection ];
 
 	if ( _this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
 

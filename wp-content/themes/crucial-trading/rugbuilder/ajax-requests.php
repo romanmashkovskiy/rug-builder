@@ -26,31 +26,47 @@ function materials_data() {
 
 function collections_data() {
 
-	$materials    = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
-	$material_ids = array();
-
-	foreach ( $materials as $key => $value ) {
-		if ( $value->slug != 'rug-borders' ) {
-			$material_ids[$value->term_id] = $value;
-		}
-	}
-
 	$res = array();
 
-	foreach ( $material_ids as $key => $value ) {
-		$res[$value->name] = array();
-	}
+	if ( !array_key_exists( 'collection', $_GET ) ) {
 
-	$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
-	
-	foreach ( $terms as $key => $value ) {
+		$materials    = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
+		$material_ids = array();
 
-		if ( $value->parent != 0 && array_key_exists( $value->parent, $material_ids ) ) {
+		foreach ( $materials as $key => $value ) {
+			if ( $value->slug != 'rug-borders' ) {
+				$material_ids[$value->term_id] = $value;
+			}
+		}
 
-			$parent_id = $value->parent;
-			$parent    = $material_ids[$parent_id]->name;
+		
 
-			array_push( $res[$parent], $value );
+		foreach ( $material_ids as $key => $value ) {
+			$res[$value->name] = array();
+		}
+
+		$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
+		
+		foreach ( $terms as $key => $value ) {
+
+			if ( $value->parent != 0 && array_key_exists( $value->parent, $material_ids ) ) {
+
+				$parent_id = $value->parent;
+				$parent    = $material_ids[$parent_id]->name;
+
+				array_push( $res[$parent], $value );
+			}
+		}
+	} else {
+
+		$collection    = $_GET['collection'];
+		$collection_wc = get_term_by( 'slug', $collection, 'product_cat' );
+		$collection_id = $collection_wc->term_id;
+
+		$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => $collection_id ) );
+
+		foreach ( $terms as $key => $value ) {
+			array_push( $res, $value );
 		}
 	}
 

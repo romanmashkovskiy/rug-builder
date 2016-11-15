@@ -15,11 +15,12 @@ class RugBuilder {
 		this.stageVisited = [ true, false, false, false, false ];
 
 		// WC Data
-		this.WCmaterials       = [];
-		this.WCcollections     = [];
-		this.WCswatches        = {};
-		this.WCborderMaterials = [];
-		this.WCborderSwatches  = {};
+		this.WCmaterials         = [];
+		this.WCcollections       = [];
+		this.WCswatches          = {};
+		this.WCborderMaterials   = [];
+		this.WCBorderCollections = {};
+		this.WCborderSwatches    = {};
 
 		// Three.js
 		this.scene    = undefined;
