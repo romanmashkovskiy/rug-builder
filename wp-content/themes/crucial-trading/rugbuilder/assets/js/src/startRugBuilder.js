@@ -64,6 +64,21 @@ RugBuilder.prototype.start = function() {
 			}
 
 			render();
+
+			window.addEventListener( 'resize', onWindowResize, false );
+
+			function onWindowResize(){
+
+				R.screenWidth = window.innerWidth;
+				R.screenHeight = window.innerHeight;
+
+				R.cameraOptions.aspectRatio = R.screenWidth / R.screenHeight;
+
+				R.camera.aspect = R.cameraOptions.aspectRatio;
+				R.camera.updateProjectionMatrix();
+
+				R.renderer.setSize( R.screenWidth, R.screenHeight );
+			}
 		}
 	}
 
