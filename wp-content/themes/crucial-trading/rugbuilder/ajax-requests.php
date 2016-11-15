@@ -121,10 +121,6 @@ function swatches_data() {
 		$res[$key] = $arr;
 	}
 
-	echo '<pre>';
-	print_r($res);
-	echo '</pre>';
-
 	return $res;
 }
 
@@ -187,10 +183,6 @@ function add_rug_to_cart() {
 
 		$quantity          = 1;
 		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity );
-
-		// NEED TO SAVE LENGTH ETC IN CART_ITEM_DATA - HOW?
-
-		save_cart_item_data( array(), $product_id, 0 );
 
 		if ( $passed_validation && false !== WC()->cart->add_to_cart( $product_id, $quantity ) ) {
 			wc_add_to_cart_message( array( $product_id => $quantity ), true );

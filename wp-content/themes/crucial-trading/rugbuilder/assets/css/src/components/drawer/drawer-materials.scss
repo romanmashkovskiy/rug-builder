@@ -45,6 +45,7 @@
 
 		img {
 			max-height: 100%;
+			padding-bottom: 25px;
 			width: 100%;
 
 			@media screen and (max-width: 768px) {
@@ -64,6 +65,10 @@
 
 			&:hover {
 				margin-top: -13px;
+
+				img {
+					padding-bottom: 0;
+				}
 
 				h3 {
 					display: block;
