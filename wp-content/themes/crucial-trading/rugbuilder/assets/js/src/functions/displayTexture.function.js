@@ -126,32 +126,46 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 
 function _loadMaps(material, maps) {
 
+	console.log(maps)
+
 	if ( maps !== undefined ) {
 
-		if ( maps.nmap ) {
+		if ( typeof maps.nmap === 'object' ) {
 
-			new THREE.TextureLoader().load( maps.nmap, (texture) => {
-				material.normalMap = texture;
-				material.needsUpdate = true;
-				return;
+			Object.keys(maps.nmap).forEach((key) => {
+				let url = maps.nmap[key].full_url;
+
+				new THREE.TextureLoader().load( url, (texture) => {
+					material.normalMap = texture;
+					material.needsUpdate = true;
+					return;
+				});
 			});
 		}
 
-		if ( maps.bmap ) {
+		if ( typeof maps.bmap === 'object' ) {
 
-			new THREE.TextureLoader().load( maps.bmap, (texture) => {
-				material.bumpMap = texture;
-				material.needsUpdate = true;
-				return;
+			Object.keys(maps.bmap).forEach((key) => {
+				let url = maps.bmap[key].full_url;
+
+				new THREE.TextureLoader().load( url, (texture) => {
+					material.bumpMap = texture;
+					material.needsUpdate = true;
+					return;
+				});
 			});
 		}
 
-		if ( maps.dmap ) {
+		if ( typeof maps.dmap === 'object' ) {
 
-			new THREE.TextureLoader().load( maps.dmap, (texture) => {
-				material.displacementMap = texture;
-				material.needsUpdate = true;
-				return;
+			Object.keys(maps.dmap).forEach((key) => {
+				let url = maps.dmap[key].full_url;
+
+				new THREE.TextureLoader().load( url, (texture) => {
+					material.displacementMap = texture;
+					material.needsUpdate = true;
+					return;
+				});
 			});
 		}
 	}
