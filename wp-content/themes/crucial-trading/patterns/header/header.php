@@ -21,14 +21,19 @@ function header_shortcode($atts = '') {
 	}
 
 	$title    = get_the_title();
-	$subtitle = rwmb_meta( 'subtitle' );
+	$subtitle = get_post_meta( get_the_ID(), 'subtitle', true );
 
 	$attachment_id = has_post_thumbnail() ? get_post_thumbnail_id() : false;
 	$background    = $attachment_id ? wp_get_attachment_image_url( $attachment_id, 'full' ) : '';
 
 	$html = '';
 
-	$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
+	if (!empty($background)) : 
+		$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
+	else : 
+		$html .= '<header class="' . $header_size . '"';
+	endif;
+	
 	$html .= '<div class="vertical-align">';
 	$html .= '<h3 class="side-title rotate">' . $title . '</h3>';
 	$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';

@@ -25,4 +25,6 @@
   margin: auto;
   text-align: center;
   background-color: #FFF;
-  padding: 30px; }
+  padding: 30px;
+  margin-top: -50px;
+  z-index: 99; }
