@@ -58,10 +58,13 @@ function header_material_shortcode($atts = '') {
 
 		$material  = $atts['material'];
 		$umaterial = ucwords( str_replace( '-', ' ', $atts['material'] ) );
-
+		
+		// Get Categories for Side menu 
 		$args = array(
 			'hide_empty' => false, 
 			'orderby'    => 'name',
+			'parent'     => 0,
+			'include' => array(7, 6, 8, 9, 10, 11),
 		);
 
 		$categories = get_terms( 'product_cat', $args );
