@@ -93,6 +93,11 @@ class RugBuilder {
 			}
 		};
 
+		this.centerID       = 0;
+		this.singleBorderID = 0;
+		this.innerBorderID  = 0;
+		this.outerBorderID  = 0;
+
 		this.length = 0;
 		this.width  = 0;
 

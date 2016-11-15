@@ -25,50 +25,8 @@ if ( array_key_exists( 'request', $_GET ) ) {
 	exit();
 }
 
-if ( array_key_exists( 'add-rug', $_GET ) && $_GET['add-rug'] == 160 ) {
-
-	$current_number_of_rugs = 0;
-	$new_rug_product_id     = str_pad( $current_number_of_rugs + 1, 10, 0, STR_PAD_LEFT );
-
-	$post = array(
-		'post_author'  => 1,
-		'post_content' => '',
-		'post_status'  => 'publish',
-		'post_title'   => 'Custom Rug - #' . $new_rug_product_id,
-		'post_parent'  => '',
-		'post_type'    => 'product',
-	);
-
-	$post_id = wp_insert_post( $post );
-
-	if ( !$post_id ) {
-		header( $_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500 );
-		exit();
-	}
-
-	$attr = array(
-		'center-material' => $_GET['centerMaterial'],
-		'border-type'     => $_GET['borderType'],
-	);
-
-	if ( $_GET['borderType'] == 'single' || $_GET['borderType'] == 'piping' ) {
-		$attr['border-material'] = $_GET['borderMaterial'];
-	} else if ( $_GET['borderType'] == 'double' ) {
-		$attr['inner-border-material'] = $_GET['innerBorder'];
-		$attr['outer-border-material'] = $_GET['outerBorder'];
-	}
-
-	update_post_meta( $post_id, '_visibility',         'visible' );
-	update_post_meta( $post_id, '_stock_status',       'instock');
-	update_post_meta( $post_id, '_downloadable',       'no');
-	update_post_meta( $post_id, '_virtual',            'no');
-	update_post_meta( $post_id, '_regular_price',      $_GET['price'] );
-	update_post_meta( $post_id, '_length',             $_GET['length'] );
-	update_post_meta( $post_id, '_width',              $_GET['width'] );
-	update_post_meta( $post_id, '_product_attributes', $attr);
-	update_post_meta( $post_id, '_price',              $_GET['price'] );
-
-	echo $post_id;
+if ( array_key_exists( 'products', $_GET ) ) {
+	add_rug_to_cart();
 	exit();
 }
 

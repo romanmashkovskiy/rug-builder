@@ -7,7 +7,7 @@ RugBuilder.prototype.btnSwatchComponent = function() {
 			// On click, update state of drawer component to:
 			// { content: 'swatchesSelected', chosenCollection: the swatch clicked on }
 			this.props.updateContent('swatchesSelected');
-			this.props.onUpdate(this.props.swatch, this.props.thumb);
+			this.props.onUpdate(this.props.swatch, this.props.thumb, this.props.id);
 		},
 
 		render: function() {

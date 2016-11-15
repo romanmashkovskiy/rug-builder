@@ -5,12 +5,21 @@ RugBuilder.prototype.orderScreenComponent = function() {
 	const OrderScreenComponent = React.createClass({
 
 		getInitialState: function() {
+
+			this.centerID       = 0;
+			this.singleBorderID = 0;
+			this.innerBorderID  = 0;
+			this.outerBorderID  = 0;
 			
 			const CENTER_MATERIAL        = R.centerMaterial;
+			const CENTER_ID              = R.centerID;
 			const BORDER_TYPE            = R.borderType;
 			const SINGLE_BORDER_MATERIAL = BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ? R.borderMaterials[BORDER_TYPE] : false;
+			const SINGLE_BORDER_ID       = BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ? R.singleBorderID : false;
 			const INNER_BORDER_MATERIAL  = BORDER_TYPE === 'double' ? R.borderMaterials.double.inner : false;
 			const OUTER_BORDER_MATERIAL  = BORDER_TYPE === 'double' ? R.borderMaterials.double.outer : false;
+			const INNER_BORDER_ID        = BORDER_TYPE === 'double' ? R.innerBorderID : false;
+			const OUTER_BORDER_ID        = BORDER_TYPE === 'double' ? R.outerBorderID : false;
 			const LENGTH                 = R.length;
 			const WIDTH                  = R.width;
 			const PRICE                  = R.price;
@@ -20,10 +29,14 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 			let obj = {
 				centerMaterial       : CENTER_MATERIAL,
+				centerID             : CENTER_ID,
 				borderType           : BORDER_TYPE,
 				singleBorderMaterial : SINGLE_BORDER_MATERIAL,
 				innerBorderMaterial  : INNER_BORDER_MATERIAL,
 				outerBorderMaterial  : OUTER_BORDER_MATERIAL,
+				singleBorderID       : SINGLE_BORDER_ID,
+				innerBorderID        : INNER_BORDER_ID,
+				outerBorderID        : OUTER_BORDER_ID,
 				length               : LENGTH,
 				width                : WIDTH,
 				price                : PRICE,
@@ -56,6 +69,41 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 		order: function() {
 
+			const RUG_PRODUCT_ID = 160;
+			const BORDER_TYPE = this.state.borderType;
+
+			let url = window.location.href;
+
+			if ( url[url.length-1] === '#' ) {
+				url = url.substr(0, url.length-1);
+			}
+
+			url += '&products=';
+			url += this.state.centerID + ',';
+
+			if ( BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ) {
+				url += this.state.singleBorderID;
+			}
+			else if ( BORDER_TYPE === 'double' ) {
+				url += this.state.innerBorderID + ',';
+				url += this.state.outerBorderID;
+			}
+
+			let req = new XMLHttpRequest();
+
+			req.addEventListener( 'load', loaded );
+			req.open( 'GET', url );
+			req.send();
+
+			function loaded() {
+				
+				if ( this.status !== 200 ) {
+					alert('error')
+					return;
+				}
+
+				alert('samples added to your basket')
+			}
 		},
 
 		basket: function() {
@@ -63,41 +111,42 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			const RUG_PRODUCT_ID = 160;
 			const BORDER_TYPE = this.state.borderType;
 
-			let url = '';
+			let url = window.location.href;
 
-			if ( window.location.href[window.location.href.length-1] === '#' ) {
-				url += window.location.href.substr(0, window.location.href.length-1);
-			} else {
-				url += window.location.href;
+			if ( url[url.length-1] === '#' ) {
+				url = url.substr(0, url.length-1);
 			}
 
-			url += '&add-rug=' + RUG_PRODUCT_ID;
-			url += '&centerMaterial=' + encodeURIComponent(this.state.centerMaterial);
-			url += '&borderType=' + BORDER_TYPE;
+			url += '&products=';
+			url += this.state.centerID + ',';
 
 			if ( BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ) {
-				url += '&borderMaterial=' + encodeURIComponent(this.state.singleBorderMaterial);
+				url += this.state.singleBorderID;
 			}
 			else if ( BORDER_TYPE === 'double' ) {
-				url += '&innerBorder=' + encodeURIComponent(this.state.innerBorderMaterial);
-				url += '&outerBorder=' + encodeURIComponent(this.state.outerBorderMaterial)
+				url += this.state.innerBorderID + ',';
+				url += this.state.outerBorderID;
 			}
 
+			url += '&center=' + this.state.centerID;
 			url += '&length=' + this.state.length;
 			url += '&width=' + this.state.width;
 			url += '&price=' + this.state.price;
 
-			console.log(url);
-
 			let req = new XMLHttpRequest();
 
 			req.addEventListener( 'load', loaded );
-
 			req.open( 'GET', url );
 			req.send();
 
 			function loaded() {
-				console.log(this.response)
+				
+				if ( this.status !== 200 ) {
+					alert('error')
+					return;
+				}
+
+				alert('rug added to your basket')
 			}
 		},
 
