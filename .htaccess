@@ -14,29 +14,6 @@ Header set X-Content-Type-Options: "nosniff"
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /crucial/
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /crucial/index.php [L]
-</IfModule>
-
-
-# Disable XML-RPC - Security > Settings > WordPress Tweaks > XML-RPC
-
-<files xmlrpc.php>
-    <IfModule mod_authz_core.c>
-        Require all denied
-    </IfModule>
-    <IfModule !mod_authz_core.c>
-        Order allow,deny
-        Deny from all
-    </IfModule>
-</files>
-
-# BEGIN WordPress
-<IfModule mod_rewrite.c>
-RewriteEngine On
 RewriteBase /crucial-trading/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f

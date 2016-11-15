@@ -81,6 +81,7 @@ function swatches_data() {
 
 	$args = array(
 		'post_type' => 'product',
+		'posts_per_page' => 100,
 		'tax_query' => array(
 			array(
 				'taxonomy' => 'product_cat',
@@ -119,6 +120,10 @@ function swatches_data() {
 
 		$res[$key] = $arr;
 	}
+
+	echo '<pre>';
+	print_r($res);
+	echo '</pre>';
 
 	return $res;
 }
