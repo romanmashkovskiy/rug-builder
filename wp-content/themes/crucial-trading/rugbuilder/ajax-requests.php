@@ -134,7 +134,9 @@ function border_data() {
 	$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => $parent_id ) );
 
 	foreach ( $terms as $key => $value ) {
-		array_push( $res, $value );
+		if ( $value->slug != 'piping' ) {
+			array_push( $res, $value );
+		}
 	}
 	foreach ( $res as $key => $value ) {
 

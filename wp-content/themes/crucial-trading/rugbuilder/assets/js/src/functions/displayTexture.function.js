@@ -116,31 +116,34 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 
 function _loadMaps(material, maps) {
 
-	if ( maps.nmap ) {
+	if ( maps !== undefined ) {
 
-		new THREE.TextureLoader().load( maps.nmap, (texture) => {
-			material.normalMap = texture;
-			material.needsUpdate = true;
-			return;
-		});
-	}
+		if ( maps.nmap ) {
 
-	if ( maps.bmap ) {
+			new THREE.TextureLoader().load( maps.nmap, (texture) => {
+				material.normalMap = texture;
+				material.needsUpdate = true;
+				return;
+			});
+		}
 
-		new THREE.TextureLoader().load( maps.bmap, (texture) => {
-			material.bumpMap = texture;
-			material.needsUpdate = true;
-			return;
-		});
-	}
+		if ( maps.bmap ) {
 
-	if ( maps.dmap ) {
+			new THREE.TextureLoader().load( maps.bmap, (texture) => {
+				material.bumpMap = texture;
+				material.needsUpdate = true;
+				return;
+			});
+		}
 
-		new THREE.TextureLoader().load( maps.dmap, (texture) => {
-			material.displacementMap = texture;
-			material.needsUpdate = true;
-			return;
-		});
+		if ( maps.dmap ) {
+
+			new THREE.TextureLoader().load( maps.dmap, (texture) => {
+				material.displacementMap = texture;
+				material.needsUpdate = true;
+				return;
+			});
+		}
 	}
 
 	return;

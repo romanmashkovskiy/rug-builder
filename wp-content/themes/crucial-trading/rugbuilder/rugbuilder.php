@@ -46,7 +46,7 @@ if ( array_key_exists( 'products', $_GET ) ) {
 
 	<div id="full-loading">
 		<h1>Loading</h1>
-		<span>.</span><span>.</span><span>.</span>
+		<div class="loader"></div>
 	</div>
 	<div id="progress-menu"></div>
 	<div id="drawer"></div>
