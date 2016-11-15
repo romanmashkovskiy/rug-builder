@@ -42,10 +42,12 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 				return React.createElement(BtnStageComponent, { stage: stage, key: index, index: index });
 			});
 
+			const LOGO = templateDirectoryUri + '/rugbuilder/assets/img/logo.png';
+
 			return (
 				<div className="progress-menu__container">
 					<div className="progress-menu__top">
-						<img src="assets/logo.png" alt="Crucial Trading Rug Builder" />
+						<img src={ LOGO } alt="Crucial Trading Rug Builder" />
 						<BtnRestartComponent />
 						<BtnExitComponent />
 					</div>

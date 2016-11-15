@@ -10,7 +10,7 @@ RugBuilder.prototype.initLights = function(RugBuilder) {
 	SPOTLIGHT.position.set( 216.55, 238.95, -217.97 );
 	SPOTLIGHT2.position.set( 307.15, 157.37, -80.38 );
 
-	DIRECTIONAL_LIGHT.position.set( 0, 0, 1 );
+	DIRECTIONAL_LIGHT.position.set( 5, 10, 7.5 );
 
 	R.lights.spotLight        = SPOTLIGHT;
 	R.lights.spotLight2       = SPOTLIGHT2;

@@ -1,6 +1,8 @@
-RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
+RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 
-	/* TO-DO: LOAD BUMP MAP ONCE IT HAS BEEN ADDED AS A WP META BOX */
+	if ( thumb.indexOf('-150x150') > -1 ) {
+		thumb = thumb.replace('-150x150', '');
+	}
 
 	if ( stageCode === 1 || stageCode === 4 ) {
 		return;
@@ -50,43 +52,32 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 			sceneChildren = ['border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west'];
 	}
 
-	return new Promise((res, rej) => {
 
-		if ( R.loadedTextures[swatch] === undefined ) {
+	if ( R.loadedTextures[swatch] === undefined ) {
 
-			new THREE.TextureLoader().load( thumb, (texture) => {
+		new THREE.TextureLoader().load( thumb, (texture) => {
 
-				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-				texture.anisotropy = R.renderer.getMaxAnisotropy();
-				texture.repeat.set(5,5);
+			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+			texture.anisotropy = R.renderer.getMaxAnisotropy();
 
-				let material = new THREE.MeshPhongMaterial( {
-					map       : texture,
-					color     : 0xffffff,
-					shininess : 5
-				});
+			if ( stageCode === 0 ) {
+				// Center
+				texture.repeat.set(2,2);
+			}
+			else if ( stageCode === 2 || stageCode === 3 ) {
+				// Border
+				texture.repeat.set(10,10);
+	//			texture.flipY = true;
+	//			texture.repeat.x = - 1;
+			}
 
-				R.loadedTextures[swatch] = material;
-
-				if ( stageObj3 !== undefined ) {
-					R[stageObj][stageObj2][stageObj3] = swatch;
-				}
-				else if ( stageObj2 !== undefined ) {
-					R[stageObj][stageObj2] = swatch;
-				}
-				else {
-					R[stageObj] = swatch;
-				}
-
-				for ( let i = 0; i < R.scene.children.length; i++ ) {
-					
-					if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
-						R.scene.children[i].material = R.loadedTextures[swatch];
-					}
-				}
+			let material = new THREE.MeshPhongMaterial( {
+				map       : texture,
+				color     : 0xffffff,
+				shininess : 5
 			});
-		}
-		else {
+
+			R.loadedTextures[swatch] = material;
 
 			if ( stageObj3 !== undefined ) {
 				R[stageObj][stageObj2][stageObj3] = swatch;
@@ -102,8 +93,108 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 				
 				if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 					R.scene.children[i].material = R.loadedTextures[swatch];
+					_loadMaps(R.scene.children[i].material, maps);
 				}
 			}
+
+			R.loadingScreens('full', 'close');
+		});
+	}
+	else {
+
+		if ( stageObj3 !== undefined ) {
+			R[stageObj][stageObj2][stageObj3] = swatch;
 		}
-	});
+		else if ( stageObj2 !== undefined ) {
+			R[stageObj][stageObj2] = swatch;
+		}
+		else {
+			R[stageObj] = swatch;
+		}
+
+		for ( let i = 0; i < R.scene.children.length; i++ ) {
+			
+			if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
+				R.scene.children[i].material = R.loadedTextures[swatch];
+				_loadMaps(R.scene.children[i].material, maps);
+			}
+		}
+		
+		R.loadingScreens('full', 'close');
+	}
 }
+
+function _loadMaps(material, maps) {
+
+	console.log(maps)
+
+	if ( maps !== undefined ) {
+
+		if ( typeof maps.nmap === 'object' ) {
+
+			Object.keys(maps.nmap).forEach((key) => {
+				let url = maps.nmap[key].full_url;
+
+				new THREE.TextureLoader().load( url, (texture) => {
+					material.normalMap = texture;
+					material.needsUpdate = true;
+					return;
+				});
+			});
+		}
+
+		if ( typeof maps.bmap === 'object' ) {
+
+			Object.keys(maps.bmap).forEach((key) => {
+				let url = maps.bmap[key].full_url;
+
+				new THREE.TextureLoader().load( url, (texture) => {
+					material.bumpMap = texture;
+					material.needsUpdate = true;
+					return;
+				});
+			});
+		}
+
+		if ( typeof maps.dmap === 'object' ) {
+
+			Object.keys(maps.dmap).forEach((key) => {
+				let url = maps.dmap[key].full_url;
+
+				new THREE.TextureLoader().load( url, (texture) => {
+					material.displacementMap = texture;
+					material.needsUpdate = true;
+					return;
+				});
+			});
+		}
+	}
+
+	return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

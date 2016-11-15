@@ -120,6 +120,7 @@ function register_retailer_taxnomies() {
 		'hierarchical'      => true,
 		'labels'            => $labels,
 		'query_var'         => true,
+		'show_admin_column' => true,
 	);
 
 	register_taxonomy( 'retailer_type', 'retailer', $args );

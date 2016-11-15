@@ -15,13 +15,13 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				content : 'materials',
 
-				open : false,
-				text : 'Expand',
+				open : true,
+				text : 'Collapse',
 
 				chosenMaterial   : undefined,
 				chosenCollection : undefined,
 				chosenSwatch     : undefined,
-				chosenBorder     : undefined,
+				chosenBorder     : 'Single & Piping',
 
 				_materials   : materials,
 				_collections : collections,
@@ -139,13 +139,24 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Function for updating the open/closed state of the drawer
 			// Gets passed to expand-collapse button as props.onUpdate.
 			// If open is true, update state to closed, and vice-versa.
+
+			const ELEM = document.querySelector('#drawer');
+
 			if ( open ) {
+
+				const HEIGHT = ELEM.offsetHeight;
+
+				ELEM.style.marginTop = '-' + HEIGHT + 'px';
+
 				this.setState({
 					open: false,
 					text: 'Expand'
 				});
 			}
 			else {
+
+				ELEM.style.marginTop = 0;
+
 				this.setState({
 					open: true,
 					text: 'Collapse'
@@ -169,10 +180,11 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			this.setState({ chosenMaterial: material, chosenCollection: undefined });
 
 			if ( this.state.stage === 2 || this.state.stage === 3 ) {
-				R.getSwatchData(material)
-					.then((swatches) => {
-						this.state._swatches[material] = swatches;
-						this.forceUpdate();
+
+				R.getCollectionsData(material)
+					.then((collections) => {
+						this.state._collections[material] = collections;
+						this.forceUpdate()
 					});
 			}
 		},
@@ -184,25 +196,43 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Updates the chosenCollection state to whatever is given to it by the component.
 			this.setState({ chosenCollection: collection });
 
+			R.loadingScreens('full', 'open');
+
 			// Then gets the swatches for the chosen collection.
 			// Once it has the swatches, it then adds them to state._swatches
 			// and forces a re-render of the component
 			R.getSwatchData(collection)
 				.then((swatches) => {
 					this.state._swatches[collection] = swatches;
+					R.loadingScreens('full', 'close');
 					this.forceUpdate();
 				});
 		},
 
-		updateSwatchChoice: function(swatch, thumb) {
+		updateSwatchChoice: function(swatch, thumb, id, maps) {
 
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
 			// Updates the chosenSwatch state to whatever is given to it by the component.
-			this.setState({ chosenSwatch: swatch });
+			this.setState({ chosenSwatch : swatch });
+
+			R.loadingScreens('full', 'open');
+
+			if ( this.state.stage === 0 ) {
+				R.centerID = id;
+			} 
+			else if ( this.state.stage === 2 && ( this.state.chosenBorder === 'Single Border' || this.state.chosenBorder === 'Single & Piping' ) ) {
+				R.singleBorderID = id;
+			}
+			else if ( this.state.stage === 2 && this.state.chosenBorder === 'Double Border' ) {
+				R.innerBorderID = id;
+			}
+			else if ( this.state.stage === 3 && this.state.chosenBorder === 'Double Border' ) {
+				R.outerBorderID = id;
+			}
 
 			// Update the actual rug
-			R.displayTexture(swatch, thumb, this.state.stage);
+			R.displayTexture(swatch, thumb, this.state.stage, maps);
 		},
 
 		updateBorderChoice: function(border) {
@@ -211,6 +241,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Get passed to the Border Button Components as props.
 			// Updates the chosenBorder state to whatever is given to it by the component.
 			this.setState({ chosenBorder: border });
+
+			R.loadingScreens('full', 'open');
 
 			// Update the actual rug
 			R.updateBorder(border);
@@ -247,19 +279,19 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		// they return what is returned from the functions at the bottom of this file
 		// (search for "Create dynamic drawer HTML content functions")
 
-		createMaterialHTML    : function() { return _createMaterialHTML(this, BtnMaterialComponent) },
+		createMaterialHTML    : function() { return _createMaterialHTML(this, BtnMaterialComponent, R) },
 
-		createSidebarHTML     : function(caller) { return _createSidebarHTML(this, SideMenuComponent, caller) },
+		createSidebarHTML     : function(caller) { return _createSidebarHTML(this, SideMenuComponent, caller, R) },
 
-		createCollectionsHTML : function() { return _createCollectionsHTML(this, BtnCollectionComponent) },
+		createCollectionsHTML : function() { return _createCollectionsHTML(this, BtnCollectionComponent, R) },
 
-		createSwatchesHTML    : function(caller) { return _createSwatchesHTML(this, BtnSwatchComponent, caller) },
+		createSwatchesHTML    : function(caller) { return _createSwatchesHTML(this, BtnSwatchComponent, caller, R) },
 
-		createBorderHTML      : function() { return _createBorderHTML(this, BtnBorderComponent) },
+		createBorderHTML      : function() { return _createBorderHTML(this, BtnBorderComponent, R) },
 
-		createSizeHTML        : function() { return _createSizeHTML(this) },
+		createSizeHTML        : function() { return _createSizeHTML(this, R) },
 
-		createPriceHTML       : function() { return _createPriceHTML(this) },
+		createPriceHTML       : function() { return _createPriceHTML(this, R) },
 
 		render: function() {
 
@@ -346,7 +378,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 // Create dynamic drawer HTML content functions
 
-function _createMaterialHTML(_this, BtnMaterialComponent) {
+function _createMaterialHTML(_this, BtnMaterialComponent, R) {
 
 	if ( _this.state.stage === 1 ) {
 		return;
@@ -364,7 +396,7 @@ function _createMaterialHTML(_this, BtnMaterialComponent) {
 	}
 }
 
-function _createSidebarHTML(_this, SideMenuComponent, caller) {
+function _createSidebarHTML(_this, SideMenuComponent, caller, R) {
 
 	// Function for creating the drawer sidemenu content
 
@@ -397,17 +429,17 @@ function _createSidebarHTML(_this, SideMenuComponent, caller) {
 		return MATERIALS_ARR.map((material, index) => {
 
 			if ( material.name === _this.state.chosenMaterial ) {
-				return <SideMenuComponent key={ index } material={ _this.state.chosenMaterial } thumb={ material.thumb } />;
+				return <SideMenuComponent key={ index } material={ _this.state.chosenMaterial } thumb={ material.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateMaterialChoice } />;
 			}
 		});		
 	}
 }
 
-function _createCollectionsHTML(_this, BtnCollectionComponent) {
+function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 
 	// Function for creating the drawer collections content
 
-	if ( _this.state.stage !== 0 ) {
+	if ( _this.state.stage === 1 || _this.state.stage === 4 ) {
 		return;
 	}
 
@@ -415,6 +447,8 @@ function _createCollectionsHTML(_this, BtnCollectionComponent) {
 
 	const COLLECTIONS = _this.state._collections;
 	const COLLECTION  = COLLECTIONS[ _this.state.chosenMaterial ];
+
+
 
 	if ( _this.state.content === 'collections' ) {
 
@@ -426,7 +460,7 @@ function _createCollectionsHTML(_this, BtnCollectionComponent) {
 	}
 }
 
-function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
+function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 	// Function for creating the drawer swatches content
 
@@ -437,7 +471,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 	// Get the swatches for the user selected collection
 
 	const SWATCHES = _this.state._swatches;
-	const SWATCH   = _this.state.stage === 0 ? SWATCHES[ _this.state.chosenCollection ] : SWATCHES[ _this.state.chosenMaterial ];
+	const SWATCH   = SWATCHES[ _this.state.chosenCollection ];
 
 	if ( _this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
 
@@ -449,19 +483,32 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 
 			const CURRENT_SWATCH = SWATCH[swatch];
 
+			const id    = CURRENT_SWATCH.id;
 			const name  = CURRENT_SWATCH.name;
 			const code  = CURRENT_SWATCH.code;
 			const thumb = CURRENT_SWATCH.thumb;
+			
+			let maps = {};
+
+			if ( CURRENT_SWATCH.bmap !== '' ) {
+				maps.bmap = CURRENT_SWATCH.bmap;
+			}
+			if ( CURRENT_SWATCH.nmap !== '' ) {
+				maps.nmap = CURRENT_SWATCH.nmap;
+			}
+			if ( CURRENT_SWATCH.dmap !== '' ) {
+				maps.dmap = CURRENT_SWATCH.dmap;
+			}
 
 			// Create a BtnSwatchComponent for each swatch in the SWATCH object
 
-			return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } code={ code } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
 		})
 	}
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
 
-		const SELECTED_SWATCH     = _this.state.chosenSwatch;
-		const SELECTED_COLLECTION = _this.state.stage === 0 ? _this.state._swatches[ _this.state.chosenCollection ] : _this.state._swatches[ _this.state.chosenMaterial ];
+		const SELECTED_SWATCH     = _this.state.chosenSwatch.replace(/ /g, '');
+		const SELECTED_COLLECTION = _this.state._swatches[ _this.state.chosenCollection ];
 
 		let allSwatches = [];
 		let swatchIndex;
@@ -530,12 +577,12 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 		// Create a BtnSwatchComponent for each swatch in the swatchArr array
 
 		return swatchArr.map((swatch, index) => {
-			return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+			return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
 		});
 	}
 }
 
-function _createBorderHTML(_this, BtnBorderComponent) {
+function _createBorderHTML(_this, BtnBorderComponent, R) {
 
 	if ( _this.state.stage !== 1 ) {
 		return;
@@ -551,7 +598,7 @@ function _createBorderHTML(_this, BtnBorderComponent) {
 	}
 }
 
-function _createSizeHTML(_this) {
+function _createSizeHTML(_this, R) {
 
 	if ( _this.state.stage !== 4 ) {
 		return;
@@ -565,7 +612,7 @@ function _createSizeHTML(_this) {
 	);
 }
 
-function _createPriceHTML(_this) {
+function _createPriceHTML(_this, R) {
 
 	if ( _this.state.stage !== 4 || !_this.state.price ) {
 		return;

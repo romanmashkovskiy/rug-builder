@@ -3,6 +3,7 @@
 	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	max-height: 161px;
 	position: relative;
 	z-index: 10;
 }
@@ -17,6 +18,12 @@
 		font-size: 12px;
 		padding: 0;
 		position: absolute;
+
+		img {
+			position: relative;
+			top: 3.5px;
+			right: 10px;
+		}
 
 		@media screen and (max-width: 550px) {
 			display: none;
@@ -33,14 +40,14 @@
 }
 
 .progress-menu__bottom {
-	padding: 40px 100px;
+	padding: 10px 100px 38px;
 
 	@media screen and (max-width: 992px) {
 		padding: 40px 0;
 	}
 
 	@media screen and (max-width: 768px) {
-		overflow: hidden;
+		overflow-x: scroll;
 	}
 
 	.progress-menu__stages {
@@ -50,7 +57,7 @@
 
 		@media screen and (max-width: 768px) {
 			display: block;
-			width: 500%;
+			width: 200%;
 		}
 	}
 
@@ -62,27 +69,18 @@
 
 		@media screen and (max-width: 768px) {
 			display: inline-block;
-			width: 16%;
-
-			&.next {
-
-				.progress-menu__stage__link {
-					text-align: left;
-				}
-			}
-
-			&.prev {
-
-				.progress-menu__stage__link {
-					text-align: right;
-				}
-			}
+			text-align: center;
+			width: 23%;
 		}
 
 		&.active {
 
 			.progress-menu__stage__link {
+				border-bottom: 1px solid $main-body-text-color;
 				color: $main-body-text-color;
+				margin: auto;
+				padding-bottom: 4px;
+				width: auto;
 			}
 		}
 	}
@@ -91,8 +89,8 @@
 		color: $main-menu-link-color;
 		display: block;
 		font-size: 14px;
+		margin: auto;
 		text-align: center;
 		padding: 0;
-		width: 100%;
 	}
 }

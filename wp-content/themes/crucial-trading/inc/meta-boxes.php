@@ -15,6 +15,48 @@ add_filter( 'rwmb_meta_boxes', 'meta_boxes' );
 
 function meta_boxes($meta_boxes) {
 
+	
+	// Product 3D Maps 
+
+	$meta_boxes[] = array(
+		'title'      => '3D Rug Builder Maps',
+		'post_types' => 'product',
+		'fields'     => array(
+			array(
+				'name'     => 'Bump Map',
+				'id'       => 'rb_bump_map',
+				'type'        => 'image_advanced',
+				'max_uploads' => 1,
+				'priority' => 'high',
+			),
+			array(
+				'name'     => 'divider',
+				'id'       => 'divider',
+				'type'        => 'divider',
+			),
+			array(
+				'name'     => 'Normal Map',
+				'id'       => 'rb_normal_map',
+				'type'        => 'image_advanced',
+				'max_uploads' => 1,
+				'priority' => 'high',
+			),
+			array(
+				'name'     => 'divider',
+				'id'       => 'divider',
+				'type'        => 'divider',
+			),
+			array(
+				'name'     => 'Displacement Map',
+				'id'       => 'rb_displacement_map',
+				'type'        => 'image_advanced',
+				'max_uploads' => 1,
+				'priority' => 'high',
+			),
+		),
+	);
+
+
 	// Product Category Subtitle
 
 	$meta_boxes[] = array(
@@ -28,7 +70,7 @@ function meta_boxes($meta_boxes) {
 				'name'     => 'Subtitle',
 				'id'       => 'subtitle',
 				'type'     => 'text',
-				'priority' => 'high',
+				'priority' => 'normal',
 			),
 		),
 	);

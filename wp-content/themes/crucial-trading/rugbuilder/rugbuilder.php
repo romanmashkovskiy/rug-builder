@@ -8,124 +8,25 @@
  * @since Hogarths 1.0
  */
 
+include_once('ajax-requests.php');
+
 if ( array_key_exists( 'request', $_GET ) ) {
 
 	$request = $_GET['request'];
-	$res     = array();
 
 	switch ( $request ) {
-
-		case 'materials' :
-
-			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
-
-			for ( $m = 0; $m < count( $terms ); $m++ ) {
-				if ( $terms[$m]->slug != 'rug-borders' ) {
-					array_push( $res, $terms[$m] );
-				}
-			}
-			for ( $m2 = 0; $m2 < count( $res ); $m2++ ) {
-
-				$material_id = $res[$m2]->term_id;
-
-				$thumb_id = get_woocommerce_term_meta( $material_id, 'thumbnail_id', true );
-				$thumb    = wp_get_attachment_url( $thumb_id );
-
-				$res[$m2]->thumb = $thumb;
-			}
-
-			break;
-
-		case 'collections' :
-
-			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
-
-			$material_ids = array();
-			for ( $m = 0; $m < count( $terms ); $m++ ) {
-				if ( $terms[$m]->parent == 0 ) {
-					$material_ids[$terms[$m]->term_id] = $terms[$m];
-				}
-			}
-			foreach( $material_ids as $key => $value ) {
-				$res[$value->name] = array();
-			}
-			for ( $c2 = 0; $c2 < count( $terms ); $c2++ ) {
-
-				if ( $terms[$c2]->parent != 0 ) {
-
-					$parent_id = $terms[$c2]->parent;
-					$parent    = $material_ids[$parent_id]->name;
-
-					array_push( $res[$parent], $terms[$c2] );
-				}
-			}
-
-			break;
-
-		case 'swatches' :
-
-			$collection = $_GET['collection'];
-
-			$args = array(
-				'post_type' => 'product',
-				'tax_query' => array(
-					array(
-						'taxonomy' => 'product_cat',
-						'field'    => 'slug',
-						'terms'    => $collection,
-					)
-				),
-			);
-
-			$query    = new WP_Query( $args );
-			$products = $query->posts;
-
-			for ( $s = 0; $s < $query->post_count; $s++ ) {
-
-				$arr = array();
-
-				$product_id   = $products[$s]->ID;
-				$product_meta = get_post_meta( $product_id, '_product_attributes', true );
-
-				$name  = $products[$s]->post_title;
-				$key   = str_replace( ' ', '', $name );
-				$code  = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : '';
-				$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0];
-
-				$arr['name']  = $name;
-				$arr['code']  = $code;
-				$arr['thumb'] = $thumb;
-
-				$res[$key] = $arr;
-			}
-
-			break;
-
-		case 'border' :
-
-			$parent_term = get_term_by( 'slug', 'rug-borders', 'product_cat' );
-			$parent_id   = $parent_term->term_id;
-
-			$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => $parent_id ) );
-
-			for ( $m = 0; $m < count( $terms ); $m++ ) {
-				array_push( $res, $terms[$m] );
-			}
-			for ( $m2 = 0; $m2 < count( $res ); $m2++ ) {
-
-				$material_id = $res[$m2]->term_id;
-
-				$thumb_id = get_woocommerce_term_meta( $material_id, 'thumbnail_id', true );
-				$thumb    = wp_get_attachment_url( $thumb_id );
-
-				$res[$m2]->thumb = $thumb;
-			}
-
-			break;
+		case 'materials'   : $res = materials_data(); break;
+		case 'collections' : $res = collections_data(); break;
+		case 'swatches'    : $res = swatches_data(); break;
+		case 'border'      : $res = border_data(); break;
 	}
 
 	echo json_encode( $res );
+	exit();
+}
 
+if ( array_key_exists( 'products', $_GET ) ) {
+	add_rug_to_cart();
 	exit();
 }
 
@@ -143,6 +44,10 @@ if ( array_key_exists( 'request', $_GET ) ) {
 </head>
 <body>
 
+	<div id="full-loading">
+		<h1>Loading</h1>
+		<div class="loader"></div>
+	</div>
 	<div id="progress-menu"></div>
 	<div id="drawer"></div>
 	<div id="view-controls"></div>

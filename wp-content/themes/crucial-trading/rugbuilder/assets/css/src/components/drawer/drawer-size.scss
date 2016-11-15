@@ -13,12 +13,15 @@
 		padding: 10px;
 		width: 250px;
 
-		&:first-child {
-			margin-right: 20px;
-		}
+		@media screen and (min-width: 687px) {
 
-		&:last-child {
-			margin-left: 20px;
+			&:first-child {
+				margin-right: 20px;
+			}
+
+			&:last-child {
+				margin-left: 20px;
+			}
 		}
 	}
 	

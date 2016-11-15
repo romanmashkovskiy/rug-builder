@@ -6,7 +6,7 @@ RugBuilder.prototype.initScene = function() {
 	R.scene.add(R.lights.spotLight);
 	R.scene.add(R.lights.spotLight);
 //	R.scene.add(R.camera.ambientLight);
-//	R.scene.add(R.camera.directionalLight);
+	R.scene.add(R.camera.directionalLight);
 
 	document.body.appendChild(R.renderer.domElement);
 }

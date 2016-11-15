@@ -63,6 +63,24 @@ function _loadFiles(files, R, folder, type) {
 				let material = new THREE.MeshLambertMaterial( { color: 0xdddddd } );
 				let object   = new THREE.Mesh(texture, material);
 
+				const WINDOW_HEIGHT = window.innerHeight;
+
+				if ( WINDOW_HEIGHT < 1000 && WINDOW_HEIGHT > 850 ) {
+					object.scale.x = 0.8;
+					object.scale.y = 0.8;
+					object.scale.z = 0.8;
+				}
+				else if ( WINDOW_HEIGHT < 850 && WINDOW_HEIGHT > 700 ) {
+					object.scale.x = 0.65;
+					object.scale.y = 0.65;
+					object.scale.z = 0.65;
+				}
+				else if ( WINDOW_HEIGHT < 700 ) {
+					object.scale.x = 0.5;
+					object.scale.y = 0.5;
+					object.scale.z = 0.5;
+				}
+
 				object.name = name;
 
 				objects.push(object);
@@ -125,6 +143,8 @@ function _updateScene(R, type) {
 		})
 
 		PubSub.publish('borderUpdate', type);
+
+		R.loadingScreens('full', 'close');
 		
 		res();
 	})

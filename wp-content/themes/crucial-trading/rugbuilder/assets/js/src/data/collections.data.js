@@ -1,4 +1,4 @@
-RugBuilder.prototype.getCollectionsData = function() {
+RugBuilder.prototype.getCollectionsData = function(collection) {
 
 	// Get all of the collections, returning a promise
 
@@ -20,8 +20,14 @@ RugBuilder.prototype.getCollectionsData = function() {
 						rej(1);
 					}
 
-					R.WCcollections = JSON.parse( this.response );
-					res(true);
+					if ( !collection ) {
+						R.WCcollections = JSON.parse( this.response );
+					}
+					else {
+						R.WCBorderCollections[collection] = JSON.parse(this.response);
+					}
+					
+					res(JSON.parse(this.response));
 				}
 
 				function request() {
@@ -34,8 +40,14 @@ RugBuilder.prototype.getCollectionsData = function() {
 						urlBase = urlBase.substr(0, urlBase.length-1);
 					}
 
+					let url = urlBase + '?request=collections';
+
+					if ( collection ) {
+						url += '&collection=' + collection;
+					}
+
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', urlBase + '?request=collections' );
+					req.open( 'GET', url );
 					req.send();
 				}
 
