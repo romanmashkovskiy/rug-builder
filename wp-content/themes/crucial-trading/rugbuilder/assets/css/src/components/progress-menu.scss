@@ -19,6 +19,12 @@
 		padding: 0;
 		position: absolute;
 
+		img {
+			position: relative;
+			top: 3.5px;
+			right: 10px;
+		}
+
 		@media screen and (max-width: 550px) {
 			display: none;
 		}
@@ -34,7 +40,7 @@
 }
 
 .progress-menu__bottom {
-	padding: 40px 100px;
+	padding: 10px 100px 38px;
 
 	@media screen and (max-width: 992px) {
 		padding: 40px 0;
@@ -68,9 +74,15 @@
 		}
 
 		&.active {
+			text-align: center;
 
 			.progress-menu__stage__link {
+				border-bottom: 1px solid $main-body-text-color;
 				color: $main-body-text-color;
+				display: inline-block;
+				margin: auto;
+				padding-bottom: 4px;
+				width: auto;
 			}
 		}
 	}

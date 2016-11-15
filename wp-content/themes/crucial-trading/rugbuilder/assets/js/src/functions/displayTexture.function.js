@@ -1,6 +1,4 @@
-RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
-
-	/* TO-DO: LOAD BUMP MAP ONCE IT HAS BEEN ADDED AS A WP META BOX */
+RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 
 	if ( thumb.indexOf('-150x150') > -1 ) {
 		thumb = thumb.replace('-150x150', '');
@@ -54,43 +52,22 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 			sceneChildren = ['border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west'];
 	}
 
-	return new Promise((res, rej) => {
 
-		if ( R.loadedTextures[swatch] === undefined ) {
+	if ( R.loadedTextures[swatch] === undefined ) {
 
-			new THREE.TextureLoader().load( thumb, (texture) => {
+		new THREE.TextureLoader().load( thumb, (texture) => {
 
-				texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-				texture.anisotropy = R.renderer.getMaxAnisotropy();
-				texture.repeat.set(5,5);
+			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+			texture.anisotropy = R.renderer.getMaxAnisotropy();
+			texture.repeat.set(2,2);
 
-				let material = new THREE.MeshPhongMaterial( {
-					map       : texture,
-					color     : 0xffffff,
-					shininess : 5
-				});
-
-				R.loadedTextures[swatch] = material;
-
-				if ( stageObj3 !== undefined ) {
-					R[stageObj][stageObj2][stageObj3] = swatch;
-				}
-				else if ( stageObj2 !== undefined ) {
-					R[stageObj][stageObj2] = swatch;
-				}
-				else {
-					R[stageObj] = swatch;
-				}
-
-				for ( let i = 0; i < R.scene.children.length; i++ ) {
-					
-					if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
-						R.scene.children[i].material = R.loadedTextures[swatch];
-					}
-				}
+			let material = new THREE.MeshPhongMaterial( {
+				map       : texture,
+				color     : 0xffffff,
+				shininess : 5
 			});
-		}
-		else {
+
+			R.loadedTextures[swatch] = material;
 
 			if ( stageObj3 !== undefined ) {
 				R[stageObj][stageObj2][stageObj3] = swatch;
@@ -106,10 +83,91 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 				
 				if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 					R.scene.children[i].material = R.loadedTextures[swatch];
+					_loadMaps(R.scene.children[i].material, maps);
 				}
 			}
+
+			R.loadingScreens('full', 'close');
+		});
+	}
+	else {
+
+		if ( stageObj3 !== undefined ) {
+			R[stageObj][stageObj2][stageObj3] = swatch;
+		}
+		else if ( stageObj2 !== undefined ) {
+			R[stageObj][stageObj2] = swatch;
+		}
+		else {
+			R[stageObj] = swatch;
 		}
 
+		for ( let i = 0; i < R.scene.children.length; i++ ) {
+			
+			if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
+				R.scene.children[i].material = R.loadedTextures[swatch];
+				_loadMaps(R.scene.children[i].material, maps);
+			}
+		}
+		
 		R.loadingScreens('full', 'close');
-	});
+	}
 }
+
+function _loadMaps(material, maps) {
+
+	if ( maps.nmap ) {
+
+		new THREE.TextureLoader().load( maps.nmap, (texture) => {
+			material.normalMap = texture;
+			material.needsUpdate = true;
+			return;
+		});
+	}
+
+	if ( maps.bmap ) {
+
+		new THREE.TextureLoader().load( maps.bmap, (texture) => {
+			material.bumpMap = texture;
+			material.needsUpdate = true;
+			return;
+		});
+	}
+
+	if ( maps.dmap ) {
+
+		new THREE.TextureLoader().load( maps.dmap, (texture) => {
+			material.displacementMap = texture;
+			material.needsUpdate = true;
+			return;
+		});
+	}
+
+	return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

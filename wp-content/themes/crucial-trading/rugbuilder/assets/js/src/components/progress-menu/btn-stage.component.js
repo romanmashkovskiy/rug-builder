@@ -11,9 +11,10 @@ RugBuilder.prototype.btnStageComponent = function() {
 			const CURRENT_STAGE = R.currentStage;
 			const STAGE_CLICKED = this.props.index;
 
-			// If the user has clicked on the stage they're already just ignore it and return
+			// If the user has clicked on the stage they're already reset
 
 			if ( CURRENT_STAGE === STAGE_CLICKED ) {
+				R.updateStage(STAGE_CLICKED);
 				return;
 			}
 
@@ -44,8 +45,18 @@ RugBuilder.prototype.btnStageComponent = function() {
 
 		render: function() {
 
+			const CURRENT_STAGE = R.currentStage;
+
+			let stageClass = '';
+
+			if ( this.props.index === CURRENT_STAGE ) {
+				stageClass = 'active';
+			}
+
+			let classes = 'progress-menu__stage ' + stageClass;
+
 			return (
-				<li className="progress-menu__stage">					
+				<li className={ classes }>					
 					<a href="#" className="progress-menu__stage__link" onClick={ this.handleClick }>
 						{ this.props.stage }
 					</a>

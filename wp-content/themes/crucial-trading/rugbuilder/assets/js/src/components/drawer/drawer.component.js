@@ -15,8 +15,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				content : 'materials',
 
-				open : false,
-				text : 'Expand',
+				open : true,
+				text : 'Collapse',
 
 				chosenMaterial   : undefined,
 				chosenCollection : undefined,
@@ -139,13 +139,24 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Function for updating the open/closed state of the drawer
 			// Gets passed to expand-collapse button as props.onUpdate.
 			// If open is true, update state to closed, and vice-versa.
+
+			const ELEM = document.querySelector('#drawer');
+
 			if ( open ) {
+
+				const HEIGHT = ELEM.offsetHeight;
+
+				ELEM.style.marginTop = '-' + HEIGHT + 'px';
+
 				this.setState({
 					open: false,
 					text: 'Expand'
 				});
 			}
 			else {
+
+				ELEM.style.marginTop = 0;
+
 				this.setState({
 					open: true,
 					text: 'Collapse'
@@ -197,7 +208,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				});
 		},
 
-		updateSwatchChoice: function(swatch, thumb, id) {
+		updateSwatchChoice: function(swatch, thumb, id, maps) {
 
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
@@ -220,7 +231,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 
 			// Update the actual rug
-			R.displayTexture(swatch, thumb, this.state.stage);
+			R.displayTexture(swatch, thumb, this.state.stage, maps);
 		},
 
 		updateBorderChoice: function(border) {
@@ -473,10 +484,22 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 			const name  = CURRENT_SWATCH.name;
 			const code  = CURRENT_SWATCH.code;
 			const thumb = CURRENT_SWATCH.thumb;
+			
+			let maps = {};
+
+			if ( CURRENT_SWATCH.bmap !== '' ) {
+				maps.bmap = CURRENT_SWATCH.bmap;
+			}
+			if ( CURRENT_SWATCH.nmap !== '' ) {
+				maps.nmap = CURRENT_SWATCH.nmap;
+			}
+			if ( CURRENT_SWATCH.dmap !== '' ) {
+				maps.dmap = CURRENT_SWATCH.dmap;
+			}
 
 			// Create a BtnSwatchComponent for each swatch in the SWATCH object
 
-			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } code={ code } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
 		})
 	}
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {

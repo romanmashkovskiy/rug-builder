@@ -78,7 +78,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				url = url.substr(0, url.length-1);
 			}
 
-			url += '&products=';
+			url += '?products=';
 			url += this.state.centerID + ',';
 
 			if ( BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ) {
@@ -117,7 +117,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				url = url.substr(0, url.length-1);
 			}
 
-			url += '&products=';
+			url += '?products=';
 			url += this.state.centerID + ',';
 
 			if ( BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ) {
