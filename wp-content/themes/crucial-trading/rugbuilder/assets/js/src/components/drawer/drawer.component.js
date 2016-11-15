@@ -166,8 +166,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		updateContentState: function(content) {
 
-			console.log(this.state)
-
 			// Function for updating the content state.
 			// Gets passed to all of the content components as props.
 			// Updates the content state to whatever is given to it by the component.
@@ -510,7 +508,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
 
 		const SELECTED_SWATCH     = _this.state.chosenSwatch.replace(/ /g, '');
-		const SELECTED_COLLECTION = _this.state.stage === 0 ? _this.state._swatches[ _this.state.chosenCollection ] : _this.state._swatches[ _this.state.chosenMaterial ];
+		const SELECTED_COLLECTION = _this.state._swatches[ _this.state.chosenCollection ];
 
 		let allSwatches = [];
 		let swatchIndex;

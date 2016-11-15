@@ -44,7 +44,7 @@
 
 		img {
 			max-height: 100%;
-			padding-bottom: 25px;
+			padding-bottom: 50px;
 			width: 100%;
 
 			@media screen and (max-width: 768px) {
@@ -67,6 +67,7 @@
 
 				img {
 					padding-bottom: 0;
+					width: auto;
 				}
 
 				h3 {
