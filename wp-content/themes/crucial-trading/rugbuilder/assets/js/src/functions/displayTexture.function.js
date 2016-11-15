@@ -2,6 +2,10 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 
 	/* TO-DO: LOAD BUMP MAP ONCE IT HAS BEEN ADDED AS A WP META BOX */
 
+	if ( thumb.indexOf('-150x150') > -1 ) {
+		thumb = thumb.replace('-150x150', '');
+	}
+
 	if ( stageCode === 1 || stageCode === 4 ) {
 		return;
 	}
