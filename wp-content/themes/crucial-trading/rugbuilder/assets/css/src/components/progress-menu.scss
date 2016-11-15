@@ -74,12 +74,10 @@
 		}
 
 		&.active {
-			text-align: center;
 
 			.progress-menu__stage__link {
 				border-bottom: 1px solid $main-body-text-color;
 				color: $main-body-text-color;
-				display: inline-block;
 				margin: auto;
 				padding-bottom: 4px;
 				width: auto;
@@ -91,8 +89,8 @@
 		color: $main-menu-link-color;
 		display: block;
 		font-size: 14px;
+		margin: auto;
 		text-align: center;
 		padding: 0;
-		width: 100%;
 	}
 }

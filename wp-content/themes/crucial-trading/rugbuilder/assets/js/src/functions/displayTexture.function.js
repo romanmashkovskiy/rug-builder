@@ -59,7 +59,16 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 
 			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 			texture.anisotropy = R.renderer.getMaxAnisotropy();
-			texture.repeat.set(2,2);
+
+			if ( stageCode === 0 ) {
+				// Center
+				texture.repeat.set(2,2);
+			}
+			else if ( stageCode === 2 || stageCode === 3 ) {
+				// Border
+				texture.repeat.set(5,5);
+				texture.flipY = false;
+			}
 
 			let material = new THREE.MeshPhongMaterial( {
 				map       : texture,
