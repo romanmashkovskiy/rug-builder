@@ -51,7 +51,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 		},
 
 		print: function() {
-
+			window.print();
 		},
 
 		order: function() {
@@ -60,6 +60,45 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 		basket: function() {
 
+			const RUG_PRODUCT_ID = 160;
+			const BORDER_TYPE = this.state.borderType;
+
+			let url = '';
+
+			if ( window.location.href[window.location.href.length-1] === '#' ) {
+				url += window.location.href.substr(0, window.location.href.length-1);
+			} else {
+				url += window.location.href;
+			}
+
+			url += '&add-rug=' + RUG_PRODUCT_ID;
+			url += '&centerMaterial=' + encodeURIComponent(this.state.centerMaterial);
+			url += '&borderType=' + BORDER_TYPE;
+
+			if ( BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ) {
+				url += '&borderMaterial=' + encodeURIComponent(this.state.singleBorderMaterial);
+			}
+			else if ( BORDER_TYPE === 'double' ) {
+				url += '&innerBorder=' + encodeURIComponent(this.state.innerBorderMaterial);
+				url += '&outerBorder=' + encodeURIComponent(this.state.outerBorderMaterial)
+			}
+
+			url += '&length=' + this.state.length;
+			url += '&width=' + this.state.width;
+			url += '&price=' + this.state.price;
+
+			console.log(url);
+
+			let req = new XMLHttpRequest();
+
+			req.addEventListener( 'load', loaded );
+
+			req.open( 'GET', url );
+			req.send();
+
+			function loaded() {
+				console.log(this.response)
+			}
 		},
 
 		render: function() {
