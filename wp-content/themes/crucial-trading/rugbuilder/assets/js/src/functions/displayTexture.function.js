@@ -66,7 +66,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 			}
 			else if ( stageCode === 2 || stageCode === 3 ) {
 				// Border
-				texture.repeat.set(5,5);
+				texture.repeat.set(2,2);
 				texture.flipY = true;
 				texture.repeat.x = - 1;
 			}

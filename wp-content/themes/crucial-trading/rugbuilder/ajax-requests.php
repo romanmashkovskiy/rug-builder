@@ -39,8 +39,6 @@ function collections_data() {
 			}
 		}
 
-		
-
 		foreach ( $material_ids as $key => $value ) {
 			$res[$value->name] = array();
 		}
