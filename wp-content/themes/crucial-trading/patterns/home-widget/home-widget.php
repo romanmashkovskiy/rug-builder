@@ -10,11 +10,11 @@
  * @since Crucial Trading 1.0
  */
 
-function home_widget( $atts = '' ) {
+function home_inspiration_widget( $atts = '' ) {
 
 	$html = '';
 
-	$html .= '<div class="home-widget clearfix">';
+	$html .= '<div class="home-inspiration-widget clearfix">';
 
 	$html .= do_shortcode( '[social-post image="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/24200959/organic-slide.jpg" title="Our new floor is so beautiful!" time="4 Days Ago"]' );
 
@@ -31,4 +31,4 @@ function home_widget( $atts = '' ) {
 	return $html;
 }
 
-add_shortcode( 'home-widget', 'home_widget' );
+add_shortcode( 'home-inspiration-widget', 'home_inspiration_widget' );

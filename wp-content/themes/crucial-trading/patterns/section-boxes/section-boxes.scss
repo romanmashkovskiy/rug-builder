@@ -54,7 +54,7 @@
 			color: #7C7C7C;
 		}
 
-		h1 {
+		h2 {
 			margin-bottom: 35px;
 		}
 
@@ -78,6 +78,11 @@
 			&:after {
 				background-color: #7C7C7C;
 			}
+			
+			&:hover {
+				color: #000;
+			}
+			
 		}
 
 		@media screen and (max-width: 992px) {
@@ -88,7 +93,7 @@
 				margin-left: 0;
 			}
 
-			h1 {
+			h2 {
 				margin-bottom: 20px;
 			}
 

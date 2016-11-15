@@ -15,6 +15,24 @@ add_filter( 'rwmb_meta_boxes', 'meta_boxes' );
 
 function meta_boxes($meta_boxes) {
 
+	// Product Category Subtitle
+
+	$meta_boxes[] = array(
+		'title'      => 'Category Subtitle',
+		'post_types' => 'product',
+		'include' => array(
+			'product_cat' => array('coir', 'seagrass', 6, 'Coir'),
+		),
+		'fields'     => array(
+			array(
+				'name'     => 'Subtitle',
+				'id'       => 'subtitle',
+				'type'     => 'text',
+				'priority' => 'high',
+			),
+		),
+	);
+
 	// Page Subtitle
 
 	$meta_boxes[] = array(

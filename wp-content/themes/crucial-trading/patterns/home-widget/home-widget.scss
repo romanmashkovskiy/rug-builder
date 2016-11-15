@@ -1,6 +1,6 @@
-.home-widget {
+.home-inspiration-widget {
 	background: #383838;
-	margin-bottom: 50px;
+	margin-bottom: 8%;
 	padding: 100px;
 
 	.widget__image,
@@ -19,24 +19,35 @@
 
 		h2 {
 			color: white;
-			margin-bottom: 25px;
+			margin-bottom: 35px;
 		}
 
 		span {
 			background: #7C7C7C;
 			display: block;
 			height: 2px;
-			margin-bottom: 40px;
+			margin-bottom: 60px;
 			width: 75px;
 		}
 
 		p {
-			color: #DDDDDD;
+			color: #FFF;
 			margin-bottom: 100px;
 		}
 
 		a {
-			color: #DDDDDD;
+			opacity: 0.6;
+			color: #FFF;
 		}
+		
+		a:before,
+		a:after {
+			background-color: #FFF;
+		}
+		
+		a:hover {
+			opacity: 1;
+		}
+		
 	}
 }

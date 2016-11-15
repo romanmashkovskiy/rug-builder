@@ -16,11 +16,11 @@ header {
   header.small {
     height: 500px; }
     header.small h3.subtitle {
-      top: 43% !important; }
+      text-align: left; }
   header.large {
     height: 750px; }
     header.large h3.subtitle {
-      top: 45.5% !important; }
+      text-align: left; }
   header h1 {
     color: white;
     text-align: center; }

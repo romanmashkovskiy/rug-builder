@@ -270,8 +270,8 @@ body {
 .about__scroller__subtitle {
   -webkit-transform: rotate(270deg);
   transform: rotate(270deg);
-  right: -220px;
-  bottom: 180px; }
+  right: -230px;
+  bottom: 220px; }
 
 @media all and (max-width: 769px) {
   .about__timeline__subtitle {
@@ -327,12 +327,13 @@ body {
 *     Timeline Page Layout 
 ****************************************************************************/
 .about__timeline__content {
-  opacity: 1;
-  display: block;
+  display: none;
+  opacity: 0;
   background-color: #383838;
   padding-bottom: 10%;
   position: relative;
-  z-index: 999; }
+  z-index: 999;
+  height: 6000px; }
 
 .show-about-timeline .about__timeline__content {
   opacity: 1;
@@ -400,16 +401,19 @@ body {
   width: 50%;
   position: relative;
   padding-left: 12%;
-  padding-right: 12%;
-  padding-top: 8%; }
+  padding-right: 12%; }
 
+/*.timeline__event#three,
+.timeline__event#four {
+	padding-top: 30%;
+}*/
 .timeline__event:nth-child(odd) {
   float: left;
   margin-top: 30%; }
 
 .timeline__event:nth-child(even) {
   float: right;
-  margin-top: 11%; }
+  margin-top: 15%; }
 
 /************** Event Details **************/
 h4.timeline__event__heading {

@@ -54,7 +54,7 @@ function section_box( $atts = '' ) {
 				$side == 'left' ? $html .= 'left' : $html .= 'right';
 				$html .= '">';
 				$html .= '<h3>' . $subtitle . '</h3>';
-				$html .= '<h1>' . $title . '</h1>';
+				$html .= '<h2>' . $title . '</h2>';
 				$html .= '<span></span>';
 				$html .= '<p>' . $text . '</p>';
 				$html .= '<a href="' . get_permalink($link) . '">' . $link_text . '</a>';
