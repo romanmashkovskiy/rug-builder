@@ -1,17 +1,14 @@
 .drawer__content__material {
 	padding: 40px 100px;
 
-	&.stage2 ul {
+	&.stage2 ul,
+	&.stage3 ul {
 		margin-left: calc(33.3333333% / 2)!important;
 		width: 66.6666666% !important;
 	}
 
 	@media screen and (max-width: 992px) {
 		padding: 40px 0;
-	}
-
-	@media screen and (max-width: 768px) {
-		overflow: hidden;
 	}
 
 	ul {
@@ -21,7 +18,6 @@
 
 		@media screen and (max-width: 768px) {
 			display: block;
-			width: 500%;
 		}
 	}	
 
@@ -33,11 +29,7 @@
 
 		@media screen and (max-width: 768px) {
 			display: inline-block;
-			width: calc(768px / 6);
-
-			&:first-child {
-				margin-left: calc(50vw - (100vw - 16%));
-			}
+			width: 133px;
 		}
 	}
 
@@ -52,6 +44,7 @@
 		}
 
 		img {
+			max-height: 100%;
 			width: 100%;
 
 			@media screen and (max-width: 768px) {

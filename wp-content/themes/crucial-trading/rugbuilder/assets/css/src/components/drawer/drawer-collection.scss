@@ -58,9 +58,12 @@
 	@media screen and (max-width: 768px) {
 
 		li {
+			background: white;
 			border-bottom: 2px solid #EAEAEA;
 			height: 60px;
 			padding: 15px;
+			position: relative;
+			z-index: 9;
 		}
 	}
 }

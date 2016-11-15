@@ -11,9 +11,15 @@ RugBuilder.prototype.btnSwatchComponent = function() {
 		},
 
 		render: function() {
+
+			let classes = '';
+
+			if ( this.props.selected === this.props.swatch ) {
+				classes = 'selected';
+			}
 			
 			return (
-				<li>
+				<li className={ classes }>
 					<a href="#" onClick={ this.handleClick }>
 						<img src={ this.props.thumb } alt={ this.props.swatch } />
 						<h3>{ this.props.code }</h3>

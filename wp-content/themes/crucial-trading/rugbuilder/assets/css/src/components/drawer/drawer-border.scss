@@ -5,10 +5,6 @@
 		padding: 40px 0;
 	}
 
-	@media screen and (max-width: 768px) {
-		overflow: hidden;
-	}
-
 	ul {
 		display: flex;
 		margin: 0;
@@ -18,7 +14,8 @@
 
 		@media screen and (max-width: 768px) {
 			display: block;
-			width: 500%;
+			margin-left: 0;
+			width: 100%;
 		}
 	}
 
@@ -30,11 +27,7 @@
 
 		@media screen and (max-width: 768px) {
 			display: inline-block;
-			width: calc(768px / 4);
-
-			&:first-child {
-				margin-left: calc(50vw - (100vw - 16%));
-			}
+			width: 133px;
 		}
 	}
 
@@ -49,6 +42,7 @@
 		}
 
 		img {
+			max-height: 100%;
 			width: 100%;
 
 			@media screen and (max-width: 768px) {

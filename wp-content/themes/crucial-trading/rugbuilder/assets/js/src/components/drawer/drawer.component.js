@@ -474,7 +474,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 	}
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
 
-		const SELECTED_SWATCH     = _this.state.chosenSwatch;
+		const SELECTED_SWATCH     = _this.state.chosenSwatch.replace(/ /g, '');
 		const SELECTED_COLLECTION = _this.state.stage === 0 ? _this.state._swatches[ _this.state.chosenCollection ] : _this.state._swatches[ _this.state.chosenMaterial ];
 
 		let allSwatches = [];
@@ -544,7 +544,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 		// Create a BtnSwatchComponent for each swatch in the swatchArr array
 
 		return swatchArr.map((swatch, index) => {
-			return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+			return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
 		});
 	}
 }
