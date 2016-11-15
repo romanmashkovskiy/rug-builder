@@ -89,6 +89,7 @@ function swatches_data() {
 		$code  = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : '';
 		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0];
 
+		$arr['id']    = $product_id;
 		$arr['name']  = $name;
 		$arr['code']  = $code;
 		$arr['thumb'] = $thumb;
@@ -123,3 +124,63 @@ function border_data() {
 
 	return $res;
 }
+
+function add_rug_to_cart() {
+
+	// From http://dsgnwrks.pro/snippets/woocommerce-allow-adding-multiple-products-to-the-cart-via-the-add-to-cart-query-string/ (slighty modified)
+
+	if ( ! class_exists( 'WC_Form_Handler' ) || empty( $_GET['products'] ) || false === strpos( $_GET['products'], ',' ) ) {
+		header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad Request', true, 400);
+		exit();
+	}
+
+	remove_action( 'wp_loaded', array( 'WC_Form_Handler', 'add_to_cart_action' ), 20 );
+
+	$product_ids = explode( ',', $_GET['products'] );
+	$count       = count( $product_ids );
+	$number      = 0;
+
+	foreach ( $product_ids as $product_id ) {
+
+		if ( $number++ === $count ) {
+			$_GET['add-to-cart'] = $product_id;
+			WC_Form_Handler::add_to_cart_action();
+		}
+
+		$product_id        = apply_filters( 'woocommerce_add_to_cart_product_id', absint( $product_id ) );
+		$was_added_to_cart = false;
+		$adding_to_cart    = wc_get_product( $product_id );
+
+		if ( !$adding_to_cart ) {
+			continue;
+		}
+
+		$add_to_cart_handler = apply_filters( 'woocommerce_add_to_cart_handler', $adding_to_cart->product_type, $adding_to_cart );
+
+		$quantity          = 1;
+		$passed_validation = apply_filters( 'woocommerce_add_to_cart_validation', true, $product_id, $quantity );
+
+		// NEED TO SAVE LENGTH ETC IN CART_ITEM_DATA - HOW?
+
+		save_cart_item_data( array(), $product_id, 0 );
+
+		if ( $passed_validation && false !== WC()->cart->add_to_cart( $product_id, $quantity ) ) {
+			wc_add_to_cart_message( array( $product_id => $quantity ), true );
+		}
+	}
+}
+
+function save_cart_item_data( $cart_item_data, $product_id, $variation_id ) {
+
+	$cart_item_data = array();
+
+	if ( array_key_exists( 'center', $_GET ) && $_GET['center'] == $product_id ) {
+		$cart_item_data['length'] = array_key_exists( 'length', $_GET ) ? $_GET['length'] : 0;
+		$cart_item_data['width']  = array_key_exists( 'width', $_GET ) ? $_GET['width'] : 0;
+		$cart_item_data['price']  = array_key_exists( 'price', $_GET ) ? $_GET['price'] : 0;
+	}
+
+	return $cart_item_data;
+}
+
+add_filter( 'woocommerce_add_cart_item_data', 'save_cart_item_data', 10, 3 );

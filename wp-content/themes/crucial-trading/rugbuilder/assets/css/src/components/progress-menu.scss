@@ -3,6 +3,7 @@
 	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	max-height: 161px;
 	position: relative;
 	z-index: 10;
 }
@@ -40,7 +41,7 @@
 	}
 
 	@media screen and (max-width: 768px) {
-		overflow: hidden;
+		overflow-x: scroll;
 	}
 
 	.progress-menu__stages {
@@ -50,7 +51,7 @@
 
 		@media screen and (max-width: 768px) {
 			display: block;
-			width: 500%;
+			width: 200%;
 		}
 	}
 
@@ -62,21 +63,8 @@
 
 		@media screen and (max-width: 768px) {
 			display: inline-block;
-			width: 16%;
-
-			&.next {
-
-				.progress-menu__stage__link {
-					text-align: left;
-				}
-			}
-
-			&.prev {
-
-				.progress-menu__stage__link {
-					text-align: right;
-				}
-			}
+			text-align: center;
+			width: 23%;
 		}
 
 		&.active {

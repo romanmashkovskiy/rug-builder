@@ -41,32 +41,7 @@
 	}
 
 	@media screen and (max-width: 768px) {
-
-		ul {
-			display: block;
-			margin: 0;
-			padding: 0;
-			width: 500%;
-		}
-
-		li {
-			display: inline-block;
-			width: calc(768px / 6);
-
-			&:first-child {
-				margin-left: calc(50vw - (100vw - 16%));
-			}
-
-			a {
-				display: block;
-				text-align: center;
-				width: 100%;
-			}
-
-			img {
-				width: 40%;
-			}
-		}
+		display: none;
 	}
 }
 

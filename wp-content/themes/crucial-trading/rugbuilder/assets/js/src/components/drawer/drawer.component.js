@@ -21,7 +21,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				chosenMaterial   : undefined,
 				chosenCollection : undefined,
 				chosenSwatch     : undefined,
-				chosenBorder     : undefined,
+				chosenBorder     : 'Single & Piping',
 
 				_materials   : materials,
 				_collections : collections,
@@ -194,12 +194,25 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				});
 		},
 
-		updateSwatchChoice: function(swatch, thumb) {
+		updateSwatchChoice: function(swatch, thumb, id) {
 
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
 			// Updates the chosenSwatch state to whatever is given to it by the component.
-			this.setState({ chosenSwatch: swatch });
+			this.setState({ chosenSwatch : swatch });
+
+			if ( this.state.stage === 0 ) {
+				R.centerID = id;
+			} 
+			else if ( this.state.stage === 2 && ( this.state.chosenBorder === 'Single Border' || this.state.chosenBorder === 'Single & Piping' ) ) {
+				R.singleBorderID = id;
+			}
+			else if ( this.state.stage === 2 && this.state.chosenBorder === 'Double Border' ) {
+				R.innerBorderID = id;
+			}
+			else if ( this.state.stage === 3 && this.state.chosenBorder === 'Double Border' ) {
+				R.outerBorderID = id;
+			}
 
 			// Update the actual rug
 			R.displayTexture(swatch, thumb, this.state.stage);
@@ -449,18 +462,19 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 
 			const CURRENT_SWATCH = SWATCH[swatch];
 
+			const id    = CURRENT_SWATCH.id;
 			const name  = CURRENT_SWATCH.name;
 			const code  = CURRENT_SWATCH.code;
 			const thumb = CURRENT_SWATCH.thumb;
 
 			// Create a BtnSwatchComponent for each swatch in the SWATCH object
 
-			return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } code={ code } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } code={ code } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
 		})
 	}
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
 
-		const SELECTED_SWATCH     = _this.state.chosenSwatch;
+		const SELECTED_SWATCH     = _this.state.chosenSwatch.replace(/ /g, '');
 		const SELECTED_COLLECTION = _this.state.stage === 0 ? _this.state._swatches[ _this.state.chosenCollection ] : _this.state._swatches[ _this.state.chosenMaterial ];
 
 		let allSwatches = [];
@@ -530,7 +544,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 		// Create a BtnSwatchComponent for each swatch in the swatchArr array
 
 		return swatchArr.map((swatch, index) => {
-			return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+			return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
 		});
 	}
 }
