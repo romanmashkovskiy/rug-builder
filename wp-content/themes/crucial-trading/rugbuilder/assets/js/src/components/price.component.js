@@ -29,6 +29,8 @@ RugBuilder.prototype.priceComponent = function() {
 
 		goToOrderScreen: function() {
 
+			R.loadingScreens('full', 'open');
+
 			R.camera.position.y = 120;
 			R.camera.position.z = 0;
 

@@ -184,12 +184,15 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Updates the chosenCollection state to whatever is given to it by the component.
 			this.setState({ chosenCollection: collection });
 
+			R.loadingScreens('full', 'open');
+
 			// Then gets the swatches for the chosen collection.
 			// Once it has the swatches, it then adds them to state._swatches
 			// and forces a re-render of the component
 			R.getSwatchData(collection)
 				.then((swatches) => {
 					this.state._swatches[collection] = swatches;
+					R.loadingScreens('full', 'close');
 					this.forceUpdate();
 				});
 		},
@@ -200,6 +203,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Get passed to the Swatch Button Components as props.
 			// Updates the chosenSwatch state to whatever is given to it by the component.
 			this.setState({ chosenSwatch : swatch });
+
+			R.loadingScreens('full', 'open');
 
 			if ( this.state.stage === 0 ) {
 				R.centerID = id;
@@ -224,6 +229,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Get passed to the Border Button Components as props.
 			// Updates the chosenBorder state to whatever is given to it by the component.
 			this.setState({ chosenBorder: border });
+
+			R.loadingScreens('full', 'open');
 
 			// Update the actual rug
 			R.updateBorder(border);
@@ -260,19 +267,19 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		// they return what is returned from the functions at the bottom of this file
 		// (search for "Create dynamic drawer HTML content functions")
 
-		createMaterialHTML    : function() { return _createMaterialHTML(this, BtnMaterialComponent) },
+		createMaterialHTML    : function() { return _createMaterialHTML(this, BtnMaterialComponent, R) },
 
-		createSidebarHTML     : function(caller) { return _createSidebarHTML(this, SideMenuComponent, caller) },
+		createSidebarHTML     : function(caller) { return _createSidebarHTML(this, SideMenuComponent, caller, R) },
 
-		createCollectionsHTML : function() { return _createCollectionsHTML(this, BtnCollectionComponent) },
+		createCollectionsHTML : function() { return _createCollectionsHTML(this, BtnCollectionComponent, R) },
 
-		createSwatchesHTML    : function(caller) { return _createSwatchesHTML(this, BtnSwatchComponent, caller) },
+		createSwatchesHTML    : function(caller) { return _createSwatchesHTML(this, BtnSwatchComponent, caller, R) },
 
-		createBorderHTML      : function() { return _createBorderHTML(this, BtnBorderComponent) },
+		createBorderHTML      : function() { return _createBorderHTML(this, BtnBorderComponent, R) },
 
-		createSizeHTML        : function() { return _createSizeHTML(this) },
+		createSizeHTML        : function() { return _createSizeHTML(this, R) },
 
-		createPriceHTML       : function() { return _createPriceHTML(this) },
+		createPriceHTML       : function() { return _createPriceHTML(this, R) },
 
 		render: function() {
 
@@ -359,7 +366,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 // Create dynamic drawer HTML content functions
 
-function _createMaterialHTML(_this, BtnMaterialComponent) {
+function _createMaterialHTML(_this, BtnMaterialComponent, R) {
 
 	if ( _this.state.stage === 1 ) {
 		return;
@@ -377,7 +384,7 @@ function _createMaterialHTML(_this, BtnMaterialComponent) {
 	}
 }
 
-function _createSidebarHTML(_this, SideMenuComponent, caller) {
+function _createSidebarHTML(_this, SideMenuComponent, caller, R) {
 
 	// Function for creating the drawer sidemenu content
 
@@ -416,7 +423,7 @@ function _createSidebarHTML(_this, SideMenuComponent, caller) {
 	}
 }
 
-function _createCollectionsHTML(_this, BtnCollectionComponent) {
+function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 
 	// Function for creating the drawer collections content
 
@@ -439,7 +446,7 @@ function _createCollectionsHTML(_this, BtnCollectionComponent) {
 	}
 }
 
-function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
+function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 	// Function for creating the drawer swatches content
 
@@ -549,7 +556,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller) {
 	}
 }
 
-function _createBorderHTML(_this, BtnBorderComponent) {
+function _createBorderHTML(_this, BtnBorderComponent, R) {
 
 	if ( _this.state.stage !== 1 ) {
 		return;
@@ -565,7 +572,7 @@ function _createBorderHTML(_this, BtnBorderComponent) {
 	}
 }
 
-function _createSizeHTML(_this) {
+function _createSizeHTML(_this, R) {
 
 	if ( _this.state.stage !== 4 ) {
 		return;
@@ -579,7 +586,7 @@ function _createSizeHTML(_this) {
 	);
 }
 
-function _createPriceHTML(_this) {
+function _createPriceHTML(_this, R) {
 
 	if ( _this.state.stage !== 4 || !_this.state.price ) {
 		return;

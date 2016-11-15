@@ -78,6 +78,7 @@ RugBuilder.prototype.start = function() {
 			}
 
 			render();
+			R.loadingScreens('full', 'close');
 
 			window.addEventListener( 'resize', onWindowResize, false );
 

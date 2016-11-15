@@ -143,6 +143,8 @@ function _updateScene(R, type) {
 		})
 
 		PubSub.publish('borderUpdate', type);
+
+		R.loadingScreens('full', 'close');
 		
 		res();
 	})

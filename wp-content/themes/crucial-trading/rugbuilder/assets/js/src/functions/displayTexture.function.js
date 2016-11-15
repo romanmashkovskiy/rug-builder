@@ -105,5 +105,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode) {
 				}
 			}
 		}
+
+		R.loadingScreens('full', 'close');
 	});
 }

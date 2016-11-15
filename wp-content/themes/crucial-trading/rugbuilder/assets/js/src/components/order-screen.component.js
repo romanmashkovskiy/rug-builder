@@ -175,6 +175,8 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 			const CANVAS_SRC = document.querySelector('canvas').toDataURL();
 
+			R.loadingScreens('full', 'close');
+
 			return (
 				<div className="order">
 					<h2 className="order__title">Order Rug</h2>
