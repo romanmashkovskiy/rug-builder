@@ -5,6 +5,24 @@
 	Created by: KIJO Creative <hello@kijo.co>
 
 *************************************************************************************************************************/
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Main Navigation & Footer */
+.page-template-news {
+  background-color: #f8f8f8; }
+
 .news-categories {
   width: 80%;
-  text-align: center; }
+  margin: auto;
+  text-align: center;
+  background-color: #FFF;
+  padding: 30px; }
