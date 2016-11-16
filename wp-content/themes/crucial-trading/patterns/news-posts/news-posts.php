@@ -41,11 +41,11 @@
 			$news_date = get_the_date();
 			$news_cat = get_the_category();	
 			$news_excerpt = wp_trim_words( get_the_content(), 30, '...' );
-			$news_image = get_the_post_thumbnail( '', 'medium');
+			$news_image = get_the_post_thumbnail( '', 'large');
 			
 			// Build article card
 			$html .= '<article class="news__item" id="'.get_the_ID().'">
-					<div class="news__item__category rotate">'.$news_cat[0]->name.'</div>
+					<div class="news__item__category">'.$news_cat[0]->name.'</div>
 					<a href="'.get_the_permalink().'" title="'.$news_title.'" class="no-effect">
 						<div class="news__item__box">
 							<div class="news__item__contact-wrap">
