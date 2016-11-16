@@ -35,7 +35,7 @@ function header_shortcode($atts = '') {
 	endif;
 	
 	$html .= '<div class="vertical-align">';
-	$html .= '<h3 class="side-title rotate">' . $title . '</h3>';
+	$html .= '<h3 class="side-title">' . $title . '</h3>';
 	
 	if (!empty($subtitle)) : 
 		$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';

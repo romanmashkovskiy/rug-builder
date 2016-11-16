@@ -45,7 +45,7 @@
   -webkit-transform: rotate(270deg);
   transform: rotate(270deg); }
 
-.transition-all, .news__item__box {
+.transition-all, .news__item__box, .news__item__category-line {
   transition: all ease-in-out 0.25s;
   -webkit-transition: all ease-in-out 0.25s; }
 
@@ -89,20 +89,44 @@ body .news__item a {
   text-align: right;
   vertical-align: top; }
 
-/********** Post Info ********/
+/********** Rotated Category ********/
 .news__item__category {
   font-size: 14px;
-  color: #a5a5a5;
+  color: #bfbfbf;
   letter-spacing: 4px;
   text-transform: uppercase;
   font-family: "Montserrat", sans-serif;
   position: absolute;
   top: 0;
-  right: 100%;
+  right: 109%;
   white-space: nowrap;
-  -webkit-transform-origin: left top;
-  transform-origin: left top; }
+  -webkit-transform-origin: right top;
+  transform-origin: right top;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg); }
 
+.news__item__category-line {
+  width: 25px;
+  height: 1px;
+  position: absolute;
+  top: 1%;
+  right: 110%;
+  white-space: nowrap;
+  -webkit-transform-origin: right top;
+  transform-origin: right top;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg);
+  background-color: #cbcbcb;
+  -webkit-transform: translate(-30px, 0);
+  transform: translate(-30px, 0);
+  opacity: 0; }
+
+.news__item:hover .news__item__category-line {
+  -webkit-transform: translate(0px, 0);
+  transform: translate(0px, 0);
+  opacity: 1; }
+
+/********** Post Info ********/
 .news__item__heading h2 {
   text-transform: capitalize;
   font-size: 36px;

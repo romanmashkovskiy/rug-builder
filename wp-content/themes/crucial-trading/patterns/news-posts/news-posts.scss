@@ -70,22 +70,44 @@ body .news__item a {
 }
 
 
-
-/********** Post Info ********/ 	
+/********** Rotated Category ********/ 	
 
 .news__item__category {
 	font-size: 14px;
-	color: $light-grey-text;
+	color: lighten($light-grey-text, 10%);
 	letter-spacing: 4px;
 	text-transform: uppercase;
 	font-family: $font-sub-header;
-	
 	position: absolute;
 	top: 0;
-	right: 100%;
+	right: 109%;
 	white-space: nowrap;
-	transform-origin: left top;
+	transform-origin: right top;
+	transform: rotate(270deg);
 } 
+
+.news__item__category-line {
+	width: 25px;
+	height: 1px;
+	position: absolute;
+	top: 1%;
+	right: 110%;
+	white-space: nowrap;
+	transform-origin: right top;
+	transform: rotate(270deg);
+	background-color: lighten($light-grey-text, 15%);
+	transform: translate(-30px, 0);
+	opacity: 0;
+	@extend .transition-all;
+}
+
+.news__item:hover .news__item__category-line {
+	transform: translate(0px, 0);
+	opacity: 1;
+}
+
+
+/********** Post Info ********/ 	
 
 .news__item__heading h2 {
 	text-transform: capitalize;
