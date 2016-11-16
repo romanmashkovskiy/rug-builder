@@ -1,8 +1,14 @@
  /************************************************************************************************************************
-	News - Posts views
+	News - Post view
 	
 	Crucial Trading - SCSS	
 	Created by: KIJO Creative <hello@kijo.co>
 
 *************************************************************************************************************************/
 
+@import '../../assets/css/src/_variables';
+
+.news-posts {
+	padding-top: 4%;
+	padding-bottom: 5%;
+}
