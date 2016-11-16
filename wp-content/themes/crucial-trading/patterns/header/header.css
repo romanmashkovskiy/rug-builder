@@ -28,6 +28,7 @@ header {
     color: #7C7C7C;
     text-align: center; }
     header h3.side-title {
+      top: 60%;
       left: -13px; }
   @media screen and (max-width: 600px) {
     header.small, header.large {
