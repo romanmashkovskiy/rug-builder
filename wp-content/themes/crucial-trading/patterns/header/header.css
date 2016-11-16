@@ -12,6 +12,8 @@
 /* Main Navigation & Footer */
 header {
   background: #383838;
+  background-size: cover;
+  background-position: center center;
   position: relative; }
   header.small {
     height: 450px; }
@@ -28,8 +30,12 @@ header {
     color: #7C7C7C;
     text-align: center; }
     header h3.side-title {
-      top: 60%;
-      left: -13px; }
+      bottom: -20px;
+      left: 45px;
+      text-align: left;
+      float: left;
+      -webkit-transform-origin: left;
+      transform-origin: left; }
   @media screen and (max-width: 600px) {
     header.small, header.large {
       height: 300px; } }
