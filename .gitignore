@@ -22,7 +22,6 @@ multi-config/*
 config.codekit
 .codekit-cache
 
-#/.htaccess
 /license.txt
 /readme.html
 /sitemap.xml

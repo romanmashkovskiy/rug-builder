@@ -31,7 +31,7 @@ function header_shortcode($atts = '') {
 	if (!empty($background)) : 
 		$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
 	else : 
-		$html .= '<header class="' . $header_size . '"';
+		$html .= '<header class="' . $header_size . '">';
 	endif;
 	
 	$html .= '<div class="vertical-align">';
