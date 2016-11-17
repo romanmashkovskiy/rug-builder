@@ -4,8 +4,8 @@
  *
  * The basket page template
  *
- * @package Hogarths
- * @since Hogarths 1.0
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
  */
  
 get_header();

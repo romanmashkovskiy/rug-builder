@@ -4,8 +4,8 @@
  *
  * The find a retailer page template
  *
- * @package Hogarths
- * @since Hogarths 1.0
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
  */
 
 if ( array_key_exists( 'get_retailers', $_GET ) ) {

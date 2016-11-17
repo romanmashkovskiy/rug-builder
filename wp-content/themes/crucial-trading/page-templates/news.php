@@ -4,8 +4,8 @@
  *
  * The news home page for displaying posts
  *
- * @package Hogarths
- * @since Hogarths 1.0
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
  */
  
 get_header();
