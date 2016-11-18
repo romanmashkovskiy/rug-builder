@@ -55,14 +55,16 @@
 *     Scroller Page Layout 
 ****************************************************************************/
 .about__scroller__content {
-  opacity: 1;
-  display: block;
+  display: none;
+  opacity: 0;
+  /*opacity: 1;
+	display: block;*/
   background-color: #333333;
   padding-bottom: 10%;
   position: relative;
   z-index: 999;
   height: 6000px; }
 
-.show-about-timeline .about__timeline__content {
+.show-about-scroller .about__scroller__content {
   opacity: 1;
   display: block; }
