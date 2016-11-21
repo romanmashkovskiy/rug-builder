@@ -131,7 +131,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			R.getMaterialsData('border')
 				.then((res) => { this.setState({ _materials: R.WCborderMaterials }) })
-				.catch(()   => { alert('Loading material error') });
+				.catch(()   => {
+					R.error(103, true);
+					return;
+				});
 		},
 
 		updateOpenState: function(open) {
@@ -185,6 +188,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					.then((collections) => {
 						this.state._collections[material] = collections;
 						this.forceUpdate()
+					})
+					.catch(()   => {
+						R.error(101, true);
+						return;
 					});
 			}
 		},
@@ -206,6 +213,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					this.state._swatches[collection] = swatches;
 					R.loadingScreens('full', 'close');
 					this.forceUpdate();
+				})
+				.catch(()   => {
+					R.error(102, true);
+					return;
 				});
 		},
 

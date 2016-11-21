@@ -159,17 +159,8 @@ RugBuilder.prototype.start = function() {
 	}
 
 	function error( err ) {
-
-		let stage;
-
-		switch ( err ) {
-
-			case 0 : stage = 'materials'; break;
-			case 1 : stage = 'collections'; break;
-		}
-
-		let str = 'Error at '  + stage + ' stage.';
-
-		alert(str);
+		let errorCode = 100 + err;
+		R.error(errorCode, true);
+		return;
 	}
 }

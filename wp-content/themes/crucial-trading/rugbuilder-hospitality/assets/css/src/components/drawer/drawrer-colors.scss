@@ -1,0 +1,39 @@
+.drawer__content ul.colors {
+	margin: 0;
+	padding: 25px;
+
+	a {
+		display: block;
+		height: 100%;
+		padding: 0;
+		width: 100%;
+
+		img {
+			width: 100%;
+		}
+	}
+	
+	@media screen and (min-width: 768px) {
+
+		li {
+			box-sizing: border-box;
+			float: left;
+			list-style: none;
+			margin-bottom: 20px;
+			padding: 0 10px;
+			width: 10%;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+
+		li {
+			background: white;
+			border-bottom: 2px solid #EAEAEA;
+			height: 60px;
+			padding: 15px;
+			position: relative;
+			z-index: 9;
+		}
+	}
+}

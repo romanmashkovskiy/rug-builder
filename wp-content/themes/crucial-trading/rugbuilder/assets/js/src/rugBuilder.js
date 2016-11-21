@@ -104,8 +104,13 @@ class RugBuilder {
 
 		this.price = 0;
 
-		// React Components
-		this.reactComponents = {};
+		// Errors
+		this.errors = {
+			100 : 'Material Loading Stage',
+			101 : 'Collection Loading Stage',
+			102 : 'Swatch Loading Stage',
+			103 : 'Border Material Loading Stage',
+		}
 	};
 
 	nextStage() {
