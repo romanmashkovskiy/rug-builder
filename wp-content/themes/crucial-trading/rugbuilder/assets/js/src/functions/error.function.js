@@ -1,5 +1,13 @@
 RugBuilder.prototype.error = function(code, display) {
 
+	const R = rugBuilder;
+
+	document.querySelector('#close-error').addEventListener('click', close);
+
+	function close() {
+		R.error(0, false);
+	}
+
 	const ERROR_BOX = document.querySelector('#error-box');
 	const ERROR_MSG = document.querySelector('#error-msg');
 	const ERROR_COD = document.querySelector('#error-code');
@@ -10,6 +18,10 @@ RugBuilder.prototype.error = function(code, display) {
 	let errorMsg, detailError;
 
 	switch (code) {
+
+		case 0 :
+			errorMsg = '';
+			break;
 
 		case 100 :
 		case 101 :
@@ -27,17 +39,7 @@ RugBuilder.prototype.error = function(code, display) {
 			errorMsg = 'Sorry, an error has occured loading the borders. Please refresh the page.';
 			break;
 
-		case 1 :
-			errorMsg = '';
-			break;
-
-		case 1 :
-			errorMsg = '';
-			break;
-
-		case 1 :
-			errorMsg = '';
-			break;
+		
 
 		default :
 			errorMsg = 'Sorry, an error has occured. Please try again.';

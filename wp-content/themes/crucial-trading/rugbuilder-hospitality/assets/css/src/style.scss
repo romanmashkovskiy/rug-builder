@@ -26,6 +26,11 @@ canvas {
 		position: absolute;
 		width: 100%;
 	}
+
+	@media screen and (max-width: 1000px) {
+		height: 350px;
+		width: 350px;
+	}
 }
 
 #full-loading {

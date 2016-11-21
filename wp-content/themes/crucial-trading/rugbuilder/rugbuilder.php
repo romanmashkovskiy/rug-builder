@@ -53,6 +53,11 @@ if ( array_key_exists( 'products', $_GET ) ) {
 	<div id="view-controls"></div>
 	<div id="price"></div>
 	<div id="order-screen"></div>
+	<div id="error-box">
+		<p id="error-msg"></p>
+		<p id="error-code"></p>
+		<img src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder/assets/icons/exit.svg" id="close-error">
+	</div>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/PubSub/pubsub.min.js"></script>
 
