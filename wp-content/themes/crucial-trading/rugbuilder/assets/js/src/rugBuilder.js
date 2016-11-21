@@ -110,6 +110,10 @@ class RugBuilder {
 			101 : 'Collection Loading Stage',
 			102 : 'Swatch Loading Stage',
 			103 : 'Border Material Loading Stage',
+
+			200 : 'Loading Single Border Into Three',
+			201 : 'Loading Single & Piping Border Into Three',
+			202 : 'Loading Double Border Into Three'
 		}
 	};
 

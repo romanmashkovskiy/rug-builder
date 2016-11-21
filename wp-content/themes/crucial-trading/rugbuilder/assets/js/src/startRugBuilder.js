@@ -1,5 +1,9 @@
 RugBuilder.prototype.start = function() {
 
+	window.onerror = function() {
+		R.error(1000, true;)
+	}
+
 	const R = rugBuilder;
 
 	// Get WC Data, then either load rest of the app or error

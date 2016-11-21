@@ -39,10 +39,14 @@ RugBuilder.prototype.error = function(code, display) {
 			errorMsg = 'Sorry, an error has occured loading the borders. Please refresh the page.';
 			break;
 
-		
+		case 200 :
+		case 201 :
+		case 202 :
+			errorMsg = 'Sorry, an error occured updating the border. Please try again.'
 
-		default :
+		case 1000 :
 			errorMsg = 'Sorry, an error has occured. Please try again.';
+			break;
 	}
 
 	ERROR_MSG.innerHTML = errorMsg;
