@@ -126,8 +126,6 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 
 function _loadMaps(material, maps) {
 
-	console.log(maps)
-
 	if ( maps !== undefined ) {
 
 		if ( typeof maps.nmap === 'object' ) {
