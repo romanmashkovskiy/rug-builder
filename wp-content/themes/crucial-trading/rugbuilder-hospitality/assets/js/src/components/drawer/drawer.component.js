@@ -102,7 +102,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			let _t = this;
 
-			setInterval(function(){console.log(_t.state)},5000)
+//			setInterval(function(){console.log(_t.state)},5000)
 		
 			let structuresHTML, colorsHTML;
 
