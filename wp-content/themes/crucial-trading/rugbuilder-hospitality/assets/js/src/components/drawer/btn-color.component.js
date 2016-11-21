@@ -25,7 +25,7 @@ RugBuilder.prototype.btnColorComponent = function() {
 						<img src={ url } alt={ this.props.color } />
 					</a>
 				</li>
-			);
+			);					
 		}
 	});
 
