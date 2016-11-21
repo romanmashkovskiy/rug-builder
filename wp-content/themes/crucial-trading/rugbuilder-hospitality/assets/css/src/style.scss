@@ -18,11 +18,11 @@ canvas {
 	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
-	height: 500px;
-	left: calc(50% - 250px);
+	height: 512px;
+	left: calc(50% - 256px);
 	position: absolute;
 	top: 50%;
-	width: 500px;
+	width: 512px;
 
 	div, img {
 		height: 100%;
@@ -35,9 +35,9 @@ canvas {
 	}
 
 	@media screen and (max-width: 555px) {
-		height: 350px;
-		left: calc(50% - 175px);
-		width: 350px;
+		height: 256px;
+		left: calc(50% - 128px);
+		width: 256px;
 	}
 }
 
