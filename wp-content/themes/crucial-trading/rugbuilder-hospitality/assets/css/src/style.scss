@@ -33,6 +33,12 @@ canvas {
 	@media screen and (max-height: 800px) {
 		top: 55%;
 	}
+
+	@media screen and (max-width: 555px) {
+		height: 350px;
+		left: calc(50% - 175px);
+		width: 350px;
+	}
 }
 
 #full-loading {
