@@ -12,3 +12,11 @@ RugBuilder.prototype.loadingScreens = function(screen, action) {
 
 	document.querySelector(id).style.zIndex = z;
 }
+
+RugBuilder.prototype.showLittleLoader = function() {
+	document.querySelector('#little-loader').style.display = 'block';
+}
+
+RugBuilder.prototype.hideLittleLoader = function() {
+	document.querySelector('#little-loader').style.display = 'none';
+}

@@ -4,6 +4,10 @@ RugBuilder.prototype.imageComponent = function(alt, src) {
 
 	const ImageComponent = React.createClass({
 
+		componentDidMount: function() {
+			R.hideLittleLoader();
+		},
+
 		render: function() {
 
 			return (

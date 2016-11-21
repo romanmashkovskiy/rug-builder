@@ -41,37 +41,27 @@ canvas {
 	}
 }
 
-#full-loading {
-	background: white;
+#little-loader {
 	bottom: 0;
+	display: none;
 	left: 0;
 	position: absolute;
 	right: 0;
 	top: 0;
-	z-index: 99999;
-
-	h1 {
-		color: #383838;
-		font-family: 'Playfair Display', serif;
-		left: 0;
-		position: absolute;
-		right: 0;
-		text-align: center;
-		top: 35%;
-	}
 
 	.loader,
 	.loader:after {
 		border-radius: 50%;
-		width: 10em;
-		height: 10em;
+		width: 150px;
+		height: 150px;
 	}
 
 	.loader {
 		font-size: 10px;
-		position: relative;
-		margin: 47% auto 0;
+		left: calc(50% - 75px);
+		position: absolute;
 		text-indent: -9999em;
+		top: calc(50% - 75px);
 		border-top: 1.1em solid #383838;
 		border-right: 1.1em solid #383838;
 		border-bottom: 1.1em solid #383838;

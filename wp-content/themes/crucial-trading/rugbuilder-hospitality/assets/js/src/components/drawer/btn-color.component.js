@@ -6,6 +6,8 @@ RugBuilder.prototype.btnColorComponent = function() {
 
 		handleClick: function() {
 
+			R.showLittleLoader();
+
 			let url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/rugs/' + this.props.structure + '/' + this.props.color + '/colour-' + R.colorStage + '.png';
 
 			R.imageComponent(this.props.color, url);

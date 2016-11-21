@@ -42,6 +42,11 @@ include_once('ajax-requests.php');
 		<div id="color-8"></div>
 		<div id="color-9"></div>
 	</div>
+	<div id="little-loader">
+		<div class="loader-container">
+			<div class="loader"></div>
+		</div>
+	</div>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/vendor/PubSub/pubsub.min.js"></script>
 
