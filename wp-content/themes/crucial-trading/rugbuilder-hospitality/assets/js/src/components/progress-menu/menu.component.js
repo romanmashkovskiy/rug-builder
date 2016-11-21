@@ -51,7 +51,6 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 				<div className="progress-menu__container">
 					<div className="progress-menu__top">
 						<img src={ LOGO } alt="Crucial Trading Rug Builder" />
-						<BtnRestartComponent />
 						<BtnExitComponent />
 					</div>
 					<div className="progress-menu__bottom">
