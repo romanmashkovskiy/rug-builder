@@ -149,6 +149,30 @@ function border_data() {
 	return $res;
 }
 
+function price_data() {
+
+	$material = $_GET['material'];
+
+	$args = array(
+		'post_type' => 'product',
+		'posts_per_page' => 1,
+		'title' => $material
+	);
+
+	$query = new WP_Query( $args );
+
+	if ( $query->post_count != 1 ) {
+		return false;
+	}
+
+	$post_id = $query->posts[0]->ID;
+
+	$product = wc_get_product( $post_id );
+	$price   = $product->get_regular_price();
+
+	return $price;
+}
+
 function add_rug_to_cart() {
 
 	// From http://dsgnwrks.pro/snippets/woocommerce-allow-adding-multiple-products-to-the-cart-via-the-add-to-cart-query-string/ (slighty modified)

@@ -1,8 +1,8 @@
 RugBuilder.prototype.start = function() {
 
-	window.onerror = function() {
-		R.error(1000, true;)
-	}
+//	window.onerror = function() {
+//		R.error(1000, true);
+//	}
 
 	const R = rugBuilder;
 

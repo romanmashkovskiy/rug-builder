@@ -19,6 +19,7 @@ if ( array_key_exists( 'request', $_GET ) ) {
 		case 'collections' : $res = collections_data(); break;
 		case 'swatches'    : $res = swatches_data(); break;
 		case 'border'      : $res = border_data(); break;
+		case 'price'       : $res = price_data(); break;
 	}
 
 	echo json_encode( $res );
