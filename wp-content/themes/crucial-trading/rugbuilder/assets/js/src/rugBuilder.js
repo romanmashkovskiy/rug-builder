@@ -429,42 +429,63 @@ class RugBuilder {
 			return;
 		}
 
-		const CURRENT_CENTER_MATERIAL = this.centerMaterial;
-		const CENTER_PRICE_PER_m2     = this.getPriceData(CURRENT_CENTER_MATERIAL);
-		const AREA                    = LENGTH * WIDTH;
-		const CENTER_PRICE            = CENTER_PRICE_PER_m2 * AREA;
+		const CURRENT_CENTER_MATERIAL = this.centerMaterial;+
 
-		const CURRENT_BORDER_TYPE     = this.borderType;
+		this.getPriceData(CURRENT_CENTER_MATERIAL)
+			.then((price) => {
 
-		if ( CURRENT_BORDER_TYPE === 'single' || CURRENT_BORDER_TYPE === 'piping' ) {
+				const AREA         = LENGTH * WIDTH;
+				const CENTER_PRICE = price * AREA;
 
-			const CURRENT_BORDER_MATERIAL = this.borderMaterials[CURRENT_BORDER_TYPE];
-			const BORDER_PRICE_PER_m2     = this.getPriceData(CURRENT_BORDER_MATERIAL);
+				const CURRENT_BORDER_TYPE = this.borderType;
 
-			const BORDER_PRICE = 0;
+				if ( CURRENT_BORDER_TYPE === 'single' || CURRENT_BORDER_TYPE === 'piping' ) {
 
-			totalPrice = CENTER_PRICE + BORDER_PRICE;
-		}
-		else if ( CURRENT_BORDER_TYPE === 'double' ) {
+					const CURRENT_BORDER_MATERIAL = this.borderMaterials[CURRENT_BORDER_TYPE];
 
-			const CURRENT_INNER_MATERIAL = this.borderMaterials.double.inner;
-			const CURRENT_OUTER_MATERIAL = this.borderMaterials.double.outer;
+					this.getPriceData(CURRENT_BORDER_MATERIAL)
+						.then((price2) => {
+							totalPrice = CENTER_PRICE + price2; 
+							PubSub.publish('newPrice', totalPrice);
 
-			const INNER_PRICE_PER_m2 = this.getPriceData(CURRENT_INNER_MATERIAL);
-			const OUTER_PRICE_PER_m2 = this.getPriceData(CURRENT_OUTER_MATERIAL);
+							this.length = LENGTH;
+							this.width  = WIDTH;
+							this.price  = totalPrice;
 
-			const INNER_PRICE = 0;
-			const OUTER_PRICE = 0;
+							return;
+						})
+						.catch(() => {
+							R.error(1000, true)
+						});
 
-			totalPrice = CENTER_PRICE + INNER_PRICE + OUTER_PRICE;
-		}
+				}
+				else if ( CURRENT_BORDER_TYPE === 'double' ) {
 
-		this.length = LENGTH;
-		this.width  = WIDTH;
-		this.price  = totalPrice;
+					const CURRENT_INNER_MATERIAL = this.borderMaterials.double.inner;
+					const CURRENT_OUTER_MATERIAL = this.borderMaterials.double.outer;
 
-		PubSub.publish('newPrice', totalPrice);
-		return;
+					this.getPriceData(CURRENT_INNER_MATERIAL)
+						.then((price2) => {
+							return this.getPriceData(CURRENT_OUTER_MATERIAL);
+						})
+						.then((price3) => {
+							totalPrice = CENTER_PRICE + price2 + price3;
+							PubSub.publish('newPrice', totalPrice);
+
+							this.length = LENGTH;
+							this.width  = WIDTH;
+							this.price  = totalPrice;
+
+							return;
+						})
+						.catch(() => {
+							R.error(1000, true)
+						});
+				}
+			})
+			.catch(() => {
+				R.error(1000, true)
+			});
 	}
 }
 

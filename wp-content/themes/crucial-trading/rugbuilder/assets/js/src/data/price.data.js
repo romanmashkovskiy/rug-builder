@@ -10,7 +10,13 @@ RugBuilder.prototype.getPriceData = function(material) {
 			case 'website' :
 
 				function loaded() {
-					console.log(this)
+					
+					if ( this.status != 200 ) {
+						rej();
+						return;
+					}
+
+					res(JSON.parse(this.response));
 				}
 
 				let req = new XMLHttpRequest();
