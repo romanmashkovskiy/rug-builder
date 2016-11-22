@@ -8,6 +8,20 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			let structures = R.structureImages;
 
+			let size = 0, key;
+
+			for ( key in structures ) {
+				if ( structures.hasOwnProperty(key) ) {
+					size++;
+				}
+			}
+
+			let maxScrollStructures = Math.floor(size / 8);
+
+			if ( size % 8 === 0 ) {
+				maxScrollStructures = maxScrollStructures - 1;
+			}
+
 			return {
 				stage : 'structures',
 
@@ -18,7 +32,11 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				chosenColors    : [],
 
 				_structures : structures,
-				_colors     : undefined
+				_colors     : undefined,
+
+				currentScroll       : 0,
+				maxScrollStructures : maxScrollStructures,
+				maxScrollColors     : 0
 			}
 		},
 
@@ -38,7 +56,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			const ELEM = document.querySelector('#drawer');
 
-			if ( open ) {
+			if ( open === true ) {
 
 				const HEIGHT = ELEM.offsetHeight;
 
@@ -47,6 +65,13 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				this.setState({
 					open: false,
 					text: 'Expand'
+				});
+			}
+			else if ( open === 'kinda' ) {
+
+				this.setState({
+					open: 'kinda',
+					text: 'Collapse'
 				});
 			}
 			else {
@@ -61,7 +86,15 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 		},
 
 		stageHasChanged: function(stage) {
+
+			document.querySelector('ul.structures').style.height = 'auto';
+			document.querySelector('ul.structures').style.overflow = 'initial';
+			document.querySelector('ul.colors').style.height = 'auto';
+			document.querySelector('ul.colors').style.overflow = 'initial';
+
 			this.updateDrawer(stage);
+			this.updateOpenState(false);
+			this.setState({ currentScroll : 0 });
 		},
 
 		updateDrawer: function(stageCode) {
@@ -79,14 +112,29 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		updateStructure: function(code) {
 
+			if ( this.state.maxScrollStructures > 0 ) {
+
+				document.querySelector('ul.structures').style.height = '289px';
+				document.querySelector('ul.structures').style.overflow = 'hidden';
+
+				this.updateOpenState('kinda');
+			}
+
 			for ( let i = 1; i < 10; i++ ) {
 				ReactDOM.unmountComponentAtNode(document.querySelector('#color-' + i))
 			}
 
 			R.stageVisited = [ true, false, false, false, false, false, false, false, false, false ];
 
+			let maxScrollColors = Math.floor(R.structureColorCodes[code].length / 20);
+
+			if ( R.structureColorCodes[code] % 20 === 0 ) {
+				maxScrollColors = maxScrollColors - 1;
+			}
+
 			this.setState({
 				_colors         : R.structureColorCodes[code],
+				maxScrollColors : maxScrollColors,
 				chosenStructure : code,
 				chosenColors    : []
 			})
@@ -95,15 +143,95 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 		},
 
 		updateColor: function(color) {
+
+			if ( this.state.maxScrollColors > 0 ) {
+
+				document.querySelector('ul.colors').style.height = '243px';
+				document.querySelector('ul.colors').style.overflow = 'hidden';
+
+				this.updateOpenState('kinda');
+			}
+
 			this.state.chosenColors[R.colorStage - 1] = color;
+		},
+
+		scrollUp: function() {
+
+			if ( this.state.currentScroll === 0 ) {
+				return;
+			}
+
+			let selector = this.state.stage === 'colors' ? 'ul.colors li' : 'ul.structures li';
+
+			document.querySelectorAll(selector).forEach((e, i) => {
+
+				let multipliter = this.state.stage === 'colors' ? 20 : 8;
+				let minusier    = this.state.stage === 'colors' ? 21 : 9;
+
+				let lowerBound, upperBound;
+
+				upperBound = multipliter * this.state.currentScroll;
+				lowerBound = upperBound - minusier;
+
+				if ( i > lowerBound && i < upperBound ) {
+
+					var height        = parseInt(window.getComputedStyle(e).getPropertyValue('height'));
+					var currentMargin = parseInt(window.getComputedStyle(e).getPropertyValue('margin-top'));
+					var newMargin     = currentMargin + (height * 2);
+
+					e.style.marginTop = newMargin + 'px';
+				}
+			})
+
+			var newScroll = this.state.currentScroll - 1;
+
+			this.setState({ currentScroll : newScroll })
+		},
+
+		scrollDown: function() {
+
+			if ( this.state.stage === 'structures' && this.state.currentScroll === this.state.maxScrollStructures ) {
+				return;
+			}
+
+			if ( this.state.stage === 'colors' && this.state.currentScroll === this.state.maxScrollColors ) {
+				return;
+			}
+
+			let selector = this.state.stage === 'colors' ? 'ul.colors li' : 'ul.structures li';
+
+			document.querySelectorAll(selector).forEach((e, i) => {
+
+				let multipliter = this.state.stage === 'colors' ? 20 : 8;
+				let minusier    = this.state.stage === 'colors' ? 21 : 9;
+
+				let lowerBound, upperBound;
+
+				upperBound = multipliter * (this.state.currentScroll + 1);
+				lowerBound = upperBound - minusier;
+
+				if ( i > lowerBound && i < upperBound ) {
+
+					var height        = parseInt(window.getComputedStyle(e).getPropertyValue('height'));
+					var currentMargin = parseInt(window.getComputedStyle(e).getPropertyValue('margin-top'));
+					var newMargin     = currentMargin - (height * 2);
+
+					e.style.marginTop = newMargin + 'px';
+				}
+			})
+
+			var newScroll = this.state.currentScroll + 1;
+
+			this.setState({ currentScroll : newScroll })
 		},
 
 		render: function() {
 
 //			let _t = this;
-//			setInterval(function(){console.log(_t.state)},5000)
+//			setInterval(function(){_t.scrollDown()},5000)
+//			setTimeout(function(){_t.scrollDown()},1000)
 		
-			let structuresHTML, colorsHTML;
+			let structuresHTML, colorsHTML, btnsHTML;
 
 			if ( this.state.stage === 'structures' ) {
 
@@ -122,6 +250,28 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				});
 			}
 
+			if ( this.state.open === 'kinda' ) {
+
+				let checking = this.state.stage === 'colors' ? 'maxScrollColors' : 'maxScrollStructures';
+
+				let upStyle = this.state.currentScroll === 0 ? { color: '#A8A8A8' } : {};
+				let dnStyle = this.state.currentScroll === this.state[checking] ? { color: '#A8A8A8' } : {};
+
+				if ( this.state[checking] > 0 ) {
+
+					btnsHTML = (
+						<div className="scroll-btns clearfix">
+							<div className="scroll__up">
+								<a href="#" onClick={ this.scrollUp } style={ upStyle }>&#x25B2;</a>
+							</div>
+							<div className="scroll__down">
+								<a href="#" onClick={ this.scrollDown } style={ dnStyle }>&#x25BC;</a>
+							</div>
+						</div>
+					);
+				}
+			}
+
 			const OPEN             = this.state.open ? 'open' : 'closed';
 			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.stage;
 
@@ -136,6 +286,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 								{ colorsHTML }
 							</ul>
 						</div>
+						{ btnsHTML }
 					</div>
 					<BtnExpandCollapseComponent onUpdate={ this.updateOpenState } currentState={ this.state }/>
 				</div>	

@@ -9,8 +9,9 @@ RugBuilder.prototype.btnColorComponent = function() {
 			R.showLittleLoader();
 
 			let url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/rugs/' + this.props.structure + '/' + this.props.color + '/colour-' + R.colorStage + '.png';
+			let jpg = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/rugs/' + this.props.structure + '/' + this.props.color + '/colour-' + R.colorStage + '.jpg';
 
-			R.imageComponent(this.props.color, url);
+			R.imageComponent(this.props.color, url, jpg);
 
 			this.props.onClick(this.props.color);
 		},

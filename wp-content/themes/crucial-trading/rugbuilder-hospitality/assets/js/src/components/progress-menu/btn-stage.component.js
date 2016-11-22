@@ -9,10 +9,6 @@ RugBuilder.prototype.btnStageComponent = function() {
 			const CURRENT_STAGE = R.colorStage;
 			const STAGE_CLICKED = this.props.index;
 
-			if ( CURRENT_STAGE === STAGE_CLICKED ) {
-				return;
-			}
-
 			if ( CURRENT_STAGE + 1 === STAGE_CLICKED ) {
 				R.colorStage = R.colorStage + 1;
 			}

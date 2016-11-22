@@ -1,4 +1,4 @@
-RugBuilder.prototype.imageComponent = function(alt, src) {
+RugBuilder.prototype.imageComponent = function(alt, src, jpg) {
 
 	const R = rugBuilder;
 
@@ -10,8 +10,12 @@ RugBuilder.prototype.imageComponent = function(alt, src) {
 
 		render: function() {
 
+			let error = function(e) {
+				e.target.src = jpg;
+			}
+
 			return (
-				<img src={ src } alt={ alt } />
+				<img src={ src } alt={ alt } onError={ error } />
 			);
 		}
 	});

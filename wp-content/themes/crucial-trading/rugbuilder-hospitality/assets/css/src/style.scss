@@ -14,6 +14,25 @@ canvas {
 	z-index: 5;
 }
 
+.scroll-btns {
+	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	padding: 10px 5px 7px 10px;
+	position: absolute;
+	right: 0;
+}
+
+.scroll__up,
+.scroll__down {
+	float: left;
+	padding: 0 5px;
+
+	a {
+		padding: 0;
+	}
+}
+
 #img-container {
 	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 	-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
