@@ -8,8 +8,6 @@
  * @since Hogarths 1.0
  */
 
-include_once('ajax-requests.php');
-
 ?>
 
 <!doctype html>
