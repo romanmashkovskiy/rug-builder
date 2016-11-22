@@ -2,6 +2,9 @@ class RugBuilder {
 
 	constructor( context ) {
 
+		// Coloured Stucture Images
+		this.coloredStructureImages = false; 
+
 		// Context
 		this.context = context;
 

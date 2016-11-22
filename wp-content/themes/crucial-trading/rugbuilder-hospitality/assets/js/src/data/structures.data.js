@@ -7,8 +7,14 @@ RugBuilder.prototype.getStructuresData = function() {
 		for ( let i = 0; i < R.structureCodes.length; i++ ) {
 
 			const STRUCTURE_CODE = R.structureCodes[i];
-			
-			let url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/rugs/' + STRUCTURE_CODE + '/base.png';
+
+			let url;
+
+			if ( R.coloredStructureImages ) {
+				url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/rugs/' + STRUCTURE_CODE + '/base-colour.png';
+			} else {
+				url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/rugs/' + STRUCTURE_CODE + '/base.png';
+			}
 
 			R.ajax('GET', url, structuresLoaded, 'arraybuffer');
 
