@@ -87,6 +87,21 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		stageHasChanged: function(stage) {
 
+			let array = [];
+			let array2 = [];
+
+			array.forEach.call(document.querySelectorAll('ul.structures li'), (e, i) => {
+				if ( e !== undefined ) {
+					e.style.marginTop = 0;
+				}
+			});
+
+			array2.forEach.call(document.querySelectorAll('ul.colors li'), (e, i) => {
+				if ( e !== undefined ) {
+					e.style.marginTop = 0;
+				}
+			});
+
 			document.querySelector('ul.structures').style.height = 'auto';
 			document.querySelector('ul.structures').style.overflow = 'initial';
 			document.querySelector('ul.colors').style.height = 'auto';
@@ -163,8 +178,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			let selector = this.state.stage === 'colors' ? 'ul.colors li' : 'ul.structures li';
 
-			document.querySelectorAll(selector).forEach((e, i) => {
+			let array = [];
 
+			array.forEach.call(document.querySelectorAll(selector), (e, i) => {
+				
 				let multipliter = this.state.stage === 'colors' ? 20 : 8;
 				let minusier    = this.state.stage === 'colors' ? 21 : 9;
 
@@ -181,7 +198,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 					e.style.marginTop = newMargin + 'px';
 				}
-			})
+			});
 
 			var newScroll = this.state.currentScroll - 1;
 
@@ -200,7 +217,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			let selector = this.state.stage === 'colors' ? 'ul.colors li' : 'ul.structures li';
 
-			document.querySelectorAll(selector).forEach((e, i) => {
+			let array = [];
+
+			array.forEach.call(document.querySelectorAll(selector), (e, i) => {
 
 				let multipliter = this.state.stage === 'colors' ? 20 : 8;
 				let minusier    = this.state.stage === 'colors' ? 21 : 9;
@@ -218,7 +237,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 					e.style.marginTop = newMargin + 'px';
 				}
-			})
+			});
 
 			var newScroll = this.state.currentScroll + 1;
 
