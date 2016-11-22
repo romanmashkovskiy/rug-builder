@@ -69,6 +69,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			}
 			else if ( open === 'kinda' ) {
 
+				ELEM.style.marginTop = 0;
+
 				this.setState({
 					open: 'kinda',
 					text: 'Collapse'
@@ -307,7 +309,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 						</div>
 						{ btnsHTML }
 					</div>
-					<BtnExpandCollapseComponent onUpdate={ this.updateOpenState } currentState={ this.state }/>
+					<BtnExpandCollapseComponent onUpdate={ this.updateOpenState } currentState={ this.state } />
 				</div>	
 			);
 		}

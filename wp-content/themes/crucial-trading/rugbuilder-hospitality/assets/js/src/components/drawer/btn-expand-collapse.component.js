@@ -11,7 +11,13 @@ RugBuilder.prototype.btnExpandCollapseComponent = function() {
 				this.props.onUpdate(true);
 			}
 			else {
-				this.props.onUpdate(false);
+
+				if ( ( this.props.currentState.stage === 'colors' && this.props.currentState.chosenColors.length > 0 ) ||
+					 ( this.props.currentState.stage === 'structures' && this.props.currentState.chosenStructure !== undefined ) ) {
+					this.props.onUpdate('kinda');
+				} else {
+					this.props.onUpdate(false);
+				}				
 			}
 		},
 
