@@ -4,18 +4,18 @@ RugBuilder.prototype.imageComponent = function(alt, src, jpg) {
 
 	const ImageComponent = React.createClass({
 
-		componentDidMount: function() {
-			R.hideLittleLoader();
-		},
-
 		render: function() {
 
 			let error = function(e) {
 				e.target.src = jpg;
 			}
 
+			let load = function() {
+				R.hideLittleLoader();
+			}
+
 			return (
-				<img src={ src } alt={ alt } onError={ error } />
+				<img src={ src } alt={ alt } onError={ error } onLoad={ load } />
 			);
 		}
 	});

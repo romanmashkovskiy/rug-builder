@@ -2,6 +2,8 @@ RugBuilder.prototype.start = function() {
 
 	const R = rugBuilder;
 
+	R.showLittleLoader();
+
 	// Data
 
 	R.getStructuresData()
@@ -23,5 +25,7 @@ RugBuilder.prototype.start = function() {
 		const BtnStructureComponent      = R.btnStructureComponent();
 		const BtnColorComponent          = R.btnColorComponent();
 		R.drawerComponent(BtnExpandCollapseComponent, BtnStructureComponent, BtnColorComponent);
+
+		R.hideLittleLoader();
 	}
 }

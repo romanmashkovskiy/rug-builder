@@ -31,7 +31,7 @@ RugBuilder.prototype.getStructuresData = function() {
 
 			if ( counter === 100 ) {
 				// If 10 secs has passed, reject the promise
-				rej();
+		//		rej();
 			}
 
 			const NUM_OF_STRUCTURES = R.structureCodes.length;
