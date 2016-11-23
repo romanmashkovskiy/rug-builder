@@ -7,28 +7,9 @@ RugBuilder.prototype.getStructuresData = function() {
 		for ( let i = 0; i < R.structureCodes.length; i++ ) {
 
 			const STRUCTURE_CODE = R.structureCodes[i];
+			const URL            = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/structures/' + STRUCTURE_CODE + '/base-colour.jpg';
 
-			let url;
-
-			if ( R.coloredStructureImages ) {
-				url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/rugs/' + STRUCTURE_CODE + '/base-colour.png';
-			} else {
-				url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/rugs/' + STRUCTURE_CODE + '/base.png';
-			}
-
-			R.ajax('GET', url, structuresLoaded, 'arraybuffer');
-
-			function structuresLoaded() {
-
-				// Create a URL for the img
-
-				const ARRAY_BUFFER_VIEW = new Uint8Array(this.response);
-				const BLOB              = new Blob([ ARRAY_BUFFER_VIEW ], { type: "image/png" });
-				const URL_CREATOR       = window.URL || window.webkitURL;
-				const IMG_URL           = URL_CREATOR.createObjectURL(BLOB);
-
-				R.structureImages[STRUCTURE_CODE] = IMG_URL;
-			}
+			R.structureImages[STRUCTURE_CODE] = URL;
 		}
 
 		let counter = 0;

@@ -6,7 +6,7 @@ RugBuilder.prototype.btnStructureComponent = function() {
 
 		handleClick: function() {
 			
-			R.imageComponent(this.props.code, this.props.img);
+			R.imageComponent(this.props.code, this.props.jpg);
 
 			this.props.onClick(this.props.code);
 		},

@@ -259,8 +259,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				structuresHTML = Object.keys(this.state._structures).map((code, index) => {
 
 					let img = this.state._structures[code];
+					let jpg = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/structures/' + code + '/base.jpg';
 
-					return <BtnStructureComponent key={ index } code={ code } img={ img } onClick={ this.updateStructure } />;
+					return <BtnStructureComponent key={ index } code={ code } img={ img } jpg={ jpg } onClick={ this.updateStructure } />;
 				});
 			}
 
