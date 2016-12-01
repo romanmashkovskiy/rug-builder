@@ -153,6 +153,20 @@ class RugBuilder {
 		// App Progress
 		this.colorStage = 0;
 		this.stageVisited = [ true, false, false, false, false, false, false, false, false, false ];
+
+		// Choices
+		this.choices = {
+			structure : undefined,
+			color1    : undefined,
+			color2    : undefined,
+			color3    : undefined,
+			color4    : undefined,
+			color5    : undefined,
+			color6    : undefined,
+			color7    : undefined,
+			color8    : undefined,
+			color9    : undefined
+		}
 	};
 
 	startAgain() {

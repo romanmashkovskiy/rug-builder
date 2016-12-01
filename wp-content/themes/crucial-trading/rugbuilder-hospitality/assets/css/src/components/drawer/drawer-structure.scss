@@ -1,5 +1,6 @@
 .drawer__content ul.structures {
 	margin: 0;
+	overflow: hidden;
 	padding: 25px;
 
 	a {
@@ -75,6 +76,10 @@
 
 		li {
 			width: 32%;
+
+			&:not(:nth-child(4n)) {
+				margin-right: 0;
+			}
 
 			&:not(:nth-child(3n)) {
 				margin-right: 2%;

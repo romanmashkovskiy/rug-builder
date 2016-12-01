@@ -16,8 +16,9 @@ RugBuilder.prototype.start = function() {
 		// Progress Menu
 		const BtnExitComponent    = R.btnExitComponent();
 		const BtnRestartComponent = R.btnRestartComponent();
+		const BtnSubmitComponent  = R.btnSubmitComponent();
 		const BtnStageComponent   = R.btnStageComponent();
-		R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnStageComponent);
+		R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent);
 
 		// Drawer
 

@@ -40,16 +40,30 @@
 		<div id="color-8"></div>
 		<div id="color-9"></div>
 	</div>
+	<div id="choices">
+		<div id="choice-0"></div>
+		<div id="choice-1"></div>
+		<div id="choice-2"></div>
+		<div id="choice-3"></div>
+		<div id="choice-4"></div>
+		<div id="choice-5"></div>
+		<div id="choice-6"></div>
+		<div id="choice-7"></div>
+		<div id="choice-8"></div>
+		<div id="choice-9"></div>
+	</div>
 	<div id="little-loader">
 		<div class="loader-container">
+			<p style="display:none;">Loading</p>
 			<div class="loader"></div>
 		</div>
 	</div>
+	<div id="submit-screen"></div>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/vendor/PubSub/pubsub.min.js"></script>
 
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/vendor/react/react.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/vendor/react/react-dom.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/vendor/react/react.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/vendor/react/react-dom.min.js"></script>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/assets/js/dist/rugBuilder.min.js"></script>
 

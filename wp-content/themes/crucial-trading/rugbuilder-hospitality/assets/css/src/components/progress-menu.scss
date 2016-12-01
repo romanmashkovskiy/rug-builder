@@ -17,7 +17,8 @@
 	position: relative;
 
 	.progress-menu__restart,
-	.progress-menu__exit {
+	.progress-menu__exit,
+	.progress-menu__submit {
 		color: transparentize($main-menu-link-color, 0.25);
 		font-size: 12px;
 		padding: 0;
@@ -40,6 +41,10 @@
 
 	.progress-menu__exit {
 		right: 15px;
+	}
+
+	.progress-menu__submit {
+		right: 280px;
 	}
 }
 
