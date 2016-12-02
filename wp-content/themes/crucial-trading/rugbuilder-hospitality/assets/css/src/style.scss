@@ -55,8 +55,11 @@ canvas {
 		width: 100%;
 	}
 
-	@media screen and (max-height: 800px) {
-		top: 55%;
+	@media screen and (max-height: 1170px) {
+		height: 300px;
+		left: calc(50% - 150px);
+		top: 59%;
+		width: 300px;
 	}
 
 	@media screen and (max-width: 555px) {

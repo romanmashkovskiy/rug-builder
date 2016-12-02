@@ -20,10 +20,28 @@ RugBuilder.prototype.btnColorComponent = function() {
 
 		render: function() {
 
+			let className = 'page-' + this.props.page
+
+			if ( this.props.page ) {
+
+				if ( this.props.page === this.props.pageInView - 1 ) {
+					className += ' left-of-window';
+				}
+				else if ( this.props.page === this.props.pageInView + 1 ) {
+					className += ' right-of-window';
+				}
+				else if ( this.props.page === this.props.pageInView ) {
+					className += ' in-window';
+				}
+				else {
+					className += ' hidden';
+				}
+			}
+
 			let url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/flat-colors/' + this.props.color + '.jpg';
 			
 			return (
-				<li>
+				<li className={ className } data-page={ this.props.page }>
 					<a href="#" onClick={ this.handleClick }>
 						<img src={ url } alt={ this.props.color } />
 					</a>
