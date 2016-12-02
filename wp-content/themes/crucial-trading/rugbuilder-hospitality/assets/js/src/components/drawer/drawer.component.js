@@ -40,6 +40,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				_numStructures : numOfStructures,
 				_colors        : undefined,
 				_numColors     : undefined,
+
+				_resize : 0,
 			}
 		},
 
@@ -47,6 +49,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			this.stageChange = PubSub.subscribe( 'newStage', this.stageHasChanged );
 			this.restart     = PubSub.subscribe( 'restart', this.restart );
 			this.submit      = PubSub.subscribe( 'submit', this.submit );
+
+			window.addEventListener('resize', this.resize);
 
 			let _t = this;
 			setTimeout(function(){ _t.slideLeft() }, 5000)
@@ -58,6 +62,15 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 		},
 
 		STRUCTURE_ELEMS_PER_PAGE : undefined,
+
+		resize: function() {
+
+			this.STRUCTURE_ELEMS_PER_PAGE = undefined;
+
+			this.setState((prevState) => {
+				return { _resize: prevState._resize + 1 };
+			});
+		},
 
 		slideLeft: function() {
 
