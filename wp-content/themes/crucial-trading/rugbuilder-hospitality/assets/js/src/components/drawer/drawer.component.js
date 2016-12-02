@@ -331,7 +331,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			this.setState({
 				drawerSize : 1
-			}, () => { this.drawerHeight() });
+			});
 
 			PubSub.publish( 'newColor', true );
 		},
@@ -340,7 +340,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		render: function() {
 
-			let structuresHTML, structureStyleHTML, colorsHTML, colorStyleHTML;
+			let structuresHTML, structureStyleHTML, colorsHTML, colorStyleHTML, btnsHTML;
 
 			if ( this.state.stage === 'structures' ) {
 
@@ -370,7 +370,21 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				});
 
 				let styleStr = '.drawer__content ul.structures li.right-of-window, .drawer__content ul.structures li.moving-out-to-right { top: -' + this.STRUCTURE_TOP_CSS_AMOUNT + 'px }';
-				structureStyleHTML = <style>{ styleStr }</style>
+				structureStyleHTML = <style>{ styleStr }</style>;
+
+				let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
+				let rightStyle = this.state.pageInView === this.STRUCTURE_NUM_OF_PAGES ? { color: '#A8A8A8' } : {};
+
+				btnsHTML = (
+					<div className="scroll-btns clearfix">
+						<div className="scroll__left">
+							<a href="#" onClick={ this.slideRight } style={ leftStyle }>&#x25C0;</a>
+						</div>
+						<div className="scroll__right">
+							<a href="#" onClick={ this.slideLeft } style={ rightStyle }>&#x25B6;</a>
+						</div>
+					</div>
+				);
 			}
 			else if ( this.state.stage === 'colors' ) {
 
@@ -380,7 +394,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 					const COLOR_ELEMS_PER_ROW = WINDOW_WIDTH > 768 ? 10 : 5;
 					const COLOR_ELEM_HEIGHT   = ( ( WINDOW_WIDTH - 50 ) / COLOR_ELEMS_PER_ROW );
 
-					this.COLOR_ELEMS_PER_PAGE     = WINDOW_WIDTH > 768 ? 20 : 10;
+					this.COLOR_ELEMS_PER_PAGE = WINDOW_WIDTH > 768 ? 20 : 10;
 					this.COLOR_NUM_OF_PAGES   = WINDOW_WIDTH > 768 ? 2 : 4;
 					this.COLOR_TOP_CSS_AMOUNT = ( COLOR_ELEM_HEIGHT * 2 ) + 15;
 				}
@@ -413,8 +427,23 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				});
 
 				if ( window.innerHeight < 1000 ) {
+
 					let styleStr = '.drawer__content ul.colors li.right-of-window, .drawer__content ul.colors li.moving-out-to-right { top: -' + this.COLOR_TOP_CSS_AMOUNT + 'px }';
 					colorStyleHTML = <style>{ styleStr }</style>
+
+					let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
+					let rightStyle = this.state.pageInView === this.COLOR_NUM_OF_PAGES ? { color: '#A8A8A8' } : {};
+
+					btnsHTML = (
+						<div className="scroll-btns clearfix">
+							<div className="scroll__left">
+								<a href="#" onClick={ this.slideRight } style={ leftStyle }>&#x25C0;</a>
+							</div>
+							<div className="scroll__right">
+								<a href="#" onClick={ this.slideLeft } style={ rightStyle }>&#x25B6;</a>
+							</div>
+						</div>
+					);
 				}
 			}
 
@@ -432,6 +461,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 								{ colorsHTML }
 							</ul>
 						</div>
+						{ btnsHTML }
 					</div>
 					<BtnExpandCollapseComponent currentlyOpen={ this.state.open } text={ this.state.text } open={ this.open } close={ this.close } />
 					{ structureStyleHTML }
