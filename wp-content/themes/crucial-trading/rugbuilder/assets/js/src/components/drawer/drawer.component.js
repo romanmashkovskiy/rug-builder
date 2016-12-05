@@ -442,8 +442,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				const SWATCHES_WIDTH      = ( WINDOW_WIDTH / 100 ) * SWATCHES_WIDTH_PERC;
 
 				const ELEM_WIDTH = ( SWATCHES_WIDTH / 100 ) * 15;
-
-			//	alert(ELEM_WIDTH)
 			}
 
 			return (
