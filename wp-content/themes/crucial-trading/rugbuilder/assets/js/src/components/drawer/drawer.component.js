@@ -48,6 +48,67 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			PubSub.unsubscribe( this.newPrice );
 		},
 
+		open: function() {
+
+			document.querySelector('.drawer__content__material').classList.remove('closed');
+			document.querySelector('.drawer__content__collections').classList.remove('closed');
+			document.querySelector('.drawer__content__swatches').classList.remove('closed');
+			document.querySelector('.drawer__content__swatches--selected').classList.remove('closed');
+			document.querySelector('.drawer__content__border').classList.remove('closed');
+			document.querySelector('.drawer__content__size').classList.remove('closed');
+
+			document.querySelector('.drawer__content__material').classList.add('opening');
+			document.querySelector('.drawer__content__collections').classList.add('opening');
+			document.querySelector('.drawer__content__swatches').classList.add('opening');
+			document.querySelector('.drawer__content__swatches--selected').classList.add('opening');
+			document.querySelector('.drawer__content__border').classList.add('opening');
+			document.querySelector('.drawer__content__size').classList.add('opening');
+
+			setTimeout(function() {
+
+				document.querySelector('.drawer__content__material').classList.remove('opening');
+				document.querySelector('.drawer__content__collections').classList.remove('opening');
+				document.querySelector('.drawer__content__swatches').classList.remove('opening');
+				document.querySelector('.drawer__content__swatches--selected').classList.remove('opening');
+				document.querySelector('.drawer__content__border').classList.remove('opening');
+				document.querySelector('.drawer__content__size').classList.remove('opening');
+
+				document.querySelector('.drawer__content__material').classList.add('open');
+				document.querySelector('.drawer__content__collections').classList.add('open');
+				document.querySelector('.drawer__content__swatches').classList.add('open');
+				document.querySelector('.drawer__content__swatches--selected').classList.add('open');
+				document.querySelector('.drawer__content__border').classList.add('open');
+				document.querySelector('.drawer__content__size').classList.add('open');
+			}, 650)
+			
+			this.setState({
+				open : true,
+				text : 'Collapse'
+			})
+		},
+
+		close: function() {
+
+			document.querySelector('.drawer__content__material').classList.remove('open');
+			document.querySelector('.drawer__content__collections').classList.remove('open');
+			document.querySelector('.drawer__content__swatches').classList.remove('open');
+			document.querySelector('.drawer__content__swatches--selected').classList.remove('open');
+			document.querySelector('.drawer__content__border').classList.remove('open');
+			document.querySelector('.drawer__content__size').classList.remove('open');
+
+			document.querySelector('.drawer__content__material').classList.add('closed');
+			document.querySelector('.drawer__content__collections').classList.add('closed');
+			document.querySelector('.drawer__content__swatches').classList.add('closed');
+			document.querySelector('.drawer__content__swatches--selected').classList.add('closed');
+			document.querySelector('.drawer__content__border').classList.add('closed');
+			document.querySelector('.drawer__content__size').classList.add('closed');
+			
+			this.setState({
+				open : false,
+				text : 'Expand'
+			})
+		},
+
 		slideLeft: function() {
 
 			let numOfPages = this.state.stage === 'structures' ? this.STRUCTURE_NUM_OF_PAGES : this.COLOR_NUM_OF_PAGES;
@@ -193,36 +254,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					R.error(103, true);
 					return;
 				});
-		},
-
-		updateOpenState: function(open) {
-
-			// Function for updating the open/closed state of the drawer
-			// Gets passed to expand-collapse button as props.onUpdate.
-			// If open is true, update state to closed, and vice-versa.
-
-			const ELEM = document.querySelector('#drawer');
-
-			if ( open ) {
-
-				const HEIGHT = ELEM.offsetHeight;
-
-				ELEM.style.marginTop = '-' + HEIGHT + 'px';
-
-				this.setState({
-					open: false,
-					text: 'Expand'
-				});
-			}
-			else {
-
-				ELEM.style.marginTop = 0;
-
-				this.setState({
-					open: true,
-					text: 'Collapse'
-				});
-			}
 		},
 
 		updateContentState: function(content) {
@@ -436,7 +467,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							{ PRICE_HTML }
 						</div>
 					</div>
-					<BtnExpandCollapseComponent onUpdate={ this.updateOpenState } currentState={ this.state }/>
+					<BtnExpandCollapseComponent currentlyOpen={ this.state.open } text={ this.state.text } open={ this.open } close={ this.close } />
 				</div>	
 			);
 		}
