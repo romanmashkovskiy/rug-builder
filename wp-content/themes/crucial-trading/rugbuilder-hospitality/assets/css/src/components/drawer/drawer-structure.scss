@@ -1,7 +1,38 @@
 .drawer__content ul.structures {
 	margin: 0;
-	overflow: hidden;
-	padding: 25px;
+
+	&.open {
+		max-height: 2000px;
+		overflow: initial;
+		padding: 25px;
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.opening {
+		max-height: 2000px;
+		overflow: hidden;
+		padding: 25px;
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.closed {
+		max-height: 0;
+		overflow: hidden;
+		padding: 0;
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
 
 	a {
 		display: block;

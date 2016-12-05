@@ -106,14 +106,20 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		open: function() {
 
-			document.querySelector('ul.structures').style.height = 'auto';
-			document.querySelector('ul.colors').style.height = 'auto';
+			document.querySelector('ul.structures').classList.remove('closed');
+			document.querySelector('ul.colors').classList.remove('closed');
 
-			document.querySelector('ul.structures').style.padding = '25px';
-			document.querySelector('ul.colors').style.padding = '25px';
+			document.querySelector('ul.structures').classList.add('opening');
+			document.querySelector('ul.colors').classList.add('opening');
 
-			document.querySelector('ul.structures').style.overflow = 'initial';
-			document.querySelector('ul.colors').style.overflow = 'initial';
+			setTimeout(function() {
+
+				document.querySelector('ul.structures').classList.remove('opening');
+				document.querySelector('ul.colors').classList.remove('opening');
+
+				document.querySelector('ul.structures').classList.add('open');
+				document.querySelector('ul.colors').classList.add('open');
+			}, 650)
 			
 			this.setState({
 				open : true,
@@ -125,14 +131,11 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		close: function() {
 
-			document.querySelector('ul.structures').style.height = '0px';
-			document.querySelector('ul.colors').style.height = '0px';
-
-			document.querySelector('ul.structures').style.padding = '0px';
-			document.querySelector('ul.colors').style.padding = '0px';
-
-			document.querySelector('ul.structures').style.overflow = 'hidden';
-			document.querySelector('ul.colors').style.overflow = 'hidden';
+			document.querySelector('ul.structures').classList.remove('open');
+			document.querySelector('ul.colors').classList.remove('open');
+			
+			document.querySelector('ul.structures').classList.add('closed');
+			document.querySelector('ul.colors').classList.add('closed');
 			
 			this.setState({
 				open : false,
@@ -454,10 +457,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				<div className="react-container drawer__container" key={ this.state.timestamp }>
 					<div className={ DRAWER_CLASSES }>
 						<div className="drawer__content">
-							<ul className="clearfix structures">
+							<ul className="clearfix structures open">
 								{ structuresHTML }
 							</ul>
-							<ul className="clearfix colors">
+							<ul className="clearfix colors open">
 								{ colorsHTML }
 							</ul>
 						</div>

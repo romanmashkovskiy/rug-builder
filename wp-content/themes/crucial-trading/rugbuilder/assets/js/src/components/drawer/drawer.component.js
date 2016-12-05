@@ -18,6 +18,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				open : true,
 				text : 'Collapse',
 
+				pageInView : 1,
+
 				chosenMaterial   : undefined,
 				chosenCollection : undefined,
 				chosenSwatch     : undefined,
@@ -30,7 +32,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				length : '',
 				width  : '',
-				price  : false
+				price  : false,
+
+				_resize : 0
 			}
 		},
 
@@ -44,8 +48,62 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			PubSub.unsubscribe( this.newPrice );
 		},
 
+		slideLeft: function() {
+
+			let numOfPages = this.state.stage === 'structures' ? this.STRUCTURE_NUM_OF_PAGES : this.COLOR_NUM_OF_PAGES;
+
+			if ( this.state.pageInView === numOfPages ) {
+				return;
+			}
+
+			document.querySelectorAll('li.in-window').forEach((e,i) => {
+				e.classList.add('moving-out-to-left')
+			});
+
+			document.querySelectorAll('li.right-of-window').forEach((e,i) => {
+				e.classList.add('moving-in-from-right')
+			});
+
+			const _t = this;
+
+			const CURRENT_PAGE = this.state.pageInView;
+			const NEW_PAGE     = CURRENT_PAGE + 1;
+
+			setTimeout(function() {
+				_t.setState({
+					pageInView : NEW_PAGE
+				})
+			}, 650)
+		},
+
+		slideRight: function() {
+
+			if ( this.state.pageInView === 1 ) {
+				return;
+			}
+
+			document.querySelectorAll('li.in-window').forEach((e,i) => {
+				e.classList.add('moving-out-to-right')
+			});
+
+			document.querySelectorAll('li.left-of-window').forEach((e,i) => {
+				e.classList.add('moving-in-from-left')
+			});
+
+			const _t = this;
+
+			const CURRENT_PAGE = this.state.pageInView;
+			const NEW_PAGE     = CURRENT_PAGE - 1;
+
+			setTimeout(function() {
+				_t.setState({
+					pageInView : NEW_PAGE
+				})
+			}, 650)
+		},
+
 		updateStageState: function(stage) {
-			this.setState({ stage : stage });
+			this.setState({ stage : stage, pageInView : 1 });
 
 			let content;
 
@@ -214,7 +272,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					R.loadingScreens('full', 'close');
 					this.forceUpdate();
 				})
-				.catch(()   => {
+				.catch(() => {
 					R.error(102, true);
 					return;
 				});
