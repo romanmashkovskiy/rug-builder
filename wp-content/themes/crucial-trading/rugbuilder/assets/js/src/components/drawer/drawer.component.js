@@ -165,6 +165,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		updateStageState: function(stage) {
 			this.setState({ stage : stage, pageInView : 1 });
 
+			R.numOfPages = 1;
+
 			let content;
 
 			switch( stage ) {
@@ -400,6 +402,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			
 			// Create the dynamic HTML sections of the content
 
+			let btnsHTML;
+
 			const MATERIAL_HTML    = _this.createMaterialHTML();
 			const SIDEBAR_HTML     = function(caller) { return _this.createSidebarHTML(caller); }
 			const COLLECTIONS_HTML = _this.createCollectionsHTML();
@@ -411,6 +415,20 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			const OPEN             = _this.state.open ? 'open' : 'closed';
 			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.content;
 			const MATERIAL_CLASSES = 'drawer__content__material stage' + this.state.stage;
+
+			let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
+			let rightStyle = this.state.pageInView === R.numOfPages ? { color: '#A8A8A8' } : {};
+
+			btnsHTML = (
+				<div className="scroll-btns clearfix">
+					<div className="scroll__left">
+						<a href="#" onClick={ this.slideRight } style={ leftStyle }>&#x25C0;</a>
+					</div>
+					<div className="scroll__right">
+						<a href="#" onClick={ this.slideLeft } style={ rightStyle }>&#x25B6;</a>
+					</div>
+				</div>
+			);
 
 			return (
 				<div className="react-container drawer__container">
@@ -465,6 +483,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							{ SIZE_HTML }
 							{ PRICE_HTML }
 						</div>
+						{ btnsHTML }
 					</div>
 					<BtnExpandCollapseComponent currentlyOpen={ this.state.open } text={ this.state.text } open={ this.open } close={ this.close } />
 				</div>	

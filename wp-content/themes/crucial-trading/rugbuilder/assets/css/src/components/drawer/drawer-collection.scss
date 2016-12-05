@@ -58,6 +58,7 @@
 
 		&.moving-out-to-right {
 			position: relative;
+			top: -540px;
 			transform: translateX(100vw);
 			-webkit-transition: 0.65s;
 			transition: 0.65s;
