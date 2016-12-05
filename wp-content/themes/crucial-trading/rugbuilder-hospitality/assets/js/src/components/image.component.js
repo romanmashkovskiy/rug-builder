@@ -6,6 +6,10 @@ RugBuilder.prototype.imageComponent = function(alt, src, jpg) {
 
 		render: function() {
 
+			if ( document.querySelector('#img-container').classList.contains('hidden') ) {
+				document.querySelector('#img-container').classList.remove('hidden');
+			}
+
 			let error = function(e) {
 				e.target.src = jpg;
 			}

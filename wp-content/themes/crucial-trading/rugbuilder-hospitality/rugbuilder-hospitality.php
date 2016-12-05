@@ -28,7 +28,7 @@
 	</div>
 -->	<div id="progress-menu"></div>
 	<div id="drawer"></div>
-	<div id="img-container">
+	<div class="hidden" id="img-container">
 		<div id="color-0"></div>
 		<div id="color-1"></div>
 		<div id="color-2"></div>

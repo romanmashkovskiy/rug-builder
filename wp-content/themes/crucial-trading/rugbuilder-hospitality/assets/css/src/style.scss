@@ -47,6 +47,10 @@ canvas {
 	top: 50%;
 	width: 512px;
 
+	&.hidden {
+		display: none;
+	}
+
 	div, img {
 		height: 100%;
 		position: absolute;

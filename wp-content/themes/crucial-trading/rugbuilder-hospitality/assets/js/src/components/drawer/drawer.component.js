@@ -147,6 +147,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		restart: function() {
 
+			document.querySelector('#img-container').classList.add('hidden');
+
 			for ( let i = 0; i < 10; i++ ) {
 				ReactDOM.unmountComponentAtNode(document.querySelector('#color-' + i))
 				ReactDOM.unmountComponentAtNode(document.querySelector('#choice-' + i))
