@@ -14,6 +14,9 @@ class RugBuilder {
 		this.stages       = [ 'center', 'borderType', 'innerBorder', 'outerBorder', 'size' ];
 		this.stageVisited = [ true, false, false, false, false ];
 
+		// React Drawer Scrolling
+		this.numOfPages = 1;
+
 		// WC Data
 		this.WCmaterials         = [];
 		this.WCcollections       = [];

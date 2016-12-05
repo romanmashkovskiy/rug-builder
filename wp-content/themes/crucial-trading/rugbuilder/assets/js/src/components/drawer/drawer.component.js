@@ -19,6 +19,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				text : 'Collapse',
 
 				pageInView : 1,
+				numOfPages : 1,
 
 				chosenMaterial   : undefined,
 				chosenCollection : undefined,
@@ -39,8 +40,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		},
 
 		componentDidMount: function() {
-			this.stageChange = PubSub.subscribe( 'stageChange', this.updateStageState );
-			this.newPrice    = PubSub.subscribe( 'newPrice', this.showNewPrice );
+			this.stageChange  = PubSub.subscribe( 'stageChange', this.updateStageState );
+			this.newPrice     = PubSub.subscribe( 'newPrice', this.showNewPrice );
 		},
 
 		componentWillUnmount: function() {
@@ -111,9 +112,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		slideLeft: function() {
 
-			let numOfPages = this.state.stage === 'structures' ? this.STRUCTURE_NUM_OF_PAGES : this.COLOR_NUM_OF_PAGES;
-
-			if ( this.state.pageInView === numOfPages ) {
+			if ( this.state.pageInView === R.numOfPages ) {
 				return;
 			}
 
@@ -543,19 +542,32 @@ function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 		return;
 	}
 
-	// Get the collections for the user selected material
-
 	const COLLECTIONS = _this.state._collections;
 	const COLLECTION  = COLLECTIONS[ _this.state.chosenMaterial ];
 
+	let elemsPerPage = 0;
 
+	if ( window.innerWidth > 768 ) {
+		elemsPerPage = 12;
+	}
+
+	if ( COLLECTION !== undefined ) {
+		let numOfPages = Math.ceil( COLLECTION.length / elemsPerPage );
+		R.numOfPages = numOfPages;
+	}
+
+	// Get the collections for the user selected material
 
 	if ( _this.state.content === 'collections' ) {
 
 		// Create a BtnCollectionComponent for each collection in the COLLECTION array
 
 		return COLLECTION.map((collection, index) => {
-			return <BtnCollectionComponent key={ index } collection={ collection.name } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } />
+
+			let indexPlusOne = index + 1;
+			let page         = Math.ceil( indexPlusOne / elemsPerPage );
+
+			return <BtnCollectionComponent key={ index } collection={ collection.name } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } page={ page } pageInView={ _this.state.pageInView } />
 		});
 	}
 }
@@ -579,6 +591,13 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 		// can't just run map on it. Instead run map on each of the keys, then use that
 		// key to get the individual swatches from the object
 
+		let elemsPerPage = window.innerWidth > 992 ? 18 : 9;
+
+		if ( SWATCH !== undefined ) {
+			let numOfPages = Math.ceil( Object.keys(SWATCH).length / elemsPerPage );
+			R.numOfPages = numOfPages;
+		}
+
 		return Object.keys(SWATCH).map((swatch, index) => {
 
 			const CURRENT_SWATCH = SWATCH[swatch];
@@ -600,9 +619,12 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				maps.dmap = CURRENT_SWATCH.dmap;
 			}
 
+			let indexPlusOne = index + 1;
+			let page         = Math.ceil( indexPlusOne / elemsPerPage );
+
 			// Create a BtnSwatchComponent for each swatch in the SWATCH object
 
-			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 		})
 	}
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {

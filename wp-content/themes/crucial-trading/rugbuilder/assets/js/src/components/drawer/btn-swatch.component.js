@@ -17,6 +17,21 @@ RugBuilder.prototype.btnSwatchComponent = function() {
 			if ( this.props.selected === this.props.swatch ) {
 				classes = 'selected';
 			}
+
+			classes += 'page-' + this.props.page;
+
+			if ( this.props.page === this.props.pageInView - 1 ) {
+				classes += ' left-of-window';
+			}
+			else if ( this.props.page === this.props.pageInView + 1 ) {
+				classes += ' right-of-window';
+			}
+			else if ( this.props.page === this.props.pageInView ) {
+				classes += ' in-window';
+			}
+			else {
+				classes += ' hidden';
+			}
 			
 			return (
 				<li className={ classes }>
