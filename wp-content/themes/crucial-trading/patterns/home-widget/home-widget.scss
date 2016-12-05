@@ -3,6 +3,10 @@
 	margin-bottom: 8%;
 	padding: 100px;
 
+	@media screen and (max-width: 666px) {
+		padding: 50px;
+	}
+
 	.widget__image,
 	.widget__text {
 		float: left;
@@ -12,6 +16,16 @@
 	.widget__text {
 		margin-left: 50%;
 		padding-left: 75px;
+
+		@media screen and (max-width: 992px) {
+			clear: both;
+			float: none;
+			margin-left: 0;
+			margin-top: 20px;
+			padding-left: 0;
+			text-align: center;
+			width: 100%;
+		}
 
 		h3 {
 			color: #7C7C7C;
@@ -28,6 +42,10 @@
 			height: 2px;
 			margin-bottom: 60px;
 			width: 75px;
+
+			@media screen and (max-width: 992px) {
+				margin-left: calc(50% - 37.5px);
+			}
 		}
 
 		p {

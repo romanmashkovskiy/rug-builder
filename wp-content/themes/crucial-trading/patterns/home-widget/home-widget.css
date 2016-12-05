@@ -2,6 +2,9 @@
   background: #383838;
   margin-bottom: 8%;
   padding: 100px; }
+  @media screen and (max-width: 666px) {
+    .home-inspiration-widget {
+      padding: 50px; } }
   .home-inspiration-widget .widget__image,
   .home-inspiration-widget .widget__text {
     float: left;
@@ -9,6 +12,15 @@
   .home-inspiration-widget .widget__text {
     margin-left: 50%;
     padding-left: 75px; }
+    @media screen and (max-width: 992px) {
+      .home-inspiration-widget .widget__text {
+        clear: both;
+        float: none;
+        margin-left: 0;
+        margin-top: 20px;
+        padding-left: 0;
+        text-align: center;
+        width: 100%; } }
     .home-inspiration-widget .widget__text h3 {
       color: #7C7C7C; }
     .home-inspiration-widget .widget__text h2 {
@@ -20,6 +32,9 @@
       height: 2px;
       margin-bottom: 60px;
       width: 75px; }
+      @media screen and (max-width: 992px) {
+        .home-inspiration-widget .widget__text span {
+          margin-left: calc(50% - 37.5px); } }
     .home-inspiration-widget .widget__text p {
       color: #FFF;
       margin-bottom: 100px; }
