@@ -43,6 +43,7 @@ RugBuilder.prototype.btnColorComponent = function() {
 			return (
 				<li className={ className } data-page={ this.props.page }>
 					<a href="#" onClick={ this.handleClick }>
+						<h3>{ this.props.color }</h3>
 						<img src={ url } alt={ this.props.color } />
 					</a>
 				</li>

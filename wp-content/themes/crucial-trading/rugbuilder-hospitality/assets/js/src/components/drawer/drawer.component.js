@@ -453,7 +453,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 					this.COLOR_ELEMS_PER_PAGE = WINDOW_WIDTH > 768 ? 20 : 10;
 					this.COLOR_NUM_OF_PAGES   = WINDOW_WIDTH > 768 ? 2 : 4;
-					this.COLOR_TOP_CSS_AMOUNT = ( COLOR_ELEM_HEIGHT * 2 ) + 15;
+					this.COLOR_TOP_CSS_AMOUNT = ( COLOR_ELEM_HEIGHT * 2 ) + 58;
 				}
 
 				colorsHTML = this.state._colors.map((color, index) => {
