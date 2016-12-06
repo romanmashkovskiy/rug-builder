@@ -87,7 +87,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			HAMMER_S.on('swipe', (e) => {
 				if ( e.direction === 2 ) {
 					_t.slideLeft();
-				} else if ( e.direction === 1 ) {
+				} else {
 					_t.slideRight();
 				}
 			});
@@ -95,7 +95,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			HAMMER_C.on('swipe', (e) => {
 				if ( e.direction === 2 ) {
 					_t.slideLeft();
-				} else if ( e.direction === 1 ) {
+				} else {
 					_t.slideRight();
 				}
 			});
