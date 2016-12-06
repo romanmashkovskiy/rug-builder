@@ -19,9 +19,10 @@ canvas {
 }
 
 .scroll-btns {
-	bottom: 0;
+	left: 0;
 	position: absolute;
 	right: 0;
+	top: calc(50% - 39px);
 }
 
 .scroll__left,
@@ -33,6 +34,11 @@ canvas {
 		display: block;
 		padding: 0;
 	}
+}
+
+.scroll__right {
+	position: absolute;
+	right: 0;
 }
 
 #img-container {
@@ -97,25 +103,25 @@ canvas {
 		width: 100px;
 	}
 
-	@media screen and (max-width: 1280px) {
-		width: calc(100% - 35px);
+//	@media screen and (max-width: 1280px) {
+//		width: calc(100% - 35px);
 
-		div:nth-child(odd) {
-			margin-right: 67%;
-		}
-	}
+//		div:nth-child(odd) {
+//			margin-right: 67%;
+//		}
+//	}
 
-	@media screen and (max-width: 992px) {
-		top: 600px;
+//	@media screen and (max-width: 992px) {
+//		top: 600px;
 
-		div:nth-child(odd) {
-			margin-right: auto;
-		}
-	}
+//		div:nth-child(odd) {
+//			margin-right: auto;
+//		}
+//	}
 
-	@media screen and (max-width: 555px) {
-		top: 450px;
-	}
+//	@media screen and (max-width: 555px) {
+//		top: 450px;
+//	}
 }
 
 #little-loader {
