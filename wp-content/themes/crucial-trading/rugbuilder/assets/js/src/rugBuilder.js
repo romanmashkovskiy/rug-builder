@@ -251,9 +251,9 @@ class RugBuilder {
 		}
 	};
 
-	zoomIn(currentView, currentZoom) {
+	zoomIn(currentView) {
 
-		// Zoom in on the rug - this method should work but needs testing first,plus the actual numbers inputting
+		// Zoom in on the rug
 
 		const CURRENT_ZOOM_X = this.camera.position.x;
 		const CURRENT_ZOOM_Y = this.camera.position.y;
@@ -312,45 +312,57 @@ class RugBuilder {
 		return true;
 	};
 
-	zoomOut(currentView, currentZoom) {
+	zoomOut(currentView) {
 
 		// Zoom out from the rug - this method should work but needs testing first,plus the actual numbers inputting
 
 		const CURRENT_ZOOM_X = this.camera.position.x;
 		const CURRENT_ZOOM_Y = this.camera.position.y;
 		const CURRENT_ZOOM_Z = this.camera.position.z;
-
-		let maxZoomX, maxZoomY, maxZoomZ, newZoomX, newZoomY, newZoomZ;
+		
+		let maxZoomX, maxZoomY, maxZoomZ, newZoomX, newZoomY, newZoomZ, valid = true;
 
 		if ( currentView === 0 || currentView === 1 ) {
 			maxZoomX = 0;
-			maxZoomY = 0; //
+			maxZoomY = 200;
 			maxZoomZ = 0;
 
 			newZoomX = 0;
-			newZoomY = 0; //
+			newZoomY = CURRENT_ZOOM_Y + 30;
 			newZoomZ = 0;
+
+			if ( newZoomY > maxZoomY ) {
+				valid = false;
+			}
 		}
 		else if ( currentView === 2 ) {
-			maxZoomX = 0; //
-			maxZoomY = 0; //
-			maxZoomZ = 0; //
+			maxZoomX = 85;
+			maxZoomY = 112.8673200406;
+			maxZoomZ = 123.526583016;
 
-			newZoomX = 0; //
-			newZoomY = 0; //
-			newZoomZ = 0; //
+			newZoomX = CURRENT_ZOOM_X + 15;
+			newZoomY = CURRENT_ZOOM_Y + 15;
+			newZoomZ = CURRENT_ZOOM_Z + 15;
+
+			if ( ( newZoomX > maxZoomX ) || ( newZoomY > maxZoomY ) || ( newZoomZ > maxZoomZ ) ) {
+				valid = false;
+			}
 		}
 		else if ( currentView === 3 ) {
-			maxZoomX = 0; //
-			maxZoomY = 0; //
+			maxZoomX = -80;
+			maxZoomY = 161.9786827047;
 			maxZoomZ = 0;
 
-			newZoomX = 0; //
-			newZoomY = 0; //
+			newZoomX = CURRENT_ZOOM_X - 15;
+			newZoomY = CURRENT_ZOOM_Y + 15;
 			newZoomZ = 0;
+
+			if ( ( newZoomX < maxZoomX ) || ( newZoomY > maxZoomY ) ) {
+				valid = false;
+			}
 		}
 
-		if ( ( newZoomX > maxZoomX ) || ( newZoomY > maxZoomY ) || ( newZoomZ > maxZoomZ ) ) {
+		if ( !valid ) {
 			return false;
 		}
 
@@ -359,63 +371,6 @@ class RugBuilder {
 		this.camera.position.z = newZoomZ;
 
 		return true;
-
-
-		//
-		// Old method - did not work is a user had zoomed using the scroll wheel
-		//
-
-/*
-		// Zoom out from the rug
-
-		const ZOOM_LEVEL = currentZoom - 1;
-
-		if ( ZOOM_LEVEL < 0 ) {
-			// If trying to zoom out to less than zoom level 0, return as that is the min zoom
-			return false;
-		}
-
-		if ( currentView === 0 || currentView === 1 ) {
-
-			// If either above view, simply add 30 to the camera's Y position
-
-			const CURRENT_Y = this.camera.position.y;
-			const ZOOM_Y    = CURRENT_Y + 30;
-
-			this.camera.position.y = ZOOM_Y;
-		}
-		else if ( currentView === 2 ) {
-
-			// If angled view, add 15 to X, Y, and Z
-
-			const CURRENT_X = this.camera.position.x;
-			const CURRENT_Y = this.camera.position.y;
-			const CURRENT_Z = this.camera.position.z;
-
-			const ZOOM_X = CURRENT_X + 15;
-			const ZOOM_Y = CURRENT_Y + 15;
-			const ZOOM_Z = CURRENT_Z + 15;
-
-			this.camera.position.x = ZOOM_X;
-			this.camera.position.y = ZOOM_Y;
-			this.camera.position.z = ZOOM_Z;
-		}
-		else if ( currentView === 3 ) {
-
-			// If angled horizontal view, subtract 15 from X, add 15 to Y
-
-			const CURRENT_X = this.camera.position.x;
-			const CURRENT_Y = this.camera.position.y;
-
-			const ZOOM_X = CURRENT_X - 15;
-			const ZOOM_Y = CURRENT_Y + 15;
-
-			this.camera.position.x = ZOOM_X;
-			this.camera.position.y = ZOOM_Y;
-		}
-
-		return ZOOM_LEVEL;
-*/
 	};
 
 	startAgain() {

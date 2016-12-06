@@ -6,13 +6,10 @@ RugBuilder.prototype.viewControls = function() {
 
 		getInitialState: function() {
 
-			// Set initial state:
-			// View: 0 (current view - 0: above vertical, 1: above horizontal, 2: angled, 3: angled-horizontal )
-			// Zoom: 1 (zoom level - can zoom out no less than value of 0, zoom in no more than value of 6)
+			// Set initial view state: 0 = above vertical, 1 = above horizontal, 2 = angled, 3 = angled-horizontal
 
 			return {
-				view: 0,
-				zoom: 1
+				view: 0
 			};
 		},
 
@@ -24,36 +21,16 @@ RugBuilder.prototype.viewControls = function() {
 		],
 
 		changeView: function() {
-
 			const NEW_VIEW = R.changeView(this.state.view);
-
-			this.setState({ view : NEW_VIEW, zoom : 1 });
+			this.setState({ view : NEW_VIEW });
 		},
 
 		zoomIn: function() {
-
-			// Zoom In button click handler
-
-			const NEW_ZOOM = R.zoomIn(this.state.view, this.state.zoom);
-
-			if ( !NEW_ZOOM ) {
-				return;
-			}
-
-			this.setState({ zoom : NEW_ZOOM });
+			R.zoomIn(this.state.view);
 		},
 
 		zoomOut: function() {
-
-			// Zoom Out button click handler
-
-			const NEW_ZOOM = R.zoomOut(this.state.view, this.state.zoom);
-
-			if ( NEW_ZOOM === false ) {
-				return;
-			}
-
-			this.setState({ zoom : NEW_ZOOM });
+			R.zoomOut(this.state.view);
 		},
 
 		render: function() {
