@@ -406,9 +406,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 				colorsHTML = this.state._colors.map((color, index) => {
 
-					let page = false;
+					let page = 1;
 
-					if ( window.innerHeight < 1000 ) {
+			//		if ( window.innerHeight < 1000 ) {
 						if ( window.innerWidth > 768 ) {
 							if ( index < 20 ) {
 								page = 1;
@@ -426,12 +426,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 								page = 4;
 							}
 						}
-					}
+			//		}
 
 					return <BtnColorComponent key={ index } color={ color } structure={ this.state.chosenStructure } page={ page } pageInView={ this.state.pageInView } onClick={ this.updateColor } />
 				});
 
-				if ( window.innerHeight < 1000 ) {
+			//	if ( window.innerHeight < 1000 ) {
 
 					let styleStr = '.drawer__content ul.colors li.right-of-window, .drawer__content ul.colors li.moving-out-to-right { top: -' + this.COLOR_TOP_CSS_AMOUNT + 'px }';
 					colorStyleHTML = <style>{ styleStr }</style>
@@ -449,7 +449,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 							</div>
 						</div>
 					);
-				}
+			//	}
 			}
 
 			const OPEN             = this.state.open ? 'open' : 'closed';
