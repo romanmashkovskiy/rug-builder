@@ -79,6 +79,27 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			this.restart     = PubSub.subscribe( 'restart', this.restart );
 			this.submit      = PubSub.subscribe( 'submit', this.submit );
 
+			let _t = this;
+
+			const HAMMER_S = new Hammer(document.querySelector('ul.structures'));
+			const HAMMER_C = new Hammer(document.querySelector('ul.colors'));
+
+			HAMMER_S.on('swipe', (e) => {
+				if ( e.direction === 2 ) {
+					_t.slideLeft();
+				} else if ( e.direction === 1 ) {
+					_t.slideRight();
+				}
+			});
+
+			HAMMER_C.on('swipe', (e) => {
+				if ( e.direction === 2 ) {
+					_t.slideLeft();
+				} else if ( e.direction === 1 ) {
+					_t.slideRight();
+				}
+			});
+
 			window.addEventListener('resize', this.windowResize);
 		},
 
@@ -232,12 +253,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				return;
 			}
 
-			document.querySelectorAll('li.in-window').forEach((e,i) => {
-				e.classList.add('moving-out-to-left')
+			let array = [], array2 = [];
+
+			array.forEach.call(document.querySelectorAll('li.in-window'), (e, i) => {
+				e.classList.add('moving-out-to-left');
 			});
 
-			document.querySelectorAll('li.right-of-window').forEach((e,i) => {
-				e.classList.add('moving-in-from-right')
+			array.forEach.call(document.querySelectorAll('li.right-of-window'), (e, i) => {
+				e.classList.add('moving-in-from-right');
 			});
 
 			const _t = this;
@@ -260,12 +283,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				return;
 			}
 
-			document.querySelectorAll('li.in-window').forEach((e,i) => {
-				e.classList.add('moving-out-to-right')
+			let array = [], array2 = [];
+
+			array.forEach.call(document.querySelectorAll('li.in-window'), (e, i) => {
+				e.classList.add('moving-out-to-right');
 			});
 
-			document.querySelectorAll('li.left-of-window').forEach((e,i) => {
-				e.classList.add('moving-in-from-left')
+			array.forEach.call(document.querySelectorAll('li.left-of-window'), (e, i) => {
+				e.classList.add('moving-in-from-left');
 			});
 
 			const _t = this;

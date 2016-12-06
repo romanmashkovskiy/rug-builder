@@ -115,12 +115,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				return;
 			}
 
-			document.querySelectorAll('li.in-window').forEach((e,i) => {
-				e.classList.add('moving-out-to-left')
+			let array = [], array2 = [];
+
+			array.forEach.call(document.querySelectorAll('li.in-window'), (e, i) => {
+				e.classList.add('moving-out-to-left');
 			});
 
-			document.querySelectorAll('li.right-of-window').forEach((e,i) => {
-				e.classList.add('moving-in-from-right')
+			array.forEach.call(document.querySelectorAll('li.right-of-window'), (e, i) => {
+				e.classList.add('moving-in-from-right');
 			});
 
 			const _t = this;
@@ -141,12 +143,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				return;
 			}
 
-			document.querySelectorAll('li.in-window').forEach((e,i) => {
-				e.classList.add('moving-out-to-right')
+			let array = [], array2 = [];
+
+			array.forEach.call(document.querySelectorAll('li.in-window'), (e, i) => {
+				e.classList.add('moving-out-to-right');
 			});
 
-			document.querySelectorAll('li.left-of-window').forEach((e,i) => {
-				e.classList.add('moving-in-from-left')
+			array.forEach.call(document.querySelectorAll('li.left-of-window'), (e, i) => {
+				e.classList.add('moving-in-from-left');
 			});
 
 			const _t = this;

@@ -65,6 +65,8 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/vendor/react/react.min.js"></script>
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/vendor/react/react-dom.min.js"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/assets/js/dist/rugBuilder.min.js"></script>
 
 	<script>
