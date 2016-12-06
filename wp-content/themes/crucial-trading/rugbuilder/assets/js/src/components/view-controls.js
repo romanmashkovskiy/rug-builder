@@ -31,7 +31,7 @@ RugBuilder.prototype.viewControls = function() {
 
 		zoomOut: function() {
 			R.zoomOut(this.state.view);
-		},
+		},	
 
 		render: function() {
 

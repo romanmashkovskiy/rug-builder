@@ -52,8 +52,6 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 			sceneChildren = ['border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west'];
 	}
 
-	console.log(R.loadedTextures[swatch])
-
 	if ( R.loadedTextures[swatch] === undefined ) {
 
 		new THREE.TextureLoader().load( thumb, (texture) => {

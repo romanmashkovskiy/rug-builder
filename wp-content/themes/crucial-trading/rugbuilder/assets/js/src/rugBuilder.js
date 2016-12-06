@@ -259,6 +259,8 @@ class RugBuilder {
 		const CURRENT_ZOOM_Y = this.camera.position.y;
 		const CURRENT_ZOOM_Z = this.camera.position.z;
 
+		console.log(CURRENT_ZOOM_X + ' ' + CURRENT_ZOOM_Y + ' ' + CURRENT_ZOOM_Y + ' ' + this.camera.rotation.x + ' ' + this.camera.rotation.y + ' ' + this.camera.rotation.z)
+
 		let maxZoomX, maxZoomY, maxZoomZ, newZoomX, newZoomY, newZoomZ, valid = true;
 
 		if ( currentView === 0 || currentView === 1 ) {
@@ -308,6 +310,8 @@ class RugBuilder {
 		this.camera.position.x = newZoomX;
 		this.camera.position.y = newZoomY;
 		this.camera.position.z = newZoomZ;
+
+		console.log(newZoomX + ' ' + newZoomY + ' ' + newZoomZ + ' ' + this.camera.rotation.x + ' ' + this.camera.rotation.y + ' ' + this.camera.rotation.z)
 
 		return true;
 	};

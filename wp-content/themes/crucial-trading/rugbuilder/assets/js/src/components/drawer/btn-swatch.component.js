@@ -34,7 +34,7 @@ RugBuilder.prototype.btnSwatchComponent = function() {
 			}
 			
 			return (
-				<li className={ classes }>
+				<li className={ classes } >
 					<a href="#" onClick={ this.handleClick }>
 						<img src={ this.props.thumb } alt={ this.props.swatch } />
 						<h3>{ this.props.code }</h3>

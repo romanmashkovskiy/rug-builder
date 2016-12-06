@@ -3,6 +3,7 @@
 
 	ul {
 		margin: 0;
+		height: 174px;
 		padding: 0;
 		padding-right: 50px;
 	}
@@ -52,13 +53,13 @@
 
 		&.right-of-window {
 			position: absolute;
-//			top: -540px;
+			top: -174px;
 			transform: translateX(100vw);
 		}
 
 		&.moving-in-from-right {
 			position: relative;
-//			top: -540px;
+			top: -174px;
 			transform: translateX(0);
 			-webkit-transition: 0.65s;
 			transition: 0.65s;
@@ -69,6 +70,7 @@
 
 		&.moving-out-to-right {
 			position: relative;
+			top: -174px;
 			transform: translateX(100vw);
 			-webkit-transition: 0.65s;
 			transition: 0.65s;

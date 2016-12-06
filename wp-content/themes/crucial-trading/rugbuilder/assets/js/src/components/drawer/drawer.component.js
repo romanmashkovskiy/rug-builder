@@ -19,7 +19,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				text : 'Collapse',
 
 				pageInView : 1,
-				numOfPages : 1,
 
 				chosenMaterial   : undefined,
 				chosenCollection : undefined,
@@ -165,7 +164,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		updateStageState: function(stage) {
 			this.setState({ stage : stage, pageInView : 1 });
 
-			R.numOfPages = 1;
+	//		R.numOfPages = 1;
 
 			let content;
 
@@ -408,7 +407,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			const SWATCHES_HTML    = function(caller) { return _this.createSwatchesHTML(caller); }
 			const BORDER_HTML      = _this.createBorderHTML();
 			const SIZE_HTML        = _this.createSizeHTML();
-			const PRICE_HTML       = _this.createPriceHTML();
+			const PRICE_HTML       = _this.createPriceHTML();		
 
 			const OPEN             = _this.state.open ? 'open' : 'closed';
 			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.content;
@@ -417,6 +416,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			let btnsHTML = '', topCSS = '';
 
 			if ( this.state.content === 'collections' || this.state.content === 'swatches' || this.state.content === 'swatchesSelected' ) {
+
+				alert(R.numOfPages)
 
 				let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
 				let rightStyle = this.state.pageInView === R.numOfPages ? { color: '#A8A8A8' } : {};
@@ -431,17 +432,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 						</div>
 					</div>
 				);
-			}
-
-			if ( this.state.content === 'swatches' || this.state.content === 'swatchesSelected' ) {
-
-				const WINDOW_WIDTH = window.innerWidth;
-
-				const ELEMS_PER_ROW       = WINDOW_WIDTH > 992 ? 6 : 3;
-				const SWATCHES_WIDTH_PERC = WINDOW_WIDTH > 768 ? 75 : 100;
-				const SWATCHES_WIDTH      = ( WINDOW_WIDTH / 100 ) * SWATCHES_WIDTH_PERC;
-
-				const ELEM_WIDTH = ( SWATCHES_WIDTH / 100 ) * 15;
 			}
 
 			return (
@@ -688,10 +678,12 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 		// Work out which page selectedSwatchIndex is on then set state.pageInView to that page
 
-		let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
-		let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
+		// BUT ONLY IF ITS CALLED FROM THE FIRST RENDER, IF ITS CALLED FROM A SCROLL DO NOT DO THIS
 
-		_this.state.pageInView = pageSelectedSwatchIsOn;
+//		let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
+//		let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
+
+//		_this.state.pageInView = pageSelectedSwatchIsOn;
 
 		// Create a BtnSwatchComponent for each swatch in the swatchArr array
 
