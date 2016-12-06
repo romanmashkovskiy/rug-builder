@@ -14,22 +14,21 @@
 	wp_reset_postdata();
 
 	$html = '';
-
-	$categories = get_categories( array(
-	    'orderby' => 'name',
-	    'parent'  => 0,
-	    'hide_empty' => 0
+	
+	$categories = wp_list_categories( array(
+    'orderby' => 'name',
+    'parent'  => 0,
+    'hide_empty' => 0,
+    'title_li' => '',
+    'echo' => 0
 	) );
 	
 	$html .= '<div class="news-categories box-shadow">';
-	 
-		foreach ( $categories as $category ) {
-		    $cat_link = get_category_link( $category->term_id );
-		    $cat_name = $category->name;
-		    
-		    $html .= '<a href="'.$cat_link.'">'.$cat_name.'</a>';
-		}
-
+	$html .= '<ul>';
+		
+	$html .= $categories;
+		
+	$html .= '</ul>';
 	$html .= '</div>';
 
 	return $html;

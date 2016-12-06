@@ -14,6 +14,9 @@ class RugBuilder {
 		this.stages       = [ 'center', 'borderType', 'innerBorder', 'outerBorder', 'size' ];
 		this.stageVisited = [ true, false, false, false, false ];
 
+		// React Drawer Scrolling
+		this.numOfPages = 1;
+
 		// WC Data
 		this.WCmaterials         = [];
 		this.WCcollections       = [];
@@ -104,8 +107,17 @@ class RugBuilder {
 
 		this.price = 0;
 
-		// React Components
-		this.reactComponents = {};
+		// Errors
+		this.errors = {
+			100 : 'Material Loading Stage',
+			101 : 'Collection Loading Stage',
+			102 : 'Swatch Loading Stage',
+			103 : 'Border Material Loading Stage',
+
+			200 : 'Loading Single Border Into Three',
+			201 : 'Loading Single & Piping Border Into Three',
+			202 : 'Loading Double Border Into Three'
+		}
 	};
 
 	nextStage() {
@@ -239,110 +251,130 @@ class RugBuilder {
 		}
 	};
 
-	zoomIn(currentView, currentZoom) {
+	zoomIn(currentView) {
 
 		// Zoom in on the rug
 
-		const ZOOM_LEVEL = currentZoom + 1;
+		const CURRENT_ZOOM_X = this.camera.position.x;
+		const CURRENT_ZOOM_Y = this.camera.position.y;
+		const CURRENT_ZOOM_Z = this.camera.position.z;
 
-		if ( ZOOM_LEVEL > 6 ){
-			// If trying to zoom in to more than zoom level 6, return as that is the max zoom
+		console.log(CURRENT_ZOOM_X + ' ' + CURRENT_ZOOM_Y + ' ' + CURRENT_ZOOM_Y + ' ' + this.camera.rotation.x + ' ' + this.camera.rotation.y + ' ' + this.camera.rotation.z)
+
+		let maxZoomX, maxZoomY, maxZoomZ, newZoomX, newZoomY, newZoomZ, valid = true;
+
+		if ( currentView === 0 || currentView === 1 ) {
+			maxZoomX = 0;
+			maxZoomY = 20;
+			maxZoomZ = 0;
+
+			newZoomX = 0;
+			newZoomY = CURRENT_ZOOM_Y - 30;
+			newZoomZ = 0;
+
+			if ( newZoomY < maxZoomY ) {
+				valid = false;
+			}
+		}
+		else if ( currentView === 2 ) {
+			maxZoomX = -5;
+			maxZoomY = 22.8673200406;
+			maxZoomZ = 33.526583016;
+
+			newZoomX = CURRENT_ZOOM_X - 15;
+			newZoomY = CURRENT_ZOOM_Y - 15;
+			newZoomZ = CURRENT_ZOOM_Z - 15;
+
+			if ( ( newZoomX < maxZoomX ) || ( newZoomY < maxZoomY ) || ( newZoomZ < maxZoomZ ) ) {
+				valid = false;
+			}
+		}
+		else if ( currentView === 3 ) {
+			maxZoomX = 10;
+			maxZoomY = 71.9786827047;
+			maxZoomZ = 0;
+
+			newZoomX = CURRENT_ZOOM_X + 15;
+			newZoomY = CURRENT_ZOOM_Y - 15;
+			newZoomZ = 0;
+
+			if ( ( newZoomX > maxZoomX ) || ( newZoomY < maxZoomY ) ) {
+				valid = false;
+			}
+		}
+
+		if ( !valid ) {
 			return false;
 		}
 
-		if ( currentView === 0 || currentView === 1 ) {
+		this.camera.position.x = newZoomX;
+		this.camera.position.y = newZoomY;
+		this.camera.position.z = newZoomZ;
 
-			// If either above view, simply subtract 30 from the camera's Y position
+		console.log(newZoomX + ' ' + newZoomY + ' ' + newZoomZ + ' ' + this.camera.rotation.x + ' ' + this.camera.rotation.y + ' ' + this.camera.rotation.z)
 
-			const CURRENT_Y = this.camera.position.y;
-			const ZOOM_Y    = CURRENT_Y - 30;
-
-			this.camera.position.y = ZOOM_Y;
-		}
-		else if ( currentView === 2 ) {
-
-			// If angled view, subtract 15 to X, Y, and Z
-
-			const CURRENT_X = this.camera.position.x;
-			const CURRENT_Y = this.camera.position.y;
-			const CURRENT_Z = this.camera.position.z;
-
-			const ZOOM_X = CURRENT_X - 15;
-			const ZOOM_Y = CURRENT_Y - 15;
-			const ZOOM_Z = CURRENT_Z - 15;
-
-			this.camera.position.x = ZOOM_X;
-			this.camera.position.y = ZOOM_Y;
-			this.camera.position.z = ZOOM_Z;
-		}
-		else if ( currentView === 3 ) {
-
-			// If angled horizontal view, add 15 to X, subtract 15 from Y
-
-			const CURRENT_X = this.camera.position.x;
-			const CURRENT_Y = this.camera.position.y;
-
-			const ZOOM_X = CURRENT_X + 15;
-			const ZOOM_Y = CURRENT_Y - 15;
-
-			this.camera.position.x = ZOOM_X;
-			this.camera.position.y = ZOOM_Y;
-		}
-
-		return ZOOM_LEVEL;
+		return true;
 	};
 
-	zoomOut(currentView, currentZoom) {
+	zoomOut(currentView) {
 
-		// Zoom out from the rug
+		// Zoom out from the rug - this method should work but needs testing first,plus the actual numbers inputting
 
-		const ZOOM_LEVEL = currentZoom - 1;
+		const CURRENT_ZOOM_X = this.camera.position.x;
+		const CURRENT_ZOOM_Y = this.camera.position.y;
+		const CURRENT_ZOOM_Z = this.camera.position.z;
+		
+		let maxZoomX, maxZoomY, maxZoomZ, newZoomX, newZoomY, newZoomZ, valid = true;
 
-		if ( ZOOM_LEVEL < 0 ) {
-			// If trying to zoom out to less than zoom level 0, return as that is the min zoom
+		if ( currentView === 0 || currentView === 1 ) {
+			maxZoomX = 0;
+			maxZoomY = 200;
+			maxZoomZ = 0;
+
+			newZoomX = 0;
+			newZoomY = CURRENT_ZOOM_Y + 30;
+			newZoomZ = 0;
+
+			if ( newZoomY > maxZoomY ) {
+				valid = false;
+			}
+		}
+		else if ( currentView === 2 ) {
+			maxZoomX = 85;
+			maxZoomY = 112.8673200406;
+			maxZoomZ = 123.526583016;
+
+			newZoomX = CURRENT_ZOOM_X + 15;
+			newZoomY = CURRENT_ZOOM_Y + 15;
+			newZoomZ = CURRENT_ZOOM_Z + 15;
+
+			if ( ( newZoomX > maxZoomX ) || ( newZoomY > maxZoomY ) || ( newZoomZ > maxZoomZ ) ) {
+				valid = false;
+			}
+		}
+		else if ( currentView === 3 ) {
+			maxZoomX = -80;
+			maxZoomY = 161.9786827047;
+			maxZoomZ = 0;
+
+			newZoomX = CURRENT_ZOOM_X - 15;
+			newZoomY = CURRENT_ZOOM_Y + 15;
+			newZoomZ = 0;
+
+			if ( ( newZoomX < maxZoomX ) || ( newZoomY > maxZoomY ) ) {
+				valid = false;
+			}
+		}
+
+		if ( !valid ) {
 			return false;
 		}
 
-		if ( currentView === 0 || currentView === 1 ) {
+		this.camera.position.x = newZoomX;
+		this.camera.position.y = newZoomY;
+		this.camera.position.z = newZoomZ;
 
-			// If either above view, simply add 30 to the camera's Y position
-
-			const CURRENT_Y = this.camera.position.y;
-			const ZOOM_Y    = CURRENT_Y + 30;
-
-			this.camera.position.y = ZOOM_Y;
-		}
-		else if ( currentView === 2 ) {
-
-			// If angled view, add 15 to X, Y, and Z
-
-			const CURRENT_X = this.camera.position.x;
-			const CURRENT_Y = this.camera.position.y;
-			const CURRENT_Z = this.camera.position.z;
-
-			const ZOOM_X = CURRENT_X + 15;
-			const ZOOM_Y = CURRENT_Y + 15;
-			const ZOOM_Z = CURRENT_Z + 15;
-
-			this.camera.position.x = ZOOM_X;
-			this.camera.position.y = ZOOM_Y;
-			this.camera.position.z = ZOOM_Z;
-		}
-		else if ( currentView === 3 ) {
-
-			// If angled horizontal view, subtract 15 from X, add 15 to Y
-
-			const CURRENT_X = this.camera.position.x;
-			const CURRENT_Y = this.camera.position.y;
-
-			const ZOOM_X = CURRENT_X - 15;
-			const ZOOM_Y = CURRENT_Y + 15;
-
-			this.camera.position.x = ZOOM_X;
-			this.camera.position.y = ZOOM_Y;
-		}
-
-		return ZOOM_LEVEL;
+		return true;
 	};
 
 	startAgain() {
@@ -420,42 +452,63 @@ class RugBuilder {
 			return;
 		}
 
-		const CURRENT_CENTER_MATERIAL = this.centerMaterial;
-		const CENTER_PRICE_PER_m2     = this.getPriceData(CURRENT_CENTER_MATERIAL);
-		const AREA                    = LENGTH * WIDTH;
-		const CENTER_PRICE            = CENTER_PRICE_PER_m2 * AREA;
+		const CURRENT_CENTER_MATERIAL = this.centerMaterial;+
 
-		const CURRENT_BORDER_TYPE     = this.borderType;
+		this.getPriceData(CURRENT_CENTER_MATERIAL)
+			.then((price) => {
 
-		if ( CURRENT_BORDER_TYPE === 'single' || CURRENT_BORDER_TYPE === 'piping' ) {
+				const AREA         = LENGTH * WIDTH;
+				const CENTER_PRICE = price * AREA;
 
-			const CURRENT_BORDER_MATERIAL = this.borderMaterials[CURRENT_BORDER_TYPE];
-			const BORDER_PRICE_PER_m2     = this.getPriceData(CURRENT_BORDER_MATERIAL);
+				const CURRENT_BORDER_TYPE = this.borderType;
 
-			const BORDER_PRICE = 0;
+				if ( CURRENT_BORDER_TYPE === 'single' || CURRENT_BORDER_TYPE === 'piping' ) {
 
-			totalPrice = CENTER_PRICE + BORDER_PRICE;
-		}
-		else if ( CURRENT_BORDER_TYPE === 'double' ) {
+					const CURRENT_BORDER_MATERIAL = this.borderMaterials[CURRENT_BORDER_TYPE];
 
-			const CURRENT_INNER_MATERIAL = this.borderMaterials.double.inner;
-			const CURRENT_OUTER_MATERIAL = this.borderMaterials.double.outer;
+					this.getPriceData(CURRENT_BORDER_MATERIAL)
+						.then((price2) => {
+							totalPrice = CENTER_PRICE + price2; 
+							PubSub.publish('newPrice', totalPrice);
 
-			const INNER_PRICE_PER_m2 = this.getPriceData(CURRENT_INNER_MATERIAL);
-			const OUTER_PRICE_PER_m2 = this.getPriceData(CURRENT_OUTER_MATERIAL);
+							this.length = LENGTH;
+							this.width  = WIDTH;
+							this.price  = totalPrice;
 
-			const INNER_PRICE = 0;
-			const OUTER_PRICE = 0;
+							return;
+						})
+						.catch(() => {
+							R.error(1000, true)
+						});
 
-			totalPrice = CENTER_PRICE + INNER_PRICE + OUTER_PRICE;
-		}
+				}
+				else if ( CURRENT_BORDER_TYPE === 'double' ) {
 
-		this.length = LENGTH;
-		this.width  = WIDTH;
-		this.price  = totalPrice;
+					const CURRENT_INNER_MATERIAL = this.borderMaterials.double.inner;
+					const CURRENT_OUTER_MATERIAL = this.borderMaterials.double.outer;
 
-		PubSub.publish('newPrice', totalPrice);
-		return;
+					this.getPriceData(CURRENT_INNER_MATERIAL)
+						.then((price2) => {
+							return this.getPriceData(CURRENT_OUTER_MATERIAL);
+						})
+						.then((price3) => {
+							totalPrice = CENTER_PRICE + price2 + price3;
+							PubSub.publish('newPrice', totalPrice);
+
+							this.length = LENGTH;
+							this.width  = WIDTH;
+							this.price  = totalPrice;
+
+							return;
+						})
+						.catch(() => {
+							R.error(1000, true)
+						});
+				}
+			})
+			.catch(() => {
+				R.error(1000, true)
+			});
 	}
 }
 

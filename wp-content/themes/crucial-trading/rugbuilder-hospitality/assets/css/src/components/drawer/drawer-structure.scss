@@ -1,0 +1,120 @@
+.drawer__content ul.structures {
+	margin: 0;
+
+	&.open {
+		max-height: 2000px;
+		overflow: initial;
+		padding: 25px;
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.opening {
+		max-height: 2000px;
+		overflow: hidden;
+		padding: 25px;
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.closed {
+		max-height: 0;
+		overflow: hidden;
+		padding: 0;
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	a {
+		display: block;
+		height: 100%;
+		padding: 0;
+		width: 100%;
+
+		@media screen and (max-width: 555px) {
+			text-align: center;
+		}
+
+		h3 {
+			font-size: 14px;
+			position: relative;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			width: 55%;
+
+			@media screen and (max-width: 555px) {
+				position: static;
+				text-align: center;
+				width: 100%;
+			}
+		}
+
+		img {
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 100px;
+
+			@media screen and (max-width: 666px) {
+				top: 50%;
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+				width: 55%;
+			}
+
+			@media screen and (max-width: 555px) {
+				position: static;
+				-webkit-transform: none;
+				transform: none;
+				width: 80px;
+			}
+		}
+	}
+
+	li {
+		border: 1px solid #EDEDED;
+		box-sizing: border-box;
+		float: left;
+		height: 132px;
+		list-style: none;
+		margin-bottom: 25px;
+		padding: 15px;
+		width: 23.5%;
+
+		&:not(:nth-child(4n)) {
+			margin-right: 2%;
+		}
+
+		&:hover {
+			border: none;
+			-webkit-box-shadow: -0 2px 18px 0px rgba(0,0,0,0.08);
+			-moz-box-shadow: -0 2px 18px 0px rgba(0,0,0,0.08);
+			box-shadow: -0 2px 18px 0px rgba(0,0,0,0.08);
+		}
+	}
+	
+	@media screen and (max-width: 992px) {
+
+		li {
+			width: 32%;
+
+			&:not(:nth-child(4n)) {
+				margin-right: 0;
+			}
+
+			&:not(:nth-child(3n)) {
+				margin-right: 2%;
+			}
+		}
+	}
+}

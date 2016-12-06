@@ -17,14 +17,37 @@
 /* Colors */
 /* Typography */
 /* Main Navigation & Footer */
-.page-template-news {
-  background-color: #f8f8f8; }
-
 .news-categories {
   width: 80%;
   margin: auto;
   text-align: center;
   background-color: #FFF;
-  padding: 30px;
-  margin-top: -50px;
+  padding: 40px;
+  position: relative;
+  top: -40px;
   z-index: 99; }
+
+/********** Link Layout ********/
+.news-categories ul {
+  display: table;
+  padding: 0;
+  margin: 0;
+  width: 100%; }
+
+.news-categories ul li {
+  display: table-cell;
+  text-align: center; }
+
+/******** Link Appearance *******/
+.news-categories ul li a {
+  font-size: 14px;
+  color: #666666; }
+
+.news-categories ul li a:after,
+.news-categories ul li.current-cat a:before {
+  background-color: #000;
+  opacity: 1; }
+
+.news-categories ul li.current-cat a,
+.news-categories ul li a:hover {
+  color: #000; }

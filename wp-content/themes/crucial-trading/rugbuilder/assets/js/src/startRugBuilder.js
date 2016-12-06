@@ -1,5 +1,9 @@
 RugBuilder.prototype.start = function() {
 
+//	window.onerror = function() {
+//		R.error(1000, true);
+//	}
+
 	const R = rugBuilder;
 
 	// Get WC Data, then either load rest of the app or error
@@ -159,17 +163,8 @@ RugBuilder.prototype.start = function() {
 	}
 
 	function error( err ) {
-
-		let stage;
-
-		switch ( err ) {
-
-			case 0 : stage = 'materials'; break;
-			case 1 : stage = 'collections'; break;
-		}
-
-		let str = 'Error at '  + stage + ' stage.';
-
-		alert(str);
+		let errorCode = 100 + err;
+		R.error(errorCode, true);
+		return;
 	}
 }

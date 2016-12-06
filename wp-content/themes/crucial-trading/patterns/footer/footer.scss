@@ -51,6 +51,7 @@ footer {
 
 .footer__col--social ul li a {
 	position: relative;
+	width: 60%;
 }
 
 .footer__col--social i {
@@ -64,7 +65,7 @@ footer {
 /************** Footer Decorative Line **************/ 
 
 .footer__line {
-	height: 2px;
+	height: 1px;
 	width: 90px;
 	background-color: $main-menu-link-color;
 	position: absolute;
@@ -112,9 +113,9 @@ footer {
 
 /*** Footer Links Hover Line ***/ 
 
-/*.footer__col a::after {
-	width: 23px;
-	height: 2px;
+.footer__col a::after {
+	width: 20px;
+	height: 1px;
 	position: absolute;
 	left: -20px;
 	top: 50%;
@@ -128,8 +129,8 @@ footer {
 .footer__col a:hover::after,
 .footer__col a.active::after {
 	transform: translate(0, 0);
-	opacity: 1;
-}*/
+	opacity: 0.6;
+}
 
 /************** Copyright & Design Credit **************/ 
 

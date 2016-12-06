@@ -1,0 +1,10 @@
+{
+  "name": "rugbuilder-hospitality-vendor",
+  "version": "1.0.0",
+  "description": "Install Bower to manage Rug Builder Hospitality vendor libraries",
+  "main": "gulpfile.js",
+  "author": "Elliot Lewis <elliot@kijo.co>",
+  "devDependencies": {
+    "bower": "^1.7.9"
+  }
+}

@@ -31,12 +31,16 @@ function header_shortcode($atts = '') {
 	if (!empty($background)) : 
 		$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
 	else : 
-		$html .= '<header class="' . $header_size . '"';
+		$html .= '<header class="' . $header_size . '">';
 	endif;
 	
 	$html .= '<div class="vertical-align">';
-	$html .= '<h3 class="side-title rotate">' . $title . '</h3>';
-	$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';
+	$html .= '<h3 class="side-title">' . $title . '</h3>';
+	
+	if (!empty($subtitle)) : 
+		$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';
+	endif;
+	
 	$html .= '<h1>' . $title . '</h1>';
 	$html .= '</div></header>';
 

@@ -1,0 +1,60 @@
+.drawer__content ul.colors {
+	margin: 0;
+
+	&.open {
+		max-height: 2000px;
+		overflow: initial;
+		padding: 25px;
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.opening {
+		max-height: 2000px;
+		overflow: initial;
+		padding: 25px;
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.closed {
+		max-height: 0;
+		overflow: hidden;
+		padding: 0;
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	a {
+		display: block;
+		height: 100%;
+		padding: 0;
+		width: 100%;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	li {
+		box-sizing: border-box;
+		float: left;
+		list-style: none;
+		margin-bottom: 20px;
+		padding: 0 10px;
+		width: 10%;
+
+		@media screen and (max-width: 768px) {
+			width: 20%;
+		}
+	}
+}

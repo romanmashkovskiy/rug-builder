@@ -8,8 +8,8 @@ background-color: $light-grey-bg;
 		background: white;
 		float: none;
 		margin-left: 10%;
-		margin-top: -25px;
-		padding: 30px 0;
+		margin-top: -40px;
+		padding: 40px 0;
 		position: relative;
 		width: 80%;
 		-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
@@ -27,12 +27,25 @@ background-color: $light-grey-bg;
 				width: 20%;
 
 				a {
-					color: transparentize(#6B6B6B, 0.4);
+					color: lighten(#000000, 50%);
 					font-size: 14px;
 				}
-
+				
+				a:hover {
+					color: #000;
+				}
+				
+				a:after {
+					background-color: #000;
+				}
+				
 				&.is-active a {
-					color: #6B6B6B;
+					color: #000;
+				}
+
+				&.is-active a:before {
+					background-color: #000;
+					opacity: 1;
 				}
 
 				&.woocommerce-MyAccount-navigation-link--downloads {

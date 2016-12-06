@@ -18,6 +18,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				open : true,
 				text : 'Collapse',
 
+				pageInView : 1,
+
 				chosenMaterial   : undefined,
 				chosenCollection : undefined,
 				chosenSwatch     : undefined,
@@ -30,13 +32,15 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				length : '',
 				width  : '',
-				price  : false
+				price  : false,
+
+				_resize : 0
 			}
 		},
 
 		componentDidMount: function() {
-			this.stageChange = PubSub.subscribe( 'stageChange', this.updateStageState );
-			this.newPrice    = PubSub.subscribe( 'newPrice', this.showNewPrice );
+			this.stageChange  = PubSub.subscribe( 'stageChange', this.updateStageState );
+			this.newPrice     = PubSub.subscribe( 'newPrice', this.showNewPrice );
 		},
 
 		componentWillUnmount: function() {
@@ -44,8 +48,123 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			PubSub.unsubscribe( this.newPrice );
 		},
 
+		open: function() {
+
+			document.querySelector('.drawer__content__material').classList.remove('closed');
+			document.querySelector('.drawer__content__collections').classList.remove('closed');
+			document.querySelector('.drawer__content__swatches').classList.remove('closed');
+			document.querySelector('.drawer__content__swatches--selected').classList.remove('closed');
+			document.querySelector('.drawer__content__border').classList.remove('closed');
+			document.querySelector('.drawer__content__size').classList.remove('closed');
+
+			document.querySelector('.drawer__content__material').classList.add('opening');
+			document.querySelector('.drawer__content__collections').classList.add('opening');
+			document.querySelector('.drawer__content__swatches').classList.add('opening');
+			document.querySelector('.drawer__content__swatches--selected').classList.add('opening');
+			document.querySelector('.drawer__content__border').classList.add('opening');
+			document.querySelector('.drawer__content__size').classList.add('opening');
+
+			setTimeout(function() {
+
+				document.querySelector('.drawer__content__material').classList.remove('opening');
+				document.querySelector('.drawer__content__collections').classList.remove('opening');
+				document.querySelector('.drawer__content__swatches').classList.remove('opening');
+				document.querySelector('.drawer__content__swatches--selected').classList.remove('opening');
+				document.querySelector('.drawer__content__border').classList.remove('opening');
+				document.querySelector('.drawer__content__size').classList.remove('opening');
+
+				document.querySelector('.drawer__content__material').classList.add('open');
+				document.querySelector('.drawer__content__collections').classList.add('open');
+				document.querySelector('.drawer__content__swatches').classList.add('open');
+				document.querySelector('.drawer__content__swatches--selected').classList.add('open');
+				document.querySelector('.drawer__content__border').classList.add('open');
+				document.querySelector('.drawer__content__size').classList.add('open');
+			}, 650)
+			
+			this.setState({
+				open : true,
+				text : 'Collapse'
+			})
+		},
+
+		close: function() {
+
+			document.querySelector('.drawer__content__material').classList.remove('open');
+			document.querySelector('.drawer__content__collections').classList.remove('open');
+			document.querySelector('.drawer__content__swatches').classList.remove('open');
+			document.querySelector('.drawer__content__swatches--selected').classList.remove('open');
+			document.querySelector('.drawer__content__border').classList.remove('open');
+			document.querySelector('.drawer__content__size').classList.remove('open');
+
+			document.querySelector('.drawer__content__material').classList.add('closed');
+			document.querySelector('.drawer__content__collections').classList.add('closed');
+			document.querySelector('.drawer__content__swatches').classList.add('closed');
+			document.querySelector('.drawer__content__swatches--selected').classList.add('closed');
+			document.querySelector('.drawer__content__border').classList.add('closed');
+			document.querySelector('.drawer__content__size').classList.add('closed');
+			
+			this.setState({
+				open : false,
+				text : 'Expand'
+			})
+		},
+
+		slideLeft: function() {
+
+			if ( this.state.pageInView === R.numOfPages ) {
+				return;
+			}
+
+			document.querySelectorAll('li.in-window').forEach((e,i) => {
+				e.classList.add('moving-out-to-left')
+			});
+
+			document.querySelectorAll('li.right-of-window').forEach((e,i) => {
+				e.classList.add('moving-in-from-right')
+			});
+
+			const _t = this;
+
+			const CURRENT_PAGE = this.state.pageInView;
+			const NEW_PAGE     = CURRENT_PAGE + 1;
+
+			setTimeout(function() {
+				_t.setState({
+					pageInView : NEW_PAGE
+				})
+			}, 650)
+		},
+
+		slideRight: function() {
+
+			if ( this.state.pageInView === 1 ) {
+				return;
+			}
+
+			document.querySelectorAll('li.in-window').forEach((e,i) => {
+				e.classList.add('moving-out-to-right')
+			});
+
+			document.querySelectorAll('li.left-of-window').forEach((e,i) => {
+				e.classList.add('moving-in-from-left')
+			});
+
+			const _t = this;
+
+			const CURRENT_PAGE = this.state.pageInView;
+			const NEW_PAGE     = CURRENT_PAGE - 1;
+
+			setTimeout(function() {
+				_t.setState({
+					pageInView : NEW_PAGE
+				})
+			}, 650)
+		},
+
 		updateStageState: function(stage) {
-			this.setState({ stage : stage });
+			this.setState({ stage : stage, pageInView : 1 });
+
+	//		R.numOfPages = 1;
 
 			let content;
 
@@ -131,37 +250,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			R.getMaterialsData('border')
 				.then((res) => { this.setState({ _materials: R.WCborderMaterials }) })
-				.catch(()   => { alert('Loading material error') });
-		},
-
-		updateOpenState: function(open) {
-
-			// Function for updating the open/closed state of the drawer
-			// Gets passed to expand-collapse button as props.onUpdate.
-			// If open is true, update state to closed, and vice-versa.
-
-			const ELEM = document.querySelector('#drawer');
-
-			if ( open ) {
-
-				const HEIGHT = ELEM.offsetHeight;
-
-				ELEM.style.marginTop = '-' + HEIGHT + 'px';
-
-				this.setState({
-					open: false,
-					text: 'Expand'
+				.catch(()   => {
+					R.error(103, true);
+					return;
 				});
-			}
-			else {
-
-				ELEM.style.marginTop = 0;
-
-				this.setState({
-					open: true,
-					text: 'Collapse'
-				});
-			}
 		},
 
 		updateContentState: function(content) {
@@ -185,6 +277,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					.then((collections) => {
 						this.state._collections[material] = collections;
 						this.forceUpdate()
+					})
+					.catch(()   => {
+						R.error(101, true);
+						return;
 					});
 			}
 		},
@@ -206,6 +302,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					this.state._swatches[collection] = swatches;
 					R.loadingScreens('full', 'close');
 					this.forceUpdate();
+				})
+				.catch(() => {
+					R.error(102, true);
+					return;
 				});
 		},
 
@@ -307,11 +407,33 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			const SWATCHES_HTML    = function(caller) { return _this.createSwatchesHTML(caller); }
 			const BORDER_HTML      = _this.createBorderHTML();
 			const SIZE_HTML        = _this.createSizeHTML();
-			const PRICE_HTML       = _this.createPriceHTML();
+			const PRICE_HTML       = _this.createPriceHTML();		
 
 			const OPEN             = _this.state.open ? 'open' : 'closed';
 			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.content;
 			const MATERIAL_CLASSES = 'drawer__content__material stage' + this.state.stage;
+
+			let btnsHTML = '', topCSS = '';
+
+			if ( this.state.content === 'collections' || this.state.content === 'swatches' || this.state.content === 'swatchesSelected' ) {
+
+				// arrows not working because R.numOfPages is incorrect. no idea why. it is set when the user selects a swatch and should 
+				// not (and is not) changed afterwards (until the user moves to a different stage and the entire scrolling is reset)
+
+				let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
+				let rightStyle = this.state.pageInView === R.numOfPages ? { color: '#A8A8A8' } : {};
+
+				btnsHTML = (
+					<div className="scroll-btns clearfix">
+						<div className="scroll__left">
+							<a href="#" onClick={ this.slideRight } style={ leftStyle }>&#x25C0;</a>
+						</div>
+						<div className="scroll__right">
+							<a href="#" onClick={ this.slideLeft } style={ rightStyle }>&#x25B6;</a>
+						</div>
+					</div>
+				);
+			}
 
 			return (
 				<div className="react-container drawer__container">
@@ -366,8 +488,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							{ SIZE_HTML }
 							{ PRICE_HTML }
 						</div>
+						{ btnsHTML }
 					</div>
-					<BtnExpandCollapseComponent onUpdate={ this.updateOpenState } currentState={ this.state }/>
+					<BtnExpandCollapseComponent currentlyOpen={ this.state.open } text={ this.state.text } open={ this.open } close={ this.close } />
 				</div>	
 			);
 		}
@@ -443,19 +566,32 @@ function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 		return;
 	}
 
-	// Get the collections for the user selected material
-
 	const COLLECTIONS = _this.state._collections;
 	const COLLECTION  = COLLECTIONS[ _this.state.chosenMaterial ];
 
+	let elemsPerPage = 0;
 
+	if ( window.innerWidth > 768 ) {
+		elemsPerPage = 12;
+	}
+
+	if ( COLLECTION !== undefined ) {
+		let numOfPages = Math.ceil( COLLECTION.length / elemsPerPage );
+		R.numOfPages = numOfPages;
+	}
+
+	// Get the collections for the user selected material
 
 	if ( _this.state.content === 'collections' ) {
 
 		// Create a BtnCollectionComponent for each collection in the COLLECTION array
 
 		return COLLECTION.map((collection, index) => {
-			return <BtnCollectionComponent key={ index } collection={ collection.name } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } />
+
+			let indexPlusOne = index + 1;
+			let page         = Math.ceil( indexPlusOne / elemsPerPage );
+
+			return <BtnCollectionComponent key={ index } collection={ collection.name } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } page={ page } pageInView={ _this.state.pageInView } />
 		});
 	}
 }
@@ -479,6 +615,13 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 		// can't just run map on it. Instead run map on each of the keys, then use that
 		// key to get the individual swatches from the object
 
+		let elemsPerPage = window.innerWidth > 992 ? 18 : 9;
+
+		if ( SWATCH !== undefined ) {
+			let numOfPages = Math.ceil( Object.keys(SWATCH).length / elemsPerPage );
+			R.numOfPages = numOfPages;
+		}
+
 		return Object.keys(SWATCH).map((swatch, index) => {
 
 			const CURRENT_SWATCH = SWATCH[swatch];
@@ -500,9 +643,12 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				maps.dmap = CURRENT_SWATCH.dmap;
 			}
 
+			let indexPlusOne = index + 1;
+			let page         = Math.ceil( indexPlusOne / elemsPerPage );
+
 			// Create a BtnSwatchComponent for each swatch in the SWATCH object
 
-			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 		})
 	}
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
@@ -510,74 +656,51 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 		const SELECTED_SWATCH     = _this.state.chosenSwatch.replace(/ /g, '');
 		const SELECTED_COLLECTION = _this.state._swatches[ _this.state.chosenCollection ];
 
-		let allSwatches = [];
-		let swatchIndex;
+		let elemsPerPage  = window.innerWidth > 992 ? 6 : 3;
+		let numOfSwatches = Object.keys(SELECTED_COLLECTION).length
+
+		if ( SELECTED_COLLECTION !== undefined ) {
+			let numOfPages = Math.ceil( numOfSwatches / elemsPerPage );
+			R.numOfPages = numOfPages;
+		}
+
+		let selectedSwatchIndex;
 
 		let i = 0;
 
 		Object.keys(SELECTED_COLLECTION).forEach((key) => {
 
 			if ( key === SELECTED_SWATCH ) {
-				swatchIndex = i;
+				selectedSwatchIndex = i;
 			}
 
-			allSwatches[i] = SELECTED_COLLECTION[key];
 			i++;
 		});
 
-		let swatchArr = [];
+		// Work out which page selectedSwatchIndex is on then set state.pageInView to that page
 
-		if ( swatchIndex <= 1 ) {
+		// BUT ONLY IF ITS CALLED FROM THE FIRST RENDER, IF ITS CALLED FROM A SCROLL DO NOT DO THIS
 
-			for ( let i = 0; i < swatchIndex; i++ ) {
-				if ( allSwatches[i] !== undefined ) {
-					swatchArr.push(allSwatches[i]);
-				}
-			}
+//		let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
+//		let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
 
-			swatchArr.push(allSwatches[swatchIndex]);
-
-			for ( let i2 = swatchIndex + 1; i2 < 5; i2++ ) {
-				if ( allSwatches[i2] !== undefined ) {
-					swatchArr.push(allSwatches[i2]);
-				}
-			}
-		}
-		else if ( swatchIndex > allSwatches.length - 2 ) {
-
-			let extra    = swatchIndex === allSwatches.length ? 2 : 1;
-			let subtract = 2 + extra;
-
-			for ( let i = swatchIndex - subtract; i < swatchIndex; i++ ) {
-				if ( allSwatches[i] !== undefined ) {
-					swatchArr.push(allSwatches[i]);
-				}
-			}
-
-			swatchArr.push(allSwatches[swatchIndex]);
-
-			let left = 5 - swatchArr.length;
-			let top  = 1 + left;
-
-			for ( let i2 = swatchIndex + 1; i2 < top; i2++ ) {
-				if ( allSwatches[i2] !== undefined ) {
-					swatchArr.push(allSwatches[i2]);
-				}
-			}
-		}
-		else {
-
-			for ( let i2 = swatchIndex - 2; i2 < swatchIndex + 3; i2++ ) {
-				if ( allSwatches[i2] !== undefined ) {
-					swatchArr.push(allSwatches[i2]);
-				}
-			}
-		}
+//		_this.state.pageInView = pageSelectedSwatchIsOn;
 
 		// Create a BtnSwatchComponent for each swatch in the swatchArr array
 
-		return swatchArr.map((swatch, index) => {
-			return <BtnSwatchComponent key={ index } swatch={ swatch.name } thumb={ swatch.thumb } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } />
+		return Object.keys(SELECTED_COLLECTION).map((swatch, index) => {
+
+			const CURRENT_SWATCH = SELECTED_COLLECTION[swatch];
+
+			const id    = CURRENT_SWATCH.id;
+			const name  = CURRENT_SWATCH.name;
+			const code  = CURRENT_SWATCH.code;
+			const thumb = CURRENT_SWATCH.thumb;
+
+			let indexPlusOne = index + 1;
+			let page         = Math.ceil( indexPlusOne / elemsPerPage );
+
+			return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 		});
 	}
 }

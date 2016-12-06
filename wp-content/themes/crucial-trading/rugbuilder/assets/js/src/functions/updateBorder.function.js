@@ -17,7 +17,10 @@ RugBuilder.prototype.updateBorder = function(border) {
 				_loadFiles(files, R, 'single', 'single')
 					.then(()  => { return _updateScene(R, 'single') })
 					.then(()  => { res() })
-					.catch(() => { alert('error loading border') });
+					.catch(() => {
+						R.error(200, true);
+						return;
+					});
 
 				break;
 
@@ -30,8 +33,10 @@ RugBuilder.prototype.updateBorder = function(border) {
 				_loadFiles(files, R, 'single', 'piping')
 					.then(()  => { return _updateScene(R, 'piping') })
 					.then(()  => { res() })
-					.catch(() => { alert('error loading border') });
-
+					.catch(() => {
+						R.error(201, true);
+						return;
+					});
 				break;
 
 			case 'Double Border' :
@@ -43,7 +48,10 @@ RugBuilder.prototype.updateBorder = function(border) {
 				_loadFiles(files, R, 'double', 'double')
 					.then(()  => { return _updateScene(R, 'double') })
 					.then(()  => { res() })
-					.catch(() => { alert('error loading border') });
+					.catch(() => {
+						R.error(202, true);
+						return;
+					});
 
 				break;
 		}
@@ -103,12 +111,22 @@ function _loadFiles(files, R, folder, type) {
 				
 		}
 
+		let counter = 0;
+
 		let interval = setInterval(function() {
+
+			if ( counter === 100 ) {
+				// Timeout after 10 seconds
+				rej();
+				return;
+			}
 
 			if ( files.length === objects.length ) {
 				res();
 				clearInterval(interval)
 			}
+
+			counter++;
 		}, 100)
 	});
 }

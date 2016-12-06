@@ -1,0 +1,97 @@
+#progress-menu {
+	background: white;
+	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	max-height: 161px;
+	position: relative;
+	z-index: 10;
+
+	@media screen and (max-width: 992px) {
+		max-height: initial;
+	}
+}
+
+.progress-menu__top {
+	padding: 15px;
+	position: relative;
+
+	.progress-menu__restart,
+	.progress-menu__exit,
+	.progress-menu__submit {
+		color: transparentize($main-menu-link-color, 0.25);
+		font-size: 12px;
+		padding: 0;
+		position: absolute;
+
+		img {
+			position: relative;
+			top: 3.5px;
+			right: 10px;
+		}
+
+		@media screen and (max-width: 550px) {
+			display: none;
+		}
+	}
+
+	.progress-menu__restart {
+		right: 115px;
+	}
+
+	.progress-menu__exit {
+		right: 15px;
+	}
+
+	.progress-menu__submit {
+		right: 280px;
+	}
+}
+
+.progress-menu__bottom {
+	padding: 10px 100px 38px;
+
+	.progress-menu__stages {
+		display: flex;
+		margin: 0;
+		padding: 0;
+
+		@media screen and (max-width: 992px) {
+			display: block;
+			text-align: center;
+		}
+	}
+
+	.progress-menu__stage {
+		display: flex;
+		flex-basis: 0;
+		flex-direction: row;
+		flex-grow: 1;
+
+		@media screen and (max-width: 992px) {
+			display: inline-block;
+			margin-bottom: 10px;
+			padding: 0 15px;
+		}
+
+		&.active {
+
+			.progress-menu__stage__link {
+				border-bottom: 1px solid $main-body-text-color;
+				color: $main-body-text-color;
+				margin: auto;
+				padding-bottom: 4px;
+				width: auto;
+			}
+		}
+	}
+
+	.progress-menu__stage__link {
+		color: $main-menu-link-color;
+		display: block;
+		font-size: 14px;
+		margin: auto;
+		text-align: center;
+		padding: 0;
+	}
+}

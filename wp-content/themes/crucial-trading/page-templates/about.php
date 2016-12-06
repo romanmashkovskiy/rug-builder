@@ -4,8 +4,8 @@
  *
  * Creates the animated interactive about page
  *
- * @package Hogarths
- * @since Hogarths 1.0
+ * @package Crucial Trading
+ * @since Crucial Trading 1.0
  */
  
 get_header();

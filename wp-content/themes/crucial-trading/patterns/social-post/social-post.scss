@@ -7,6 +7,11 @@
 		position: absolute;
 		width: calc(50% - 100px);
 
+		@media screen and (max-width: 992px) {
+			position: static;
+			width: 100%;
+		}
+
 		.border-box {
 			border: 2px solid rgba(255,255,255,0.3);
 			height: calc(100% - 20px);
@@ -20,9 +25,6 @@
 			left: 30px;
 			position: absolute;
 			top: 20px;
-			
-			
-			
 		}
 
 		.info {
@@ -30,6 +32,10 @@
 			padding: 0 20px 0 60px;
 			position: relative;
 			top: -100%;
+
+			@media screen and (max-width: 992px) {
+				top: calc(-100% - 75px);
+			}
 
 			h2 {
 				color: white;

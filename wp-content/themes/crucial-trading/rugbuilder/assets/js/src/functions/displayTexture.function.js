@@ -52,7 +52,6 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 			sceneChildren = ['border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west'];
 	}
 
-
 	if ( R.loadedTextures[swatch] === undefined ) {
 
 		new THREE.TextureLoader().load( thumb, (texture) => {
@@ -62,7 +61,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 
 			if ( stageCode === 0 ) {
 				// Center
-				texture.repeat.set(2,2);
+				texture.repeat.set(7,7);
 			}
 			else if ( stageCode === 2 || stageCode === 3 ) {
 				// Border
@@ -125,8 +124,6 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 }
 
 function _loadMaps(material, maps) {
-
-	console.log(maps)
 
 	if ( maps !== undefined ) {
 

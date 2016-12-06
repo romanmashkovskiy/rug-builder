@@ -1,0 +1,98 @@
+#drawer {
+	background: white;
+	-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+	box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+//	overflow-x: hidden;
+	position: relative;
+	z-index: 6;
+
+	.drawer__content {
+
+		&.structures {
+
+			ul.colors {
+				display: none;
+			}
+		}
+
+		&.colors {
+
+			ul.structures {
+				display: none;
+			}
+		}
+	}
+
+	.expCol {
+		-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+		-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+		box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+		background: white;
+		left: 50%;
+		padding: 5px 20px;
+		position: absolute;
+		-webkit-transform: translateX(-50%);
+		transform: translateX(-50%);
+	}
+}
+
+.drawer__content ul.structures li, .drawer__content ul.colors li {
+
+	&.hidden {
+		display: none;
+	}
+
+	&.in-window {
+		transform: translateX(0);
+	}
+
+	&.left-of-window {
+		position: absolute;
+		transform: translateX(-100vw);
+	}
+
+	&.moving-out-to-left {
+		transform: translateX(-100vw);
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.moving-in-from-left {
+		position: relative;
+		transform: translateX(0);
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.right-of-window {
+		position: absolute;
+		transform: translateX(100vw);
+	}
+
+	&.moving-in-from-right {
+		position: relative;
+		transform: translateX(0);
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.moving-out-to-right {
+		position: relative;
+		transform: translateX(100vw);
+		-webkit-transition: 0.65s;
+		transition: 0.65s;
+		transition: 0.65s;
+		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+}
