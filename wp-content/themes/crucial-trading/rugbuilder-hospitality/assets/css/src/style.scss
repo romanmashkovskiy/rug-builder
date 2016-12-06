@@ -41,6 +41,26 @@ canvas {
 	right: 0;
 }
 
+.dots {
+	bottom: 0;
+	position: absolute;
+	padding: 15px 10px;
+	right: 0;
+
+	.dot {
+		background: #DDDDDD;
+		border-radius: 50%;
+		float: left;
+		height: 15px;
+		margin: 0 5px;
+		width: 15px;
+
+		&.active {
+			background: #8C8C8C;
+		}
+	}
+}
+
 #img-container {
 	border-radius: 5px;
 	-webkit-box-shadow: 0px 5px 18px 0 rgba(0,0,0,.45);

@@ -366,6 +366,26 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			PubSub.publish( 'newColor', true );
 		},
 
+		scrollToPage: function(page) {
+
+			return;
+			
+//			if ( this.state.pageInView === page ) {
+//				return;
+//			}
+			
+//			if ( page < this.state.pageInView ) {
+//				this.slideRight();
+//			}
+//			else {
+//				this.slideLeft();
+//			}
+
+//			let _t = this;
+
+//			setTimeout(() => { _t.scrollToPage(page) }, 650)
+		},
+
 // Ref16: Render
 
 		render: function() {
@@ -487,6 +507,23 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			const OPEN             = this.state.open ? 'open' : 'closed';
 			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.stage;
 
+			let numOfPages = this.state.stage === 'structures' ? this.STRUCTURE_NUM_OF_PAGES : this.COLOR_NUM_OF_PAGES;
+			let dots = [];
+
+			for ( let i = 0; i < numOfPages; i++ ) {
+
+				let index = i + 1;
+				let className = 'dot';
+
+				if ( this.state.pageInView === index ) {
+					className += ' active';
+				}
+
+				dots.push(<div className={ className } data-page={ index } onClick={() => this.scrollToPage(index)}></div>);
+			}
+
+			let dotsHTML = <div className="dots clearfix">{ dots }</div>;
+
 			return (
 				<div className="react-container drawer__container" key={ this.state.timestamp }>
 					<div className={ DRAWER_CLASSES }>
@@ -499,6 +536,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 							</ul>
 						</div>
 						{ btnsHTML }
+						{ dotsHTML }
 					</div>
 					<BtnExpandCollapseComponent currentlyOpen={ this.state.open } text={ this.state.text } open={ this.open } close={ this.close } />
 					{ structureStyleHTML }
