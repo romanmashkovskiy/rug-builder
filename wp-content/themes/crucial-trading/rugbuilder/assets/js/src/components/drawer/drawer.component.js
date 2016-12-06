@@ -417,7 +417,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			if ( this.state.content === 'collections' || this.state.content === 'swatches' || this.state.content === 'swatchesSelected' ) {
 
-				alert(R.numOfPages)
+				// arrows not working because R.numOfPages is incorrect. no idea why. it is set when the user selects a swatch and should 
+				// not (and is not) changed afterwards (until the user moves to a different stage and the entire scrolling is reset)
 
 				let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
 				let rightStyle = this.state.pageInView === R.numOfPages ? { color: '#A8A8A8' } : {};
