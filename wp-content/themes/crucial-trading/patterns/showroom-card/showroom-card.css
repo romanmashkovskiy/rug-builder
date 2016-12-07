@@ -18,6 +18,8 @@
     height: 2px;
     margin-bottom: 45px;
     width: 100px; }
+  .showroom-card .card__address {
+    word-break: break-all; }
   .showroom-card.showroom .card__address {
     float: left;
     width: 60%; }

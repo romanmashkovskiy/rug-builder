@@ -25,6 +25,10 @@
 		width: 100px;
 	}
 
+	.card__address {
+		word-break: break-all;
+	}
+
 	&.showroom {
 
 		.card__address {

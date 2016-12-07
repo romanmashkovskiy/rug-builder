@@ -24,21 +24,39 @@
     float: none;
     margin: 100px auto;
     width: 700px; }
+    @media screen and (max-width: 768px) {
+      .retailer.overseas {
+        margin: 100px 5%;
+        width: 90%; } }
     .retailer.overseas .border-div {
       height: 400px;
       padding-left: 200px;
       position: relative; }
+      @media screen and (max-width: 768px) {
+        .retailer.overseas .border-div {
+          padding-left: 100px; } }
     .retailer.overseas .flag-icon {
       font-size: 20px;
       left: 100px;
       margin-top: 3px;
       position: absolute; }
+      @media screen and (max-width: 768px) {
+        .retailer.overseas .flag-icon {
+          left: 50px; } }
     .retailer.overseas .retailer__address {
       float: left;
       width: 60%; }
+      @media screen and (max-width: 768px) {
+        .retailer.overseas .retailer__address {
+          float: none;
+          width: 100%; } }
     .retailer.overseas .retailer__contact {
       float: left;
       width: 40%; }
+      @media screen and (max-width: 768px) {
+        .retailer.overseas .retailer__contact {
+          float: none;
+          width: 100%; } }
     .retailer.overseas .retailer__website {
       line-height: 1.6;
       margin-bottom: 20px; }

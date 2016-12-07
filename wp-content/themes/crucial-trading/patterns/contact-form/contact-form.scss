@@ -7,6 +7,13 @@
 	position: relative;
 	width: 74%;
 
+	@media screen and (max-width: 555px) {
+
+		input, select, textarea {
+			font-size: 12px !important;
+		}
+	}
+
 	.gform_wrapper,
 	.gform_heading {
 		margin: 0 !important;

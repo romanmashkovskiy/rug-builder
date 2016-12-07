@@ -133,6 +133,12 @@
 				top: 650px;
 				left: 60px;
 				width: calc(100% - 200px) !important;
+
+				@media screen and (max-width: 666px) {
+					left: 50px !important;
+					right: 50px !important;
+					width: calc(100% - 100px) !important;
+				}
 			}
 
 			&:nth-child(3) {

@@ -15,6 +15,10 @@
   margin-left: 25%;
   padding-top: 30px;
   width: 50%; }
+  @media screen and (max-width: 768px) {
+    .contact-select {
+      margin-left: 12.5%;
+      width: 75%; } }
   .contact-select h2 {
     text-align: center; }
   .contact-select span {

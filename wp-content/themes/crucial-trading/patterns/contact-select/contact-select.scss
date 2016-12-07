@@ -6,6 +6,11 @@
 	padding-top: 30px;
 	width: 50%;
 
+	@media screen and (max-width: 768px) {
+		margin-left: 12.5%;
+		width: 75%;
+	}
+
 	h2 {
 		text-align: center;
 	}
