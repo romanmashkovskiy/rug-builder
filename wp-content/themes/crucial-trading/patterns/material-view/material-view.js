@@ -47,11 +47,51 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('.material-img').each(function(i, v) {
-		$(v).elevateZoom({
-			zoomType  : 'lens',
-			lensShape : 'round',
-			lensSize  : 200
-		});
+	$('#change-image-view').on('click', function(e) {
+
+		e.preventDefault();
+		e.stopPropagation();
+
+		var currentView = $(this).data('view');
+
+		if ( currentView === 'top' ) {
+
+			$(this).siblings('img').attr('src', $(this).data('angle'));
+
+			$(this).parent().css('height', 'auto');
+
+			$(this).siblings('img').css({
+				height     : 'auto',
+				marginLeft : '25%',
+				width      : '50%'
+			});
+
+			$(this).data('view', 'angle');
+
+		} else {
+
+			$(this).siblings('img').attr('src', $(this).data('top'));
+
+			$(this).parent().css('height', '450px');
+
+			$(this).siblings('img').css({
+				height     : '100%',
+				marginLeft : '0',
+				width      : '100%'
+			});
+
+			$(this).data('view', 'top');
+
+		}
+
+		return false;
 	});
+
+//	$('.material-img').each(function(i, v) {
+//		$(v).elevateZoom({
+//			zoomType  : 'lens',
+//			lensShape : 'round',
+//			lensSize  : 200
+//		});
+//	});
 });

@@ -32,7 +32,7 @@ function range_swatches( $atts = '' ) {
 			foreach ( $ranges as $key => $value ) {
 
 				$title = $value->name;
-				$link  = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . $value->slug;
+				$link  = site_url() . '/product/' . $value->slug;
 
 				$src_id = get_woocommerce_term_meta( $value->term_id, 'thumbnail_id', true );
 				$src    = wp_get_attachment_url( $src_id );
@@ -44,7 +44,7 @@ function range_swatches( $atts = '' ) {
 				if ( $src != '' ) {
 					echo '<img src="' . $src . '" alt="' . $title . '" class="vertical-align">';
 				}
-				
+
 				echo '</a>';
 				echo '</div>';
 			}

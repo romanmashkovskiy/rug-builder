@@ -12,7 +12,7 @@
 
 function material_view( $atts = '' ) {
 
-	global $post;
+	global $post, $product;
 
 	if ( $atts != '' && array_key_exists( 'post_id', $atts ) ) {
 		$post_id = $atts['post_id'];
@@ -42,7 +42,8 @@ function material_view( $atts = '' ) {
 	$post_material = $meta_material && array_key_exists( 'value', $meta_material ) ? $meta_material['value'] : false;	
 	$post_underlay = $meta_underlay && array_key_exists( 'value', $meta_underlay ) ? $meta_underlay['value'] : false;
 
-	$src = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'single-post-thumbnail' )[0];
+	$src       = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'single-post-thumbnail' )[0];
+	$src_angle = wp_get_attachment_url( $product->get_gallery_attachment_ids()[0] );
 
 	$html .= '<div class="material-view ' . $material . ' box-shadow">';
 	$html .= '<div class="material__header">';
@@ -72,7 +73,7 @@ function material_view( $atts = '' ) {
 
 		$html .= '<div class="image-container">';
 		$html .= '<img src="' . $src . '" alt="' . $post_title . '" class="material-img">';
-		$html .= '<a href="#" id="change-image-view">Change View</a>';
+		$html .= '<a href="#" id="change-image-view" data-view="top" data-top="' . $src . '" data-angle="' . $src_angle . '">Change View</a>';
 
 		if ( $post_material || $post_price || $post_size || $post_underlay ) {
 			$html .= '<div class="material__details clearfix">';

@@ -40,7 +40,7 @@ function material_view_slider( $atts = '' ) {
 	}
 	
 	// Get all WooCommerce products
-	$woocommerce_products          = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC', 'tax_query' => array(
+	$woocommerce_products = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC', 'tax_query' => array(
 		array(
 			'taxonomy' => 'product_cat',
 			'field'    => 'slug',
