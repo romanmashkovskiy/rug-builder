@@ -55,7 +55,7 @@ function range_swatches( $atts = '' ) {
 				$src_id = get_woocommerce_term_meta( $value->term_id, 'thumbnail_id', true );
 				$src    = wp_get_attachment_url( $src_id );
 
-				echo '<div class="swatch box-shadow">';
+				echo '<div class="swatch">';
 				echo '<a href="' . $link  . '" class="no-effect">';
 				echo '<h3 class="vertical-align">' . $title . '</h3>';
 

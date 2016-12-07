@@ -6,11 +6,19 @@
 	width: 86%;
 
 	.swatch {
+		border: 1px solid #ededed;
 		float: left;
 		height: 120px;
 		margin-bottom: 20px;
 		padding: 0 10px;
 		width: 23.5%;
+
+		&:hover {
+			border: none;
+			-webkit-box-shadow: 0 2px 18px 0 rgba(0,0,0,.08);
+			-moz-box-shadow: 0 2px 18px 0 rgba(0,0,0,.08);
+			box-shadow: 0 2px 18px 0 rgba(0,0,0,.08);
+		}
 
 		a {
 			display: block;

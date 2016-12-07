@@ -8,9 +8,13 @@
     margin-bottom: 100px;
     text-align: center; }
   .collection-swatches .swatch-container .swatch {
+    border: 1px solid #ededed;
     float: left;
     margin-bottom: 20px;
     width: 23.5%; }
+    .collection-swatches .swatch-container .swatch:hover {
+      border: none;
+      box-shadow: 0 2px 18px 0 rgba(0, 0, 0, 0.08); }
     .collection-swatches .swatch-container .swatch:not(:nth-child(4n)) {
       margin-right: 2%; }
     .collection-swatches .swatch-container .swatch img {

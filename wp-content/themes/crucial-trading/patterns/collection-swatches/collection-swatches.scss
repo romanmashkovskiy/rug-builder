@@ -11,9 +11,17 @@
 	}
 
 	.swatch-container .swatch {
+		border: 1px solid #ededed;
 		float: left;
 		margin-bottom: 20px;
 		width: 23.5%;
+
+		&:hover {
+			border: none;
+			-webkit-box-shadow: 0 2px 18px 0 rgba(0,0,0,.08);
+			-moz-box-shadow: 0 2px 18px 0 rgba(0,0,0,.08);
+			box-shadow: 0 2px 18px 0 rgba(0,0,0,.08);
+		}
 
 		&:not(:nth-child(4n)) {
 			margin-right: 2%;
