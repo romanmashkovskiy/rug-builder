@@ -60,9 +60,9 @@ function material_view( $atts = '' ) {
 
 		$html .= '<div class="header__links">';
 		$html .= '<ul>';
-		$html .= '<li><a href="#">Print Factsheet</h3></a></li>';
+		$html .= '<li><a href="#" onclick="window.print()">Print Factsheet</h3></a></li>';
 		$html .= '<li><a href="#">Get a Quote</a></li>';
-		$html .= '<li><a href="#">Rug Builder</a></li>';
+		$html .= '<li><a href="' . site_url() . '/rugbuilder">Rug Builder</a></li>';
 		$html .= '<li><a href="#">Order Swatch</a></li>';
 		$html .= '</ul>';
 		$html .= '</div>';

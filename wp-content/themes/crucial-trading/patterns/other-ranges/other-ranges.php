@@ -74,7 +74,11 @@ function other_ranges( $atts = '' ) {
 			
 			$html .= '<li class="range ' . $the_material . ' ' . $active_class . '" style="width:calc(100% / ' . count( $ranges ) . ');">';
 			$html .= '<div>';
-			$html .= '<img src="' . $src . '" alt="' . $name . '" ' . $bxshdw_class . '>';
+
+			if ( $src != '' ) {
+				$html .= '<img src="' . $src . '" alt="' . $name . '" ' . $bxshdw_class . '>';
+			}
+			
 			$html .= '<h3>' . $name . '</h3>';
 			$html .= '</div>';
 			$html .= '</li>';
