@@ -70,6 +70,12 @@ $(document).ready(function() {
 			$('#material-view-slider-next-text h3').text(newNext + '/' + total);
 
 			$('#material-view-slider-prev-text h3').data('current', newCurrent);
+
+			var newSlideIndex = this.getCurrentSlide();
+			var newSlide      = $('#material-view-slider-list').children()[ newSlideIndex+1 ];
+			var newProduct    = $(newSlide).data('name');
+
+			window.location.hash = encodeURIComponent(newProduct);
 		},
 
 		onSlidePrev  : function() {
@@ -98,6 +104,12 @@ $(document).ready(function() {
 			$('#material-view-slider-next-text h3').text(newNext + '/' + total);
 
 			$('#material-view-slider-prev-text h3').data('current', newCurrent);
+
+			var newSlideIndex = this.getCurrentSlide();
+			var newSlide      = $('#material-view-slider-list').children()[ newSlideIndex+1 ];
+			var newProduct    = $(newSlide).data('name');
+
+			window.location.hash = encodeURIComponent(newProduct);
 		},
 	});
 

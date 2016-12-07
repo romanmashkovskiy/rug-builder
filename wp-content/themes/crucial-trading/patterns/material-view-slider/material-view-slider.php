@@ -102,13 +102,14 @@ function material_view_slider( $atts = '' ) {
 	$html .= '<div class="material-view-slider">';
 	$html .= '<ul id="material-view-slider-list">';
 
-	$current = 0;
+	$current = 1;
 	
-	$total = sizeof($woocommerce_products);
+	$total = count($woocommerce_products->posts);
 	
 	while ( $woocommerce_products->have_posts() ) : $woocommerce_products->the_post();
-		
-		$html .= '<li>' . do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '"]' ) . '</li>';
+
+		$product_name = get_the_title();
+		$html .= '<li data-name="' . $product_name . '">' . do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '"]' ) . '</li>';
 
 	endwhile;
 
@@ -136,10 +137,14 @@ function material_view_slider( $atts = '' ) {
 	}
 
 	$html .= '</ul>';
-	$html .= '<span id="material-view-slider-prev" class="vertical-align"></span>';
-	$html .= '<span id="material-view-slider-prev-text"><h3 data-current="' . $current . '" data-total="' . $total . '">' . $prev . '/' . $total . '</h3></span>';
-	$html .= '<span id="material-view-slider-next" class="vertical-align"></span>';
-	$html .= '<span id="material-view-slider-next-text"><h3>' . $next . '/' . $total . '</h3></span>';
+
+	if ( $total > 1 ) {
+		$html .= '<span id="material-view-slider-prev" class="vertical-align"></span>';
+		$html .= '<span id="material-view-slider-prev-text"><h3 data-current="' . $current . '" data-total="' . $total . '">' . $prev . '/' . $total . '</h3></span>';
+		$html .= '<span id="material-view-slider-next" class="vertical-align"></span>';
+		$html .= '<span id="material-view-slider-next-text"><h3>' . $next . '/' . $total . '</h3></span>';
+	}
+		
 	$html .= '</div>';
 
 	// If being shown in pattern library reset post data

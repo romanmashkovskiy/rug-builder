@@ -31,8 +31,26 @@ function range_swatches( $atts = '' ) {
 
 			foreach ( $ranges as $key => $value ) {
 
+				$args = array(
+					'post_type'   => 'product',
+					'tax_query'   => array(
+						array(
+							'taxonomy' => 'product_cat',
+							'field'    => 'term_id',
+							'terms'    => $value->term_id,
+						)
+					)
+				);
+
+				$products = new WP_Query( $args );
+				$link = '#';
+
+				if ( count( $products->posts ) > 0 ) {
+					$link_id  = $products->posts[0]->ID;
+					$link     = get_the_permalink( $link_id );
+				}
+
 				$title = $value->name;
-				$link  = site_url() . '/product/' . $value->slug;
 
 				$src_id = get_woocommerce_term_meta( $value->term_id, 'thumbnail_id', true );
 				$src    = wp_get_attachment_url( $src_id );
