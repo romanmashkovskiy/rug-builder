@@ -60,6 +60,7 @@ header.material {
     float: left;
     width: 50%; }
   header.material .material__icon {
+    min-height: 1px;
     padding-right: 100px;
     text-align: right; }
     header.material .material__icon img {

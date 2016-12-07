@@ -91,7 +91,9 @@ function header_material_shortcode($atts = '') {
 		$html .= '</div>';
 
 		$html .= '<div class="material__icon vertical-align">';
-		$html .= '<img src="' . $this_cat_thumb . '" alt="' . $material . '">';
+		if ( $this_cat_thumb ) {
+			$html .= '<img src="' . $this_cat_thumb . '" alt="' . $material . '">';
+		}
 		$html .= '</div>';
 
 		$html .= '<div class="material__info ' . $material . ' vertical-align">';

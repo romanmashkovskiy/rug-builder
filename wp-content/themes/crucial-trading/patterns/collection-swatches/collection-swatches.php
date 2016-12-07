@@ -54,7 +54,11 @@ function collection_swatches( $atts = '' ) {
 
 				$html .= '<div class="swatch">';
 				$html .= '<a href="' . $href . '">';
-				$html .= '<img src="' . $src . '" alt="' . $name . '">';
+
+				if ( $src != '' ) {
+					$html .= '<img src="' . $src . '" alt="' . $name . '">';
+				}
+				
 				$html .= '<h3 class="swatch__title">' . $name . '</h3>';
 				$html .= '<h3 class="swatch__code">- ' . $code . '</h3>';
 				$html .= '</a>';

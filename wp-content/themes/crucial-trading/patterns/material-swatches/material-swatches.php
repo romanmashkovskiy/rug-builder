@@ -48,7 +48,11 @@ function material_swatches( $atts = '' ) {
 				echo '<div class="swatch box-shadow">';
 				echo '<a href="' . $link  . '" class="no-effect">';
 				echo '<h3 class="vertical-align">' . $title . '</h3>';
-				echo '<img src="' . $src . '" alt="' . $title . '" class="vertical-align">';
+
+				if ( $src != '' ) {
+					echo '<img src="' . $src . '" alt="' . $title . '" class="vertical-align">';
+				}
+				
 				echo '</a>';
 				echo '</div>';
 			}

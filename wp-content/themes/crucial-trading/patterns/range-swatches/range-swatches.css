@@ -23,9 +23,8 @@
         color: #BBBBBB; }
     .swatches .swatch img {
       float: right;
-      height: 85%;
-      margin-bottom: 10px;
-      width: auto; }
+      height: 80%;
+      width: 45%; }
     @media screen and (min-width: 1300px) {
       .swatches .swatch:not(:nth-child(4n)) {
         margin-right: 2%; } }
