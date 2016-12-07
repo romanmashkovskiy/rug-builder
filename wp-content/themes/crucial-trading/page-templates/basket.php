@@ -7,6 +7,10 @@
  * @package Crucial Trading
  * @since Crucial Trading 1.0
  */
+
+if ( WC()->cart->get_cart_contents_count() == 0 ) {
+	header( 'Location: ' . site_url() . '/materials' );
+}
  
 get_header();
 

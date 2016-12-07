@@ -52,15 +52,10 @@
   .contact-form #trade form ul li:not(:last-child) {
     clear: none;
     float: left;
-    width: 47.5%; }
+    width: 50%; }
     @media screen and (max-width: 768px) {
       .contact-form #trade form ul li:not(:last-child) {
         width: 100%; } }
-  .contact-form #trade form ul li:nth-child(even) {
-    margin-left: 5% !important; }
-    @media screen and (max-width: 768px) {
-      .contact-form #trade form ul li:nth-child(even) {
-        margin-left: 0 !important; } }
   .contact-form #trade form ul li:last-child {
     position: relative;
     top: 17px; }

@@ -1,6 +1,7 @@
 .page-image {
 	height: 500px;
 	margin-left: 13%;
+	overflow: hidden;
 	width: 74%;
 
 	.page-image__img {
@@ -8,7 +9,7 @@
 		object-fit: cover;
 		width: 100%;
 
-		&.--hidden {
+		&.__hidden {
 			display: none;
 		}
 	}

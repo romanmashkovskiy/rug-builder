@@ -1,11 +1,12 @@
 .page-image {
   height: 500px;
   margin-left: 13%;
+  overflow: hidden;
   width: 74%; }
   .page-image .page-image__img {
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;
     width: 100%; }
-    .page-image .page-image__img.--hidden {
+    .page-image .page-image__img.__hidden {
       display: none; }

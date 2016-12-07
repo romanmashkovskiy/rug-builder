@@ -40,7 +40,7 @@ function page_image( $atts = '' ) {
 			$image_src = wp_get_attachment_image_src( $image_id, 'full' )[0];
 			$image_tag = $other_imgs[$i]['image_tag'];
 
-			$html .= '<img src="' . $image_src . '" alt="' . $image_tag . '" class="page-image__img --hidden" data-tag="' . $image_tag . '">';
+			$html .= '<img src="' . $image_src . '" alt="' . $image_tag . '" class="page-image__img __hidden" data-tag="' . $image_tag . '">';
 		}
 	}
 
