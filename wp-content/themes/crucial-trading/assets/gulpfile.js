@@ -55,6 +55,8 @@ gulp.task('build-master-js', function() {
 		}
 	}
 
+	files.push('./js/src/script.js');
+
 	return gulp.src(files)
 		.pipe(sourcemaps.init())
 		.pipe(concat('master.min.js'))
@@ -65,4 +67,5 @@ gulp.task('build-master-js', function() {
 
 gulp.task('watch-master-js', function() {
 	gulp.watch('../patterns/*/*.js', ['build-master-js']);
+	gulp.watch('./js/src/script.js', ['build-master-js']);
 });
