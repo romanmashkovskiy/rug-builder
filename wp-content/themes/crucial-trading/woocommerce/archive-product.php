@@ -12,6 +12,11 @@
  */
 
 $category = get_queried_object();
+
+if ( $category->name == 'product' ) {
+	header( 'Location: ' . site_url() . '/materials' );
+}
+
 $type     = $category->taxonomy;
 $slug     = $category->slug;
 $parent   = $category->parent;

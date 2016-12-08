@@ -12,7 +12,7 @@
 @import '../../assets/css/src/_utilities.scss';
 
 .material-box {
-	height: 550px;
+	height: 600px;
 	margin-left: 7%;
 	padding: 100px 100px 0;
 	width: 86%;
@@ -20,6 +20,10 @@
 	@media screen and (max-width: 992px) {
 		height: auto;
 		padding: 25px 25px 0;
+	}
+
+	&:last-child {
+		margin-bottom: 50px;
 	}
 
 	.material__left {
@@ -86,6 +90,30 @@
 		@media screen and (max-width: 992px) {
 			margin-top: 25px;
 		}
+	}
+
+	&.coir .material__link:after {
+		background: $color-coir-dark;
+	}
+
+	&.jute .material__link:after {
+		background: $color-jute-dark;
+	}
+
+	&.seagrass .material__link:after {
+		background: $color-seagrass-dark;
+	}
+
+	&.sisal .material__link:after {
+		background: $color-sisal-dark;
+	}
+
+	&.sisool .material__link:after {
+		background: $color-sisool-dark;
+	}
+
+	&.wool .material__link:after {
+		background: $color-wool-dark;
 	}
 
 	&.coir * {

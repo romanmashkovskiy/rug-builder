@@ -49,9 +49,6 @@ function material_view( $atts = '' ) {
 	$under_1_arr  = wc_get_product_terms( $post_id, 'pa_underlay-1', array( 'fields' => 'names' ) );
 	$under_2_arr  = wc_get_product_terms( $post_id, 'pa_underlay-2', array( 'fields' => 'names' ) );
 	$under_3_arr  = wc_get_product_terms( $post_id, 'pa_underlay-3', array( 'fields' => 'names' ) );
-	$design_1_arr = wc_get_product_terms( $post_id, 'pa_design-1', array( 'fields' => 'names' ) );
-	$design_2_arr = wc_get_product_terms( $post_id, 'pa_design-2', array( 'fields' => 'names' ) );
-	$design_3_arr = wc_get_product_terms( $post_id, 'pa_design-3', array( 'fields' => 'names' ) );
 
 	$width    = array_key_exists( 0, $width_arr ) ? $width_arr[0] : false;
 	$backing  = array_key_exists( 0, $backing_arr ) ? $backing_arr[0] : false;
@@ -62,9 +59,6 @@ function material_view( $atts = '' ) {
 	$under_1  = array_key_exists( 0, $under_1_arr ) ? $under_1_arr[0] : false;
 	$under_2  = array_key_exists( 0, $under_2_arr ) ? $under_2_arr[0] : false;
 	$under_3  = array_key_exists( 0, $under_3_arr ) ? $under_3_arr[0] : false;
-	$design_1 = array_key_exists( 0, $design_1_arr ) ? $design_1_arr[0] : false;
-	$design_2 = array_key_exists( 0, $design_2_arr ) ? $design_2_arr[0] : false;
-	$design_3 = array_key_exists( 0, $design_3_arr ) ? $design_3_arr[0] : false;
 
 	$_product = wc_get_product( $post_id );
 	$price    = $_product->get_price();
@@ -172,28 +166,7 @@ function material_view( $atts = '' ) {
 				$html .= '<i class="icon-crucial-"></i>';
 				$html .= '<h3>' . $suit_3 . '</h3>';
 				$html .= '</div>';
-			}
-
-			if ( $design_1 ) {
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-"></i>';
-				$html .= '<h3>' . $design_1 . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $design_2 ) {
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-"></i>';
-				$html .= '<h3>' . $design_2 . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $design_3 ) {
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-"></i>';
-				$html .= '<h3>' . $design_3 . '</h3>';
-				$html .= '</div>';
-			}			
+			}		
 
 			$html .= '</div>';
 		}
