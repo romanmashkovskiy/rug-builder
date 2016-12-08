@@ -43,10 +43,17 @@ echo do_shortcode( '[logo-nav]' );
 
 echo do_shortcode( '[material-view-slider material="' . $material_cat_slug . '" range="' . $range_cat_slug . '"]' );
 
-woocommerce_template_single_add_to_cart();
-
 echo do_shortcode( '[other-ranges material="' . $material_cat_slug . '" range="' . $range_cat_slug . '"]' );
 
 echo do_shortcode( '[share-links material="' . $material_cat_slug . '"]' );
+
+?>
+
+<div class="basketPopup box-shadow">
+	<a href="#" id="close-basket-popup">Close</a>
+	<p class="basketMessage"></p>
+</div>
+
+<?
 
 get_footer();

@@ -81,8 +81,52 @@ $(document).ready(function() {
 			});
 
 			$(this).data('view', 'top');
-
 		}
+
+		return false;
+	});
+
+	$(document).on('click', '#add-swatch-to-basket', function(e) {
+
+		e.preventDefault();
+		e.stopPropagation();
+
+		var productName = $(this).data('product-name');
+		var productID   = $(this).data('product-id');
+		var url         = window.location.href + '?post_type=product&add-to-cart=' + productID;
+
+		$.get(url)
+			.done(function() {
+				showBasketPopup(true, productName);
+			})
+			.fail(function() {
+				showBasketPopup(false);
+			})
+
+		return false;
+	});
+
+	function showBasketPopup(success, productName) {
+
+		$('.basketMessage').html('');
+
+		console.log(window.location)
+
+		if ( success ) {
+			$('.basketMessage').html(productName + ' has been added to your <a href="' + siteURL + '/basket">basket</a>.');
+		} else {
+			$('.basketMessage').html('Sorry, an error has occured and ' + productName + ' could not be added to your basket. Please try again.');
+		}
+
+		$('.basketPopup').show();
+	}
+
+	$(document).on('click', '#close-basket-popup', function(e) {
+
+		e.preventDefault();
+		e.stopPropagation();
+
+		$('.basketPopup').hide();
 
 		return false;
 	});

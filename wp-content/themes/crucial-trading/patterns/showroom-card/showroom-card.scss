@@ -5,6 +5,15 @@
 	margin-left: 4%;
 	padding: 10px;
 	width: 44%;
+	
+	@media screen and (max-width: 992px) {
+		margin-bottom: 30px;
+		width: 92%;
+	}
+
+	@media screen and (max-width: 768px) {
+		height: auto;
+	}
 
 	.border-div {
 		border: 2px solid #F7F7F7;
@@ -27,6 +36,11 @@
 
 	.card__address {
 		word-break: break-all;
+
+		@media screen and (max-width: 768px) {
+			float: none;
+			width: 100%;
+		}
 	}
 
 	&.showroom {
@@ -40,16 +54,20 @@
 	.card__contact {
 		float: left;
 		width: 40%;
+
+		@media screen and (max-width: 768px) {
+			float: none;
+			width: 100%;
+		}
 	}
 
 	.card__link {
 		bottom: 10px;
 		left: 50px;
 		position: absolute;
-	}
 
-	@media screen and (max-width: 992px) {
-		margin-bottom: 30px;
-		width: 92%;
+		@media screen and (max-width: 768px) {
+			padding-bottom: 0;
+		}
 	}
 }

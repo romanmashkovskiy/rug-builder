@@ -28,11 +28,19 @@ h2 {
 	&.material-header {
 		font-size: 75px;
 	}
+
+	@media screen and (max-width: 555px) {
+		font-size: 40px;
+	}
 }
 
 h3 {
 	@include typography-standards(#000000, $font-sub-header, 14px, 4px);
 	margin: 0;
 	opacity: 40%;
-	text-transform: uppercase; 
+	text-transform: uppercase;
+
+	@media screen and (max-width: 555px) {
+		font-size: 11px;
+	}
 }

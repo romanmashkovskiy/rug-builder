@@ -17,10 +17,16 @@ header {
   position: relative; }
   header.small {
     height: 450px; }
+    @media screen and (max-width: 768px) {
+      header.small {
+        height: 350px; } }
     header.small h3.subtitle {
       text-align: center; }
   header.large {
     height: 750px; }
+    @media screen and (max-width: 768px) {
+      header.large {
+        height: 550px; } }
     header.large h3.subtitle {
       text-align: center; }
   header h1 {
@@ -30,11 +36,6 @@ header {
     color: #7C7C7C;
     text-align: center; }
     header h3.side-title {
-      /*bottom: -20px;
-			left: 45px;
-			text-align: left;
-			float: left;
-			transform-origin: left;*/
       position: absolute;
       top: 0;
       right: 97%;
@@ -45,16 +46,11 @@ header {
       transform: rotate(270deg);
       opacity: 0.4; }
   @media screen and (max-width: 600px) {
-    header.small, header.large {
-      height: 400px; }
     header .side-title {
       display: none; } }
 
 header.material {
   position: relative; }
-  @media screen and (max-width: 600px) {
-    header.material {
-      height: 420px; } }
   header.material .material__icon,
   header.material .material__info {
     float: left;
@@ -63,30 +59,37 @@ header.material {
     min-height: 1px;
     padding-right: 100px;
     text-align: right; }
-    header.material .material__icon img {
-      height: 230px;
-      width: 230px; }
-    @media screen and (max-width: 700px) {
+    @media screen and (max-width: 768px) {
       header.material .material__icon {
-        padding-left: 10px; } }
-    @media screen and (max-width: 600px) {
+        padding: 0 20px;
+        width: 20%; } }
+    @media screen and (max-width: 666px) {
       header.material .material__icon {
-        float: none;
-        margin: 0;
-        margin-top: 80px;
-        padding: 0;
-        text-align: center;
-        top: 0;
+        position: absolute;
+        right: 0;
+        top: 100px;
         -webkit-transform: none;
         transform: none;
-        width: 100%; }
-        header.material .material__icon img {
-          height: 140px;
-          width: 140px; } }
+        width: 130px; } }
   header.material .material__info {
     padding-right: 20%; }
+    @media screen and (max-width: 768px) {
+      header.material .material__info {
+        padding-right: 10%;
+        width: 75%; } }
+    @media screen and (max-width: 666px) {
+      header.material .material__info {
+        margin-top: 100px;
+        padding: 0 20px;
+        position: static;
+        -webkit-transform: none;
+        transform: none;
+        width: 100%; } }
     header.material .material__info .subtitle {
       text-align: left; }
+      @media screen and (max-width: 666px) {
+        header.material .material__info .subtitle {
+          clear: none; } }
     header.material .material__info h1 {
       text-align: left; }
     header.material .material__info.coir h1, header.material .material__info.coir p {
@@ -113,18 +116,6 @@ header.material {
       color: #EBD5B7; }
     header.material .material__info.wool h3 {
       color: #665F4D; }
-    @media screen and (max-width: 600px) {
-      header.material .material__info {
-        margin-top: 20px;
-        padding: 0 10px;
-        text-align: center;
-        top: 0;
-        -webkit-transform: none;
-        transform: none;
-        width: 100%; }
-        header.material .material__info h1 {
-          line-height: 1.2;
-          text-align: center; } }
   header.material .material__name,
   header.material .material__sidememu {
     position: absolute;
@@ -151,6 +142,9 @@ header.material {
         display: none; } }
   header.material .material__sidememu {
     right: 35px; }
+    @media screen and (max-width: 666px) {
+      header.material .material__sidememu {
+        display: none; } }
     header.material .material__sidememu ul {
       margin: 0;
       padding-left: 0; }
@@ -164,13 +158,3 @@ header.material {
         opacity: 0.4; }
       header.material .material__sidememu img:not(.active):hover {
         opacity: 1; }
-    @media screen and (max-width: 600px) {
-      header.material .material__sidememu {
-        top: 10px;
-        -webkit-transform: none;
-        transform: none;
-        left: 0;
-        right: 0; }
-        header.material .material__sidememu li {
-          display: inline;
-          padding: 0 2px; } }

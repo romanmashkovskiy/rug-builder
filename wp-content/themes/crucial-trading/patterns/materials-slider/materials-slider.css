@@ -59,27 +59,22 @@
       color: rgba(235, 213, 183, 0.5); }
   .material-slide .slide__list {
     margin: 25px 0 0;
-    padding: 0; }
-    @media screen and (max-width: 768px) {
-      .material-slide .slide__list {
-        margin-left: 75%;
-        width: 25%; } }
-    @media screen and (max-width: 600px) {
-      .material-slide .slide__list {
-        margin-left: 63%;
-        width: 37%; } }
+    padding: 0;
+    padding-right: 10px;
+    text-align: right; }
     .material-slide .slide__list li {
       cursor: pointer;
       display: inline;
-      left: calc(50% - 5px);
       list-style: none;
-      padding: 0 5px;
-      position: relative; }
+      padding: 0 5px; }
       @media screen and (max-width: 768px) {
-        .material-slide .slide__list li {
-          display: inline-block;
-          left: 0;
-          margin-bottom: 7.5px; } }
+        .material-slide .slide__list li:nth-child(n + 4) {
+          position: relative;
+          top: 7px; }
+        .material-slide .slide__list li:first-child {
+          margin-left: calc(100% - 165px); }
+        .material-slide .slide__list li:last-child {
+          padding-right: 0; } }
       .material-slide .slide__list li img {
         height: 45px;
         width: 45px; }
@@ -104,16 +99,20 @@
       .material-slide .content__left {
         padding-right: 0;
         text-align: center;
-        top: 0;
+        top: 15px;
         -webkit-transform: none;
         transform: none; } }
+    @media screen and (max-width: 768px) {
+      .material-slide .content__left img {
+        width: 35%;
+        max-width: 200px; } }
   .material-slide .content__right {
     padding-right: 10%; }
     @media screen and (max-width: 768px) {
       .material-slide .content__right {
         padding: 25px;
         text-align: center;
-        top: 0;
+        top: 45px;
         -webkit-transform: none;
         transform: none; } }
     .material-slide .content__right h1 {
@@ -209,14 +208,23 @@
   right: 0 !important;
   top: 50% !important;
   z-index: 9999 !important; }
+  @media screen and (max-width: 768px) {
+    .slide__nav {
+      top: 40%; } }
   .slide__nav .next-slide {
     cursor: pointer;
     position: absolute;
     right: 35px; }
+    @media screen and (max-width: 768px) {
+      .slide__nav .next-slide {
+        right: 15px; } }
   .slide__nav .prev-slide {
     cursor: pointer;
     left: 35px;
     position: absolute; }
+    @media screen and (max-width: 768px) {
+      .slide__nav .prev-slide {
+        left: 15px; } }
   .slide__nav svg.coir g {
     stroke: #B28865; }
   .slide__nav svg.jute g {

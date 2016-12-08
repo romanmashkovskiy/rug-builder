@@ -9,10 +9,13 @@
 	position: relative;
 	width: 86%;
 	z-index: 999;
+
+	@media screen and (max-width: 768px) {
+		padding: 25px !important;
+	}
 }
 
 .basket {
-	padding: 50px;
 
 	h2 + span {
 		background: #E6E6E6;
@@ -56,7 +59,7 @@
 			border-radius: 0 !important;
 			color: black !important;
 			font-weight: normal !important;
-			padding-right: 20px;
+			padding: 0;
 			text-align: right;
 			width: 100%;
 
@@ -76,6 +79,10 @@
 				position: relative;
 				text-transform: none;
 				top: -3px;
+
+				@media screen and (max-width: 768px) {
+					display: none;
+				}
 			}
 		}
 	}
@@ -99,6 +106,10 @@
 			padding: 11px 0 26px !important;
 			text-shadow: none !important;
 			text-transform: uppercase !important;
+
+			@media screen and (max-width: 550px) {
+				font-size: 11px !important;
+			}
 		}
 	}
 }

@@ -5,6 +5,13 @@
   margin-left: 4%;
   padding: 10px;
   width: 44%; }
+  @media screen and (max-width: 992px) {
+    .showroom-card {
+      margin-bottom: 30px;
+      width: 92%; } }
+  @media screen and (max-width: 768px) {
+    .showroom-card {
+      height: auto; } }
   .showroom-card .border-div {
     border: 2px solid #F7F7F7;
     height: 100%;
@@ -20,17 +27,24 @@
     width: 100px; }
   .showroom-card .card__address {
     word-break: break-all; }
+    @media screen and (max-width: 768px) {
+      .showroom-card .card__address {
+        float: none;
+        width: 100%; } }
   .showroom-card.showroom .card__address {
     float: left;
     width: 60%; }
   .showroom-card .card__contact {
     float: left;
     width: 40%; }
+    @media screen and (max-width: 768px) {
+      .showroom-card .card__contact {
+        float: none;
+        width: 100%; } }
   .showroom-card .card__link {
     bottom: 10px;
     left: 50px;
     position: absolute; }
-  @media screen and (max-width: 992px) {
-    .showroom-card {
-      margin-bottom: 30px;
-      width: 92%; } }
+    @media screen and (max-width: 768px) {
+      .showroom-card .card__link {
+        padding-bottom: 0; } }

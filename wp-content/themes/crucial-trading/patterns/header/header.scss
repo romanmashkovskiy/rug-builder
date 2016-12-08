@@ -9,8 +9,11 @@ header {
 	&.small {
 		height: 450px;
 
+		@media screen and (max-width: 768px) {
+			height: 350px;
+		}
+
 		h3.subtitle {
-			//top: 43% !important;
 			text-align: center;
 		}
 	}
@@ -18,8 +21,11 @@ header {
 	&.large {
 		height: 750px;
 
+		@media screen and (max-width: 768px) {
+			height: 550px;
+		}
+
 		h3.subtitle {
-			//top: 45.5% !important;
 			text-align: center;
 		}
 	}
@@ -34,11 +40,6 @@ header {
 		text-align: center;
 
 		&.side-title {
-			/*bottom: -20px;
-			left: 45px;
-			text-align: left;
-			float: left;
-			transform-origin: left;*/
 			position: absolute;
 			top: 0;
 			right: 97%;
@@ -50,24 +51,15 @@ header {
 	}
 
 	@media screen and (max-width: 600px) {
-		&.small,
-		&.large {
-			height: 400px;
-		}
 		
 		.side-title {
 			display: none;
 		}
-		
 	}
 }
 
 header.material {
 	position: relative;
-
-	@media screen and (max-width: 600px) {
-		height: 420px;
-	}
 
 	.material__icon,
 	.material__info {
@@ -80,37 +72,44 @@ header.material {
 		padding-right: 100px;
 		text-align: right;
 
-		img {
-			height: 230px;
-			width: 230px;
+		@media screen and (max-width: 768px) {
+			padding: 0 20px;
+			width: 20%;
 		}
 
-		@media screen and (max-width: 700px) {
-			padding-left: 10px;
-		}
-
-		@media screen and (max-width: 600px) {
-			float: none;
-			margin: 0;
-			margin-top: 80px;
-			padding: 0;
-			text-align: center;
-			top: 0;
+		@media screen and (max-width: 666px) {
+			position: absolute;
+			right: 0;
+			top: 100px;
+			-webkit-transform: none;
 			transform: none;
-			width: 100%;
-
-			img {
-				height: 140px;
-				width: 140px;
-			}			
+			width: 130px;
 		}
 	}
 
 	.material__info {
 		padding-right: 20%;
 
+		@media screen and (max-width: 768px) {
+			padding-right: 10%;
+			width: 75%;
+		}
+
+		@media screen and (max-width: 666px) {
+			margin-top: 100px;
+			padding: 0 20px;
+			position: static;
+			-webkit-transform: none;
+			transform: none;
+			width: 100%;
+		}
+
 		.subtitle {
 			text-align: left;
+
+			@media screen and (max-width: 666px) {
+				clear: none;
+			}
 		}
 
 		h1 {
@@ -182,21 +181,6 @@ header.material {
 				color: $color-wool-dark;
 			}
 		}
-
-		@media screen and (max-width: 600px) {
-			margin-top: 20px;
-			padding: 0 10px;
-			text-align: center;
-			top: 0;
-			transform: none;
-			width: 100%;
-			
-			h1 {
-				line-height: 1.2;
-				text-align: center;
-			}
-			
-		}
 	}
 
 	.material__name,
@@ -243,6 +227,10 @@ header.material {
 	.material__sidememu {
 		right: 35px;
 
+		@media screen and (max-width: 666px) {
+			display: none;
+		}
+
 		ul {
 			margin: 0;
 			padding-left: 0;
@@ -263,19 +251,6 @@ header.material {
 
 			&:not(.active):hover {
 				opacity: 1;
-			}
-		}
-
-		@media screen and (max-width: 600px) {
-
-			top: 10px;
-			transform: none;
-			left: 0;
-			right: 0;
-
-			li {
-				display: inline;
-				padding: 0 2px;
 			}
 		}
 	}

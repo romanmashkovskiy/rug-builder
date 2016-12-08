@@ -44,4 +44,8 @@ input[type="submit"] {
 	text-shadow: none !important;
 	text-transform: uppercase !important;
 	width: 220px !important;
+
+	@media screen and (max-width: 446px) {
+		width: 100% !important;
+	}
 }

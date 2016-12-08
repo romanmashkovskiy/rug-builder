@@ -34,7 +34,11 @@ a {
 		text-decoration: none;
 	}
 	
-} 
+	@media screen and (max-width: 555px) {
+		font-size: 14px;
+		line-height: 1.85;
+	}
+}
 
 a::before, 
 a::after { 
@@ -80,6 +84,10 @@ a.no-effect::after {
 
 p {
 	@include typography-standards(#000000, $font-copy, 17px, 0.5px);
+
+	@media screen and (max-width: 555px) {
+		font-size: 16px;
+	}
 }
 
 

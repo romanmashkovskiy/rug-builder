@@ -33,11 +33,7 @@
   .material-view .header__links li {
     display: inline-block;
     text-align: center;
-    width: 25%; }
-    @media screen and (max-width: 768px) {
-      .material-view .header__links li {
-        margin-bottom: 10px;
-        width: 50%; } }
+    width: 33%; }
     .material-view .header__links li a {
       display: block;
       text-align: center; }

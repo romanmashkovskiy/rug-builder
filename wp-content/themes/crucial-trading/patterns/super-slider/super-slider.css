@@ -51,6 +51,10 @@
   position: absolute;
   top: 0;
   z-index: 99999; }
+  @media screen and (max-height: 421px) {
+    .nav_prev,
+    .nav_next {
+      display: none; } }
   .nav_prev a,
   .nav_next a {
     display: block;
@@ -64,9 +68,6 @@
     color: white;
     left: 2px;
     top: 120px; }
-    @media screen and (max-height: 400px) {
-      .nav_prev h3 {
-        display: none; } }
 
 .nav_next {
   right: 0;
@@ -97,9 +98,6 @@
 
 .slide__center {
   text-align: center; }
-  @media screen and (max-width: 992px) {
-    .slide__center {
-      top: 70%; } }
   .slide__center h1 {
     text-shadow: none; }
     @media screen and (max-width: 992px) {
@@ -143,7 +141,7 @@
   text-align: center;
   top: 82%;
   width: 100%; }
-  @media screen and (max-height: 400px) {
+  @media screen and (max-height: 420px) {
     .slide__bottom {
       display: none; } }
   .slide__bottom h3 {

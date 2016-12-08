@@ -75,6 +75,10 @@
 	top: 0;
 	z-index: 99999;
 
+	@media screen and (max-height: 421px) {
+		display: none;
+	}
+
 	a {
 		display: block;
 		position: relative;
@@ -90,10 +94,6 @@
 		color: white;
 		left: 2px;
 		top: 120px;
-		
-		@media screen and (max-height: 400px) {
-			display: none;
-		}
 	}
 }
 
@@ -145,10 +145,6 @@
 
 .slide__center {
 	text-align: center;
-
-	@media screen and (max-width: 992px) {
-		top: 70%;
-	}
 
 	h1 {
 		text-shadow: none;
@@ -217,7 +213,7 @@
 	top: 82%;
 	width: 100%;
 
-	@media screen and (max-height: 400px) {
+	@media screen and (max-height: 420px) {
 		display: none;
 	}
 

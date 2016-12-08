@@ -37,12 +37,7 @@
 		li {
 			display: inline-block;
 			text-align: center;
-			width: 25%;
-
-			@media screen and (max-width: 768px) {
-				margin-bottom: 10px;
-				width: 50%;
-			}
+			width: 33%;
 
 			a {
 				display: block;

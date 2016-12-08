@@ -43,7 +43,8 @@ function material_view( $atts = '' ) {
 	$post_underlay = $meta_underlay && array_key_exists( 'value', $meta_underlay ) ? $meta_underlay['value'] : false;
 
 	$src       = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'single-post-thumbnail' )[0];
-	$src_angle = wp_get_attachment_url( $product->get_gallery_attachment_ids()[0] );
+	$src_arr   = array_values( $product->get_gallery_attachment_ids() );
+	$src_angle = count( $src_arr ) > 0 ? wp_get_attachment_url( $src_arr[0] ) : '';
 
 	$html .= '<div class="material-view ' . $material . ' box-shadow">';
 	$html .= '<div class="material__header">';
@@ -62,9 +63,9 @@ function material_view( $atts = '' ) {
 		$html .= '<div class="header__links">';
 		$html .= '<ul>';
 		$html .= '<li><a href="#" onclick="window.print()">Print Factsheet</h3></a></li>';
-		$html .= '<li><a href="#">Get a Quote</a></li>';
+//		$html .= '<li><a href="#">Get a Quote</a></li>';
 		$html .= '<li><a href="' . site_url() . '/rugbuilder">Rug Builder</a></li>';
-		$html .= '<li><a href="#">Order Swatch</a></li>';
+		$html .= '<li><a href="#" data-product-id="' . $post_id . '" data-product-name="' . $post_title . '" id="add-swatch-to-basket">Order Swatch</a></li>';
 		$html .= '</ul>';
 		$html .= '</div>';
 

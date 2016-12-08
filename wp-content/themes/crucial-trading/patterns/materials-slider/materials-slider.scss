@@ -82,29 +82,30 @@
 	.slide__list {
 		margin: 25px 0 0;
 		padding: 0;
-
-		@media screen and (max-width: 768px) {
-			margin-left: 75%;
-			width: 25%;
-		}
-
-		@media screen and (max-width: 600px) {
-			margin-left: 63%;
-			width: 37%;
-		}
+		padding-right: 10px;
+		text-align: right;
 
 		li {
 			cursor: pointer;
 			display: inline;
-			left: calc(50% - 5px);
 			list-style: none;
 			padding: 0 5px;
-			position: relative;
 
 			@media screen and (max-width: 768px) {
-				display: inline-block;
-				left: 0;
-				margin-bottom: 7.5px;
+
+				&:nth-child(n + 4) {
+					position: relative;
+					top: 7px;
+				}
+				
+
+				&:first-child {
+					margin-left: calc(100% - 165px)
+				}
+
+				&:last-child {
+					padding-right: 0;
+				}
 			}
 
 			img {
@@ -141,9 +142,17 @@
 		@media screen and (max-width: 768px) {
 			padding-right: 0;
 			text-align: center;
-			top: 0;
+			top: 15px;
 			-webkit-transform: none;
 			transform: none;
+		}
+
+		img {
+
+			@media screen and (max-width: 768px) {
+				width: 35%;
+				max-width: 200px;
+			}
 		}
 	}
 
@@ -153,7 +162,7 @@
 		@media screen and (max-width: 768px) {
 			padding: 25px;
 			text-align: center;
-			top: 0;
+			top: 45px;
 			-webkit-transform: none;
 			transform: none;
 		}
@@ -319,16 +328,28 @@
 	top: 50% !important;
 	z-index: 9999 !important;
 
+	@media screen and (max-width: 768px) {
+		top: 40%;
+	}
+
 	.next-slide {
 		cursor: pointer;
 		position: absolute;
 		right: 35px;
+
+		@media screen and (max-width: 768px) {
+			right: 15px;
+		}
 	}
 
 	.prev-slide {
 		cursor: pointer;
 		left: 35px;
 		position: absolute;
+
+		@media screen and (max-width: 768px) {
+			left: 15px;
+		}
 	}
 
 	svg {
