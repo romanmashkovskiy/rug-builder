@@ -51,11 +51,18 @@ function other_ranges( $atts = '' ) {
 
 	if ( count( $ranges > 0 ) ) {
 
+		shuffle( $ranges );
+		$i = 0;
+
 		$html .= '<h1 class="other-ranges-title ' . $the_material . '">Other Ranges</h1>';
 		$html .= '<div class="other-ranges box-shadow">';
 		$html .= '<ul class="ranges__ul">';
 
 		foreach ( $ranges as $key => $value ) {
+
+			if ( $i == 6 ) {
+				break;
+			}
 
 			$name = $value->name;
 
@@ -72,7 +79,7 @@ function other_ranges( $atts = '' ) {
 				$bxshdw_class = 'class="box-shadow"';
 			}
 			
-			$html .= '<li class="range ' . $the_material . ' ' . $active_class . '" style="width:calc(100% / ' . count( $ranges ) . ');">';
+			$html .= '<li class="range ' . $the_material . ' ' . $active_class . '">';
 			$html .= '<div>';
 
 			if ( $src != '' ) {
@@ -82,6 +89,8 @@ function other_ranges( $atts = '' ) {
 			$html .= '<h3>' . $name . '</h3>';
 			$html .= '</div>';
 			$html .= '</li>';
+
+			$i++;
 		}
 
 		$html .= '</ul>';

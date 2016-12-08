@@ -44,13 +44,16 @@
 
 .range {
   display: inline-block;
-  padding: 10px; }
+  padding: 10px 5px;
+  width: 16.66666667%; }
   .range.active img {
     margin-bottom: 20px; }
   .range img {
     height: 150px;
     margin-bottom: 10px;
     width: 150px; }
+  .range h3 {
+    word-break: break-word; }
   .range.coir h3 {
     color: #B28865; }
   .range.jute h3 {
