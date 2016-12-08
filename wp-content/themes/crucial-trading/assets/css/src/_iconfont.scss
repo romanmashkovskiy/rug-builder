@@ -10,17 +10,117 @@
 }
 
 [class^="icon-"], [class*=" icon-"] {
-	font-family: 'icon' !important;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-crucial-cm:before {
+  content: "\e90c";
+}
+.icon-crucial-light .path1:before {
+  content: "\e90d";
+  color: rgb(1, 1, 1);
+}
+.icon-crucial-light .path2:before {
+  content: "\e90e";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
+.icon-crucial-light .path3:before {
+  content: "\e90f";
+  margin-left: -1.19140625em;
+  color: rgb(1, 1, 1);
+}
+.icon-crucial-light .path4:before {
+  content: "\e910";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
+.icon-crucial-light .path5:before {
+  content: "\e911";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
+.icon-crucial-light .path6:before {
+  content: "\e912";
+  margin-left: -1.19140625em;
+  color: rgb(255, 255, 255);
+}
+.icon-crucial-light .path7:before {
+  content: "\e913";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
+.icon-crucial-light .path8:before {
+  content: "\e914";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
+.icon-crucial-stairs:before {
+  content: "\e915";
+}
+.icon-crucial-backing:before {
+  content: "\e916";
+}
+.icon-crucial-heavy .path1:before {
+  content: "\e917";
+  color: rgb(1, 1, 1);
+}
+.icon-crucial-heavy .path2:before {
+  content: "\e918";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
+.icon-crucial-heavy .path3:before {
+  content: "\e919";
+  margin-left: -1.19140625em;
+  color: rgb(1, 1, 1);
+}
+.icon-crucial-heavy .path4:before {
+  content: "\e91a";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
+.icon-crucial-heavy .path5:before {
+  content: "\e91b";
+  margin-left: -1.19140625em;
+  color: rgb(1, 1, 1);
+}
+.icon-crucial-heavy .path6:before {
+  content: "\e91c";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
+.icon-crucial-heavy .path7:before {
+  content: "\e91d";
+  margin-left: -1.19140625em;
+  color: rgb(1, 1, 1);
+}
+.icon-crucial-heavy .path8:before {
+  content: "\e91e";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
+.icon-crucial-heavy .path9:before {
+  content: "\e91f";
+  margin-left: -1.19140625em;
+  color: rgb(1, 1, 1);
+}
+.icon-crucial-heavy .path10:before {
+  content: "\e920";
+  margin-left: -1.19140625em;
+  color: rgb(35, 31, 32);
+}
 .icon-crucial-email:before {
   content: "\e90a";
 }
@@ -60,3 +160,4 @@
 .icon-crucial-underlay:before {
   content: "\e908";
 }
+
