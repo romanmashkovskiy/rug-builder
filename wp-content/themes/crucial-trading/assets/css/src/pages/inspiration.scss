@@ -6,7 +6,11 @@
 	background: #383838;
 
 	.share-links * {
-		color: white;
+		color: rgba(255,255,255,0.5);
+	}
+
+	.link__container:hover * {
+		color: rgba(255,255,255,1);
 	}
 
 	.fts-twitter-div {
