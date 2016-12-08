@@ -91,7 +91,7 @@
 		.fts-twitter-text * {
 			color: white;
 			font-family: "Playfair Display",serif;
-			font-size: 18px;
+			font-size: 21px;
 			font-weight: normal;
 			letter-spacing: 2px;
 			line-height: 1.8;
@@ -110,6 +110,32 @@
 			height: 520px;
 			margin-top: 0 !important;
 			width: calc(50% - 100px);
+		}
+
+		.icon-crucial-instagram {
+			color: white;
+			left: 40px;
+			margin-top: 40px;
+			position: absolute;
+		}
+
+		.twitter-shadow {
+
+			background: rgba(0,0,0,0.3);
+
+			webkit-filter: blur(6px);
+			-moz-filter: blur(6px);
+			-o-filter: blur(6px);
+			-ms-filter: blur(6px);
+			filter: blur(6px);
+
+			bottom: 0;
+			left: 0;
+			padding: 22px;
+			position: absolute;
+			right: 10px;
+			top: 0;
+			z-index: -1;
 		}
 	}
 
@@ -167,6 +193,14 @@
 			@media screen and (max-width: 666px) {
 				left: 50px !important;
 				right: 50px !important;
+			}
+
+			.icon-crucial-instagram {
+				color: white;
+				font-size: 17px;
+				left: 40px;
+				position: absolute;
+				top: 40px;
 			}
 		}
 	}
