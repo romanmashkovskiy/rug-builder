@@ -10,6 +10,10 @@ h1 {
 	@include typography-standards(#000000, $font-header, 52px, 2px);
 	margin: 0;
 
+	@media screen and (max-width: 555px) {
+		font-size: 42px;
+	}
+
 	&.home-banner-header {
 		@include typography-standards(#ffffff, $font-crucial, 70px, 4px);
 		text-shadow: 1px 0px 30px #aaaaaa;

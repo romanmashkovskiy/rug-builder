@@ -20,6 +20,7 @@
 
 		h1 {
 			margin: 10px 0;
+			word-break: break-all;
 		}
 
 		h3 {
@@ -39,6 +40,15 @@
 			text-align: center;
 			width: 33%;
 
+			@media screen and (max-width: 555px) {
+				display: block;
+				width: 100%;
+
+				a {
+					padding: 5px 0;
+				}
+			}
+
 			a {
 				display: block;
 				text-align: center;
@@ -47,7 +57,7 @@
 	}
 
 	.image-container {
-		height: 450px;
+		height: 600px;
 		overflow: hidden;
 		position: relative;
 		width: 100%;
@@ -70,6 +80,10 @@
 
 		#change-image-view {
 			left: 20px;
+
+			@media screen and (max-width: 666px) {
+				display: none;
+			}
 		}
 
 		.hide-material-info {
@@ -79,34 +93,53 @@
 		.material__details {
 			background: rgba(0,0,0,0.675);
 			right: 20px;
-			padding: 45px 27px;
+			padding: 45px 10px;
 			position: absolute;
 			top: 0;
-			width: 296px;
+			width: 400px;
 
-			@media screen and (max-width: 768px) {
-				display: block;
-				width: 165px;
+			@media screen and (max-width: 992px) {
+				width: 325px;
 			}
 
-			@media screen and (max-width: 600px) {
+			@media screen and (max-width: 768px) {
+				padding: 45px 2.5px;
+				width: 200px;
+			}
+
+			@media screen and (max-width: 450px) {
+				right: 0;
+			}
+
+			@media screen and (max-width: 400px) {
 				display: none;
 			}
 
 			.info__section {
-				float: left;
-				margin-bottom: 30px;
+				display: inline-block;
+				margin-bottom: 20px;
+				margin-left: 0px;
 				text-align: center;
-				width: 111px;
+				vertical-align: top;
+				width: 25%;
 				word-break: break-word;
 
-				display:inline-block;
-				margin-left: 0px;
-				vertical-align:top;
-				margin-bottom:20px;
+				@media screen and (max-width: 992px) {
+					width: 33%;
+				}
+
+
+				@media screen and (max-width: 768px) {
+					margin-bottom: 5px;
+					width: 50%;
+				}
 
 				h3 {
 					text-align: center;
+
+					@media screen and (max-width: 992px) {
+						font-size: 11px;
+					}
 				}
 
 				i {
@@ -117,18 +150,12 @@
 					height: 50px;
 					padding-top: 13px;
 					width: 50px;
-				}
 
-				&:nth-child(even) {
-					margin-right: 20px;
-				}
-
-				@media screen and (max-width: 768px) {
-					margin-bottom: 10px;
-					width: 100%;
-
-					&:nth-child(even) {
-						margin-right: 0;
+					@media screen and (max-width: 992px) {
+						font-size: 15px;
+						height: 35px;
+						padding-top: 10px;
+						width: 35px;
 					}
 				}
 			}

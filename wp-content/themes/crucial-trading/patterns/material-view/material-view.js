@@ -6,10 +6,12 @@ $(document).ready(function() {
 
 		var boxWidth;
 
-		if ( window.innerWidth > 768 ) {
-			boxWidth = 296;
+		if ( window.innerWidth > 992 ) {
+			boxWidth = 400;
+		} else if ( window.innerWidth > 768 && window.innerWidth < 993 ) {
+			boxWidth = 325;
 		} else {
-			boxWidth = 165;
+			boxWidth = 200;
 		}
 
 		$('.material__details').animate({
@@ -22,8 +24,16 @@ $(document).ready(function() {
 
 	function openInfoBox() {
 
+		var right;
+
+		if ( window.innerWidth > 450 ) {
+			right = '20px';
+		} else {
+			right = '0px';
+		}
+
 		$('.material__details').animate({
-			right: '20px'
+			right: right
 		})
 
 		$('.hide-material-info').text('Hide')

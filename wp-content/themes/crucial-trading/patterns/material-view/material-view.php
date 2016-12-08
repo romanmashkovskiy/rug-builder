@@ -29,18 +29,45 @@ function material_view( $atts = '' ) {
 	
 	$post_title = get_the_title();
 
-	$post_meta     = get_post_meta( $post_id, '_product_attributes', true );
-	$meta_code     = is_array( $post_meta ) && array_key_exists( 'code', $post_meta ) ? $post_meta['code'] : false;
-	$meta_size     = is_array( $post_meta ) && array_key_exists( 'size', $post_meta ) ? $post_meta['size'] : false;
-	$meta_price    = is_array( $post_meta ) && array_key_exists( 'price', $post_meta ) ? $post_meta['price'] : false;
-	$meta_material = is_array( $post_meta ) && array_key_exists( 'material', $post_meta ) ? $post_meta['material'] : false;
-	$meta_underlay = is_array( $post_meta ) && array_key_exists( 'underlay', $post_meta ) ? $post_meta['underlay'] : false;
+	$required_info = array( 'pa_width', 'pa_backing', 'pa_fibre', 'pa_suitability-1', 'pa_suitability-2', 'pa_suitability-3', 'pa_underlay-1', 'pa_underlay-2', 'pa_underlay-3', 'pa_design-1', 'pa_design-2', 'pa_design-3' );
 
-	$post_code     = $meta_code && array_key_exists( 'value', $meta_code ) ? $meta_code['value'] : false;
-	$post_size     = $meta_size && array_key_exists( 'value', $meta_size ) ? $meta_size['value'] : false;
-	$post_price    = $meta_price && array_key_exists( 'value', $meta_price ) ? $meta_price['value'] : false;
-	$post_material = $meta_material && array_key_exists( 'value', $meta_material ) ? $meta_material['value'] : false;	
-	$post_underlay = $meta_underlay && array_key_exists( 'value', $meta_underlay ) ? $meta_underlay['value'] : false;
+	$post_meta     = get_post_meta( $post_id, '_product_attributes', true );
+	$post_info_box = array();
+
+	foreach( $post_meta as $key => $value ) {
+		if ( in_array( $key, $required_info ) ) {
+			array_push( $post_info_box, $key );
+		}
+	}
+
+	$width_arr    = wc_get_product_terms( $post_id, 'pa_width', array( 'fields' => 'names' ) );
+	$backing_arr  = wc_get_product_terms( $post_id, 'pa_backing', array( 'fields' => 'names' ) );
+	$fibre_arr    = wc_get_product_terms( $post_id, 'pa_fibre', array( 'fields' => 'names' ) );
+	$suit_1_arr   = wc_get_product_terms( $post_id, 'pa_suitability-1', array( 'fields' => 'names' ) );
+	$suit_2_arr   = wc_get_product_terms( $post_id, 'pa_suitability-2', array( 'fields' => 'names' ) );
+	$suit_3_arr   = wc_get_product_terms( $post_id, 'pa_suitability-3', array( 'fields' => 'names' ) );
+	$under_1_arr  = wc_get_product_terms( $post_id, 'pa_underlay-1', array( 'fields' => 'names' ) );
+	$under_2_arr  = wc_get_product_terms( $post_id, 'pa_underlay-2', array( 'fields' => 'names' ) );
+	$under_3_arr  = wc_get_product_terms( $post_id, 'pa_underlay-3', array( 'fields' => 'names' ) );
+	$design_1_arr = wc_get_product_terms( $post_id, 'pa_design-1', array( 'fields' => 'names' ) );
+	$design_2_arr = wc_get_product_terms( $post_id, 'pa_design-2', array( 'fields' => 'names' ) );
+	$design_3_arr = wc_get_product_terms( $post_id, 'pa_design-3', array( 'fields' => 'names' ) );
+
+	$width    = array_key_exists( 0, $width_arr ) ? $width_arr[0] : false;
+	$backing  = array_key_exists( 0, $backing_arr ) ? $backing_arr[0] : false;
+	$fibre    = array_key_exists( 0, $fibre_arr ) ? $fibre_arr[0] : false;
+	$suit_1   = array_key_exists( 0, $suit_1_arr ) ? $suit_1_arr[0] : false;
+	$suit_2   = array_key_exists( 0, $suit_2_arr ) ? $suit_2_arr[0] : false;
+	$suit_3   = array_key_exists( 0, $suit_3_arr ) ? $suit_3_arr[0] : false;
+	$under_1  = array_key_exists( 0, $under_1_arr ) ? $under_1_arr[0] : false;
+	$under_2  = array_key_exists( 0, $under_2_arr ) ? $under_2_arr[0] : false;
+	$under_3  = array_key_exists( 0, $under_3_arr ) ? $under_3_arr[0] : false;
+	$design_1 = array_key_exists( 0, $design_1_arr ) ? $design_1_arr[0] : false;
+	$design_2 = array_key_exists( 0, $design_2_arr ) ? $design_2_arr[0] : false;
+	$design_3 = array_key_exists( 0, $design_3_arr ) ? $design_3_arr[0] : false;
+
+	$_product = wc_get_product( $post_id );
+	$price    = $_product->get_price();
 
 	$src       = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'single-post-thumbnail' )[0];
 	$src_arr   = array_values( $product->get_gallery_attachment_ids() );
@@ -55,9 +82,6 @@ function material_view( $atts = '' ) {
 
 		$html .= '<div class="header__titles">';
 		$html .= '<h1>' . $post_title . '</h1>';
-		if ( $post_code ) {
-			$html .= '<h3>Code: ' . $post_code . '</h3>';
-		}
 		$html .= '</div>';
 
 		$html .= '<div class="header__links">';
@@ -76,33 +100,101 @@ function material_view( $atts = '' ) {
 		$html .= '<img src="' . $src . '" alt="' . $post_title . '" class="material-img">';
 		$html .= '<a href="#" id="change-image-view" data-view="top" data-top="' . $src . '" data-angle="' . $src_angle . '">Change View</a>';
 
-		if ( $post_material || $post_price || $post_size || $post_underlay ) {
+		if ( $width || $backing || $fibre || $suit_1 || $suit_2 || $suit_3 || $under_1 || $under_2 || $under_3 || $design_1 || $design_2 || $design_3 ) {
 			$html .= '<div class="material__details clearfix">';
 			$html .= '<a href="#" class="hide-material-info" data-state="open">Hide</a>';
-			if ( $post_material ) {
+
+			if ( $fibre ) {
 				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-basket"></i>';
-				$html .= '<h3>' . $post_material . '</h3>';
+				$html .= '<i class="icon-crucial-"></i>';
+				$html .= '<h3>' . $fibre . '</h3>';
 				$html .= '</div>';
 			}
-			if ( $post_price ) {
+
+			if ( $price ) {
 				$html .= '<div class="info__section">';
 				$html .= '<i class="icon-crucial-metres"></i>';
-				$html .= '<h3>' . $post_price . '</h3>';
+				$html .= '<h3>£' . $price . '</h3>';
 				$html .= '</div>';
 			}
-			if ( $post_size ) {
+
+			if ( $width ) {
 				$html .= '<div class="info__section">';
 				$html .= '<i class="icon-crucial-measurement"></i>';
-				$html .= '<h3>' . $post_size . '</h3>';
+				$html .= '<h3>' . $width . '</h3>';
 				$html .= '</div>';
 			}
-			if ( $post_underlay ) {
+
+			if ( $backing ) {
+				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-"></i>';
+				$html .= '<h3>' . $backing . '</h3>';
+				$html .= '</div>';
+			}
+
+			if ( $under_1 ) {
 				$html .= '<div class="info__section">';
 				$html .= '<i class="icon-crucial-underlay"></i>';
-				$html .= '<h3>' . $post_underlay . '</h3>';
+				$html .= '<h3>' . $under_1 . '</h3>';
 				$html .= '</div>';
 			}
+
+			if ( $under_2 ) {
+				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-underlay"></i>';
+				$html .= '<h3>' . $under_2 . '</h3>';
+				$html .= '</div>';
+			}
+
+			if ( $under_3 ) {
+				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-underlay"></i>';
+				$html .= '<h3>' . $under_3 . '</h3>';
+				$html .= '</div>';
+			}
+
+			if ( $suit_1 ) {
+				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-"></i>';
+				$html .= '<h3>' . $suit_1 . '</h3>';
+				$html .= '</div>';
+			}
+
+			if ( $suit_2 ) {
+				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-"></i>';
+				$html .= '<h3>' . $suit_2 . '</h3>';
+				$html .= '</div>';
+			}
+
+			if ( $suit_3 ) {
+				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-"></i>';
+				$html .= '<h3>' . $suit_3 . '</h3>';
+				$html .= '</div>';
+			}
+
+			if ( $design_1 ) {
+				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-"></i>';
+				$html .= '<h3>' . $design_1 . '</h3>';
+				$html .= '</div>';
+			}
+
+			if ( $design_2 ) {
+				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-"></i>';
+				$html .= '<h3>' . $design_2 . '</h3>';
+				$html .= '</div>';
+			}
+
+			if ( $design_3 ) {
+				$html .= '<div class="info__section">';
+				$html .= '<i class="icon-crucial-"></i>';
+				$html .= '<h3>' . $design_3 . '</h3>';
+				$html .= '</div>';
+			}			
+
 			$html .= '</div>';
 		}
 
