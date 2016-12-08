@@ -53,6 +53,9 @@ body {
 		width: 320px;
 	}
 	
+	@media all and (max-width: 555px) {
+		width: 270px;
+	}
 }
 
 /*** Shown menu animation ***/
@@ -369,6 +372,10 @@ span.main-menu__button__text--close {
 	top:33px;
 	left: 65px;
 	@extend .transition-all;
+
+	@media screen and (max-width: 666px) {
+		display: none;
+	}
 }
 
 span.main-menu__button__text--close {
@@ -386,6 +393,10 @@ span.main-menu__button__icon {
   width: 37px;
   -webkit-transition: background 0s 0.3s;
   transition: background 0s 0.3s;
+
+  @media screen and (max-width: 666px) {
+  	left: calc(100% - 75px);
+  }
 }
 
 span.main-menu__button__icon::before,
