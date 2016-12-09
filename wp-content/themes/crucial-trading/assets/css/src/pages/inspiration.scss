@@ -117,10 +117,20 @@
 		}
 
 		.icon-crucial-instagram {
-			color: white;
+			color: #EEEEEE;
 			left: 40px;
 			margin-top: 40px;
 			position: absolute;
+
+			&:after {
+				background-color: #EEEEEE;
+				content: ' ';
+				height: 1px;
+				left: -75px;
+				position: absolute;
+				top: 9px;
+				width: 50px;
+			}
 		}
 
 		.twitter-shadow {
@@ -151,6 +161,7 @@
 		.slicker-instagram-placeholder.fts-instagram-wrapper {
 			height: 520px !important;
 			margin: 0 !important;
+			overflow: visible;
 			position: absolute;
 			width: calc(50% - 100px) !important;
 
@@ -200,11 +211,21 @@
 			}
 
 			.icon-crucial-instagram {
-				color: white;
+				color: #EEEEEE;
 				font-size: 17px;
 				left: 40px;
 				position: absolute;
 				top: 40px;
+
+				&:after {
+					background-color: #EEEEEE;
+					content: ' ';
+					height: 1px;
+					left: -75px;
+					position: absolute;
+					top: 9px;
+					width: 50px;
+				}
 			}
 		}
 	}
