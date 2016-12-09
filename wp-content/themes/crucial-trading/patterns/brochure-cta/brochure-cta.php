@@ -38,7 +38,7 @@ function brochure_cta() {
 		$html .= '<h2>Order A Brochure</h2>';
 		$html .= '<span></span>';
 		$html .= '<p>Order a brochure to view our entire portfolio of floorcoverings and inspirational photography.</p>';
-		$html .= '<a href="#" class="order-brochure" data-product-name="Brochure" data-product-id="' . $brochure_id . '">Order Now</a>';
+		$html .= '<a href="#" class="order-brochure" data-product-name="Our brochure" data-product-id="' . $brochure_id . '">Order Now</a>';
 		$html .= '</div>';
 
 		$html .= '</section>';
