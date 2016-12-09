@@ -20,6 +20,8 @@ echo do_shortcode( '[materials-slider]' );
 
 echo do_shortcode( '[section-boxes number=1]' );
 
+echo do_shortcode( '[brochure-cta]' );
+
 echo do_shortcode( '[home-inspiration-widget]' );
 
 get_footer();

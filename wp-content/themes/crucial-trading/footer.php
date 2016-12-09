@@ -13,6 +13,11 @@
 
 			<?php echo do_shortcode( '[footer]' ); ?>
 
+			<div class="basketPopup box-shadow">
+				<a href="#" id="close-basket-popup">Close</a>
+				<p class="basketMessage"></p>
+			</div>
+
 			</div>
 		</div>
 		<?php wp_footer(); ?>

@@ -28,3 +28,32 @@
 
 // Patterns
 @import '../../../patterns/*/*.scss';
+
+.basketPopup {
+	background: white;
+	display: none;
+	height: 150px;
+	margin-left: calc(50vw - 250px);
+	padding: 40px 25px;
+	position: fixed;
+	top: calc(50vh - 75px);
+	width: 500px;
+	z-index: 999;
+
+	#close-basket-popup {
+		font-size: 11px;
+		padding: 0;
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	}
+
+	.basketMessage a {
+		font-family: "Open Sans",sans-serif;
+		font-size: 17px;
+		font-weight: bold;
+		letter-spacing: .5px;
+		line-height: 1.8;
+		text-transform: lowercase;
+	}
+}

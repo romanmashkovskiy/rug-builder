@@ -116,31 +116,6 @@ $(document).ready(function() {
 		return false;
 	});
 
-	function showBasketPopup(success, productName) {
-
-		$('.basketMessage').html('');
-
-		console.log(window.location)
-
-		if ( success ) {
-			$('.basketMessage').html(productName + ' has been added to your <a href="' + siteURL + '/basket">basket</a>.');
-		} else {
-			$('.basketMessage').html('Sorry, an error has occured and ' + productName + ' could not be added to your basket. Please try again.');
-		}
-
-		$('.basketPopup').show();
-	}
-
-	$(document).on('click', '#close-basket-popup', function(e) {
-
-		e.preventDefault();
-		e.stopPropagation();
-
-		$('.basketPopup').hide();
-
-		return false;
-	});
-
 //	$('.material-img').each(function(i, v) {
 //		$(v).elevateZoom({
 //			zoomType  : 'lens',
