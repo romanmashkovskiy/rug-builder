@@ -13,4 +13,14 @@ echo do_shortcode( '[header]' );
 
 echo do_shortcode( '[logo-nav]' );
 
+?>
+
+<div class="single-post-container box-shadow">
+	<?php the_post(); the_content(); ?>
+</div>
+
+<?php
+
+echo do_shortcode( '[share-links]' );
+
 get_footer();

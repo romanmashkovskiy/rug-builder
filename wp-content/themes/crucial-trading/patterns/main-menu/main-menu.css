@@ -91,6 +91,9 @@ body {
   @media all and (max-width: 769px) {
     .main-menu__wrap {
       width: 320px; } }
+  @media all and (max-width: 555px) {
+    .main-menu__wrap {
+      width: 270px; } }
 
 /*** Shown menu animation ***/
 .show-menu .main-menu__wrap {
@@ -112,6 +115,17 @@ body {
   transition: transform 0.65s, -webkit-transform 0.65s;
   -webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
   transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1); }
+
+@media screen and (max-width: 769px) {
+  .show-menu .main-menu__button--wrap {
+    -webkit-transform: translate3d(-320px, 0, 0);
+    transform: translate3d(-320px, 0, 0);
+    -webkit-transition: -webkit-transform 0.65s;
+    transition: -webkit-transform 0.65s;
+    transition: transform 0.65s;
+    transition: transform 0.65s, -webkit-transform 0.65s;
+    -webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+    transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1); } }
 
 /************** Menu Links - General **************/
 .main-menu__wrap a {
@@ -196,7 +210,7 @@ body {
   padding-bottom: 15px;
   color: #878787; }
 
-/************** Menu Bottom**************/
+/************** Menu Bottom **************/
 .main-menu__bottom {
   position: absolute;
   bottom: 0px;
@@ -354,6 +368,10 @@ span.main-menu__button__text--close {
   position: absolute;
   top: 33px;
   left: 65px; }
+  @media screen and (max-width: 768px) {
+    span.main-menu__button__text,
+    span.main-menu__button__text--close {
+      display: none; } }
 
 span.main-menu__button__text--close {
   opacity: 0; }
@@ -369,6 +387,9 @@ span.main-menu__button__icon {
   width: 37px;
   -webkit-transition: background 0s 0.3s;
   transition: background 0s 0.3s; }
+  @media screen and (max-width: 768px) {
+    span.main-menu__button__icon {
+      left: calc(100% - 75px); } }
 
 span.main-menu__button__icon::before,
 span.main-menu__button__icon::after {

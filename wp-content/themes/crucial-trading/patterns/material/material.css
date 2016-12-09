@@ -52,7 +52,7 @@
   -webkit-transition: all ease-in-out 0.25s; }
 
 .material-box {
-  height: 550px;
+  height: 600px;
   margin-left: 7%;
   padding: 100px 100px 0;
   width: 86%; }
@@ -60,6 +60,8 @@
     .material-box {
       height: auto;
       padding: 25px 25px 0; } }
+  .material-box:last-child {
+    margin-bottom: 50px; }
   .material-box .material__left {
     float: left;
     height: 100%;
@@ -108,6 +110,18 @@
     @media screen and (max-width: 992px) {
       .material-box span {
         margin-top: 25px; } }
+  .material-box.coir .material__link:after {
+    background: #6F533D; }
+  .material-box.jute .material__link:after {
+    background: #4B3B2E; }
+  .material-box.seagrass .material__link:after {
+    background: #6B6551; }
+  .material-box.sisal .material__link:after {
+    background: #454F44; }
+  .material-box.sisool .material__link:after {
+    background: #817E62; }
+  .material-box.wool .material__link:after {
+    background: #665F4D; }
   .material-box.coir * {
     color: #6F533D; }
   .material-box.jute * {

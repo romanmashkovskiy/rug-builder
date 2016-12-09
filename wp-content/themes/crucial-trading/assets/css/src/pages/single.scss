@@ -1,0 +1,23 @@
+.single-post {
+
+	.single-post-container {
+		background: white;
+		margin: -50px 0 75px 12.5%;
+		padding: 75px;
+		position: relative;
+		width: 75%;
+		z-index: 999;
+
+		@media screen and (max-width: 768px) {
+			padding: 25px;
+			margin: -50px 0 75px 5%;
+			width: 90%
+		}
+	}
+
+	.share-links {
+		margin-bottom: 50px;
+	}
+}
+
+	

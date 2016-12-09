@@ -72,6 +72,15 @@ body {
 	transition-timing-function: cubic-bezier(0.55,0,0.5,1);
 }
 
+@media screen and (max-width: 769px) {
+
+	.show-menu .main-menu__button--wrap {
+		transform: translate3d(-320px,0,0);
+		transition: transform 0.65s;
+		transition-timing-function: cubic-bezier(0.55,0,0.5,1);
+	}
+}
+
 /************** Menu Links - General **************/ 
 
 .main-menu__wrap a {
@@ -373,7 +382,7 @@ span.main-menu__button__text--close {
 	left: 65px;
 	@extend .transition-all;
 
-	@media screen and (max-width: 666px) {
+	@media screen and (max-width: 768px) {
 		display: none;
 	}
 }
@@ -394,7 +403,7 @@ span.main-menu__button__icon {
   -webkit-transition: background 0s 0.3s;
   transition: background 0s 0.3s;
 
-  @media screen and (max-width: 666px) {
+  @media screen and (max-width: 768px) {
   	left: calc(100% - 75px);
   }
 }
