@@ -28,10 +28,6 @@ function retailer_search_box( $atts = '' ) {
 		}
 	}
 
-	echo '<pre>';
-	print_r($country);
-	echo '</pre>';
-
 	$overseas_args = array(
 		'post_type' => 'retailer',
 		'tax_query' => array(
@@ -48,7 +44,6 @@ function retailer_search_box( $atts = '' ) {
 	$countries = array();
 
 	for ( $i = 0; $i < $overseas_query->post_count; $i++ ) {
-
 		$this_country = rwmb_meta( 'country', array(), $overseas_query->posts[$i]->ID );
 		array_push( $countries, $this_country );
 	}
@@ -65,9 +60,7 @@ function retailer_search_box( $atts = '' ) {
 	$html .= '<option selected disabled">Select a Country</option>';
 
 	for ( $i2 = 0; $i2 < count( $countries ); $i2++ ) {
-
 		$selected = $country == $countries[$i2] ? 'selected' : '';
-
 		$html .= '<option value="' . $countries[$i2] . '" ' . $selected . '>' . $countries[$i2] . '</option>';
 	}
 
