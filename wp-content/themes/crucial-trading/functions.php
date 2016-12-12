@@ -20,10 +20,6 @@ require get_template_directory() . '/inc/woocommerce/include.php';
  */
 require get_template_directory() . '/inc/meta-boxes.php';
 
-@ini_set( 'upload_max_size' , '64M' );
-@ini_set( 'post_max_size', '64M');
-@ini_set( 'max_execution_time', '300' );
-
 
 if ( ! function_exists( 'crucial_trading_setup' ) ) :
 /**

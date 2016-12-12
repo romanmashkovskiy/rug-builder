@@ -28,6 +28,10 @@ function retailer_search_box( $atts = '' ) {
 		}
 	}
 
+	echo '<pre>';
+	print_r($country);
+	echo '</pre>';
+
 	$overseas_args = array(
 		'post_type' => 'retailer',
 		'tax_query' => array(
@@ -45,8 +49,8 @@ function retailer_search_box( $atts = '' ) {
 
 	for ( $i = 0; $i < $overseas_query->post_count; $i++ ) {
 
-		$country = rwmb_meta( 'country', array(), $overseas_query->posts[$i]->ID );
-		array_push( $countries, $country );
+		$this_country = rwmb_meta( 'country', array(), $overseas_query->posts[$i]->ID );
+		array_push( $countries, $this_country );
 	}
 
 	sort( $countries );
