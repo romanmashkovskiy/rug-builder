@@ -71,7 +71,7 @@ function material_view( $atts = '' ) {
 	$html .= '<div class="material__header">';
 
 		$html .= '<div class="header__back">';
-		$html .= '<a href="' . site_url() . '/materials">Back to Materials</a>';
+		$html .= '<a href="' . site_url() . '/materials"><i class="icon-crucial-left-arrow"></i>&nbsp;&nbsp;Back to Materials</a>';
 		$html .= '</div>';
 
 		$html .= '<div class="header__titles">';
