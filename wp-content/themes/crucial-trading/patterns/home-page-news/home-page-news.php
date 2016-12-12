@@ -37,8 +37,7 @@ function home_page_news( $atts = '' ) {
 	$html .= '<h2>Latest News</h2>';
 	$html .= '</div>';
 
-	$html .= '<div class="news__post box-shadow">';
-	$html .= '<div class="borderr clearfix">';
+	$html .= '<div class="news__post clearfix">';
 
 	$html .= '<h3 class="cat">' . $post_category . '</h3>';
 	$html .= '<span class="line"></span>';
@@ -54,7 +53,6 @@ function home_page_news( $atts = '' ) {
 	$html .= $post_thumb;
 	$html .= '</div>';
 
-	$html .= '</div>';
 	$html .= '</div>';
 
 	$html .= '</div>';
