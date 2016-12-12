@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 	// Inspiration Page Extra Content
 
-	if ( $('body').hasClass('page-template-inspiration') ) {
+	if ( $('body').hasClass('page-template-inspiration') || $('body').hasClass('page-template-home') ) {
 
 		$('.fts-twitter-link-image').each(function(i, e) {
 			$(e).append('<i class="icon-crucial-instagram"></i>')

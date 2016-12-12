@@ -6,6 +6,138 @@
 		padding: 50px;
 	}
 
+	.share-links * {
+		color: rgba(255,255,255,0.5);
+	}
+
+	.link__container:hover * {
+		color: rgba(255,255,255,1);
+	}
+
+	.fts-twitter-div {
+		overflow: visible;
+
+		@media screen and (max-width: 992px) {
+			display: none;
+		}
+	}
+
+	.fts-tweeter-wrap  {
+		height: 544px;
+		position: absolute;
+		width: 100%;
+
+		&:first-child {
+			top: 10px;
+			left: 30px;
+		}
+
+		&:nth-child(2) {
+			top: 1235px;
+			left: 45px;
+		}
+
+		.tweeter-info {
+			border-bottom: none;
+		}
+
+		.fts-twitter-image,
+		.fts-twitter-reply-wrap,
+		.time {
+			display: none;
+		}
+
+		.tweeter-info,
+		.fts-twitter-full-width,
+		.fts-twitter-full-width a {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+
+		.tweeter-info .right {
+			padding: 0;
+		}
+
+		.uppercase.bold {
+			display: none;
+		}
+
+		.fts-twitter-text {
+			bottom: 10%;
+			padding-left: 40px;
+			position: absolute;
+			width: calc(50% - 170px);
+			z-index: 999;
+		}
+
+		.fts-twitter-text,
+		.fts-twitter-text * {
+			color: white;
+			font-family: "Playfair Display",serif;
+			font-size: 21px;
+			font-weight: normal;
+			letter-spacing: 2px;
+			line-height: 1.8;
+			margin: 0;
+
+			a {
+				display: none;
+			}
+		}
+
+		img {
+			border-radius: 0;
+			-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+			-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+			box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+			height: 520px;
+			margin-top: 0 !important;
+			width: calc(50% - 100px);
+			position: relative;
+			z-index: 9;
+		}
+
+		.icon-crucial-instagram {
+			color: #EEEEEE;
+			left: 40px;
+			margin-top: 40px;
+			position: absolute;
+			z-index: 999;
+
+			&:after {
+				background-color: #EEEEEE;
+				content: ' ';
+				height: 1px;
+				left: -75px;
+				position: absolute;
+				top: 9px;
+				width: 50px;
+			}
+		}
+
+		.twitter-shadow {
+
+			background: rgba(0,0,0,0.3);
+
+			webkit-filter: blur(6px);
+			-moz-filter: blur(6px);
+			-o-filter: blur(6px);
+			-ms-filter: blur(6px);
+			filter: blur(6px);
+
+			bottom: 0;
+			left: 0;
+			padding: 22px;
+			position: absolute;
+			right: 10px;
+			top: 0;
+			z-index: -1;
+		}
+	}
+
 	.widget__image,
 	.widget__text {
 		float: left;
