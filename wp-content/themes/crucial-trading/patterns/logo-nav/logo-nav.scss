@@ -18,6 +18,10 @@
 	@media screen and (max-width: 768px) {
 		top: 42% !important;
 	}
+
+	@media screen and (max-width: 350px) {
+		left: 20px;
+	}
 }
 
 .top-bar__right {
