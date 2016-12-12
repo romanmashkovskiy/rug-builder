@@ -129,7 +129,7 @@ function crucial_slider_slides() {
 				$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
 			}
 			else {
-				$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/01160003/CT_LogoStrapline_Black.svg" alt="Crucial Trading - Where Inspiration Begins" class="opening-slide-logo">';
+				$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161212170153/CT_LogoStrapline_Black1.svg" alt="Crucial Trading - Where Inspiration Begins" class="opening-slide-logo">';
 				$html .= '<p>Welcome to the start of your journey where imagination flourishes, ideas form and decisions are made. We aim to inspire and delight. Choose the right floorcovering and everything else falls into place.</p>';
 				$html .= '<span></span>';
 			}
