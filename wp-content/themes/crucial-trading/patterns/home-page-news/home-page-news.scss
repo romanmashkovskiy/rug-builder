@@ -14,6 +14,7 @@
 
 	.news__post {
 		background: white;
+		box-sizing: border-box;
 		margin-left: 10%;
 		margin-top: 75px;
 		padding: 10px;
@@ -33,6 +34,7 @@
 		}
 
 		.borderr {
+			box-sizing: border-box;
 			position: relative;
 
 			.cat {
