@@ -24,6 +24,8 @@ echo do_shortcode( '[brochure-cta]' );
 
 echo do_shortcode( '[home-inspiration-widget]' );
 
+echo do_shortcode( '[home-page-news]' );
+
 ?> <div class="clearfix"> <?php
 
 echo do_shortcode( '[home-page-cta id=1]' );

@@ -1,9 +1,34 @@
 .home-page-cta {
   float: left;
+  height: 500px;
   padding: 100px;
   position: relative;
   width: 50%; }
+  @media screen and (max-width: 992px) {
+    .home-page-cta {
+      height: auto;
+      width: 100%; } }
+  @media screen and (max-width: 555px) {
+    .home-page-cta {
+      padding: 50px; } }
   .home-page-cta h2, .home-page-cta p {
     color: white; }
   .home-page-cta h2 {
     margin-bottom: 20px; }
+  .home-page-cta span {
+    background: #4d4d4d;
+    display: block;
+    height: 2px;
+    left: 0;
+    margin-top: 143px;
+    position: absolute;
+    top: 0;
+    width: 50px; }
+  .home-page-cta img {
+    bottom: -50px;
+    position: absolute;
+    width: 175px; }
+    @media screen and (max-width: 555px) {
+      .home-page-cta img {
+        right: 20px;
+        width: 125px; } }

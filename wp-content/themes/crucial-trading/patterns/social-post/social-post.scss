@@ -6,6 +6,7 @@
 		height: 520px;
 		position: absolute;
 		width: calc(50% - 100px);
+		z-index: 99;
 
 		@media screen and (max-width: 992px) {
 			position: static;
