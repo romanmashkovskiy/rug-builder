@@ -67,6 +67,7 @@ body {
 }
 
 .show-menu .main-menu__button--wrap {
+	position: fixed !important;
 	transform: translate3d(-370px,0,0);
 	transition: transform 0.65s;
 	transition-timing-function: cubic-bezier(0.55,0,0.5,1);
