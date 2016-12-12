@@ -1,5 +1,9 @@
 RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 
+	if ( thumb === undefined || thumb === null ) {
+		return;
+	}
+
 	if ( thumb.indexOf('-150x150') > -1 ) {
 		thumb = thumb.replace('-150x150', '');
 	}

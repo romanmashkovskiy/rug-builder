@@ -22,4 +22,6 @@ echo do_shortcode( '[page-image]' );
 
 echo do_shortcode( '[share-links]' );
 
+echo do_shortcode( '[newsletter-signup]' );
+
 get_footer();

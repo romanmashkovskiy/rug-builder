@@ -24,4 +24,6 @@ echo do_shortcode( '[fts_instagram instagram_id=3184970245 pics_count=3 super_ga
 
 echo '</div>';
 
+echo do_shortcode( '[newsletter-signup]' );
+
 get_footer();
