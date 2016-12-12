@@ -21,6 +21,10 @@
 			-webkit-transform: rotate(270deg);
 			transform: rotate(270deg);
 			white-space: nowrap;
+
+			@media screen and (max-width: 768px) {
+				display: none;
+			}
 		}
 
 		.post-line {

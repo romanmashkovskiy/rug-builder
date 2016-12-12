@@ -5,6 +5,10 @@
 	padding: 30px 40px 10px;
 	width: 300px;
 
+	@media screen and (max-width: 390px) {
+		width: calc(100% - 90px);
+	}
+
 	h2 {
 		font-size: 24px;
 		text-align: center;

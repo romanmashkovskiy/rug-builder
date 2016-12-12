@@ -1,0 +1,9 @@
+.home-page-cta {
+  float: left;
+  padding: 100px;
+  position: relative;
+  width: 50%; }
+  .home-page-cta h2, .home-page-cta p {
+    color: white; }
+  .home-page-cta h2 {
+    margin-bottom: 20px; }

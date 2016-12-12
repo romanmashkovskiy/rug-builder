@@ -1,0 +1,46 @@
+.home-page-cta {
+	float: left;
+	height: 500px;
+	padding: 100px;
+	position: relative;
+	width: 50%;
+
+	@media screen and (max-width: 992px) {
+		height: auto;
+		width: 100%;
+	}
+
+	@media screen and (max-width: 555px) {
+		padding: 50px;
+	}
+
+	h2, p {
+		color: white;
+	}
+
+	h2 {
+		margin-bottom: 20px;
+	}
+
+	span {
+		background: #4d4d4d;
+		display: block;
+		height: 2px;
+		left: 0;
+		margin-top: 143px;
+		position: absolute;
+		top: 0;
+		width: 50px;
+	}
+
+	img {
+		bottom: -50px;
+		position: absolute;
+		width: 175px;
+
+		@media screen and (max-width: 555px) {
+			right: 20px;
+			width: 125px;
+		}
+	}
+}

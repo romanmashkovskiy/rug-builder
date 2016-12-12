@@ -55,6 +55,10 @@
     .nav_prev,
     .nav_next {
       display: none; } }
+  @media screen and (max-width: 421px) {
+    .nav_prev,
+    .nav_next {
+      display: none; } }
   .nav_prev a,
   .nav_next a {
     display: block;
@@ -142,6 +146,9 @@
   top: 82%;
   width: 100%; }
   @media screen and (max-height: 420px) {
+    .slide__bottom {
+      display: none; } }
+  @media screen and (max-width: 421px) {
     .slide__bottom {
       display: none; } }
   .slide__bottom h3 {

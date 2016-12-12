@@ -145,7 +145,46 @@ function meta_boxes($meta_boxes) {
 			),
 		),
 	);
+/*
+	// Home Page Call to Actions
 
+	$meta_boxes[] = array(
+		'title'      => 'Home Page Call to Action',
+		'post_types' => 'page',
+		'include'    => array( 'slug' => 'home' ),
+		'fields'     => array(
+			array(
+				'name'       => 'Call to Action',
+				'id'         => 'home-page-cta',
+				'type'       => 'group',
+				'clone'      => true,
+				'sort_clone' => true,
+				'fields'     => array(
+					array(
+						'name' => 'Title',
+						'id'   => 'title',
+						'type' => 'text',
+					),
+					array(
+						'name' => 'Text',
+						'id'   => 'text',
+						'type' => 'text',
+					),
+					array(
+						'name' => 'Background Color',
+						'id'   => 'bg-color',
+						'type' => 'color',
+					),
+					array(
+						'name' => 'Icon',
+						'id'   => 'icon',
+						'type' => '????',
+					),
+				),
+			),
+		),
+	);
+*/
 	// Page Images
 
 	$meta_boxes[] = array(

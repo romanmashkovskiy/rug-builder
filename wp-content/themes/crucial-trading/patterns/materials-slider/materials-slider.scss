@@ -332,6 +332,10 @@
 		top: 40%;
 	}
 
+	@media screen and (max-width: 400px) {
+		display: none;
+	}
+
 	.next-slide {
 		cursor: pointer;
 		position: absolute;

@@ -24,4 +24,12 @@ echo do_shortcode( '[brochure-cta]' );
 
 echo do_shortcode( '[home-inspiration-widget]' );
 
+?> <div class="clearfix"> <?php
+
+echo do_shortcode( '[home-page-cta id=1]' );
+
+echo do_shortcode( '[home-page-cta id=2]' );
+
+?> </div> <?php
+
 get_footer();

@@ -79,6 +79,10 @@
 		display: none;
 	}
 
+	@media screen and (max-width: 421px) {
+		display: none;
+	}
+
 	a {
 		display: block;
 		position: relative;
@@ -214,6 +218,10 @@
 	width: 100%;
 
 	@media screen and (max-height: 420px) {
+		display: none;
+	}
+
+	@media screen and (max-width: 421px) {
 		display: none;
 	}
 

@@ -211,6 +211,9 @@
   @media screen and (max-width: 768px) {
     .slide__nav {
       top: 40%; } }
+  @media screen and (max-width: 400px) {
+    .slide__nav {
+      display: none; } }
   .slide__nav .next-slide {
     cursor: pointer;
     position: absolute;

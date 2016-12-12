@@ -430,10 +430,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				btnsHTML = (
 					<div className="scroll-btns clearfix">
 						<div className="scroll__left">
-							<a href="#" onClick={ this.slideRight } style={ leftStyle }>&#x25C0;</a>
+							<a href="#" onClick={ this.slideRight }>&#x25C0;</a>
 						</div>
 						<div className="scroll__right">
-							<a href="#" onClick={ this.slideLeft } style={ rightStyle }>&#x25B6;</a>
+							<a href="#" onClick={ this.slideLeft }>&#x25B6;</a>
 						</div>
 					</div>
 				);
