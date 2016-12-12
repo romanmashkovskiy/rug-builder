@@ -45,6 +45,7 @@
 			
 			// Build article card
 			$html .= '<article class="news__item" id="'.get_the_ID().'">
+					<div class="news__item__category">'.$news_cat[0]->name.'</div>
 					<div class="news__item__category-line"></div>
 					<a href="'.get_the_permalink().'" title="'.$news_title.'" class="no-effect">
 						<div class="news__item__box">

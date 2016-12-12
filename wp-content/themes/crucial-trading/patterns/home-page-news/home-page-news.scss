@@ -14,20 +14,26 @@
 
 	.news__post {
 		background: white;
-		margin-left: 15%;
+		margin-left: 10%;
 		margin-top: 75px;
 		padding: 10px;
 		position: relative;
 		width: 80%;
 
-		@media screen and (max-width: 666px) {
-			margin-left: 5%;
-			width: 90%;
+		&:hover {
+			-webkit-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);
+			-moz-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);
+			box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);
+			transition: all ease-in-out 0.25s;
+    		-webkit-transition: all ease-in-out 0.25s;
+
+			.borderr {
+				border: 1px #f6f6f6 solid;
+			}
 		}
 
-//		.borderr {
-//			border: 2px solid #f5f5f5;
-//			position: relative;
+		.borderr {
+			position: relative;
 
 			.cat {
 				color: #a7a7a7;
@@ -62,11 +68,11 @@
 					display: none;
 				}
 			}
-//		}
+		}
 
 		.post__left {
 			padding: 4% 6%;
-			width: 60%;
+			width: 70%;
 
 			@media screen and (max-width: 992px) {
 				padding: 25px 25px 0 25px;
@@ -76,12 +82,12 @@
 			h2 {
 				font-size: 36px;
 				line-height: 1.4;
-				margin-bottom: 5px;
+				margin-bottom: 1%;
 			}
 
 			h3 {
 				color: #cbcbcb;
-				margin-bottom: 20px;
+				margin-bottom: 7%;
 			}
 
 			p {
@@ -108,13 +114,12 @@
 		}
 
 		.post__right {
-			bottom: 0;
-			left: 60%;
+			left: 70%;
 			position: absolute;
-			padding: 25px;
+			padding: 25px 25px 25px 0;
 			right: 0;
 			top: 0;
-			width: 40%;
+			width: 30%;
 
 			@media screen and (max-width: 992px) {
 				position: static;
@@ -122,7 +127,7 @@
 			}
 
 			img {
-				height: 100%;
+				height: auto;
 				object-fit: cover;
 
 				@media screen and (max-width: 992px) {
