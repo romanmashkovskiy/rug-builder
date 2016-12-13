@@ -15,7 +15,11 @@ var $ = jQuery;
 	  	if ( !$(e.target).hasClass('link-opener') ) {
 	  		$(this).toggleClass("is-active");
 		    $('body').toggleClass("show-menu");
-	  	} 		         
+	  	} else {
+	  		e.preventDefault();
+	  		e.stopPropagation();
+	  		document.querySelector('.basket-dropdown').style.display = 'block';
+	  	}	         
 	  });
 	});
 		
@@ -29,5 +33,9 @@ var $ = jQuery;
 	$('.main-menu, .main-menu__button').click(function(event){
 	    event.stopPropagation();
 	});
+
+	$('.close-basket-dropdown').on('click', function() {
+		document.querySelector('.basket-dropdown').style.display = 'none';
+	})
 
 });

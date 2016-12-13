@@ -34,7 +34,7 @@ function logo_nav_shortcode( $atts = '' ) {
 	$html .= '<div class="top-bar__right main-menu__button--wrap">
 	<button class="main-menu__button menu-button" id="open-button">
 
-	<a href="' . site_url() . '/basket" id="basket-link" class="link-opener">
+	<a href="#" id="basket-link" class="link-opener">
 		
 	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22px" height="23px" viewBox="0 0 22 23" version="1.1" class="main-menu__button__basket link-opener">
 	    <!-- Generator: Sketch 40.2 (33826) - http://www.bohemiancoding.com/sketch -->
