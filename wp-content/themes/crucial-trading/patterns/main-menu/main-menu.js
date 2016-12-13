@@ -10,9 +10,12 @@ var $ = jQuery;
 	
 	// Add classes - active tag to button and show menu to body	
 	$(function() {                     
-	  $(".main-menu__button").click(function() { 
-	    $(this).toggleClass("is-active");
-	    $('body').toggleClass("show-menu");     
+	  $(".main-menu__button").click(function(e) { 
+
+	  	if ( !$(e.target).hasClass('link-opener') ) {
+	  		$(this).toggleClass("is-active");
+		    $('body').toggleClass("show-menu");
+	  	} 		         
 	  });
 	});
 		

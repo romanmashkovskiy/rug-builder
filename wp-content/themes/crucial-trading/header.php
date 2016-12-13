@@ -9,6 +9,8 @@
  * @package Crucial_Trading
  */
 
+$header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'basket-full';
+
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
@@ -19,6 +21,6 @@
 		<?php wp_head(); ?>
 		<script>var siteURL = '<?php echo site_url(); ?>';</script>
 	</head>
-	<body <?php body_class(); ?>>
+	<body <?php body_class( $header_class ); ?>>
 		<div id="page" class="site">
 			<div id="content" class="site-content">
