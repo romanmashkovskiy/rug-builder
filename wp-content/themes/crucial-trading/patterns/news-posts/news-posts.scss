@@ -32,10 +32,12 @@ body .news__item a {
 	padding: 1%;
 	box-sizing: border-box;
 	color: $copy-colour;
+	text-decoration: none;
 }
 
 .news__item a:hover {
 	@extend .box-shadow;
+	text-decoration: none;
 }
 
 /********** Box Border ********/ 

@@ -1,12 +1,28 @@
+ /************************************************************************************************************************
+	Single - Post
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+
+@import '_variables.scss';
+
 .single-post {
 
-	.single-post-container {
+	background-color: #f8f8f8;
+	
+	.single-post__container {
 		background: white;
-		margin: -50px 0 75px 12.5%;
+		margin-top: -50px;
+		margin-bottom: 75px;
+		margin-left: auto;
+		margin-right: auto;
 		padding: 75px;
 		position: relative;
 		width: 75%;
 		z-index: 999;
+		max-width: 1300px;
 
 		.post-title {
 			color: #bfbfbf;
@@ -52,3 +68,32 @@
 		margin-bottom: 50px;
 	}
 }
+
+/******** Single Post - Copy *********/ 
+	
+.single-post__content {
+	max-width: 767px;
+	margin: auto;
+}
+
+.single-post__content h2 {
+	font-size: 38px;
+	letter-spacing: 1px;
+	margin-bottom: 60px;
+}
+
+.single-post__content p {
+	margin-bottom: 35px;
+}
+
+
+/******** Single Post - Copy *********/ 
+
+
+
+
+
+
+
+
+
