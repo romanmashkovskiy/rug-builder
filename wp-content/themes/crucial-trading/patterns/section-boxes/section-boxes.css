@@ -42,10 +42,11 @@
     .section-box .box__content span {
       background: grey;
       display: block;
-      height: 2px;
+      height: 1px;
       margin: auto;
       margin-bottom: 60px;
-      width: 100px; }
+      width: 100px;
+      opacity: 0.5; }
     .section-box .box__content p {
       margin-bottom: 150px; }
     .section-box .box__content a {
