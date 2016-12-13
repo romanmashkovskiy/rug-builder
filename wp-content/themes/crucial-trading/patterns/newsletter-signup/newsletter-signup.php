@@ -16,8 +16,8 @@ function newsletter_signup( $atts = '' ) {
 
 	$html .= '<div class="newsletter">';
 	$html .= '<div class="newsletter__container">';
+	$html .= '<h3 class="rotated-text vertical-align">Stay up to date</h3>';
 	$html .= '<span class="newsletter__line"></span>';
-	$html .= '<h3>Stay up to date</h3>';
 	$html .= '<h2>Keep up to date with Crucial</h2>';
 
 	/* NEED MAILCHIMP INPUT */

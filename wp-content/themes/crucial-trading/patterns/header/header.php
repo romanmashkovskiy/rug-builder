@@ -20,15 +20,23 @@ function header_shortcode($atts = '') {
 		$header_size = 'large';
 	}
 	
-	// Orderby 
+	// Check if image overlay set or not  
 	if ( !empty($atts['overlay']) ) :
 		$header_overlay = $atts['overlay'];
 	else : 
 		$header_overlay = '';
 	endif;
 	
+	// Check if archive, cat or tag page set to true 
+	if ( !empty($atts['archive']) ) :
+		$header_archive_title = $atts['archive'];
+	else : 
+		$header_archive_title = '';
+	endif;
+	
 	$title    = get_the_title();
 	$subtitle = get_post_meta( get_the_ID(), 'subtitle', true );
+	$archive_title = get_the_archive_title();
 
 	$attachment_id = has_post_thumbnail() ? get_post_thumbnail_id() : false;
 	$background    = $attachment_id ? wp_get_attachment_image_url( $attachment_id, 'full' ) : '';
@@ -49,8 +57,15 @@ function header_shortcode($atts = '') {
 	endif;
 	
 	$html .= '<h1>' . $title . '</h1>';
+	
+	// Show archive title if is set to archive in $atts
+	if (!empty($header_archive_title)) : 
+		$html .= '<h1>'.$archive_title.'</h1>';
+	endif;
+	
 	$html .= '</div>';
 	
+	// Add dark image overlay if $atts set to true 
 	if (!empty($header_overlay)) : 
 		$html .= '<div class="header__overlay"></div>';
 	endif;
