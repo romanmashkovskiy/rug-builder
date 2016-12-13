@@ -8,6 +8,10 @@
   clear: both;
 }
 
+#app, canvas {
+	display: none;
+}
+
 body {
 	overflow-x: hidden;
 }
@@ -129,3 +133,7 @@ canvas {
 
 @import 'components/*';
 @import 'components/drawer/*';
+
+@import 'hello';
+
+@import 'website/*';
