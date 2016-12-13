@@ -17,14 +17,21 @@ setup_postdata( $post );
 
 ?>
 
-<div class="single-post-container box-shadow">
-	<div class="post-title">Author: <?php echo get_the_author(); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo get_the_category()[0]->name; ?></div>
-	<div class="post-line"></div>
-	<?php the_post(); the_content(); ?>
+<div class="single-post__container box-shadow">
+	
+	<!--<div class="post-title"><?php the_title(); ?></div>
+	<div class="post-line"></div>-->
+	
+	<div class="single-post__content">
+		<?php the_post(); the_content(); ?>
+	</div>
+
 </div>
 
 <?php
 
-echo do_shortcode( '[share-links]' );
+//echo do_shortcode( '[share-links]' );
+
+//echo do_shortcode( '[newsletter-signup]' );
 
 get_footer();

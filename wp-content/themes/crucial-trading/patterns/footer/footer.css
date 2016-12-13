@@ -167,6 +167,9 @@ footer {
 
 .footer__info--copyright {
   margin-right: 45px; }
+  @media all and (max-width: 769px) {
+    .footer__info--copyright {
+      margin-right: 0px; } }
 
 @media all and (max-width: 769px) {
   .footer__info--design-agency {

@@ -158,6 +158,11 @@ footer {
 
 .footer__info--copyright {
 	margin-right: 45px;
+	
+	@media all and (max-width: 769px) {
+		margin-right: 0px;
+	}
+	
 }
 
 
