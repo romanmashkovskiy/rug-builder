@@ -28,6 +28,7 @@
 	 'post_type' => 'post',
 	 'posts_per_page' => 5,
 	 'paged' => $paged,
+	 'ignore_sticky_posts'    => true,
 	 'category_name' => $category
 	 ) );
 	
