@@ -85,6 +85,11 @@ body .news__item a {
   vertical-align: middle;
   padding-left: 4%;
   padding-right: 6%; }
+  @media screen and (max-width: 768px) {
+    .news__item__contact-wrap {
+      display: block;
+      padding-right: 4%;
+      width: 100%; } }
 
 .news__item__image-wrap {
   display: table-cell;
@@ -92,6 +97,14 @@ body .news__item a {
   margin-left: -7px;
   text-align: right;
   vertical-align: top; }
+  @media screen and (max-width: 768px) {
+    .news__item__image-wrap {
+      display: block;
+      width: 100%;
+      margin-top: 15px;
+      padding-left: 4%;
+      padding-right: 4%;
+      margin-left: 0; } }
 
 /********** Rotated Category ********/
 .news__item__category {

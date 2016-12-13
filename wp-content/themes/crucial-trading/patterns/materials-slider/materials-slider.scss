@@ -82,8 +82,11 @@
 	.slide__list {
 		margin: 25px 0 0;
 		padding: 0;
-		padding-right: 10px;
-		text-align: right;
+		padding-left: 50%;
+
+		@media screen and (max-width: 321px) {
+			padding-left: 40%;
+		}
 
 		li {
 			cursor: pointer;
@@ -97,14 +100,24 @@
 					position: relative;
 					top: 7px;
 				}
-				
-
-				&:first-child {
-					margin-left: calc(100% - 165px)
-				}
 
 				&:last-child {
 					padding-right: 0;
+				}
+			}
+
+			&:nth-child(3) {
+
+				@media screen and (max-width: 768px) {
+					margin-right: 21vw;
+				}
+
+				@media screen and (max-width: 594px) {
+					margin-right: 11vw;
+				}
+
+				@media screen and (max-width: 442px) {
+					margin-right: 0;
 				}
 			}
 

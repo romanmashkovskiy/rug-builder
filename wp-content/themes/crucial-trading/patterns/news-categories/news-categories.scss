@@ -33,6 +33,15 @@
 .news-categories ul li {
 	display: table-cell;
 	text-align: center;
+
+	@media screen and (max-width: 992px) {
+		display: block;
+		margin-bottom: 7.5px;
+
+		& a:after {
+			display: none;
+		}
+	}
 }
 
 

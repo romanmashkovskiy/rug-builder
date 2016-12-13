@@ -107,6 +107,7 @@ body {
   transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1); }
 
 .show-menu .main-menu__button--wrap {
+  position: fixed !important;
   -webkit-transform: translate3d(-370px, 0, 0);
   transform: translate3d(-370px, 0, 0);
   -webkit-transition: -webkit-transform 0.65s;

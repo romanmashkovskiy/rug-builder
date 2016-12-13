@@ -109,7 +109,7 @@ function material_view_slider( $atts = '' ) {
 	while ( $woocommerce_products->have_posts() ) : $woocommerce_products->the_post();
 
 		$product_name = get_the_title();
-		$html .= '<li data-name="' . $product_name . '">' . do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '"]' ) . '</li>';
+		$html .= '<li data-name="' . $product_name . '" data-total="' . $total . '" class="slidee">' . do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '"]' ) . '</li>';
 
 	endwhile;
 

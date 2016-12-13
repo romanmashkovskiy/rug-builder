@@ -21,7 +21,7 @@ body {
 Links & special Link underline base styles
 **************************************************************/
 
-a {
+a:not(.no-styling) {
 	@include typography-standards(#000000, $font-sub-header, 17px, 2.5px);
 	padding-bottom: 5px;
 	position: relative;
@@ -41,8 +41,8 @@ a {
 	}
 }
 
-a::before, 
-a::after { 
+a:not(.no-styling)::before, 
+a:not(.no-styling)::after { 
 	position: absolute;
 	bottom: 10px;
 	left: 0;
@@ -52,18 +52,18 @@ a::after {
 	content: '';	
 }
 
-a::before {
+a:not(.no-styling)::before {
 	opacity: 0.45;
 	z-index: 5;
 }
 
-a::after {
+a:not(.no-styling)::after {
 	z-index: 5;
 	transform: scaleX(0);
 	visibility: hidden;
 }
 
-a:hover::after {
+a:not(.no-styling):hover::after {
 	visibility: visible;
 	transform: scaleX(1);
 }
@@ -77,6 +77,10 @@ a.no-effect {
 a.no-effect::before, 
 a.no-effect::after {
 	display: none;
+}
+
+a.no-styling {
+	text-decoration: none;
 }
 
 /**************************************************************

@@ -13,6 +13,8 @@ echo do_shortcode( '[header]' );
 
 echo do_shortcode( '[logo-nav]' );
 
+setup_postdata( $post );
+
 ?>
 
 <div class="single-post__container box-shadow">

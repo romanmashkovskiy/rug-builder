@@ -21,7 +21,6 @@ require get_template_directory() . '/inc/woocommerce/include.php';
 require get_template_directory() . '/inc/meta-boxes.php';
 
 
-
 if ( ! function_exists( 'crucial_trading_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -128,6 +127,7 @@ function crucial_trading_scripts() {
 	wp_enqueue_style( 'flags', get_template_directory_uri() . '/assets/css/vendor/flag-icon.min.css', false );
 	wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/css/dist/master.min.css', false );
 
+	wp_enqueue_script( 'lightbox', get_template_directory_uri() . '/assets/js/vendor/html5lightbox.js"', false );
 	wp_enqueue_script( 'super-slider', get_template_directory_uri() . '/assets/js/vendor/super-slider.min.js"', false );
 	wp_enqueue_script( 'skrollr', get_template_directory_uri() . '/assets/js/vendor/skrollr.min.js"', false );
 	wp_enqueue_script( 'bx-slider', get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js', false );

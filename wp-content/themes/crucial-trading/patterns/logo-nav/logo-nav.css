@@ -12,6 +12,12 @@
 
 .top-bar__left {
   left: 40px; }
+  @media screen and (max-width: 768px) {
+    .top-bar__left {
+      top: 42% !important; } }
+  @media screen and (max-width: 350px) {
+    .top-bar__left {
+      left: 20px; } }
 
 .top-bar__right {
   right: 40px; }

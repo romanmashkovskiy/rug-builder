@@ -10,6 +10,15 @@
 /* Colors */
 /* Typography */
 /* Main Navigation & Footer */
+#html5-watermark {
+  display: none !important; }
+
+#html5-lightbox-box,
+#html5-elem-wrap {
+  height: 100% !important;
+  margin: 0 !important;
+  width: 100% !important; }
+
 #super-slider {
   max-height: 100vh !important;
   min-height: 100vh !important; }
@@ -30,17 +39,17 @@
     cursor: pointer; }
   #super-slider .slide.opening svg g,
   #super-slider .slide.opening svg g path {
-    stroke: black; }
+    stroke: white; }
   #super-slider .slide.opening h3.rotate {
-    color: black; }
+    color: white; }
   #super-slider .slide.opening .nav_next li h3 {
     color: #7C7C7C; }
   #super-slider .slide.opening .nav_next li span {
     background: #7C7C7C; }
   #super-slider .slide.opening .nav_next li.active h3 {
-    color: black; }
+    color: white; }
   #super-slider .slide.opening .nav_next li.active span {
-    background: black; }
+    background: white; }
 
 .slides-navigation {
   position: relative;
@@ -70,8 +79,10 @@
   padding-left: 35px; }
   .nav_prev h3 {
     color: white;
-    left: 2px;
-    top: 120px; }
+    left: -40px;
+    top: 160px;
+    text-align: right;
+    width: 200px; }
 
 .nav_next {
   right: 0;
@@ -102,24 +113,22 @@
 
 .slide__center {
   text-align: center; }
-  .slide__center h1 {
-    text-shadow: none; }
-    @media screen and (max-width: 992px) {
-      .slide__center h1 {
-        font-size: 46px; } }
-    @media screen and (max-width: 555px) {
-      .slide__center h1 {
-        font-size: 40px;
-        letter-spacing: 2px; } }
+  @media screen and (max-width: 992px) {
+    .slide__center h1 {
+      font-size: 46px; } }
+  @media screen and (max-width: 555px) {
+    .slide__center h1 {
+      font-size: 40px;
+      letter-spacing: 2px; } }
   .slide__center a {
     color: white; }
     @media screen and (max-width: 992px) {
       .slide__center a {
         display: none; } }
     .slide__center a:before, .slide__center a:after {
-      background-color: white; }
+      display: none; }
   .slide__center.opening h1, .slide__center.opening p, .slide__center.opening a {
-    color: black; }
+    color: white; }
   .slide__center.opening p.subtitle {
     font-family: "Montserrat", sans-serif;
     margin-bottom: 120px;
@@ -156,8 +165,6 @@
     @media screen and (max-height: 485px) {
       .slide__bottom h3 {
         display: none; } }
-  .slide__bottom.opening h3 {
-    color: black; }
 
 .slide__arrow--right,
 .slide__arrow--down {

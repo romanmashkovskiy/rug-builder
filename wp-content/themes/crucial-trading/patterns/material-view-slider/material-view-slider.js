@@ -38,80 +38,84 @@ $(document).ready(function() {
 		}
 	}
 
-	$('.material-view-slider ul#material-view-slider-list').bxSlider({
-		startSlide   : startIndex,
+	if ( $('.slidee').data('total') > 1 ) {
 
-		nextSelector : '#material-view-slider-next',
-		prevSelector : '#material-view-slider-prev',
+		$('.material-view-slider ul#material-view-slider-list').bxSlider({
+			startSlide   : startIndex,
 
-		onSlideNext  : function() {
+			nextSelector : '#material-view-slider-next',
+			prevSelector : '#material-view-slider-prev',
 
-			var current = $('#material-view-slider-prev-text h3').data('current');
-			var total   = $('#material-view-slider-prev-text h3').data('total');
+			onSlideNext  : function() {
 
-			var newCurrent = current + 1;
+				var current = $('#material-view-slider-prev-text h3').data('current');
+				var total   = $('#material-view-slider-prev-text h3').data('total');
 
-			if ( newCurrent === total + 1 ) {
-				newCurrent = 1;
-			}
+				var newCurrent = current + 1;
 
-			var newNext = newCurrent + 1;
-			var newPrev = newCurrent - 1;
+				if ( newCurrent === total + 1 ) {
+					newCurrent = 1;
+				}
 
-			if ( newPrev === 0 ) {
-				newPrev = total;
-			}
+				var newNext = newCurrent + 1;
+				var newPrev = newCurrent - 1;
 
-			if ( newNext === total + 1 ) {
-				newNext = 1;
-			}
+				if ( newPrev === 0 ) {
+					newPrev = total;
+				}
 
-			$('#material-view-slider-prev-text h3').text(newPrev + '/' + total);
-			$('#material-view-slider-next-text h3').text(newNext + '/' + total);
+				if ( newNext === total + 1 ) {
+					newNext = 1;
+				}
 
-			$('#material-view-slider-prev-text h3').data('current', newCurrent);
+				$('#material-view-slider-prev-text h3').text(newPrev + '/' + total);
+				$('#material-view-slider-next-text h3').text(newNext + '/' + total);
 
-//			var newSlideIndex = this.getCurrentSlide();
-//			var newSlide      = $('#material-view-slider-list').children()[ newSlideIndex+1 ];
-//			var newProduct    = $(newSlide).data('name');
+				$('#material-view-slider-prev-text h3').data('current', newCurrent);
 
-//			window.location.hash = encodeURIComponent(newProduct);
-		},
+	//			var newSlideIndex = this.getCurrentSlide();
+	//			var newSlide      = $('#material-view-slider-list').children()[ newSlideIndex+1 ];
+	//			var newProduct    = $(newSlide).data('name');
 
-		onSlidePrev  : function() {
+	//			window.location.hash = encodeURIComponent(newProduct);
+			},
 
-			var current = $('#material-view-slider-prev-text h3').data('current');
-			var total   = $('#material-view-slider-prev-text h3').data('total');
+			onSlidePrev  : function() {
 
-			var newCurrent = current - 1;
+				var current = $('#material-view-slider-prev-text h3').data('current');
+				var total   = $('#material-view-slider-prev-text h3').data('total');
 
-			if ( newCurrent === 0 ) {
-				newCurrent = total;
-			}
+				var newCurrent = current - 1;
 
-			var newNext = newCurrent + 1;
-			var newPrev = newCurrent - 1;
+				if ( newCurrent === 0 ) {
+					newCurrent = total;
+				}
 
-			if ( newPrev === 0 ) {
-				newPrev = total;
-			}
+				var newNext = newCurrent + 1;
+				var newPrev = newCurrent - 1;
 
-			if ( newNext === total + 1 ) {
-				newNext = 1;
-			}
+				if ( newPrev === 0 ) {
+					newPrev = total;
+				}
 
-			$('#material-view-slider-prev-text h3').text(newPrev + '/' + total);
-			$('#material-view-slider-next-text h3').text(newNext + '/' + total);
+				if ( newNext === total + 1 ) {
+					newNext = 1;
+				}
 
-			$('#material-view-slider-prev-text h3').data('current', newCurrent);
+				$('#material-view-slider-prev-text h3').text(newPrev + '/' + total);
+				$('#material-view-slider-next-text h3').text(newNext + '/' + total);
 
-//			var newSlideIndex = this.getCurrentSlide();
-//			var newSlide      = $('#material-view-slider-list').children()[ newSlideIndex+1 ];
-//			var newProduct    = $(newSlide).data('name');
+				$('#material-view-slider-prev-text h3').data('current', newCurrent);
 
-//			window.location.hash = encodeURIComponent(newProduct);
-		},
-	});
+	//			var newSlideIndex = this.getCurrentSlide();
+	//			var newSlide      = $('#material-view-slider-list').children()[ newSlideIndex+1 ];
+	//			var newProduct    = $(newSlide).data('name');
+
+	//			window.location.hash = encodeURIComponent(newProduct);
+			},
+		});
+	}
+		
 
 	$('.bx-prev').addClass('no-effect');
 	$('.bx-next').addClass('no-effect');

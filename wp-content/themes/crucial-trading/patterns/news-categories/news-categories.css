@@ -37,6 +37,12 @@
 .news-categories ul li {
   display: table-cell;
   text-align: center; }
+  @media screen and (max-width: 992px) {
+    .news-categories ul li {
+      display: block;
+      margin-bottom: 7.5px; }
+      .news-categories ul li a:after {
+        display: none; } }
 
 /******** Link Appearance *******/
 .news-categories ul li a {

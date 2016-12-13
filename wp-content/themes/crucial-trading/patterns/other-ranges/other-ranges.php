@@ -65,6 +65,7 @@ function other_ranges( $atts = '' ) {
 			}
 
 			$name = $value->name;
+			$slug = $value->slug;
 
 			$this_thumb_id  = get_woocommerce_term_meta( $value->term_id, 'thumbnail_id', true );
 			$src            = wp_get_attachment_url( $this_thumb_id );
@@ -80,6 +81,7 @@ function other_ranges( $atts = '' ) {
 			}
 			
 			$html .= '<li class="range ' . $the_material . ' ' . $active_class . '">';
+			$html .= '<a href="' . site_url() . '/product/' . $slug . '">';
 			$html .= '<div>';
 
 			if ( $src != '' ) {
@@ -88,6 +90,7 @@ function other_ranges( $atts = '' ) {
 			
 			$html .= '<h3>' . $name . '</h3>';
 			$html .= '</div>';
+			$html .= '</a>';
 			$html .= '</li>';
 
 			$i++;

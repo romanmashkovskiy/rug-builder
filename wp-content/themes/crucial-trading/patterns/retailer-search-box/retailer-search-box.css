@@ -29,6 +29,7 @@
   .retailer-search input {
     width: 100%; }
   .retailer-search button {
+    height: 45px !important;
     margin-top: 50px;
     width: 100%; }
   .retailer-search select {

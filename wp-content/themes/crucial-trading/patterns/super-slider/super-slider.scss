@@ -1,5 +1,16 @@
 @import '../../assets/css/src/_variables';
 
+#html5-watermark {
+	display: none !important;
+}
+
+#html5-lightbox-box,
+#html5-elem-wrap {
+	height: 100% !important;
+	margin: 0 !important;
+	width: 100% !important;
+}
+
 #super-slider {
 	max-height: 100vh !important;
 	min-height: 100vh !important;
@@ -32,11 +43,11 @@
 
 			svg g,
 			svg g path {
-				stroke: black;
+				stroke: white;
 			}
 
 			h3.rotate {
-				color: black;
+				color: white;
 			}
 
 			.nav_next li {
@@ -52,11 +63,11 @@
 				&.active {
 
 					h3 {
-						color: black;
+						color: white;
 					}
 
 					span {
-						background: black;
+						background: white;
 					}
 				}
 			}
@@ -96,8 +107,10 @@
 
 	h3 {
 		color: white;
-		left: 2px;
-		top: 120px;
+		left: -40px;
+		top: 160px;
+		text-align: right;
+		width: 200px;
 	}
 }
 
@@ -151,7 +164,7 @@
 	text-align: center;
 
 	h1 {
-		text-shadow: none;
+//		text-shadow: none;
 
 		@media screen and (max-width: 992px) {
 			font-size: 46px;
@@ -172,14 +185,14 @@
 
 		&:before,
 		&:after {
-			background-color: white;
+			display: none;
 		}
 	}
 
 	&.opening {
 
 		h1, p, a {
-			color: black;
+			color: white;
 		}
 
 		p.subtitle {
@@ -230,13 +243,6 @@
 
 		@media screen and (max-height: 485px) {
 			display: none;
-		}
-	}
-
-	&.opening {
-
-		h3 {
-			color: black;
 		}
 	}
 }

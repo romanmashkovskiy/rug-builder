@@ -3,7 +3,7 @@ $ = jQuery;
 $(document).ready(function() {
 
 	var slider = $('#super-slider').superslides({
-		play: 5000,
+	//	play: 5000,
 		animation: 'fade',
 		animation_speed: 1200
 	});
@@ -25,4 +25,14 @@ $(document).ready(function() {
 			scrollTop: scrollTop
 		}, 1100);
 	});
+
+	/*$('#play-video').on('click', function(e) {
+
+		e.preventDefault();
+		e.stopPropagation();
+
+
+
+		return false;
+	});*/
 });
