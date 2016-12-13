@@ -83,6 +83,7 @@
 		background: #2d2d2d;
 		color: #5e5e5e !important;
 		height: 62px !important;
+		@extend .transition-all;
 
 		@media screen and (max-width: 1100px) {
 			margin-top: 20px;

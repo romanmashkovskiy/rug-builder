@@ -18,8 +18,8 @@ function crucial_main_menu() {
 	$get_menu_bottom = wp_get_nav_menu_items('main-menu-bottom');
 	
 	// Get social links
-	$crucial_social_link_insta = 'https://instagram.com';
-	$crucial_social_link_twitter = 'https://twitter.com';
+	$crucial_social_link_insta = 'https://www.instagram.com/crucialtrading';
+	$crucial_social_link_twitter = 'https://twitter.com/CrucialTrading';
 	
 	// Start building HTML output
 	$html = '';

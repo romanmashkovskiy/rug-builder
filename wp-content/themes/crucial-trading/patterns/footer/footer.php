@@ -18,8 +18,8 @@ function crucial_footer() {
 	$get_footer_menu_two = wp_get_nav_menu_items('footer-menu-two');
 	
 	// Get social links
-	$crucial_social_link_insta = 'https://instagram.com';
-	$crucial_social_link_twitter = 'https://twitter.com';
+	$crucial_social_link_insta = 'https://www.instagram.com/crucialtrading';
+	$crucial_social_link_twitter = 'https://twitter.com/CrucialTrading';
 	$crucial_social_link_tumblr = 'https://tumblr.com';
 	
 	// Start building HTML output
