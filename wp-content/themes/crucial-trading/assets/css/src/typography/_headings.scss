@@ -27,6 +27,7 @@ h1 {
 
 h2 {
 	@include typography-standards(#000000, $font-header, 46px, 2px);
+	line-height: 1.8;
 	margin: 0;
 
 	&.material-header {
@@ -40,6 +41,7 @@ h2 {
 
 h3 {
 	@include typography-standards(#000000, $font-sub-header, 14px, 4px);
+	line-height: 1.8;
 	margin: 0;
 	opacity: 40%;
 	text-transform: uppercase;

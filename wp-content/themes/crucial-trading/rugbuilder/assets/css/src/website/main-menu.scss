@@ -8,17 +8,12 @@
  * @since Crucial Trading 1.0
  */
 
-@import '../../assets/css/src/_variables.scss';
-@import '../../assets/css/src/_utilities.scss';
-
 body {
 	margin: 0;
 	-webkit-backface-visibility: hidden;
 	-webkit-transform-style: preserve-3d;
 	-webkit-font-smoothing: antialiased;  
 	overflow-x: hidden;
-	position: relative;
-	left: 0px; 
 }
 
 /************** Main Menu **************/ 
@@ -115,7 +110,7 @@ body {
 
 .main-menu__wrap a span {
 	display: inline-block;
-	@extend .transition-all;
+	transition: all ease-in-out 0.25s;
 }
 
 .main-menu__wrap a:hover span {
@@ -135,7 +130,7 @@ body {
 	background-color: darken($main-menu-link-color-dark, 15%);
 	transform: translate(20px, 0);
 	opacity: 0;
-	@extend .transition-all;
+	transition: all ease-in-out 0.25s;
 }
 
 .main-menu__wrap a:hover::after,
@@ -217,7 +212,7 @@ body {
 
 .main-menu__social a i,
 .main-menu__social a {
-	@extend .transition-all;
+	transition: all ease-in-out 0.25s;
 }
 
 .main-menu__social a {
@@ -457,7 +452,7 @@ span.main-menu__button__text--close {
 	position: absolute;
 	top:33px;
 	left: 145px;
-	@extend .transition-all;
+	transition: all ease-in-out 0.25s;
 
 	@media screen and (max-width: 768px) {
 		display: none;

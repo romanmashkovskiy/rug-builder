@@ -79,8 +79,8 @@
   padding-left: 35px; }
   .nav_prev h3 {
     color: white;
-    left: -40px;
-    top: 160px;
+    left: -52px;
+    top: 180px;
     text-align: right;
     width: 200px; }
 
@@ -96,7 +96,7 @@
   .nav_next li span {
     display: block;
     height: 1px;
-    margin-top: -13px;
+    margin-top: -8px;
     position: absolute;
     right: 0;
     width: 30px; }
@@ -109,7 +109,8 @@
   .nav_next li:not(.active) span {
     background: #cccccc; }
   .nav_next .slide__numbers li {
-    cursor: pointer; }
+    cursor: pointer;
+    margin-bottom: 7.5px; }
 
 .slide__center {
   text-align: center; }
@@ -121,7 +122,9 @@
       font-size: 40px;
       letter-spacing: 2px; } }
   .slide__center a {
-    color: white; }
+    color: white;
+    position: relative;
+    top: 20px; }
     @media screen and (max-width: 992px) {
       .slide__center a {
         display: none; } }

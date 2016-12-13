@@ -107,10 +107,15 @@ function header_material_shortcode($atts = '') {
 		$categories = get_terms( 'product_cat', $args );
 
 		$this_cat          = get_term_by( 'slug', $material, 'product_cat' );
-		$this_cat_post_id  = get_term_meta( $this_cat->term_id, 'thumbnail_id', true );
+		$term_id           = $this_cat->term_id;
+		$this_cat_post_id  = get_term_meta( $term_id, 'thumbnail_id', true );
 
-		$this_thumb_id  = get_woocommerce_term_meta( $this_cat->term_id, 'thumbnail_id', true );
+		$this_thumb_id  = get_woocommerce_term_meta( $term_id, 'thumbnail_id', true );
 		$this_cat_thumb = wp_get_attachment_url( $this_thumb_id );
+
+		$data = get_option("category_$term_id");
+
+		$subtitle = is_array( $data ) && array_key_exists( 'subtitle', $data ) ? $data['subtitle'] : '';
 
 		$html .= '<header class="material ' . $header_size . ' clearfix">';
 
@@ -125,7 +130,7 @@ function header_material_shortcode($atts = '') {
 		$html .= '</div>';
 
 		$html .= '<div class="material__info ' . $material . ' vertical-align">';
-		$html .= '<h3 class="subtitle">True Survivor</h3>';
+		$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';
 		$html .= '<h1>' . $umaterial . '</h1>';
 		if ( $header_size == 'large' ) {
 			$html .= '<p>' . $this_cat->description . '</p>';

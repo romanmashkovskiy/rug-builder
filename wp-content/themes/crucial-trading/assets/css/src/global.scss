@@ -29,6 +29,84 @@
 // Patterns
 @import '../../../patterns/*/*.scss';
 
+.basket-dropdown {
+	background: white;
+	display: none;
+	padding: 25px;
+	position: fixed;
+	right: 100px;
+	top: 80px;
+	transition: all ease-in-out 0.25s;
+	z-index: 999;
+
+	h2 {
+		font-size: 36px;
+	}
+
+	span {
+		background: #e8e8e8;
+		display: block;
+		height: 2px;
+		margin-bottom: 30px;
+		margin-top: 20px;
+		width: 75px;
+	}
+
+	a.close-basket-dropdown {
+		position: absolute;
+		right: 25px;
+		top: 18px;
+	}
+
+	.order__name,
+	.order__remove {
+		display: inline-block
+	}
+
+	.order__remove {
+		margin-top: -9px;
+		position: absolute;
+		right: 0;
+
+		a {
+			font-size: 24px;
+		}
+	}
+
+	.cart_totals {
+
+		h2, table {
+			display: none;
+		}
+	}
+
+	.wc-proceed-to-checkout {
+		background: #383838;
+		margin-top: 60px;
+		padding: 7.5px 30px;
+
+		@media screen and (max-width: 450px) {
+			padding: 7.5px 15px;
+		}
+
+		a {
+			color: white;
+			font-size: 14px;
+
+			@media screen and (max-width: 450px) {
+				font-size: 11px;
+			}
+		}
+	}
+}
+
+.show-menu .basket-dropdown {
+	right: 470px;
+	transition: all ease-in-out 0.25s;
+}
+
+/*
+
 .basketPopup {
 	background: white;
 	display: none;
@@ -57,3 +135,5 @@
 		text-transform: lowercase;
 	}
 }
+
+*/

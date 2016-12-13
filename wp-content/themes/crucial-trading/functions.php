@@ -20,6 +20,11 @@ require get_template_directory() . '/inc/woocommerce/include.php';
  */
 require get_template_directory() . '/inc/meta-boxes.php';
 
+/**
+ * Load category subtitles.
+ */
+require get_template_directory() . '/inc/category-subtitles.php';
+
 
 if ( ! function_exists( 'crucial_trading_setup' ) ) :
 /**
