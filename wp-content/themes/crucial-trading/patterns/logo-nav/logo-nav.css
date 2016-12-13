@@ -12,6 +12,13 @@
 
 .top-bar__left {
   left: 40px; }
+  @media screen and (max-width: 768px) {
+    .top-bar__left {
+      top: 42% !important; } }
+  @media screen and (max-width: 421px) {
+    .top-bar__left {
+      left: 20px;
+      width: 175px; } }
 
 .top-bar__right {
   right: 40px; }
@@ -20,21 +27,6 @@
     @media screen and (max-width: 480px) {
       .top-bar__right h3 {
         display: none; } }
-  .top-bar__right .burger {
-    left: -45px;
-    position: absolute;
-    top: 2px; }
-    .top-bar__right .burger span {
-      background: white;
-      border-radius: 5px;
-      display: block;
-      height: 2px;
-      margin-bottom: 5px;
-      width: 31px; }
-    @media screen and (max-width: 480px) {
-      .top-bar__right .burger {
-        left: 0;
-        top: -7px; } }
 
 @media screen and (min-width: 768px) {
   .mobi-logo {

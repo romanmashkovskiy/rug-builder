@@ -14,13 +14,28 @@
 
 .top-bar__left {
 	left: 40px;
+	opacity: 1;
+	transition: all ease-in-out 0.25s;
 
 	@media screen and (max-width: 768px) {
 		top: 42% !important;
 	}
 
-	@media screen and (max-width: 350px) {
+	@media screen and (max-width: 421px) {
 		left: 20px;
+		width: 175px;
+	}
+}
+
+.show-menu .top-bar__left {
+
+	@media screen and (max-width: 800px) {
+		left: 20px;
+		width: 175px;
+	}
+
+	@media screen and (max-width: 700px) {
+		opacity: 0;
 	}
 }
 
@@ -35,25 +50,7 @@
 		}
 	}
 
-	.burger {
-		left: -45px;
-		position: absolute;
-		top: 2px;
-
-		span {
-			background: white;
-			border-radius: 5px;
-			display: block;
-			height: 2px;
-			margin-bottom: 5px;
-			width: 31px;
-		}
-
-		@media screen and (max-width: 480px) {
-			left: 0;
-			top: -7px;
-		}
-	}
+	
 }
 
 @media screen and (min-width: 768px) {

@@ -11,6 +11,10 @@
   @media screen and (max-width: 555px) {
     .home-page-cta {
       padding: 50px; } }
+  .home-page-cta a {
+    display: block;
+    height: 100%;
+    width: 100%; }
   .home-page-cta h2, .home-page-cta p {
     color: white; }
   .home-page-cta h2 {

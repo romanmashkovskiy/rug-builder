@@ -4,6 +4,7 @@
   overflow: hidden;
   width: 74%; }
   .page-image .page-image__img {
+    box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
     height: 100%;
     -o-object-fit: cover;
     object-fit: cover;

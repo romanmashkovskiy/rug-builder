@@ -107,7 +107,9 @@ $(document).ready(function() {
 
 		$.get(url)
 			.done(function() {
-				showBasketPopup(true, productName);
+//				showBasketPopup(true, productName);
+				$('body').removeClass('basket-empty');
+				$('body').addClass('basket-full');
 			})
 			.fail(function() {
 				showBasketPopup(false);
