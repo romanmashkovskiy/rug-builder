@@ -13,7 +13,7 @@ echo do_shortcode( '[logo-nav]' );
 
 echo do_shortcode( '[header overlay="true"]' );
 
-setup_postdata( $post );
+//setup_postdata( $post );
 
 ?>
 

@@ -66,6 +66,9 @@ footer {
   padding-top: 5%;
   background-color: #2d2d2d;
   position: relative; }
+  @media all and (max-width: 769px) {
+    footer {
+      padding-top: 12%; } }
 
 /************** Footer Columns **************/
 .footer__col {

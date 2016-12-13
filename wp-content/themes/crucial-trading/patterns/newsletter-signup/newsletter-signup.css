@@ -1,27 +1,94 @@
+/************************************************************************************************************************
+	Email Newsletter Sign-up Box
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Main Navigation & Footer */
+.vert-align {
+  display: inline-block;
+  float: none;
+  vertical-align: middle; }
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d; }
+
+.vertical-align-table {
+  display: table-cell;
+  float: none;
+  vertical-align: middle; }
+
+.box-shadow {
+  -webkit-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08); }
+
+.rotate {
+  position: absolute;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+.transition-all {
+  transition: all ease-in-out 0.25s;
+  -webkit-transition: all ease-in-out 0.25s; }
+
+.rotated-text {
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  white-space: nowrap;
+  transform-origin: right top;
+  transform: rotate(270deg); }
+
 .newsletter {
   background: #3d3d3d;
-  padding: 100px;
-  position: relative; }
+  position: relative;
+  padding-top: 8%;
+  padding-bottom: 8%; }
   @media screen and (max-width: 666px) {
     .newsletter {
-      padding: 50px; } }
+      padding: 10%; } }
+  .newsletter .newsletter__container {
+    width: 80%;
+    margin: auto; }
+    @media all and (max-width: 769px) {
+      .newsletter .newsletter__container {
+        width: 100%; } }
   .newsletter h3 {
-    color: #878787;
-    left: -50px;
-    position: absolute;
-    top: 50%;
-    -webkit-transform: rotate(270deg);
-    transform: rotate(270deg); }
+    color: #bfbfbf;
+    top: 25%;
+    right: 97%;
+    opacity: 0.2; }
     @media screen and (max-width: 666px) {
       .newsletter h3 {
         display: none; } }
   .newsletter span {
-    background: #878787;
+    background-color: #a0a0a0;
     display: block;
     height: 75px;
     position: absolute;
     top: 0;
-    width: 1px; }
+    width: 1px;
+    opacity: 0.2; }
     @media screen and (max-width: 666px) {
       .newsletter span {
         height: 35px; } }
@@ -36,7 +103,8 @@
     font-family: "Montserrat",sans-serif !important;
     margin-right: 2%;
     padding: 20px !important;
-    width: 73%; }
+    width: 73%;
+    outline: none; }
     @media screen and (max-width: 666px) {
       .newsletter input {
         width: 100%; } }

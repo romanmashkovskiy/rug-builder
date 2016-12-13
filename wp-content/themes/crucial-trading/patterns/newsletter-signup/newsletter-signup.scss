@@ -1,18 +1,38 @@
+ /************************************************************************************************************************
+	Email Newsletter Sign-up Box
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+
+@import '../../assets/css/src/_variables.scss';
+@import '../../assets/css/src/_utilities.scss';
+
 .newsletter {
-	background: #3d3d3d;
-	padding: 100px;
-	position: relative;
+	background: #3d3d3d; 
+	position: relative; 
+	padding-top: 8%;
+	padding-bottom: 8%;
 
 	@media screen and (max-width: 666px) {
-		padding: 50px;
+		padding: 10%;
 	}
-
+	
+	.newsletter__container {
+		width: 80%;
+		margin: auto;
+		
+		@media all and (max-width: 666px) {
+			width: 100%;
+		}
+	}
+	
 	h3 {
-		color: #878787;
-		left: -50px;
-		position: absolute;
-		top: 50%;
-		transform: rotate(270deg);
+		color: lighten($light-grey-text, 10%);
+		top: 25%;
+		right: 97%;
+		opacity: 0.2;
 
 		@media screen and (max-width: 666px) {
 			display: none;
@@ -20,12 +40,13 @@
 	}
 
 	span {
-		background: #878787;
+		background-color: $main-menu-link-color;
 		display: block;
-		height: 75px;
+		height: 65px;
 		position: absolute;
 		top: 0;
 		width: 1px;
+		opacity: 0.2;
 
 		@media screen and (max-width: 666px) {
 			height: 35px;
@@ -33,7 +54,7 @@
 	}
 
 	h2 {
-		color: white;
+		color: lighten($main-menu-link-color, 10%);
 		font-size: 36px;
 		margin-bottom: 50px;
 	}
@@ -46,18 +67,23 @@
 		margin-right: 2%;
 		padding: 20px !important;
 		width: 73%;
+		outline: none;
 
 		@media screen and (max-width: 666px) {
 			width: 100%;
 		}
 	}
-
+	
+	input:focus {
+		
+	}
+	
 	button {
 		background: #2d2d2d;
 		color: #5e5e5e !important;
 		height: 62px !important;
 
-		@media screen and (max-width: 1094px) {
+		@media screen and (max-width: 1100px) {
 			margin-top: 20px;
 		}
 	}

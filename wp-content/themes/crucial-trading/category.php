@@ -11,7 +11,7 @@ get_header();
 
 echo do_shortcode( '[logo-nav]' );
 
-echo do_shortcode( '[header size="small"]' );
+echo do_shortcode( '[header size="small" archive="true"]' );
 
 echo do_shortcode( '[news-categories]' );
 

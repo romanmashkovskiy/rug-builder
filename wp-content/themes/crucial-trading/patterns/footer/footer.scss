@@ -12,14 +12,24 @@
 
 
 footer {
-	padding-left: 12%;
-	padding-right: 12%;
-	padding-top: 5%;
+	//padding-left: 12%;
+	//padding-right: 12%;
+	padding-top: 6%;
 	background-color: $main-menu-bg-color;
 	position: relative;
+	
+	@media all and (max-width: 992px) {
+		padding-top: 12%;
+	}
+	
 }
 
 /************** Footer Columns **************/ 
+
+.footer-columns {
+	width: 80%;
+	margin: auto;
+}
 
 .footer__col {
 	padding: 0;
@@ -33,7 +43,7 @@ footer {
 	padding-left: 8.5%;
 }
 
-@media all and (max-width: 769px) {
+@media all and (max-width: 767px) {
 	
 	.footer__col--nav-1 {
 		margin-top: 25px;
@@ -59,6 +69,10 @@ footer {
 	position: absolute;
 	left: 210px;
 	top: 15px;
+	
+	@media all and (max-width: 1024px) {
+		left: 185px;
+	}
 }
 
 
@@ -66,14 +80,14 @@ footer {
 
 .footer__line {
 	height: 1px;
-	width: 90px;
+	width: 75px;
 	background-color: $main-menu-link-color;
 	position: absolute;
-	top: 19%;
+	top: 17%;
 	left: 0;
 	opacity: 0.2;
 	
-	@media all and (max-width: 767px) {
+	@media all and (max-width: 769px) {
 		display: none;
 	}
 	
@@ -102,7 +116,7 @@ footer {
 	transition: color background-color ease-in-out 0.25s;
 	transform: translate(0,0);
 	
-	@media all and (max-width: 769px) {
+	@media all and (max-width: 767px) {
 		font-size: 15px;
 		padding: 10px;
 		padding-left: 0;
@@ -141,11 +155,13 @@ footer {
 
 .footer__info, {
 	display: block;
+	width: 80%;
+	margin: auto;
 	padding-top: 5%;
 	padding-bottom: 2.5%;
 	
 	@media all and (max-width: 992px) {
-		padding-top: 5%;
+		padding-top: 9%;
 		padding-bottom: 5%;
 	}
 	
@@ -159,12 +175,16 @@ footer {
 	color: darken($main-menu-link-color, 25%);
 	font-family: $font-sub-header;
 	padding: 0;
+	
+	@media all and (max-width: 767px) {
+		font-size: 13px;
+	}
 }
 
 .footer__info--copyright {
 	margin-right: 45px;
 	
-	@media all and (max-width: 769px) {
+	@media all and (max-width: 767px) {
 		margin-right: 0px;
 	}
 	
@@ -173,9 +193,10 @@ footer {
 
 .footer__info--design-agency {
 	
-	@media all and (max-width: 769px) {
+	@media all and (max-width: 767px) {
 		display: block;
-		margin-top: 15px;
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 
 }
