@@ -55,12 +55,12 @@
 
 	h2 {
 		color: lighten($main-menu-link-color, 10%);
-		font-size: 36px;
+		font-size: 34px;
 		margin-bottom: 50px;
 	}
 
 	input {
-		background: #444444 !important;
+		background: #444444;
 		border: none !important;
 		color: #878787 !important;
 		font-family: "Montserrat",sans-serif !important;
@@ -68,6 +68,7 @@
 		padding: 20px !important;
 		width: 73%;
 		outline: none;
+		@extend .transition-all;
 
 		@media screen and (max-width: 666px) {
 			width: 100%;
@@ -75,7 +76,7 @@
 	}
 	
 	input:focus {
-		background: lighten(#444444, 10%); 
+		background-color: lighten(#444444, 5%);
 	}
 	
 	button {
@@ -87,4 +88,11 @@
 			margin-top: 20px;
 		}
 	}
+	
+	button:focus, 
+	button:hover { 
+		background: lighten(#2d2d2d, 5%);
+	}
+	
+	
 }

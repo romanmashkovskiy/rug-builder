@@ -8,7 +8,7 @@ button {
 
 input,
 textarea {
-	background: #F7F7F7 !important;
+	background: #F7F7F7;
 	border: 1px solid #E6E6E6 !important;
 	border-radius: 0 !important;
 	font-family: $font-copy !important;
@@ -31,7 +31,7 @@ select {
 
 button:not(.main-menu__button),
 input[type="submit"] {
-	background: #383838 !important;
+	background: #383838;
 	border: none !important;
 	border-radius: 0 !important;
 	box-shadow: none !important;

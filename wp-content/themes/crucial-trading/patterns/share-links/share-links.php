@@ -43,7 +43,7 @@ function share_links( $atts ) {
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';
-	$html .= '<i class="icon-crucial-email link__icon transition-all"></i>';
+	$html .= '<i class="icon-crucial-mail link__icon transition-all"></i>';
 	$html .= '<a href="#" class="link__text">Email</a>';
 	$html .= '</div>';
 
