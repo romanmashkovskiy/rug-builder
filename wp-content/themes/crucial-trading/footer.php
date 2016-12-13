@@ -12,12 +12,12 @@
 ?>
 
 			<?php echo do_shortcode( '[footer]' ); ?>
-
+<!--
 			<div class="basketPopup box-shadow">
 				<a href="#" id="close-basket-popup">Close</a>
 				<p class="basketMessage"></p>
 			</div>
-
+-->
 			<div class="basket-dropdown">
 				<h2>Basket</h2>
 				<span></span>

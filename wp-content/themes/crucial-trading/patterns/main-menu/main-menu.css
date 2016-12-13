@@ -104,6 +104,12 @@ body {
   @media all and (max-width: 555px) {
     .main-menu__wrap {
       width: 270px; } }
+  @media all and (max-width: 450px) {
+    .main-menu__wrap {
+      padding-top: 90px;
+      -webkit-transform: translate3d(100%, 0, 0);
+      transform: translate3d(100%, 0, 0);
+      width: 100%; } }
 
 /*** Shown menu animation ***/
 .show-menu .main-menu__wrap {
@@ -131,6 +137,18 @@ body {
   .show-menu .main-menu__button--wrap {
     -webkit-transform: translate3d(-320px, 0, 0);
     transform: translate3d(-320px, 0, 0);
+    -webkit-transition: -webkit-transform 0.65s;
+    transition: -webkit-transform 0.65s;
+    transition: transform 0.65s;
+    transition: transform 0.65s, -webkit-transform 0.65s;
+    -webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+    transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1); } }
+
+@media screen and (max-width: 450px) {
+  .show-menu .main-menu__button--wrap {
+    left: 0;
+    -webkit-transform: none;
+    transform: none;
     -webkit-transition: -webkit-transform 0.65s;
     transition: -webkit-transform 0.65s;
     transition: transform 0.65s;
@@ -226,6 +244,9 @@ body {
   position: absolute;
   bottom: 0px;
   width: 100%; }
+  @media screen and (max-width: 450px) {
+    .main-menu__bottom {
+      position: static; } }
 
 /** Adjust colours **/
 .main-menu__wrap .main-menu__bottom a {
@@ -355,6 +376,19 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
   transition: background 0.3s;
   background: transparent;
   text-shadow: none; }
+  @media screen and (max-width: 992px) {
+    .main-menu__button {
+      width: 146px; } }
+
+@media screen and (max-width: 555px) {
+  .show-menu .main-menu__button {
+    left: 50px; } }
+
+@media screen and (max-width: 450px) {
+  .show-menu .main-menu__button {
+    left: 0;
+    right: 0;
+    width: 100vw; } }
 
 .main-menu__button:focus,
 .main-menu__button:hover {
@@ -367,6 +401,13 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 .main-menu__button:hover span.main-menu__button__text--close {
   color: $main-menu-bg-color;
 }*/
+.show-menu .main-menu__button {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; }
+
 .basket-empty .link-opener {
   display: none; }
 
@@ -377,13 +418,13 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
   left: 0;
   position: absolute;
   top: 0;
+  -webkit-transition: all ease-in-out 0.25s;
+  transition: all ease-in-out 0.25s;
   z-index: 999999; }
-  @media screen and (max-width: 768px) {
-    #basket-link {
-      left: 100%; } }
 
-.show-menu #basket-link {
-  left: 0; }
+@media screen and (max-width: 450px) {
+  .show-menu #basket-link {
+    left: 20px; } }
 
 svg.main-menu__button__basket {
   position: absolute;
@@ -395,15 +436,6 @@ svg.main-menu__button__basket {
   transition: all ease-in-out 0.25s; }
   svg.main-menu__button__basket g {
     fill: white; }
-  @media screen and (max-width: 768px) {
-    svg.main-menu__button__basket {
-      left: calc(100% - 159px); } }
-
-@media screen and (max-width: 992px) {
-  .show-menu svg.main-menu__button__basket {
-    left: 79px;
-    -webkit-transition: all ease-in-out 0.25s;
-    transition: all ease-in-out 0.25s; } }
 
 #num-items-basket {
   background: white;
@@ -419,15 +451,6 @@ svg.main-menu__button__basket {
   transition: all ease-in-out 0.25s;
   line-height: 1.4;
   letter-spacing: 0; }
-  @media screen and (max-width: 768px) {
-    #num-items-basket {
-      left: calc(100% - 124px); } }
-
-@media screen and (max-width: 992px) {
-  .show-menu #num-items-basket {
-    left: 114px;
-    -webkit-transition: all ease-in-out 0.25s;
-    transition: all ease-in-out 0.25s; } }
 
 span.main-menu__button__text,
 span.main-menu__button__text--close {
@@ -466,12 +489,6 @@ span.main-menu__button__icon {
   @media screen and (max-width: 768px) {
     span.main-menu__button__icon {
       left: calc(100% - 75px); } }
-
-@media screen and (max-width: 992px) {
-  .show-menu span.main-menu__button__icon {
-    left: 159px;
-    -webkit-transition: all ease-in-out 0.25s;
-    transition: all ease-in-out 0.25s; } }
 
 span.main-menu__button__icon::before,
 span.main-menu__button__icon::after {

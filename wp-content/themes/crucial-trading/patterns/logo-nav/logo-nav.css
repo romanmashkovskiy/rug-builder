@@ -5,6 +5,9 @@
   top: 0;
   width: 100%;
   z-index: 9998; }
+  @media screen and (max-width: 450px) {
+    .top-bar {
+      z-index: 10000; } }
 
 .top-bar__left,
 .top-bar__right {
