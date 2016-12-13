@@ -19,7 +19,14 @@ function header_shortcode($atts = '') {
 	if ( $atts != '' && array_key_exists('size', $atts) && $atts['size'] == 'large' ) {
 		$header_size = 'large';
 	}
-
+	
+	// Orderby 
+	if ( !empty($atts['overlay']) ) :
+		$header_overlay = $atts['overlay'];
+	else : 
+		$header_overlay = '';
+	endif;
+	
 	$title    = get_the_title();
 	$subtitle = get_post_meta( get_the_ID(), 'subtitle', true );
 
@@ -28,13 +35,13 @@ function header_shortcode($atts = '') {
 
 	$html = '';
 
-	if (!empty($background)) : 
+	if (!empty($background)) :
 		$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
 	else : 
 		$html .= '<header class="' . $header_size . '">';
 	endif;
 	
-	$html .= '<div class="vertical-align">';
+	$html .= '<div class="header__text vertical-align">';
 	$html .= '<h3 class="side-title">' . $title . '</h3>';
 	
 	if (!empty($subtitle)) : 
@@ -42,7 +49,13 @@ function header_shortcode($atts = '') {
 	endif;
 	
 	$html .= '<h1>' . $title . '</h1>';
-	$html .= '</div></header>';
+	$html .= '</div>';
+	
+	if (!empty($header_overlay)) : 
+		$html .= '<div class="header__overlay"></div>';
+	endif;
+	
+	$html .= '</header>';
 
 	return $html;
 }

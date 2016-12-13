@@ -72,6 +72,11 @@ footer {
 	top: 19%;
 	left: 0;
 	opacity: 0.2;
+	
+	@media all and (max-width: 767px) {
+		display: none;
+	}
+	
 }
 
 

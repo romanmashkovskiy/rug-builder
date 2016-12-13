@@ -11,19 +11,26 @@
   position: absolute !important; }
 
 .top-bar__left {
-  left: 40px; }
+  left: 40px;
+  opacity: 1;
+  -webkit-transition: all ease-in-out 0.25s;
+  transition: all ease-in-out 0.25s; }
   @media screen and (max-width: 768px) {
     .top-bar__left {
       top: 42% !important; } }
-
   @media screen and (max-width: 421px) {
     .top-bar__left {
       left: 20px;
       width: 175px; } }
 
-  @media screen and (max-width: 350px) {
-    .top-bar__left {
-      left: 20px; } }
+@media screen and (max-width: 800px) {
+  .show-menu .top-bar__left {
+    left: 20px;
+    width: 175px; } }
+
+@media screen and (max-width: 700px) {
+  .show-menu .top-bar__left {
+    opacity: 0; } }
 
 .top-bar__right {
   right: 40px; }

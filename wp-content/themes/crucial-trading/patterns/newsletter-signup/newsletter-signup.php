@@ -15,7 +15,8 @@ function newsletter_signup( $atts = '' ) {
 	$html = '';
 
 	$html .= '<div class="newsletter">';
-	$html .= '<span></span>';
+	$html .= '<div class="newsletter__container">';
+	$html .= '<span class="newsletter__line"></span>';
 	$html .= '<h3>Stay up to date</h3>';
 	$html .= '<h2>Keep up to date with Crucial</h2>';
 
@@ -26,7 +27,7 @@ function newsletter_signup( $atts = '' ) {
 	$html .= '<button type="button">Subscribe</button>';
 	$html .= '</form>';
 	
-	$html .= '</div>';
+	$html .= '</div></div>';
 
 	return $html;
 }
