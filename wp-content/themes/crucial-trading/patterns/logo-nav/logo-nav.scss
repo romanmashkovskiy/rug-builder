@@ -5,6 +5,10 @@
 	top: 0;
 	width: 100%;
 	z-index: 9998;
+
+	@media screen and (max-width: 450px) {
+		z-index: 10000;
+	}
 }
 
 .top-bar__left,
@@ -54,8 +58,6 @@
 			display: none;
 		}
 	}
-
-	
 }
 
 @media screen and (min-width: 768px) {
