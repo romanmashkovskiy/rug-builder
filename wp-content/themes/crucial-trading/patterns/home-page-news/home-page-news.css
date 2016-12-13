@@ -1,9 +1,75 @@
+/************************************************************************************************************************
+	Home Page News
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Main Navigation & Footer */
+.vert-align {
+  display: inline-block;
+  float: none;
+  vertical-align: middle; }
+
+.vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d; }
+
+.vertical-align-table {
+  display: table-cell;
+  float: none;
+  vertical-align: middle; }
+
+.box-shadow {
+  -webkit-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  -moz-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08); }
+
+.rotate {
+  position: absolute;
+  -webkit-transform: rotate(270deg);
+  transform: rotate(270deg); }
+
+.transition-all {
+  transition: all ease-in-out 0.25s;
+  -webkit-transition: all ease-in-out 0.25s; }
+
+.rotated-text {
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  white-space: nowrap;
+  transform-origin: right top;
+  transform: rotate(270deg); }
+
 .news-posts.home {
-  margin-top: 150px; }
+  padding-top: 150px;
+  padding-bottom: 150px;
+  background-color: #f8f8f8; }
   .news-posts.home .news__title {
     text-align: center; }
     .news-posts.home .news__title h3 {
       color: #a7a7a7; }
+
+.news-posts.home .news__item {
+  margin-bottom: 0; }
 
 /*
 
