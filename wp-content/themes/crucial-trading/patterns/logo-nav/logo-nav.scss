@@ -25,6 +25,11 @@
 		left: 20px;
 		width: 175px;
 	}
+
+	@media screen and (max-width: 371px) {
+		left: 10px;
+		width: 140px;
+	}
 }
 
 .show-menu .top-bar__left {

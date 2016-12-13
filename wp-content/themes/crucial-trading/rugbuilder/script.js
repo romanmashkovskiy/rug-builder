@@ -36,5 +36,8 @@ startBtn.addEventListener('click', start);
 function start() {
 	document.querySelector('#hello').style.display = 'none';
 	document.querySelector('#app').style.display = 'block';
-	document.querySelector('canvas').style.display = 'block';
+
+	if ( document.querySelector('canvas') !== null ) {
+		document.querySelector('canvas').style.display = 'block';
+	}
 }
