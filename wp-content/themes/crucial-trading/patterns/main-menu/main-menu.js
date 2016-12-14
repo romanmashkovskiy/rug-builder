@@ -19,7 +19,7 @@ var $ = jQuery;
 	  		e.preventDefault();
 	  		e.stopPropagation();
 	  		document.querySelector('.basket-dropdown').style.display = 'block';
-	  	}	         
+	  	}
 	  });
 	});
 		
@@ -33,9 +33,4 @@ var $ = jQuery;
 	$('.main-menu, .main-menu__button').click(function(event){
 	    event.stopPropagation();
 	});
-
-	$('.close-basket-dropdown').on('click', function() {
-		document.querySelector('.basket-dropdown').style.display = 'none';
-	})
-
 });
