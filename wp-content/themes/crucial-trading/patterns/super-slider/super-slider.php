@@ -40,11 +40,17 @@ function crucial_slider_slides() {
 
 			$rotate    = $post_title == 'Opening' ? 'Your Journey' : $post_title;
 			$title     = $post_title == 'Opening' ? 'Crucial Trading' : $post_title;
-			$link_url  = $post_title == 'Opening' ? '#' : rwmb_meta( 'link' );
 			$link_text = rwmb_meta( 'link-text' );
 			$src       = wp_get_attachment_image_url( $attachment_id, 'full' );
 			$srcset    = wp_get_attachment_image_srcset( $attachment_id );
 			$alt       = 'Crucial Trading - ' . $link_text;
+
+			$link_url  = '#';
+			$link_meta = rwmb_meta( 'link' );
+
+			if ( $link_meta ) {
+				$link_url = site_url() . '/collection/' . rwmb_meta( 'link' )->slug;
+			}
 
 			$arrow_left = '
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31px" height="59px" viewBox="0 0 31 59" version="1.1" class="slide__arrow--left">

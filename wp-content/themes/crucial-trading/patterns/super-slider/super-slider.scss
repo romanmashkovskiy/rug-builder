@@ -52,6 +52,11 @@
 				}
 			}
 
+			a:before,
+			a:after {
+				display: none;
+			}
+
 			svg {
 				cursor: pointer;
 			}
@@ -197,14 +202,10 @@
 		position: relative;
 		top: 20px;
 
-		/*@media screen and (max-width: 992px) {
-			display: none;
-		}*/
-
-		/*&:before,
+		&:before,
 		&:after {
-			display: none;
-		}*/
+			background: white;
+		}
 	}
 
 	&.opening {

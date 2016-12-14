@@ -25,15 +25,15 @@ $(document).ready(function() {
 	if ( $('body').hasClass('page-template-inspiration') || $('body').hasClass('page-template-home') ) {
 
 		$('.fts-twitter-link-image').each(function(i, e) {
-			$(e).append('<i class="icon-crucial-instagram"></i>')
+			$(e).append('<i class="icon-crucial-twitter"></i>');
 		});
 
 		$('.fts-instagram-wrapper').each(function(i, e) {
-			$(e).append('<i class="icon-crucial-instagram"></i>')
+			$(e).append('<i class="icon-crucial-instagram"></i>');
 		});
 
 		$('.fts-twitter-text').each(function(i, e) {
-			$(e).append('<div class="twitter-shadow"></div>')
+			$(e).append('<div class="twitter-shadow"></div>');
 		});
 	}
 
