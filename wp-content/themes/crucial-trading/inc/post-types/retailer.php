@@ -204,8 +204,8 @@ function save_retailer_post( $post_id, $post, $update ) {
 	$lat = $resp['results'][0]['geometry']['location']['lat'];
 	$lng = $resp['results'][0]['geometry']['location']['lng'];
 
-	update_post_meta( $post_id, 'lat', $lat );
-	update_post_meta( $post_id, 'lng', $lng );
+	update_post_meta( $post_id, 'retailer_lat', $lat );
+	update_post_meta( $post_id, 'retailer_lng', $lng );
 }
 
 
