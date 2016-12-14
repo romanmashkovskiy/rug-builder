@@ -176,8 +176,6 @@ function header_material_shortcode($atts = '') {
 
 add_shortcode( 'header-material', 'header_material_shortcode' );
 
-
-
 /************** Collection Header **************/ 
 
 function header_collection_shortcode($atts = '') {
@@ -186,8 +184,9 @@ function header_collection_shortcode($atts = '') {
 
 	if ( $atts != '' && array_key_exists('collection', $atts) ) {
 
-		$collection = $atts['collection'];
-		$name       = strtoupper( $collection );
+		$collection  = $atts['collection'];
+		$ucollection = ucwords( $collection );
+		$name        = strtoupper( $collection );
 
 		$html .= '<header class="material large clearfix">';
 
