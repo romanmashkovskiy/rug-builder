@@ -16,6 +16,7 @@ if ( array_key_exists( 'get_retailers', $_GET ) ) {
 		'post_type' => 'retailer',
 		'orderby'   => 'menu_order',
 		'order'     => 'ASC',
+		'posts_per_page' => 1000,
 		'tax_query' => array(
 			array(
 				'taxonomy' => 'retailer_type',

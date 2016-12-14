@@ -12,22 +12,13 @@ Header set X-Content-Type-Options: "nosniff"
 # Multi env config 
 
 # BEGIN WordPress
-# WordPress - Multi environment 
-
 <IfModule mod_rewrite.c>
-RewriteRule . - [E=rwbase:/]
-RewriteCond %{HTTP_HOST} localhost$
-RewriteRule . - [E=rwbase:crucial/]
-RewriteCond %{HTTP_HOST} vps.89hosting.co.uk$
-RewriteRule . - [E=rwbase:~crucialtrading]
-
-
 RewriteEngine On
-RewriteBase /%{ENV:rwbase}
+RewriteBase /crucial-trading/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /%{ENV:rwbase}index.php [L]
+RewriteRule . /crucial-trading/index.php [L]
 </IfModule>
 
 # END WordPress

@@ -51,7 +51,7 @@ function regiser_retailer_post_type() {
 		'hierarchical'        => false,
 		'menu_position'       => 5,
 		'menu_icon'           => 'dashicons-images-alt2',
-		'supports'            => array( 'title', 'page-attributes' ),
+		'supports'            => array( 'title', 'page-attributes', 'custom-fields' ),
 	); 
 
 	register_post_type( 'retailer', $args );
@@ -68,23 +68,43 @@ function retailer_meta_boxes( $meta_boxes ) {
 		'post_types' => 'retailer',
 		'fields'     => array(
 			array(
-				'name'      => 'Address',
-				'id'        => 'address',
-				'type'      => 'textarea',
+				'name'      => 'Address Line 1',
+				'id'        => 'retailer_address_1',
+				'type'      => 'text',
+			),
+			array(
+				'name'      => 'Address Line 2',
+				'id'        => 'retailer_address_2',
+				'type'      => 'text',
+			),
+			array(
+				'name'      => 'Address Line 3',
+				'id'        => 'retailer_address_3',
+				'type'      => 'text',
+			),
+			array(
+				'name'      => 'Address Line 4',
+				'id'        => 'retailer_address_4',
+				'type'      => 'text',
+			),
+			array(
+				'name'      => 'Address Line 5',
+				'id'        => 'retailer_address_5',
+				'type'      => 'text',
 			),
 			array(
 				'name'      => 'Phone Number',
-				'id'        => 'phone',
+				'id'        => 'retailer_telephone_1',
 				'type'      => 'number',
 			),
 			array(
 				'name'      => 'Email Address',
-				'id'        => 'email',
+				'id'        => 'retailer_email',
 				'type'      => 'email',
 			),
 			array(
 				'name'      => 'Website',
-				'id'        => 'website',
+				'id'        => 'retailer_website',
 				'type'      => 'url',
 			),
 			array(
