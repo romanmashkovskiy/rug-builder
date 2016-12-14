@@ -70,7 +70,7 @@ if ( ! class_exists('PMXI_Upload')){
 					{
 						foreach ($v_result_list as $unzipped_file) 
 						{
-							if ($unzipped_file['status'] == 'ok' and preg_match('%\W(xml|csv|txt|dat|psv|json|xls|xlsx)$%i', trim($unzipped_file['stored_filename'])) and strpos($unzipped_file['stored_filename'], 'readme.txt') === false ) 
+							if ($unzipped_file['status'] == 'ok' and preg_match('%\W(xml|csv|txt|dat|psv|json|xls|xlsx|gz)$%i', trim($unzipped_file['stored_filename'])) and strpos($unzipped_file['stored_filename'], 'readme.txt') === false ) 
 							{
 								if ( strpos(basename($unzipped_file['stored_filename']), 'WP All Import Template') === 0 || strpos(basename($unzipped_file['stored_filename']), 'templates_') === 0 )
 								{

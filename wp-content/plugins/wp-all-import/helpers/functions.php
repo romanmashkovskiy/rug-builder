@@ -154,3 +154,10 @@
 			return stripslashes(esc_sql(htmlspecialchars(strip_tags($str))));
 		}
 	}
+
+    if ( ! function_exists('wp_all_import_cmp_custom_types')){
+        function wp_all_import_cmp_custom_types($a, $b)
+        {
+            return strcmp($a->labels->name, $b->labels->name);
+        }
+    }
