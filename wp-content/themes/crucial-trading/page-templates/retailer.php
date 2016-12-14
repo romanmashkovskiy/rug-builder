@@ -32,9 +32,9 @@ if ( array_key_exists( 'get_retailers', $_GET ) ) {
 		$post    = $query->posts[$i];
 		$post_id = $post->ID;
 
-		$lat     = get_post_meta( $post_id, 'lat', true );
-		$lng     = get_post_meta( $post_id, 'lng', true );
-		$country = rwmb_meta( 'country', array(), $post_id );
+		$lat     = get_post_meta( $post_id, 'retailer_lat', true );
+		$lng     = get_post_meta( $post_id, 'retailer_lng', true );
+		$country = rwmb_meta( 'retailer_country', array(), $post_id );
 
 		$post->lat     = $lat;
 		$post->lng     = $lng;

@@ -47,7 +47,7 @@ function retailer_card( $atts = '' ) {
 
 	$phone   = rwmb_meta( 'retailer_phone_1', array(), $post_id );
 	$website = rwmb_meta( 'retailer_website', array(), $post_id );
-	$email   = rwmb_meta( 'retailer_email  ', array(), $post_id );
+	$email   = rwmb_meta( 'retailer_email', array(), $post_id );
 	$country = rwmb_meta( 'retailer_country', array(), $post_id );
 
 	$lat = get_post_meta( $post_id, 'retailer_lat', true );
