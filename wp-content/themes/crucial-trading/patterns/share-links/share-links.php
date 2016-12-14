@@ -36,7 +36,7 @@ function share_links( $atts ) {
 
 	$html .= '<div class="link__container ' . $material . '">';
 	$html .= '<i class="icon-crucial-facebook link__icon transition-all"></i>';
-	$html .= '<a href="https://facebook.com/sharer/sharer.php?u=Crucial Trading: ' . get_the_title() . ' ' . get_the_permalink() . '" target="_blank" class="link__text">Facebook</a>';
+	$html .= '<a href="https://facebook.com/sharer/sharer.php?u=Crucial%20Trading:%20' . get_the_title() . '%20' . get_the_permalink() . '" target="_blank" class="link__text">Facebook</a>';
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';
@@ -45,7 +45,7 @@ function share_links( $atts ) {
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';
-	$html .= '<i class="icon-crucial-email link__icon transition-all"></i>';
+	$html .= '<i class="icon-crucial-mail link__icon transition-all"></i>';
 	$html .= '<a href="mailto:?subject=Crucial Trading: ' . get_the_title() . '&body=' . get_the_title() . ' ' . get_the_permalink() . '" class="link__text">Email</a>';
 	$html .= '</div>';
 
