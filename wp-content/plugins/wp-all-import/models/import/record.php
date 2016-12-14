@@ -752,7 +752,7 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 
 				if ($this->options['attachments']) {
 					// Detect if attachments is separated by comma
-					$atchs = explode(',', $this->options['attachments']);					
+					$atchs = empty($this->options['atch_delim']) ? explode(',', $this->options['attachments']) : explode($this->options['atch_delim'], $this->options['attachments']);				
 					if (!empty($atchs)){
 						$parse_multiple = true;
 						foreach($atchs as $atch) if (!preg_match("/{.*}/", trim($atch))) $parse_multiple = false;			
@@ -1139,6 +1139,10 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 								$articleData['post_parent'] = $post_to_update->post_parent;
 								$logger and call_user_func($logger, sprintf(__('Preserve post parent of already existing article for `%s`', 'wp_all_import_plugin'), $articleData['post_title']));								
 							}
+							if ( ! $this->options['is_update_post_type']){
+                                $articleData['post_type'] = $post_to_update->post_type;
+                                $logger and call_user_func($logger, sprintf(__('Preserve post type of already existing article for `%s`', 'wp_all_import_plugin'), $articleData['post_title']));
+                            }
 							if ( ! $this->options['is_update_comment_status']){ 
 								$articleData['comment_status'] = $post_to_update->comment_status;
 								$logger and call_user_func($logger, sprintf(__('Preserve comment status of already existing article for `%s`', 'wp_all_import_plugin'), $articleData['post_title']));								
@@ -1176,11 +1180,19 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 								wp_delete_attachments($articleData['ID'], true, 'files');
 							}
 							// handle obsolete attachments (i.e. delete or keep) according to import settings
-							if ( $this->options['update_all_data'] == 'yes' or ( $this->options['update_all_data'] == 'no' and $this->options['is_update_images'] and $this->options['update_images_logic'] == "full_update")){
-								$logger and call_user_func($logger, sprintf(__('Deleting images for `%s`', 'wp_all_import_plugin'), $articleData['post_title']));								
-								$do_not_remove_images = ( $this->options['download_images'] == 'gallery' or $this->options['do_not_remove_images']) ? false : true;
-								$missing_images = wp_delete_attachments($articleData['ID'], $do_not_remove_images, 'images');
-							}
+                            if ($this->options['update_all_data'] == 'yes' or ($this->options['update_all_data'] == 'no' and $this->options['is_update_images'] and $this->options['update_images_logic'] == "full_update")) {
+                                $logger and call_user_func($logger, sprintf(__('Deleting images for `%s`', 'wp_all_import_plugin'), $articleData['post_title']));
+                                if (!empty($images_bundle)) {
+                                    foreach ($images_bundle as $slug => $bundle_data) {
+                                        $option_slug = ($slug == 'pmxi_gallery_image') ? '' : $slug;
+                                        if (count($images_bundle) > 1 && $slug == 'pmxi_gallery_image') {
+                                            continue;
+                                        }
+                                        $do_not_remove_images = ($this->options[$option_slug . 'download_images'] == 'gallery' or $this->options[$option_slug . 'do_not_remove_images']) ? FALSE : TRUE;
+                                        $missing_images = wp_delete_attachments($articleData['ID'], $do_not_remove_images, 'images');
+                                    }
+                                }
+                            }
 						}
 					}
 				}
@@ -2473,11 +2485,17 @@ class PMXI_Import_Record extends PMXI_Model_Record {
 									'import_id' => $this->id,
 								));
 								if ( ! $postRecord->isEmpty() )
-								{
-									$postRecord->set(array(
-										'iteration' => $iteration
-									))->save();									
-								}
+                                {
+                                    $is_unlink_missing_posts = apply_filters('wp_all_import_is_unlink_missing_posts', false, $this->id, $missingPostRecord['post_id']);
+                                    if ( $is_unlink_missing_posts ){
+                                        $postRecord->delete();
+                                    }
+                                    else {
+                                        $postRecord->set(array(
+                                            'iteration' => $iteration
+                                        ))->save();
+                                    }
+                                }
 
 								do_action('pmxi_missing_post', $missingPostRecord['post_id']);
 								

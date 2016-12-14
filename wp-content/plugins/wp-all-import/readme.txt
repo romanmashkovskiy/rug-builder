@@ -2,7 +2,7 @@
 Contributors: soflyy, wpallimport 
 Requires at least: 4.1
 Tested up to: 4.6.1
-Stable tag: 3.3.8
+Stable tag: 3.3.9
 Tags: wordpress csv import, wordpress xml import, xml, csv, datafeed, import, migrate, import csv to wordpress, import xml to wordpress, advanced xml import, advanced csv import, bulk csv import, bulk xml import, bulk data import, xml to custom post type, csv to custom post type, woocommerce csv import, woocommerce xml import, csv import, import csv, xml import, import xml, csv importer
 
 WP All Import is an extremely powerful importer that makes it easy to import any XML or CSV file to WordPress.
@@ -104,6 +104,14 @@ Does it work with special character encoding like Hebrew, Arabic, Chinese, etc?
 4. Manage imports.
 
 == Changelog ==
+
+= 3.3.9 =
+* improvement: new re-import option 'is update post type'
+* bug fix: hierarchy taxonomies preview
+* bug fix: empty logs folder generation
+* bug fix: 'Keep images currently in Media Library' option for add-ons
+* bug fix: import bundles with gz files
+* bug fix: custom functions for attachments
 
 = 3.3.8 =
 * improvement: 'Force Stream Reader' setting

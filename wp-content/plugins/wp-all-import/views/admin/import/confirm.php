@@ -218,6 +218,9 @@
 									<?php if ( $post['is_update_parent']): ?>
 									<li> <?php _e('parent post', 'wp_all_import_plugin'); ?></li>
 									<?php endif; ?>
+									<?php if ( $post['is_update_post_type']): ?>
+									<li> <?php _e('post type', 'wp_all_import_plugin'); ?></li>
+									<?php endif; ?>
 									<?php if ( $post['is_update_attachments']): ?>
 									<li> <?php _e('attachments', 'wp_all_import_plugin'); ?></li>
 									<?php endif; ?>

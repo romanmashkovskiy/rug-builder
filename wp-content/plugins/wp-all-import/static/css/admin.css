@@ -616,6 +616,38 @@ p.upgrade_link {
 .wpallimport-plugin .wpallimport-import-orders-notice{
 	display: none;
 }
+.wpallimport-plugin .wpallimport-step-4 .wpallimport-upgrade-notice{
+	background-color: #FFB8B8;
+	border: 1px solid #FF8383;
+	color: #000;
+	display: none;
+	line-height: 40px;
+	margin: 30px auto 0 -4px;
+	padding: 15px;
+	text-align: center;
+	width: 560px;
+}
+.wpallimport-plugin .wpallimport-choose-file .wpallimport-upgrade-notice{
+	background-color: #FFB8B8;
+	border: 1px solid #FF8383;
+	color: #000;
+	display: none;
+	line-height: 40px;
+	margin: 30px auto 0 29.8%;
+	padding: 15px;
+	text-align: center;
+	width: 650px;
+}
+.wpallimport-plugin .wpallimport-upgrade-notice p{
+	color: #000 !important;
+	font-size: 1.3em !important;
+	margin-bottom: 0;
+}
+.wpallimport-plugin .wpallimport-upgrade-notice .upgrade_link{
+	color: #000 !important;
+	font-size: 1.3em !important;
+	text-decoration: underline;
+}
 /*--------------------------------------------------------------------------
 *
 *	Helpers
@@ -1405,8 +1437,8 @@ p.upgrade_link {
 }
 .wpallimport-plugin #custom_type_selector .dd-option .dashicon-product:before,
 .wpallimport-plugin #custom_type_selector .dd-selected .dashicon-product:before{
-	font-family: "dashicons";
-	content: "\f174";
+	font-family: "WooCommerce";
+	content: "\e006";
 	color: #555;
 	margin-top: 0;
 }
@@ -1429,6 +1461,12 @@ p.upgrade_link {
 .wpallimport-plugin #custom_type_selector .dd-selected .dashicon-import_users:before{
 	font-family: "dashicons";
 	content: "\f110";
+	color: #555;
+}
+.wpallimport-plugin #custom_type_selector .dd-option .dashicon-taxonomies:before,
+.wpallimport-plugin #custom_type_selector .dd-selected .dashicon-taxonomies:before{
+	font-family: "dashicons";
+	content: "\f318";
 	color: #555;
 }
 .wpallimport-plugin #custom_type_selector .dd-option:hover .dashicon:before,
@@ -3161,6 +3199,10 @@ body.rtl.wpallimport-plugin .show_hints
 	.wpallimport-plugin .wpallimport-extra-text-left{
 		width: 36%;
 	}
+	.wpallimport-plugin .wpallimport-choose-file .wpallimport-upgrade-notice{
+		margin: 30px auto 0 28.4%;
+		width: 650px;
+	}
 	.wpallimport-plugin .wpallimport-extra-text-right{
 		width: 37%;
 	}
@@ -3201,6 +3243,10 @@ body.rtl.wpallimport-plugin .show_hints
 	}
 	.wpallimport-plugin .wpallimport-extra-text-left{
 		width: 35%;
+	}
+	.wpallimport-plugin .wpallimport-choose-file .wpallimport-upgrade-notice{
+		margin: 30px auto 0 26.7%;
+		width: 666px;
 	}
 	.wpallimport-plugin .wpallimport-extra-text-right{
 		width: 35%;
@@ -3263,6 +3309,10 @@ body.rtl.wpallimport-plugin .show_hints
 	}
 	.wpallimport-plugin .wpallimport-extra-text-left{
 		width: 33%;
+	}
+	.wpallimport-plugin .wpallimport-choose-file .wpallimport-upgrade-notice{
+		margin: 30px auto 0 24.7%;
+		width: 625px;
 	}
 	.wpallimport-plugin .wpallimport-extra-text-right{
 		width: 34%;
@@ -3338,6 +3388,10 @@ body.rtl.wpallimport-plugin .show_hints
 	}
 	.wpallimport-plugin .wpallimport-extra-text-left{
 		width: 30%;
+	}
+	.wpallimport-plugin .wpallimport-choose-file .wpallimport-upgrade-notice{
+		margin: 30px auto 0 22.7%;
+		width: 553px;
 	}
 	.wpallimport-plugin .wpallimport-extra-text-right{
 		width: 31%;
@@ -3434,6 +3488,10 @@ body.rtl.wpallimport-plugin .show_hints
 	}
 	.wpallimport-plugin .wpallimport-extra-text-left{
 		width: 29%;
+	}
+	.wpallimport-plugin .wpallimport-choose-file .wpallimport-upgrade-notice{
+		margin: 30px auto 0 22%;
+		width: 530px;
 	}
 	.wpallimport-plugin .wpallimport-extra-text-right{
 		width: 30%;
