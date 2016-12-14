@@ -37,6 +37,11 @@
 				}
 			}
 
+			a:before,
+			a:after {
+				display: none;
+			}
+
 			svg {
 				cursor: pointer;
 			}
@@ -188,7 +193,7 @@
 
 		&:before,
 		&:after {
-			display: none;
+			background: white;
 		}
 	}
 

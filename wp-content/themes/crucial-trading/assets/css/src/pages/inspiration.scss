@@ -53,6 +53,7 @@
 
 		.tweeter-info {
 			border-bottom: none;
+			overflow: hidden;
 		}
 
 		.fts-twitter-image,
@@ -113,10 +114,11 @@
 			box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 			height: 520px;
 			margin-top: 0 !important;
+			object-fit: cover;
 			width: calc(50% - 100px);
 		}
 
-		.icon-crucial-instagram {
+		.icon-crucial-twitter {
 			color: #EEEEEE;
 			left: 40px;
 			margin-top: 40px;
@@ -134,22 +136,18 @@
 		}
 
 		.twitter-shadow {
-
-			background: rgba(0,0,0,0.3);
-
-			webkit-filter: blur(6px);
-			-moz-filter: blur(6px);
-			-o-filter: blur(6px);
-			-ms-filter: blur(6px);
-			filter: blur(6px);
-
-			bottom: 0;
+			background: rgba(0,0,0,0.4);
+			bottom: -100%;
 			left: 0;
 			padding: 22px;
 			position: absolute;
-			right: 10px;
+			right: 9px;
 			top: 0;
 			z-index: -1;
+
+			@media screen and (max-width: 992px) {
+				right: -100%;
+			}
 		}
 	}
 
@@ -161,6 +159,7 @@
 		.slicker-instagram-placeholder.fts-instagram-wrapper {
 			height: 520px !important;
 			margin: 0 !important;
+			background-size: cover;
 			overflow: visible;
 			position: absolute;
 			width: calc(50% - 100px) !important;
@@ -288,6 +287,14 @@
 		}
 	}
 */
+}
+
+.slicker-instagram-placeholder:hover .slicker-instaG-photoshadow {
+	background-color: transparent;
+}
+
+.fts-instagram-icon {
+	display: none;
 }
 
 @media screen and (max-width: 1007px) {

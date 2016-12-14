@@ -35,6 +35,9 @@
       position: static !important;
       width: 500px !important;
       z-index: 99 !important; }
+  #super-slider .slide.opening a:before,
+  #super-slider .slide.opening a:after {
+    display: none; }
   #super-slider .slide.opening svg {
     cursor: pointer; }
   #super-slider .slide.opening svg g,
@@ -129,7 +132,7 @@
       .slide__center a {
         display: none; } }
     .slide__center a:before, .slide__center a:after {
-      display: none; }
+      background: white; }
   .slide__center.opening h1, .slide__center.opening p, .slide__center.opening a {
     color: white; }
   .slide__center.opening p.subtitle {

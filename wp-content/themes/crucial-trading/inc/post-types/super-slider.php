@@ -71,10 +71,10 @@ function super_slider_meta_boxes( $meta_boxes ) {
 				'type'      => 'text',
 			),
 			array(
-				'name'      => 'Link',
-				'id'        => 'link',
-				'type'      => 'post',
-				'post_type' => array( 'post', 'page' ),
+				'name'     => 'Link',
+				'id'       => 'link',
+				'type'     => 'taxonomy',
+				'taxonomy' => 'product_tag',
 			),
 		),
 	);
