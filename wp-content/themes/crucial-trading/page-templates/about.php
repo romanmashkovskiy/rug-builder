@@ -12,6 +12,12 @@ get_header();
 
 echo do_shortcode( '[logo-nav]' ); ?>
 
+<!--<head>
+<link rel="stylesheet" href="http://localhost/crucial/wp-content/themes/crucial-trading/patterns/about-timeline/about-timeline.css">
+<link rel="stylesheet" href="http://localhost/crucial/wp-content/themes/crucial-trading/style.css">
+<link rel="stylesheet" href="http://localhost/crucial/wp-content/themes/crucial-trading/assets/css/dist/master.min.csss">
+</head>-->
+
 <div class="about">
 		
 		<h3 class="about__sidetitle side-title rotate">About Crucial Trading</h3>
@@ -26,9 +32,7 @@ echo do_shortcode( '[logo-nav]' ); ?>
 				<h1 class="about__timeline__heading vertical-align">Our Story</h1>
 				<a href="#" title="Our Story" class="about__timeline__btn">Read More</a>
 			</div>
-		</div>
-		
-		<div class="about__scroller" id="about-scroller">
+		</div><div class="about__scroller" id="about-scroller">
 			<div class="about__scroller__bg"></div>
 			<div class="about__scroller__btn--close">Back to Start</div>
 			<h3 class="about__scroller__subtitle subtitle">Our Process</h3>
@@ -126,4 +130,4 @@ echo do_shortcode( '[logo-nav]' ); ?>
 		
 </div>
 
-<?php get_footer();
+<?php //get_footer();
