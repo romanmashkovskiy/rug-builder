@@ -16,7 +16,7 @@ h1 {
 
 	&.home-banner-header {
 		@include typography-standards(#ffffff, $font-crucial, 70px, 4px);
-		text-shadow: 1px 0px 30px #aaaaaa;
+		//text-shadow: 1px 0px 30px #aaaaaa;
 		text-transform: uppercase;
 	}
 

@@ -19,40 +19,52 @@
   margin: 0 !important;
   width: 100% !important; }
 
+#html5-close-fullscreen {
+  top: 20px !important;
+  right: 20px !important; }
+
 #super-slider {
   max-height: 100vh !important;
   min-height: 100vh !important; }
-  #super-slider .slide img {
-    height: 100% !important;
-    -o-object-fit: cover;
-    object-fit: cover;
-    top: 0 !important; }
-  #super-slider .slide.opening img {
-    left: 0 !important;
-    width: 100% !important; }
-    #super-slider .slide.opening img.opening-slide-logo {
-      margin-bottom: 30px;
-      position: static !important;
-      width: 500px !important;
-      z-index: 99 !important; }
-  #super-slider .slide.opening a:before,
-  #super-slider .slide.opening a:after {
-    display: none; }
-  #super-slider .slide.opening svg {
-    cursor: pointer; }
-  #super-slider .slide.opening svg g,
-  #super-slider .slide.opening svg g path {
-    stroke: white; }
-  #super-slider .slide.opening h3.rotate {
-    color: white; }
-  #super-slider .slide.opening .nav_next li h3 {
-    color: #7C7C7C; }
-  #super-slider .slide.opening .nav_next li span {
-    background: #7C7C7C; }
-  #super-slider .slide.opening .nav_next li.active h3 {
-    color: white; }
-  #super-slider .slide.opening .nav_next li.active span {
-    background: white; }
+  #super-slider .slide {
+    list-style-type: none; }
+    #super-slider .slide img {
+      height: 100% !important;
+      -o-object-fit: cover;
+      object-fit: cover;
+      top: 0 !important; }
+    #super-slider .slide.opening img {
+      left: 0 !important;
+      width: 100% !important; }
+      #super-slider .slide.opening img.opening-slide-logo {
+        margin-bottom: 70px;
+        position: static !important;
+        width: 500px;
+        z-index: 99 !important; }
+        @media all and (max-width: 767px) {
+          #super-slider .slide.opening img.opening-slide-logo {
+            width: 80% !important;
+            margin-left: auto;
+            margin-right: auto;
+            height: auto; } }
+    #super-slider .slide.opening a:before,
+    #super-slider .slide.opening a:after {
+      display: none; }
+    #super-slider .slide.opening svg {
+      cursor: pointer; }
+    #super-slider .slide.opening svg g,
+    #super-slider .slide.opening svg g path {
+      stroke: white; }
+    #super-slider .slide.opening h3.rotate {
+      color: white; }
+    #super-slider .slide.opening .nav_next li h3 {
+      color: #7C7C7C; }
+    #super-slider .slide.opening .nav_next li span {
+      background: #7C7C7C; }
+    #super-slider .slide.opening .nav_next li.active h3 {
+      color: white; }
+    #super-slider .slide.opening .nav_next li.active span {
+      background: white; }
 
 .slides-navigation {
   position: relative;
@@ -128,9 +140,6 @@
     color: white;
     position: relative;
     top: 20px; }
-    @media screen and (max-width: 992px) {
-      .slide__center a {
-        display: none; } }
     .slide__center a:before, .slide__center a:after {
       background: white; }
   .slide__center.opening h1, .slide__center.opening p, .slide__center.opening a {
@@ -140,7 +149,12 @@
     margin-bottom: 120px;
     margin-top: -25px; }
   .slide__center.opening p {
-    padding: 0 18%; }
+    padding: 0 28%;
+    font-size: 22px; }
+    @media all and (max-width: 767px) {
+      .slide__center.opening p {
+        padding: 3%;
+        font-size: 18px; } }
   .slide__center.opening span {
     background: #DDDDDD;
     display: block;
@@ -148,12 +162,15 @@
     margin: 60px auto 0;
     width: 250px; }
   .slide__center.opening a {
-    background: black;
-    color: white;
+    background-color: white;
+    color: black;
     margin-top: 50px;
     padding: 15px 30px;
     position: relative;
     top: 70px; }
+  .slide__center.opening a:hover {
+    background-color: #cccccc;
+    color: black; }
 
 .slide__bottom {
   position: absolute;
@@ -171,6 +188,9 @@
     @media screen and (max-height: 485px) {
       .slide__bottom h3 {
         display: none; } }
+
+.slide__bottom.opening {
+  display: none; }
 
 .slide__arrow--right,
 .slide__arrow--down {
