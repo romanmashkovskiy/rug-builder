@@ -408,50 +408,6 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 	border-top-left-radius: 5px;
 	border-bottom-left-radius: 5px;*/ }
 
-.basket-empty .link-opener {
-  display: none; }
-
-.basket-full .link-opener {
-  display: block; }
-
-#basket-link {
-  left: 0;
-  position: absolute;
-  top: 0;
-  -webkit-transition: all ease-in-out 0.25s;
-  transition: all ease-in-out 0.25s;
-  z-index: 999999; }
-
-@media screen and (max-width: 450px) {
-  .show-menu #basket-link {
-    left: 20px; } }
-
-svg.main-menu__button__basket {
-  position: absolute;
-  top: 27px;
-  left: 0;
-  width: 37px;
-  height: 29px;
-  -webkit-transition: all ease-in-out 0.25s;
-  transition: all ease-in-out 0.25s; }
-  svg.main-menu__button__basket g {
-    fill: white; }
-
-#num-items-basket {
-  background: white;
-  border-radius: 50%;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 14px;
-  height: 20px;
-  left: 35px;
-  position: absolute;
-  top: 36px;
-  width: 20px;
-  -webkit-transition: all ease-in-out 0.25s;
-  transition: all ease-in-out 0.25s;
-  line-height: 1.4;
-  letter-spacing: 0; }
-
 span.main-menu__button__text,
 span.main-menu__button__text--close {
   font-size: 16px;
