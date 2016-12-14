@@ -27,8 +27,8 @@ function google_map( $atts = '' ) {
 		$dash = strpos( $ids[$i], '-' );
 		$id   = substr( $ids[$i], 0, $dash );
 
-		$lat = get_post_meta( $id, 'lat', true );
-		$lng = get_post_meta( $id, 'lng', true );
+		$lat = get_post_meta( $id, 'retailer_lat', true );
+		$lng = get_post_meta( $id, 'retailer_lng', true );
 
 		$coordinates .= $lat . ',' . $lng . '|';
 	}
