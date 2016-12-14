@@ -17,6 +17,8 @@ function brochure_cta() {
 	$args = array(
 		'post_type' => 'product',
 		'title' => 'brochure',
+		'ignore_sticky_posts'    => true,
+		'no_found_rows'        => true
 	);
 
 	$query = new WP_Query( $args );

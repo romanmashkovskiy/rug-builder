@@ -46,7 +46,8 @@ function material_view_slider( $atts = '' ) {
 			'field'    => 'slug',
 			'terms'    => $current_product_range,
 		),
-	), ) );
+	), 'ignore_sticky_posts'    => true,
+		'no_found_rows'        => true ) );
 
 	$html .= '<div class="material-view-slider">';
 	$html .= '<ul id="material-view-slider-list">';

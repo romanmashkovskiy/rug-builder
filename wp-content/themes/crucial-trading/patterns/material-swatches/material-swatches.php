@@ -28,7 +28,9 @@ function material_swatches( $atts = '' ) {
 					'field'    => 'term_id',
 					'terms'    => $range_id,
 				)
-			)
+			),
+			'ignore_sticky_posts'    => true,
+		'no_found_rows'        => true
 		);
 
 		$products = new WP_Query( $args );

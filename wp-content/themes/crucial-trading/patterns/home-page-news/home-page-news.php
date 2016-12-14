@@ -29,7 +29,9 @@
 	 'post_type' => 'post',
 	 'posts_per_page' => 1,
 	 'paged' => $paged,
-	 'category_name' => $category
+	 'category_name' => $category,
+	 'ignore_sticky_posts'    => true,
+		'no_found_rows'        => true
 	 ) );
 	
 	$html .= '<div class="news-posts home">';

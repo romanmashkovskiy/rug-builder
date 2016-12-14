@@ -37,6 +37,8 @@ function retailer_search_box( $atts = '' ) {
 				'terms'    => 'overseas',
 			),
 		),
+		'ignore_sticky_posts'    => true,
+		'no_found_rows'        => true
 	);
 
 	$overseas_query = new WP_Query( $overseas_args );

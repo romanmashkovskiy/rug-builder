@@ -36,7 +36,7 @@ echo do_shortcode( '[header overlay="true"]' );
 
 <?php
 
-//echo do_shortcode( '[share-links]' );
+echo do_shortcode( '[share-links]' );
 
 echo do_shortcode( '[newsletter-signup]' );
 

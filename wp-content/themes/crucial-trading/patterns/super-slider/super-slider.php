@@ -16,6 +16,8 @@ function crucial_slider_slides() {
 		'post_type'   => 'super-slider',
 		'post_status' => 'publish',
 		'orderby'     => 'menu_order',
+		'ignore_sticky_posts'    => true,
+		'no_found_rows'        => true
 	);
 
 	$html = '';

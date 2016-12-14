@@ -30,7 +30,9 @@ function collection_swatches( $atts = '' ) {
 					'field'    => 'slug',
 					'terms'    => $collection,
 				)
-			)
+			),
+			'ignore_sticky_posts'    => true,
+		'no_found_rows'        => true
 		);
 
 		$query = new WP_Query( $args );
