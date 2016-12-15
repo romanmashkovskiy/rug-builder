@@ -60,7 +60,7 @@ gulp.task('build-master-js', function() {
 	return gulp.src(files)
 		.pipe(sourcemaps.init())
 		.pipe(concat('master.min.js'))
-//		.pipe(uglify().on('error', console.log))
+		.pipe(uglify().on('error', console.log))
 		.pipe(sourcemaps.write('maps'))
 		.pipe(gulp.dest('./js/dist'));
 });
