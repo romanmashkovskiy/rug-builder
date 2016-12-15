@@ -65,7 +65,8 @@ function createMap( latLng, zoom, $map ) {
 		center           : latLng,
 		zoom             : zoom,
 		disableDefaultUI : true,
-		zoomControl      : true
+		zoomControl      : true,
+		scrollwheel      : false
 	});
 
 	var styles = [
