@@ -5,6 +5,17 @@
 .page-template-inspiration {
 	background: #383838;
 
+	.share-links .link__container {
+
+		a:before {
+			background: rgba(255,255,255,0.5);
+		}
+
+		a:after {
+			background: rgba(255,255,255,1);
+		}
+	}
+
 	.share-links * {
 		color: rgba(255,255,255,0.5);
 	}
