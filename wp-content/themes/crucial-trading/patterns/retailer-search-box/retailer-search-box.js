@@ -100,7 +100,7 @@ $(document).ready(function() {
 					}
 				}
 
-				var newUrl   = window.location.origin + window.location.pathname + '?country=' + country + '&id=' + retailer.ID;
+				var newUrl = window.location.origin + window.location.pathname + '?country=' + country + '&id=' + retailer.ID;
 
 				window.location.href = newUrl;
 			})
