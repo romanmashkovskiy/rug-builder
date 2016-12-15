@@ -40,6 +40,14 @@
 			color: #949494;
 		}
 
+		a:before {
+			background: #949494;
+		}
+
+		a:after {
+			background: black;
+		}
+
 		.link__container:hover {
 
 			i, a {

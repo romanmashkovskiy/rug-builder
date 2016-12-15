@@ -58,30 +58,50 @@
       .share-links .link__container {
         margin-bottom: 10px;
         width: 100%; } }
+    .share-links .link__container a:before, .share-links .link__container a:after {
+      background: black; }
     .share-links .link__container.coir i, .share-links .link__container.coir a {
       color: rgba(111, 83, 61, 0.5); }
     .share-links .link__container.coir:hover i, .share-links .link__container.coir:hover a {
       color: #6F533D; }
+    .share-links .link__container.coir a:before,
+    .share-links .link__container.coir a:after {
+      background: #6F533D; }
     .share-links .link__container.jute i, .share-links .link__container.jute a {
       color: rgba(75, 59, 46, 0.5); }
     .share-links .link__container.jute:hover i, .share-links .link__container.jute:hover a {
       color: #4B3B2E; }
+    .share-links .link__container.jute a:before,
+    .share-links .link__container.jute a:after {
+      background: #4B3B2E; }
     .share-links .link__container.seagrass i, .share-links .link__container.seagrass a {
       color: rgba(107, 101, 81, 0.5); }
     .share-links .link__container.seagrass:hover i, .share-links .link__container.seagrass:hover a {
       color: #6B6551; }
+    .share-links .link__container.seagrass a:before,
+    .share-links .link__container.seagrass a:after {
+      background: #6B6551; }
     .share-links .link__container.sisal i, .share-links .link__container.sisal a {
       color: rgba(69, 79, 68, 0.5); }
     .share-links .link__container.sisal:hover i, .share-links .link__container.sisal:hover a {
       color: #454F44; }
+    .share-links .link__container.sisal a:before,
+    .share-links .link__container.sisal a:after {
+      background: #454F44; }
     .share-links .link__container.sisool i, .share-links .link__container.sisool a {
       color: rgba(129, 126, 98, 0.5); }
     .share-links .link__container.sisool:hover i, .share-links .link__container.sisool:hover a {
       color: #817E62; }
+    .share-links .link__container.sisool a:before,
+    .share-links .link__container.sisool a:after {
+      background: #817E62; }
     .share-links .link__container.wool i, .share-links .link__container.wool a {
       color: rgba(102, 95, 77, 0.5); }
     .share-links .link__container.wool:hover i, .share-links .link__container.wool:hover a {
       color: #665F4D; }
+    .share-links .link__container.wool a:before,
+    .share-links .link__container.wool a:after {
+      background: #665F4D; }
   .share-links .link__icon {
     display: block;
     margin-bottom: 20px; }

@@ -100,6 +100,10 @@
 			width: 100%;
 		}
 
+		a:before, a:after {
+			background: black;
+		}
+
 		&.coir {
 
 			i, a {
@@ -111,6 +115,11 @@
 				i, a {
 					color: $color-coir-dark;
 				}
+			}
+
+			a:before,
+			a:after {
+				background: $color-coir-dark;
 			}
 		}
 
@@ -126,6 +135,11 @@
 					color: $color-jute-dark;
 				}
 			}
+
+			a:before,
+			a:after {
+				background: $color-jute-dark;
+			}
 		}
 
 		&.seagrass {
@@ -139,6 +153,11 @@
 				i, a {
 					color: $color-seagrass-dark;
 				}
+			}
+
+			a:before,
+			a:after {
+				background: $color-seagrass-dark;
 			}
 		}
 
@@ -154,6 +173,11 @@
 					color: $color-sisal-dark;
 				}
 			}
+
+			a:before,
+			a:after {
+				background: $color-sisal-dark;
+			}
 		}
 
 		&.sisool {
@@ -168,6 +192,11 @@
 					color: $color-sisool-dark;
 				}
 			}
+
+			a:before,
+			a:after {
+				background: $color-sisool-dark;
+			}
 		}
 
 		&.wool {
@@ -181,6 +210,11 @@
 				i, a {
 					color: $color-wool-dark;
 				}
+			}
+
+			a:before,
+			a:after {
+				background: $color-wool-dark;
 			}
 		}
 	}
