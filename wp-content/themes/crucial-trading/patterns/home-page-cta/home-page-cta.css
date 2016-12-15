@@ -29,7 +29,7 @@
     top: 0;
     width: 50px; }
   .home-page-cta img {
-    bottom: -50px;
+    bottom: -100px;
     position: absolute;
     width: 175px; }
     @media screen and (max-width: 555px) {
