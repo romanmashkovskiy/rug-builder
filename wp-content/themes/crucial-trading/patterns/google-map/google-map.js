@@ -83,7 +83,7 @@ function createMap( latLng, zoom, $map ) {
 		scaledSize : new google.maps.Size(22, 30),
 		origin : new google.maps.Point(0, 0),
 		anchor : new google.maps.Point(11, 30),
-		url    : 'http://localhost:8888/crucial-trading/wp-content/uploads/Combined-Shape-Copy.svg'
+		url    : 'http://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg'
 	}
 
 	if ( coordinates ) {

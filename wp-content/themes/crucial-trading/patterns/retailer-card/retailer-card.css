@@ -1,14 +1,34 @@
 .retailer {
   background: white;
+  box-sizing: border-box;
   float: left;
   margin-bottom: 50px;
   margin-left: 4%;
   padding: 10px;
+  position: relative;
+  -webkit-transition: all ease-in-out 0.25s;
+  transition: all ease-in-out 0.25s;
   width: 28%; }
+  .retailer:hover {
+    box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08); }
+    .retailer:hover .border-div {
+      border: 1px #f6f6f6 solid; }
+  .retailer .retailer__pin {
+    left: calc(50% - 12px);
+    position: absolute;
+    top: -10px;
+    width: 24px;
+    z-index: 99; }
   .retailer .border-div {
-    border: 2px solid #F7F7F7;
+    box-sizing: border-box;
+    border: 1px white solid;
     padding: 50px;
-    position: relative; }
+    position: relative;
+    -webkit-transition: all ease-in-out 0.25s;
+    transition: all ease-in-out 0.25s; }
+    @media screen and (max-width: 1380px) {
+      .retailer .border-div {
+        padding: 23px 23px 46px; } }
   .retailer .retailer__title {
     font-weight: bold;
     margin-bottom: 30px; }
@@ -17,9 +37,20 @@
     margin-bottom: 20px; }
   .retailer .retailer__email {
     text-transform: capitalize; }
+  .retailer .retailer_directions {
+    font-size: 14px; }
+    @media screen and (max-width: 1380px) {
+      .retailer .retailer_directions {
+        font-size: 11px; } }
+    .retailer .retailer_directions:before, .retailer .retailer_directions:after {
+      background: black; }
   .retailer .retailer_distance {
-    bottom: 20px;
-    position: absolute; }
+    float: right;
+    padding-top: 4px; }
+    @media screen and (max-width: 1380px) {
+      .retailer .retailer_distance {
+        font-size: 11px;
+        padding-top: 8px; } }
   .retailer.overseas {
     float: none;
     margin: 100px auto;
