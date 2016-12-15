@@ -140,7 +140,6 @@ jQuery( function( $ ) {
 		if ( ! $target ) {
 			$target = $( '.shop_table.cart' ).closest( 'form' );
 		}
-		$( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
 		$target.before( html_element );
 	};
 
@@ -393,7 +392,7 @@ jQuery( function( $ ) {
 			}
 
 			if ( 0 === $form.find( '.shop_table.cart' ).length ) {
-				return false;
+				return;
 			}
 			if ( is_blocked( $form ) ) {
 				return false;
@@ -442,6 +441,7 @@ jQuery( function( $ ) {
 				data:     data,
 				dataType: 'html',
 				success: function( response ) {
+					$( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
 					show_notice( response );
 					$( document.body ).trigger( 'applied_coupon' );
 				},
@@ -478,6 +478,7 @@ jQuery( function( $ ) {
 				data:     data,
 				dataType: 'html',
 				success: function( response ) {
+					$( '.woocommerce-error, .woocommerce-message, .woocommerce-info' ).remove();
 					show_notice( response );
 					$( document.body ).trigger( 'removed_coupon' );
 					unblock( $tr.parents( 'table' ) );
