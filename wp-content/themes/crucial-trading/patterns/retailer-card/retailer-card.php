@@ -45,10 +45,10 @@ function retailer_card( $atts = '' ) {
 
 	$address = $address_1 . "\r\n" . $address_2 . "\r\n" . $address_3 . "\r\n" . $address_4 . "\r\n" . $address_5 . "\r\n" . $address_6 . "\r\n" . $address_7 . "\r\n" . $address_8;
 
-	$phone   = rwmb_meta( 'retailer_phone_1', array(), $post_id );
+	$phone   = rwmb_meta( 'retailer_telephone_1', array(), $post_id );
 	$website = rwmb_meta( 'retailer_website', array(), $post_id );
 	$email   = rwmb_meta( 'retailer_email', array(), $post_id );
-	$country = rwmb_meta( 'retailer_country', array(), $post_id );
+	$country = rwmb_meta( 'country', array(), $post_id );
 
 	$lat = get_post_meta( $post_id, 'retailer_lat', true );
 	$lng = get_post_meta( $post_id, 'retailer_lng', true );
