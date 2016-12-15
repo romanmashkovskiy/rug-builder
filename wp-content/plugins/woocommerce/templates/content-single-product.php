@@ -62,7 +62,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			 * @hooked woocommerce_template_single_meta - 40
 			 * @hooked woocommerce_template_single_sharing - 50
 			 */
-		//	do_action( 'woocommerce_single_product_summary' );
+			do_action( 'woocommerce_single_product_summary' );
 		?>
 
 	</div><!-- .summary -->
