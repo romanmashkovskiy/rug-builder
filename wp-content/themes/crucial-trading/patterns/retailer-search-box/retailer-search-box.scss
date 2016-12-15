@@ -2,10 +2,18 @@
 
 .retailer-search {
 	background: white;
+	left: 45px;
+	margin-top: -100px;
 	padding: 30px 40px 10px;
+	position: absolute;
 	width: 300px;
+	z-index: 99;
 
-	@media screen and (max-width: 390px) {
+	@media screen and (max-width: 550px) {
+		left: 0;
+		margin-left: auto;
+		margin-right: auto;
+		right: 0;
 		width: calc(100% - 90px);
 	}
 
