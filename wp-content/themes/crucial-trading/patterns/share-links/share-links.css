@@ -16,7 +16,8 @@
   .share-links .share-title {
     left: 0;
     position: absolute;
-    top: 45px; }
+    top: 45px;
+    display: none; }
     @media screen and (max-width: 768px) {
       .share-links .share-title {
         display: none; } }
