@@ -59,11 +59,11 @@ function collection_swatches( $atts = '' ) {
 				$html .= '<a href="' . $href . '">';
 
 				if ( $src != '' ) {
-					$html .= '<img src="' . $src . '" alt="' . $name . '">';
+					$html .= '<img src="' . $src . '" alt="' . $name . '" class="vertical-align">';
 				}
 				
-				$html .= '<h3 class="swatch__title">' . $name . '</h3>';
-				$html .= '<h3 class="swatch__code">- ' . $code . '</h3>';
+				$html .= '<h3 class="swatch__title vertical-align">' . $name . '</h3>';
+//				$html .= '<h3 class="swatch__code">- ' . $code . '</h3>';
 				$html .= '</a>';
 				$html .= '</div>';
 			}

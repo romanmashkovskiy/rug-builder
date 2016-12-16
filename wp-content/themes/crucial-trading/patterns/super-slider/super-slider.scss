@@ -39,7 +39,7 @@
 				&.opening-slide-logo {
 					margin-bottom: 70px;
 					position: static !important;
-					width: 500px;
+					width: 500px !important;
 					z-index: 99 !important;
 					
 					@media all and (max-width: 767px) {

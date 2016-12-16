@@ -168,3 +168,6 @@ header.material {
         opacity: 0.4; }
       header.material .material__sidememu img:not(.active):hover {
         opacity: 1; }
+
+header.collection {
+  background-size: cover; }

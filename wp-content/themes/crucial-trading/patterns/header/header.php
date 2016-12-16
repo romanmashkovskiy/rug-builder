@@ -188,10 +188,27 @@ function header_collection_shortcode($atts = '') {
 		$ucollection = ucwords( $collection );
 		$name        = strtoupper( $collection );
 
-		$html .= '<header class="material large clearfix">';
+		$args = array(
+			'post_type' => 'super-slider',
+			'name'      => $collection,
+		);
+
+		$query = new WP_Query( $args );
+
+		$bg_image = '';
+
+		if ( $query->have_posts() ) {
+			$post_id       = $query->posts[0]->ID;
+			$attachment_id = get_post_thumbnail_id( $post_id );
+			$bg_image      = wp_get_attachment_image_url( $attachment_id, 'full' );
+		}
+
+		$html .= '<header class="material small collection clearfix" style="background-image:url(';
+		$html .= "'" . $bg_image ."'";
+		$html .= ')">';
 
 		$html .= '<div class="material__name ' . $collection . '">';
-		$html .= '<h3 class="rotate">' . $name . '</h3>';
+//		$html .= '<h3 class="rotate">' . $name . '</h3>';
 		$html .= '</div>';
 
 		$html .= '</header>';
