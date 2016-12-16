@@ -53,12 +53,14 @@ if ( array_key_exists( 'results', $_GET ) ) {
 	$results = explode( ',', base64_decode( $_GET['results'] ) );
 }
 
-$overseas_result = false;
-$country         = '';
+$overseas_result     = false;
+$overseas_result_arr = false;
+$country             = '';
 
 if ( array_key_exists( 'country', $_GET ) ) {
-	$overseas_result = array_key_exists( 'id', $_GET ) ? $_GET['id'] : 0;
-	$country         = strtolower( $_GET['country'] );
+	$overseas_result     = array_key_exists( 'ids', $_GET ) ? $_GET['ids'] : 0;
+	$overseas_result_arr = array_key_exists( 'ids', $_GET ) ? array_filter( explode( ',', $overseas_result ) ) : 0;
+	$country             = strtolower( $_GET['country'] );
 }
 
 $showroom_args = array(
@@ -105,7 +107,7 @@ if ( array_key_exists( 'loc', $_GET ) ) {
 
 echo do_shortcode( '[retailer-search-box loc="' . $loc . '" country="' . $country . '"]' );
 
-echo do_shortcode( '[google-map ' . serialize( $results ) . ' loc="' . $loc . '" overseas="' . $overseas_result . '"]' );
+echo do_shortcode( '[google-map ' . serialize( $results ) . ' loc="' . $loc . '" overseas="' . $overseas_result . '" country="' . $country . '"]' );
 
 if ( $results ) {
 
@@ -127,8 +129,10 @@ if ( $results ) {
 	echo '</div>';
 }
 
-if ( $overseas_result ) {
-	echo do_shortcode( '[retailer-card id="' . $overseas_result . '" distance="overseas"]' );
+if ( $overseas_result_arr ) {
+	for ( $i = 0; $i < count( $overseas_result_arr ); $i++ ) {
+		echo do_shortcode( '[retailer-card id="' . $overseas_result_arr[$i] . '" distance="overseas"]' );
+	}
 }
 
 if ( !$overseas_result ) {

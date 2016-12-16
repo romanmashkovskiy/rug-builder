@@ -90,7 +90,8 @@
           width: 100%; } }
     .retailer.overseas .retailer__website {
       line-height: 1.6;
-      margin-bottom: 20px; }
+      margin-bottom: 20px;
+      word-break: break-word; }
     .retailer.overseas .retailer_directions {
       bottom: 0px;
       position: absolute; }
