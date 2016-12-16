@@ -101,12 +101,17 @@ $(document).ready(function() {
 		e.preventDefault();
 		e.stopPropagation();
 
+		$('body').css('cursor', 'wait');
+		$('a').css('cssText', 'cursor: wait !important;');
+
 		var productName = $(this).data('product-name');
 		var productID   = $(this).data('product-id');
 		var url         = window.location.href + '?post_type=product&add-to-cart=' + productID;
 
 		$.get(url)
 			.done(function() {
+
+				window.location.reload();
 
 				$('body').removeClass('basket-empty');
 				$('body').addClass('basket-full');

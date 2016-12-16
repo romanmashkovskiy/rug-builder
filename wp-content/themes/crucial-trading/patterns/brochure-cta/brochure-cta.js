@@ -7,6 +7,9 @@ $(document).ready(function() {
 		e.preventDefault();
 		e.stopPropagation();
 
+		$('body').css('cursor', 'wait');
+		$('a').css('cssText', 'cursor: wait !important;');
+
 		var productName = $(this).data('product-name');
 		var productID   = $(this).data('product-id');
 
@@ -24,6 +27,8 @@ $(document).ready(function() {
 
 		$.get(url)
 			.done(function() {
+
+				window.location.reload();
 
 				$('body').removeClass('basket-empty');
 				$('body').addClass('basket-full');

@@ -41,7 +41,7 @@
 							?>
 
 							<div class="order-line clearfix">
-								<div class="order__name">
+								<div class="order__name" style="max-width: 80%;">
 									<?php
 										if ( ! $product_permalink ) {
 											echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
