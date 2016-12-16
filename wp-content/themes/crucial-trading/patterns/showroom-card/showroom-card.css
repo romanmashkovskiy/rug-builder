@@ -12,13 +12,16 @@
   @media screen and (max-width: 768px) {
     .showroom-card {
       height: auto; } }
+  .showroom-card a::after {
+    background-color: #000; }
   .showroom-card .border-div {
     border: 2px solid #F7F7F7;
     height: 100%;
     padding: 50px;
     position: relative; }
   .showroom-card .card__title {
-    margin-bottom: 25px; }
+    margin-bottom: 25px;
+    font-size: 18px; }
   .showroom-card .card__underline {
     background: #BBBBBB;
     display: block;
