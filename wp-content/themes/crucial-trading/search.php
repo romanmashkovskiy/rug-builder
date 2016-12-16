@@ -7,12 +7,12 @@
  * @package Crucial_Trading
  */
 
-get_header(); ?>
+get_header();
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+echo do_shortcode( '[header]' );
 
-		<?php
+echo do_shortcode( '[logo-nav]' );
+
 		if ( have_posts() ) : ?>
 
 			<header class="page-header">
@@ -38,11 +38,6 @@ get_header(); ?>
 
 			get_template_part( 'template-parts/content', 'none' );
 
-		endif; ?>
+		endif;
 
-		</main><!-- #main -->
-	</section><!-- #primary -->
-
-<?php
-get_sidebar();
 get_footer();

@@ -11,6 +11,9 @@
 
 ?>
 
+
+			</main>
+
 			<?php echo do_shortcode( '[footer]' ); ?>
 <!--
 			<div class="basketPopup box-shadow">
@@ -80,7 +83,6 @@
 				</div>
 			</div>
 
-			</div>
 		</div>
 		<?php wp_footer(); ?>
 	</body>

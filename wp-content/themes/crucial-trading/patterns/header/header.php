@@ -55,12 +55,12 @@ function header_shortcode($atts = '') {
 	if (!empty($subtitle)) : 
 		$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';
 	endif;
-	
-	$html .= '<h1>' . $title . '</h1>';
-	
+		
 	// Show archive title if is set to archive in $atts
 	if (!empty($header_archive_title)) : 
 		$html .= '<h1>'.$archive_title.'</h1>';
+	else : 
+		$html .= '<h1>' . $title . '</h1>';
 	endif;
 	
 	$html .= '</div>';
