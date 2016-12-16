@@ -72,7 +72,10 @@
 				</article>';
 
 		endwhile;
-
+	
+	// Read all news link 
+	$html .= '<div class="news__page-link"><a href=""></a></div>';
+	
 	$html .= '</div>';
 	
 	wp_reset_postdata();
