@@ -43,7 +43,32 @@ function retailer_card( $atts = '' ) {
 	$address_7 = rwmb_meta( 'retailer_address_county', array(), $post_id );
 	$address_8 = rwmb_meta( 'retailer_address_postcode', array(), $post_id );
 
-	$address = $address_1 . "\r\n" . $address_2 . "\r\n" . $address_3 . "\r\n" . $address_4 . "\r\n" . $address_5 . "\r\n" . $address_6 . "\r\n" . $address_7 . "\r\n" . $address_8;
+	$address = '';
+
+	if ( $address_1 != '' ) {
+		$address .= $address_1;
+	}
+	if ( $address_2 != '' ) {
+		$address .= "\r\n" . $address_2;
+	}
+	if ( $address_3 != '' ) {
+		$address .= "\r\n" . $address_3;
+	}
+	if ( $address_4 != '' ) {
+		$address .= "\r\n" . $address_4;
+	}
+	if ( $address_5 != '' ) {
+		$address .= "\r\n" . $address_5;
+	}
+	if ( $address_6 != '' ) {
+		$address .= "\r\n" . $address_6;
+	}
+	if ( $address_7 != '' ) {
+		$address .= "\r\n" . $address_7;
+	}
+	if ( $address_8 != '' ) {
+		$address .= "\r\n" . $address_8;
+	}
 
 	$phone   = rwmb_meta( 'retailer_telephone_1', array(), $post_id );
 	$website = rwmb_meta( 'retailer_website', array(), $post_id );
