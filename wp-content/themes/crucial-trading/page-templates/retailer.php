@@ -113,7 +113,7 @@ if ( $results ) {
 
 	echo '<h2 class="page-subtitle">Search Results</h2>';
 	echo '<span></span>';
-	echo '<div class="clearfix">';
+	echo '<div class="clearfix" style="display: flex; flex-flow: row wrap">';
 
 	if ( count( $results ) == 1 ) {
 		echo '<h3 style="margin-left:4%;">Sorry, we could not find any retailers in your area.</h3>';

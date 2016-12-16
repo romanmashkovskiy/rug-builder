@@ -1,13 +1,17 @@
 .retailer {
 	background: white;
 	box-sizing: border-box;
+	flex: 0 0 28%;
 	float: left;
 	margin-bottom: 50px;
 	margin-left: 4%;
 	padding: 10px;
 	position: relative;
 	transition: all ease-in-out 0.25s;
-	width: 28%;
+
+	@media screen and (max-width: 992px) {
+		flex: 0 0 92%;
+	}
 
 	&:hover {
 		box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);
@@ -28,6 +32,7 @@
 	.border-div {
 		box-sizing: border-box;
 		border: 1px white solid;
+		height: 100%;
 		padding: 50px;
 		position: relative;
 		transition: all ease-in-out 0.25s;
@@ -52,7 +57,9 @@
 	}
 
 	.retailer_directions {
+		bottom: 0;
 		font-size: 14px;
+		position: absolute;
 
 		@media screen and (max-width: 1380px) {
 			font-size: 11px;
@@ -65,8 +72,12 @@
 	}
 
 	.retailer_distance {
+		bottom: 0;
 		float: right;
+		position: absolute;
+		padding-bottom: 30px;
 		padding-top: 4px;
+		right: 0;
 
 		@media screen and (max-width: 1380px) {
 			font-size: 11px;

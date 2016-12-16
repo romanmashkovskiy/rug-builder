@@ -1,14 +1,21 @@
 .retailer {
   background: white;
   box-sizing: border-box;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 28%;
+  flex: 0 0 28%;
   float: left;
   margin-bottom: 50px;
   margin-left: 4%;
   padding: 10px;
   position: relative;
   -webkit-transition: all ease-in-out 0.25s;
-  transition: all ease-in-out 0.25s;
-  width: 28%; }
+  transition: all ease-in-out 0.25s; }
+  @media screen and (max-width: 992px) {
+    .retailer {
+      -webkit-box-flex: 0;
+      -ms-flex: 0 0 92%;
+      flex: 0 0 92%; } }
   .retailer:hover {
     box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08); }
     .retailer:hover .border-div {
@@ -22,6 +29,7 @@
   .retailer .border-div {
     box-sizing: border-box;
     border: 1px white solid;
+    height: 100%;
     padding: 50px;
     position: relative;
     -webkit-transition: all ease-in-out 0.25s;
@@ -38,15 +46,21 @@
   .retailer .retailer__email {
     text-transform: capitalize; }
   .retailer .retailer_directions {
-    font-size: 14px; }
+    bottom: 0;
+    font-size: 14px;
+    position: absolute; }
     @media screen and (max-width: 1380px) {
       .retailer .retailer_directions {
         font-size: 11px; } }
     .retailer .retailer_directions:before, .retailer .retailer_directions:after {
       background: black; }
   .retailer .retailer_distance {
+    bottom: 0;
     float: right;
-    padding-top: 4px; }
+    position: absolute;
+    padding-bottom: 30px;
+    padding-top: 4px;
+    right: 0; }
     @media screen and (max-width: 1380px) {
       .retailer .retailer_distance {
         font-size: 11px;
