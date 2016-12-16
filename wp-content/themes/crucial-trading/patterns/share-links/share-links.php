@@ -24,9 +24,9 @@ function share_links( $atts ) {
 
 	$html .= '<div class="share-links clearfix">';
 
-	$html .= '<div class="share-title ' . $material . '">';
+	$html .= '<div class="share-title rotated-text ' . $material . '">';
 	$html .= '<span></span>';
-	$html .= '<h3 class="rotate">Share</h3>';
+	$html .= '<h3 class="">Share</h3>';
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';
@@ -36,7 +36,7 @@ function share_links( $atts ) {
 
 	$html .= '<div class="link__container ' . $material . '">';
 	$html .= '<i class="icon-crucial-facebook link__icon transition-all"></i>';
-	$html .= '<a href="https://facebook.com/sharer/sharer.php?u=Crucial%20Trading:%20' . get_the_title() . '%20' . get_the_permalink() . '" target="_blank" class="link__text">Facebook</a>';
+	$html .= '<a href="https://www.facebook.com/sharer/sharer.php?u=CrucialTrading:" title="Share on Facebook" class="link__text" target="_blank">Facebook</a>';
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';

@@ -1,13 +1,25 @@
+ /************************************************************************************************************************
+	Share Lnks - General Styles
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+
 @import '../../assets/css/src/_variables';
 
 .share-links {
 	padding: 25px 12.5%;
 	position: relative;
-
+	
+		@media screen and (max-width: 768px) {
+			padding: 0px 12.5%;
+		}
+	
 	.share-title {
-		left: 0;
+		right: 97%;
 		position: absolute;
-		top: 45px;
+		top: 25%;
 
 		@media screen and (max-width: 768px) {
 			display: none;
@@ -90,14 +102,24 @@
 		}
 	}
 
+/****** Link Container ******/
+
 	.link__container {
 		float: left;
 		text-align:center;
 		width: 25%;
 
 		@media screen and (max-width: 768px) {
-			margin-bottom: 10px;
-			width: 100%;
+			margin-bottom: 50px;
+			width: 50%;
+		}
+
+		a {
+			
+			@media screen and (max-width: 768px) {
+				font-size: 15px;
+			}
+			
 		}
 
 		a:before, a:after {
@@ -222,5 +244,10 @@
 	.link__icon {
 		display: block;
 		margin-bottom: 20px;
+		
+		@media all and (max-width: 767px) {
+			margin-bottom: 10px;
+		}
+		
 	}
 }

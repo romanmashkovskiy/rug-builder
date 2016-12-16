@@ -45,6 +45,11 @@ a::after {
 	height: 2px;
 	transition: all 0.3s ease-in-out 0s;
 	content: '';	
+	
+	@media all and (max-width: 767px) {
+		bottom: 15px;
+	}
+	
 }
 
 a::before {
@@ -58,7 +63,8 @@ a::after {
 	visibility: hidden;
 }
 
-a:hover::after {
+a:hover::after,
+a:active::after {
 	visibility: visible;
 	transform: scaleX(1);
 }
