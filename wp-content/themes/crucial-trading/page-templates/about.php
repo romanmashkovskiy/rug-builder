@@ -130,4 +130,4 @@ echo do_shortcode( '[logo-nav]' ); ?>
 		
 </div>
 
-<?php //get_footer();
+<?php get_footer();

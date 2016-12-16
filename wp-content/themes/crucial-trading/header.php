@@ -23,4 +23,4 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 	</head>
 	<body <?php body_class( $header_class ); ?>>
 		<div id="page" class="site">
-			<div id="content" class="site-content">
+			<main id="content" class="site-content">
