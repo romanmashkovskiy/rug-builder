@@ -39,13 +39,28 @@ function google_map( $atts = '' ) {
 		$loc = $atts['loc'];
 	}
 
-	$overseas = '';
+	$over_coords = '';
 
 	if ( is_array( $atts ) && array_key_exists( 'overseas', $atts ) ) {
-		$overseas = rwmb_meta( 'address', array(), $atts['overseas'] );
+
+		$overseas_arr = array_filter( explode( ',', $atts['overseas'] ) );
+
+		for ( $i = 0; $i < count( $overseas_arr ); $i++ ) {
+
+			$lat = get_post_meta( $overseas_arr[$i], 'retailer_lat', true );
+			$lng = get_post_meta( $overseas_arr[$i], 'retailer_lng', true );
+
+			$over_coords .= $lat . ',' . $lng . '|';
+		}
 	}
 
-	$html = '<div id="google-map" data-coordinates="' . $coordinates . '" data-loc="' . $loc . '" data-overseas="' . $overseas . '"></div>';
+	$country = '';
+
+	if ( is_array( $atts ) && array_key_exists( 'country' , $atts) ) {
+		$country = $atts['country'];
+	}
+
+	$html = '<div id="google-map" data-coordinates="' . $coordinates . '" data-loc="' . $loc . '" data-overseas="' . $over_coords . '" data-country="' . $country . '"></div>';
 
 	return $html;
 }

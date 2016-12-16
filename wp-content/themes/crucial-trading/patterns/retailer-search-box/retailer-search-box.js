@@ -90,17 +90,18 @@ $(document).ready(function() {
 			.done(function(result) {
 
 				var retailers = JSON.parse(result);
-				var retailer;
+				var ids = '';
+
+				console.log(retailers)
 
 				for ( var i = 0; i < retailers.length; i++ ) {
 
 					if ( retailers[i].country === country ) {
-						retailer = retailers[i];
-						break;
+						ids += retailers[i].ID + ',';
 					}
 				}
 
-				var newUrl = window.location.origin + window.location.pathname + '?country=' + country + '&id=' + retailer.ID;
+				var newUrl = window.location.origin + window.location.pathname + '?country=' + country + '&ids=' + ids;
 
 				window.location.href = newUrl;
 			})

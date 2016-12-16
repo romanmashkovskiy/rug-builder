@@ -7,7 +7,7 @@ $(document).ready(function() {
 		var $map = document.getElementById('google-map');
 
 		var loc     = $($map).data('loc');
-		var overseas = $($map).data('overseas');
+		var country = $($map).data('country');
 
 		if ( loc !== '' ) {
 
@@ -26,16 +26,16 @@ $(document).ready(function() {
 				createMap( latLng, zoom, $map );
 			});
 		}
-		else if ( overseas !== '' ) {
+		else if ( country !== '' ) {
 
 			var geocoder = new google.maps.Geocoder();
 
 			geocoder.geocode({ 
-				'address'               : overseas
+				'address'               : country
 			}, function(result, status) {
 
 				var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
-				var zoom   = status === 'OK' ? 5 : 14;
+				var zoom   = status === 'OK' ? 7 : 14;
 
 				createMap( latLng, zoom, $map );
 			});
@@ -60,6 +60,7 @@ function createMap( latLng, zoom, $map ) {
 	var coordinates = coordStr && coordStr !== '' ? coordStr.split('|') : false;
 
 	var overseas = $($map).data('overseas');
+	var coordinates = overseas && overseas !== '' ? overseas.split('|') : false;
 
 	var map = new google.maps.Map($map, {
 		center           : latLng,
@@ -91,7 +92,7 @@ function createMap( latLng, zoom, $map ) {
 
 		for ( var i = 0; i < coordinates.length; i++ ) {
 
-			if ( coordinates[i] !== '' ) {
+			if ( coordinates[i] !== '' && coordinates[i] !== '0,0' ) {
 
 				var comma = coordinates[i].indexOf(',');
 

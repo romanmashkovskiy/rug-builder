@@ -110,7 +110,7 @@ function retailer_card( $atts = '' ) {
 		$html .= '<p class="retailer__address">' . nl2br( $address ) . '</p>';
 		$html .= '<div class="retailer__contact">';
 		if ( $website != '' ) {
-			$html .= '<p class="retailer__website">' . $website . 'www.fulton.de</p>';
+			$html .= '<p class="retailer__website">' . $website . '</p>';
 		}
 		if ( $phone != '' ) {
 			$html .= '<p class="retailer__phone">' . $phone . '</p>';
