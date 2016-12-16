@@ -32,7 +32,6 @@ function crucial_footer() {
 			<ul>
 				<li><a href="'.$crucial_social_link_twitter.'" title="Twitter" target="_blank">twitter <i class="icon-crucial-twitter"></i></a></li>
 				<li><a href="'.$crucial_social_link_insta.'" title="Instagram" target="_blank">instagram <i class="icon-crucial-instagram"></i></a></li>
-				<li><a href="'.$crucial_social_link_tumblr.'" title="Instagram" target="_blank">tumblr <i class="icon-crucial-tumblr"></i></a></li>
 			</ul>
 		</div>
 		<div class="footer__col footer__col--nav-1 col-sm-6 col-md-4">
