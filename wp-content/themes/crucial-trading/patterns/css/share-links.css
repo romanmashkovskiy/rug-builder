@@ -1,11 +1,4 @@
 /************************************************************************************************************************
-	Share Lnks - General Styles
-	
-	Crucial Trading - SCSS	
-	Created by: KIJO Creative <hello@kijo.co>
-
-*************************************************************************************************************************/
-/************************************************************************************************************************
 	Variables
 	
 	Styles any forms used across the website
@@ -19,11 +12,7 @@
 /* Main Navigation & Footer */
 .share-links {
   padding: 25px 12.5%;
-  position: relative;
-  /****** Link Container ******/ }
-  @media screen and (max-width: 768px) {
-    .share-links {
-      padding: 0px 12.5%; } }
+  position: relative; }
   .share-links .share-title {
     left: 0;
     position: absolute;
@@ -68,11 +57,8 @@
     width: 25%; }
     @media screen and (max-width: 768px) {
       .share-links .link__container {
-        margin-bottom: 50px;
-        width: 50%; } }
-    @media screen and (max-width: 768px) {
-      .share-links .link__container a {
-        font-size: 15px; } }
+        margin-bottom: 10px;
+        width: 100%; } }
     .share-links .link__container a:before, .share-links .link__container a:after {
       background: black; }
     .share-links .link__container.coir i, .share-links .link__container.coir a {
@@ -120,6 +106,3 @@
   .share-links .link__icon {
     display: block;
     margin-bottom: 20px; }
-    @media all and (max-width: 767px) {
-      .share-links .link__icon {
-        margin-bottom: 10px; } }
