@@ -35,7 +35,7 @@ if ( array_key_exists( 'get_retailers', $_GET ) ) {
 
 		$lat     = get_post_meta( $post_id, 'retailer_lat', true );
 		$lng     = get_post_meta( $post_id, 'retailer_lng', true );
-		$country = rwmb_meta( 'retailer_country', array(), $post_id );
+		$country = strtolower( rwmb_meta( 'retailer_country', array(), $post_id ) );
 
 		$post->lat     = $lat;
 		$post->lng     = $lng;
@@ -58,7 +58,7 @@ $country         = '';
 
 if ( array_key_exists( 'country', $_GET ) ) {
 	$overseas_result = array_key_exists( 'id', $_GET ) ? $_GET['id'] : 0;
-	$country         = $_GET['country'];
+	$country         = strtolower( $_GET['country'] );
 }
 
 $showroom_args = array(

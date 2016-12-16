@@ -51,6 +51,7 @@ function retailer_search_box( $atts = '' ) {
 	}
 
 	sort( $countries );
+	$countries = array_unique( $countries );
 
 	$html .= '<div class="retailer-search box-shadow">';
 	$html .= '<h2>Filter Retailers</h2>';
@@ -62,8 +63,13 @@ function retailer_search_box( $atts = '' ) {
 	$html .= '<option selected disabled">Select a Country</option>';
 
 	for ( $i2 = 0; $i2 < count( $countries ); $i2++ ) {
-		$selected = $country == $countries[$i2] ? 'selected' : '';
-		$html .= '<option value="' . $countries[$i2] . '" ' . $selected . '>' . $countries[$i2] . '</option>';
+
+		$country_text  = $countries[$i2];
+		$country_lower = strtolower( $country_text );
+		$country_cap   = ucwords( $country_lower );
+
+		$selected = $country == $country_lower ? 'selected' : '';
+		$html .= '<option value="' . $country_lower . '" ' . $selected . '>' . $country_cap . '</option>';
 	}
 
 	$html .= '</select>';
