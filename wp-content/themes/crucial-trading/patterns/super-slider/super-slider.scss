@@ -49,6 +49,9 @@
 						height: auto
 					}
 					
+					@media screen and (max-height: 585px) {
+						display: none;
+					}
 				}
 			}
 

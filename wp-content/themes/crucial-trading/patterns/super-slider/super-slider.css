@@ -47,6 +47,9 @@
             margin-left: auto;
             margin-right: auto;
             height: auto; } }
+        @media screen and (max-height: 585px) {
+          #super-slider .slide.opening img.opening-slide-logo {
+            display: none; } }
     #super-slider .slide.opening a:before,
     #super-slider .slide.opening a:after {
       display: none; }
