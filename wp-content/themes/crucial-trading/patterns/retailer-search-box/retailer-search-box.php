@@ -52,6 +52,7 @@ function retailer_search_box( $atts = '' ) {
 
 	sort( $countries );
 	$countries = array_unique( $countries );
+	$countries = array_values( $countries );
 
 	$html .= '<div class="retailer-search box-shadow">';
 	$html .= '<h2>Filter Retailers</h2>';
