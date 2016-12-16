@@ -8,6 +8,4 @@
  * @since Crucial Trading 1.0
  */
 
-echo 1;
-
 header( 'Location: ' . site_url() . '/materials' );

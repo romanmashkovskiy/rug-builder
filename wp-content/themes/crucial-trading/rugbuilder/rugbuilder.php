@@ -45,18 +45,6 @@ if ( array_key_exists( 'products', $_GET ) ) {
 </head>
 <body>
 
-	<div id="hello">
-		<?php echo do_shortcode( '[logo-nav]' ); ?>
-		<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161213142159/rug-builder-white-icon.svg" class="logo" alt="Rug Builder">
-		<div class="hello__content">
-			<h3>Build Your Own</h3>
-			<h1>Rug Builder</h1>
-			<p>With thousands of combination, our easy-to-use Rug Builder puts you in the shoes of the designer.</p>
-			<a href="#" class="start">Start Building</a>
-		</div>
-		<h3 class="name">Rug Builder</h3>
-	</div>
-
 	<div id="app">
 		<div id="full-loading">
 			<h1>Loading</h1>
@@ -73,8 +61,6 @@ if ( array_key_exists( 'products', $_GET ) ) {
 			<img src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder/assets/icons/exit.svg" id="close-error">
 		</div>
 	</div>
-
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/script.js"></script>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/PubSub/pubsub.min.js"></script>
 
