@@ -22,7 +22,7 @@ Links & special Link underline base styles
 **************************************************************/
 
 a {
-	@include typography-standards(#000000, $font-sub-header, 17px, 2.5px);
+	@include typography-standards(#000000, $font-sub-header, 15px, 2.5px);
 	padding-bottom: 5px;
 	position: relative;
 	text-decoration: none;
@@ -33,6 +33,7 @@ a {
 	
 	&:hover {
 		text-decoration: none;
+		color: lighten(#000000, 10%);
 	}
 }
 

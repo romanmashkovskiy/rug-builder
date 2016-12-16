@@ -93,6 +93,11 @@ function retailer_meta_boxes( $meta_boxes ) {
 				'type'      => 'text',
 			),
 			array(
+				'name'      => 'Postcode',
+				'id'        => 'retailer_address_postcode',
+				'type'      => 'text',
+			),
+			array(
 				'name'      => 'Phone Number',
 				'id'        => 'retailer_telephone_1',
 				'type'      => 'number',

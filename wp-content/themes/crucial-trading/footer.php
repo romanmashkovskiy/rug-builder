@@ -12,7 +12,6 @@
 ?>
 
 
-			</main>
 
 			<?php echo do_shortcode( '[footer]' ); ?>
 <!--
@@ -83,6 +82,8 @@
 				</div>
 			</div>
 
+		
+			</main>
 		</div>
 		<?php wp_footer(); ?>
 	</body>
