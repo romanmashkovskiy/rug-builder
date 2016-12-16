@@ -359,5 +359,5 @@ function get_country_code( $country ) {
 		'Zimbabwe' => 'zw',
 	);
 
-	return $codes[$country];
+	return array_key_exists( $country, $codes ) ? $codes[$country] : '';
 }
