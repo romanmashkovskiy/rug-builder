@@ -63,7 +63,8 @@ function material_view( $atts = '' ) {
 	$_product = wc_get_product( $post_id );
 	$price    = $_product->get_price();
 
-	$src       = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'single-post-thumbnail' )[0];
+	$_src      = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'single-post-thumbnail' );
+	$src       = array_key_exists( 0, $_src ) ? $_src[0] : '';
 	$src_arr   = array_values( $product->get_gallery_attachment_ids() );
 	$src_angle = count( $src_arr ) > 0 ? wp_get_attachment_url( $src_arr[0] ) : '';
 

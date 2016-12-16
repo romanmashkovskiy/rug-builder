@@ -28,7 +28,8 @@ function brochure_cta() {
 		$brochure = $query->posts[0];
 
 		$brochure_id  = $brochure->ID;
-		$brochure_img = wp_get_attachment_image_src( get_post_thumbnail_id( $brochure_id ), 'single-post-thumbnail' )[0];
+		$brochure_src = wp_get_attachment_image_src( get_post_thumbnail_id( $brochure_id ), 'single-post-thumbnail' );
+		$brochure_img = array_key_exists( 0, $brochure_src ) ? $brochure_src[0] : '';
 
 		$html .= '<section class="section-box box-shadow clearfix">';
 

@@ -34,8 +34,8 @@ function header_shortcode($atts = '') {
 		$header_archive_title = '';
 	endif;
 	
-	$title    = get_the_title();
-	$subtitle = get_post_meta( get_the_ID(), 'subtitle', true );
+	$title         = get_the_title();
+	$subtitle      = get_post_meta( get_the_ID(), 'subtitle', true );
 	$archive_title = get_the_archive_title();
 
 	$attachment_id = has_post_thumbnail() ? get_post_thumbnail_id() : false;

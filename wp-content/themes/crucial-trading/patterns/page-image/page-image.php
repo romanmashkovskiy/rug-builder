@@ -36,7 +36,7 @@ function page_image( $atts = '' ) {
 
 		for ( $i = 0; $i < $count_other; $i++ ) {
 
-			$image_id  = array_key_exists( 'other_image', $other_imgs[$i] ) ? $other_imgs[$i]['other_image'][0] : '';
+			$image_id  = array_key_exists( 'other_image', $other_imgs[$i] ) ? $other_imgs[$i]['other_image'][0] : 0;
 			$image_src = wp_get_attachment_image_src( $image_id, 'full' )[0];
 			$image_tag = array_key_exists( 'image_tag', $other_imgs[$i] ) ? $other_imgs[$i]['image_tag'] : '';
 

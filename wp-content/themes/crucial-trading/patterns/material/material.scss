@@ -92,26 +92,32 @@
 		}
 	}
 
+	&.coir .material__link:before,
 	&.coir .material__link:after {
 		background: $color-coir-dark;
 	}
 
+	&.jute .material__link:before,
 	&.jute .material__link:after {
 		background: $color-jute-dark;
 	}
 
+	&.seagrass .material__link:before,
 	&.seagrass .material__link:after {
 		background: $color-seagrass-dark;
 	}
 
+	&.sisal .material__link:before,
 	&.sisal .material__link:after {
 		background: $color-sisal-dark;
 	}
 
+	&.sisool .material__link:before,
 	&.sisool .material__link:after {
 		background: $color-sisool-dark;
 	}
 
+	&.wool .material__link:before,
 	&.wool .material__link:after {
 		background: $color-wool-dark;
 	}

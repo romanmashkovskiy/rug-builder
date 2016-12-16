@@ -120,16 +120,22 @@
     @media screen and (max-width: 992px) {
       .material-box span {
         margin-top: 25px; } }
+  .material-box.coir .material__link:before,
   .material-box.coir .material__link:after {
     background: #6F533D; }
+  .material-box.jute .material__link:before,
   .material-box.jute .material__link:after {
     background: #4B3B2E; }
+  .material-box.seagrass .material__link:before,
   .material-box.seagrass .material__link:after {
     background: #6B6551; }
+  .material-box.sisal .material__link:before,
   .material-box.sisal .material__link:after {
     background: #454F44; }
+  .material-box.sisool .material__link:before,
   .material-box.sisool .material__link:after {
     background: #817E62; }
+  .material-box.wool .material__link:before,
   .material-box.wool .material__link:after {
     background: #665F4D; }
   .material-box.coir * {
