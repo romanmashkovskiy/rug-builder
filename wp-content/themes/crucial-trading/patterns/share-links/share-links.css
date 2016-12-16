@@ -25,10 +25,9 @@
     .share-links {
       padding: 0px 12.5%; } }
   .share-links .share-title {
-    left: 0;
+    right: 97%;
     position: absolute;
-    top: 45px;
-    display: none; }
+    top: 25%; }
     @media screen and (max-width: 768px) {
       .share-links .share-title {
         display: none; } }
