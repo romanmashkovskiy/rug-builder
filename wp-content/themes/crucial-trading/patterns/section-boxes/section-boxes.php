@@ -29,16 +29,16 @@ function section_box( $atts = '' ) {
 
 				$box = $boxes[$number];
 
-				$title     = array_key_exists('title', $box) ? $box['title'] : '';
-				$subtitle  = array_key_exists('subtitle', $box) ? $box['subtitle'] : '';
-				$text      = array_key_exists('text', $box) ? $box['text'] : '';
-				$link_text = array_key_exists('link-text', $box) ? $box['link-text'] : '';
-				$link      = array_key_exists('link-href', $box) ? $box['link-href'] : '';
+				$title     = is_array( $box ) && array_key_exists('title', $box) ? $box['title'] : '';
+				$subtitle  = is_array( $box ) && array_key_exists('subtitle', $box) ? $box['subtitle'] : '';
+				$text      = is_array( $box ) && array_key_exists('text', $box) ? $box['text'] : '';
+				$link_text = is_array( $box ) && array_key_exists('link-text', $box) ? $box['link-text'] : '';
+				$link      = is_array( $box ) && array_key_exists('link-href', $box) ? $box['link-href'] : '';
 
 				$id_title = str_replace( ' ', '-', strtolower( $title ) );
 
-				$side  = array_key_exists('side', $box) ? $box['side'] : 'left';
-				$image = array_key_exists('image', $box) ? $box['image'][0] : '';
+				$side  = is_array( $box ) && array_key_exists('side', $box) ? $box['side'] : 'left';
+				$image = is_array( $box ) && array_key_exists('image', $box) ? $box['image'][0] : '';
 
 				$src = wp_get_attachment_image_src( $image, 'medium_large' )[0];
 

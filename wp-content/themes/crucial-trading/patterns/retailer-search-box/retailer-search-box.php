@@ -46,7 +46,7 @@ function retailer_search_box( $atts = '' ) {
 	$countries = array();
 
 	for ( $i = 0; $i < $overseas_query->post_count; $i++ ) {
-		$this_country = rwmb_meta( 'country', array(), $overseas_query->posts[$i]->ID );
+		$this_country = rwmb_meta( 'retailer_country', array(), $overseas_query->posts[$i]->ID );
 		array_push( $countries, $this_country );
 	}
 

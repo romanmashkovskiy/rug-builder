@@ -50,21 +50,21 @@ function material_view( $atts = '' ) {
 	$under_2_arr  = wc_get_product_terms( $post_id, 'pa_underlay-2', array( 'fields' => 'names' ) );
 	$under_3_arr  = wc_get_product_terms( $post_id, 'pa_underlay-3', array( 'fields' => 'names' ) );
 
-	$width    = array_key_exists( 0, $width_arr ) ? $width_arr[0] : false;
-	$backing  = array_key_exists( 0, $backing_arr ) ? $backing_arr[0] : false;
-	$fibre    = array_key_exists( 0, $fibre_arr ) ? $fibre_arr[0] : false;
-	$suit_1   = array_key_exists( 0, $suit_1_arr ) ? $suit_1_arr[0] : false;
-	$suit_2   = array_key_exists( 0, $suit_2_arr ) ? $suit_2_arr[0] : false;
-	$suit_3   = array_key_exists( 0, $suit_3_arr ) ? $suit_3_arr[0] : false;
-	$under_1  = array_key_exists( 0, $under_1_arr ) ? $under_1_arr[0] : false;
-	$under_2  = array_key_exists( 0, $under_2_arr ) ? $under_2_arr[0] : false;
-	$under_3  = array_key_exists( 0, $under_3_arr ) ? $under_3_arr[0] : false;
+	$width    = is_array( $width_arr ) && array_key_exists( 0, $width_arr ) ? $width_arr[0] : false;
+	$backing  = is_array( $backing_arr ) && array_key_exists( 0, $backing_arr ) ? $backing_arr[0] : false;
+	$fibre    = is_array( $fibre_arr ) && array_key_exists( 0, $fibre_arr ) ? $fibre_arr[0] : false;
+	$suit_1   = is_array( $suit_1_arr ) && array_key_exists( 0, $suit_1_arr ) ? $suit_1_arr[0] : false;
+	$suit_2   = is_array( $suit_2_arr ) && array_key_exists( 0, $suit_2_arr ) ? $suit_2_arr[0] : false;
+	$suit_3   = is_array( $suit_3_arr ) && array_key_exists( 0, $suit_3_arr ) ? $suit_3_arr[0] : false;
+	$under_1  = is_array( $under_1_arr ) && array_key_exists( 0, $under_1_arr ) ? $under_1_arr[0] : false;
+	$under_2  = is_array( $under_2_arr ) && array_key_exists( 0, $under_2_arr ) ? $under_2_arr[0] : false;
+	$under_3  = is_array( $under_3_arr ) && array_key_exists( 0, $under_3_arr ) ? $under_3_arr[0] : false;
 
 	$_product = wc_get_product( $post_id );
 	$price    = $_product->get_price();
 
 	$_src      = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'single-post-thumbnail' );
-	$src       = array_key_exists( 0, $_src ) ? $_src[0] : '';
+	$src       = is_array( $_src ) && array_key_exists( 0, $_src ) ? $_src[0] : '';
 	$src_arr   = array_values( $product->get_gallery_attachment_ids() );
 	$src_angle = count( $src_arr ) > 0 ? wp_get_attachment_url( $src_arr[0] ) : '';
 

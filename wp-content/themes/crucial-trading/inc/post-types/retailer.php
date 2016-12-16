@@ -109,7 +109,7 @@ function retailer_meta_boxes( $meta_boxes ) {
 			),
 			array(
 				'name'      => 'Country',
-				'id'        => 'country',
+				'id'        => 'retailer_country',
 				'type'      => 'text',
 			),
 		),

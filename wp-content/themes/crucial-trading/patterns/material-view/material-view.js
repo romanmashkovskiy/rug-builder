@@ -107,12 +107,17 @@ $(document).ready(function() {
 
 		$.get(url)
 			.done(function() {
-//				showBasketPopup(true, productName);
+
 				$('body').removeClass('basket-empty');
 				$('body').addClass('basket-full');
+
+				var oldNumItems = parseInt( $('#num-items-basket').text() );
+				var newNumItems = oldNumItems + 1;
+
+				$('#num-items-basket').text(newNumItems);
 			})
 			.fail(function() {
-				showBasketPopup(false);
+//				showBasketPopup(false);
 			})
 
 		return false;
