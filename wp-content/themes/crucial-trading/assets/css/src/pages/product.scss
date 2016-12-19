@@ -24,3 +24,29 @@
 		}
 	}
 }
+
+@media print {
+
+	.single-product {
+
+		.top-bar,
+		.header__back,
+		.header__links,
+		.material__name,
+		#change-image-view,
+		.other-ranges-title,
+		.other-ranges,
+		.share-links,
+		footer {
+			display: none;
+		}
+
+		.material__body {
+			margin-top: -250px;
+		}
+
+		.material__details {
+			position: static !important;
+		}
+	}
+}
