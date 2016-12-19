@@ -77,7 +77,7 @@
           padding-right: 0; } }
       @media screen and (max-width: 768px) {
         .material-slide .slide__list li:nth-child(3) {
-          margin-right: 21vw; } }
+          margin-right: 22vw; } }
       @media screen and (max-width: 594px) {
         .material-slide .slide__list li:nth-child(3) {
           margin-right: 11vw; } }
