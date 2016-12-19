@@ -102,6 +102,9 @@ header.material {
           clear: none; } }
     header.material .material__info h1 {
       text-align: left; }
+    @media screen and (max-width: 400px) {
+      header.material .material__info p {
+        margin-top: 60px; } }
     header.material .material__info.coir h1, header.material .material__info.coir p {
       color: #B28865; }
     header.material .material__info.coir h3 {

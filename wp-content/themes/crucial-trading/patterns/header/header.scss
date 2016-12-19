@@ -130,6 +130,13 @@ header.material {
 			text-align: left;
 		}
 
+		p {
+
+			@media screen and (max-width: 400px) {
+				margin-top: 60px;
+			}
+		}
+
 		&.coir {
 
 			h1, p {
