@@ -25,14 +25,4 @@ $(document).ready(function() {
 			scrollTop: scrollTop
 		}, 1100);
 	});
-
-	/*$('#play-video').on('click', function(e) {
-
-		e.preventDefault();
-		e.stopPropagation();
-
-
-
-		return false;
-	});*/
 });
