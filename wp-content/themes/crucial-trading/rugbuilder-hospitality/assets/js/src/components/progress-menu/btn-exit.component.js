@@ -5,7 +5,7 @@ RugBuilder.prototype.btnExitComponent = function() {
 		render: function() {
 
 			const SRC = templateDirectoryUri + '/rugbuilder/assets/icons/exit.svg';
-			const URL = window.location.href;
+			const URL = siteUrl;
 			
 			return (
 				<a href={ URL } className="progress-menu__exit">

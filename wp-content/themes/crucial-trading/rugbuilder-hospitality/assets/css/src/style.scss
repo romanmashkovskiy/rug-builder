@@ -67,11 +67,33 @@ canvas {
 	-moz-box-shadow: 0px 5px 18px 0 rgba(0,0,0,.45);
 	box-shadow: 0px 5px 18px 0 rgba(0,0,0,.45);
 	height: 512px;
-	left: calc(50% - 256px);
+	margin: auto;
+	margin-top: calc(50vh - 256px - 81px); // 50vh - half of elem - half of drawer = middle of remaining space
 	overflow: hidden;
-	position: absolute;
-	top: 50%;
 	width: 512px;
+
+	@media screen and (max-width: 550px) {
+		height: 256px;
+		margin-top: calc(50vh - 128px - 81px);
+		width: 256px;
+	}
+
+	@media screen and (max-height: 790px) and (min-width: 992px) {
+		height: 256px;
+		margin-top: 58px;
+		width: 256px;
+	}
+
+	@media screen and (max-height: 500px) and (min-width: 992px) {
+		height: 50vh;
+		width: 50vh;
+	}
+
+	@media screen and (max-width: 992px) and (max-height: 830px) {
+		height: 256px;
+		margin-top: 78px;
+		width: 256px;
+	}
 
 	&.hidden {
 		display: none;
@@ -79,39 +101,19 @@ canvas {
 
 	div, img {
 		height: 100%;
-		position: absolute;
 		width: 100%;
-	}
-
-	@media screen and (max-height: 1040px) {
-		height: 256px;
-		left: calc(50% - 128px);
-		top: 56%;
-		width: 256px;
-	}
-
-	@media screen and (max-width: 555px) {
-		height: 256px;
-		left: calc(50% - 128px);
-		top: 56%;
-		width: 256px;
 	}
 }
 
 #choices {
-	left: 35px;
-	position: relative;
-	top: 50px;
-	width: 290px;
+	display: none;
+	margin-top: calc(50vh + 100px);
+	position: absolute;
 
 	div {
 		float: left;
 		text-align: center;
 		width: 120px;
-
-		&:nth-child(odd) {
-			margin-right: 50px;
-		}
 	}
 
 	p {
@@ -122,26 +124,6 @@ canvas {
 		height: 100px;
 		width: 100px;
 	}
-
-//	@media screen and (max-width: 1280px) {
-//		width: calc(100% - 35px);
-
-//		div:nth-child(odd) {
-//			margin-right: 67%;
-//		}
-//	}
-
-//	@media screen and (max-width: 992px) {
-//		top: 600px;
-
-//		div:nth-child(odd) {
-//			margin-right: auto;
-//		}
-//	}
-
-//	@media screen and (max-width: 555px) {
-//		top: 450px;
-//	}
 }
 
 #little-loader {

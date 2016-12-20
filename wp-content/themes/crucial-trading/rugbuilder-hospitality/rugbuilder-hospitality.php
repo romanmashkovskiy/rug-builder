@@ -71,6 +71,7 @@
 
 	<script>
 		var templateDirectoryUri = '<?php echo get_template_directory_uri(); ?>';
+		var siteUrl = '<?php echo site_url(); ?>';
 		var rugBuilder = new RugBuilder('website');
 		rugBuilder.start();
 	</script>
