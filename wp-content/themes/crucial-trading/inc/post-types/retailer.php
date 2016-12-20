@@ -220,9 +220,9 @@ function save_retailer_post( $post_id, $post, $update ) {
 	$address_3 = rwmb_meta( 'retailer_address_3', array(), $post_id );
 	$address_4 = rwmb_meta( 'retailer_address_4', array(), $post_id );
 	$address_5 = rwmb_meta( 'retailer_address_5', array(), $post_id );
-	$address_6 = rwmb_meta( 'retailer_address_town', array(), $post_id );
-	$address_7 = rwmb_meta( 'retailer_address_county', array(), $post_id );
-	$address_8 = rwmb_meta( 'retailer_address_postcode', array(), $post_id );
+	$address_6 = rwmb_meta( 'retailer_town', array(), $post_id );
+	$address_7 = rwmb_meta( 'retailer_county', array(), $post_id );
+	$address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
 
 	$address = $address_1 . "\r\n" . $address_2 . "\r\n" . $address_3 . "\r\n" . $address_4 . "\r\n" . $address_5 . "\r\n" . $address_6 . "\r\n" . $address_7 . "\r\n" . $address_8;
 	$url_address = urlencode($address);

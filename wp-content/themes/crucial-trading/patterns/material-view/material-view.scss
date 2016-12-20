@@ -3,28 +3,32 @@
 .material-view {
 	background: white;
 	margin-left: 10%;
-	padding: 30px;
+	padding: 24px 30px 30px;
 	position: relative;
 	width: 80%;
 
 	.material__header {
-		margin-bottom: 40px;
+		margin-bottom: 20px;
 
 		@media screen and (max-width: 768px) {
 			margin-bottom: 20px;
 		}
 	}
 
+	.header__back {
+		padding-bottom: 15px;
+	}
+
 	.header__titles {
 		text-align: center;
 
 		h1 {
-			margin: 10px 0 50px;
+			margin: 10px 0 25px;
 			word-break: break-word;
 		}
 
 		h3 {
-			margin-bottom: 60px;
+			margin-bottom: 30px;
 		}
 	}
 

@@ -131,6 +131,8 @@ add_shortcode( 'retailer-card', 'retailer_card' );
 
 function get_country_code( $country ) {
 
+	$country = ucwords( strtolower( $country ) );
+
 	$codes = array(
 		'Afghanistan' => 'af',
 		'Aland Islands' => 'ax',
