@@ -4,6 +4,8 @@ $(document).ready(function() {
 
 	$('.retailer-search button').on('click', function() {
 
+		$('body').css('cursor', 'wait');
+
 		if ( $('.overseas-partners').length === 1 ) {
 			
 			var postCode = $('.retailer-search input').val();
@@ -91,8 +93,6 @@ $(document).ready(function() {
 
 				var retailers = JSON.parse(result);
 				var ids = '';
-
-				console.log(retailers)
 
 				for ( var i = 0; i < retailers.length; i++ ) {
 
