@@ -224,7 +224,33 @@ function save_retailer_post( $post_id, $post, $update ) {
 	$address_7 = rwmb_meta( 'retailer_county', array(), $post_id );
 	$address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
 
-	$address = $address_1 . "\r\n" . $address_2 . "\r\n" . $address_3 . "\r\n" . $address_4 . "\r\n" . $address_5 . "\r\n" . $address_6 . "\r\n" . $address_7 . "\r\n" . $address_8;
+	$address = '';
+
+	if ( $address_1 != '' ) {
+		$address .= $address_1;
+	}
+	if ( $address_2 != '' ) {
+		$address .= " " . $address_2;
+	}
+	if ( $address_3 != '' ) {
+		$address .= " " . $address_3;
+	}
+	if ( $address_4 != '' ) {
+		$address .= " " . $address_4;
+	}
+	if ( $address_5 != '' ) {
+		$address .= " " . $address_5;
+	}
+	if ( $address_6 != '' ) {
+		$address .= " " . $address_6;
+	}
+	if ( $address_7 != '' ) {
+		$address .= " " . $address_7;
+	}
+	if ( $address_8 != '' ) {
+		$address .= " " . $address_8;
+	}
+
 	$url_address = urlencode($address);
 
 	$url  = "http://maps.google.com/maps/api/geocode/json?address={$url_address}";
