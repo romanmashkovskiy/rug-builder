@@ -55,6 +55,10 @@ function header_shortcode($atts = '') {
 	if (!empty($subtitle)) : 
 		$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';
 	endif;
+
+	if ( is_array( $atts ) && array_key_exists( 'search', $atts ) ) {
+		$title = $atts['search'];
+	}
 		
 	// Show archive title if is set to archive in $atts
 	if (!empty($header_archive_title)) : 

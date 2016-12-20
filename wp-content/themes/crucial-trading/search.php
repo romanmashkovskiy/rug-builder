@@ -9,15 +9,15 @@
 
 get_header();
 
-echo do_shortcode( '[header]' );
+echo do_shortcode( '[header search="' . get_search_query() . '"]' );
 
 echo do_shortcode( '[logo-nav]' );
 
 		if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'crucial-trading' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-			</header><!-- .page-header -->
+			<div class="contact-select box-shadow">
+				<?php get_search_form(); ?>
+			</div>
 
 			<?php
 			/* Start the Loop */
@@ -36,7 +36,13 @@ echo do_shortcode( '[logo-nav]' );
 
 		else :
 
-			get_template_part( 'template-parts/content', 'none' );
+			?>
+
+			<div class="contact-select box-shadow">
+				<?php get_template_part( 'template-parts/content', 'none' ); ?>
+			</div>
+
+			<?php
 
 		endif;
 
