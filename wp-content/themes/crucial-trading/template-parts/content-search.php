@@ -39,4 +39,4 @@ if ( is_array( $news_cat ) && count( $news_cat ) > 0 ) {
 			</div>
 		</div>
 	</a>
-</article>
+</article> 
