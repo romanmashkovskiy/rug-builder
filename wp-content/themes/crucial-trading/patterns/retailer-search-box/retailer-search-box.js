@@ -4,8 +4,8 @@ $(document).ready(function() {
 
 	$('.retailer-search button').on('click', function() {
 
-		$('body').css('cursor', 'wait');
-		$('button').css('cssText', 'cursor: wait !important;');
+//		$('body').css('cursor', 'wait');
+//		$('button').css('cssText', 'cursor: wait !important;');
 
 		if ( $('.overseas-partners').length === 1 ) {
 			

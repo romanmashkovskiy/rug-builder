@@ -17,7 +17,7 @@
   position: relative;
   width: 80%; }
   .material-view .material__header {
-    margin-bottom: 20px; }
+    margin-bottom: 22px; }
     @media screen and (max-width: 768px) {
       .material-view .material__header {
         margin-bottom: 20px; } }
