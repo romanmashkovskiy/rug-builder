@@ -26,6 +26,38 @@ textarea {
 	font-weight: normal;
 }
 
+input::-webkit-input-placeholder {
+	font-family: $font-copy;
+}
+
+input::-moz-placeholder {
+	font-family: $font-copy;
+}
+
+input:-ms-input-placeholder {
+	font-family: $font-copy;
+}
+
+input:-moz-placeholder {
+	font-family: $font-copy;
+}
+
+textarea::-webkit-input-placeholder {
+	font-family: $font-copy;
+}
+
+textarea::-moz-placeholder {
+	font-family: $font-copy;
+}
+
+textarea:-ms-input-placeholder {
+	font-family: $font-copy;
+}
+
+textarea:-moz-placeholder {
+	font-family: $font-copy;
+}
+
 select {
 	-webkit-appearance: none;
 	appearance: none;
