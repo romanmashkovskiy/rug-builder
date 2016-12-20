@@ -267,21 +267,3 @@ function save_retailer_post( $post_id, $post, $update ) {
 	update_post_meta( $post_id, 'retailer_lat', $lat );
 	update_post_meta( $post_id, 'retailer_lng', $lng );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
