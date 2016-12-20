@@ -26,7 +26,7 @@ $(document).ready(function() {
 			}, function(result, status) {
 
 				if ( status !== 'OK' ) {
-					alert('No');
+					alert('No'); 
 					return;
 				}
 
