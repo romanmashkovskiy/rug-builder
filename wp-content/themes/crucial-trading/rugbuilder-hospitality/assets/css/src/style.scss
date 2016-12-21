@@ -70,6 +70,7 @@ canvas {
 	margin: auto;
 	margin-top: calc(50vh - 256px - 81px); // 50vh - half of elem - half of drawer = middle of remaining space
 	overflow: hidden;
+	position: relative;
 	width: 512px;
 
 	@media screen and (max-width: 550px) {
@@ -102,6 +103,12 @@ canvas {
 	div, img {
 		height: 100%;
 		width: 100%;
+	}
+
+	div {
+		left: 0;
+		position: absolute;
+		top: 0;
 	}
 }
 
