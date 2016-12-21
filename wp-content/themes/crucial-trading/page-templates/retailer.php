@@ -37,64 +37,69 @@ if ( is_array( $_GET ) ) {
 		$json     = file_get_contents( $url );
 		$response = json_decode( $json, true );
 
-		if ( $response['status'] != 'OK' ) {
-			$error = 1;
-		} else {
+		if ( is_array( $response ) && array_key_exists( 'status', $response ) ) {
 
-			$search_lat = $response['results'][0]['geometry']['location']['lat'];
-			$search_lng = $response['results'][0]['geometry']['location']['lng'];
-			$uk_center  = $search_lat . ' ' . $search_lng;
-
-			$args = array(
-				'post_type' => 'retailer',
-				'orderby'   => 'menu_order',
-				'order'     => 'ASC',
-				'posts_per_page' => -1,
-				'tax_query' => array(
-					array(
-						'taxonomy' => 'retailer_type',
-						'field'    => 'slug',
-						'terms'    => 'retailer',
-					),
-				),
-			);
-
-			$query = new WP_Query( $args );
-
-			if ( !$query->have_posts() ) {
-				$error = 10;
+			if ( $response['status'] != 'OK' ) {
+				$error = 1;
 			} else {
 
-				$retailers = array();
+				$search_lat = $response['results'][0]['geometry']['location']['lat'];
+				$search_lng = $response['results'][0]['geometry']['location']['lng'];
+				$uk_center  = $search_lat . ' ' . $search_lng;
 
-				for ( $i = 0; $i < $query->post_count; $i++ ) {
+				$args = array(
+					'post_type' => 'retailer',
+					'orderby'   => 'menu_order',
+					'order'     => 'ASC',
+					'posts_per_page' => -1,
+					'tax_query' => array(
+						array(
+							'taxonomy' => 'retailer_type',
+							'field'    => 'slug',
+							'terms'    => 'retailer',
+						),
+					),
+				);
 
-					$post    = $query->posts[$i];
-					$post_id = $post->ID;
+				$query = new WP_Query( $args );
 
-					$lat = get_post_meta( $post_id, 'retailer_lat', true );
-					$lng = get_post_meta( $post_id, 'retailer_lng', true );
+				if ( !$query->have_posts() ) {
+					$error = 10;
+				} else {
 
-					$post->lat = $lat;
-					$post->lng = $lng;
+					$retailers = array();
 
-					array_push( $retailers, $post );
-				}
+					for ( $i = 0; $i < $query->post_count; $i++ ) {
 
-				for ( $i2 = 0; $i2 < count( $retailers ); $i2++ ) {
+						$post    = $query->posts[$i];
+						$post_id = $post->ID;
 
-					$distance = distance_between_lat_lng( $search_lat, $search_lng, $retailers[$i2]->lat, $retailers[$i2]->lng );
+						$lat = get_post_meta( $post_id, 'retailer_lat', true );
+						$lng = get_post_meta( $post_id, 'retailer_lng', true );
 
-					if ( $distance < 10 ) {
+						$post->lat = $lat;
+						$post->lng = $lng;
 
-						$retailers[$i2]->distance = $distance;
+						array_push( $retailers, $post );
+					}
 
-						$pin_coords .= $retailers[$i2]->lat . ' ' . $retailers[$i2]->lng . ',';
+					for ( $i2 = 0; $i2 < count( $retailers ); $i2++ ) {
 
-						array_push( $uk_retailers, $retailers[$i2] );
+						$distance = distance_between_lat_lng( $search_lat, $search_lng, $retailers[$i2]->lat, $retailers[$i2]->lng );
+
+						if ( $distance < 10 ) {
+
+							$retailers[$i2]->distance = $distance;
+
+							$pin_coords .= $retailers[$i2]->lat . ' ' . $retailers[$i2]->lng . ',';
+
+							array_push( $uk_retailers, $retailers[$i2] );
+						}
 					}
 				}
 			}
+		} else {
+			$error = 1;
 		}
 
 	} else if ( array_key_exists( 'country', $_GET ) ) {
@@ -106,8 +111,15 @@ if ( is_array( $_GET ) ) {
 		$json     = file_get_contents( $url );
 		$response = json_decode( $json, true );
 
-		if ( $response['status'] == 'OK' ) {
-			$overseas_center  = $response['results'][0]['geometry']['location']['lat'] . ' ' . $response['results'][0]['geometry']['location']['lng'];
+		if ( is_array( $response ) && array_key_exists( 'status', $response ) ) {
+
+			if ( $response['status'] == 'OK' ) {
+				$overseas_center  = $response['results'][0]['geometry']['location']['lat'] . ' ' . $response['results'][0]['geometry']['location']['lng'];
+			} else {
+				$error = 10;
+			}
+		} else {
+			$error = 10;
 		}
 
 		$args = array(
@@ -185,7 +197,7 @@ if ( count( $uk_retailers ) == 0 && count( $overseas_retailers ) == 0 ) {
 	$error = 2;
 }
 
-if ( $error ) {
+if ( $error && is_array( $_GET ) && ( array_key_exists( 'postcode', $_GET ) || array_key_exists( 'country', $_GET ) ) ) {
 
 	$msg = '';
 
