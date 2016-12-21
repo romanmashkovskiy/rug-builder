@@ -6,7 +6,7 @@ $(document).ready(function() {
 
 		var h = $('.retailer').height();
 
-		$('.border-div').each(function(i, v) {
+		$('.retailer .border-div').each(function(i, v) {
 			$(v).height(h + 'px');
 		});
 	}
