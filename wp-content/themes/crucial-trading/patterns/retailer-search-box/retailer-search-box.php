@@ -16,15 +16,15 @@ function retailer_search_box( $atts = '' ) {
 
 	$loc = '';
 
-	if ( is_array( $atts ) && array_key_exists( 'loc', $atts ) ) {
-		$loc = $atts['loc'];
+	if ( is_array( $_GET ) && array_key_exists( 'postcode', $_GET ) ) {
+		$loc = $_GET['postcode'];
 	}
 
 	$country = '';
 
-	if ( is_array( $atts ) && array_key_exists( 'country', $atts ) ) {
-		if ( $atts['country'] != '' ) {
-			$country = $atts['country'];
+	if ( is_array( $_GET ) && array_key_exists( 'country', $_GET ) ) {
+		if ( $_GET['country'] != '' ) {
+			$country = $_GET['country'];
 		}
 	}
 

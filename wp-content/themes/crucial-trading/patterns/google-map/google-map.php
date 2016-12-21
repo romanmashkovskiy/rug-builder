@@ -12,6 +12,19 @@
 
 function google_map( $atts = '' ) {
 
+	$uk_center       = '';
+	$overseas_center = '';
+
+	if ( is_array( $atts ) ) {
+		$uk_center       = $atts['uk-center'];
+		$overseas_center = $atts['overseas-center'];
+		$pin_coords      = $atts['pin-coords'];
+	}
+
+	$html = '<div id="google-map" data-ukcenter="' . $uk_center . '" data-overseascenter="' . $overseas_center . '" data-pincoords="' . $pin_coords . '"></div>';
+
+	return $html;
+
 	$attr_ids = '';
 
 	if ( is_array( $atts ) && array_key_exists( 0, $atts ) ) {

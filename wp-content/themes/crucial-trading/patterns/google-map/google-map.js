@@ -4,55 +4,48 @@ $(document).ready(function() {
 
 	if ( $('body').hasClass('page-template-retailer') ) {
 
-		var $map = document.getElementById('google-map');
+		var latLng = {};
+		var zoom   = 14
+		var $map   = document.getElementById('google-map');
 
-		var loc     = $($map).data('loc');
-		var country = $($map).data('country');
+		var ukCenter       = $($map).data('ukcenter');
+		var overseasCenter = $($map).data('overseascenter');
 
-		if ( loc !== '' ) {
+		if ( ukCenter !== '' ) {
 
-			var geocoder = new google.maps.Geocoder();
+			var coordArr = ukCenter.split(' ');
 
-			geocoder.geocode({ 
-				'address'               : loc,
-				'componentRestrictions' : {
-					country: 'UK'
-				}
-			}, function(result, status) {
-
-				var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
-				var zoom   = status === 'OK' ? 11 : 14;
-
-				createMap( latLng, zoom, $map );
-			});
-		}
-		else if ( country !== '' ) {
-
-			var geocoder = new google.maps.Geocoder();
-
-			geocoder.geocode({ 
-				'address'               : country
-			}, function(result, status) {
-
-				var latLng = status === 'OK' ? { lat: result[0].geometry.location.lat(), lng: result[0].geometry.location.lng() } : { lat: 51.475, lng: -0.1875 };
-				var zoom   = status === 'OK' ? 7 : 14;
-
-				createMap( latLng, zoom, $map );
-			});
-		}
-		else {
-
-			var latLng = {
-				lat: 51.475, 
-				lng: -0.1875
+			latLng = {
+				lat : parseFloat(coordArr[0]),
+				lng : parseFloat(coordArr[1])
 			};
 
-			createMap( latLng, 14, $map );
-		}
-	}
-});
+			zoom = 11;
 
-// http://localhost:8888/crucial-trading/wp-content/uploads/Combined-Shape-Copy.svg
+		} else if ( overseasCenter !== '' ) {
+
+			var coordArr = overseasCenter.split(' ');
+
+			latLng = {
+				lat : parseFloat(coordArr[0]),
+				lng : parseFloat(coordArr[1])
+			};
+
+			zoom = 7;
+
+		} else {
+
+			latLng = {
+				lat : 51.475,
+				lng : -0.1875
+			};
+
+			zoom = 14;
+		}
+
+		createMap( latLng, zoom, $map );
+	};
+});
 
 function createMap( latLng, zoom, $map ) {
 
@@ -61,6 +54,9 @@ function createMap( latLng, zoom, $map ) {
 
 	var overseas = $($map).data('overseas');
 	var coordinates = overseas && overseas !== '' ? overseas.split('|') : false;
+
+	var pinCoordsData = $($map).data('pincoords');
+	var pinCoordsArr  = pinCoordsData.split(',');
 
 	var map = new google.maps.Map($map, {
 		center           : latLng,
@@ -88,16 +84,15 @@ function createMap( latLng, zoom, $map ) {
 		url    : 'http://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg'
 	}
 
-	if ( coordinates ) {
+	if ( pinCoordsArr.length > 0 ) {
 
-		for ( var i = 0; i < coordinates.length; i++ ) {
+		for ( var i = 0; i < pinCoordsArr.length; i++ ) {
 
-			if ( coordinates[i] !== '' && coordinates[i] !== '0,0' ) {
+			if ( pinCoordsArr[i] !== '' ) {
 
-				var comma = coordinates[i].indexOf(',');
-
-				var lat = parseFloat(coordinates[i].substring(0, comma));
-				var lng = parseFloat(coordinates[i].substring(comma + 1, coordinates[i].length));
+				var coordsArr = pinCoordsArr[i].split(' ');
+				var lat       = parseFloat(coordsArr[0]);
+				var lng       = parseFloat(coordsArr[1]);
 
 				var marker = new google.maps.Marker({
 					position : { lat: lat, lng: lng },
@@ -106,13 +101,5 @@ function createMap( latLng, zoom, $map ) {
 				});
 			}
 		}
-	}
-	else if ( overseas && overseas !== '' ) {
-		
-		var marker = new google.maps.Marker({
-			position : latLng,
-			map      : map,
-			icon     : image
-		});
 	}
 }

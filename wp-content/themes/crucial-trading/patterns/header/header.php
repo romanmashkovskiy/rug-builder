@@ -14,6 +14,8 @@
 
 function header_shortcode($atts = '') {
 
+	wp_reset_postdata();
+
 	$header_size = 'small';
 
 	if ( $atts != '' && array_key_exists('size', $atts) && $atts['size'] == 'large' ) {
