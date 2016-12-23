@@ -18,6 +18,10 @@ canvas {
 	z-index: 5;
 }
 
+.drawer__content.closed .scroll-btns {
+	top: -100vh;
+}
+
 .scroll-btns {
 	left: 0;
 	position: absolute;
