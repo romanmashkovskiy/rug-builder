@@ -53,6 +53,30 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('./js/dist'));
 });
 
+gulp.task('js-prod', function() {
+
+	gulp.src([
+		'./js/src/rugBuilder.js',
+		'./js/src/startRugbuilder.js',
+		'./js/src/init.js',
+		'./js/src/data/structures.data.js',
+		'./js/src/functions/ajax.function.js',
+		'./js/src/functions/displayTexture.function.js',
+		'./js/src/functions/error.function.js',
+		'./js/src/functions/loadingScreens.function.js',
+		'./js/src/components/*.js',
+		'./js/src/components/drawer/*.js',
+		'./js/src/components/progress-menu/*.js'
+	])
+		.pipe(sourcemaps.init())
+		.pipe(concat('rugBuilder.min.js'))
+		.pipe(babel({
+			presets: [ 'es2015', 'react' ]
+		}))
+		.pipe(uglify().on('error', util.log))
+		.pipe(gulp.dest('./js/dist'));
+});
+
 gulp.task('watch', function() {
 
 	gulp.watch('./css/src/style.scss',               ['css']);
