@@ -4,11 +4,13 @@ RugBuilder.prototype.btnStructureComponent = function() {
 
 	const BtnStructureComponent = React.createClass({
 
-		handleClick: function() {
+		handleClick: function(e) {
+
+			e.preventDefault();
 
 			for ( let i = 0; i < 10; i++ ) {
-				ReactDOM.unmountComponentAtNode(document.querySelector('#color-' + i));
-				ReactDOM.unmountComponentAtNode(document.querySelector('#choice-' + i));
+				ReactDOM.unmountComponentAtNode(document.querySelector('#hosp_builder_color-' + i));
+				ReactDOM.unmountComponentAtNode(document.querySelector('#hosp_builder_choice-' + i));
 			}
 			
 			R.imageComponent(this.props.code, this.props.jpg);
@@ -19,19 +21,19 @@ RugBuilder.prototype.btnStructureComponent = function() {
 
 		render: function() {
 
-			let className = 'page-' + this.props.page
+			let className = 'hosp_builder_page-' + this.props.page
 
 			if ( this.props.page === this.props.pageInView - 1 ) {
-				className += ' left-of-window';
+				className += ' hosp_builder_left-of-window';
 			}
 			else if ( this.props.page === this.props.pageInView + 1 ) {
-				className += ' right-of-window';
+				className += ' hosp_builder_right-of-window';
 			}
 			else if ( this.props.page === this.props.pageInView ) {
-				className += ' in-window';
+				className += ' hosp_builder_in-window';
 			}
 			else {
-				className += ' hidden';
+				className += ' hosp_builder_hidden';
 			}
 			
 			return (

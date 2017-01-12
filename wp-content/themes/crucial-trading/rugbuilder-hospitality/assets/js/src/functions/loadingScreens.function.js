@@ -1,24 +1,26 @@
 RugBuilder.prototype.loadingScreens = function(screen, action) {
+	return true;
+//	let id;
 
-	let id;
+//	switch (screen) {
+//		case 'full'   : id = '#hosp_builder_full-loading'; break;
+//		case 'drawer' : id = '#hosp_builder_drawer-loading'; break;
+//		case 'canvas' : id = '#hosp_builder_canvas-loading'; break;
+//	}
 
-	switch (screen) {
-		case 'full'   : id = '#full-loading'; break;
-		case 'drawer' : id = '#drawer-loading'; break;
-		case 'canvas' : id = '#canvas-loading'; break;
-	}
+//	let z = action === 'open' ? 99999 : -99999;
 
-	let z = action === 'open' ? 99999 : -99999;
-
-	document.querySelector(id).style.zIndex = z;
+//	document.querySelector(id).style.zIndex = z;
 }
 
 RugBuilder.prototype.showLittleLoader = function() {
-	document.querySelector('#little-loader').style.display = 'block';
-	setTimeout(function() { document.querySelector('#little-loader p').style.display = 'block'; }, 10000);
+	return true;
+//	document.querySelector('#hosp_builder_little-loader').style.display = 'block';
+//	setTimeout(function() { document.querySelector('#hosp_builder_little-loader p').style.display = 'block'; }, 10000);
 }
 
 RugBuilder.prototype.hideLittleLoader = function() {
-	document.querySelector('#little-loader').style.display = 'none';
-	document.querySelector('#little-loader p').style.display = 'none';
+	return true;
+//	document.querySelector('#hosp_builder_little-loader').style.display = 'none';
+//	document.querySelector('#hosp_builder_little-loader p').style.display = 'none';
 }

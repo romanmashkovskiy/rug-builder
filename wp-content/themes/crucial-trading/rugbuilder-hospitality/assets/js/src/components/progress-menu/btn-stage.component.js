@@ -4,7 +4,9 @@ RugBuilder.prototype.btnStageComponent = function() {
 
 	const BtnStageComponent = React.createClass({
 
-		handleClick: function() {
+		handleClick: function(e) {
+
+			e.preventDefault();
 
 			const CURRENT_STAGE = R.colorStage;
 			const STAGE_CLICKED = this.props.index;
@@ -47,14 +49,14 @@ RugBuilder.prototype.btnStageComponent = function() {
 			let stageClass = '';
 
 			if ( this.props.index === CURRENT_STAGE ) {
-				stageClass = 'active';
+				stageClass = 'hosp_builder_active';
 			}
 
-			let classes = 'progress-menu__stage ' + stageClass;
+			let classes = 'hosp_builder_progress-menu__stage ' + stageClass;
 
 			return (
 				<li className={ classes }>					
-					<a href="#" className="progress-menu__stage__link" onClick={ this.handleClick }>
+					<a href="#" className="hosp_builder_progress-menu__stage__link" onClick={ this.handleClick }>
 						{ this.props.stage }
 					</a>
 				</li>

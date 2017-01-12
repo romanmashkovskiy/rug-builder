@@ -8,31 +8,28 @@
   clear: both;
 }
 
-body {
-	overflow-x: hidden;
+#hospitality-builder {
+	overflow: hidden;
+	padding-bottom: 13px;
+	position: relative;
 }
 
-canvas {
-	position: absolute;
-	top: 0;
-	z-index: 5;
-}
-
-.drawer__content.closed .scroll-btns {
+.hosp_builder_drawer__content.hosp_builder_closed .hosp_builder_scroll-btns {
 	top: -100vh;
 }
 
-.scroll-btns {
+.hosp_builder_scroll-btns {
 	left: 0;
 	position: absolute;
 	right: 0;
 	top: calc(50% - 39px);
 }
 
-.scroll__left,
-.scroll__right {
+.hosp_builder_scroll__left,
+.hosp_builder_scroll__right {
 	float: left;
 	padding: 5px;
+	z-index: 99;
 
 	a {
 		display: block;
@@ -40,18 +37,22 @@ canvas {
 	}
 }
 
-.scroll__right {
+.hosp_builder_scroll__left {
+	position: relative;
+}
+
+.hosp_builder_scroll__right {
 	position: absolute;
 	right: 0;
 }
 
-.dots {
+.hosp_builder_dots {
 	bottom: 0;
 	position: absolute;
 	padding: 15px 10px;
 	right: 0;
 
-	.dot {
+	.hosp_builder_dot {
 		background: #DDDDDD;
 		border-radius: 50%;
 		float: left;
@@ -59,20 +60,19 @@ canvas {
 		margin: 0 5px;
 		width: 15px;
 
-		&.active {
+		&.hosp_builder_active {
 			background: #8C8C8C;
 		}
 	}
 }
 
-#img-container {
+#hosp_builder_img-container {
 	border-radius: 5px;
 	-webkit-box-shadow: 0px 5px 18px 0 rgba(0,0,0,.45);
 	-moz-box-shadow: 0px 5px 18px 0 rgba(0,0,0,.45);
 	box-shadow: 0px 5px 18px 0 rgba(0,0,0,.45);
 	height: 512px;
-	margin: auto;
-	margin-top: calc(50vh - 256px - 81px); // 50vh - half of elem - half of drawer = middle of remaining space
+	margin: calc(50vh - 256px - 81px) auto auto; // 50vh - half of elem - half of drawer = middle of remaining space
 	overflow: hidden;
 	position: relative;
 	width: 512px;
@@ -100,7 +100,7 @@ canvas {
 		width: 256px;
 	}
 
-	&.hidden {
+	&.hosp_builder_hidden {
 		display: none;
 	}
 
@@ -116,7 +116,7 @@ canvas {
 	}
 }
 
-#choices {
+#hosp_builder_choices {
 	display: none;
 	margin-top: calc(50vh + 100px);
 	position: absolute;
@@ -137,7 +137,7 @@ canvas {
 	}
 }
 
-#little-loader {
+#hosp_builder_little-loader {
 	bottom: 0;
 	display: none;
 	left: 0;
@@ -145,14 +145,14 @@ canvas {
 	right: 0;
 	top: 0;
 
-	.loader,
-	.loader:after {
+	.hosp_builder_loader,
+	.hosp_builder_loader:after {
 		border-radius: 50%;
 		width: 150px;
 		height: 150px;
 	}
 
-	.loader {
+	.hosp_builder_loader {
 		font-size: 10px;
 		left: calc(50% - 75px);
 		position: absolute;

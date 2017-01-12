@@ -4,20 +4,26 @@ RugBuilder.prototype.btnRestartComponent = function() {
 
 	const BtnRestartComponent = React.createClass({
 
-		restart: function() {
+		restart: function(e) {
+			e.preventDefault();
 			PubSub.publish( 'restart', true );
 		},
 
 		render: function() {
 
-			const SRC = templateDirectoryUri + '/rugbuilder/assets/icons/restart.svg';
+			if ( !R.showRestart ) {
+				return <span></span>;
+			} else {
 
-			return (
-				<a href="#" className="progress-menu__restart" onClick={ this.restart }>
-					<img src={ SRC } />
-					Start Again
-				</a>
-			);
+				const SRC = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg';
+
+				return (
+					<a href="#" className="hosp_builder_progress-menu__restart" onClick={ this.restart }>
+						<img src={ SRC } />
+						Start Again
+					</a>
+				);
+			}
 		}
 	});
 

@@ -4,10 +4,12 @@ RugBuilder.prototype.btnSubmitComponent = function() {
 
 	const SubmitBtnComponent = React.createClass({
 		
-		submit: function() {
+		submit: function(e) {
 
-			document.querySelector('#img-container').style.zIndex = 11;
-			document.querySelector('#choices').style.zIndex = 11;
+			e.preventDefault();
+
+			document.querySelector('#hosp_builder_img-container').style.zIndex = 11;
+			document.querySelector('#hosp_builder_choices').style.zIndex = 11;
 
 			PubSub.publish('submit', true);
 			R.submitScreenComponent();
@@ -15,14 +17,19 @@ RugBuilder.prototype.btnSubmitComponent = function() {
 
 		render: function() {
 
-			const SRC = templateDirectoryUri + '/rugbuilder/assets/icons/restart.svg';
+			if ( !R.showSubmit ) {
+				return <span></span>;
+			} else {
 
-			return (
-				<a href="#" className="progress-menu__submit" onClick={ this.submit }>
-					<img src={ SRC } />
-					Submit
-				</a>
-			);
+				const SRC = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg';
+
+				return (
+					<a href="#" className="hosp_builder_progress-menu__submit" onClick={ this.submit }>
+						<img src={ SRC } />
+						Submit
+					</a>
+				);
+			}
 		}
 	});
 

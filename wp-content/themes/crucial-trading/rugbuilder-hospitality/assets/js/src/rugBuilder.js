@@ -1,15 +1,18 @@
 class RugBuilder {
 
-	constructor( context ) {
+	constructor( context, showSubmit, showRestart, showExit ) {
 
 		// Coloured Stucture Images
 		this.coloredStructureImages = false;
 
-		// Context
-		this.context = context;
+		// Options
+		this.context     = context;
+		this.showSubmit  = showSubmit;
+		this.showRestart = showRestart;
+		this.showExit    = showExit;
 
 		// Site
-		this.imageContainer = document.querySelector('#img-container');
+		this.imageContainer = document.querySelector('#hosp_builder_img-container');
 
 		// Data
 		this.structureCodes = [
