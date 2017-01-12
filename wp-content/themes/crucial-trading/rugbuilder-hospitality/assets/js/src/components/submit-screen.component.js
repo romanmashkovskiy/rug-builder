@@ -25,11 +25,25 @@ RugBuilder.prototype.submitScreenComponent = function() {
 
 		render: function() {
 
+			let str = '';
+
+			Object.keys(this.state).map((key) => {
+
+				if ( this.state[key] !== undefined ) {
+					str += key;
+					str += ': ';
+					str += this.state[key];
+					str += ", ";
+				}	
+			});
+
+			const href = "mailto:abc@123.xyz?subject=New Hospitality Builder Design&body=" + str;
+
 			return (
 				<div className="submit">
 					<h3>Your Rug</h3>
-					<a href="mailto:abc@123.xyz" className="email">Email</a>
-					<a href="#" onclick={ this.print } className="print">Print</a>
+					<a href={ href } className="email">Email</a>
+					<a href="#" onClick={ this.print } className="print">Print</a>
 				</div>
 			);
 		}

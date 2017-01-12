@@ -103,11 +103,14 @@
     font-family: "Montserrat",sans-serif !important;
     margin-right: 2%;
     padding: 20px !important;
-    width: 73%;
+    width: 100%;
     outline: none; }
     @media screen and (max-width: 666px) {
       .newsletter input {
         width: 100%; } }
+    .newsletter input[type="submit"] {
+      margin-top: 20px;
+      padding-top: 16px !important; }
   .newsletter input:focus {
     background-color: #515151; }
   .newsletter button {

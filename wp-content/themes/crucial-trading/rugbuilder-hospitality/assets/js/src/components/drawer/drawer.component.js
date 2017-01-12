@@ -432,12 +432,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 					<div className="scroll-btns clearfix">
 						<div className="scroll__left">
 							<a href="#" onClick={ this.slideRight } style={ leftStyle }>
-								<img src={ leftUrl } alt="Scroll Left" />
+								<img src={ leftUrl } alt="Scroll Left" className="scroller_btn" />
 							</a>
 						</div>
 						<div className="scroll__right">
 							<a href="#" onClick={ this.slideLeft } style={ rightStyle }>
-								<img src={ rightUrl } alt="Scroll Right" />
+								<img src={ rightUrl } alt="Scroll Right" className="scroller_btn" />
 							</a>
 						</div>
 					</div>
@@ -491,13 +491,20 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 					let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
 					let rightStyle = this.state.pageInView === this.COLOR_NUM_OF_PAGES ? { color: '#A8A8A8' } : {};
 
+					let leftUrl  = templateDirectoryUri + '/rugbuilder-hospitality/assets/icons/arrow-left.svg';
+					let rightUrl = templateDirectoryUri + '/rugbuilder-hospitality/assets/icons/arrow-right.svg';
+
 					btnsHTML = (
 						<div className="scroll-btns clearfix">
 							<div className="scroll__left">
-								<a href="#" onClick={ this.slideRight } style={ leftStyle }>&#x25C0;</a>
+								<a href="#" onClick={ this.slideRight } style={ leftStyle }>
+									<img src={ leftUrl } alt="Scroll Left" className="scroller_btn" />
+								</a>
 							</div>
 							<div className="scroll__right">
-								<a href="#" onClick={ this.slideLeft } style={ rightStyle }>&#x25B6;</a>
+								<a href="#" onClick={ this.slideLeft } style={ rightStyle }>
+									<img src={ rightUrl } alt="Scroll Right" className="scroller_btn" />
+								</a>
 							</div>
 						</div>
 					);
