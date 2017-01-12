@@ -40,14 +40,14 @@ RugBuilder.prototype.submitScreenComponent = function() {
 			const href = "mailto:abc@123.xyz?subject=New Hospitality Builder Design&body=" + str;
 
 			return (
-				<div className="submit">
+				<div className="hosp_builder_submit">
 					<h3>Your Rug</h3>
-					<a href={ href } className="email">Email</a>
-					<a href="#" onClick={ this.print } className="print">Print</a>
+					<a href={ href } className="hosp_builder_email">Email</a>
+					<a href="#" onClick={ this.print } className="hosp_builder_print">Print</a>
 				</div>
 			);
 		}
 	});
 
-	ReactDOM.render( <SubmitScreenComponent />, document.querySelector( '#submit-screen' ) );
+	ReactDOM.render( <SubmitScreenComponent />, document.querySelector( '#hosp_builder_submit-screen' ) );
 }

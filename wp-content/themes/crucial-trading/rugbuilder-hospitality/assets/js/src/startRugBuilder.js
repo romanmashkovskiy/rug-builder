@@ -2,7 +2,9 @@ RugBuilder.prototype.start = function() {
 
 	const R = rugBuilder;
 
-	R.showLittleLoader();
+	R.addDOMElements();
+
+//	R.showLittleLoader();
 
 	// Data
 
@@ -27,6 +29,8 @@ RugBuilder.prototype.start = function() {
 		const BtnColorComponent          = R.btnColorComponent();
 		R.drawerComponent(BtnExpandCollapseComponent, BtnStructureComponent, BtnColorComponent);
 
-		R.hideLittleLoader();
+		R.calculateContainerHeight();
+
+//		R.hideLittleLoader();
 	}
 }

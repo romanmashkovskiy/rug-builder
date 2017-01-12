@@ -1,14 +1,15 @@
-const gulp         = require('gulp');
-const autoprefixer = require('gulp-autoprefixer');
-const babel        = require('gulp-babel');
-const concat       = require('gulp-concat');
-const cssnano      = require('gulp-cssnano');
-const rename       = require('gulp-rename');
-const sass         = require('gulp-sass');
-const sassGlob     = require('gulp-sass-glob');
-const sourcemaps   = require('gulp-sourcemaps');
-const uglify       = require('gulp-uglify');
-const util         = require('gulp-util');
+const gulp          = require('gulp');
+const autoprefixer  = require('gulp-autoprefixer');
+const babel         = require('gulp-babel');
+const concat        = require('gulp-concat');
+const cssnano       = require('gulp-cssnano');
+const js_obfuscator = require('gulp-js-obfuscator');
+const rename        = require('gulp-rename');
+const sass          = require('gulp-sass');
+const sassGlob      = require('gulp-sass-glob');
+const sourcemaps    = require('gulp-sourcemaps');
+const uglify        = require('gulp-uglify');
+const util          = require('gulp-util');
 
 gulp.task('css', function() {
 
@@ -20,13 +21,30 @@ gulp.task('css', function() {
 		})
 		.on('error', sass.logError))
 		.pipe(autoprefixer())
-		.pipe(rename({ suffix: '.min' }))
+		.pipe(rename('hospitality-builder.min.css'))
 		.pipe(cssnano({
 			zindex: false
 		}))
 		.pipe(sourcemaps.write('maps'))
 		.pipe(gulp.dest('./css/dist'));
 });
+
+gulp.task('css-prod', function() {
+
+	return gulp.src('./css/src/style.scss')
+		.pipe(sassGlob())
+		.pipe(sass({
+			outputStyle: 'compressed'
+		})
+		.on('error', sass.logError))
+		.pipe(autoprefixer())
+		.pipe(rename('hospitality-builder.min.css'))
+		.pipe(cssnano({
+			zindex: false
+		}))
+		.pipe(gulp.dest('./css/dist'));
+});
+
 
 gulp.task('js', function() {
 
@@ -36,15 +54,15 @@ gulp.task('js', function() {
 		'./js/src/init.js',
 		'./js/src/data/structures.data.js',
 		'./js/src/functions/ajax.function.js',
-		'./js/src/functions/displayTexture.function.js',
-		'./js/src/functions/error.function.js',
+		'./js/src/functions/addDOMElements.function.js',
+		'./js/src/functions/calculateContainerHeight.function.js',
 		'./js/src/functions/loadingScreens.function.js',
 		'./js/src/components/*.js',
 		'./js/src/components/drawer/*.js',
 		'./js/src/components/progress-menu/*.js'
 	])
 		.pipe(sourcemaps.init())
-		.pipe(concat('rugBuilder.min.js'))
+		.pipe(concat('hospitality-builder.min.js'))
 		.pipe(babel({
 			presets: [ 'es2015', 'react' ]
 		}))
@@ -61,20 +79,48 @@ gulp.task('js-prod', function() {
 		'./js/src/init.js',
 		'./js/src/data/structures.data.js',
 		'./js/src/functions/ajax.function.js',
-		'./js/src/functions/displayTexture.function.js',
-		'./js/src/functions/error.function.js',
+		'./js/src/functions/addDOMElements.function.js',
+		'./js/src/functions/calculateContainerHeight.function.js',
 		'./js/src/functions/loadingScreens.function.js',
 		'./js/src/components/*.js',
 		'./js/src/components/drawer/*.js',
 		'./js/src/components/progress-menu/*.js'
 	])
-		.pipe(sourcemaps.init())
-		.pipe(concat('rugBuilder.min.js'))
+		.pipe(concat('hospitality-builder.min.js'))
 		.pipe(babel({
 			presets: [ 'es2015', 'react' ]
 		}))
 		.pipe(uglify().on('error', util.log))
+		.pipe(js_obfuscator({}))
 		.pipe(gulp.dest('./js/dist'));
+});
+
+// AJAX
+
+gulp.task('js-loader', function() {
+
+	gulp.src([
+		'./loader/rugbuilder-loader.js',
+	])
+		.pipe(rename({ suffix : '.min' }))
+		.pipe(babel({
+			presets: [ 'es2015' ]
+		}))
+		.pipe(uglify().on('error', util.log))
+		.pipe(gulp.dest('./loader'));
+});
+
+// Obs
+
+gulp.task('hosp-loader', function() {
+
+	gulp.src([
+		'./loader/hospitality-loader.js',
+	])
+		.pipe(rename({ suffix : '.min' }))
+		.pipe(uglify().on('error', util.log))
+		.pipe(js_obfuscator({}))
+		.pipe(gulp.dest('./loader'));
 });
 
 gulp.task('watch', function() {
@@ -90,4 +136,19 @@ gulp.task('watch', function() {
 	gulp.watch('./js/src/components/*.js',               ['js']);
 	gulp.watch('./js/src/components/drawer/*.js',        ['js']);
 	gulp.watch('./js/src/components/progress-menu/*.js', ['js']);
+})
+
+gulp.task('watch-prod', function() {
+
+	gulp.watch('./css/src/style.scss',               ['css-prod']);
+	gulp.watch('./css/src/base/*.scss',              ['css-prod']);
+	gulp.watch('./css/src/components/*.scss',        ['css-prod']);
+	gulp.watch('./css/src/components/drawer/*.scss', ['css-prod']);
+
+	gulp.watch('./js/src/*.js',                          ['js-prod']);
+	gulp.watch('./js/src/data/*.js',                     ['js-prod']);
+	gulp.watch('./js/src/functions/*.js',                ['js-prod']);
+	gulp.watch('./js/src/components/*.js',               ['js-prod']);
+	gulp.watch('./js/src/components/drawer/*.js',        ['js-prod']);
+	gulp.watch('./js/src/components/progress-menu/*.js', ['js-prod']);
 })

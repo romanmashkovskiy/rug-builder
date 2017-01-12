@@ -24,7 +24,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 			PubSub.unsubscribe( this.stageChange );
 		},
 
-		structureHasChanged: function(code) {
+		structureHasChanged: function(sub, code) {
 
 			let colors = R.numStructureColors[code],
 			    stages = [ 'Structure' ];
@@ -51,8 +51,20 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 			}
 		},
 
-		stageHasChanged: function(stage) {			
-			this.forceUpdate();
+		stageHasChanged: function(abc, stage) {
+
+			if ( stage === 0 ) {
+
+				this.setState({
+					stages     : [ 'Structure' ],
+					showSubmit : false
+				}, () => { this.forceUpdate() });
+
+			} else {
+
+				this.forceUpdate();
+
+			}
 		},
 
 		render: function() {
@@ -70,18 +82,18 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 				submitBtn = '';
 			}
 
-			const LOGO = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/logo.png';
+			const LOGO = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110114837/logo-1.png';
 
 			return (
-				<div className="progress-menu__container">
-					<div className="progress-menu__top">
+				<div className="hosp_builder_progress-menu__container">
+					<div className="hosp_builder_progress-menu__top">
 						<img src={ LOGO } alt="Crucial Trading Rug Builder" />
 						{ submitBtn }
 						<BtnRestartComponent />
 						<BtnExitComponent />
 					</div>
-					<div className="progress-menu__bottom">
-						<ul className="progress-menu__stages">
+					<div className="hosp_builder_progress-menu__bottom">
+						<ul className="hosp_builder_progress-menu__stages">
 							{ STAGES_HTML }
 						</ul>
 					</div>
@@ -90,5 +102,5 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		}
 	});
 
-	ReactDOM.render( <MenuComponent />, document.querySelector( '#progress-menu' ) );
+	ReactDOM.render( <MenuComponent />, document.querySelector( '#hosp_builder_progress-menu' ) );
 }

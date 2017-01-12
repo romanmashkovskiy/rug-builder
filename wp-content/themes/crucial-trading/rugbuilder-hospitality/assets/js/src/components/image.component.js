@@ -6,8 +6,8 @@ RugBuilder.prototype.imageComponent = function(alt, src, jpg) {
 
 		render: function() {
 
-			if ( document.querySelector('#img-container').classList.contains('hidden') ) {
-				document.querySelector('#img-container').classList.remove('hidden');
+			if ( document.querySelector('#hosp_builder_img-container').classList.contains('hidden') ) {
+				document.querySelector('#hosp_builder_img-container').classList.remove('hidden');
 			}
 
 			let error = function(e) {
@@ -15,7 +15,7 @@ RugBuilder.prototype.imageComponent = function(alt, src, jpg) {
 			}
 
 			let load = function() {
-				R.hideLittleLoader();
+//				R.hideLittleLoader();
 			}
 
 			return (
@@ -24,7 +24,7 @@ RugBuilder.prototype.imageComponent = function(alt, src, jpg) {
 		}
 	});
 
-	let selector = '#color-' + R.colorStage;
+	let selector = '#hosp_builder_color-' + R.colorStage;
 
 	ReactDOM.render( <ImageComponent />, document.querySelector(selector) );
 }
