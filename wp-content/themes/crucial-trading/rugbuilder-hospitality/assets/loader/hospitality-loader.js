@@ -1,10 +1,31 @@
-function load(options) {
+function load(options, secret_DEPRECIATED) {
 
-	var key     = options.key;
-	var secret  = options.secret;
-	var submit  = options.showSubmitButton;
-	var restart = options.showRestartButton;
-	var exit    = options.showExitButton;
+	var key, secret, submit, restart, exit;
+
+	if ( typeof options === 'object' ) {
+		key     = options.key;
+		secret  = options.secret;
+		submit  = options.showSubmitButton || false;
+		restart = options.showRestartButton || false;
+		exit    = options.showExitButton || false;
+	} else {
+		key     = options;
+		secret  = secret_DEPRECIATED;
+		submit  = false;
+		restart = false;
+		exit    = false;
+		
+		console.warn('Passing in the key and secret to the load function as strings is depreciated. Please pass them in an object, along with the other options, like so:')
+		console.log({
+			key               : 'YOUR_API_KEY_HERE', 
+			secret            : 'YOUR_API_SECRET_HERE',
+			showSubmitButton  : true,
+			showRestartButton : true,
+			showExitButton    : true
+		})
+	}
+
+		
 
 	if ( key !== 'E9(]8x~QGIZR^-f' ) {
 		return;
@@ -26,5 +47,5 @@ function load(options) {
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>');
 	document.write('<script src="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.js"></script>');
-	document.write('<script>var rugBuilder = new RugBuilder; rugBuilder.start(website, ' + submit + ', ' + restart + ', ' + exit + ');</script>');
+	document.write('<script>var rugBuilder = new RugBuilder("website", ' + submit + ', ' + restart + ', ' + exit + '); rugBuilder.start();</script>');
 }

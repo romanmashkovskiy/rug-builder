@@ -9,6 +9,6 @@ RugBuilder.prototype.calculateContainerHeight = function() {
 
 		const HEIGHT = document.getElementById('hosp_builder_drawer').offsetHeight + 209;
 
-		document.getElementById('hospitality-builder').style.height = HEIGHT + 'px';
+		document.getElementById('hospitality-builder').style.minHeight = HEIGHT + 'px';
 	}
 }

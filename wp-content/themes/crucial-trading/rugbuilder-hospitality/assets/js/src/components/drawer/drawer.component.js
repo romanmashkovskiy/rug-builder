@@ -338,8 +338,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		updateStructure: function(code) {
 
-			console.log(code)
-
 			R.stageVisited = [ true, false, false, false, false, false, false, false, false, false ];
 
 			let numOfColors = 0, key;
@@ -357,8 +355,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				chosenColors    : [],
 				drawerSize      : 1
 			});
-
-			console.log(code)
 			
 			PubSub.publish( 'newStructure', code );
 		},
@@ -410,7 +406,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 					const AVAIL_SPACE   = WINDOW_HEIGHT - document.querySelector('.hosp_builder_progress-menu__container').offsetHeight - 100;
 					
 					const STRUCTURE_ELEM_HEIGHT   = 157;
-					const NUM_OF_STRUCTURE_ROWS   = Math.floor( AVAIL_SPACE / STRUCTURE_ELEM_HEIGHT );
+					const NUM_OF_STRUCTURE_ROWS   = Math.floor( AVAIL_SPACE / STRUCTURE_ELEM_HEIGHT ) - 1;
 					const STRUCTURE_ELEMS_PER_ROW = window.innerWidth > 992 ? 4 : 3;
 
 					this.STRUCTURE_ELEMS_PER_PAGE = NUM_OF_STRUCTURE_ROWS * STRUCTURE_ELEMS_PER_ROW;

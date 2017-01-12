@@ -17,25 +17,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<title>Crucial Trading Hospitality RugBuilder</title>
-	<link rel="stylesheet" href="https://s3-eu-west-1.amazonaws.com/crucial-trading/hospitality/dist/hospitality-rugbuilder.min.css">
 </head>
 <body>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.5.4/pubsub.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
-
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder-hospitality/assets/loader/rugbuilder-loader.min.js"></script>
-<!--
-	<script src="https://s3-eu-west-1.amazonaws.com/crucial-trading/hospitality/dist/rugbuilder-loader.min.js"></script>
--->
+	<script src="http://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-loader.min.js"></script>
 	<script>
-		new RugBuilder_Loader({
-			username : 'default',
-			key      : 'key',
-			secret   : 'secret'
-		});
+
+	load({
+		key               : 'E9(]8x~QGIZR^-f', 
+		secret            : 's+yflX{Nhev3iCeg@>wgPco5}2CMS6',
+		showSubmitButton  : false,
+		showRestartButton : true,
+		showExitButton    : true
+	})
+
 	</script>
 
 </body>
