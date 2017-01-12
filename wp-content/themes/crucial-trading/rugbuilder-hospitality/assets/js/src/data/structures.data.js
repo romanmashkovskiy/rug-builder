@@ -7,7 +7,7 @@ RugBuilder.prototype.getStructuresData = function() {
 		for ( let i = 0; i < R.structureCodes.length; i++ ) {
 
 			const STRUCTURE_CODE = R.structureCodes[i];
-			const URL            = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/structures/' + STRUCTURE_CODE + '/base-colour.jpg';
+			const URL            = 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/' + STRUCTURE_CODE + '/base-colour.jpg';
 
 			R.structureImages[STRUCTURE_CODE] = URL;
 		}

@@ -4,13 +4,15 @@ RugBuilder.prototype.btnColorComponent = function() {
 
 	const BtnColorComponent = React.createClass({
 
-		handleClick: function() {
+		handleClick: function(e) {
+
+			e.preventDefault();
 
 			R.showLittleLoader();
 
-			let col = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/flat-colors/' + this.props.color + '.jpg';
-			let url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/structures/' + this.props.structure + '/' + this.props.color + '/colour-' + R.colorStage + '.png';
-			let jpg = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/structures/' + this.props.structure + '/' + this.props.color + '/colour-' + R.colorStage + '.jpg';
+			let col = 'https://d105txpzekqrfa.cloudfront.net/hospitality/colours/' + this.props.color + '.jpg';
+			let url = 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/' + this.props.structure + '/' + this.props.color + '/colour-' + R.colorStage + '.png';
+			let jpg = 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/' + this.props.structure + '/' + this.props.color + '/colour-' + R.colorStage + '.jpg';
 
 			R.imageComponent(this.props.color, url, jpg);
 			R.imageChoiceComponent(this.props.color, col);
@@ -20,25 +22,25 @@ RugBuilder.prototype.btnColorComponent = function() {
 
 		render: function() {
 
-			let className = 'page-' + this.props.page
+			let className = 'hosp_builder_page-' + this.props.page
 
 			if ( this.props.page ) {
 
 				if ( this.props.page === this.props.pageInView - 1 ) {
-					className += ' left-of-window';
+					className += ' hosp_builder_left-of-window';
 				}
 				else if ( this.props.page === this.props.pageInView + 1 ) {
-					className += ' right-of-window';
+					className += ' hosp_builder_right-of-window';
 				}
 				else if ( this.props.page === this.props.pageInView ) {
-					className += ' in-window';
+					className += ' hosp_builder_in-window';
 				}
 				else {
-					className += ' hidden';
+					className += ' hosp_builder_hidden';
 				}
 			}
 
-			let url = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/flat-colors/' + this.props.color + '.jpg';
+			let url = 'https://d105txpzekqrfa.cloudfront.net/hospitality/colours/' + this.props.color + '.jpg';
 			
 			return (
 				<li className={ className } data-page={ this.props.page }>

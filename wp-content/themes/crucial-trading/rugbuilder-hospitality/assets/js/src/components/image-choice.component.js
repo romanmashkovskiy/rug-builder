@@ -23,7 +23,7 @@ RugBuilder.prototype.imageChoiceComponent = function(alt, src) {
 		}
 	});
 
-	let selector = '#choice-' + R.colorStage;
+	let selector = '#hosp_builder_choice-' + R.colorStage;
 
 	ReactDOM.render( <ImageChoiceComponent />, document.querySelector(selector) );
 }

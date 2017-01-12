@@ -81,8 +81,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			let _t = this;
 
-			const HAMMER_S = new Hammer(document.querySelector('ul.structures'));
-			const HAMMER_C = new Hammer(document.querySelector('ul.colors'));
+			const HAMMER_S = new Hammer(document.querySelector('ul.hosp_builder_structures'));
+			const HAMMER_C = new Hammer(document.querySelector('ul.hosp_builder_colors'));
 
 			HAMMER_S.on('swipe', (e) => {
 				if ( e.direction === 2 ) {
@@ -127,19 +127,19 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		open: function() {
 
-			document.querySelector('ul.structures').classList.remove('closed');
-			document.querySelector('ul.colors').classList.remove('closed');
+			document.querySelector('ul.hosp_builder_structures').classList.remove('hosp_builder_closed');
+			document.querySelector('ul.hosp_builder_colors').classList.remove('hosp_builder_closed');
 
-			document.querySelector('ul.structures').classList.add('opening');
-			document.querySelector('ul.colors').classList.add('opening');
+			document.querySelector('ul.hosp_builder_structures').classList.add('hosp_builder_opening');
+			document.querySelector('ul.hosp_builder_colors').classList.add('hosp_builder_opening');
 
 			setTimeout(function() {
 
-				document.querySelector('ul.structures').classList.remove('opening');
-				document.querySelector('ul.colors').classList.remove('opening');
+				document.querySelector('ul.hosp_builder_structures').classList.remove('hosp_builder_opening');
+				document.querySelector('ul.hosp_builder_colors').classList.remove('hosp_builder_opening');
 
-				document.querySelector('ul.structures').classList.add('open');
-				document.querySelector('ul.colors').classList.add('open');
+				document.querySelector('ul.hosp_builder_structures').classList.add('hosp_builder_open');
+				document.querySelector('ul.hosp_builder_colors').classList.add('hosp_builder_open');
 			}, 650)
 			
 			this.setState({
@@ -152,11 +152,11 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		close: function() {
 
-			document.querySelector('ul.structures').classList.remove('open');
-			document.querySelector('ul.colors').classList.remove('open');
+			document.querySelector('ul.hosp_builder_structures').classList.remove('hosp_builder_open');
+			document.querySelector('ul.hosp_builder_colors').classList.remove('hosp_builder_open');
 			
-			document.querySelector('ul.structures').classList.add('closed');
-			document.querySelector('ul.colors').classList.add('closed');
+			document.querySelector('ul.hosp_builder_structures').classList.add('hosp_builder_closed');
+			document.querySelector('ul.hosp_builder_colors').classList.add('hosp_builder_closed');
 			
 			this.setState({
 				open : false,
@@ -168,39 +168,41 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		restart: function() {
 
-			document.querySelector('#img-container').classList.add('hidden');
+//			document.querySelector('#hosp_builder_img-container').classList.add('hosp_builder_hidden');
 
 			for ( let i = 0; i < 10; i++ ) {
-				ReactDOM.unmountComponentAtNode(document.querySelector('#color-' + i))
-				ReactDOM.unmountComponentAtNode(document.querySelector('#choice-' + i))
+				ReactDOM.unmountComponentAtNode(document.querySelector('#hosp_builder_color-' + i))
+				ReactDOM.unmountComponentAtNode(document.querySelector('#hosp_builder_choice-' + i))
 			}
 
-			ReactDOM.unmountComponentAtNode(document.querySelector('#submit-screen'))
+//			ReactDOM.unmountComponentAtNode(document.querySelector('#hosp_builder_submit-screen'));
 
-			document.querySelector('#img-container').style.zIndex = 0;
-			document.querySelector('#choices').style.zIndex = 0;
+			document.querySelector('#hosp_builder_img-container').style.zIndex = 0;
+			document.querySelector('#hosp_builder_choices').style.zIndex = 0;
 
 			this.updateDrawer(0);
 			PubSub.publish( 'newStage', 0 );
+
 			R.colorStage = 0;
-			R.choices.structure  = undefined;
-			R.choices.color1     = undefined;
-			R.choices.color2     = undefined;
-			R.choices.color3     = undefined;
-			R.choices.color4     = undefined;
-			R.choices.color5     = undefined;
-			R.choices.color6     = undefined;
-			R.choices.color7     = undefined;
-			R.choices.color8     = undefined;
-			R.choices.color9     = undefined;
+
+			R.choices.structure = undefined;
+			R.choices.color1    = undefined;
+			R.choices.color2    = undefined;
+			R.choices.color3    = undefined;
+			R.choices.color4    = undefined;
+			R.choices.color5    = undefined;
+			R.choices.color6    = undefined;
+			R.choices.color7    = undefined;
+			R.choices.color8    = undefined;
+			R.choices.color9    = undefined;
 
 			let time = new Date();
 
-			let timeNow = time.getNow();
+//			let timeNow = time.getNow();
 
-			if ( timeNow > timeLastSaved ) {
-				this.save();
-			}
+//			if ( timeNow > timeLastSaved ) {
+//				this.save();
+//			}
 
 			this.STRUCTURE_ELEMS_PER_PAGE = undefined;
 			this.STRUCTURE_NUM_OF_PAGES   = undefined;
@@ -225,7 +227,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 				_colors        : undefined,
 				_numColors     : undefined,
-			}, () => { this.drawerHeight() });
+			});
 		},
 
 // Ref9: Submit
@@ -245,7 +247,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 // Ref10: Slide Left
 
-		slideLeft: function() {
+		slideLeft: function(e) {
+
+			e.preventDefault();
 
 			let numOfPages = this.state.stage === 'structures' ? this.STRUCTURE_NUM_OF_PAGES : this.COLOR_NUM_OF_PAGES;
 
@@ -255,12 +259,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			let array = [], array2 = [];
 
-			array.forEach.call(document.querySelectorAll('li.in-window'), (e, i) => {
-				e.classList.add('moving-out-to-left');
+			array.forEach.call(document.querySelectorAll('li.hosp_builder_in-window'), (e, i) => {
+				e.classList.add('hosp_builder_moving-out-to-left');
 			});
 
-			array.forEach.call(document.querySelectorAll('li.right-of-window'), (e, i) => {
-				e.classList.add('moving-in-from-right');
+			array.forEach.call(document.querySelectorAll('li.hosp_builder_right-of-window'), (e, i) => {
+				e.classList.add('hosp_builder_moving-in-from-right');
 			});
 
 			const _t = this;
@@ -277,7 +281,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 // Ref11: Slide Right
 
-		slideRight: function() {
+		slideRight: function(e) {
+
+			e.preventDefault();
 
 			if ( this.state.pageInView === 1 ) {
 				return;
@@ -285,12 +291,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			let array = [], array2 = [];
 
-			array.forEach.call(document.querySelectorAll('li.in-window'), (e, i) => {
-				e.classList.add('moving-out-to-right');
+			array.forEach.call(document.querySelectorAll('li.hosp_builder_in-window'), (e, i) => {
+				e.classList.add('hosp_builder_moving-out-to-right');
 			});
 
-			array.forEach.call(document.querySelectorAll('li.left-of-window'), (e, i) => {
-				e.classList.add('moving-in-from-left');
+			array.forEach.call(document.querySelectorAll('li.hosp_builder_left-of-window'), (e, i) => {
+				e.classList.add('hosp_builder_moving-in-from-left');
 			});
 
 			const _t = this;
@@ -307,7 +313,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 // Ref12: Stage Has Changed
 
-		stageHasChanged: function(stage) {
+		stageHasChanged: function(thing, stage) {
 			this.open();
 			this.updateDrawer(stage);
 			this.setState({ pageInView : 1 });
@@ -332,6 +338,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		updateStructure: function(code) {
 
+			console.log(code)
+
 			R.stageVisited = [ true, false, false, false, false, false, false, false, false, false ];
 
 			let numOfColors = 0, key;
@@ -349,6 +357,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				chosenColors    : [],
 				drawerSize      : 1
 			});
+
+			console.log(code)
 			
 			PubSub.publish( 'newStructure', code );
 		},
@@ -397,7 +407,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				if ( this.STRUCTURE_ELEMS_PER_PAGE === undefined ){
 
 					const WINDOW_HEIGHT = window.innerHeight;
-					const AVAIL_SPACE   = WINDOW_HEIGHT - document.querySelector('.progress-menu__container').offsetHeight - 100;
+					const AVAIL_SPACE   = WINDOW_HEIGHT - document.querySelector('.hosp_builder_progress-menu__container').offsetHeight - 100;
 					
 					const STRUCTURE_ELEM_HEIGHT   = 157;
 					const NUM_OF_STRUCTURE_ROWS   = Math.floor( AVAIL_SPACE / STRUCTURE_ELEM_HEIGHT );
@@ -414,28 +424,28 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 					let page         = Math.ceil( indexPlusOne / this.STRUCTURE_ELEMS_PER_PAGE );
 
 					let img = this.state._structures[code];
-					let jpg = templateDirectoryUri + '/rugbuilder-hospitality/assets/img/structures/' + code + '/base.jpg';
+					let jpg = 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/' + code + '/base.jpg';
 
 					return <BtnStructureComponent key={ index } code={ code } img={ img } jpg={ jpg } page={ page } pageInView={ this.state.pageInView } onClick={ this.updateStructure } />
 				});
 
-				let styleStr = '.drawer__content ul.structures li.right-of-window, .drawer__content ul.structures li.moving-out-to-right { top: -' + this.STRUCTURE_TOP_CSS_AMOUNT + 'px }';
+				let styleStr = '.hosp_builder_drawer__content ul.hosp_builder_structures li.hosp_builder_right-of-window, .hosp_builder_drawer__content ul.hosp_builder_structures li.hosp_builder_moving-out-to-right { top: -' + this.STRUCTURE_TOP_CSS_AMOUNT + 'px }';
 				structureStyleHTML = <style>{ styleStr }</style>;
 
 				let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
 				let rightStyle = this.state.pageInView === this.STRUCTURE_NUM_OF_PAGES ? { color: '#A8A8A8' } : {};
 
-				let leftUrl  = templateDirectoryUri + '/rugbuilder-hospitality/assets/icons/arrow-left.svg';
-				let rightUrl = templateDirectoryUri + '/rugbuilder-hospitality/assets/icons/arrow-right.svg';
+				let leftUrl  = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110134436/arrow-left.svg';
+				let rightUrl = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110134433/arrow-right.svg';
 
 				btnsHTML = (
-					<div className="scroll-btns clearfix">
-						<div className="scroll__left">
+					<div className="hosp_builder_scroll-btns clearfix">
+						<div className="hosp_builder_scroll__left">
 							<a href="#" onClick={ this.slideRight } style={ leftStyle }>
 								<img src={ leftUrl } alt="Scroll Left" className="scroller_btn" />
 							</a>
 						</div>
-						<div className="scroll__right">
+						<div className="hosp_builder_scroll__right">
 							<a href="#" onClick={ this.slideLeft } style={ rightStyle }>
 								<img src={ rightUrl } alt="Scroll Right" className="scroller_btn" />
 							</a>
@@ -485,23 +495,23 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 			//	if ( window.innerHeight < 1000 ) {
 
-					let styleStr = '.drawer__content ul.colors li.right-of-window, .drawer__content ul.colors li.moving-out-to-right { top: -' + this.COLOR_TOP_CSS_AMOUNT + 'px }';
+					let styleStr = '.hosp_builder_drawer__content ul.hosp_builder_colors li.hosp_builder_right-of-window, .hosp_builder_drawer__content ul.hosp_builder_colors li.hosp_builder_moving-out-to-right { top: -' + this.COLOR_TOP_CSS_AMOUNT + 'px }';
 					colorStyleHTML = <style>{ styleStr }</style>
 
 					let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
 					let rightStyle = this.state.pageInView === this.COLOR_NUM_OF_PAGES ? { color: '#A8A8A8' } : {};
 
-					let leftUrl  = templateDirectoryUri + '/rugbuilder-hospitality/assets/icons/arrow-left.svg';
-					let rightUrl = templateDirectoryUri + '/rugbuilder-hospitality/assets/icons/arrow-right.svg';
+					let leftUrl  = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110134436/arrow-left.svg';
+					let rightUrl = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110134433/arrow-right.svg';
 
 					btnsHTML = (
-						<div className="scroll-btns clearfix">
-							<div className="scroll__left">
+						<div className="hosp_builder_scroll-btns clearfix">
+							<div className="hosp_builder_scroll__left">
 								<a href="#" onClick={ this.slideRight } style={ leftStyle }>
 									<img src={ leftUrl } alt="Scroll Left" className="scroller_btn" />
 								</a>
 							</div>
-							<div className="scroll__right">
+							<div className="hosp_builder_scroll__right">
 								<a href="#" onClick={ this.slideLeft } style={ rightStyle }>
 									<img src={ rightUrl } alt="Scroll Right" className="scroller_btn" />
 								</a>
@@ -511,8 +521,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			//	}
 			}
 
-			const OPEN             = this.state.open ? 'open' : 'closed';
-			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.stage;
+			const OPEN             = this.state.open ? 'hosp_builder_open' : 'hosp_builder_closed';
+			const DRAWER_CLASSES   = 'hosp_builder_drawer__content ' + OPEN + ' ' + this.state.stage;
 
 			let numOfPages = this.state.stage === 'structures' ? this.STRUCTURE_NUM_OF_PAGES : this.COLOR_NUM_OF_PAGES;
 			let dots = [];
@@ -520,25 +530,25 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			for ( let i = 0; i < numOfPages; i++ ) {
 
 				let index = i + 1;
-				let className = 'dot';
+				let className = 'hosp_builder_dot';
 
 				if ( this.state.pageInView === index ) {
-					className += ' active';
+					className += ' hosp_builder_active';
 				}
 
 				dots.push(<div className={ className } data-page={ index } onClick={() => this.scrollToPage(index)}></div>);
 			}
 
-			let dotsHTML = <div className="dots clearfix">{ dots }</div>;
+			let dotsHTML = <div className="hosp_builder_dots clearfix">{ dots }</div>;
 
 			return (
-				<div className="react-container drawer__container" key={ this.state.timestamp }>
+				<div className="hosp_builder_react-container hosp_builder_drawer__container" key={ this.state.timestamp }>
 					<div className={ DRAWER_CLASSES }>
-						<div className="drawer__content">
-							<ul className="clearfix structures open">
+						<div className="hosp_builder_drawer__content">
+							<ul className="clearfix hosp_builder_structures hosp_builder_open">
 								{ structuresHTML }
 							</ul>
-							<ul className="clearfix colors open">
+							<ul className="clearfix hosp_builder_colors hosp_builder_open">
 								{ colorsHTML }
 							</ul>
 						</div>
@@ -553,5 +563,5 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 		}
 	});
 
-	ReactDOM.render( <DrawerComponent />, document.querySelector( '#drawer' ) );
+	ReactDOM.render( <DrawerComponent />, document.querySelector( '#hosp_builder_drawer' ) );
 }
