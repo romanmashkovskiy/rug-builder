@@ -61,6 +61,7 @@
 
 /********** News Item Card ********/
 .news__item {
+  max-width: 1300px;
   width: 80%;
   margin: auto;
   background-color: #FFF;

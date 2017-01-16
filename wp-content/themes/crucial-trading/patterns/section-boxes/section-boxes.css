@@ -1,5 +1,6 @@
 .section-box {
   left: 50%;
+  max-width: 1300px;
   position: relative;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);

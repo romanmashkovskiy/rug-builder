@@ -36,7 +36,7 @@ function share_links( $atts ) {
 
 	$html .= '<div class="link__container ' . $material . '">';
 	$html .= '<i class="icon-crucial-facebook link__icon transition-all"></i>';
-	$html .= '<a href="https://www.facebook.com/sharer/sharer.php?u=CrucialTrading:" title="Share on Facebook" class="link__text" target="_blank">Facebook</a>';
+	$html .= '<a href="https://www.facebook.com/sharer/sharer.php?u=' . urlencode( get_the_permalink() ) . '" title="Share on Facebook" class="link__text" target="_blank">Facebook</a>';
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';

@@ -26,6 +26,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=<?php bloginfo( 'charset' ); ?>" />
 		<title><?php echo get_bloginfo( 'name', 'display' ); ?></title>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display" rel="stylesheet">
+		<style>
+			h1, h2, h3, h4, h5, h6 {
+				font-family: 'Playfair Display', serif;
+			}
+			p, td, div {
+				font-family: 'Open Sans', sans-serif;
+			}
+		</style>
 	</head>
 	<body <?php echo is_rtl() ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
 
