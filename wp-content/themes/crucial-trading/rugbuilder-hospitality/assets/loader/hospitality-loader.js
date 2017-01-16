@@ -1,21 +1,23 @@
 function load(options, secret_DEPRECIATED) {
 
-	var key, secret, submit, restart, exit;
+	var key, secret, submit, restart, exit, translations;
 
 	if ( typeof options === 'object' ) {
-		key     = options.key;
-		secret  = options.secret;
-		submit  = options.showSubmitButton || false;
-		restart = options.showRestartButton || false;
-		exit    = options.showExitButton || false;
+		key          = options.key;
+		secret       = options.secret;
+		submit       = options.showSubmitButton || false;
+		restart      = options.showRestartButton || false;
+		exit         = options.showExitButton || false;
+		translations = options.translations || false;
 	} else {
-		key     = options;
-		secret  = secret_DEPRECIATED;
-		submit  = false;
-		restart = false;
-		exit    = false;
+		key          = options;
+		secret       = secret_DEPRECIATED;
+		submit       = false;
+		restart      = false;
+		exit         = false;
+		translations = false;
 		
-		console.warn('Passing in the key and secret to the load function as strings is depreciated. Please pass them in an object, along with the other options, like so:')
+		console.warn('Passing in the key and secret to the load function as strings is depreciated and will be removed in future versions. Please pass them in an object, along with the other options, like so:')
 		console.log({
 			key               : 'YOUR_API_KEY_HERE', 
 			secret            : 'YOUR_API_SECRET_HERE',
@@ -24,8 +26,6 @@ function load(options, secret_DEPRECIATED) {
 			showExitButton    : true
 		})
 	}
-
-		
 
 	if ( key !== 'E9(]8x~QGIZR^-f' ) {
 		return;
