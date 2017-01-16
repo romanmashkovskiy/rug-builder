@@ -10,6 +10,14 @@
 
 ?>
 
+<?php
+
+if ( !is_user_logged_in() ) {
+	echo '<script>window.location = "' . wp_login_url( get_permalink() ) . '"</script>';
+}
+
+?>
+
 <!doctype html>
 <html>
 <head>
