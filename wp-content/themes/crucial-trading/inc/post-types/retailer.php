@@ -253,6 +253,10 @@ function save_retailer_post( $post_id, $post, $update ) {
 
 	$url_address = urlencode($address);
 
+	if ( $url_address == '' ) {
+		return;
+	}
+
 	$url  = "http://maps.google.com/maps/api/geocode/json?address={$url_address}";
 	$json = file_get_contents($url);
 	$resp = json_decode($json, true);
