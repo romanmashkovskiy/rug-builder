@@ -1,12 +1,26 @@
 $ = jQuery;
 
-$(document).ready(function() {
+var superslidesInterval = setInterval(function() {
 
-	var slider = $('#super-slider').superslides({
+	if ( $('#super-slider').length > 0 ) {
+		createSuperslider();
+	}
+
+}, 1)
+
+function createSuperslider() {
+
+	$('#super-slider').superslides({
 		play: 5000,
 		animation: 'fade',
 		animation_speed: 1200
 	});
+
+	clearInterval(superslidesInterval);
+
+}
+
+$(document).ready(function() {
 
 	$('.slide__numbers li').on('click', function() {
 

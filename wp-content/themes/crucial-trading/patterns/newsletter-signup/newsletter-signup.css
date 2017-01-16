@@ -123,3 +123,5 @@
   .newsletter button:focus,
   .newsletter button:hover {
     background: #3a3a3a; }
+  .newsletter .mce-responses {
+    color: #bababa; }

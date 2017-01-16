@@ -64,6 +64,8 @@
       box-shadow: -5px 5px 18px 0px rgba(0, 0, 0, 0.08);
       height: 520px;
       margin-top: 0 !important;
+      -o-object-fit: cover;
+      object-fit: cover;
       width: calc(50% - 100px);
       position: relative;
       z-index: 9; }
