@@ -37,6 +37,8 @@ if ( $type == 'product_cat' ) {
 }
 else if ( $type == 'product_tag' ) {
 
+	$_GET['ref'] = $slug;
+
 	echo do_shortcode( '[header-collection collection="' . $slug . '"]' );
 
 	echo do_shortcode( '[logo-nav]' );

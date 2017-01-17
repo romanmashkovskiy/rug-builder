@@ -83,12 +83,41 @@
 		&.hosp_builder_active {
 
 			.hosp_builder_progress-menu__stage__link {
-				border-bottom: 1px solid $main-body-text-color;
 				color: $main-body-text-color;
 				margin: auto;
 				margin-bottom: 34px;
 				padding-bottom: 2px !important;
 				width: auto;
+
+				&::before,
+				&::after {
+					background: #000;
+					bottom: -5px;
+					content: '';
+					height: 2px;
+					left: 0;
+					position: absolute;
+					-webkit-transition: all 0.3s ease-in-out 0s;
+					transition: all 0.3s ease-in-out 0s;
+					width: 100%;
+					z-index: 5;
+				}
+
+				&::before {
+					opacity: 0.45;
+				}
+
+				&::after {
+					-webkit-transform: scaleX(0);
+					transform: scaleX(0);
+					visibility: hidden;
+				}
+
+				&:hover::after {
+					visibility: visible;
+					-webkit-transform: scaleX(1);
+					transform: scaleX(1);
+				}
 			}
 		}
 	}

@@ -12,17 +12,18 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 		 * Ref3  : Component Did Mount                Subscribes the component to some PubSub stuff, adds the window resize event listener
 		 * Ref4  : Component Will Unmount             Unsubscribes from the PubSub stuff
 		 * Ref5  : Window Resize                      Updates the _resize state property to force a re-render of the component
-		 * Ref6  : Open                               Fired when the 'Expand' button is clicked, open the drawer from height 0
-		 * Ref7  : Close                              Fired when the 'Collapse' button is clicked, closes the drawer to height 0
-		 * Ref8  : Restart                            Resets everything so the user can start from blank
-		 * Ref9  : Submit                             Saves the user's choices in state then calls the Submit Screen component (passing the saved choices)
-		 * Ref10 : Slide Left                         Scrolls the drawer to the left
-		 * Ref11 : Slide Right                        Scrolls the drawer to the right
-		 * Ref12 : Stage Has Changed                  Fires when the user has clicked on a different stage in the progress menu, opens the drawer and fires Update Drawer (Ref13)
-		 * Ref13 : Update Drawer                      Updates the stage state property so the component knows whether to render structures or colors
-		 * Ref14 : Update Stucture                    Fires when the user clicks a structure, updates the state to save and show the chosen structure, publishes the newStructure event
-		 * Ref15 : Update Color                       Fires when the user clicks a colors, updates the state to save and show the chosen color, publishes the newColor event
-		 * Ref16 : Render                             Renders the component
+		 * Ref6  : Calculate Drawer Max Height        Calculates the max height for the drawer and drawer container to fix the weird sliding
+		 * Ref7  : Open                               Fired when the 'Expand' button is clicked, open the drawer from height 0
+		 * Ref8  : Close                              Fired when the 'Collapse' button is clicked, closes the drawer to height 0
+		 * Ref9  : Restart                            Resets everything so the user can start from blank
+		 * Ref10 : Submit                             Saves the user's choices in state then calls the Submit Screen component (passing the saved choices)
+		 * Ref11 : Slide Left                         Scrolls the drawer to the left
+		 * Ref12 : Slide Right                        Scrolls the drawer to the right
+		 * Ref13 : Stage Has Changed                  Fires when the user has clicked on a different stage in the progress menu, opens the drawer and fires Update Drawer (Ref13)
+		 * Ref14 : Update Drawer                      Updates the stage state property so the component knows whether to render structures or colors
+		 * Ref15 : Update Stucture                    Fires when the user clicks a structure, updates the state to save and show the chosen structure, publishes the newStructure event
+		 * Ref16 : Update Color                       Fires when the user clicks a colors, updates the state to save and show the chosen color, publishes the newColor event
+		 * Ref17 : Render                             Renders the component
 		 */
 
 // Ref1: Get Initial State
@@ -79,6 +80,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			this.restart     = PubSub.subscribe( 'restart', this.restart );
 			this.submit      = PubSub.subscribe( 'submit', this.submit );
 
+			this.calcDrawerMaxHeight();
+
 			let _t = this;
 
 			const HAMMER_S = new Hammer(document.querySelector('ul.hosp_builder_structures'));
@@ -118,12 +121,26 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			this.STRUCTURE_ELEMS_PER_PAGE = undefined;
 			this.COLOR_ELEMS_PER_PAGE     = undefined;
 
+			this.calcDrawerMaxHeight();
+
 			this.setState((prevState) => {
 				return { _resize: prevState._resize + 1 };
 			});
 		},
 
-// Ref6: Open
+// Ref6: Calculate Drawer Max Height
+
+		calcDrawerMaxHeight: function() {
+
+			const DRAWER = document.querySelector('.hosp_builder_drawer__content');
+			const HEIGHT = window.getComputedStyle(DRAWER).getPropertyValue('height');
+
+			DRAWER.style.maxHeight = HEIGHT;
+			console.log(HEIGHT);
+			document.querySelector('#hosp_builder_drawer').style.maxHeight = HEIGHT;
+		},
+
+// Ref7: Open
 
 		open: function() {
 
@@ -148,7 +165,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			})
 		},
 
-// Ref7: Close
+// Ref8: Close
 
 		close: function() {
 
@@ -164,7 +181,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			})
 		},
 
-// Ref8: Restart
+// Ref9: Restart
 
 		restart: function() {
 
@@ -230,7 +247,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			});
 		},
 
-// Ref9: Submit
+// Ref10: Submit
 
 		submit: function() {
 			R.choices.structure = this.state.chosenStructure;
@@ -245,7 +262,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			R.choices.color9    = this.state.chosenColors[8];
 		},
 
-// Ref10: Slide Left
+// Ref11: Slide Left
 
 		slideLeft: function(e) {
 
@@ -279,7 +296,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			}, 650)
 		},
 
-// Ref11: Slide Right
+// Ref12: Slide Right
 
 		slideRight: function(e) {
 
@@ -311,7 +328,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			}, 650)
 		},
 
-// Ref12: Stage Has Changed
+// Ref13: Stage Has Changed
 
 		stageHasChanged: function(thing, stage) {
 			this.open();
@@ -319,7 +336,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			this.setState({ pageInView : 1 });
 		},
 
-// Ref13: Update Drawer
+// Ref14: Update Drawer
 
 		updateDrawer: function(stageCode) {
 
@@ -334,7 +351,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			this.setState({ stage : stage });
 		},
 
-// Ref14: Update Stucture
+// Ref15: Update Stucture
 
 		updateStructure: function(code) {
 
@@ -359,7 +376,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			PubSub.publish( 'newStructure', code );
 		},
 
-// Ref15: Update Color
+// Ref16: Update Color
 
 		updateColor: function(color) {
 
@@ -392,7 +409,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 //			setTimeout(() => { _t.scrollToPage(page) }, 650)
 		},
 
-// Ref16: Render
+// Ref17: Render
 
 		render: function() {
 

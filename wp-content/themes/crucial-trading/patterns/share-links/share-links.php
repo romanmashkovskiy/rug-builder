@@ -90,6 +90,14 @@ function share_links( $atts ) {
 
 		}
 
+	} else {
+
+		$twitter  = 'Crucial Trading: ' . get_the_title() . ' ' . get_the_permalink();
+		$facebook = urlencode( get_the_permalink() );
+		$tumblr   = get_the_permalink();
+		$subject  = 'Crucial Trading: ' . get_the_title();
+		$body     = get_the_title() . ' ' . get_the_permalink();
+		
 	}
 
 	$html = "";
