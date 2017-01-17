@@ -113,7 +113,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			PubSub.unsubscribe( this.restart );
 			PubSub.unsubscribe( this.submit );
 		},
-
+ 
 // Ref5: Window Resize
 
 		windowResize: function() {
