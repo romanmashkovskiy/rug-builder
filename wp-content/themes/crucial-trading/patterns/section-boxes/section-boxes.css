@@ -59,7 +59,7 @@
     @media screen and (max-width: 992px) {
       .section-box .box__content {
         margin-top: 300px;
-        padding: 50px; }
+        padding: 50px 25px; }
         .section-box .box__content.left {
           margin-left: 0; }
         .section-box .box__content h2 {

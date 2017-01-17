@@ -74,7 +74,7 @@
 		endwhile;
 	
 	// Read all news link 
-	$html .= '<div class="news__page-link"><a href=""></a></div>';
+	$html .= '<div class="news__page-all-link"><a href="">View More News</a></div>';
 	
 	$html .= '</div>';
 	

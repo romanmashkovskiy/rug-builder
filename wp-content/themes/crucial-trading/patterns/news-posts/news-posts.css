@@ -132,6 +132,9 @@ body .news__item a {
   transform-origin: right top;
   -webkit-transform: rotate(270deg);
   transform: rotate(270deg); }
+  @media screen and (max-width: 768px) {
+    .news__item__category {
+      display: none; } }
 
 .news__item__category-line {
   width: 25px;
@@ -159,6 +162,10 @@ body .news__item a {
   text-transform: capitalize;
   font-size: 36px;
   letter-spacing: 1.5px; }
+  @media screen and (max-width: 768px) {
+    .news__item__heading h2 {
+      line-height: 1.4;
+      padding-bottom: 10px; } }
 
 .news__item__date {
   font-size: 12px;

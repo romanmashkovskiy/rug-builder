@@ -17,6 +17,13 @@
 .material-slide {
 	background: #383838;
 
+	.slide__content {
+
+		@media screen and (min-width: 768px) {
+			height: calc(100% - 60px);
+		}
+	}
+
 	.theline {
 		display: block;
 		height: 125px;
@@ -84,8 +91,8 @@
 		padding: 0;
 		padding-left: 50%;
 
-		@media screen and (max-width: 321px) {
-			padding-left: 40%;
+		@media screen and (max-width: 768px) {
+			display: none;
 		}
 
 		li {
@@ -93,33 +100,6 @@
 			display: inline;
 			list-style: none;
 			padding: 0 5px;
-
-			@media screen and (max-width: 768px) {
-
-				&:nth-child(n + 4) {
-					position: relative;
-					top: 7px;
-				}
-
-				&:last-child {
-					padding-right: 0;
-				}
-			}
-
-			&:nth-child(3) {
-
-				@media screen and (max-width: 768px) {
-					margin-right: 22vw;
-				}
-
-				@media screen and (max-width: 594px) {
-					margin-right: 11vw;
-				}
-
-				@media screen and (max-width: 442px) {
-					margin-right: 0;
-				}
-			}
 
 			img {
 				height: 45px;

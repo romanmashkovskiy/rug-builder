@@ -14,25 +14,28 @@
 .collection-swatches {
   background: white;
   margin-left: 7%;
-  padding: 100px 50px;
+  padding: 50px;
   position: relative;
   width: 86%; }
   @media screen and (max-width: 768px) {
     .collection-swatches {
-      padding: 100px 25px; } }
+      padding: 50px 25px; } }
   .collection-swatches .collection__title {
-    font-size: 48px;
-    margin-bottom: 100px;
-    text-align: center; }
+    font-family: "DIN",sans-serif;
+    font-size: 70px;
+    letter-spacing: 4px;
+    margin-bottom: 50px;
+    text-align: center;
+    text-transform: uppercase; }
     @media screen and (max-width: 768px) {
       .collection-swatches .collection__title {
-        font-size: 32px; } }
+        font-size: 50px; } }
   .collection-swatches .swatch-container .swatch {
     border: 1px solid #ededed;
     float: left;
-    height: 120px;
+    height: 150px;
     margin-bottom: 20px;
-    padding: 0 10px;
+    padding: 15px;
     width: 23.5%; }
     .collection-swatches .swatch-container .swatch:hover {
       border: none;
@@ -48,9 +51,12 @@
       width: 50%; }
       .collection-swatches .swatch-container .swatch h3.code {
         color: #BBBBBB; }
+      @media screen and (max-width: 555px) {
+        .collection-swatches .swatch-container .swatch h3 {
+          font-size: 13px; } }
     .collection-swatches .swatch-container .swatch img {
       float: right;
-      height: 80%;
+      height: 100%;
       width: 45%; }
     .collection-swatches .swatch-container .swatch .swatch__title {
       color: #7C7C7C;

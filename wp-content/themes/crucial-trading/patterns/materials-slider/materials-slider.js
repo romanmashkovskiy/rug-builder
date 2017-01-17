@@ -89,8 +89,6 @@ $(document).ready(function() {
 		$('li[data-slide="' + newActive + '"] img').addClass('active');
 	});
 
-	$('.material-slide .slide__content').css('cssText', 'height: calc(100% - 60px)');
-
 	setTimeout(function() {
 		$('.material-slide').each(function(i, v) {
 			$(v).css({

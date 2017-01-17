@@ -53,7 +53,7 @@ function collection_swatches( $atts = '' ) {
 				$src  = is_array( $_src ) && array_key_exists( 0, $_src ) ? $_src[0] : '';
 				$name = $product->post_title;
 				$code = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : false;
-				$href = get_the_permalink( $product_id );
+				$href = get_the_permalink( $product_id ) . '?ref=' . urlencode( $collection );
 				
 				$html .= '<div class="swatch">';
 				$html .= '<a href="' . $href . '">';

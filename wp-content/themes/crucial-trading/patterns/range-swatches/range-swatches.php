@@ -47,7 +47,7 @@ function range_swatches( $atts = '' ) {
 
 				if ( count( $products->posts ) > 0 ) {
 					$link_id  = $products->posts[0]->ID;
-					$link     = get_the_permalink( $link_id );
+					$link     = get_the_permalink( $link_id ) . '?ref=' . urlencode( $material );
 				}
 
 				$title = $value->name;
