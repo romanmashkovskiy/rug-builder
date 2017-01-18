@@ -47,7 +47,7 @@ function other_ranges( $atts = '' ) {
 		'taxonomy'   => 'product_cat',
 		'hide_empty' => false,
 		'parent'     => $range_parent_id,
-	) );
+	) ); 
 
 	if ( count( $ranges > 0 ) ) {
 
