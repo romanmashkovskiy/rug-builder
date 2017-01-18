@@ -94,10 +94,13 @@ function createMap( latLng, zoom, $map ) {
 				var lat       = parseFloat(coordsArr[0]);
 				var lng       = parseFloat(coordsArr[1]);
 
+				var i2 = (i+1).toString();
+
 				var marker = new google.maps.Marker({
 					position : { lat: lat, lng: lng },
 					map      : map,
-					icon     : image
+					icon     : image,
+					label    : i2
 				});
 			}
 		}

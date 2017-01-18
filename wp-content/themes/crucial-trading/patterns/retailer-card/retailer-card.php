@@ -30,6 +30,12 @@ function retailer_card( $atts = '' ) {
 		$distance = $atts['distance'];
 	}
 
+	$iterator = 0;
+
+	if ( array_key_exists( 'i', $atts ) ) {
+		$iterator = $atts['i'] + 1;
+	}
+
 	$post = get_post( $post_id ); 
 
 //	$address = rwmb_meta( 'address', array(), $post_id );
@@ -83,8 +89,9 @@ function retailer_card( $atts = '' ) {
 
 		$html .= '<div class="retailer">';
 		$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg" class="retailer__pin">';
+		$html .= '<span class="retailer__iterator">' . $iterator . '</span>';
 		$html .= '<div class="border-div">';
-		$html .= '<p class="retailer__title">' . get_the_title( $post_id ) . '</p>';
+		$html .= '<h3 class="retailer__title">' . get_the_title( $post_id ) . '</h3>';
 		$html .= '<p class="retailer__address">' . nl2br( $address ) . '</p>';
 		if ( $phone != '' ) {
 			$html .= '<p class="retailer__phone">' . $phone . '</p>';
@@ -106,7 +113,7 @@ function retailer_card( $atts = '' ) {
 		$html .= '<div class="retailer overseas">';
 		$html .= '<div class="border-div clearfix">';
 		$html .= '<span class="flag-icon flag-icon-' . $country_code . '"></span>';
-		$html .= '<p class="retailer__title">' . get_the_title( $post_id ) . '</p>';
+		$html .= '<h3 class="retailer__title">' . get_the_title( $post_id ) . '</h3>';
 		$html .= '<p class="retailer__address">' . nl2br( $address ) . '</p>';
 		$html .= '<div class="retailer__contact">';
 		if ( $website != '' ) {

@@ -181,7 +181,7 @@ if ( count( $uk_retailers ) > 0 ) {
 
 		$id   = $uk_retailers[$i3]->ID;
 		$dist = round( $uk_retailers[$i3]->distance );
-		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '"]' );
+		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
 	}
 
 	echo '</div>';

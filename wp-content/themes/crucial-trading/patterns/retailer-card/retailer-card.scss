@@ -21,12 +21,22 @@
 		}
 	}
 
+	.retailer__pin,
+	.retailer__iterator {
+		position: absolute;
+		z-index: 99;
+	}
+
 	.retailer__pin {
 		left: calc(50% - 12px);
-		position: absolute;
 		top: -10px;
 		width: 24px;
-		z-index: 99;
+	}
+
+	.retailer__iterator {
+		color: white;
+		left: calc(50% - 5px);
+		top: -11px;
 	}
 
 	.border-div {
@@ -43,7 +53,7 @@
 	}
 
 	.retailer__title {
-		font-weight: bold;
+		font-size: 18px;
 		margin-bottom: 30px;
 	}
 
@@ -65,7 +75,6 @@
 			font-size: 11px;
 		}
 
-		&:before,
 		&:after {
 			background: black;
 		}
@@ -77,7 +86,7 @@
 		position: absolute;
 		padding-bottom: 30px;
 		padding-top: 4px;
-		right: 0;
+		right: 20px;
 
 		@media screen and (max-width: 1380px) {
 			font-size: 11px;
