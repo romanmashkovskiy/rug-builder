@@ -360,7 +360,7 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
   overflow: hidden;
   margin: 0;
   padding: 0;
-  width: 265px;
+  width: 190px;
   height: 90px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -373,6 +373,10 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
    transition: background 0.3s;
    background: transparent;
    text-shadow: none;
+
+   @media screen and (max-width: 768px) {
+   	width: 100px;
+   }
 
 //   @media screen and (max-width: 992px) {
   // 	width: 161px;
@@ -425,7 +429,7 @@ span.main-menu__button__text--close {
 	letter-spacing: 2.5px;
 	position: absolute;
 	top:34px;
-	left: 150px;
+	left: 74px;
 	@extend .transition-all;
 
 	@media screen and (max-width: 768px) {
@@ -441,7 +445,7 @@ span.main-menu__button__icon {
   display: block;
   position: absolute;
   top: 42px;
-  left: 96px;
+  left: 20px;
   right: 0px;
   height: 2px;
   background-color: #FFF;

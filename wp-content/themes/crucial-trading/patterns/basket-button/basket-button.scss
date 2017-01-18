@@ -7,11 +7,15 @@
 }
 
 #basket-link {
-	left: 0;
 	position: absolute;
+	right: 260px;
 	top: 0;
 	transition: all ease-in-out 0.25s;
 	z-index: 999999;
+
+	@media screen and (max-width: 768px) {
+		right: 165px;
+	}
 }
 
 .show-menu #basket-link {
@@ -47,4 +51,5 @@ svg.main-menu__button__basket {
 	transition: all ease-in-out 0.25s;
 	line-height: 1.4;
 	letter-spacing: 0;
+	text-align: center;
 }

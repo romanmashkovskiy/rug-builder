@@ -12,7 +12,6 @@ var $ = jQuery;
 	$(function() {                     
 	  $(".main-menu__button").click(function(e) { 
 
-	  	if ( !$(e.target).hasClass('link-opener') ) {
 	  		$(this).toggleClass("is-active");
 		    $('body').toggleClass("show-menu");
 
@@ -27,12 +26,6 @@ var $ = jQuery;
 		    	}
 
 		    }
-
-	  	} else {
-	  		e.preventDefault();
-	  		e.stopPropagation();
-	  		document.querySelector('.basket-dropdown').style.display = 'block';
-	  	}
 	  });
 	});
 		

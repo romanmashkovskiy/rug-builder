@@ -31,11 +31,10 @@ function logo_nav_shortcode( $atts = '' ) {
 	$html .= '</a>';
 	$html .= '</div>';
 
+	$html .= do_shortcode( '[basket-button]' );
+
 	$html .= '<div class="top-bar__right main-menu__button--wrap">
 	<button class="main-menu__button menu-button" id="open-button">
-
-	' . do_shortcode( '[basket-button]' ) . '
-
 		<span class="main-menu__button__icon"></span><span class="main-menu__button__text">menu</span><span class="main-menu__button__text--close">close</span>
 	</button>
 </div>';
