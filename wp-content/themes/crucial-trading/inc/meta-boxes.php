@@ -19,9 +19,21 @@ function meta_boxes($meta_boxes) {
 	// Product 3D Maps 
 
 	$meta_boxes[] = array(
-		'title'      => '3D Rug Builder Maps',
+		'title'      => '3D Rug Builder Images',
 		'post_types' => 'product',
 		'fields'     => array(
+			array(
+				'name'     => 'Texture',
+				'id'       => 'rb_texture',
+				'type'        => 'image_advanced',
+				'max_uploads' => 1,
+				'priority' => 'high',
+			),
+			array(
+				'name'     => 'divider',
+				'id'       => 'divider',
+				'type'        => 'divider',
+			),
 			array(
 				'name'     => 'Bump Map',
 				'id'       => 'rb_bump_map',
