@@ -41,6 +41,7 @@ $(document).ready(function() {
 	if ( $('.slidee').data('total') > 1 ) {
 
 		$('.material-view-slider ul#material-view-slider-list').bxSlider({
+			mode         : 'fade',
 			startSlide   : startIndex,
 
 			nextSelector : '#material-view-slider-next',
@@ -122,4 +123,5 @@ $(document).ready(function() {
 
 	$('.bx-prev').html(svgPrev.join(''));
 	$('.bx-next').html(svgNext.join(''));
+
 })
