@@ -10,7 +10,7 @@
  
 get_header();
 
-echo do_shortcode( '[header size="small"]' );
+echo do_shortcode( '[header size="small"]' ); 
 
 echo do_shortcode( '[logo-nav]' );
 
