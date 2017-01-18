@@ -96,7 +96,10 @@ function material_view( $atts = '' ) {
 
 		$html .= '<div class="image-container">';
 		$html .= '<img src="' . $src . '" alt="' . $post_title . '" class="material-img">';
-		$html .= '<a href="#" id="change-image-view" data-view="top" data-top="' . $src . '" data-angle="' . $src_angle . '">Change View</a>';
+
+		if ( $src_angle != '' ) {
+			$html .= '<a href="#" id="change-image-view" data-view="top" data-top="' . $src . '" data-angle="' . $src_angle . '">Change View</a>';
+		}
 
 		if ( $width || $backing || $fibre || $suit_1 || $suit_2 || $suit_3 || $under_1 || $under_2 || $under_3 || $design_1 || $design_2 || $design_3 ) {
 			$html .= '<div class="material__details clearfix">';
