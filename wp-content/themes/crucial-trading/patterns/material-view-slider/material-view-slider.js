@@ -44,7 +44,7 @@ $(document).ready(function() {
 			mode         : 'fade',
 			startSlide   : startIndex,
 
-			nextSelector : '#material-view-slider-next',
+			nextSelector : '#material-view-slider-next', 
 			prevSelector : '#material-view-slider-prev',
 
 			onSlideNext  : function() {
