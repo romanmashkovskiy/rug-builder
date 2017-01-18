@@ -26,4 +26,4 @@ echo '</div>';
 
 echo do_shortcode( '[newsletter-signup]' );
 
-get_footer();
+get_footer(); 
