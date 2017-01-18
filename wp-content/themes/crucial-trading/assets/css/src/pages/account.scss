@@ -9,6 +9,7 @@ background-color: $light-grey-bg;
 		float: none;
 		margin-left: 10%;
 		margin-top: -40px;
+		max-width: 1300px;
 		padding: 40px 0;
 		position: relative;
 		width: 80%;
@@ -19,6 +20,11 @@ background-color: $light-grey-bg;
 		@media screen and (max-width: 992px) {
 			padding-left: 10px;
 			padding-right: 10px;
+		}
+
+		@media screen and (min-width: 1625px) {
+			margin-left: auto;
+			margin-right: auto;
 		}
 
 		ul {
@@ -84,12 +90,18 @@ background-color: $light-grey-bg;
 		margin-left: 10%;
 		margin-bottom: 100px;
 		margin-top: 50px;
+		max-width: 1300px;
 		padding: 50px;
 		position: relative;
 		width: 80%;
 		-webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 		-moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
 		box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
+
+		@media screen and (min-width: 1625px) {
+			margin-left: auto;
+			margin-right: auto;
+		}
 
 		p {
 

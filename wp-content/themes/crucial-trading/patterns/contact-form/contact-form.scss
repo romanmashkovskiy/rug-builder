@@ -3,6 +3,7 @@
 .contact-form {
 	background: white;
 	margin-left: 13%;
+	max-width: 1300px;
 	padding: 10px;
 	position: relative;
 	width: 74%;
@@ -12,6 +13,11 @@
 		input, select, textarea {
 			font-size: 12px !important;
 		}
+	}
+
+	@media screen and (min-width: 1756px) {
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.gform_wrapper,

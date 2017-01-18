@@ -3,9 +3,15 @@
 .material-view {
 	background: white;
 	margin-left: 10%;
+	max-width: 1300px;
 	padding: 24px 30px 30px;
 	position: relative;
 	width: 80%;
+
+	@media screen and (min-width: 1625px) {
+		margin-left: auto;
+		margin-right: auto;
+	}
 
 	.material__header {
 		margin-bottom: 22px;

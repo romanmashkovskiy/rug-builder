@@ -13,11 +13,17 @@
 	width: 80%;
 	margin: auto;
 	text-align: center; 
+	max-width: 1300px;
 	background-color: #FFF;
 	padding: 40px;
 	position: relative;
 	top: -40px;
 	z-index: 99;
+
+	@media screen and (min-width: 1625px) {
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 

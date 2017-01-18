@@ -1,9 +1,15 @@
 .swatches {
 	background: white;
 	margin-left: 7%;
+	max-width: 1300px;
 	padding: 100px 50px;
 	position: relative;
 	width: 86%;
+
+	@media screen and (min-width: 1511px) {
+		margin-left: auto;
+		margin-right: auto;
+	}
 
 	.swatch {
 		border: 1px solid #ededed;

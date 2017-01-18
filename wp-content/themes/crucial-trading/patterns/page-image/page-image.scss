@@ -1,8 +1,14 @@
 .page-image {
 	height: 500px;
 	margin-left: 13%;
+	max-width: 1300px;
 	overflow: hidden;
 	width: 74%;
+
+	@media screen and (min-width: 1756px) {
+		margin-left: auto;
+		margin-right: auto;
+	}
 
 	.page-image__img {
 		-webkit-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);

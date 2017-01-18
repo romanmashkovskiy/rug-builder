@@ -34,8 +34,14 @@
 	height: 125px;
 	margin-left: 10%;
 	margin-top: 150px;
+	max-width: 1300px;
 	position: relative;
 	width: 80%;
+
+	@media screen and (min-width: 1625px) {
+		margin-left: auto;
+		margin-right: auto;
+	}
 }
 
 .ranges__ul {
