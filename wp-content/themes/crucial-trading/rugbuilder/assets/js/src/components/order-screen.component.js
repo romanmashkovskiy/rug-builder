@@ -203,8 +203,11 @@ RugBuilder.prototype.orderScreenComponent = function() {
 					</div>
 					<div className="order__links">
 						<a href="#" className="link__edit" onClick={ this.edit }>Edit Rug</a>
+						<br />
 						<a href="#" className="link__print" onClick={ this.print }>Print Details</a>
+						<br />
 						<a href="#" className="link__order" onClick={ this.order }>Order Samples</a>
+						<br />
 						<a href="#" className="link__basket" onClick={ this.basket }>Add to Basket</a>
 					</div>
 				</div>

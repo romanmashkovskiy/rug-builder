@@ -579,9 +579,11 @@ function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 		elemsPerPage = 12;
 	}
 
-	if ( COLLECTION !== undefined ) {
+	if ( typeof COLLECTION !== 'undefined' ) {
 		let numOfPages = Math.ceil( COLLECTION.length / elemsPerPage );
 		R.numOfPages = numOfPages;
+	} else {
+		return <span></span>;
 	}
 
 	// Get the collections for the user selected material
