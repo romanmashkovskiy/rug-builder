@@ -8,9 +8,15 @@
 		box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
 		margin: 100px 0;
 		margin-left: 13%;
-		padding: 50px;
+		max-width: 1300px;
+		padding: 50px 50px 32px;
 		position: relative;
 		width: 74%;
+
+		@media screen and (min-width: 1756px) {
+			margin-left: auto;
+			margin-right: auto;
+		}
 
 		p label {
 			display: none;
