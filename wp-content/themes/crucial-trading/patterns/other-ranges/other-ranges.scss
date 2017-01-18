@@ -77,17 +77,22 @@
 		}
 	}
 
-	&.active {
-
-		img {
-			margin-bottom: 20px;
-		}
+	.range__container {
+		text-align: center;
 	}
+
+//	&.active {
+
+//		img {
+//			margin-bottom: 20px;
+//		}
+//	}
 
 	img {
 		height: 150px;
-		max-width: initial;
-		position: absolute;
+		margin-bottom: 10px;
+//		max-width: initial;
+//		position: absolute;
 		width: 150px;
 	}
 

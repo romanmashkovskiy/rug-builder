@@ -49,10 +49,12 @@ $(document).ready(function() {
 
 function createMap( latLng, zoom, $map ) {
 
+	var ukOrOverseas = $($map).data('ukcenter') !== '' ? 'uk' : 'overseas';
+
 	var coordStr    = $($map).data('coordinates');
 	var coordinates = coordStr && coordStr !== '' ? coordStr.split('|') : false;
 
-	var overseas = $($map).data('overseas');
+	var overseas    = $($map).data('overseas');
 	var coordinates = overseas && overseas !== '' ? overseas.split('|') : false;
 
 	var pinCoordsData = $($map).data('pincoords');
@@ -94,7 +96,7 @@ function createMap( latLng, zoom, $map ) {
 				var lat       = parseFloat(coordsArr[0]);
 				var lng       = parseFloat(coordsArr[1]);
 
-				var i2 = (i+1).toString();
+				var i2 = ukOrOverseas === 'uk' ? (i+1).toString() : '';
 
 				var marker = new google.maps.Marker({
 					position : { lat: lat, lng: lng },

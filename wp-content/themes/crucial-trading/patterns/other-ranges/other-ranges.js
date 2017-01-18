@@ -2,6 +2,8 @@ var $ = jQuery;
 
 $(document).ready(function() {
 
+	return;
+
 	if ( $('.ranges__ul').length === 0 ) {
 		return;
 	}

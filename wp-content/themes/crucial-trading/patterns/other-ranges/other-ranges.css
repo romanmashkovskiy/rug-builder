@@ -61,12 +61,13 @@
       width: 50%; }
       .range:nth-child(2) {
         display: none; } }
+  .range .range__container {
+    text-align: center; }
   .range.active img {
     margin-bottom: 20px; }
   .range img {
     height: 150px;
-    max-width: initial;
-    position: absolute;
+    margin-bottom: 10px;
     width: 150px; }
   .range h3 {
     text-align: center;

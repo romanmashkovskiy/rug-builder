@@ -82,7 +82,7 @@ function other_ranges( $atts = '' ) {
 			
 			$html .= '<li class="range ' . $the_material . ' ' . $active_class . '">';
 			$html .= '<a href="' . site_url() . '/product/' . $slug . '">';
-			$html .= '<div>';
+			$html .= '<div class="range__container">';
 
 			if ( $src != '' ) {
 				$html .= '<img src="' . $src . '" alt="' . $name . '" ' . $bxshdw_class . '>';
