@@ -11,7 +11,7 @@ var $ = jQuery;
 	// Add classes - active tag to button and show menu to body	
 	$(function() {                     
 	  $(".main-menu__button").click(function(e) { 
-
+ 
 	  		$(this).toggleClass("is-active");
 		    $('body').toggleClass("show-menu");
 
