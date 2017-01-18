@@ -84,7 +84,7 @@ function retailer_card( $atts = '' ) {
 	$lat = get_post_meta( $post_id, 'retailer_lat', true );
 	$lng = get_post_meta( $post_id, 'retailer_lng', true );
 	$url = 'http://maps.google.com/maps?q=' . $lat . ',' . $lng . '&ll=' . $lat . ',' . $lng . '&z=12';
-
+ 
 	if ( $distance != 'overseas' ) {
 
 		$html .= '<div class="retailer">';
