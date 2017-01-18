@@ -94,7 +94,7 @@ function materials_slider() {
 			$html .= $all_materials;
 			$html .= '</ul>';
 
-			$html .= '<div class="slide__content">';
+			$html .= '<div class="slide__content clearfix">';
 			$html .= '<div class="content__left vertical-align">';
 			$html .= '<img src="' . $icon . '" alt="' . $alt . '">';
 			$html .= '</div>';

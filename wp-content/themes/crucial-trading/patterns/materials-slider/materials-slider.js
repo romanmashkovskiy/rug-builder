@@ -3,7 +3,12 @@ var $ = jQuery;
 $(document).ready(function() {
 
 	var slider = $('.materials-slider').bxSlider({
-		mode: 'fade'
+		mode: 'fade',
+		onSliderLoad: function() {
+			setTimeout(function() {
+				$('.slide__content').addClass('slider-loaded');
+			}, 100)
+		}
 	});
 
 	$('.next-slide.--material-slider').on('click', function() {

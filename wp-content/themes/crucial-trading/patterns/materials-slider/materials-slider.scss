@@ -22,6 +22,15 @@
 		@media screen and (min-width: 768px) {
 			height: calc(100% - 60px);
 		}
+
+		&.slider-loaded {
+
+			@media screen and (max-width: 768px) {
+				margin-top: 50%;
+				-webkit-transform: translateY(-50%);
+				transform: translateY(-50%);
+			}
+		}
 	}
 
 	.theline {
@@ -31,6 +40,10 @@
 		position: absolute;
 		top: -30px;
 		width: 1px;
+
+		@media screen and (max-width: 768px) {
+			display: none;
+		}
 
 		&.coir {
 			background: $color-coir-dark;
@@ -135,7 +148,6 @@
 		@media screen and (max-width: 768px) {
 			padding-right: 0;
 			text-align: center;
-			top: 15px;
 			-webkit-transform: none;
 			transform: none;
 		}
@@ -155,7 +167,6 @@
 		@media screen and (max-width: 768px) {
 			padding: 25px;
 			text-align: center;
-			top: 45px;
 			-webkit-transform: none;
 			transform: none;
 		}
