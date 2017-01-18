@@ -6,7 +6,7 @@ $(document).ready(function() {
 		mode: 'fade',
 		onSliderLoad: function() {
 			setTimeout(function() {
-				$('.slide__content').addClass('slider-loaded');
+				$('.slide__content').addClass('vertical-align');
 			}, 100)
 		}
 	});

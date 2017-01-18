@@ -16,8 +16,8 @@
 
 .show-menu #basket-link {
 
-	@media screen and (max-width: 450px) {
-		left: 20px;
+	@media screen and (max-width: 992px) {
+		display: none;
 	}
 }
 
