@@ -13,6 +13,10 @@
 	padding-top: 150px;
 	padding-bottom: 150px;
 	background-color: $light-grey-bg;
+
+	@media screen and (max-width: 992px) {
+		padding: 7% 0 9%;
+	}
   
 	.news__title {
 		text-align: center;
