@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Email Test
  * Plugin URI: 
  * Description: Let's you send WooCommerce test emails.
- * Version:  1.5
+ * Version:  1.8
  * Author: RaiserWeb
  * Author URI: http://www.raiserweb.com
  * Developer: RaiserWeb
@@ -33,33 +33,43 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
-	 
+
+		// plugin updater
+        $wetp_main_lisence_key = get_option('wetp_main_lisence_key', "false");
+        if( $wetp_main_lisence_key ){
+            require 'plugin-update-checker/plugin-update-checker.php';
+            // check for updates
+            $MyUpdateChecker = PucFactory::buildUpdateChecker(
+                'http://raiserweb.com/wp-update-server-master/?action=get_metadata&slug=woocommerce-email-test&license_key='.$wetp_main_lisence_key,
+                __FILE__,
+                'woocommerce-email-test'
+            );
+        }        
+	 	
+		// set email classes for test buttons
+		$wetp_test_email_class = array(
+			'WC_Email_New_Order'=>'New Order',
+			'WC_Email_Customer_Processing_Order'=>'Processing Order',
+			'WC_Email_Customer_Completed_Order'=>'Completed Order',
+			'WC_Email_Customer_Invoice'=>'Customer Invoice',
+			'WC_Email_Customer_Note'=>'Customer Note',
+		);
+		 
 		// include plugin files
 		include( 'functions.php' );
 		include( 'email-trigger.php' );
-		
-		// set email classes for test buttons
-		$test_email_class = array(
-            'WC_Email_New_Order'=>'New Order',
-            'WC_Email_Customer_Processing_Order'=>'Processing Order',
-            'WC_Email_Customer_Completed_Order'=>'Completed Order',
-            'WC_Email_Customer_Invoice'=>'Customer Invoice',
-            'WC_Email_Customer_Note'=>'Customer Note',
-            'WC_Email_Customer_New_Account'=>'New Account',
-            'WC_Email_Customer_Reset_Password'=>'Reset Password',
-        );
-		 
-		 
+
+        
 		if( is_admin() ) { 
 		 
 			// register admin page and add menu
-			add_action('admin_menu', 'register_test_email_submenu_page');
+			add_action('admin_menu', 'wept_register_test_email_submenu_page');
 
-			function register_test_email_submenu_page() {
-				add_submenu_page( 'woocommerce', 'Email Test', 'Email Test', 'manage_options', 'woocommerce-email-test', 'register_test_email_submenu_page_callback' ); 
+			function wept_register_test_email_submenu_page() {
+				add_submenu_page( 'woocommerce', 'Email Test', 'Email Test', 'manage_options', 'woocommerce-email-test', 'wept_register_test_email_submenu_page_callback' ); 
 			}
 
-			function register_test_email_submenu_page_callback() {
+			function wept_register_test_email_submenu_page_callback() {
 				include( 'admin-menu.php' );
 			}
 			

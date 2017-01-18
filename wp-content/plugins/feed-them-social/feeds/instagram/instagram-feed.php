@@ -19,19 +19,19 @@ class FTS_Instagram_Feed extends feed_them_social_functions
         add_action('wp_enqueue_scripts', array($this, 'fts_instagram_head'));
     }
 
-    function convert_twitter_description_links($bio) {
+    function convert_instagram_description_links($bio) {
         //Create links from @mentions and regular links.
         $bio = preg_replace('/((http)+(s)?:\/\/[^<>\s]+)/i', '<a href="$0" target="_blank">$0</a>', $bio );
-        $bio = preg_replace('/[#]+([A-Za-z0-9-_]+)/', '<a href="http://twitter.com/search?q=%23$1" target="_blank">$0</a>', $bio );
-        $bio = preg_replace('/[@]+([A-Za-z0-9-_]+)/', '<a href="http://twitter.com/$1" target="_blank">@$1</a>', $bio );
+        $bio = preg_replace('/[#]+([A-Za-z0-9-_]+)/', '<a href="https://www.instagram.com/explore/tags/$1" target="_blank">$0</a>', $bio );
+        $bio = preg_replace('/[@]+([A-Za-z0-9-_]+)/', '<a href="https://www.instagram.com/$1" target="_blank">@$1</a>', $bio );
         return $bio;
     }
 
-    function convert_twitter_links($instagram_caption_a_title) {
+    function convert_instagram_links($instagram_caption_a_title) {
         //Create links from @mentions and regular links.
         $instagram_caption_a_title = preg_replace('/((http)+(s)?:\/\/[^<>\s]+)/i', '<a href="$0" target="_blank">$0</a>', $instagram_caption_a_title );
-        $instagram_caption = preg_replace('/[#]+([A-Za-z0-9-_]+)/', '<a href="http://twitter.com/search?q=%23$1" target="_blank">$0</a>', $instagram_caption_a_title );
-        $instagram_caption = preg_replace('/[@]+([A-Za-z0-9-_]+)/', '<a href="http://twitter.com/$1" target="_blank">@$1</a>', $instagram_caption );
+        $instagram_caption = preg_replace('/[#]+([A-Za-z0-9-_]+)/', '<a href="https://www.instagram.com/explore/tags/$1" target="_blank">$0</a>', $instagram_caption_a_title );
+        $instagram_caption = preg_replace('/[@]+([A-Za-z0-9-_]+)/', '<a href="https://www.instagram.com/$1" target="_blank">@$1</a>', $instagram_caption );
         return $instagram_caption;
     }
 
@@ -43,6 +43,75 @@ class FTS_Instagram_Feed extends feed_them_social_functions
     function fts_instagram_head()
     {
         wp_enqueue_style('fts-feeds', plugins_url('feed-them-social/feeds/css/styles.css'));
+    }
+
+    function fts_instagram_likes_count($post_data) {
+        // These need to be in this order to keep the different counts straight since I used either $instagram_likes or $instagram_comments throughout.
+            $instagram_likes = isset($post_data->likes->count) ? $post_data->likes->count : "";
+            // here we add a , for all numbers below 9,999
+            if (isset($instagram_likes) && $instagram_likes <= 9999) {
+                $instagram_likes = number_format($instagram_likes);
+            }
+            // here we convert the number for the like count like 1,200,000 to 1.2m if the number goes into the millions
+            if (isset($instagram_likes) && $instagram_likes >= 1000000) {
+                $instagram_likes = round(($instagram_likes / 1000000), 1) . 'm';
+            }
+            // here we convert the number for the like count like 10,500 to 10.5k if the number goes in the 10 thousands
+            if (isset($instagram_likes) && $instagram_likes >= 10000) {
+                $instagram_likes = round(($instagram_likes / 1000), 1) . 'k';
+            }
+        return  $instagram_likes;
+    }
+
+    function fts_instagram_comments_count($post_data) {
+            $instagram_comments = isset($post_data->comments->count) ? $post_data->comments->count : "";
+            // here we add a , for all numbers below 9,999
+            if (isset($instagram_comments) && $instagram_comments <= 9999) {
+                $instagram_comments = number_format($instagram_comments);
+            }
+            // here we convert the number for the comment count like 1,200,000 to 1.2m if the number goes into the millions
+            if (isset($instagram_comments) && $instagram_comments >= 1000000) {
+                $instagram_comments = round(($instagram_comments / 1000000), 1) . 'm';
+            }
+            // here we convert the number  for the comment count like 10,500 to 10.5k if the number goes in the 10 thousands
+            if (isset($instagram_comments) && $instagram_comments >= 10000) {
+                $instagram_comments = round(($instagram_comments / 1000), 1) . 'k';
+            }
+        return  $instagram_comments;
+    }
+
+    function fts_instagram_likes_comments_wrap($post_data) {
+        return  '<ul class="heart-comments-wrap"><li class="instagram-image-likes">'.$this->fts_instagram_likes_count($post_data).'</li><li class="instagram-image-comments">'.$this->fts_instagram_comments_count($post_data).'</li></ul>';
+    }
+
+    function fts_instagram_image_link($post_data) {
+        $instagram_lowRez_url = isset($post_data->images->standard_resolution->url) ? $post_data->images->standard_resolution->url : "";
+        return  $instagram_lowRez_url;
+    }
+
+    function fts_instagram_video_link($post_data) {
+        $instagram_video_standard_resolution = isset($post_data->videos->standard_resolution->url) ? $post_data->videos->standard_resolution->url : "";
+        return  $instagram_video_standard_resolution;
+    }
+
+    function fts_instagram_description($post_data) {
+        $instagram_caption_a_title = isset($post_data->caption->text) ? $post_data->caption->text : "";
+        $instagram_caption_a_title = htmlspecialchars($instagram_caption_a_title);
+        $instagram_caption = $this->convert_instagram_links($instagram_caption_a_title);
+        return  $instagram_caption;
+    }
+
+    function fts_view_on_instagram_url($post_data) {
+        $instagram_post_url = isset($post_data->link) ? $post_data->link : "";
+        return  $instagram_post_url;
+    }
+
+    function fts_view_on_instagram_link($post_data) {
+        return  '<a href="'.$this->fts_view_on_instagram_url($post_data).'" class="fts-view-on-instagram-link" target="_blank">'. __('View on Instagram', 'feed-them-instagram').'</a>';
+    }
+
+    function fts_instagram_popup_description($post_data) {
+        return  '<div class="fts-instagram-caption"><div class="fts-instagram-caption-content"><p>'.$this->fts_instagram_description($post_data) . '</p></div>'.$this->fts_view_on_instagram_link($post_data).'</div>';
     }
 
     /**
@@ -149,6 +218,7 @@ class FTS_Instagram_Feed extends feed_them_social_functions
         if (isset($error_check->meta->error_message)) {
             return $error_check->meta->error_message;
         }
+        
         if (false !== ($transient_exists = $this->fts_check_feed_cache_exists($cache)) && !isset($_GET['load_more_ajaxing'])) {
             $response = $this->fts_get_feed_cache($cache);
             $insta_data = json_decode($response['data']);
@@ -161,21 +231,23 @@ class FTS_Instagram_Feed extends feed_them_social_functions
         }
 
         $instagram_user_info = !empty($response['user_info']) ? json_decode($response['user_info']) : '';
+         //URL to get Feeds
+        if ($type !== 'hashtag') {
+            $username = $instagram_user_info->data->username;
+            $bio = $instagram_user_info->data->bio;
+            $profile_picture = $instagram_user_info->data->profile_picture;
+            $full_name = $instagram_user_info->data->full_name;
+            $website = $instagram_user_info->data->website;
+        }
 
-        $username = $instagram_user_info->data->username;
-        $bio = $instagram_user_info->data->bio;
-        $profile_picture = $instagram_user_info->data->profile_picture;
-        $full_name = $instagram_user_info->data->full_name;
-        $website = $instagram_user_info->data->website;
 
-
-
-        //  echo '<pre>';
-        //  print_r($instagram_user_info);
+         // echo '<pre>';
+         // print_r($instagram_user_info);
          // echo '</pre>';
 
+            //->pagination->next_url
         //  echo '<pre>';
-        //  print_r($insta_data->pagination->next_url);
+        //  print_r($insta_data);
         //  echo '</pre>';
 
         //Make sure it's not ajaxing
@@ -256,7 +328,7 @@ class FTS_Instagram_Feed extends feed_them_social_functions
 
                             if (isset($profile_description) && $profile_description == "yes") { ?>
 
-                            <div class="fts-profile-description"><?php print $this->convert_twitter_description_links($bio); ?> <a href="<?php print $website ?>"><?php print $website ?></a></div>
+                            <div class="fts-profile-description"><?php print $this->convert_instagram_description_links($bio); ?> <a href="<?php print $website ?>"><?php print $website ?></a></div>
 
                             <?php } ?>
 
@@ -308,82 +380,52 @@ class FTS_Instagram_Feed extends feed_them_social_functions
        //  print_r($insta_data);
        //  echo '</pre>';
 
-        foreach ($insta_data->data as $insta_d) {
+        foreach ($insta_data->data as $post_data) {
             if (isset($set_zero) && $set_zero == $pics_count)
                 break;
 
             //Create Instagram Variables
 
-
-                    $ftsCustomDate = get_option('fts-custom-date');
-                    $ftsCustomTime = get_option('fts-custom-time');
-                    $CustomDateCheck = get_option('fts-date-and-time-format');
-
-                    if ($ftsCustomDate == '' && $ftsCustomTime == '') {
-                        $CustomDateFormatInstagram = get_option('fts-date-and-time-format');
-                    } else if ($ftsCustomDate !== '' || $ftsCustomTime !== '') {
-                        $CustomDateFormatInstagram = get_option('fts-custom-date') . ' ' . get_option('fts-custom-time');
-                    } else {
-                        $CustomDateFormatInstagram = 'F jS, Y \a\t g:ia';
-                    }
-                    date_default_timezone_set(get_option('fts-timezone'));
+                    // tied to date function
+                    $feed_type = 'instagram';
+                    $times = $post_data->created_time;
+                    // call our function to get the date
+                    $instagram_date = $this->fts_custom_date($times, $feed_type);
 
 
-                    if ($CustomDateCheck == 'one-day-ago') {
-                        $times =  $insta_d->created_time;
-                      //  $date = date_create(date('F jS, Y g:ia', $times));
-                      //  $timestamp = date_timestamp_get($date);
-                        $getFtsAgo = new feed_them_social_functions();
-                        $instagram_date = $getFtsAgo->fts_ago($times);
-                    } else {
-                       // $uTime = date_i18n($CustomDateFormatInstagram, $fts_twitter_offset_time_final);
-                        $instagram_date = isset($insta_d->created_time) ? date_i18n('F j, Y', $insta_d->created_time) : "";
-                    }
 
 
-            $instagram_link = isset($insta_d->link) ? $insta_d->link : "";
-            $instagram_thumb_url = isset($insta_d->images->thumbnail->url) ? $insta_d->images->thumbnail->url : "";
-            $instagram_lowRez_url = isset($insta_d->images->standard_resolution->url) ? $insta_d->images->standard_resolution->url : "";
-            $instagram_video_standard_resolution = isset($insta_d->videos->standard_resolution->url) ? $insta_d->videos->standard_resolution->url : "";
+        if ($type == 'hashtag') {
+            $username = isset($post_data->user->username) ? $post_data->user->username : "";
+            $profile_picture = isset($post_data->user->profile_picture) ? $post_data->user->profile_picture : "";
+            $full_name = isset($post_data->user->full_name) ? $post_data->user->full_name : "";
+            $instagram_username = $username;
+        }
+        else {
+
+             $instagram_username = $instagram_user_info->data->username;
+        }
+
+            $instagram_caption_a_title = isset($post_data->caption->text) ? $post_data->caption->text : "";
+            $instagram_caption_a_title = htmlspecialchars($instagram_caption_a_title);
+            $instagram_caption = $this->convert_instagram_links($instagram_caption_a_title);
+
+
+
+            $instagram_thumb_url = isset($post_data->images->thumbnail->url) ? $post_data->images->thumbnail->url : "";
+            $instagram_lowRez_url = isset($post_data->images->standard_resolution->url) ? $post_data->images->standard_resolution->url : "";
+            $instagram_video_standard_resolution = isset($post_data->videos->standard_resolution->url) ? $post_data->videos->standard_resolution->url : "";
 
             if (isset($_SERVER["HTTPS"])) {
                 $instagram_thumb_url = str_replace('http://', 'https://', $instagram_thumb_url);
                 $instagram_lowRez_url = str_replace('http://', 'https://', $instagram_lowRez_url);
             }
 
-            // These need to be in this order to keep the different counts straight since I used either $instagram_likes or $instagram_comments throughout.
-            $instagram_likes = isset($insta_d->likes->count) ? $insta_d->likes->count : "";
-            // here we add a , for all numbers below 9,999
-            if (isset($instagram_likes) && $instagram_likes <= 9999) {
-                $instagram_likes = number_format($instagram_likes);
-            }
-            // here we convert the number for the like count like 1,200,000 to 1.2m if the number goes into the millions
-            if (isset($instagram_likes) && $instagram_likes >= 1000000) {
-                $instagram_likes = round(($instagram_likes / 1000000), 1) . 'm';
-            }
-            // here we convert the number for the like count like 10,500 to 10.5k if the number goes in the 10 thousands
-            if (isset($instagram_likes) && $instagram_likes >= 10000) {
-                $instagram_likes = round(($instagram_likes / 1000), 1) . 'k';
-            }
-            $instagram_comments = isset($insta_d->comments->count) ? $insta_d->comments->count : "";
-            // here we add a , for all numbers below 9,999
-            if (isset($instagram_comments) && $instagram_comments <= 9999) {
-                $instagram_comments = number_format($instagram_comments);
-            }
-            // here we convert the number for the comment count like 1,200,000 to 1.2m if the number goes into the millions
-            if (isset($instagram_comments) && $instagram_comments >= 1000000) {
-                $instagram_comments = round(($instagram_comments / 1000000), 1) . 'm';
-            }
-            // here we convert the number  for the comment count like 10,500 to 10.5k if the number goes in the 10 thousands
-            if (isset($instagram_comments) && $instagram_comments >= 10000) {
-                $instagram_comments = round(($instagram_comments / 1000), 1) . 'k';
-            }
 
-            $instagram_caption_a_title = isset($insta_d->caption->text) ? $insta_d->caption->text : "";
-            $instagram_caption_a_title = htmlspecialchars($instagram_caption_a_title);
+
             $fts_dynamic_vid_name_string = trim($this->rand_string(10) . '_' . $type);
 
-            $instagram_caption = $this->convert_twitter_links($instagram_caption_a_title);
+
 
 
 
@@ -393,46 +435,39 @@ class FTS_Instagram_Feed extends feed_them_social_functions
                 ?>
 
 
-                <div class='slicker-instagram-placeholder fts-instagram-wrapper' style='background-image:url(<?php print $instagram_lowRez_url ?>);width:<?php print $image_size ?>; height:<?php print $image_size ?>; margin:<?php print $space_between_photos ?>;'>
+                <div class='slicker-instagram-placeholder fts-instagram-wrapper' style='background-image:url(<?php print $this->fts_instagram_image_link($post_data); ?>);width:<?php print $image_size ?>; height:<?php print $image_size ?>; margin:<?php print $space_between_photos ?>;'>
 
-              <?php    if(isset($popup) && $popup = "yes"){ ?>
+              <?php
+
+                if(is_plugin_active('feed-them-premium/feed-them-premium.php') && isset($popup) && $popup == "yes"){ ?>
                 <div class="fts-instagram-popup-profile-wrap"><div class="fts-profile-pic"><a href="https://www.instagram.com/<?php print $username; ?>"><img src="<?php print $profile_picture; ?>" title="<?php print $username; ?>"/></a></div>
                                 <div class="fts-profile-name-wrap">
 
                                         <div class="fts-isnta-full-name"><?php print $full_name; ?></div>
                                             <?php
-                                            if (isset($fts_instagram_show_follow_btn) && $fts_instagram_show_follow_btn == 'yes' && $fts_instagram_show_follow_btn_where == 'instagram-follow-above' && isset($instagram_user_info->data->username)) {
+                                            if (isset($fts_instagram_show_follow_btn) && $fts_instagram_show_follow_btn == 'yes' && $fts_instagram_show_follow_btn_where == 'instagram-follow-above' && isset($instagram_username)) {
                                                  echo '<div class="fts-follow-header-wrap">';
-                                                 $this->social_follow_button('instagram', $instagram_user_info->data->username);
+                                                 $this->social_follow_button('instagram', $instagram_username);
                                                  echo '</div>';
                                             }
                                             ?>
                                         </div>
                                 </div>
-                <?php }
+                <?php
 
-                     if (isset($popup) && $popup == 'yes') { ?>
-                        <div class="fts-instagram-caption">
-                            <div class="fts-instagram-caption-content">
-                                <p>
-                                    <?php if (!$instagram_caption == '') {
-                                        print $instagram_caption;
-                                    } ?>
-                                </p>
-                            </div>
-                            <a href='<?php print $instagram_link ?>' class="fts-view-on-instagram-link" target="_blank"><?php _e('View on Instagram', 'feed-them-instagram'); ?></a>
-                        </div>
-                    <?php } ?>
+                         print $this->fts_instagram_popup_description($post_data);
+                     }
 
-                    <a href='<?php if (is_plugin_active('feed-them-premium/feed-them-premium.php') && isset($popup) && $popup == 'yes' && $insta_d->type == 'image') {
-                        print $instagram_lowRez_url;
+                      ?>
+                    <a href='<?php if (is_plugin_active('feed-them-premium/feed-them-premium.php') && isset($popup) && $popup == 'yes' && $post_data->type == 'image') {
+                        print $this->fts_instagram_image_link($post_data);
                     }
-                    elseif (is_plugin_active('feed-them-premium/feed-them-premium.php')  && isset($popup) && $popup == 'yes' && $insta_d->type == 'video') {
-                        print $instagram_video_standard_resolution;
+                    elseif (is_plugin_active('feed-them-premium/feed-them-premium.php')  && isset($popup) && $popup == 'yes' && $post_data->type == 'video') {
+                        print $this->fts_instagram_video_link($post_data);
                     }
                     else {
-                        print $instagram_link;
-                    } ?>' title='<?php print $instagram_caption_a_title ?>' target="_blank" class='fts-instagram-link-target fts-slicker-backg <?php if($insta_d->type == 'video' && isset($popup) && $popup == 'yes'){ ?>fts-instagram-video-link<?php } else{ ?>fts-instagram-img-link<?php } ?>' style="height:<?php print $icon_size ?> !important; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"><span class="fts-instagram-icon" style="height:<?php print $icon_size ?>; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"></span></a>
+                        print $this->fts_view_on_instagram_url($post_data);
+                    } ?>' title='<?php print $instagram_caption_a_title ?>' target="_blank" class='fts-instagram-link-target fts-slicker-backg <?php if($post_data->type == 'video' && isset($popup) && $popup == 'yes'){ ?>fts-instagram-video-link<?php } else{ ?>fts-instagram-img-link<?php } ?>' style="height:<?php print $icon_size ?> !important; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"><span class="fts-instagram-icon" style="height:<?php print $icon_size ?>; width:<?php print $icon_size ?>; line-height:<?php print $icon_size ?>; font-size:<?php print $icon_size ?>;"></span></a>
 
 
                     <?php if ($hide_date_likes_comments == 'no') { ?>
@@ -445,9 +480,9 @@ class FTS_Instagram_Feed extends feed_them_social_functions
                     <?php if ($hide_date_likes_comments == 'no') { ?>
                         <div class="fts-insta-likes-comments-grab-popup">
                         <ul class='slicker-heart-comments-wrap'>
-                            <li class='slicker-instagram-image-likes'><?php print $instagram_likes ?></li>
+                            <li class='slicker-instagram-image-likes'><?php print $this->fts_instagram_likes_count($post_data); ?> </li>
                             <li class='slicker-instagram-image-comments'>
-                                <span class="fts-comment-instagram"></span><?php print $instagram_comments ?></li>
+                                <span class="fts-comment-instagram"></span> <?php print $this->fts_instagram_comments_count($post_data); ?></li>
                         </ul>
                         </div>
                     <?php } ?>
@@ -457,7 +492,7 @@ class FTS_Instagram_Feed extends feed_them_social_functions
                 <div class='instagram-placeholder fts-instagram-wrapper' style='width:150px;'><?php if (isset($popup) && $popup == 'yes') {
                         print '<div class="fts-backg"></div>';
                     } else { ?>
-                        <a class='fts-backg' target='_blank' href='<?php print $instagram_link ?>'></a>  <?php }; ?>
+                        <a class='fts-backg' target='_blank' href='<?php print $this->fts_view_on_instagram_url($post_data); ?>'></a>  <?php }; ?>
                     <div class='date slicker-date'><div class="fts-insta-date-popup-grab"><?php print $instagram_date ?></div></div>
 
 
@@ -481,35 +516,24 @@ class FTS_Instagram_Feed extends feed_them_social_functions
                                         </div>
                                 </div>
 
-
-                        <div class="fts-instagram-caption">
-                            <div class="fts-instagram-caption-content">
-                                <p>
-                                    <?php if (!$instagram_caption == '') {
-                                        print '' . $instagram_caption;
-                                    } ?>
-                                </p>
-                            </div>
-                            <a href='<?php print $instagram_link ?>' class="fts-view-on-instagram-link " target="_blank"><?php _e('View on Instagram', 'feed-them-instagram'); ?></a>
-                        </div>
+                    <?php
+                    // caption for our popup
+                    print $this->fts_instagram_popup_description($post_data); ?>
                     <?php } ?>
 
-                    <a href="<?php if (isset($popup) && $popup == 'yes' && $insta_d->type == 'image') {
-                        print $instagram_lowRez_url;
+                    <a href="<?php if (is_plugin_active('feed-them-premium/feed-them-premium.php') && isset($popup) && $popup == 'yes' && $post_data->type == 'image') {
+                        print $this->fts_instagram_image_link($post_data);
                     }
-                    elseif ($insta_d->type == 'video') {
-                        print $instagram_video_standard_resolution;
+                    elseif (is_plugin_active('feed-them-premium/feed-them-premium.php') && isset($popup) && $popup == 'yes' && $post_data->type == 'video') {
+                        print $this->fts_instagram_video_link($post_data);
                     } else {
-                        print $instagram_link;
-                    } ?>" class='fts-instagram-link-target instaG-backg-link <?php if($insta_d->type == 'video'){ ?>fts-instagram-video-link<?php } else{ ?>fts-instagram-img-link<?php } ?>' target='_blank' title='<?php print $instagram_caption_a_title ?>'>
+                        print $this->fts_view_on_instagram_url($post_data);
+                    } ?>" class='fts-instagram-link-target instaG-backg-link <?php if($post_data->type == 'video'){ ?>fts-instagram-video-link<?php } else{ ?>fts-instagram-img-link<?php } ?>' target='_blank' title='<?php print $instagram_caption_a_title ?>'>
                         <img src="<?php print $instagram_thumb_url ?>" class="instagram-image"/>
                         <div class='instaG-photoshadow'></div>
                     </a>
                      <div class="fts-insta-likes-comments-grab-popup">
-                        <ul class='heart-comments-wrap'>
-                            <li class='instagram-image-likes'><?php print $instagram_likes ?></li>
-                            <li class='instagram-image-comments'><?php print $instagram_comments ?></li>
-                        </ul>
+                       <?php print $this->fts_instagram_likes_comments_wrap($post_data); ?>
                     </div>
                 </div>
             <?php }
@@ -603,7 +627,7 @@ class FTS_Instagram_Feed extends feed_them_social_functions
             </script>
             <?php
         }//End Check
-        // main closing div not included in ajax check so we can close the wrap at all times
+       // main closing div not included in ajax check so we can close the wrap at all times
 
         print '</div>'; // closing main div for photos and scroll wrap
 
@@ -645,10 +669,10 @@ class FTS_Instagram_Feed extends feed_them_social_functions
         //Make sure it's not ajaxing
         if (!isset($_GET['load_more_ajaxing'])) {
             print '<div class="clear"></div>';
-            if (is_plugin_active('feed-them-premium/feed-them-premium.php') && $scrollMore == 'button') {
-                //  print '<div class="fts-fb-load-more-wrapper">';
-                print '<div id="loadMore_' . $fts_dynamic_name . '" class="fts-fb-load-more">' . __('Load More', 'feed-them-instagram') . '</div>';
-                //  print '</div>';
+            if (is_plugin_active('feed-them-premium/feed-them-premium.php') && isset($scrollMore) && $scrollMore == 'button') {
+                print '<div class="fts-instagram-load-more-wrapper">';
+                  print '<div id="loadMore_' . $fts_dynamic_name . '" class="fts-fb-load-more">' . __('Load More', 'feed-them-instagram') . '</div>';
+                print '</div>';
             }
         }//End Check
         unset($_REQUEST['next_url']);

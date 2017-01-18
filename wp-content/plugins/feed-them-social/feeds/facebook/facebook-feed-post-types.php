@@ -47,9 +47,11 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
         $FBicon = isset($post_data->icon) ? $post_data->icon : "";
         $FBby = isset($post_data->properties->text) ? $post_data->properties->text : "";
         $FBbylink = isset($post_data->properties->href) ? $post_data->properties->href : "";
+
         $FBpost_share_count = isset($post_data->shares->count) ? $post_data->shares->count : "";
         $FBpost_like_count_array = isset($post_data->likes->data) ? $post_data->likes->data : "";
         $FBpost_comments_count_array = isset($post_data->comments->data) ? $post_data->comments->data : "";
+
         $FBpost_object_id = isset($post_data->object_id) ? $post_data->object_id : "";
         $FBalbum_photo_count = isset($post_data->count) ? $post_data->count : "";
         $FBalbum_cover = isset($post_data->cover_photo->id) ? $post_data->cover_photo->id : "";
@@ -190,26 +192,18 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
             // }
 
 
-            $timeSet = get_option('fts-timezone');
-            $timeSetCheck = isset($timeSet) && $timeSet ? $timeSet : 'America/New_York';
-            date_default_timezone_set($timeSetCheck);
 
             $fb_hide_shared_by_etc_text = get_option('fb_hide_shared_by_etc_text');
             $fb_hide_shared_by_etc_text = isset($fb_hide_shared_by_etc_text) && $fb_hide_shared_by_etc_text == 'no' ? '' : $FBfinalstory;
             //UserName
             $FTS_FB_OUTPUT .= $FB_Shortcode['type'] == 'reviews' && is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php') ? '<span class="fts-jal-fb-user-name"><a href="http://facebook.com/' . $post_data->reviewer->id . '/" target="_blank">' . $post_data->reviewer->name . '</a>' . $FTS_Facebook_Reviews->reviews_rating_format($FB_Shortcode, $post_data->rating) . '</span>' : '<span class="fts-jal-fb-user-name"><a href="http://facebook.com/profile.php?id=' . $post_data->from->id . '" target="_blank">' . $post_data->from->name . '</a>' . $fb_hide_shared_by_etc_text . '</span>';
 
-            // custom one day ago check
-            if ($CustomDateCheck == 'one-day-ago') {
-                $date = date_create(date_i18n('F jS, Y g:ia', $CustomTimeFormat));
-                $timestamp = date_timestamp_get($date);
-                $getFtsAgo = new feed_them_social_functions();
-                $fts_final_date = $getFtsAgo->fts_ago($timestamp);
-            } elseif ($CustomDateCheck !== '') {
-                $fts_final_date = date_i18n($CustomDateFormat, $CustomTimeFormat);
-            } else {
-                $fts_final_date = date_i18n('F jS, Y \a\t g:ia');
-            }
+
+            // tied to date function
+            $feed_type = 'facebook';
+            $times = $CustomTimeFormat;
+            $fts_final_date = $this->fts_custom_date($times, $feed_type);
+
             //PostTime
             $FTS_FB_OUTPUT .= '<span class="fts-jal-fb-post-time">' . $fts_final_date . '</span><div class="clear"></div>';
             //Comments Count
@@ -498,6 +492,10 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
             case 'video'  :
                 $video_data = json_decode($response_post_array[$post_data_key . '_video']);
 
+             // echo '<pre>';
+             //   print_r($video_data);
+             // echo '</pre>';
+
                 $FTS_FB_OUTPUT .= '<div class="fts-jal-fb-vid-wrap">';
 
                 if (!empty($FBpicture)) {
@@ -538,9 +536,8 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
                         $FTS_FB_OUTPUT .= '</div>';
                         $FTS_FB_OUTPUT .= '<div class="fts-fluid-videoWrapper-html5"><video id="' . $fts_dynamic_vid_name . '" controls width="100%;" style="max-width:100%;"><source src="" type="video/mp4"></video></div><div class="slicker-facebook-album-photoshadow"></div></div>';
 
-
-                        // This puts the video in a popup instead of displaying it directly on the page.
-                        if (!isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] !== 'yes') {
+                        // This puts the video on the page instead of the popup if you don't have the premium version
+                        if (!isset($FB_Shortcode['popup']) || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] !=='yes' && is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php') || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == '' || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'no') {
                             $FTS_FB_OUTPUT .= '<script>jQuery(document).ready(function() {';
                             $FTS_FB_OUTPUT .= 'jQuery(".' . $fts_dynamic_vid_name . '").bind("click", function() {';
                             $FTS_FB_OUTPUT .= 'jQuery(this).addClass("fts-vid-div");';
@@ -560,8 +557,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
                         $FTS_FB_OUTPUT .= '<div class="fts-jal-fb-vid-picture ' . $fts_dynamic_vid_name . '">';
 
 
-                        // This puts the video in a popup instead of displaying it directly on the page.
-                        if (is_plugin_active('feed-them-premium/feed-them-premium.php') && isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' && !strpos($FBvideo_embed, 'soundcloud') > 0) {
+
 
                             if (strpos($FBvideo_embed, 'youtube') > 0 || strpos($FBvideo_embed, 'youtu.be') > 0) {
                                 preg_match("/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/", $FBvideo_embed, $matches);
@@ -569,6 +565,8 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
                             } else {
                                 $videoURLfinal = $FBvideo_embed;
                             }
+                        // This puts the video in a popup instead of displaying it directly on the page.
+                        if (is_plugin_active('feed-them-premium/feed-them-premium.php') && isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' && !strpos($FBvideo_embed, 'soundcloud') > 0) {
 
                             $FTS_FB_OUTPUT .= '<a href="' . $videoURLfinal . '" class="fts-facebook-link-target fts-jal-fb-vid-image fts-iframe-type">';
                         }
@@ -590,8 +588,8 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
                             //  preg_match($pattern, $FBlink, $matches);
                             //  $youtubeURLfinal = $matches[1];
 
-                            // This puts the video in a popup instead of displaying it directly on the page.
-                            if (isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] !== 'yes') {
+                            // This puts the video on the page instead of the popup if you don't have the premium version
+                            if (!isset($FB_Shortcode['popup']) || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] !=='yes' && is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php') || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == '' || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'no') {
                                 $FTS_FB_OUTPUT .= '<script>jQuery(document).ready(function() {';
                                 $FTS_FB_OUTPUT .= 'jQuery(".' . $fts_dynamic_vid_name . '").click(function() {';
                                 $FTS_FB_OUTPUT .= 'jQuery(this).addClass("fts-vid-div");';
@@ -611,7 +609,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
                             //  preg_match($pattern, $FBlink, $matches);
                             //  $youtubeURLfinal = $matches[1];
                             // This puts the video in a popup instead of displaying it directly on the page.
-                            if (isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] !== 'yes') {
+                            if (!isset($FB_Shortcode['popup']) || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] !=='yes' && is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php') || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == ' ' || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'no') {
                                 $FTS_FB_OUTPUT .= '<script>';
                                 $FTS_FB_OUTPUT .= 'jQuery(document).ready(function() {';
                                 $FTS_FB_OUTPUT .= 'jQuery(".' . $fts_dynamic_vid_name . '").click(function() {';
@@ -634,7 +632,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
                             //   $vimeoURLfinal = $matches[0];
 
                             // This puts the video in a popup instead of displaying it directly on the page.
-                            if (isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] !== 'yes') {
+                            if (!isset($FB_Shortcode['popup']) || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] !=='yes' && is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php') || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == '' || isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'no') {
                                 $FTS_FB_OUTPUT .= '<script>';
                                 $FTS_FB_OUTPUT .= 'jQuery(document).ready(function() {';
                                 $FTS_FB_OUTPUT .= 'jQuery(".' . $fts_dynamic_vid_name . '").click(function() {';
@@ -707,7 +705,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
 
                 $FTS_FB_OUTPUT .= '<div class="fts-jal-fb-link-wrap fts-album-photos-wrap"';
                 if ($FB_Shortcode['type'] == 'album_photos' || $FB_Shortcode['type'] == 'albums') {
-                    $FTS_FB_OUTPUT .= 'style="line-height:' . $FB_Shortcode['image_height'] . ' !important;"';
+                    $FTS_FB_OUTPUT .= ' style="line-height:' . $FB_Shortcode['image_height'] . ' !important;"';
                 }
                 $FTS_FB_OUTPUT .= '>';
                 //   $FTS_FB_OUTPUT .= isset($FB_Shortcode['popup']) && $FB_Shortcode['popup'] == 'yes' ? '<div class="fts-fb-caption"><a href="' . $FBlink . '" class="fts-view-on-facebook-link" target="_blank">' . __('View on Facebook', 'feed-them-social') . '</a></div> ' : '';
@@ -728,7 +726,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
                 $FTS_FB_OUTPUT .= '<div class="slicker-facebook-album-photoshadow"></div>';
                 // FB Video play button for facebook videos. This button takes data from our a tag and along with additional js in the magnific-popup.js we can now load html5 videos. SO lightweight this way because no pre-loading of videos are on the page. We only show the posterboard on mobile devices because tablets and desktops will auto load the videos. SRL
                 if (isset($FB_Shortcode['video_album']) && $FB_Shortcode['video_album'] == 'yes') {
-                    if ($FB_Shortcode['play_btn'] == 'yes') {
+                    if (isset($FB_Shortcode['play_btn']) && $FB_Shortcode['play_btn'] == 'yes') {
                         $fb_play_btn_visible = isset($FB_Shortcode['play_btn_visible']) && $FB_Shortcode['play_btn_visible'] == 'yes' ? ' visible-video-button' : '';
                         $post_data_source = isset($post_data->source) ? $post_data->source : '';
                         $post_data_format_3_picture = isset($post_data->format[3]->picture) ? $post_data->format[3]->picture : '';
@@ -761,7 +759,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
             case 'album':
                 $FTS_FB_OUTPUT .= '<div class="fts-jal-fb-link-wrap fts-album-photos-wrap"';
                 if ($FB_Shortcode['type'] == 'album_photos' || $FB_Shortcode['type'] == 'albums') {
-                    $FTS_FB_OUTPUT .= 'style="line-height:' . $FB_Shortcode['image_height'] . ' !important;"';
+                    $FTS_FB_OUTPUT .= ' style="line-height:' . $FB_Shortcode['image_height'] . ' !important;"';
                 }
                 $FTS_FB_OUTPUT .= '>';
                 //Output Photo Picture
@@ -785,7 +783,7 @@ class FTS_Facebook_Feed_Post_Types extends FTS_Facebook_Feed
         if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
             //Post Comments
             $FTS_FB_OUTPUT .= '<div class="fts-fb-comments-wrap">';
-            $hide_comments_popup = isset($FB_Shortcode['hide_comments_popup']) ? $FB_Shortcode['hide_comments_popup'] : '';
+            $hide_comments_popup = isset($FB_Shortcode['hide_comments_popup']) ? $FB_Shortcode['hide_comments_popup'] : 'no';
                 if (isset($lcs_array['comments_thread']->data) && !empty($lcs_array['comments_thread']->data) && $hide_comments_popup !== 'yes' || isset($lcs_array['comments_thread']->data) && !empty($lcs_array['comments_thread']->data) && $hide_comments_popup == ''){
                     //Post Comments
                     $FTS_FB_OUTPUT .= '<div class="fts-fb-comments-content fts-comments-post-' . $FBpost_id . '">';

@@ -51,7 +51,7 @@ class FTS_instagram_options_page
                         </h3>
                     </div>
 
-                    <div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
+                    <div class="feed-them-social-admin-input-label fts-instagram-text-color-label">
                         <?php _e('Show Follow Button', 'feed-them-social'); ?>
                     </div>
                     <select name="instagram_show_follow_btn" id="instagram-show-follow-btn" class="feed-them-social-admin-input">
@@ -64,10 +64,10 @@ class FTS_instagram_options_page
                     </select>
                     <div class="clear"></div>
                 </div>
-                <!--/fts-twitter-feed-styles-input-wrap-->
+                <!--/fts-instagram-feed-styles-input-wrap-->
 
                 <div class="feed-them-social-admin-input-wrap">
-                    <div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
+                    <div class="feed-them-social-admin-input-label fts-instagram-text-color-label">
                         <?php _e('Placement of the Buttons', 'feed-them-social'); ?>
                     </div>
                     <select name="instagram_show_follow_btn_where" id="instagram-show-follow-btn-where" class="feed-them-social-admin-input">
@@ -87,7 +87,33 @@ class FTS_instagram_options_page
                     </select>
                     <div class="clear"></div>
                 </div>
-                <!--/fts-twitter-feed-styles-input-wrap-->
+                <!--/fts-instagram-feed-styles-input-wrap-->
+                <?php if (is_plugin_active('feed-them-premium/feed-them-premium.php') || is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')) { ?>
+
+                        <div class="feed-them-social-admin-input-wrap">
+                            <div class="fts-title-description-settings-page">
+                                <h3>
+                                    <?php _e('Load More Button Styles', 'feed-them-social'); ?>
+                                </h3>
+                            </div>
+                            <div class="feed-them-social-admin-input-wrap">
+                                <div class="feed-them-social-admin-input-label fts-fb-loadmore-background-color-label">
+                                    <?php _e('Load More Button Color', 'feed-them-social'); ?>
+                                </div>
+                                <input type="text" name="instagram_loadmore_background_color" class="feed-them-social-admin-input fb-loadmore-background-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="instagram-loadmore-background-color-input" placeholder="#ddd" value="<?php echo get_option('instagram_loadmore_background_color'); ?>"/>
+                                <div class="clear"></div>
+                        </div>
+                        <!--/fts-instagram-feed-styles-input-wrap-->
+
+                        <div class="feed-them-social-admin-input-wrap">
+                            <div class="feed-them-social-admin-input-label fts-fb-border-bottom-color-label">
+                                <?php _e('Load More Button Text Color', 'feed-them-social'); ?>
+                            </div>
+                            <input type="text" name="instagram_loadmore_text_color" class="feed-them-social-admin-input fb-loadmore-text-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="instagram-loadmore-text-color-input" placeholder="#ddd" value="<?php echo get_option('instagram_loadmore_text_color'); ?>"/>
+                            <div class="clear"></div>
+                        </div>
+                        <!--/fts-instagram-feed-styles-input-wrap-->
+                 <?php } ?>
 
                 <div class="feed-them-social-admin-input-wrap">
                     <div class="fts-title-description-settings-page">
@@ -119,7 +145,7 @@ class FTS_instagram_options_page
 
                     <div class="clear"></div>
                     <div class="feed-them-social-admin-input-wrap" style="margin-bottom:0px;">
-                        <div class="feed-them-social-admin-input-label fts-twitter-border-bottom-color-label">
+                        <div class="feed-them-social-admin-input-label fts-instagram-border-bottom-color-label">
                             <?php _e('Access Token Required', 'feed-them-social'); ?>
                         </div>
                         <script>

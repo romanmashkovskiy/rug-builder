@@ -3,7 +3,7 @@
 Plugin Name: WP All Import
 Plugin URI: http://www.wpallimport.com/upgrade-to-pro?utm_source=wordpress.org&utm_medium=plugins-page&utm_campaign=free+plugin
 Description: The most powerful solution for importing XML and CSV files to WordPress. Create Posts and Pages with content from any XML or CSV file. A paid upgrade to WP All Import Pro is available for support and additional features.
-Version: 3.3.9
+Version: 3.4.0
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ define('WP_ALL_IMPORT_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('WP_ALL_IMPORT_PREFIX', 'pmxi_');
 
-define('PMXI_VERSION', '3.3.9');
+define('PMXI_VERSION', '3.4.0');
 
 define('PMXI_EDITION', 'free');
 
@@ -230,11 +230,8 @@ final class PMXI_Plugin {
 	 */
 	protected function __construct() {						
 
-		// regirster autoloading method
-		if (function_exists('__autoload') and ! in_array('__autoload', spl_autoload_functions())) { // make sure old way of autoloading classes is not broken
-			spl_autoload_register('__autoload');
-		}
-		spl_autoload_register(array($this, '__autoload'));
+		// register autoloading method
+		spl_autoload_register(array($this, 'autoload'));
 
 		// register helpers
 		if (is_dir(self::ROOT_DIR . '/helpers')) foreach (PMXI_Helper::safe_glob(self::ROOT_DIR . '/helpers/*.php', PMXI_Helper::GLOB_RECURSE | PMXI_Helper::GLOB_PATH) as $filePath) {
@@ -252,7 +249,7 @@ final class PMXI_Plugin {
 		update_option($option_name, $this->options);
 		$this->options = get_option(get_class($this) . '_Options');
 
-		register_activation_hook(self::FILE, array($this, '__activation'));
+		register_activation_hook(self::FILE, array($this, 'activation'));
 
 		// register action handlers
 		if (is_dir(self::ROOT_DIR . '/actions')) if (is_dir(self::ROOT_DIR . '/actions')) foreach (PMXI_Helper::safe_glob(self::ROOT_DIR . '/actions/*.php', PMXI_Helper::GLOB_RECURSE | PMXI_Helper::GLOB_PATH) as $filePath) {
@@ -287,8 +284,8 @@ final class PMXI_Plugin {
 		}			
 
 		// register admin page pre-dispatcher
-		add_action('admin_init', array($this, '__adminInit'));									
-		add_action('admin_init', array($this, '_fix_options'));		
+		add_action('admin_init', array($this, 'adminInit'));
+		add_action('admin_init', array($this, 'fix_options'));
 		add_action('init', array($this, 'init'));
 		
 	}	
@@ -315,7 +312,7 @@ final class PMXI_Plugin {
 	 * convert imports options
 	 * compatibility with version 3.2.3
 	 */
-	public function _fix_options(){
+	public function fix_options(){
 
 		global $wpdb;
 		
@@ -346,7 +343,7 @@ final class PMXI_Plugin {
 
 						$options = array_merge($imp->options, $imp->template);
 
-						$this->__ver_4_transition_fix($options);							
+						$this->ver_4_transition_fix($options);
 						
 						$imp->set(array(
 							'options' => $options
@@ -376,7 +373,7 @@ final class PMXI_Plugin {
 							'fix_characters' => $tpl->fix_characters
 						));
 
-						$this->__ver_4_transition_fix($options);
+						$this->ver_4_transition_fix($options);
 
 						$tpl->set(array(
 							'options' => $options
@@ -386,12 +383,12 @@ final class PMXI_Plugin {
 
 				}					
 
-				$commit_migration = $this->__fix_db_schema(); // feature to version 4.0.0
+				$commit_migration = $this->fix_db_schema(); // feature to version 4.0.0
 				
 			}
 			else {
 
-				$commit_migration = $this->__fix_db_schema();
+				$commit_migration = $this->fix_db_schema();
 				
 				foreach ($imports->setColumns($imports->getTable() . '.*')->getBy(array('id !=' => ''))->convertRecords() as $imp){
 				
@@ -401,7 +398,7 @@ final class PMXI_Plugin {
 
 						$options = $imp->options;
 
-						$this->__ver_4x_transition_fix($options, $is_migrated);							
+						$this->ver_4x_transition_fix($options, $is_migrated);
 						
 						$imp->set(array(
 							'options' => $options
@@ -417,7 +414,7 @@ final class PMXI_Plugin {
 						
 						$options = ( empty($tpl->options) ) ? array() : $tpl->options;							
 
-						$this->__ver_4x_transition_fix($options, $is_migrated);
+						$this->ver_4x_transition_fix($options, $is_migrated);
 
 						$tpl->set(array(
 							'options' => $options
@@ -431,7 +428,7 @@ final class PMXI_Plugin {
 		}			
 	}
 
-	public function __ver_4_transition_fix( &$options ){
+	public function ver_4_transition_fix( &$options ){
 			
 		$options['wizard_type'] = ($options['duplicate_matching'] == 'auto') ? 'new' : 'matching';
 
@@ -494,7 +491,7 @@ final class PMXI_Plugin {
 		endif;						
 	}
 
-	public function __ver_4x_transition_fix(&$options, $version){						
+	public function ver_4x_transition_fix(&$options, $version){
 		if ( version_compare($version, '4.0.5') < 0  ){				
 			if ( ! empty($options['tax_hierarchical_logic']) and is_array($options['tax_hierarchical_logic']) ){
 				foreach ($options['tax_hierarchical_logic'] as $tx => $type) {
@@ -519,7 +516,7 @@ final class PMXI_Plugin {
 	/**
 	 * pre-dispatching logic for admin page controllers
 	 */
-	public function __adminInit() {
+	public function adminInit() {
 
 		// create history folder
 		$uploads = wp_upload_dir();				
@@ -547,12 +544,7 @@ final class PMXI_Plugin {
 			$action = strtolower($input->getpost('action', 'index'));
 
 			// capitalize prefix and first letters of class name parts	
-			if (function_exists('preg_replace_callback')){
-				$controllerName = preg_replace_callback('%(^' . preg_quote(self::PREFIX, '%') . '|_).%', array($this, "replace_callback"),str_replace('-', '_', $page));
-			}
-			else{
-				$controllerName =  preg_replace('%(^' . preg_quote(self::PREFIX, '%') . '|_).%e', 'strtoupper("$0")', str_replace('-', '_', $page)); 
-			}
+			$controllerName = preg_replace_callback('%(^' . preg_quote(self::PREFIX, '%') . '|_).%', array($this, "replace_callback"),str_replace('-', '_', $page));
 			$actionName = str_replace('-', '_', $action);
 			if (method_exists($controllerName, $actionName)) {
 
@@ -612,7 +604,7 @@ final class PMXI_Plugin {
 	 */
 	public function shortcodeDispatcher($args, $content, $tag) {
 
-		$controllerName = self::PREFIX . preg_replace('%(^|_).%e', 'strtoupper("$0")', $tag); // capitalize first letters of class name parts and add prefix
+		$controllerName = self::PREFIX . preg_replace_callback('%(^|_).%', array($this, "replace_callback"), $tag);// capitalize first letters of class name parts and add prefix
 		$controller = new $controllerName();
 		if ( ! $controller instanceof PMXI_Controller) {
 			throw new Exception("Shortcode `$tag` matches to a wrong controller type.");
@@ -670,7 +662,7 @@ final class PMXI_Plugin {
 	 * @param string $className
 	 * @return bool
 	 */
-	public function __autoload($className) {
+	public function autoload($className) {
 		$is_prefix = false;
 		$filePath = str_replace('_', '/', preg_replace('%^' . preg_quote(self::PREFIX, '%') . '%', '', strtolower($className), 1, $is_prefix)) . '.php';
 		if ( ! $is_prefix) { // also check file with original letter case
@@ -729,7 +721,7 @@ final class PMXI_Plugin {
 	/**
 	 * Plugin activation logic
 	 */
-	public function __activation() {
+	public function activation() {
 		// uncaught exception doesn't prevent plugin from being activated, therefore replace it with fatal error so it does
 		set_exception_handler(create_function('$e', 'trigger_error($e->getMessage(), E_USER_ERROR);'));
 
@@ -788,7 +780,7 @@ final class PMXI_Plugin {
 		load_plugin_textdomain( 'wp_all_import_plugin', false, dirname( plugin_basename( __FILE__ ) ) . "/i18n/languages" );
 	}		
 
-	public function __fix_db_schema(){			
+	public function fix_db_schema(){
 
 		$uploads = wp_upload_dir();		
 

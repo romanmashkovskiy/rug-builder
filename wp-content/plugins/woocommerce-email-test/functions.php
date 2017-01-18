@@ -1,22 +1,8 @@
 <?php
 
-function run_email_script(){
+function wetp_run_email_script(){
 
-	
-
-	// assign email address and order id variables
-	
-	if( get_option( "wc_email_test_email", false ) ) {
-	
-		$wc_email_test_email = get_option( "wc_email_test_email", false );
-		
-	} else {
-	
-		$wc_email_test_email = get_bloginfo('admin_email');
-		
-	}
-	
-		
+	// assign order id variables	
 	if( get_option( "wc_email_test_order_id", false ) == 'recent' ){
 	
 		$wc_email_test_order_id = '';
@@ -50,24 +36,36 @@ function run_email_script(){
 
 	// the email type to send
 	$email_class = get_query_var('woocommerce_email_test');
+    
+    // check type is in array
+    global $wetp_test_email_class;
+    if( !array_key_exists( $email_class, $wetp_test_email_class) ){
+        echo "Invalid email type";
+        exit();
+    }
+    
 
 	$for_filter = strtolower( str_replace( 'WC_Email_', '' , $email_class ) );
 
-	// change email address within order to saved option	
-	add_filter( 'woocommerce_email_recipient_'.$for_filter , 'your_email_recipient_filter_function', 10, 2);
-	function your_email_recipient_filter_function($recipient, $object) {
-		global $wc_email_test_email;
-		$recipient = $wc_email_test_email;
-		$recipient = '';
-		return $recipient;
-	}
-
 	// change subject link	
-	add_filter('woocommerce_email_subject_'.$for_filter , 'change_admin_email_subject', 1, 2);	 
-	function change_admin_email_subject( $subject, $order ) {
+	add_filter('woocommerce_email_subject_'.$for_filter , 'wept_change_admin_email_subject', 1, 2);	 
+	function wept_change_admin_email_subject( $subject, $order ) {
 		global $woocommerce;	 
 		$subject = "TEST EMAIL: ".$subject;		
 		return $subject;
+	} 
+
+	// make sure email isn't sent to customer
+	add_filter( 'woocommerce_email_recipient_'.$for_filter , 'wetp_email_recipient_filter_function', 10, 2);
+	function wetp_email_recipient_filter_function($recipient, $object) {
+		$recipient = '';
+		return $recipient;
+	}    
+	add_filter('woocommerce_email_enabled_'.$for_filter , 'wept_change_email_enabled', 1, 2);	 
+	function wept_change_email_enabled( $enabled, $order ) {
+		global $woocommerce;	
+        $enabled = false;        
+		return $enabled;
 	} 	
 	
 	if( isset( $GLOBALS['wc_advanced_notifications'] ) ) {
@@ -80,9 +78,6 @@ function run_email_script(){
 
 	// select the email we want & send
 	$new_email = $emails[ $email_class ];
-	
-	// make sure email isn't sent
-	apply_filters( 'woocommerce_email_enabled_' . $for_filter, false, $new_email->object ); 
 
 	if( $for_filter == 'customer_note' ) {
 
@@ -99,11 +94,11 @@ function run_email_script(){
 
 }
 
-function get_order_id_select_field( $wc_email_test_order_id ) {
+function wetp_get_order_id_select_field( $wc_email_test_order_id ) {
 
 	global $wpdb;
 	
-	$order_id_query = 'SELECT order_id FROM '.$wpdb->prefix . 'woocommerce_order_items'.' GROUP BY order_id ORDER BY order_item_id DESC LIMIT 100';
+	$order_id_query = 'SELECT ID as order_id FROM '.$wpdb->prefix . 'posts'.' WHERE post_type = "shop_order" GROUP BY ID ORDER BY ID DESC LIMIT 100';
 	$order_id = $wpdb->get_results( $order_id_query  );
 	if( empty( $order_id ) ) {
 	
@@ -126,51 +121,56 @@ function get_order_id_select_field( $wc_email_test_order_id ) {
 	
 }
 
-function show_test_email_buttons(){
+function wetp_show_test_email_buttons(){
 
-	global $test_email_class;
+	global $wetp_test_email_class;
 	
 	$site_url = site_url();
 	
-	foreach( $test_email_class as $class=>$name ) {
+	foreach( $wetp_test_email_class as $class=>$name ) {
 	
 		echo " <a href='{$site_url}/?woocommerce_email_test={$class}' class='button button-primary' target='_blank'>{$name}</a> ";			
 
 	} 
 }
  
-function update_test_email_options() {
+function wetp_update_test_email_options() {
 
 	$updated = false;
 
-	if( $_POST['wc_email_test_email']  ){
-	
-		$result = update_option( "wc_email_test_email", sanitize_text_field( $_POST['wc_email_test_email'] ) );
-		
-		$updated = true;
-		
+	if( isset( $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'wept_update_form' ) ) {
+
+		if( $_POST['wc_email_test_email']  ){
+			
+			$result = update_option( "wc_email_test_email", sanitize_email( $_POST['wc_email_test_email'] ) );
+
+			$updated = true;
+					
+		}
+				
+		if( $_POST['wc_email_test_order_id']  ){
+				
+			$result = update_option( "wc_email_test_order_id", intval( $_POST['wc_email_test_order_id'] ) );
+					
+			$updated = true;
+					
+		}		
+				
+		if( $updated ) {
+				
+			echo "<div id='message' class='updated fade'><p><strong>Your settings have been saved.</strong></p></div>";
+				
+		}
+
 	}
-	
-	if( $_POST['wc_email_test_order_id']  ){
-	
-		$result = update_option( "wc_email_test_order_id", intval( $_POST['wc_email_test_order_id'] ) );
-		
-		$updated = true;
-		
-	}		
-	
-	if( $updated ) {
-	
-		echo "<div id='message' class='updated fade'><p><strong>Your settings have been saved.</strong></p></div>";
-	
-	}
+
 	
 	return $updated;
 
 }
 
 
-function get_test_email_options() {
+function wetp_get_test_email_options() {
 
 	$return = array();
 
@@ -195,4 +195,57 @@ function get_test_email_options() {
 	
 	return $return;
 	
+}
+
+
+
+function wetp_update_license_key(){
+    
+	$updated = false;
+
+	if( isset( $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'wept_update_lisence_key' ) ) {
+
+		if( $_POST['wetp_main_lisence_key']  ){
+            
+            $wetp_main_lisence_key = sanitize_text_field( $_POST['wetp_main_lisence_key'] );
+				
+			$result = update_option( "wetp_main_lisence_key", $wetp_main_lisence_key );
+					
+			$updated = true;
+            
+            // check for updates
+            require 'plugin-update-checker/plugin-update-checker.php';
+            $MyUpdateChecker = PucFactory::buildUpdateChecker(
+                'http://raiserweb.com/wp-update-server-master/?action=get_metadata&slug=woocommerce-email-test&license_key='.$wetp_main_lisence_key,
+                __FILE__,
+                'woocommerce-email-test'
+            );	   
+            $MyUpdateChecker->checkForUpdates();           
+					
+		} else {
+            
+            $result = update_option( "wetp_main_lisence_key", null );
+            
+        }
+
+    }    
+    
+}
+
+function wetp_get_license_options(){
+    
+	$return = array();
+
+	if( get_option( "wetp_main_lisence_key", "false" ) ) {
+	
+		$return['wetp_main_lisence_key'] = get_option( "wetp_main_lisence_key", "" );
+		
+	} else {
+	
+		$return['wetp_main_lisence_key'] = '';
+        
+	}
+
+    return $return;    
+    
 }

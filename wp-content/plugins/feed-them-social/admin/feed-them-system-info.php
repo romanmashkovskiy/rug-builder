@@ -152,13 +152,15 @@ Twitter Consumer Key:       <?php echo $twitterOptions1      . "\n"; ?>
 Twitter Secret:             <?php echo $twitterOptions2      . "\n"; ?>
 Twitter Token:              <?php echo $twitterOptions3      . "\n"; ?>
 Twitter Token Secret:       <?php echo $twitterOptions4      . "\n"; ?>
-Instagram:                  <?php echo $instagramOptions     . "\n"; ?>
-<?php if (is_plugin_active('feed-them-premium/feed-them-premium.php')) {
+Instagram:                  <?php echo $instagramOptions     . "\n";
+
 $youtubeOptions = get_option('youtube_custom_api_token') ?'Yes' :'No' ;
 $ftsFixLoadmore = get_option('fts_fix_loadmore') ? get_option('fts_fix_loadmore') : 'No' ;
 $feed_them_social_premium_license_key = get_option('feed_them_social_premium_license_key');
 $fts_bar_license_key = get_option('fts_bar_license_key');
 $feed_them_carousel_premium_license_key = get_option('feed_them_carousel_premium_license_key');
+$feed_them_social_combined_streams_license_key = get_option('feed_them_social_combined_streams_license_key');
+
 	?>YouTube:                    <?php echo $youtubeOptions     . "\n"; ?>
 
 -- Offset Post Limit:
@@ -182,6 +184,7 @@ Fix:                        <?php echo isset($ftsFixTwitterTime) && $ftsFixTwitt
 Fix:                        <?php echo isset($ftsDisableMagnificCSS) && $ftsDisableMagnificCSS == 1 ? 'Yes'. "\n" : 'No'. "\n"; ?>
 
 -- Fix Internal Server Error:
+		<?php if (is_plugin_active('feed-them-social-combined-streams/feed-them-social-combined-streams.php') || is_plugin_active('feed-them-premium/feed-them-premium.php') || is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php') || is_plugin_active('fts-bar/fts-bar.php') || is_plugin_active('feed-them-carousel-premium/feed-them-carousel-premium.php') ) { ?>
 
 Fix:                        <?php echo isset($ftsFixTimeOut) && $ftsFixTimeOut == 1 ? 'Yes'. "\n" : 'No'. "\n"; ?>
 
@@ -191,11 +194,13 @@ Override:                   <?php echo isset($ftsFixLoadmore) && $ftsFixLoadmore
 
 -- Premium License:
 
-Premium Active:             <?php echo isset($feed_them_social_premium_license_key) && $feed_them_social_premium_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; } if (is_plugin_active('fts-bar/fts-bar.php')) { ?>
-FTS Bar Active:             <?php echo isset($fts_bar_license_key) && $fts_bar_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; } if (is_plugin_active('fts-bar/fts-bar.php')) { ?>
-FTS Carousel Premium:       <?php echo isset($feed_them_carousel_premium_license_key) && $feed_them_carousel_premium_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; } if (is_plugin_active('feed-them-carousel-premium/feed-them-carousel-premium.php')) { ?>
-Facebook Reviews Active:    <?php echo isset($fb_reviews_token) && $fb_reviews_token !== '' ? 'Yes'. "\n" : 'No'. "\n";
-			} ?>
+<?php if (is_plugin_active('feed-them-social-combined-streams/feed-them-social-combined-streams.php')) { ?>
+FTS Combined Streams:       <?php echo isset($feed_them_social_combined_streams_license_key) && $feed_them_social_combined_streams_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; }if (is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
+Premium Active:             <?php echo isset($feed_them_social_premium_license_key) && $feed_them_social_premium_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; }if (is_plugin_active('fts-bar/fts-bar.php')) { ?>
+FTS Bar Active:             <?php echo isset($fts_bar_license_key) && $fts_bar_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; }if (is_plugin_active('feed-them-carousel-premium/feed-them-carousel-premium.php')) { ?>
+FTS Carousel Premium:       <?php echo isset($feed_them_carousel_premium_license_key) && $feed_them_carousel_premium_license_key !== '' ? 'Yes'. "\n" : 'No'. "\n"; }if (is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')) { ?>
+Facebook Reviews Active:    <?php echo isset($fb_reviews_token) && $fb_reviews_token !== '' ? 'Yes'. "\n" : 'No'. "\n";}
+		} ?>
 			
 ### End System Info ###</textarea>
 	<?php

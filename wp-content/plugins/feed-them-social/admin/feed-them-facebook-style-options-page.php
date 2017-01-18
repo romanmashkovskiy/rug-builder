@@ -15,8 +15,8 @@ class FTS_facebook_options_page
      *
      * @since 1.9.6
      */
-    function __construct()
-    {
+    function __construct() {
+
     }
 
     /**
@@ -24,8 +24,7 @@ class FTS_facebook_options_page
      *
      * @since 1.9.6
      */
-    function feed_them_facebook_options_page()
-    {
+    function feed_them_facebook_options_page() {
         $fts_functions = new feed_them_social_functions();
         ?>
 
@@ -51,6 +50,11 @@ class FTS_facebook_options_page
                 $fb_hide_shared_by_etc_text = get_option('fb_hide_shared_by_etc_text');
                 $fb_hide_images_in_posts = get_option('fb_hide_images_in_posts');
                 $fb_hide_no_posts_message = get_option('fb_hide_no_posts_message');
+                $fb_reviews_remove_see_reviews_link = get_option('fb_reviews_remove_see_reviews_link');
+                $fb_loadmore_background_color = get_option('fb_loadmore_background_color');
+                $fb_loadmore_text_color = get_option('fb_loadmore_text_color');
+
+                $fb_reviews_overall_rating_background_border_hide = get_option('fb_reviews_overall_rating_background_border_hide');
 
                 $lang_options_array = json_decode($fts_functions->xml_json_parse('https://www.facebook.com/translations/FacebookLocales.xml'));
                 //echo'<pre>';
@@ -69,7 +73,7 @@ class FTS_facebook_options_page
                                 and get my Access Token</a></p>
 
                     </div>
-                    <a href="https://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank" class="fts-admin-button-no-work">Button not working?</a>
+                    <a href="https://www.slickremix.com/docs/create-facebook-app-id-or-user-token" target="_blank" class="fts-admin-button-no-work"><?php _e('Button not working?', 'feed-them-social'); ?></a>
                     <?php
                     $test_app_token_id = get_option('fts_facebook_custom_api_token');
                     $test_app_token_id_biz = get_option('fts_facebook_custom_api_token_biz');
@@ -80,7 +84,7 @@ class FTS_facebook_options_page
                             // 'app_token_id' => 'https://graph.facebook.com/oauth/access_token?client_id=705020102908771&client_secret=70166128c6a7b5424856282a5358f47b&grant_type=fb_exchange_token&fb_exchange_token=CAAKBNkjLG2MBAK5jVUp1ZBCYCiLB8ZAdALWTEI4CesM8h3DeI4Jotngv4TKUsQZBwnbw9jiZCgyg0eEmlpiVauTsReKJWBgHe31xWCsbug1Tv3JhXZBEZBOdOIaz8iSZC6JVs4uc9RVjmyUq5H52w7IJVnxzcMuZBx4PThN3CfgKC5E4acJ9RnblrbKB37TBa1yumiPXDt72yiISKci7sqds0WFR3XsnkwQZD'
                         );
                         $test_app_token_URL_biz = array(
-                            'app_token_id_biz' => 'https://graph.facebook.com/debug_token?input_token=' . $test_app_token_id_biz . '&access_token=' . $test_app_token_id_biz
+                            'app_token_id_biz' => 'https://graph.facebook.com/debug_token?input_token=' . $test_app_token_id_biz . '&access_token=' . $test_app_token_id_biz . '&'
                             // 'app_token_id' => 'https://graph.facebook.com/oauth/access_token?client_id=705020102908771&client_secret=70166128c6a7b5424856282a5358f47b&grant_type=fb_exchange_token&fb_exchange_token=CAAKBNkjLG2MBAK5jVUp1ZBCYCiLB8ZAdALWTEI4CesM8h3DeI4Jotngv4TKUsQZBwnbw9jiZCgyg0eEmlpiVauTsReKJWBgHe31xWCsbug1Tv3JhXZBEZBOdOIaz8iSZC6JVs4uc9RVjmyUq5H52w7IJVnxzcMuZBx4PThN3CfgKC5E4acJ9RnblrbKB37TBa1yumiPXDt72yiISKci7sqds0WFR3XsnkwQZD'
                         );
 
@@ -95,9 +99,9 @@ class FTS_facebook_options_page
                         $test_app_token_response_biz = $fts_functions->fts_get_feed_json($test_app_token_URL_biz);
                         $test_app_token_response_biz = json_decode($test_app_token_response_biz['app_token_id_biz']);
 
-                       //   echo'<pre>';
-                       ///   print_r($test_app_token_response);
-                       //   echo'</pre>';
+                        //   echo'<pre>';
+                        ///   print_r($test_app_token_response);
+                        //   echo'</pre>';
                     }
                     ?>
                     <div class="clear"></div>
@@ -107,8 +111,8 @@ class FTS_facebook_options_page
                         </div>
 
                         <input type="text" name="fts_facebook_custom_api_token" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token" value="<?php echo get_option('fts_facebook_custom_api_token'); ?>"/>
-                        <input type="text" hidden name="fts_facebook_custom_api_token_user_id" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token_user_id" value="<?php echo get_option('fts_facebook_custom_api_token_user_id'); ?>" />
-                        <input type="text" hidden name="fts_facebook_custom_api_token_user_name" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token_user_name" value="<?php echo get_option('fts_facebook_custom_api_token_user_name'); ?>" />
+                        <input type="text" hidden name="fts_facebook_custom_api_token_user_id" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token_user_id" value="<?php echo get_option('fts_facebook_custom_api_token_user_id'); ?>"/>
+                        <input type="text" hidden name="fts_facebook_custom_api_token_user_name" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token_user_name" value="<?php echo get_option('fts_facebook_custom_api_token_user_name'); ?>"/>
                         <div class="clear"></div>
                         <?php if (!empty($test_app_token_response) && !empty($test_app_token_id)) {
                             if (isset($test_app_token_response->data->is_valid) || $test_app_token_response->error->message == "(#100) You must provide an app access token or a user access token that is an owner or developer of the app") {
@@ -116,8 +120,8 @@ class FTS_facebook_options_page
                                 $fb_name = get_option('fts_facebook_custom_api_token_user_name');
                                 echo '<div class="fts-successful-api-token fts-special-working-wrap">';
 
-                                if (!empty($fb_id) && !empty($fb_name) && !empty($test_app_token_id) ) {
-                                    echo '<img border="0" height="50" width="50" class="fts-fb-page-thumb" src="https://graph.facebook.com/'.$fb_id.'/picture"/><h3>' . $fb_name . '</h3>';
+                                if (!empty($fb_id) && !empty($fb_name) && !empty($test_app_token_id)) {
+                                    echo '<img border="0" height="50" width="50" class="fts-fb-page-thumb" src="https://graph.facebook.com/' . $fb_id . '/picture"/><h3>' . $fb_name . '</h3>';
                                 }
                                 echo __('Your Access Token is now working!', 'feed-them-social') . '</div>';
 
@@ -130,13 +134,12 @@ class FTS_facebook_options_page
                                     echo '<div class="fts-failed-api-token">' . __('Oh No something\'s wrong.', 'feed-them-social') . ' ' . $test_app_token_response->error->message . ' ' . __('. Please click the button above to retrieve a new Access Token.', 'feed-them-social') . '</div>';
                                 }
 
-                                if (isset($test_app_token_response->data->error->message) && empty($test_app_token_id) || isset($test_app_token_response->error->message) && empty($test_app_token_id) ) {
+                                if (isset($test_app_token_response->data->error->message) && empty($test_app_token_id) || isset($test_app_token_response->error->message) && empty($test_app_token_id)) {
                                     echo '<div class="fts-failed-api-token">' . __('To get started, please click the button above to retrieve your Access Token.', 'feed-them-social') . '</div>';
                                 }
                             }
 
-                        }
-                        else {
+                        } else {
                             echo '<div class="fts-successful-api-token default-token">' . __('You are using our Default APP Token for testing purposes.', 'feed-them-social') . '</div>';
                         }
                         ?>
@@ -145,98 +148,11 @@ class FTS_facebook_options_page
                         <?php
 
 
-                        if (isset($_GET['return_long_lived_token'])) {
-                            //Get Token for Facebook
-                            $fb_token_response = wp_remote_fopen('https://graph.facebook.com/me/accounts?access_token=' . $_GET['access_token'] . '');
-                            //Error Check
-                            $test_fb_app_token_response = json_decode($fb_token_response);
+                        if (isset($_GET['return_long_lived_token']) && !isset($_GET['reviews_token'])) {
+                            // Echo our shortcode for the page token list with loadmore button
+                            // These functions are on feed-them-functions.php
+                            echo do_shortcode('[fts_fb_page_token]');
 
-
-                          //  echo'<pre>';
-                          //  print_r($test_fb_app_token_response);
-                          //  echo'</pre>';
-
-                            ?>
-                            <div id="fb-list-wrap" style="display: none">
-                                <div class="fts-pages-info"> <?php _e('Click a page to add the access token above, then click save.', 'feed-them-social'); ?></div>
-                                <ul class="fb-page-list">
-                                    <?php foreach ($test_fb_app_token_response->data as $data) { ?>
-                                        <li>
-                                            <div class="fb-image"><div class="fts-fb-id"><?php print $data->id ?></div>
-                                                <img border="0" height="50" width="50" src="https://graph.facebook.com/<?php print $data->id ?>/picture"/>
-                                            </div>
-                                            <div class="fb-name"><?php print $data->name ?></div>
-                                            <div class="page-token"><?php print $data->access_token ?></div>
-
-                                            <?php
-                                            $facebook_input_token = get_option('fts_facebook_custom_api_token');
-                                            $facebook_access_token = $data->access_token;
-                                            if ($facebook_input_token == $facebook_access_token){?>
-                                                <div class="feed-them-social-admin-submit-btn " style="display: block !important;">Active</div>
-                                            <?php } else { ?>
-                                            <div class="feed-them-social-admin-submit-btn fts-token-save">Save</div>
-                                            <?php } ?>
-                                            <div class="clear"></div>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
-                                <div class="clear"></div>
-                            </div>
-
-                            <script>
-                                if(document.querySelector('#fts-fb-token-wrap .fts-pages-info') !== null){
-                                    jQuery(".fts-successful-api-token.default-token").hide();
-                                }
-                                <?php if (isset($_GET['reviews_token'])){?>
-                                    if(document.querySelector('.default-token') !== null){
-                                        jQuery(".default-token").show();
-                                    }
-
-                                <?php } ?>
-
-                                jQuery(document).ready(function ($) {
-                                    $(".feed-them-social-admin-submit-btn").click(function(){
-                                       // alert('test');
-                                        var newUrl = "<?php echo admin_url('admin.php?page=fts-facebook-feed-styles-submenu-page/'); ?>"
-                                        history.replaceState({}, null, newUrl);
-                                        $( "#fts-facebook-feed-options-form" ).submit();
-                                    });
-
-                                    <?php if (!isset($_GET['reviews_token'])){?>
-                                    var fb = ".fb-page-list li";
-                                    $('#fb-list-wrap').show();
-                                    //alert("not set");
-                                    <?php } else { ?>
-                                    var fb = "#reviews-fb-list-wrap .fb-page-list li";
-                                    $('#fb-list-wrap').appendTo('#reviews-fb-list-wrap');
-                                    $('#fts-fb-reviews-wrap #fb-list-wrap').show();
-                                    $('.fts-failed-api-token.get-started-message').hide();
-                                    //alert("reviews_token");
-                                    <?php } ?>
-
-                                    $(fb).click(function () {
-                                        var fb_page_id = $(this).find('.fts-fb-id').html();
-                                        var token = $(this).find('.page-token').html();
-                                        // alert(token);
-                                        var name = $(this).find('.fb-name').html();
-                                        <?php if (!isset($_GET['reviews_token'])){?>
-                                        $("#fts_facebook_custom_api_token").val(token);
-                                        $("#fts_facebook_custom_api_token_user_id").val(fb_page_id);
-                                        $("#fts_facebook_custom_api_token_user_name").val(name);
-                                        <?php } else { ?>
-                                        $("#fts_facebook_custom_api_token_biz").val(token);
-                                        $("#fts_facebook_custom_api_token_user_id_biz").val(fb_page_id);
-                                        $("#fts_facebook_custom_api_token_user_name_biz").val(name);
-                                        <?php } ?>
-
-
-                                        $('.fb-page-list .feed-them-social-admin-submit-btn').hide();
-                                        $(this).find('.feed-them-social-admin-submit-btn').toggle();
-                                        //  alert(name + token)
-                                    })
-                                });
-                            </script>
-                            <?php
                         } ?>
                     </div>
 
@@ -258,14 +174,14 @@ class FTS_facebook_options_page
 
                         </div>
 
-                        <a href="https://www.slickremix.com/facebook-never-expiring-page-token" target="_blank" class="fts-admin-button-no-work">Button not working?</a>
+                        <a href="https://www.slickremix.com/facebook-never-expiring-page-token" target="_blank" class="fts-admin-button-no-work"><?php _e('Button not working?', 'feed-them-social'); ?></a>
                         <div class="clear"></div>
                         <div class="feed-them-social-admin-input-label fts-twitter-border-bottom-color-label">
                             <?php _e('Page Reviews Access Token', 'feed-them-social'); ?>
                         </div>
                         <input type="text" name="fts_facebook_custom_api_token_biz" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token_biz" value="<?php echo get_option('fts_facebook_custom_api_token_biz'); ?>"/>
-                        <input type="text" hidden name="fts_facebook_custom_api_token_user_id_biz" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token_user_id_biz" value="<?php echo get_option('fts_facebook_custom_api_token_user_id_biz'); ?>" />
-                        <input type="text" hidden name="fts_facebook_custom_api_token_user_name_biz" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token_user_name_biz" value="<?php echo get_option('fts_facebook_custom_api_token_user_name_biz'); ?>" />
+                        <input type="text" hidden name="fts_facebook_custom_api_token_user_id_biz" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token_user_id_biz" value="<?php echo get_option('fts_facebook_custom_api_token_user_id_biz'); ?>"/>
+                        <input type="text" hidden name="fts_facebook_custom_api_token_user_name_biz" class="feed-them-social-admin-input" id="fts_facebook_custom_api_token_user_name_biz" value="<?php echo get_option('fts_facebook_custom_api_token_user_name_biz'); ?>"/>
                         <div class="clear"></div>
 
                         <?php
@@ -276,9 +192,9 @@ class FTS_facebook_options_page
                                 echo '<div class="fts-successful-api-token fts-special-working-wrap">';
 
 
-                            if (!empty($fb_id_biz) && !empty($fb_name_biz) && !empty($test_app_token_id_biz)) {
-                                echo '<img border="0" height="50" width="50" class="fts-fb-page-thumb" src="https://graph.facebook.com/'.$fb_id_biz.'/picture"/><h3>' . $fb_name_biz . '</h3>';
-                            }
+                                if (!empty($fb_id_biz) && !empty($fb_name_biz) && !empty($test_app_token_id_biz)) {
+                                    echo '<img border="0" height="50" width="50" class="fts-fb-page-thumb" src="https://graph.facebook.com/' . $fb_id_biz . '/picture"/><h3>' . $fb_name_biz . '</h3>';
+                                }
                                 echo __('Your Page Reviews Access Token is now working!', 'feed-them-social') . '</div>';
 
                             }
@@ -287,7 +203,7 @@ class FTS_facebook_options_page
                                 if (isset($test_app_token_response_biz->data->error->message)) {
                                     echo '<div class="fts-failed-api-token">' . __('Oh No something\'s wrong.', 'feed-them-social') . ' ' . $test_app_token_response_biz->data->error->message . ' ' . __('Please click the button above to retreive a new Access Token.', 'feed-them-social') . '</div>';
                                 }
-                                if (isset($test_app_token_response_biz->error->message) && !empty($test_app_token_id_biz) && !isset($_GET["return_long_lived_token"]) ) {
+                                if (isset($test_app_token_response_biz->error->message) && !empty($test_app_token_id_biz) && !isset($_GET["return_long_lived_token"])) {
                                     echo '<div class="fts-failed-api-token">' . __('Oh No something\'s wrong.', 'feed-them-social') . ' ' . $test_app_token_response_biz->error->message . ' ' . __('Please click the button above to retreive a new Access Token.', 'feed-them-social') . '</div>';
                                 }
                             }
@@ -296,9 +212,14 @@ class FTS_facebook_options_page
                         if (empty($test_app_token_id_biz)) {
                             echo '<div class="fts-failed-api-token get-started-message">' . __('To get started, please click the button above to retrieve your Page Reviews Access Token.', 'feed-them-social') . '</div>';
                         }
-                        ?>
-                        <div class="clear"></div>
-                        <div id="reviews-fb-list-wrap"></div>
+
+
+                        if (isset($_GET['return_long_lived_token']) && isset($_GET['reviews_token'])) {
+                            // Echo our shortcode for the page token list with loadmore button
+                            // These functions are on feed-them-functions.php
+                            echo do_shortcode('[fts_fb_page_token]');
+
+                        } ?>
 
                         <div class="clear"></div>
                     </div>
@@ -307,21 +228,21 @@ class FTS_facebook_options_page
                     <div class="feed-them-social-admin-input-wrap">
                         <div class="fts-title-description-settings-page">
                             <h3>
-                                <?php _e('Reviews Style Options', 'feed-them-social'); ?>
+                                <?php _e('Reviews: Style and Text Options', 'feed-them-social'); ?>
                             </h3>
                             <?php _e('The styles above still apply, these are just some extra options for the Reviews List feed.', 'feed-them-social'); ?>
                         </div>
                         <div class="feed-them-social-admin-input-label fb-events-title-color-label">
-                            <?php _e('Stars Background Color', 'feed-them-social'); ?>
+                            <?php _e('Stars Background Color<br/><small>Applies to Overall Rating too.</small>', 'feed-them-social'); ?>
                         </div>
-                        <input type="text" name="fb_reviews_backg_color" class="feed-them-social-admin-input fb-reviews-backg-color color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb-reviews-backg-color" placeholder="#4791FF" value="<?php echo get_option('fb_reviews_backg_color'); ?>"/>
+                        <input type="text" name="fb_reviews_backg_color" class="feed-them-social-admin-input fb-reviews-backg-color color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb-reviews-backg-color" placeholder="#4791ff" value="<?php echo get_option('fb_reviews_backg_color'); ?>"/>
                         <div class="clear"></div>
                     </div>
                     <!--/fts-facebook-feed-styles-input-wrap-->
 
                     <div class="feed-them-social-admin-input-wrap">
                         <div class="feed-them-social-admin-input-label fb-events-map-link-color-label">
-                            <?php _e('Stars Text Color', 'feed-them-social'); ?>
+                            <?php _e('Stars & Text Color<br/><small>Applies to Overall Rating too.</small>', 'feed-them-social'); ?>
                         </div>
                         <input type="text" name="fb_reviews_text_color" class="feed-them-social-admin-input fb-reviews-text-color color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb-reviews-text-color" placeholder="#fff" value="<?php echo get_option('fb_reviews_text_color'); ?>"/>
                         <div class="clear"></div>
@@ -330,7 +251,7 @@ class FTS_facebook_options_page
 
                     <div class="feed-them-social-admin-input-wrap">
                         <div class="feed-them-social-admin-input-label fb-events-map-link-color-label">
-                            <?php _e('Change text for the word Star', 'feed-them-social'); ?>
+                            <?php _e('Text for the word "star"', 'feed-them-social'); ?>
                         </div>
                         <input type="text" name="fb_reviews_star_language" class="feed-them-social-admin-input" id="fb_reviews_star_language" placeholder="star" value="<?php echo get_option('fb_reviews_star_language'); ?>"/>
                         <div class="clear"></div>
@@ -339,9 +260,109 @@ class FTS_facebook_options_page
 
                     <div class="feed-them-social-admin-input-wrap">
                         <div class="feed-them-social-admin-input-label fb-events-map-link-color-label">
-                            <?php _e('Change text for See More Reviews', 'feed-them-social'); ?>
+                            <?php _e('Text for "See More Reviews"', 'feed-them-social'); ?>
                         </div>
                         <input type="text" name="fb_reviews_see_more_reviews_language" class="feed-them-social-admin-input" id="fb_reviews_see_more_reviews_language" placeholder="See More Reviews" value="<?php echo get_option('fb_reviews_see_more_reviews_language'); ?>"/>
+                        <div class="clear"></div>
+                    </div>
+                    <!--/fts-facebook-feed-styles-input-wrap-->
+
+                    <div class="feed-them-social-admin-input-wrap">
+                        <div class="feed-them-social-admin-input-label">
+                            <?php _e('Remove "See More Reviews" link', 'feed-them-social'); ?>
+                        </div>
+                        <select name="fb_reviews_remove_see_reviews_link" id="fb_reviews_remove_see_reviews_link" class="feed-them-social-admin-input">
+                            <option value="">
+                                <?php _e('Please Select Option', 'feed-them-social'); ?>
+                            </option>
+                            <option <?php echo selected($fb_reviews_remove_see_reviews_link, 'yes', false) ?> value="yes">
+                                <?php _e('Yes', 'feed-them-social'); ?>
+                            </option>
+                            <option <?php echo selected($fb_reviews_remove_see_reviews_link, 'no', false) ?> value="no">
+                                <?php _e('No', 'feed-them-social'); ?>
+                            </option>
+                        </select>
+                        <div class="clear"></div>
+                    </div>
+                    <!--/fts-facebook-feed-styles-input-wrap-->
+
+                    <div class="fts-title-description-settings-page">
+                        <h3>
+                            <?php _e('Reviews: Overall Rating Style Options', 'feed-them-social'); ?>
+                        </h3>
+                        <?php _e('These styles are for the overall rating that appear above your feed.', 'feed-them-social'); ?>
+                    </div>
+                    <div class="feed-them-social-admin-input-wrap">
+                        <div class="feed-them-social-admin-input-label">
+                            <?php _e('Hide Overall Rating Background & Border', 'feed-them-social'); ?>
+                        </div>
+                        <select name="fb_reviews_overall_rating_background_border_hide" id="fb_reviews_overall_rating_background_border_hide" class="feed-them-social-admin-input">
+                            <option value="">
+                                <?php _e('Please Select Option', 'feed-them-social'); ?>
+                            </option>
+                            <option <?php echo selected($fb_reviews_overall_rating_background_border_hide, 'yes', false) ?> value="yes">
+                                <?php _e('Yes', 'feed-them-social'); ?>
+                            </option>
+                            <option <?php echo selected($fb_reviews_overall_rating_background_border_hide, 'no', false) ?> value="no">
+                                <?php _e('No', 'feed-them-social'); ?>
+                            </option>
+                        </select>
+                       <div class="clear"></div>
+                    </div>
+                    <!--/fts-facebook-feed-styles-input-wrap-->
+
+                    <div class="feed-them-social-admin-input-wrap">
+                        <div class="feed-them-social-admin-input-label">
+                            <?php _e('Overall Rating Background Color', 'feed-them-social'); ?>
+                        </div>
+                        <input type="text" name="fb_reviews_overall_rating_background_color" class="feed-them-social-admin-input fb-reviews-text-color color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb_reviews_overall_rating_background_color" placeholder="#fff" value="<?php echo get_option('fb_reviews_overall_rating_background_color'); ?>"/>
+                        <div class="clear"></div>
+                    </div>
+                    <!--/fts-facebook-feed-styles-input-wrap-->
+
+
+                    <div class="feed-them-social-admin-input-wrap">
+                        <div class="feed-them-social-admin-input-label">
+                            <?php _e('Overall Rating Text Color', 'feed-them-social'); ?>
+                        </div>
+                        <input type="text" name="fb_reviews_overall_rating_text_color" class="feed-them-social-admin-input fb-reviews-text-color color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb_reviews_overall_rating_text_color" placeholder="#fff" value="<?php echo get_option('fb_reviews_overall_rating_text_color'); ?>"/>
+                        <div class="clear"></div>
+                    </div>
+                    <!--/fts-facebook-feed-styles-input-wrap-->
+
+                    <div class="feed-them-social-admin-input-wrap">
+                        <div class="feed-them-social-admin-input-label">
+                            <?php _e('Overall Rating Border Color', 'feed-them-social'); ?>
+                        </div>
+                        <input type="text" name="fb_reviews_overall_rating_border_color" class="feed-them-social-admin-input fb-reviews-text-color color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb_reviews_overall_rating_border_color" placeholder="#ddd" value="<?php echo get_option('fb_reviews_overall_rating_border_color'); ?>"/>
+                        <div class="clear"></div>
+                    </div>
+                    <!--/fts-facebook-feed-styles-input-wrap-->
+
+                    <div class="feed-them-social-admin-input-wrap">
+                        <div class="feed-them-social-admin-input-label">
+                            <?php _e('Overall Rating Background Padding', 'feed-them-social'); ?>
+                        </div>
+                        <input type="text" name="fb_reviews_overall_rating_background_padding" class="feed-them-social-admin-input" id="fb_reviews_overall_rating_background_padding" placeholder="10px 10px 15px 10px" value="<?php echo get_option('fb_reviews_overall_rating_background_padding'); ?>"/>
+                        <div class="clear"></div>
+                    </div>
+                    <!--/fts-facebook-feed-styles-input-wrap-->
+
+
+                    <div class="feed-them-social-admin-input-wrap">
+                        <div class="feed-them-social-admin-input-label">
+                            <?php _e('Overall Rating "of 5 stars" text', 'feed-them-social'); ?>
+                        </div>
+                        <input type="text" name="fb_reviews_overall_rating_of_5_stars_text" class="feed-them-social-admin-input" id="fb_reviews_overall_rating_of_5_stars_text" placeholder="of 5 stars" value="<?php echo get_option('fb_reviews_overall_rating_of_5_stars_text'); ?>"/>
+                        <div class="clear"></div>
+                    </div>
+                    <!--/fts-facebook-feed-styles-input-wrap-->
+
+                    <div class="feed-them-social-admin-input-wrap">
+                        <div class="feed-them-social-admin-input-label">
+                            <?php _e('Overall Rating "reviews" text', 'feed-them-social'); ?>
+                        </div>
+                        <input type="text" name="fb_reviews_overall_rating_reviews_text" class="feed-them-social-admin-input" id="fb_reviews_overall_rating_reviews_text" placeholder="reviews" value="<?php echo get_option('fb_reviews_overall_rating_reviews_text'); ?>"/>
                         <div class="clear"></div>
                     </div>
                     <!--/fts-facebook-feed-styles-input-wrap-->
@@ -521,7 +542,7 @@ class FTS_facebook_options_page
                 <div class="feed-them-social-admin-input-wrap">
                     <div class="fts-title-description-settings-page" style="margin-top:0;">
                         <h3>
-                            <?php _e('Style Options', 'feed-them-social'); ?>
+                            <?php _e('Global Facebook Style Options', 'feed-them-social'); ?>
                         </h3>
                     </div>
 
@@ -644,22 +665,62 @@ class FTS_facebook_options_page
                 <!--/fts-facebook-feed-styles-input-wrap-->
 
                 <div class="feed-them-social-admin-input-wrap">
-                    <div class="feed-them-social-admin-input-label fts-fb-grid-posts-background-color-label">
-                        <?php _e('Feed Grid Posts Background Color (Grid style feeds ONLY)', 'feed-them-social'); ?>
-                    </div>
-                    <input type="text" name="fb_grid_posts_background_color" class="feed-them-social-admin-input fb-grid-posts-background-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb-grid-posts-background-color-input" placeholder="#ddd" value="<?php echo get_option('fb_grid_posts_background_color'); ?>"/>
-                    <div class="clear"></div>
-                </div>
-                <!--/fts-facebook-feed-styles-input-wrap-->
-
-                <div class="feed-them-social-admin-input-wrap">
                     <div class="feed-them-social-admin-input-label fts-fb-border-bottom-color-label">
-                        <?php _e('Feed Border Bottom Color', 'feed-them-social'); ?>
+                        <?php _e('Border Bottom Color', 'feed-them-social'); ?>
                     </div>
                     <input type="text" name="fb_border_bottom_color" class="feed-them-social-admin-input fb-border-bottom-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb-border-bottom-color-input" placeholder="#ddd" value="<?php echo get_option('fb_border_bottom_color'); ?>"/>
                     <div class="clear"></div>
                 </div>
                 <!--/fts-facebook-feed-styles-input-wrap-->
+
+                <?php if (is_plugin_active('feed-them-premium/feed-them-premium.php') || is_plugin_active('feed-them-social-facebook-reviews/feed-them-social-facebook-reviews.php')) { ?>
+                        <div class="feed-them-social-admin-input-wrap">
+                            <div class="fts-title-description-settings-page">
+                                <h3>
+                                    <?php _e('Grid Styles', 'feed-them-social'); ?>
+                                </h3>
+                            </div>
+                            <div class="feed-them-social-admin-input-label fts-fb-grid-posts-background-color-label">
+                                <?php _e('Posts Background Color', 'feed-them-social'); ?>
+                            </div>
+                            <input type="text" name="fb_grid_posts_background_color" class="feed-them-social-admin-input fb-grid-posts-background-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb-grid-posts-background-color-input" placeholder="#ddd" value="<?php echo get_option('fb_grid_posts_background_color'); ?>"/>
+                            <div class="clear"></div>
+                        </div>
+                        <!--/fts-facebook-feed-styles-input-wrap-->
+
+                        <div class="feed-them-social-admin-input-wrap">
+                            <div class="feed-them-social-admin-input-label fts-fb-grid-border-bottom-color-label">
+                                <?php _e('Border Bottom Color', 'feed-them-social'); ?>
+                            </div>
+                            <input type="text" name="fb_grid_border_bottom_color" class="feed-them-social-admin-input fb-grid-border-bottom-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb-border-bottom-color-input" placeholder="#ddd" value="<?php echo get_option('fb_grid_border_bottom_color'); ?>"/>
+                            <div class="clear"></div>
+                        </div>
+                        <!--/fts-facebook-feed-styles-input-wrap-->
+
+                        <div class="feed-them-social-admin-input-wrap">
+                        <div class="fts-title-description-settings-page">
+                            <h3>
+                                <?php _e('Load More Button Styles', 'feed-them-social'); ?>
+                            </h3>
+                        </div>
+                            <div class="feed-them-social-admin-input-label fts-fb-loadmore-background-color-label">
+                                <?php _e('Button Color', 'feed-them-social'); ?>
+                            </div>
+                            <input type="text" name="fb_loadmore_background_color" class="feed-them-social-admin-input fb-loadmore-background-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb-loadmore-background-color-input" placeholder="#ddd" value="<?php echo get_option('fb_loadmore_background_color'); ?>"/>
+                            <div class="clear"></div>
+                        </div>
+                        <!--/fts-fb-feed-styles-input-wrap-->
+
+                        <div class="feed-them-social-admin-input-wrap">
+                            <div class="feed-them-social-admin-input-label fts-fb-border-bottom-color-label">
+                                <?php _e('Text Color', 'feed-them-social'); ?>
+                            </div>
+                            <input type="text" name="fb_loadmore_text_color" class="feed-them-social-admin-input fb-loadmore-text-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="fb-loadmore-text-color-input" placeholder="#ddd" value="<?php echo get_option('fb_loadmore_text_color'); ?>"/>
+                            <div class="clear"></div>
+                        </div>
+                        <!--/fts-fb-feed-styles-input-wrap-->
+                <?php } ?>
+                
 
                 <div class="feed-them-social-admin-input-wrap">
                     <div class="fts-title-description-settings-page">

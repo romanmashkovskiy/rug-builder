@@ -32,6 +32,39 @@ class FTS_Pinterest_Feed extends feed_them_social_functions
         wp_enqueue_style('fts-feeds', plugins_url('feed-them-social/feeds/css/styles.css'));
     }
 
+
+
+
+    function fts_pinterest_image_url($post_data) {
+        $pinterest_image_url = isset($post_data->image->original->url) ? $post_data->image->original->url : "";
+        return  $pinterest_image_url;
+    }
+
+    function fts_pinterest_repins_likes_wrap($post_data) {
+        $wrap_start = '<div class="fts-single-pin-social-meta-wrap">';
+        $repins = isset($post_data->counts->repins) ? '<span class="fts-single-pin-repin-count">' . $post_data->counts->repins . '</span>' : '';
+        $likes = isset($post_data->counts->likes) ? '<span class="fts-single-pin-like-count">' . $post_data->counts->likes . '</span>' : '';
+        $wrap_end = '</div>';
+
+        return  $wrap_start.$repins.$likes.$wrap_end;
+    }
+
+    function fts_pinterest_description($post_data) {
+
+        $PinterestDescription = $post_data->note;
+        $pinterest_description = $this->fts_pinterest_tag_filter($PinterestDescription);
+        return  $pinterest_description;
+    }
+
+    function fts_view_on_pinterest_link($post_data) {
+        $pinterest_post_url = isset($post_data->url) ? $post_data->url : "";
+        return  $pinterest_post_url;
+    }
+
+    function fts_view_on_pinterest_link_wrap($post_data) {
+        return  '<a href="'.$this->fts_view_on_pinterest_url($post_data).'" class="fts-view-on-pinterest-link" target="_blank">'. __('View on Pinterest', 'feed-them-instagram').'</a>';
+    }
+
     /**
      * FTS Pinterest Board Feed
      *
@@ -158,11 +191,11 @@ class FTS_Pinterest_Feed extends feed_them_social_functions
                 //Get Thumbs for this Board
 
                     $number_output = 0;
-                    foreach ($board_pins->data as $key => $pin) {
+                    foreach ($board_pins->data as $key => $post_data) {
                         if($key > 0){
 
                             $number_output++;
-                            $output .= '<div class="pinterest-single-thumb-wrap" style="background-image:url(' . $pin->image->original->url . ');"><span class="hoverMask"></span></div>';
+                            $output .= '<div class="pinterest-single-thumb-wrap" style="background-image:url(' . $post_data->image->original->url . ');"><span class="hoverMask"></span></div>';
                             if ($number_output > 1) break;
                         }
 
@@ -212,7 +245,7 @@ class FTS_Pinterest_Feed extends feed_them_social_functions
             $board = explode('/', $board->url);
 
             // Create get request and put it in the cache
-            $pins_data[$key . 'pins'] = 'https://api.pinterest.com/v1/boards/'. $board[3] .'/' . $board[4] . '/pins/?access_token='.$API_Token.'&fields=image';
+            $pins_data[$key . 'pins'] = 'https://api.pinterest.com/v1/boards/'. $board[3] .'/' . $board[4] . '/pins/?limit='.$pins_count.'&access_token='.$API_Token.'&fields=image';
 
         }
         $pins_returned = $this->fts_get_feed_json($pins_data);
@@ -259,7 +292,7 @@ class FTS_Pinterest_Feed extends feed_them_social_functions
 
          //   $pins_data['pins'] = !isset($board_id) ? 'https://api.pinterest.com/v1/pidgets/users/' . $pinterest_name . '/pins/' : 'https://api.pinterest.com/v3/pidgets/boards' . $single_board . 'pins/';
 
-            $pins_data['pins'] = !isset($board_id) ? 'https://api.pinterest.com/v1/me/pins/?access_token='. $API_Token . $API_Points : 'https://api.pinterest.com/v1/boards'. $single_board . 'pins/?access_token='. $API_Token . $API_Points;
+            $pins_data['pins'] = !isset($board_id) ? 'https://api.pinterest.com/v1/me/pins/?limit='.$pins_count.'&access_token='. $API_Token . $API_Points : 'https://api.pinterest.com/v1/boards'. $single_board . 'pins/?limit='.$pins_count.'&access_token='. $API_Token . $API_Points;
 
 
             $pins_returned = $this->fts_get_feed_json($pins_data);
@@ -270,8 +303,8 @@ class FTS_Pinterest_Feed extends feed_them_social_functions
         $pins = json_decode($pins_returned['pins']);
 
         //	echo'<pre>';
-        //	 print_r($pins);
-        //	echo'</pre>';
+      //  	 print_r($pins);
+       // 	echo'</pre>';
         //******************
         // SOCIAL BUTTON
         //******************
@@ -281,42 +314,40 @@ class FTS_Pinterest_Feed extends feed_them_social_functions
             $output .= '</div>';
         }
 
-        $count = 1;
+      //  $count = 1;
         //	$pins_count = 5;
         $fts_dynamic_class_name = "fts-pinterest-wrapper";
         $output .= "<div class='fts-pinterest-wrapper fts-pins-wrapper masonry js-masonry' style='margin:0 auto' data-masonry-options='{\"itemSelector\": \".fts-single-pin-wrap\", \"isFitWidth\": true, \"transitionDuration\": 0 }'>";
         //Setup Boards
-        foreach ($pins->data as $key => $pin) {
-            if ($count <= $pins_count) {
+        foreach ($pins->data as $post_data) {
+           // if ($count <= $pins_count) {
                 //Pin Display
                 $output .= '<div class="fts-single-pin-wrap">';
-                $output .= '<a class="fts-single-pin-link" href="' . $pin->url . '" target="_blank">';
+                $output .= '<a class="fts-single-pin-link" href="' . $this->fts_view_on_pinterest_link($post_data) . '" target="_blank">';
                 //Pin Main Image
-                $output .= '<div class="fts-single-pin-img-wrap"><img class="fts-single-pin-cover" src="' . $pin->image->original->url . '"/></div>';
+                $output .= '<div class="fts-single-pin-img-wrap"><img class="fts-single-pin-cover" src="' . $this->fts_pinterest_image_url($post_data) . '"/></div>';
                 $output .= '</a>';
                 //Pin Meta wrap
                 $output .= '<div class="fts-single-pin-meta-wrap">';
-                //Pin Description
-                $PinterestDescription = $pin->note;
-                $output .= isset($PinterestDescription) ? '<div class="fts-single-pin-description">' . $this->fts_pinterest_tag_filter($PinterestDescription) . '</div>' : '';
-                //Pinned To (Single Board view ONLY)
-                $output .= isset($board_id) && !empty($pin->attribution) && !empty($pin->attribution->author_url) && !empty($pin->attribution->provider_icon_url) && !empty($pin->attribution->author_name) ? '<a class="fts-single-attribution-wrap" href="' . $pin->attribution->author_url . '" target="_blank"><img class="fts-single-pin-attribution-icon" src="' . $pin->attribution->provider_icon_url . '"/><div class="fts-single-pin-attribution-provider">by ' . $pin->attribution->author_name . '</div></a>' : '';
-                //Pin Social Meta Wrap
-                $output .= '<div class="fts-single-pin-social-meta-wrap">';
-                //Pin Repin Count
-                $output .= isset($pin->counts->repins) ? '<span class="fts-single-pin-repin-count">' . $pin->counts->repins . '</span>' : '';
-                //Pin Repin Count
-                $output .= isset($pin->counts->likes) ? '<span class="fts-single-pin-like-count">' . $pin->counts->likes . '</span>' : '';
-                $output .= '</div>';
-                $output .= '</div>';
 
+                //Pin Description
+                $PinterestDescription = $this->fts_pinterest_description($post_data);
+
+                $output .= isset($PinterestDescription) ? '<div class="fts-single-pin-description">' . $PinterestDescription . '</div>' : '';
+
+                //Pinned To (Single Board view ONLY)
+                $output .= isset($board_id) && !empty($post_data->attribution) && !empty($post_data->attribution->author_url) && !empty($post_data->attribution->provider_icon_url) && !empty($post_data->attribution->author_name) ? '<a class="fts-single-attribution-wrap" href="' . $post_data->attribution->author_url . '" target="_blank"><img class="fts-single-pin-attribution-icon" src="' . $post_data->attribution->provider_icon_url . '"/><div class="fts-single-pin-attribution-provider">by ' . $post_data->attribution->author_name . '</div></a>' : '';
+                // Repins and likes wrap
+                $output .= $this->fts_pinterest_repins_likes_wrap($post_data);
+
+                $output .= '</div>';
                 //Pinned To (User view ONLY)
                 // The little image does not seem possible at the moment.
-                // <img class="fts-single-pin-pinned-to-img" src="' . $pin->board->image_thumbnail_url . '"/>
-                $output .= !isset($board_id) ? '<a class="fts-single-pin-pinned-to-wrap" href="' . $pin->board->url . '" target="_blank"><div class="fts-single-pin-pinned-to-text">Pinned onto</div><div class="fts-single-pin-pinned-to-title">' . $pin->board->name . '</div></a>' : '';
+                // <img class="fts-single-pin-pinned-to-img" src="' . $post_data->board->image_thumbnail_url . '"/>
+                $output .= !isset($board_id) ? '<a class="fts-single-pin-pinned-to-wrap" href="' . $post_data->board->url . '" target="_blank"><div class="fts-single-pin-pinned-to-text">Pinned onto</div><div class="fts-single-pin-pinned-to-title">' . $post_data->board->name . '</div></a>' : '';
                 $output .= '</div>';
-            }
-            $count++;
+          //  }
+          //  $count++;
         }
         $output .= '</div><div class="clear"></div>';
         //******************
@@ -341,25 +372,13 @@ class FTS_Pinterest_Feed extends feed_them_social_functions
      */
     function fts_pinterest_tag_filter($PinterestDescription)
     {
-        //Converts URLs to Links
-        $PinterestDescription = preg_replace('@(?!(?!.*?<a)[^<]*<\/a>)(?:(?:https?|ftp|file)://|www\.|ftp\.)[-A-‌​Z0-9+&#/%=~_|$?!:,.]*[A-Z0-9+&#/%=~_|$]@i', '<a href="\0" target="_blank">\0</a>', $PinterestDescription);
+            //Create links from @mentions and regular links.
+            $PinterestDescription = preg_replace('/((http)+(s)?:\/\/[^<>\s]+)/i', '<a href="$0" target="_blank">$0</a>', $PinterestDescription );
+            $PinterestDescription = preg_replace('/[#]+([A-Za-z0-9-_]+)/', '<a href="https://www.pinterest.com/search/?q=%23$1&rs=hashtag" target="_blank">$0</a>', $PinterestDescription );
+            // Pinterest does not utalize the @ symbol for a link so we have turned this option off
+           // $PinterestDescription = preg_replace('/[@]+([A-Za-z0-9-_]+)/', '<a href="https://www.pinterest.com/$1" target="_blank">@$1</a>', $PinterestDescription );
+            return $PinterestDescription;
 
-        $splitano = explode("www", $PinterestDescription);
-        $count = count($splitano);
-        $returnValue = "";
-
-        for($i=0; $i<$count; $i++) {
-            if (substr($splitano[$i], -6, 5) == "href=") {
-                $returnValue .= $splitano[$i] . "http://www";
-            }
-            else if($i < $count - 1){
-                $returnValue .= $splitano[$i] . "www";
-            }
-            else {
-                $returnValue .= $splitano[$i];
-            }
-        }
-        return $returnValue;
     }
 }//END FTS_Pinterest_Feed
 new FTS_Pinterest_Feed();

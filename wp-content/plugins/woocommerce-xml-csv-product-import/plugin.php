@@ -3,7 +3,7 @@
 Plugin Name: WP All Import - WooCommerce Add-On
 Plugin URI: http://www.wpallimport.com/
 Description: An extremely easy, drag & drop importer to import WooCommerce simple products. A paid upgrade is available for premium support and support for Variable, Grouped, and External/Affiliate products
-Version: 1.3.0
+Version: 1.3.1
 Author: Soflyy
 */
 /**
@@ -24,7 +24,7 @@ define('PMWI_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('PMWI_PREFIX', 'pmwi_');
 
-define('PMWI_FREE_VERSION', '1.3.0');
+define('PMWI_FREE_VERSION', '1.3.1');
 
 define('PMWI_EDITION', 'free');
 
@@ -155,11 +155,8 @@ final class PMWI_Plugin {
 
 		// create/update required database tables
 
-		// regirster autoloading method
-		if (function_exists('__autoload') and ! in_array('__autoload', spl_autoload_functions())) { // make sure old way of autoloading classes is not broken
-			spl_autoload_register('__autoload');
-		}
-		spl_autoload_register(array($this, '__autoload'));		
+		// register autoloading method
+		spl_autoload_register(array($this, 'autoload'));
 
 		// register helpers
 		if (is_dir(self::ROOT_DIR . '/helpers')) foreach (PMWI_Helper::safe_glob(self::ROOT_DIR . '/helpers/*.php', PMWI_Helper::GLOB_RECURSE | PMWI_Helper::GLOB_PATH) as $filePath) {
@@ -175,7 +172,7 @@ final class PMWI_Plugin {
 		update_option($option_name, $this->options);
 		$this->options = get_option(get_class($this) . '_Options');
 
-		register_activation_hook(self::FILE, array($this, '__activation'));
+		register_activation_hook(self::FILE, array($this, 'activation'));
 
 		// register action handlers
 		if (is_dir(self::ROOT_DIR . '/actions')) if (is_dir(self::ROOT_DIR . '/actions')) foreach (PMWI_Helper::safe_glob(self::ROOT_DIR . '/actions/*.php', PMWI_Helper::GLOB_RECURSE | PMWI_Helper::GLOB_PATH) as $filePath) {
@@ -210,7 +207,7 @@ final class PMWI_Plugin {
 		}
 
 		// register admin page pre-dispatcher
-		add_action('admin_init', array($this, '__adminInit'));		
+		add_action('admin_init', array($this, 'adminInit'));
 		add_action('init', array($this, 'init'));
 
 	}
@@ -238,7 +235,7 @@ final class PMWI_Plugin {
 	/**
 	 * pre-dispatching logic for admin page controllers
 	 */
-	public function __adminInit() {
+	public function adminInit() {
 		$input = new PMWI_Input();
 		$page = strtolower($input->getpost('page', ''));
 		if (preg_match('%^' . preg_quote(str_replace('_', '-', self::PREFIX), '%') . '([\w-]+)$%', $page)) {
@@ -257,7 +254,7 @@ final class PMWI_Plugin {
 	 */
 	public function shortcodeDispatcher($args, $content, $tag) {
 
-		$controllerName = self::PREFIX . preg_replace('%(^|_).%e', 'strtoupper("$0")', $tag); // capitalize first letters of class name parts and add prefix
+    $controllerName = self::PREFIX . preg_replace_callback('%(^|_).%', array($this, "replace_callback"), $tag);// capitalize first letters of class name parts and add prefix
 		$controller = new $controllerName();
 		if ( ! $controller instanceof PMWI_Controller) {
 			throw new Exception("Shortcode `$tag` matches to a wrong controller type.");
@@ -266,6 +263,10 @@ final class PMWI_Plugin {
 		$controller->index($args, $content);
 		return ob_get_clean();
 	}
+
+  public function replace_callback($matches){
+    return strtoupper($matches[0]);
+  }
 
 	/**
 	 * Dispatch admin page: call corresponding controller based on get parameter `page`
@@ -290,7 +291,7 @@ final class PMWI_Plugin {
 				throw new Exception('There is no previousely buffered content to display.');
 			}
 		} else {
-			$controllerName =  preg_replace('%(^' . preg_quote(self::PREFIX, '%') . '|_).%e', 'strtoupper("$0")', str_replace('-', '_', $page)); // capitalize prefix and first letters of class name parts
+      $controllerName = preg_replace_callback('%(^' . preg_quote(self::PREFIX, '%') . '|_).%', array($this, "replace_callback"),str_replace('-', '_', $page));
 			$actionName = str_replace('-', '_', $action);
 			if (method_exists($controllerName, $actionName)) {
 
@@ -352,7 +353,7 @@ final class PMWI_Plugin {
 	 * @param string $className
 	 * @return bool
 	 */
-	public function __autoload($className) {
+	public function autoload($className) {
 		$is_prefix = false;
 		$filePath = str_replace('_', '/', preg_replace('%^' . preg_quote(self::PREFIX, '%') . '%', '', strtolower($className), 1, $is_prefix)) . '.php';
 		if ( ! $is_prefix) { // also check file with original letter case
@@ -410,7 +411,7 @@ final class PMWI_Plugin {
 	/**
 	 * Plugin activation logic
 	 */
-	public function __activation() {		
+	public function activation() {
 
 		// uncaught exception doesn't prevent plugin from being activated, therefore replace it with fatal error so it does
 		set_exception_handler(create_function('$e', 'trigger_error($e->getMessage(), E_USER_ERROR);'));

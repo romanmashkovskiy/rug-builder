@@ -122,7 +122,7 @@ class FTS_twitter_options_page
                         </h3>
                     </div>
                     <div class="feed-them-social-admin-input-label fts-twitter-text-color-label">
-                        <?php _e('Show Media button for videos<br/><small>Video shows upon clicking</small>', 'feed-them-social'); ?>
+                        <?php _e('Show videos', 'feed-them-social'); ?>
                     </div>
                     <select name="twitter_allow_videos" id="twitter-allow-videos" class="feed-them-social-admin-input">
                         <option
@@ -284,8 +284,58 @@ class FTS_twitter_options_page
                     <div class="clear"></div>
                 </div>
                 <!--/fts-twitter-feed-styles-input-wrap-->
+                <?php if (is_plugin_active('feed-them-premium/feed-them-premium.php')) { ?>
 
-                <?php
+                        <div class="feed-them-social-admin-input-wrap">
+                            <div class="fts-title-description-settings-page">
+                                <h3>
+                                    <?php _e('Grid Styles', 'feed-them-social'); ?>
+                                </h3>
+                            </div>
+                            <div class="feed-them-social-admin-input-label fts-fb-grid-posts-background-color-label">
+                                <?php _e('Posts Background Color', 'feed-them-social'); ?>
+                            </div>
+                            <input type="text" name="twitter_grid_posts_background_color" class="feed-them-social-admin-input fb-grid-posts-background-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="twitter-grid-posts-background-color-input" placeholder="#ddd" value="<?php echo get_option('twitter_grid_posts_background_color'); ?>"/>
+                            <div class="clear"></div>
+                        </div>
+                        <!--/fts-twitter-feed-styles-input-wrap-->
+
+                        <div class="feed-them-social-admin-input-wrap">
+                            <div class="feed-them-social-admin-input-label fts-fb-border-bottom-color-label">
+                                <?php _e('Border Bottom Color', 'feed-them-social'); ?>
+                            </div>
+                            <input type="text" name="twitter_grid_border_bottom_color" class="feed-them-social-admin-input fb-border-bottom-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="twitter-border-bottom-color-input" placeholder="#ddd" value="<?php echo get_option('twitter_grid_border_bottom_color'); ?>"/>
+                            <div class="clear"></div>
+                        </div>
+                        <!--/fts-twitter-feed-styles-input-wrap-->
+
+                        <div class="feed-them-social-admin-input-wrap">
+                            <div class="fts-title-description-settings-page">
+                                <h3>
+                                    <?php _e('Load More Button Styles', 'feed-them-social'); ?>
+                                </h3>
+                            </div>
+                                <div class="feed-them-social-admin-input-wrap">
+                                    <div class="feed-them-social-admin-input-label fts-fb-loadmore-background-color-label">
+                                        <?php _e('Button Color', 'feed-them-social'); ?>
+                                    </div>
+                                    <input type="text" name="twitter_loadmore_background_color" class="feed-them-social-admin-input fb-loadmore-background-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="twitter-loadmore-background-color-input" placeholder="#ddd" value="<?php echo get_option('twitter_loadmore_background_color'); ?>"/>
+                                    <div class="clear"></div>
+                                </div>
+                                <!--/fts-twitter-feed-styles-input-wrap-->
+
+                                <div class="feed-them-social-admin-input-wrap">
+                                    <div class="feed-them-social-admin-input-label fts-fb-border-bottom-color-label">
+                                        <?php _e('Text Color', 'feed-them-social'); ?>
+                                    </div>
+                                    <input type="text" name="twitter_loadmore_text_color" class="feed-them-social-admin-input fb-loadmore-text-color-input color {hash:true,caps:false,required:false,adjust:false,pickerFaceColor:'#eee',pickerFace:3,pickerBorder:0,pickerInsetColor:'white'}" id="twitter-loadmore-text-color-input" placeholder="#ddd" value="<?php echo get_option('twitter_loadmore_text_color'); ?>"/>
+                                    <div class="clear"></div>
+                                </div>
+                                <!--/fts-twitter-feed-styles-input-wrap-->
+
+
+                <?php }
+
                 $test_fts_twitter_custom_consumer_key = get_option('fts_twitter_custom_consumer_key');
                 $test_fts_twitter_custom_consumer_secret = get_option('fts_twitter_custom_consumer_secret');
                 $test_fts_twitter_custom_access_token = get_option('fts_twitter_custom_access_token');
