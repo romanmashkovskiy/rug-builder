@@ -9,7 +9,7 @@
  *
  * @package Crucial Trading
  * @since Crucial Trading 1.0
- */
+ */ 
 
 add_filter( 'rwmb_meta_boxes', 'meta_boxes' );
 
