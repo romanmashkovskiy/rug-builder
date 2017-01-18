@@ -24,7 +24,7 @@ $(document).ready(function() {
 
 	function openInfoBox() {
 
-		var right;
+		var right; 
 
 		if ( window.innerWidth > 450 ) {
 			right = '20px';
