@@ -19,7 +19,7 @@
 
 	.slide__content {
 
-		@media screen and (min-width: 768px) {
+		@media screen and (min-width: 769px) {
 			height: calc(100% - 60px);
 		}
 
@@ -331,10 +331,6 @@
 	right: 0 !important;
 	top: 50%;
 	z-index: 9999 !important;
-
-	@media screen and (max-width: 768px) {
-		top: 40%;
-	}
 
 	@media screen and (max-width: 400px) {
 		display: none;

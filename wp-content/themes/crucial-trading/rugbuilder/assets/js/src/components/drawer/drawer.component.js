@@ -109,10 +109,51 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			})
 		},
 
+		calcDrawerMaxHeight: function() {
+
+			let selector;
+
+			const CURRENT_STAGE   = this.state.stage;
+			const CURRENT_CONTENT = this.state.content;
+
+			if ( CURRENT_STAGE === 0 || CURRENT_STAGE === 2 || CURRENT_STAGE === 3 ) {
+
+				switch ( CURRENT_CONTENT ) {
+
+					case 'materials' :
+						selector = '.drawer__content__material';
+						break;
+
+					case 'collections' :
+						selector = '.drawer__collections__collections';
+						break;
+
+					case 'swatches' :
+						selector = '.drawer__content__swatches';
+						break;
+
+					case 'swatchesSelected' :
+						selector = '.drawer__content__swatches--selected';
+						break;
+				}
+			} else if ( CURRENT_STAGE === 1 ) {
+				selector = '.drawer__content__border';
+			}
+
+			const DRAWER = document.querySelector(selector);
+			const HEIGHT = window.getComputedStyle(DRAWER).getPropertyValue('height');
+
+			DRAWER.style.maxHeight = HEIGHT;
+		},
+
 		slideLeft: function() {
 
 			if ( this.state.pageInView === R.numOfPages ) {
 				return;
+			}
+
+			if ( this.state.pageInView === 1 ) {
+				this.calcDrawerMaxHeight();
 			}
 
 			let array = [], array2 = [];
@@ -166,6 +207,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		},
 
 		updateStageState: function(stage) {
+
 			this.setState({ stage : stage, pageInView : 1 });
 
 	//		R.numOfPages = 1;
@@ -265,7 +307,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Function for updating the content state.
 			// Gets passed to all of the content components as props.
 			// Updates the content state to whatever is given to it by the component.
-			this.setState({ content: content });
+			this.setState({ content: content, pageInView : 1 });
 		},
 
 		updateMaterialChoice: function(material) {
