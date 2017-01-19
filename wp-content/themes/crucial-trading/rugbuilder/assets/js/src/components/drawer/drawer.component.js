@@ -422,7 +422,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		},
 
 		// Functions used for creating the dynamic HTML content of the drawer - 
-		// they return what is returned from the functions at the bottom of this file
+		// they return what is returned from the functions at the bottom of this file 
 		// (search for "Create dynamic drawer HTML content functions")
 
 		createMaterialHTML    : function() { return _createMaterialHTML(this, BtnMaterialComponent, R) },
