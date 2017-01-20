@@ -139,6 +139,7 @@ function crucial_trading_scripts() {
 	wp_enqueue_script( 'zoom', get_template_directory_uri() . '/assets/js/vendor/jquery.elevatezoom.min.js', false );
 	wp_enqueue_script( 'gmap', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6sAk010SfQFWdRWY-fuGuROBhcYtd-o', false );
 	wp_enqueue_script( 'wow', get_template_directory_uri() . '/assets/js/vendor/wow.min.js', false );
+	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr.object-fit.min.js', false );
 	wp_enqueue_script( 'master', get_template_directory_uri() . '/assets/js/dist/master.min.js', false );
 
 	// https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap

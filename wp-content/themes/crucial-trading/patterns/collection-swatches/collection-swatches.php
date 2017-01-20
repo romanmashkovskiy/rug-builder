@@ -59,7 +59,9 @@ function collection_swatches( $atts = '' ) {
 				$html .= '<a href="' . $href . '">';
 
 				if ( $src != '' ) {
+					$html .= '<div class="object-fit-container">';
 					$html .= '<img src="' . $src . '" alt="' . $name . '" class="vertical-align">';
+					$html .= '</div>';
 				}
 				
 				$html .= '<h3 class="swatch__title vertical-align">' . $name . '</h3>';

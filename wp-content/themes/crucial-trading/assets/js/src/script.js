@@ -48,4 +48,20 @@ $(document).ready(function() {
 
 		return false;
 	});
+
+	// Object Fit Fallback
+
+	if ( !Modernizr.objectfit && $('.object-fit-container').length > 0 ) {
+
+		$('.object-fit-container').each(function() {
+
+			var container = $(this);
+			var src       = container.find('img').prop('src');
+
+			if ( src ) {
+				container.css('background-image', 'url(' + src + ')');
+				container.addClass('fallback-object-fit');
+			}
+		})
+	}
 });

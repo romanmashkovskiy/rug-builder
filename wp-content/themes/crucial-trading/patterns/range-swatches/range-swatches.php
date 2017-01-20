@@ -60,7 +60,9 @@ function range_swatches( $atts = '' ) {
 				echo '<h3 class="vertical-align">' . $title . '</h3>';
 
 				if ( $src != '' ) {
-					echo '<img src="' . $src . '" alt="' . $title . '" class="vertical-align">';
+					echo '<div class="object-fit-container vertical-align">';
+					echo '<img src="' . $src . '" alt="' . $title . '">';
+					echo '</div>';
 				}
 
 				echo '</a>';

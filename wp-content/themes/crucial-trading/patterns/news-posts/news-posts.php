@@ -59,7 +59,7 @@
 								<!--<div class="news__item__link"><a href="'.get_the_permalink().'" title="'.$news_title.'">Read More</a></div>-->
 							</div>
 							<div class="news__item__image-wrap">
-								<div class="news__item__image">
+								<div class="news__item__image object-fit-container">
 										'.$news_image.'
 								</div>
 							</div>

@@ -39,16 +39,23 @@
 			float: left;
 			margin-bottom: 5px;
 			width: 50%;
+			word-break: break-word;
 
 			&.code {
 				color: #BBBBBB;
 			}
 		}
 
-		img {
+		div.object-fit-container {
 			float: right;
 			height: 80%;
 			width: 45%;
+		}
+
+		img {
+			float: right;
+			height: 100%;
+			object-fit: cover;
 		}
 
 		@media screen and (min-width: 1300px) {

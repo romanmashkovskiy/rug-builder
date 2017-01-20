@@ -78,8 +78,17 @@ body .news__item a {
 	display: table-cell;
 	width: 30%;
 	margin-left: -7px;
+	position: relative;
 	text-align: right;
 	vertical-align: top;
+
+	.news__item__image {
+		bottom: 0;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
 
 	@media screen and (max-width: 768px) {
 		display: block;
@@ -175,7 +184,7 @@ body .news__item a {
 	width: 100%;
 	-o-object-fit: cover;
 	object-fit: cover;
-	
+	max-height: 100%;
 }
 
 

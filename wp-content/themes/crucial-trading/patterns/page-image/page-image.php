@@ -28,7 +28,7 @@ function page_image( $atts = '' ) {
 		$src = is_array( $image ) && array_key_exists( 'full_url', $image ) ? $image['full_url'] : '';
 		$alt = is_array( $image ) && array_key_exists( 'file', $image ) ? $image['file'] : '';
 
-		$html .= '<div class="page-image">';
+		$html .= '<div class="page-image object-fit-container">';
 		$html .= '<img src="' . $src . '" alt="' . $alt . '" class="page-image__img" data-tag="' . $standard_tag . '">';
 	}
 

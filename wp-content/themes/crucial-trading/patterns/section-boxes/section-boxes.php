@@ -44,7 +44,7 @@ function section_box( $atts = '' ) {
 
 				$html .= '<section class="section-box box-shadow clearfix" id="' . $id_title . '">';
 
-				$html .= '<div class="box__image ';
+				$html .= '<div class="box__image object-fit-container ';
 				$side == 'left' ? $html .= 'left' : $html .= 'right';
 				$html .= '">';
 				$html .= '<img src="' . $src . '" alt="' . $subtitle . '">';

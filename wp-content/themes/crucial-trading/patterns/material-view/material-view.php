@@ -94,7 +94,7 @@ function material_view( $atts = '' ) {
 	$html .= '</div>';
 	$html .= '<div class="material__body">';
 
-		$html .= '<div class="image-container">';
+		$html .= '<div class="image-container object-fit-container">';
 		$html .= '<img src="' . $src . '" alt="' . $post_title . '" class="material-img">';
 
 		if ( $src_angle != '' ) {

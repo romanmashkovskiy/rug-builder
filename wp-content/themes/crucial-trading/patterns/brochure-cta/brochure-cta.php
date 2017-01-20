@@ -33,7 +33,7 @@ function brochure_cta() {
 
 		$html .= '<section class="section-box box-shadow clearfix">';
 
-		$html .= '<div class="box__image left">';
+		$html .= '<div class="box__image object-fit-container left">';
 		$html .= '<img src="' . $brochure_img . '" alt="Crucial Trading Brochure">';
 		$html .= '</div>';
 
