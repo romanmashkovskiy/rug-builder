@@ -9,7 +9,7 @@
  * @package Crucial_Trading
  */
 
-?>
+?> 
 
 
 
