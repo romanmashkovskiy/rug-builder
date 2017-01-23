@@ -74,8 +74,9 @@ select {
 }
 
 button:not(.main-menu__button),
-input[type="submit"] {
-	background: #383838;
+input[type="submit"],
+a.checkout-button.button {
+	background: #383838 !important;
 	border: none !important;
 	border-radius: 0 !important;
 	box-shadow: none !important;

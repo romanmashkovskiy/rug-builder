@@ -15,6 +15,31 @@ function showBasketPopup(success, productName) {
 
 $(document).ready(function() {
 
+	// Checkout Form Fix Styling
+
+	if ( $('.woocommerce').length > 0 ) {
+
+		$('.woocommerce .form-row').each(function(i, e) {
+
+			var label       = $(e).children('label');
+			var input       = $(e).children('input');
+			var placeholder = input.attr('placeholder');
+
+			if ( typeof placeholder === 'undefined' ) {
+				return;
+			}
+
+			if ( placeholder !== '' ) {
+				return;
+			}
+
+			var text = label.text().replace('*','');
+
+			input.attr('placeholder', text);
+
+		})
+	}		
+
 	// Login Form Placeholders
 
 	$('#user_login').attr('placeholder', 'Username or Email');
@@ -48,6 +73,10 @@ $(document).ready(function() {
 
 		return false;
 	});
+
+	// Basket Dropdown Checkout Button
+
+	$('.checkout-button.wc-forward').text('Checkout');
 
 	// Object Fit Fallback
 

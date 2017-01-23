@@ -4,7 +4,7 @@
 		display: none;
 	}
 
-	form {
+	form:not(.main-menu__search__form) {
 		background: white;
 		margin-bottom: 100px;
 		margin-left: 7%;
@@ -24,6 +24,14 @@
 			margin-right: auto;
 		}
 
+		h2 {
+			margin-bottom: 18px;
+		}
+
+		.form-row {
+			margin-bottom: 10px;
+		}
+
 		p {
 			padding: 0;
 
@@ -33,17 +41,17 @@
 		}
 
 		label {
-			color: #000000;
-			font-family: $font-copy;
-			font-size: 17px;
-			font-weight: normal;
-			letter-spacing: 0.5px;
+			display: none !important;
+		}
 
-			abbr {
-				color: #E75A7C !important;
-				font-size: 16px;
-				font-weight: normal !important;
-			}
+		.select2-choice {
+			color: #878787 !important;
+			font-family: "Open Sans",sans-serif !important;
+			font-size: 16px;
+			font-weight: normal;
+			letter-spacing: normal;
+			padding: 3px 20px !important;
+			text-transform: capitalize;
 		}
 
 		.select2-container a {

@@ -41,7 +41,7 @@ if ( $ref && $material_term && is_object( $material_term ) ) {
 
 	$material_cat      = ucwords( $ref );
 	$material_cat_slug = $ref;
-	$material_cat_id   = get_term_by( 'slug', $ref, 'product_cat' )->term_id;
+	$material_cat_id   = $material_term->term_id;
 
 	foreach ( $post_cats as $key => $value ) {
 

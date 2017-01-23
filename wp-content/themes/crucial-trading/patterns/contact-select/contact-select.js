@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 				setTimeout(function() {
 					$('.contact-form #press').addClass('__noHeight');
-					$('.contact-form #trade').addClass('__noHeight');-
+					$('.contact-form #trade').addClass('__noHeight');
 				}, 250)
 				break;
 
@@ -54,8 +54,6 @@ $(document).ready(function() {
 
 			$('.page-image img[data-tag="' + value + '"]').removeClass('__hidden');
 		}, 250)
-		
-		
 		
 	});
 });
