@@ -41,7 +41,7 @@ function home_page_cta( $atts = '' ) {
 			$args = array(
 				'post_type' => 'product',
 				'title' => 'brochure',
-				'ignore_sticky_posts'    => true,
+				'ignore_sticky_posts'    => true, 
 				'no_found_rows'        => true
 			);
 
