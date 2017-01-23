@@ -20,6 +20,24 @@
 		margin-right: auto;
 	}
 
+	& >div {
+		height: auto;
+		opacity: 1;
+		overflow: hidden;
+		transition: all ease-in-out 0.25s;
+		-webkit-transition: all ease-in-out 0.25s;
+		visibility: visible;
+	}
+
+	& >div.__hidden {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	& >div.__noHeight {
+		height: 0;
+	}
+
 	.gform_wrapper,
 	.gform_heading {
 		margin: 0 !important;
@@ -103,11 +121,6 @@
 	input[type="submit"] {
 		left: calc(50% - 110px);
 		position: relative;
-	}
-
-	#press,
-	#trade {
-		display: none;
 	}
 
 	#general,

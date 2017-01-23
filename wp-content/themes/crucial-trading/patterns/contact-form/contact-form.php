@@ -22,7 +22,7 @@ function contact_form() {
 	$html .= '</div>';
 	$html .= '</div>';
 
-	$html .= '<div id="press" class="clearfix">';
+	$html .= '<div id="press" class="clearfix __hidden __noHeight">';
 	$html .= '<div class="border-left">';
 	$html .= '<h2 class="press__title">Contact Details</h2>';
 	$html .= '<h2 class="press__subtitle">Call PR First</h2>';
@@ -38,7 +38,7 @@ function contact_form() {
 	$html .= '</div>';
 	$html .= '</div>';
 
-	$html .= '<div id="trade">';
+	$html .= '<div id="trade" class="__hidden __noHeight">';
 	$html .= '<div class="border-div">';
 	$html .= do_shortcode( '[gravityform id=3 title=false]' );
 	$html .= '</div>';

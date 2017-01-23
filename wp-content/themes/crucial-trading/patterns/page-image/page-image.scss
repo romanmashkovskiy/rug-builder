@@ -3,6 +3,7 @@
 	margin-left: 13%;
 	max-width: 1300px;
 	overflow: hidden;
+	position: relative;
 	width: 74%;
 
 	@media screen and (min-width: 1756px) {
@@ -16,10 +17,16 @@
 		box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);
 		height: 100%;
 		object-fit: cover;
+		opacity: 1;
+		position: absolute;
+		transition: all ease-in-out 0.25s;
+		-webkit-transition: all ease-in-out 0.25s;
+		visibility: visible;
 		width: 100%;
 
 		&.__hidden {
-			display: none;
+			opacity: 0;
+			visibility: hidden;
 		}
 	}
 }

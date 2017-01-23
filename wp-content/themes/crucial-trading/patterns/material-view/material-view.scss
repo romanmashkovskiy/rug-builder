@@ -4,7 +4,7 @@
 	background: white;
 	margin-left: 10%;
 	max-width: 1350px;
-	padding: 24px 30px 30px;
+	padding: 24px 40px 40px;
 	position: relative;
 	width: 80%;
 
@@ -231,6 +231,11 @@
 			color: $color-jute-dark;
 		}
 
+		.header__links a:before,
+		.header__links a:after {
+			background: $color-jute-dark;
+		}
+
 		#change-image-view,
 		.hide-material-info,
 		.info__section h3 {
@@ -261,6 +266,11 @@
 
 		.header__links a {
 			color: $color-seagrass-dark;
+		}
+
+		.header__links a:before,
+		.header__links a:after {
+			background: $color-seagrass-dark;
 		}
 
 		#change-image-view,
@@ -295,6 +305,11 @@
 			color: $color-sisal-dark;
 		}
 
+		.header__links a:before,
+		.header__links a:after {
+			background: $color-sisal-dark;
+		}
+
 		#change-image-view,
 		.hide-material-info,
 		.info__section h3 {
@@ -326,6 +341,12 @@
 		.header__links a {
 			color: $color-sisool-dark;
 		}
+
+		.header__links a:before,
+		.header__links a:after {
+			background: $color-sisool-dark;
+		}
+
 		#change-image-view,
 		.hide-material-info,
 		.info__section h3 {
@@ -356,6 +377,11 @@
 
 		.header__links a {
 			color: $color-wool-dark;
+		}
+
+		.header__links a:before,
+		.header__links a:after {
+			background: $color-wool-dark;
 		}
 
 		#change-image-view,

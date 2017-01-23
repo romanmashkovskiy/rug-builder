@@ -2,8 +2,6 @@ var $ = jQuery;
 
 $(document).ready(function() {
 
-	return;
-
 	if ( $('.ranges__ul').length === 0 ) {
 		return;
 	}
@@ -19,11 +17,16 @@ $(document).ready(function() {
 		}
 	});
 
-	bottom = bottom + 10;
-
 	$('.ranges__ul .range').each(function(i, e) {
 
-		$(e).children().children().children('img').css('bottom', bottom);
+		var thisHeight = $(e).children().children().children('h3').height();
+
+		if ( thisHeight < bottom ) {
+			
+			var difference = bottom - thisHeight;
+
+			$(e).children().children().children('h3').css('padding-top', difference)
+		}
 
 	});
 

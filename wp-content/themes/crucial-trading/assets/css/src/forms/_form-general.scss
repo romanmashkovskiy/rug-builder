@@ -87,6 +87,8 @@ input[type="submit"] {
 	padding-bottom: 8px !important;
 	text-shadow: none !important;
 	text-transform: uppercase !important;
+	-webkit-transition: all ease-in-out 0.25s;
+	transition: all ease-in-out 0.25s;
 	width: 220px !important;
 
 	@media screen and (max-width: 446px) {

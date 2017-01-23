@@ -12,41 +12,21 @@
 
 function other_ranges( $atts = '' ) {
 
-	function get_range_parent_category( $categories ) {
-
-		foreach ( $categories as $key => $value ) {
-
-			if ( $value->parent != 0 ) {
-				return $key;
-			}
-		}
-
-		return NULL;
-	}
-
 	$html = '';
 
 	$the_material = 'coir';
-	$the_range    = 'boucle-bleached';
 
-	if ( is_array( $atts ) ) {
-
-		if ( array_key_exists( 'material', $atts ) ) {
-			$the_material = $atts['material'];
-		}
-
-		if ( array_key_exists( 'range', $atts ) ) {
-			$the_range = $atts['range'];
-		}
+	if ( is_array( $atts ) && array_key_exists( 'material', $atts ) && $atts['material'] != '' ) {
+		$the_material = $atts['material'];
 	}
 
-	$range_abc       = get_term_by( 'slug', $the_range, 'product_cat' );
-	$range_parent_id = $range_abc->parent;
+	$material    = get_term_by( 'slug', $the_material, 'product_cat' );
+	$material_id = $material->term_id;
 	
 	$ranges = get_terms( array(
 		'taxonomy'   => 'product_cat',
 		'hide_empty' => false,
-		'parent'     => $range_parent_id,
+		'parent'     => $material_id,
 	) ); 
 
 	if ( count( $ranges > 0 ) ) {
@@ -69,23 +49,13 @@ function other_ranges( $atts = '' ) {
 
 			$this_thumb_id  = get_woocommerce_term_meta( $value->term_id, 'thumbnail_id', true );
 			$src            = wp_get_attachment_url( $this_thumb_id );
-
-			$active = $value->slug == $the_range;
-
-			$active_class = '';
-			$bxshdw_class = '';
-
-			if ( $active ) {
-				$active_class = 'active';
-				$bxshdw_class = 'class="box-shadow"';
-			}
 			
-			$html .= '<li class="range ' . $the_material . ' ' . $active_class . '">';
+			$html .= '<li class="range ' . $the_material . '">';
 			$html .= '<a href="' . site_url() . '/product/' . $slug . '">';
 			$html .= '<div class="range__container">';
 
 			if ( $src != '' ) {
-				$html .= '<img src="' . $src . '" alt="' . $name . '" ' . $bxshdw_class . '>';
+				$html .= '<img src="' . $src . '" alt="' . $name . '">';
 			}
 			
 			$html .= '<h3>' . $name . '</h3>';
