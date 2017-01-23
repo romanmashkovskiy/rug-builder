@@ -48,7 +48,7 @@ if ( $ref && $material_term && is_object( $material_term ) ) {
 		if ( $value->parent == $material_cat_id ) {
 			$range_cat      = $value->name;
 			$range_cat_slug = $value->slug;
-			break;
+			break; 
 		}
 	}
 
