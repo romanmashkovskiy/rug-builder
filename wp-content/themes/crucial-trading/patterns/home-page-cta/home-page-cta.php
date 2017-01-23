@@ -42,7 +42,7 @@ function home_page_cta( $atts = '' ) {
 				'post_type' => 'product',
 				'title' => 'brochure',
 				'ignore_sticky_posts'    => true,
-		'no_found_rows'        => true
+				'no_found_rows'        => true
 			);
 
 			$query = new WP_Query( $args );
@@ -58,7 +58,7 @@ function home_page_cta( $atts = '' ) {
 			$text   = 'Use our new immersive 3D rug builder and create your own bespoke luxary.';
 			$bg_col = '#343233';
 			$src    = get_template_directory_uri() . '/assets/icons/brochure.svg';
-			$link   = '#';
+			$link   = site_url() . '/?add-to-cart=1610';
 			$attrs  = 'class="order-brochure no-effect" data-product-name="Our brochure" data-product-id="' . $brochure_id . '"';
 		}
 
