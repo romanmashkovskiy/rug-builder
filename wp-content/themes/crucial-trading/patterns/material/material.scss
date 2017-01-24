@@ -12,9 +12,9 @@
 @import '../../assets/css/src/_utilities.scss';
 
 .material-box {
-	margin-left: 7%;
 	padding: 100px;
-	width: 86%;
+	width: 100%;
+	border: 1px black solid;
 
 	@media screen and (max-width: 992px) {
 		padding: 25px 25px 0;
@@ -27,7 +27,8 @@
 	.material__left {
 		float: left;
 		height: 100%;
-		width: 30%;
+		width: 50%;
+		border: 1px black solid;
 
 		@media screen and (max-width: 992px) {
 			height: auto;
@@ -38,10 +39,11 @@
 	.material__right {
 		float: left;
 		height: 100%;
-		padding-left: 25px;
-		padding-top: 20px;
+		//padding-left: 25px;
+		//padding-top: 20px;
 		position: relative;
-		width: 70%;
+		width: 50%;
+		border: 1px black solid;
 
 		@media screen and (max-width: 992px) {
 			height: auto;
@@ -52,9 +54,10 @@
 	}
 
 	.material__img {
-		height: 150px;
-		margin-top: 50%;
-		width: 150px;
+		height: 80px;
+		width: 80px;
+		display: inline-block;
+		vertical-align: top;
 
 		@media screen and (max-width: 992px) {
 			-webkit-transform: none !important;
@@ -64,7 +67,14 @@
 			position: static;
 		}
 	}
-
+	
+	.material__title {
+		display: inline-block;
+		font-size: 60px;
+		vertical-align: top;
+		margin-left: 30px;
+	}
+	
 	.material__desc {
 		margin-top: 25px;
 
@@ -142,6 +152,6 @@
 	}
 
 	&.wool * {
-		color: $color-wool-dark;
+		color: #BDAC92;
 	}
 }
