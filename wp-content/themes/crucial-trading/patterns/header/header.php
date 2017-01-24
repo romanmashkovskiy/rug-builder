@@ -122,11 +122,15 @@ function header_material_shortcode($atts = '') {
 
 		$data = get_option("category_$term_id");
 
-		$subtitle = is_array( $data ) && array_key_exists( 'subtitle', $data ) ? $data['subtitle'] : '';
+		$subtitle    = is_array( $data ) && array_key_exists( 'subtitle', $data ) ? $data['subtitle'] : '';
+		$bg_image_id = is_array( $data ) && array_key_exists( 'bg_image', $data ) ? $data['bg_image'] : false;
+		$bg_image    = $bg_image_id ? wp_get_attachment_image_src( $bg_image_id, 'full' )[0] : '';
 
 		// Construct HTML
 
-		$html .= '<header class="material ' . $header_size . ' clearfix">';
+		$html .= '<header class="material ' . $header_size . ' clearfix" style="background-image:url(';
+		$html .= "'" . $bg_image . "'";
+		$html .= ');">';
 
 		$html .= '<div class="material__name ' . $material . '">';
 		$html .= '<h3 class="rotate">' . $umaterial . '</h3>';
