@@ -142,7 +142,7 @@ function header_material_shortcode($atts = '') {
 //		}
 //		$html .= '</div>';
 
-		$html .= '<div class="material__info ' . $material . ' vertical-align">';
+		$html .= '<div class="material__info ' . $material . '">';
 		$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';
 		$html .= '<h1>' . $umaterial . '</h1>';
 //		if ( $header_size == 'large' ) {
