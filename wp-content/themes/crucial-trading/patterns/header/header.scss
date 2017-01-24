@@ -176,7 +176,11 @@ header.material {
 			h1, p {
 				color: $color-sisal-main;
 			}
-
+			
+			p {
+				color: lighten($color-sisal-main, 10%);
+			}
+			
 			h3 {
 				color: $color-sisal-dark;
 			}
