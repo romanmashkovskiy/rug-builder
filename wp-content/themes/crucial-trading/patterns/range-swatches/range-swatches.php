@@ -54,10 +54,13 @@ function range_swatches( $atts = '' ) {
 					$site_url  = site_url();
 					$title_enc = str_replace( '+', '-', urlencode( strtolower( $title ) ) );
 
-					$link_id  = $products->posts[0]->ID;
-					$link     = "$site_url/material/$material/$title_enc?ref=$material";
+					if ( count( $products->posts ) == 1 ) {
+						$link_id = $products->posts[0]->ID;
+						$link    = get_the_permalink( $link_id );
+					} else {
+						$link     = "$site_url/material/$material/$title_enc";
+					}
 
-//					$link     = get_the_permalink( $link_id ) . '?ref=' . urlencode( $material );
 				}
 
 				echo '<div class="swatch">';

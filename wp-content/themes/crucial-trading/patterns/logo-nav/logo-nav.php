@@ -14,15 +14,9 @@ include_once(get_template_directory() . '/patterns/main-menu/main-menu.php');
 
 function logo_nav_shortcode( $atts = '' ) {
 
-	$abs_style = 'style="position:absolute;"';
-
-	if ( $atts != '' && array_key_exists( 'pattern', $atts ) && $atts['pattern'] == 'true' ) {
-		$abs_style = 'style="background:#383838;"';
-	}
-
 	$html = '';
 	
-	$html .= '<div class="top-bar" ' . $abs_style . '>';
+	$html .= '<div class="top-bar">';
 
 	$html .= '<div class="top-bar__left vertical-align">';
 	$html .= '<a href="'.site_url().'">';
@@ -34,10 +28,10 @@ function logo_nav_shortcode( $atts = '' ) {
 	$html .= do_shortcode( '[basket-button]' );
 
 	$html .= '<div class="top-bar__right main-menu__button--wrap">
-	<button class="main-menu__button menu-button" id="open-button">
-		<span class="main-menu__button__icon"></span><span class="main-menu__button__text">menu</span><span class="main-menu__button__text--close">close</span>
-	</button>
-</div>';
+		<button class="main-menu__button menu-button" id="open-button">
+			<span class="main-menu__button__icon"></span><span class="main-menu__button__text">menu</span><span class="main-menu__button__text--close">close</span>
+		</button>
+	</div>';
 
 	$html .= '</div>';
 

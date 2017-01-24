@@ -17,69 +17,40 @@ if ( $post->post_name == 'brochure' ) {
 	header( 'Location: ' . site_url() . '/materials' );
 }
 
-$post_id   = $post->ID;
-$post_cats = get_the_terms( $post->ID, 'product_cat' );
+$material = '';
+$range    = '';
 
-$material_cat      = '';
-$material_cat_slug = '';
-$range_cat         = '';
-$range_cat_slug    = '';
+$request_uri  = $_SERVER['REQUEST_URI'];
+$swatches_pos = strpos( $request_uri, 'swatches/' );
+$uri_substr   = substr( $request_uri, $swatches_pos + 9 );
+$material_end = strpos( $uri_substr, '/' );
+$material     = substr( $uri_substr, 0, $material_end );
 
-$ref = false;
+$material_id   = get_term_by( 'slug', $material, 'product_cat' )->term_id;
+$product_terms = get_the_terms( $post->ID, 'product_cat' );
 
-if ( count( $_GET ) > 0 && array_key_exists( 'ref', $_GET ) ) {
-	$ref = filter_var( $_GET['ref'], FILTER_SANITIZE_STRING );
-}
+foreach ( $product_terms as $key => $term ) {
 
-$material_term = false;
-
-if ( $ref ) {
-	$material_term = get_term_by( 'slug', $ref, 'product_cat' );
-}
-
-if ( $ref && $material_term && is_object( $material_term ) ) {
-
-	$material_cat      = ucwords( $ref );
-	$material_cat_slug = $ref;
-	$material_cat_id   = $material_term->term_id;
-
-	foreach ( $post_cats as $key => $value ) {
-
-		if ( $value->parent == $material_cat_id ) {
-			$range_cat      = $value->name;
-			$range_cat_slug = $value->slug;
-			break; 
-		}
+	if ( $term->parent != 0 ) {
+		$range = $term->slug;
 	}
 
-} else {
-
-	foreach ( $post_cats as $key => $value ) {
-		
-		$parent_id = $value->parent;
-
-		if ( $parent_id == 0 ) {
-			$material_cat      = $value->name;
-			$material_cat_slug = $value->slug;
-		}
-		else {
-			$range_cat      = $value->name;
-			$range_cat_slug = $value->slug;
-		}
+	if ( $term->parent == $material_id ) {
+		break;
 	}
 
 }
 
 get_header();
 
-echo do_shortcode( '[header-material material="' . $material_cat_slug . '" size="small"]' );
+echo do_shortcode( '[header-material material="' . $material . '" size="small"]' );
 
 echo do_shortcode( '[logo-nav]' );
 
-echo do_shortcode( '[material-view-slider material="' . $material_cat_slug . '" range="' . $range_cat_slug . '"]' );
+echo do_shortcode( '[material-view-slider material="' . $material . '" range="' . $range . '" uri="' . $uri_substr . '"]' );
 
-echo do_shortcode( '[other-ranges material="' . $material_cat_slug . '"]' );
+echo do_shortcode( '[other-ranges material="' . $material . '"]' );
 
-echo do_shortcode( '[share-links material="' . $material_cat_slug . '"]' );
+echo do_shortcode( '[share-links material="' . $material . '"]' );
 
 get_footer();

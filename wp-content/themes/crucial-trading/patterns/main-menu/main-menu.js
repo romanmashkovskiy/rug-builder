@@ -7,10 +7,6 @@
 jQuery( document ).ready(function() {
 
 var $ = jQuery;
-
-$(document).on('click', function(e) {
-	console.log(e)
-})
 	
 	// Add classes - active tag to button and show menu to body	
 	$(function() {                     

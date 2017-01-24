@@ -12,7 +12,7 @@
 
 function material_view_slider( $atts = '' ) {
 
-	global $post;
+	global $post, $wp_query;
 
 	// If being shown in pattern library set default post to 102
 	if ( $atts != '' && array_key_exists( 'pattern', $atts ) ) {
@@ -57,11 +57,37 @@ function material_view_slider( $atts = '' ) {
 		$current = 1;
 		
 		$total = count($woocommerce_products->posts);
+
+		$this_product = '';
+
+		if ( is_array( $atts ) && array_key_exists( 'uri', $atts ) ) {
+
+			$uri = $atts['uri'];
+
+			$material_end = strpos( $uri, '/' );
+			$this_product = substr( $uri, $material_end + 1, -1 );
+		}
+
+		$i = 0;
 		
 		while ( $woocommerce_products->have_posts() ) : $woocommerce_products->the_post();
 
+			$product_id   = get_the_ID();
 			$product_name = get_the_title();
-			$html .= '<li data-name="' . $product_name . '" data-total="' . $total . '" class="slidee">' . do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '"]' ) . '</li>';
+			$product_slug = get_post( $product_id )->post_name;
+
+			$data_show = '';
+
+			if ( $this_product == $product_slug ) {
+				$data_show = 'data-show="' . $i . '"';
+				$current = $i;
+			}
+
+			$html .= '<li data-name="' . $product_name . '" data-total="' . $total . '" class="slidee" ' . $data_show . '>';
+			$html .= do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '"]' );
+			$html .= '</li>';
+
+			$i++;
 
 		endwhile;
 

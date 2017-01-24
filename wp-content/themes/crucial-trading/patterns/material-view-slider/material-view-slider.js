@@ -1,4 +1,12 @@
-$(document).ready(function() {
+var sliderInterval = setInterval(function() {
+
+	if ( document.querySelectorAll('.material-view-slider ul li').length > 0 && $('.slidee').length > 0 && $('.material-view-slider ul#material-view-slider-list').length > 0 ) {
+		startSlider();
+	}
+
+}, 1)
+
+function startSlider() {
 
 	var svgPrev = [
 		'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31px" height="59px" viewBox="0 0 31 59" version="1.1" class="prev-slide coir">',
@@ -28,7 +36,7 @@ $(document).ready(function() {
 
 	var startIndex;
 
-	var spans = document.querySelectorAll('.material-view-slider ul li span');
+	var spans = document.querySelectorAll('.material-view-slider ul li');
 
 	for ( var i = 0; i < spans.length; i++ ) {
 
@@ -124,4 +132,6 @@ $(document).ready(function() {
 	$('.bx-prev').html(svgPrev.join(''));
 	$('.bx-next').html(svgNext.join(''));
 
-})
+	clearInterval(sliderInterval);
+
+};

@@ -20,15 +20,9 @@ function material_swatches( $atts = '' ) {
 		$range_cat = get_term_by( 'slug', $range, 'product_cat' );
 		$range_id  = $range_cat->term_id;
 
-		$material = '';
-
-		if ( count( $_GET ) > 0 && array_key_exists( 'ref', $_GET ) ) {
-			$material = filter_var( $_GET['ref'], FILTER_SANITIZE_STRING );
-		} else {
-			$range_parent = $range_cat->parent;
-			$parent       = get_term_by( 'id', $range_parent, 'product_cat' );
-			$material     = $parent->slug;
-		}			
+		$range_parent = $range_cat->parent;
+		$parent       = get_term_by( 'id', $range_parent, 'product_cat' );
+		$material     = $parent->slug;	
 
 		$args = array(
 			'post_type'   => 'product',
@@ -67,7 +61,7 @@ function material_swatches( $atts = '' ) {
 				$product_id = $value->ID;
 
 				$title = get_the_title( $product_id );
-				$link  = get_the_permalink( $product_id ) . '?ref=' . $material;
+				$link  = get_the_permalink( $product_id );
 				$src   = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'single-post-thumbnail' )[0];
 
 				echo '<div class="swatch">';

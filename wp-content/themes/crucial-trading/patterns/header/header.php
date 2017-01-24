@@ -193,12 +193,63 @@ function header_range_shortcode($atts = '') {
 
 	if ( $atts != '' && array_key_exists('range', $atts) ) {
 
-		$range  = $atts['range'];
+		// Get Categories for Side menu 
+		$args = array(
+			'hide_empty' => false, 
+			'orderby'    => 'name',
+			'parent'     => 0,
+		);
 
-		$html .= '<header class="material small -range clearfix">';
+		$categories = get_terms( 'product_cat', $args );
+		$categories = exclude_rug_borders( $categories );
+		$categories = sort_materials_menu_order( $categories );
+
+		$range = $atts['range'];
+
+		$request_uri  = $_SERVER['REQUEST_URI'];
+		$swatches_pos = strpos( $request_uri, 'material/' );
+		$uri_substr   = substr( $request_uri, $swatches_pos + 9 );
+		$material_end = strpos( $uri_substr, '/' );
+		$material     = substr( $uri_substr, 0, $material_end );
+
+		$material_id   = get_term_by( 'slug', $material, 'product_cat' )->term_id;
+		$material_meta = get_option( "category_$material_id" );
+		$material_desc = is_array( $material_meta ) && array_key_exists( 'subtitle', $material_meta ) ? $material_meta['subtitle'] : '';
+
+		$html .= '<header class="material large -range clearfix">';
 
 		$html .= '<div class="material__name">';
+		$html .= '<h3 class="rotate">' . $range . '</h3>';
+		$html .= '<h3 class="subtitle">' . $material_desc . '</h3>';
 		$html .= '<h1>' . $range . '</h1>';
+		$html .= '</div>';
+
+		$html .= '<div class="material__sidememu">';
+		$html .= '<ul>';
+
+		for ( $i=0; $i<count( $categories ); $i++ ) {
+
+			$cat  = $categories[$i];
+
+			if ( $cat->parent == 0 ) {
+
+				$post = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+
+				$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
+				$src      = wp_get_attachment_url( $thumb_id );
+				$alt      = $cat->slug; 
+
+				$active_class = $material == $alt ? 'class="active"' : '';
+
+				$html .= '<li>';
+				$html .= '<a href="' . get_site_url() . '/material/' . $alt . '" class="no-effect">';
+				$html .= '<img src="' . $src . '" alt="' . $alt . '" ' . $active_class . '>';
+				$html .= '</a>';
+				$html .= '<li>';
+			}
+		}
+
+		$html .= '</ul>';
 		$html .= '</div>';
 
 		$html .= '</header>';
