@@ -1,5 +1,7 @@
 <?php
 
+// Add Subtitle
+
 add_action( 'product_cat_edit_form_fields', 'category_subtitles' );
 
 function category_subtitles( $tag ) {
@@ -62,5 +64,17 @@ function save_subtitle( $term_id ) {
 
 		update_option( "category_$term_id", $cat_meta );
 	}
+<<<<<<< HEAD
 
 }
+=======
+}
+
+
+
+
+
+
+
+
+>>>>>>> 99b347f8abaac639f7892b50c79a592066c638cd
