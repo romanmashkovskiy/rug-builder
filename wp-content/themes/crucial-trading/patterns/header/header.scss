@@ -75,12 +75,16 @@ header {
 header.material {
 	position: relative;
 
-	.material__icon,
+	.material__icon {
+		float: left;
+		width: 40%;
+	}
+	
 	.material__info {
 		float: left;
-		width: 50%;
+		width: 60%;
 	}
-
+	
 	.material__icon {
 		min-height: 1px;
 		padding-right: 100px;
