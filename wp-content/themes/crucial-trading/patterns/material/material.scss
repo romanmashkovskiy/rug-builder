@@ -19,7 +19,7 @@
 	width: 100%;
 
 	@media screen and (max-width: 992px) {
-		padding: 25px 25px 0;
+		padding: 40px 20px 40px 20px;
 	}
 
 	&:last-child {
@@ -35,6 +35,9 @@
 		@media screen and (max-width: 992px) {
 			height: auto;
 			width: 100%;
+			padding: 35px;
+			text-align: center;
+			padding-bottom: 60px;
 		}
 	}
 	
@@ -47,9 +50,9 @@
 
 		@media screen and (max-width: 992px) {
 			height: auto;
-			padding-left: 0;
-			text-align: center;
+			text-align: left;
 			width: 100%;
+			padding: 0;
 		}
 	}
 
@@ -60,11 +63,8 @@
 		vertical-align: top;
 
 		@media screen and (max-width: 992px) {
-			-webkit-transform: none !important;
-			transform: none !important;
-			margin-left: calc(50% - 75px);
-			margin-top: 15px;
-			position: static;
+			height: 70px;
+			width: 70px;
 		}
 	}
 	
@@ -73,6 +73,13 @@
 		font-size: 58px;
 		vertical-align: top;
 		margin-left: 35px;
+		
+		@media screen and (max-width: 992px) {
+			font-size: 40px;	
+			margin-top: 10px;
+			margin-left: 30px;
+		}
+		
 	}
 	
 	.material__desc {
@@ -86,6 +93,12 @@
 	.material__link {
 		display: inline-block;
 		margin-top: 50px;
+		
+		@media all and (max-width: 992px) {
+			margin-top: 0px;
+			font-size: 14px;
+		}
+		
 	}
 
 	span {
@@ -226,11 +239,22 @@
 	float: right;
 	padding-right: 0;
 	padding-left: 60px;
+	
+	@media all and (max-width: 992px) {
+		padding: 35px;
+		padding-bottom: 60px;
+	}
+	
 }
 
 .material-box:nth-child(even) .material__right {
 	float: left;
 	padding-left: 0;
 	padding-right: 60px;
+	
+	@media all and (max-width: 992px) {
+		padding: 0;
+	}
+	
 }
 
