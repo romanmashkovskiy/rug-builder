@@ -35,8 +35,8 @@ function other_ranges( $atts = '' ) {
 		$i = 0;
 
 		$html .= '<h1 class="other-ranges-title ' . $the_material . '">Other Ranges</h1>';
-		$html .= '<div class="other-ranges box-shadow">';
-		$html .= '<ul class="ranges__ul">';
+		$html .= '<div class="other-ranges">';
+		$html .= '<div class="swatches -other-ranges clearfix">';
 
 		foreach ( $ranges as $key => $value ) {
 
@@ -50,23 +50,23 @@ function other_ranges( $atts = '' ) {
 			$this_thumb_id  = get_woocommerce_term_meta( $value->term_id, 'thumbnail_id', true );
 			$src            = wp_get_attachment_url( $this_thumb_id );
 			
-			$html .= '<li class="range ' . $the_material . '">';
-			$html .= '<a href="' . site_url() . '/product/' . $slug . '">';
-			$html .= '<div class="range__container">';
+			$html .= '<div class="swatch">';
+			$html .= '<a href="' . site_url() . '/product/' . $slug . '" class="no-effect">';
+			$html .= '<h3 class="vertical-align">' . $name . '</h3>';
 
 			if ( $src != '' ) {
+				$html .= '<div class="object-fit-container vertical-align">';
 				$html .= '<img src="' . $src . '" alt="' . $name . '">';
+				$html .= '</div>';
 			}
-			
-			$html .= '<h3>' . $name . '</h3>';
-			$html .= '</div>';
+
 			$html .= '</a>';
-			$html .= '</li>';
+			$html .= '</div>';
 
 			$i++;
 		}
 
-		$html .= '</ul>';
+		$html .= '</div>';
 		$html .= '</div>';
 	}
 

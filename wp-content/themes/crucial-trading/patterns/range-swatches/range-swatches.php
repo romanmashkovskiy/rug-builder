@@ -27,7 +27,7 @@ function range_swatches( $atts = '' ) {
 		
 		if ( count( $ranges ) > 0 ) :
 
-			echo '<div class="swatches box-shadow clearfix">';
+			echo '<div class="swatches clearfix">';
 
 			foreach ( $ranges as $key => $value ) {
 
