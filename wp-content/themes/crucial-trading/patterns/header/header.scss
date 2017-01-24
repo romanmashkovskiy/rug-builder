@@ -76,7 +76,7 @@ header.material {
 	background-size: cover;
 	background-position: center center;
 	position: relative;
-	
+/*	
 	.material__icon,
 	.material__info {
 		float: left;
@@ -102,42 +102,25 @@ header.material {
 			width: 130px;
 		}
 	}
-
+*/
 	.material__info {
-		padding-right: 20%;
+		left: 65%;
+		position: absolute;
+		top: 200px;
 
-		@media screen and (max-width: 768px) {
-			padding-right: 10%;
-			width: 75%;
+		@media screen and (max-width: 1250px) {
+			max-width: 22.5%;
 		}
 
-		@media screen and (max-width: 666px) {
-			margin-top: 100px;
-			padding: 0 20px;
-			position: static;
-			-webkit-transform: none;
-			transform: none;
-			width: 100%;
+		@media screen and (max-width: 992px) {
+			left: 55%;
+			top: 150px;
 		}
 
-		.subtitle {
-			text-align: left;
-
-			@media screen and (max-width: 666px) {
-				clear: none;
-			}
-		}
-
-		h1 {
-			text-align: left;
-		}
-
-		p {
-			margin-top: 25px;
-
-			@media screen and (max-width: 400px) {
-				margin-top: 60px;
-			}
+		@media screen and (max-width: 550px) {
+			left: 50%;
+			max-width: none;
+			transform: translateX(-50%);
 		}
 
 		&.coir {
@@ -300,16 +283,3 @@ header.material {
 header.collection {
 	background-size: cover;
 }
-
-
-	
-.tax-product_cat header.material .material__icon {
-	float: left;
-	width: 40%;
-}
-	
-.tax-product_cat header.material .material__info {
-	float: left;
-	width: 60%;
-}
-
