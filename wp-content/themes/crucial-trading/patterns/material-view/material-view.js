@@ -57,7 +57,7 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('#change-image-view').on('click', function(e) {
+	$('.change-image-view').on('click', function(e) {
 
 		e.preventDefault();
 		e.stopPropagation();

@@ -92,7 +92,7 @@
 			object-fit: cover;
 		}
 
-		#change-image-view,
+		.change-image-view,
 		.hide-material-info {
 			background: rgba(0,0,0,0.675);
 			font-size: 12px;
@@ -102,7 +102,7 @@
 			top: 0;
 		}
 
-		#change-image-view {
+		.change-image-view {
 			left: 20px;
 
 			@media screen and (max-width: 666px) {
@@ -214,7 +214,7 @@
 			background: $color-coir-dark;
 		}
 
-		#change-image-view,
+		.change-image-view,
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-coir-main;
@@ -250,7 +250,7 @@
 			background: $color-jute-dark;
 		}
 
-		#change-image-view,
+		.change-image-view,
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-jute-main;
@@ -286,7 +286,7 @@
 			background: $color-seagrass-dark;
 		}
 
-		#change-image-view,
+		.change-image-view,
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-seagrass-main;
@@ -322,7 +322,7 @@
 			background: $color-sisal-dark;
 		}
 
-		#change-image-view,
+		.change-image-view,
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-sisal-main;
@@ -358,7 +358,7 @@
 			background: $color-sisool-dark;
 		}
 
-		#change-image-view,
+		.change-image-view,
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-sisool-main;
@@ -394,7 +394,7 @@
 			background: $color-wool-dark;
 		}
 
-		#change-image-view,
+		.change-image-view,
 		.hide-material-info,
 		.info__section h3 {
 			color: $color-wool-main;
