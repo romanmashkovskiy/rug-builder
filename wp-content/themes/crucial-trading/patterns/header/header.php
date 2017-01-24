@@ -72,7 +72,7 @@ function header_shortcode($atts = '') {
 	$html .= '</div>';
 	
 	// Add dark image overlay if $atts set to true 
-	if (!empty($header_overlay)) : 
+	if (!empty($header_overlay) && (!empty($background)) ) : 
 		$html .= '<div class="header__overlay"></div>';
 	endif;
 	
