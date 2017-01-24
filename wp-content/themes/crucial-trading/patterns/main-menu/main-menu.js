@@ -7,11 +7,16 @@
 jQuery( document ).ready(function() {
 
 var $ = jQuery;
+
+$(document).on('click', function(e) {
+	console.log(e)
+})
 	
 	// Add classes - active tag to button and show menu to body	
 	$(function() {                     
-	  $(".main-menu__button").click(function(e) { 
- 
+
+	  	$('.main-menu__button').on('click', function(e) {
+
 	  		$(this).toggleClass("is-active");
 		    $('body').toggleClass("show-menu");
 
@@ -26,7 +31,7 @@ var $ = jQuery;
 		    	}
 
 		    }
-	  });
+	  	});
 	});
 		
 	// Remove classes and close menu when page is clicked 	
@@ -54,3 +59,4 @@ $(window).resize(function() {
 	}
 
 })
+

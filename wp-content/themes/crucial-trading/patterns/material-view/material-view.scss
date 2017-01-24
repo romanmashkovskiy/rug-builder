@@ -75,10 +75,11 @@
 		width: 100%;
 
 		img {
-			height: 100%;
+			margin-left: 50%;
 			max-width: 950px;
+			min-height: 100%;
 			object-fit: cover;
-			width: 100%;
+			transform: translateX(-50%);
 		}
 
 		#change-image-view,
@@ -104,6 +105,9 @@
 		}
 
 		.material__details {
+
+			display: none;
+
 			background: rgba(0,0,0,0.675);
 			right: 20px;
 			padding: 45px 10px;

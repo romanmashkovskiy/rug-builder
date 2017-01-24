@@ -16,9 +16,16 @@ function material_swatches( $atts = '' ) {
 
 	if ( $atts != '' && array_key_exists('range', $atts) ) {
 
-		$range     = $atts['range'];
-		$range_cat = get_term_by( 'slug', $range, 'product_cat' );
-		$range_id  = $range_cat->term_id;
+		$range        = $atts['range'];
+		$range_cat    = get_term_by( 'slug', $range, 'product_cat' );
+
+		// get actual parent not just default to wool
+
+		$range_id     = $range_cat->term_id;
+		$range_parent = $range_cat->parent;
+
+		$parent   = get_term_by( 'id', $range_parent, 'product_cat' );
+		$material = $parent->slug;
 
 		$args = array(
 			'post_type'   => 'product',
@@ -29,8 +36,8 @@ function material_swatches( $atts = '' ) {
 					'terms'    => $range_id,
 				)
 			),
-			'ignore_sticky_posts'    => true,
-		'no_found_rows'        => true
+			'ignore_sticky_posts' => true,
+			'no_found_rows'       => true
 		);
 
 		$products = new WP_Query( $args );
@@ -44,17 +51,19 @@ function material_swatches( $atts = '' ) {
 				$product_id = $value->ID;
 
 				$title = get_the_title( $product_id );
-				$link  = get_the_permalink( $product_id );
+				$link  = get_the_permalink( $product_id ) . '?ref=' . $material;
 				$src   = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'single-post-thumbnail' )[0];
 
-				echo '<div class="swatch box-shadow">';
+				echo '<div class="swatch">';
 				echo '<a href="' . $link  . '" class="no-effect">';
 				echo '<h3 class="vertical-align">' . $title . '</h3>';
 
 				if ( $src != '' ) {
-					echo '<img src="' . $src . '" alt="' . $title . '" class="vertical-align">';
+					echo '<div class="object-fit-container vertical-align">';
+					echo '<img src="' . $src . '" alt="' . $title . '">';
+					echo '</div>';
 				}
-				
+
 				echo '</a>';
 				echo '</div>';
 			}

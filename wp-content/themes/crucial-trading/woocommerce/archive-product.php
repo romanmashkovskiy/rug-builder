@@ -17,6 +17,7 @@ if ( $category->name == 'product' ) {
 	header( 'Location: ' . site_url() . '/materials' );
 }
 
+$name     = $category->name;
 $type     = $category->taxonomy;
 $slug     = $category->slug;
 $parent   = $category->parent;
@@ -25,7 +26,11 @@ get_header();
 
 if ( $type == 'product_cat' ) {
 
-	echo do_shortcode( '[header-material material="' . $slug . '"]' );
+	if ( $parent == 0 ) {
+		echo do_shortcode( '[header-material material="' . $slug . '"]' );
+	} else {
+		echo do_shortcode( '[header-range range="' . $name . '"]' );
+	}
 
 	echo do_shortcode( '[logo-nav]' );
 

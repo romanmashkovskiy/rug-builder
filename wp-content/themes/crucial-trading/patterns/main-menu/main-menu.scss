@@ -351,6 +351,12 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 	transition: transform 0.4s;
 	-webkit-transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+
+	@media screen and (max-width: 450px) {
+		width: 75px !important;
+		right: 0 !important;
+		left: auto !important;
+	}
 }
 
 .main-menu__button {
@@ -455,6 +461,10 @@ span.main-menu__button__icon {
 
   @media screen and (max-width: 768px) {
   	left: calc(100% - 75px);
+  }
+
+  @media screen and (max-width: 450px) {
+  	left: 18px;
   }
 }
 

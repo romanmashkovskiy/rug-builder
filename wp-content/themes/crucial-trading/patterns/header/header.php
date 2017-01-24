@@ -123,6 +123,8 @@ function header_material_shortcode($atts = '') {
 
 		$subtitle = is_array( $data ) && array_key_exists( 'subtitle', $data ) ? $data['subtitle'] : '';
 
+		// Construct HTML
+
 		$html .= '<header class="material ' . $header_size . ' clearfix">';
 
 		$html .= '<div class="material__name ' . $material . '">';
@@ -181,6 +183,30 @@ function header_material_shortcode($atts = '') {
 }
 
 add_shortcode( 'header-material', 'header_material_shortcode' );
+
+/************** Range Header **************/
+
+function header_range_shortcode($atts = '') {
+
+	$html = '';
+
+	if ( $atts != '' && array_key_exists('range', $atts) ) {
+
+		$range  = $atts['range'];
+
+		$html .= '<header class="material small -range clearfix">';
+
+		$html .= '<div class="material__name">';
+		$html .= '<h1>' . $range . '</h1>';
+		$html .= '</div>';
+
+		$html .= '</header>';
+	}
+
+	return $html;
+}
+
+add_shortcode( 'header-range', 'header_range_shortcode' ); 
 
 /************** Collection Header **************/ 
 

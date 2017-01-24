@@ -64,34 +64,28 @@ $(document).ready(function() {
 
 		var currentView = $(this).data('view');
 
+		var newSrc, newView, newHeight;
+
 		if ( currentView === 'top' ) {
 
-			$(this).siblings('img').attr('src', $(this).data('angle'));
-
-			$(this).parent().css('height', 'auto');
-
-			$(this).siblings('img').css({
-				height     : 'auto',
-				marginLeft : '25%',
-				width      : '50%'
-			});
-
-			$(this).data('view', 'angle');
+			newSrc    = $(this).data('angle');
+			newView   = 'angle';
+			newHeight = 'auto';
 
 		} else {
 
-			$(this).siblings('img').attr('src', $(this).data('top'));
-
-			$(this).parent().css('height', '450px');
-
-			$(this).siblings('img').css({
-				height     : '100%',
-				marginLeft : '0',
-				width      : '100%'
-			});
-
-			$(this).data('view', 'top');
+			newSrc    = $(this).data('top');
+			newView   = 'top';
+			newHeight = '450px';
 		}
+
+		$(this).siblings('img').attr('src', newSrc);
+
+		$(this).data('view', newView);
+
+		$(this).siblings('img').on('load', function(){
+			$(this).parent().css('height', newHeight);
+		});
 
 		return false;
 	});
@@ -128,11 +122,11 @@ $(document).ready(function() {
 		return false;
 	});
 
-	$('.material-img').each(function(i, v) {
-		$(v).elevateZoom({
-			zoomType  : 'lens',
-			lensShape : 'round',
-			lensSize  : 200
-		});
-	});
+//	$('.material-img').each(function(i, v) {
+//		$(v).elevateZoom({
+//			zoomType  : 'lens',
+//			lensShape : 'round',
+//			lensSize  : 200
+//		});
+//	});
 });

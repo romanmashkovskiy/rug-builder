@@ -276,6 +276,17 @@ header.material {
 			}
 		}
 	}
+
+	&.-range {
+
+		.material__name {
+			width: 100%;
+		}
+
+		h1 {
+			text-align: center;
+		}
+	}
 }
 
 header.collection {

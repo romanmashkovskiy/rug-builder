@@ -14,9 +14,31 @@ function category_subtitles( $tag ) {
 			<label for="Cat_meta[subtitle]"><?php _e('Subtitle'); ?></label>
 		</th>
 		<td>
-			<input type="text" name="Cat_meta[subtitle]" id="Cat_meta[subtitle]" size="3" style="width:60%;" value="<?php echo $cat_meta['subtitle'] ? $cat_meta['subtitle'] : ''; ?>">
+			<input type="text" name="Cat_meta[subtitle]" id="Cat_meta[subtitle]" size="3" style="width:60%;" value="<?php echo array_key_exists( 'subtitle', $cat_meta ) ? $cat_meta['subtitle'] : ''; ?>">
 			<br />
 			<span class="description"><?php _e('Category Subtitle'); ?></span>
+		</td>
+	</tr>
+
+	<tr class="form-field">
+		<th scope="row" valign="top">
+			<label for="Cat_meta[short_desc]"><?php _e('Short Description'); ?></label>
+		</th>
+		<td>
+			<input type="text" name="Cat_meta[short_desc]" id="Cat_meta[short_desc]" size="3" style="width:60%;" value="<?php echo array_key_exists( 'short_desc', $cat_meta ) ? $cat_meta['short_desc'] : ''; ?>">
+			<br />
+			<span class="description"><?php _e('Category Short Description'); ?></span>
+		</td>
+	</tr>
+
+	<tr class="form-field">
+		<th scope="row" valign="top">
+			<label for="Cat_meta[menu_order]"><?php _e('Menu Order'); ?></label>
+		</th>
+		<td>
+			<input type="text" name="Cat_meta[menu_order]" id="Cat_meta[menu_order]" size="3" style="width:60%;" value="<?php echo array_key_exists( 'menu_order', $cat_meta ) ? $cat_meta['menu_order'] : ''; ?>">
+			<br />
+			<span class="description"><?php _e('Category Menu Order'); ?></span>
 		</td>
 	</tr>
 
@@ -40,4 +62,5 @@ function save_subtitle( $term_id ) {
 
 		update_option( "category_$term_id", $cat_meta );
 	}
+
 }
