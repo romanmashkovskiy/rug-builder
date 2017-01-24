@@ -16,17 +16,19 @@ echo do_shortcode( '[logo-nav]' );
 
 echo '<div class="materials-container box-shadow">';
 
-echo do_shortcode( '[material material="seagrass"]' );
+$args = array(
+	'hide_empty' => false,
+	'orderby'    => 'name',
+	'parent'     => 0,
+);
 
-echo do_shortcode( '[material material="coir"]' );
+$materials = get_terms( 'product_cat', $args );
+$materials = exclude_rug_borders( $materials );
+$materials = sort_materials_menu_order( $materials );
 
-echo do_shortcode( '[material material="sisal"]' );
-
-echo do_shortcode( '[material material="jute"]' );
-
-echo do_shortcode( '[material material="wool"]' );
-
-echo do_shortcode( '[material material="sisool"]' );
+for ( $i = 0; $i < count( $materials ); $i++ ) {
+	echo do_shortcode( '[material material="' . $materials[$i]->slug . '"]' );
+}
 
 echo '</div>';
 

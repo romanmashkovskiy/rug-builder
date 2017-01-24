@@ -18,7 +18,6 @@ function materials_slider() {
 		'hide_empty' => false,
 		'orderby'    => 'name',
 		'parent'     => 0,
-		'include' => array(7, 6, 8, 9, 10, 11),
 	);
 
 	$categories = get_terms( 'product_cat', $args );
@@ -51,9 +50,12 @@ function materials_slider() {
 		</svg>
 		';
 
+		$categories = exclude_rug_borders( $categories );
+		$categories = sort_materials_menu_order( $categories );
+
 		$all_materials = '';
 
-		for ( $i=0; $i<count( $categories ); $i++ ) {
+		for ( $i=0; $i < count( $categories ); $i++ ) {
 
 			$mat_post = get_post( get_term_meta( $categories[$i]->term_id, 'thumbnail_id', true ) );
 
@@ -69,11 +71,12 @@ function materials_slider() {
 		$html .= '<div class="materials-slider-container">';
 		$html .= '<ul class="materials-slider">';
 
-		for ( $i2=0; $i2<count( $categories ); $i2++ ) {
+		for ( $i2=0; $i2 < count( $categories ); $i2++ ) {
 
 			$cat = $categories[$i2];
 
 			$post = get_post( get_term_meta( $cat->term_id, 'thumbnail_id', true ) );
+			$meta = get_option( 'category_' . $cat->term_id );
 
 			$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
 			$icon     = wp_get_attachment_url( $thumb_id );
@@ -82,7 +85,7 @@ function materials_slider() {
 			$post_id = $post->ID;
 
 			$title    = ucwords( $alt );
-			$subtitle = $cat->description;
+			$subtitle = array_key_exists( 'short_desc', $meta ) ? $meta['short_desc'] : $cat->description;
 
 			$html .= '<li class="material-slide" data-material="' . $alt . '">';
 

@@ -107,10 +107,11 @@ function header_material_shortcode($atts = '') {
 			'hide_empty' => false, 
 			'orderby'    => 'name',
 			'parent'     => 0,
-			'include' => array(7, 6, 8, 9, 10, 11),
 		);
 
 		$categories = get_terms( 'product_cat', $args );
+		$categories = exclude_rug_borders( $categories );
+		$categories = sort_materials_menu_order( $categories );
 
 		$this_cat          = get_term_by( 'slug', $material, 'product_cat' );
 		$term_id           = $this_cat->term_id;

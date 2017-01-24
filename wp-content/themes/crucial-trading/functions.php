@@ -193,3 +193,44 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 //require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Sort materials by menu order
+ */
+function sort_materials_menu_order( $materials ) {
+
+	for ( $o = 0; $o < count( $materials ); $o++ ) {
+
+		$material      = $materials[$o];
+		$material_id   = $material->term_id;
+		$material_meta = get_option( "category_$material_id" );
+
+		$material->order = array_key_exists( 'menu_order', $material_meta ) ? $material_meta['menu_order'] : 0;
+
+	}
+
+	function cmp( $a, $b ) {
+		return $a->order - $b->order;
+	}
+
+	usort( $materials, 'cmp' );
+
+	return $materials;
+
+}
+
+/**
+ * Exclude Rug Borders parent category from materials
+ */
+function exclude_rug_borders( $materials ) {
+
+	for ( $i = 0; $i < count( $materials ); $i++ ) {
+		if ( $materials[$i]->slug == 'rug-borders' ) {
+			unset( $materials[$i] );
+			break;
+		}
+	}
+
+	return array_values( $materials );
+
+}

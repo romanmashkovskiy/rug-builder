@@ -28,7 +28,7 @@ $range_cat_slug    = '';
 $ref = false;
 
 if ( count( $_GET ) > 0 && array_key_exists( 'ref', $_GET ) ) {
-	$ref = $_GET['ref'];
+	$ref = filter_var( $_GET['ref'], FILTER_SANITIZE_STRING );
 }
 
 $material_term = false;

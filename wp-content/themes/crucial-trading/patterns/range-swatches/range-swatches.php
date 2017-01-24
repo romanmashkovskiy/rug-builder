@@ -55,7 +55,7 @@ function range_swatches( $atts = '' ) {
 					$title_enc = str_replace( '+', '-', urlencode( strtolower( $title ) ) );
 
 					$link_id  = $products->posts[0]->ID;
-					$link     = "$site_url/material/$material/$title_enc";
+					$link     = "$site_url/material/$material/$title_enc?ref=$material";
 
 //					$link     = get_the_permalink( $link_id ) . '?ref=' . urlencode( $material );
 				}

@@ -16,16 +16,19 @@ function material_swatches( $atts = '' ) {
 
 	if ( $atts != '' && array_key_exists('range', $atts) ) {
 
-		$range        = $atts['range'];
-		$range_cat    = get_term_by( 'slug', $range, 'product_cat' );
+		$range     = $atts['range'];
+		$range_cat = get_term_by( 'slug', $range, 'product_cat' );
+		$range_id  = $range_cat->term_id;
 
-		// get actual parent not just default to wool
+		$material = '';
 
-		$range_id     = $range_cat->term_id;
-		$range_parent = $range_cat->parent;
-
-		$parent   = get_term_by( 'id', $range_parent, 'product_cat' );
-		$material = $parent->slug;
+		if ( count( $_GET ) > 0 && array_key_exists( 'ref', $_GET ) ) {
+			$material = filter_var( $_GET['ref'], FILTER_SANITIZE_STRING );
+		} else {
+			$range_parent = $range_cat->parent;
+			$parent       = get_term_by( 'id', $range_parent, 'product_cat' );
+			$material     = $parent->slug;
+		}			
 
 		$args = array(
 			'post_type'   => 'product',
