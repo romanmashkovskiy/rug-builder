@@ -74,16 +74,12 @@ header {
 
 header.material {
 	position: relative;
-
-	.material__icon {
-		float: left;
-		width: 40%;
-	}
 	
+	.material__icon,
 	.material__info {
 		float: left;
-		width: 60%;
-	}
+		width: 50%;
+	} 
 	
 	.material__icon {
 		min-height: 1px;
@@ -180,7 +176,11 @@ header.material {
 			h1, p {
 				color: $color-sisal-main;
 			}
-
+			
+			p {
+				color: lighten($color-sisal-main, 10%);
+			}
+			
 			h3 {
 				color: $color-sisal-dark;
 			}
@@ -270,6 +270,7 @@ header.material {
 			height: 45px;
 			margin-bottom: 10px;
 			width: 45px;
+			@extend .transition-all;
 
 			&:not(.active) {
 				opacity: 0.4;
@@ -297,3 +298,16 @@ header.material {
 header.collection {
 	background-size: cover;
 }
+
+
+	
+.tax-product_cat header.material .material__icon {
+	float: left;
+	width: 40%;
+}
+	
+.tax-product_cat header.material .material__info {
+	float: left;
+	width: 60%;
+}
+

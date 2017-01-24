@@ -90,8 +90,18 @@
 	}
 }
 
+// Back to Materials Link 
 
 .swatches .swatches__back {
 	position: relative;
-	top: -40px;
+	top: -50px;
+}
+
+.swatches .swatches__back a {
+	font-size: 14px;
+	opacity: 0.65;
+}
+
+.swatches .swatches__back a:hover {
+	opacity: 1;
 }
