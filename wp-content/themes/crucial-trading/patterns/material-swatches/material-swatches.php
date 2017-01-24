@@ -48,7 +48,20 @@ function material_swatches( $atts = '' ) {
 		if ( count( $products->post_count ) > 0 ) :
 
 			echo '<div class="swatches box-shadow clearfix">';
-
+			
+			// Back to material link 
+				//firstly, load data for your child category
+				$child = get_category($range_id);
+				
+				//from your child category, grab parent ID
+				$parent = $child->parent;
+				
+				//load object for parent category
+				$parent_name = get_category($parent);
+				
+				// Create Link 
+				echo '<div class="swatches__back"><a href="'.get_category_link($parent_name->term_id).'"><i class="icon-crucial-left-arrow"></i>&nbsp;&nbsp;Back to '.$parent_name->name.'</a></div>';
+			
 			foreach ( $products->posts as $key => $value ) {
 
 				$product_id = $value->ID;

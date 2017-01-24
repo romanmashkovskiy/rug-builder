@@ -55,3 +55,9 @@
 		opacity: 0;
 	}
 }
+
+.clearfix {
+	display: block;
+	content: "";
+	clear: both;
+}
