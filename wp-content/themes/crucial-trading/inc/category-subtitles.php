@@ -44,12 +44,97 @@ function category_subtitles( $tag ) {
 		</td>
 	</tr>
 
+	<tr class="form-field">
+		<th scope="row" valign="top">
+			<label for="Cat_meta[bg_image]"><?php _e('Background Image'); ?></label>
+		</th>
+		
+
+		<td>
+			<div id="product_cat_bg_image" style="float: left; margin-right: 10px;">
+				<?php
+				$img_id = is_array( $cat_meta ) && array_key_exists( 'bg_image', $cat_meta ) ? $cat_meta['bg_image'] : 0;
+				$img    = wp_get_attachment_image_src( $img_id, array( 60, 60 ) )[0];
+				?>
+				<img src="<?php echo $img; ?>" width="60" height="60">
+			</div>
+
+			<div style="line-height: 60px;">
+				<input type="hidden" id="bg_image_input" name="Cat_meta[bg_image]" value="<?php echo is_array( $cat_meta ) && array_key_exists( 'bg_image', $cat_meta ) ? $cat_meta['bg_image'] : 0; ?>">
+				<button type="button" class="upload_bg_image_button button">Upload/Add image</button>
+				<button type="button" class="remove_bg_image_button button">Remove image</button>
+			</div>
+
+			<script type="text/javascript">
+
+			// Only show the "remove image" button when needed
+			if ( '0' === jQuery( '#bg_image_input' ).val() ) {
+				jQuery( '.remove_bg_image_button' ).hide();
+			}
+
+			// Uploading files
+			var file_frame;
+
+			jQuery( document ).on( 'click', '.upload_bg_image_button', function( event ) {
+
+				event.preventDefault();
+
+				// If the media frame already exists, reopen it.
+				if ( file_frame ) {
+					file_frame.open();
+					return;
+				}
+
+				// Create the media frame.
+				file_frame = wp.media.frames.downloadable_file = wp.media({
+					title: 'Choose an image',
+					button: {
+						text: 'Use image'
+					},
+					multiple: false
+				});
+
+				// When an image is selected, run a callback.
+				file_frame.on( 'select', function() {
+					var attachment = file_frame.state().get( 'selection' ).first().toJSON();
+
+					console.log(attachment)
+
+					jQuery( '#bg_image_input' ).val( attachment.id );
+					jQuery( '#product_cat_bg_image' ).find( 'img' ).attr( 'src', attachment.sizes.thumbnail.url );
+					jQuery( '.remove_bg_image_button' ).show();
+				});
+
+				// Finally, open the modal.
+				file_frame.open();
+			});
+
+			jQuery( document ).on( 'click', '.remove_bg_image_button', function() {
+
+				console.log(jQuery( '#product_cat_bg_image' ))
+				console.log(jQuery( '#product_cat_bg_image' ).find( 'img' ))
+
+				jQuery( '#product_cat_bg_image' ).find( 'img' ).attr( 'src', 'http://localhost:8888/crucial-trading/wp-content/plugins/woocommerce/assets/images/placeholder.png' );
+				jQuery( '#bg_image_input' ).val( '' );
+				jQuery( '.remove_bg_image_button' ).hide();
+				return false;
+			});
+
+			</script>
+			<div class="clear"></div>
+		</td>
+
+
+	</tr>
+
 	<?php
 }
 
 add_action( 'edit_product_cat', 'save_subtitle' );
 
 function save_subtitle( $term_id ) {
+
+
 
 	if ( isset( $_POST['Cat_meta'] ) ) {
 
