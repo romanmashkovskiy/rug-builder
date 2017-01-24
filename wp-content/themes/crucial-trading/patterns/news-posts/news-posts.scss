@@ -81,13 +81,18 @@ body .news__item a {
 	position: relative;
 	text-align: right;
 	vertical-align: top;
-
-	.news__item__image {
-		bottom: 0;
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: 0;
+	
+	@media all and (max-width: 768px) {
+		.news__item__image {
+			/*bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;*/
+			height: 300px;
+			margin-top: 40px;
+			margin-bottom: 20px;
+		}
 	}
 
 	@media screen and (max-width: 768px) {

@@ -1,5 +1,7 @@
 <?php
 
+// Add Subtitle
+
 add_action( 'product_cat_edit_form_fields', 'category_subtitles' );
 
 function category_subtitles( $tag ) {
@@ -41,3 +43,11 @@ function save_subtitle( $term_id ) {
 		update_option( "category_$term_id", $cat_meta );
 	}
 }
+
+
+
+
+
+
+
+
