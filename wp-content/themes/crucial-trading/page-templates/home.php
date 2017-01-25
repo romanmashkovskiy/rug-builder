@@ -34,4 +34,4 @@ echo do_shortcode( '[home-page-cta id=2]' );
 
 ?> </div> <?php
 
-get_footer();
+get_footer(); 
