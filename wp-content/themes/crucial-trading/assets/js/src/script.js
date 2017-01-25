@@ -20,7 +20,7 @@ $(document).ready(function() {
 	if ( $('.woocommerce-message').length > 0 ) {
 		setTimeout(function() {
 			$('.woocommerce-message').fadeOut(800);
-		}, 5000)
+		}, 4000)
 	}
 
 	// Checkout Form Fix Styling
