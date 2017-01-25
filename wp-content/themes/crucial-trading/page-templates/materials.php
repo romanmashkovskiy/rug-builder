@@ -14,7 +14,7 @@ echo do_shortcode( '[header size="small"]' );
 
 echo do_shortcode( '[logo-nav]' );
 
-echo '<div class="materials-container box-shadow">';
+echo '<div class="materials-container">';
 
 $args = array(
 	'hide_empty' => false,

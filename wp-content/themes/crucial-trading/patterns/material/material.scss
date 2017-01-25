@@ -11,13 +11,15 @@
 @import '../../assets/css/src/_variables.scss';
 @import '../../assets/css/src/_utilities.scss';
 
+
 .material-box {
-	margin-left: 7%;
-	padding: 100px;
-	width: 86%;
+	padding: 50px;
+	padding-top: 100px;
+	padding-bottom: 100px;
+	width: 100%;
 
 	@media screen and (max-width: 992px) {
-		padding: 25px 25px 0;
+		padding: 40px 20px 40px 20px;
 	}
 
 	&:last-child {
@@ -25,48 +27,63 @@
 	}
 
 	.material__left {
-		float: left;
+	  float: left;
 		height: 100%;
-		width: 30%;
+		width: 50%;
+		padding-right: 60px;
 
 		@media screen and (max-width: 992px) {
 			height: auto;
 			width: 100%;
+			padding: 35px;
+			text-align: center;
+			padding-bottom: 60px;
 		}
 	}
-
+	
 	.material__right {
-		float: left;
+		float: right;
 		height: 100%;
-		padding-left: 25px;
-		padding-top: 20px;
 		position: relative;
-		width: 70%;
+		width: 50%;
+		padding-left: 60px;
 
 		@media screen and (max-width: 992px) {
 			height: auto;
-			padding-left: 0;
-			text-align: center;
+			text-align: left;
 			width: 100%;
+			padding: 0;
 		}
 	}
 
 	.material__img {
-		height: 150px;
-		margin-top: 50%;
-		width: 150px;
+		height: 80px;
+		width: 80px;
+		display: inline-block;
+		vertical-align: top;
 
 		@media screen and (max-width: 992px) {
-			-webkit-transform: none !important;
-			transform: none !important;
-			margin-left: calc(50% - 75px);
-			margin-top: 15px;
-			position: static;
+			height: 70px;
+			width: 70px;
 		}
 	}
-
+	
+	.material__title {
+		display: inline-block;
+		font-size: 58px;
+		vertical-align: top;
+		margin-left: 35px;
+		
+		@media screen and (max-width: 992px) {
+			font-size: 40px;	
+			margin-top: 10px;
+			margin-left: 30px;
+		}
+		
+	}
+	
 	.material__desc {
-		margin-top: 25px;
+		margin-top: 45px;
 
 		@media screen and (max-width: 992px) {
 			margin-bottom: 25px;
@@ -76,6 +93,12 @@
 	.material__link {
 		display: inline-block;
 		margin-top: 50px;
+		
+		@media all and (max-width: 992px) {
+			margin-top: 0px;
+			font-size: 14px;
+		}
+		
 	}
 
 	span {
@@ -93,55 +116,145 @@
 
 	&.coir .material__link:before,
 	&.coir .material__link:after {
-		background: $color-coir-dark;
+		background: #B18767;	
+	}
+	
+	&.coir .material__link{
+		color: #B18767;
+	}
+	
+	&.coir .material__link:hover {
+		color: darken(#B18767, 20%);
 	}
 
 	&.jute .material__link:before,
 	&.jute .material__link:after {
-		background: $color-jute-dark;
+		background: #90715A;
+	}
+
+	&.jute .material__link:hover {
+		color: darken(#90715A, 20%);
 	}
 
 	&.seagrass .material__link:before,
 	&.seagrass .material__link:after {
-		background: $color-seagrass-dark;
+		background: #A89872;
 	}
-
+	
+	&.seagrass .material__link:hover {
+		color: darken(#A89872, 25%);
+	}
+	
 	&.sisal .material__link:before,
 	&.sisal .material__link:after {
-		background: $color-sisal-dark;
+		background: #6D7B6C;
 	}
-
+	
+	&.sisal .material__link{
+		color: #6D7B6C;
+	}
+	
+	&.sisal .material__link:hover {
+		color: darken(#6D7B6C, 15%);
+	}
+	
 	&.sisool .material__link:before,
 	&.sisool .material__link:after {
-		background: $color-sisool-dark;
+		background: #817D63;
+	}
+
+	&.sisool .material__link:hover {
+		color: darken(#817D63, 15%);
 	}
 
 	&.wool .material__link:before,
-	&.wool .material__link:after {
-		background: $color-wool-dark;
+	&.wool .material__link:after,  {
+		background: #BDAC92;
 	}
 
+	&.wool .material__link:hover {
+		color: darken(#BDAC92, 25%);
+	}
+	
+	// Coir
 	&.coir * {
-		color: $color-coir-dark;
+		color: darken(#B18767, 10%);
 	}
-
+	
+	&.coir p {
+		color: darken(#B18767, 20%);
+	}
+	
+	// Jute
 	&.jute * {
-		color: $color-jute-dark;
+		color: darken(#90715A, 3%);
 	}
-
+	
+	&.jute p {
+		color: darken(#90715A, 5%);
+	}
+	
+	
+	// Seagrass
 	&.seagrass * {
-		color: $color-seagrass-dark;
+		color: darken(#A89872, 7%);
 	}
-
+	
+	&.seagrass p {
+		color: darken(#A89872, 20%);
+	}
+	
+	// Sisal 
 	&.sisal * {
-		color: $color-sisal-dark;
+		color: #6D7B6C;
 	}
 
+	&.sisal p {
+		color: darken(#6D7B6C, 10%);
+	}
+
+	// Sisool
 	&.sisool * {
-		color: $color-sisool-dark;
+		color: lighten(#817D63, 5%);
 	}
 
-	&.wool * {
-		color: $color-wool-dark;
+	&.sisool p {
+		color: darken(#817D63, 10%);
 	}
+
+	// Wool 
+	&.wool * {
+		color: darken(#BDAC92, 7%);
+	}
+		
+	&.wool p {
+		color: darken(#BDAC92, 30%);
+	}
+	
 }
+
+// Odd & Even positioning and spacing 
+
+.material-box:nth-child(even) 	.material__left {
+	float: right;
+	padding-right: 0;
+	padding-left: 60px;
+	
+	@media all and (max-width: 992px) {
+		padding: 35px;
+		padding-bottom: 60px;
+	}
+	
+}
+
+.material-box:nth-child(even) .material__right {
+	float: left;
+	padding-left: 0;
+	padding-right: 60px;
+	
+	@media all and (max-width: 992px) {
+		padding: 0;
+	}
+	
+}
+

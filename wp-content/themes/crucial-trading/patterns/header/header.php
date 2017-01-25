@@ -191,10 +191,11 @@ add_shortcode( 'header-material', 'header_material_shortcode' );
 
 /************** Range Header **************/
 
+
 function header_range_shortcode($atts = '') {
-
+	
 	$html = '';
-
+	
 	if ( $atts != '' && array_key_exists('range', $atts) ) {
 
 		// Get Categories for Side menu 
