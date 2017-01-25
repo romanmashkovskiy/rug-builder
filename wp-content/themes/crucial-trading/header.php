@@ -22,5 +22,6 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 		<script>var siteURL = '<?php echo site_url(); ?>';</script>
 	</head>
 	<body <?php body_class( $header_class ); ?>>
+		<?php wc_print_notices(); ?>
 		<div id="page" class="site">
 			<main id="content" class="site-content">

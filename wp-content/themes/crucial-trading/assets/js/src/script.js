@@ -15,6 +15,14 @@ function showBasketPopup(success, productName) {
 
 $(document).ready(function() {
 
+	// Fade Out WC Basket Notice
+
+	if ( $('.woocommerce-message').length > 0 ) {
+		setTimeout(function() {
+			$('.woocommerce-message').fadeOut(800);
+		}, 5000)
+	}
+
 	// Checkout Form Fix Styling
 
 	if ( $('.woocommerce').length > 0 ) {
