@@ -34,7 +34,7 @@ function other_ranges( $atts = '' ) {
 		shuffle( $ranges );
 		$i = 0;
 
-		$html .= '<h1 class="other-ranges-title ' . $the_material . '">Other Ranges</h1>';
+		$html .= '<h2 class="other-ranges-title ' . $the_material . '">Other Ranges</h2>';
 		$html .= '<div class="other-ranges">';
 		$html .= '<div class="swatches -other-ranges clearfix">';
 

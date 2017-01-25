@@ -12,6 +12,8 @@
 
 function crucial_slider_slides() {
 
+	global $wp_query;
+
 	$args = array(
 		'post_type'   => 'super-slider',
 		'post_status' => 'publish',
@@ -26,6 +28,8 @@ function crucial_slider_slides() {
 
 	$post_count = $query->post_count;
 
+	$i = 0;
+
 	if ( $query->have_posts() ) :
 
 		$html .= '<div id="super-slider">';
@@ -38,11 +42,13 @@ function crucial_slider_slides() {
 			$post_id       = get_the_ID();
 			$attachment_id = get_post_thumbnail_id( $post_id );
 
-			$post_title     = get_the_title();
+			$post_title = get_the_title();
+			$rotate     = $post_title == 'Opening' ? 'Your Journey' : $post_title;
+			$title      = $post_title == 'Opening' ? 'Crucial Trading' : $post_title;
+			$link_text  = rwmb_meta( 'link-text' );
 
-			$rotate    = $post_title == 'Opening' ? 'Your Journey' : $post_title;
-			$title     = $post_title == 'Opening' ? 'Crucial Trading' : $post_title;
-			$link_text = rwmb_meta( 'link-text' );
+			$has_background_image = false;
+
 			$src       = wp_get_attachment_image_url( $attachment_id, 'full' );
 			$srcset    = wp_get_attachment_image_srcset( $attachment_id );
 			$alt       = 'Crucial Trading - ' . $link_text;
@@ -111,8 +117,15 @@ function crucial_slider_slides() {
 				$opening_class = 'opening';
 			}
 
-			$html .= '<li class="slide object-fit-container ' . $opening_class . '">';
-			$html .= '<img src="' . $src . '" alt="' . $alt . '">'; 
+			$image_side_class = '';
+
+			if ( $current_post % 2 == 0 ) {
+				$image_side_class = 'image-right';
+			} else {
+				$image_side_class = 'image-left';
+			}
+
+			$html .= "<li class='slide object-fit-container $opening_class $image_side_class'>";
 
 			$html .= '<nav class="slides-navigation vertical-align">';
 
@@ -132,19 +145,54 @@ function crucial_slider_slides() {
 
 			$html .= '</nav>';
 			
-			$html .= '<div class="slide__center vertical-align ' . $opening_class . '">';
-			if ( $post_title != 'Opening' ) {
-				$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
-				$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
+			if ( $has_background_image ) {
+
+				$html .= '<img src="' . $src . '" alt="' . $alt . '" class="background">';
+
+				$html .= '<div class="slide__center vertical-align ' . $opening_class . '">';
+
+				if ( $post_title != 'Opening' ) {
+					$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
+					$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
+				}
+				else {
+					$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161213220240/crucial-logo-white%402x.png" alt="Crucial Trading - Where Inspiration Begins" class="opening-slide-logo">';
+					$html .= '<p>Welcome to the start of your journey where imagination flourishes, ideas form and decisions are made. We aim to inspire and delight. Choose the right floorcovering and everything else falls into place.</p>';
+					$html .= '<span></span>';
+					$html .= '<a href="http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4" class="html5lightbox" data-fullscreenmode="true">' . $link_text . '</a>';
+				}
+
+				$html .= '</div>';
+				
+			} else {
+
+				$html .= '<div class="slide__title">';
+
+				if ( $post_title != 'Opening' ) {
+					$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
+					$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
+				} else {
+					$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161212170153/CT_LogoStrapline_Black1.svg" alt="Crucial Trading - Where Inspiration Begins" class="opening-slide-logo">';
+					$html .= '<p>Welcome to the start of your journey where imagination flourishes, ideas form and decisions are made. We aim to inspire and delight. Choose the right floorcovering and everything else falls into place.</p>';
+				}
+
+				$html .= '</div>';
+
+				$html .= '<div class="slide__image">';
+				$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+
+				if ( $post_title == 'Opening' ) {
+					$html .= '<a href="http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4" class="html5lightbox" data-fullscreenmode="true">' . $link_text . '</a>';
+				}
+
+				$html .= '</div>';
+
+				$html .= '<div class="slide__boxes">';
+				$html .= '<div class="box__one"></div>';
+				$html .= '<div class="box__two"></div>';
+				$html .= '</div>';
+
 			}
-			else {
-				$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161213220240/crucial-logo-white%402x.png" alt="Crucial Trading - Where Inspiration Begins" class="opening-slide-logo">';
-				$html .= '<p>Welcome to the start of your journey where imagination flourishes, ideas form and decisions are made. We aim to inspire and delight. Choose the right floorcovering and everything else falls into place.</p>';
-				$html .= '<span></span>';
-				$html .= '<a href="http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4" class="html5lightbox" data-fullscreenmode="true">' . $link_text . '</a>';
-			}
-		//	$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
-			$html .= '</div>';
 
 			$html .= '<div class="slide__bottom ' . $opening_class . '">';
 			$html .= $arrow_down;
@@ -152,6 +200,8 @@ function crucial_slider_slides() {
 			$html .= '</div>';
 
 			$html .= '</li>';
+
+			$i++;
 
 		endwhile;
 
