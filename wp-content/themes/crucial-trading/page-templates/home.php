@@ -22,7 +22,9 @@ echo do_shortcode( '[section-boxes number=1]' );
 
 echo do_shortcode( '[home-inspiration-widget]' );
 
-echo do_shortcode( '[home-page-news]' );
+//echo do_shortcode( '[home-page-news]' );
+
+echo do_shortcode( '[section-boxes number=2]' );
 
 ?> <div class="clearfix"> <?php
 
