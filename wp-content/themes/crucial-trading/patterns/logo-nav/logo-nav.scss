@@ -5,9 +5,18 @@
 	top: 0;
 	width: 100%; 
 	z-index: 9998;
+}
 
+.show-menu .top-bar {
+	
 	@media screen and (max-width: 450px) {
+		margin-left: 80%;
+		width: 20%;
 		z-index: 10000;
+
+		&.-relative {
+			position: relative;
+		}
 	}
 }
 

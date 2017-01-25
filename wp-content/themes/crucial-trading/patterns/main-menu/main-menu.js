@@ -16,6 +16,11 @@ var $ = jQuery;
 	  		$(this).toggleClass("is-active");
 		    $('body').toggleClass("show-menu");
 
+		    setTimeout(function() {
+		    	$('.top-bar').toggleClass('-relative');
+		    }, 650)
+		    
+
 		    if ( window.innerWidth < 993 ) {
 
 		    	if ( $('body').hasClass('show-menu') ) {
