@@ -37,6 +37,6 @@ $(document).ready(function() {
 
 		$('body').animate({
 			scrollTop: scrollTop
-		}, 1100);
+		}, 1100); 
 	});
 });
