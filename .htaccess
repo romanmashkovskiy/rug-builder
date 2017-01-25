@@ -14,11 +14,11 @@ Header set X-Content-Type-Options: "nosniff"
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /crucial-trading/
+RewriteBase /crucial/
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /crucial-trading/index.php [L]
+RewriteRule . /crucial/index.php [L]
 </IfModule>
 
 # END WordPress
