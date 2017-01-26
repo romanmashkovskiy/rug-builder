@@ -210,22 +210,28 @@ function header_range_shortcode($atts = '') {
 		$categories = sort_materials_menu_order( $categories );
 
 		$range = $atts['range'];
-
+		
+		$range_cat = get_term_by( 'slug', $range, 'product_cat' );
+		$range_id  = $range_cat->term_id;
+		$range_parent = $range_cat->parent;
+		
+		
 		$request_uri  = $_SERVER['REQUEST_URI'];
 		$swatches_pos = strpos( $request_uri, 'material/' );
 		$uri_substr   = substr( $request_uri, $swatches_pos + 9 );
 		$material_end = strpos( $uri_substr, '/' );
 		$material     = substr( $uri_substr, 0, $material_end );
 
-		$material_id   = get_term_by( 'slug', $material, 'product_cat' )->term_id;
-		$material_meta = get_option( "category_$material_id" );
-		$material_desc = is_array( $material_meta ) && array_key_exists( 'subtitle', $material_meta ) ? $material_meta['subtitle'] : '';
+		//$material_id   = get_term_by( 'slug', $material, 'product_cat' )->term_id;
+		//$material_meta = get_option( "category_$material_id" );
+		//$material_desc = is_array( $material_meta ) && array_key_exists( 'subtitle', $material_meta ) ? $material_meta['subtitle'] : '';
 
 		$html .= '<header class="material small -range clearfix">';
 
 		$html .= '<div class="material__name">';
 		$html .= '<h3 class="rotate">' . $range . '</h3>';
-		$html .= '<h3 class="subtitle">' . $material_desc . '</h3>';
+		//$html .= '<h3 class="subtitle">' . $material_desc . '</h3>';
+		$html .= '<h3 class="subtitle">' . get_cat_name($range_parent) . '</h3>';
 		$html .= '<h1>' . $range . '</h1>';
 		$html .= '</div>';
 
