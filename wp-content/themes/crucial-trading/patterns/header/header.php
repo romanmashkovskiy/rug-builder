@@ -221,7 +221,7 @@ function header_range_shortcode($atts = '') {
 		$material_meta = get_option( "category_$material_id" );
 		$material_desc = is_array( $material_meta ) && array_key_exists( 'subtitle', $material_meta ) ? $material_meta['subtitle'] : '';
 
-		$html .= '<header class="material large -range clearfix">';
+		$html .= '<header class="material small -range clearfix">';
 
 		$html .= '<div class="material__name">';
 		$html .= '<h3 class="rotate">' . $range . '</h3>';
@@ -229,7 +229,7 @@ function header_range_shortcode($atts = '') {
 		$html .= '<h1>' . $range . '</h1>';
 		$html .= '</div>';
 
-		$html .= '<div class="material__sidememu">';
+		/*$html .= '<div class="material__sidememu">';
 		$html .= '<ul>';
 
 		for ( $i=0; $i<count( $categories ); $i++ ) {
@@ -255,7 +255,7 @@ function header_range_shortcode($atts = '') {
 		}
 
 		$html .= '</ul>';
-		$html .= '</div>';
+		$html .= '</div>';*/
 
 		$html .= '</header>';
 	}

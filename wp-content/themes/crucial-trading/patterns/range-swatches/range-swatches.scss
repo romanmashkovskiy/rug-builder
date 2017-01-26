@@ -11,6 +11,10 @@
 		margin-right: auto;
 	}
 
+	@media all and (max-width: 767px) {
+		padding: 80px 30px;
+	}
+	
 	.swatch {
 		border: 1px solid #ededed;
 		float: left;
@@ -63,7 +67,7 @@
 
 		@media screen and (min-width: 1300px) {
 
-			&:not(:nth-child(3n)) {
+			&:not(:nth-child(4n)) {
 				margin-right: 2%;
 			}
 		}
@@ -75,7 +79,7 @@
 				margin-right: 0;
 			}
 
-			&:not(:nth-child(2n)) {
+			&:not(:nth-child(odd)) {
 				margin-right: 2%;
 			}
 		}

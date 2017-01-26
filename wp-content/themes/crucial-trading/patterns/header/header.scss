@@ -272,6 +272,11 @@ header.material {
 		.material__name {
 			left: 0;
 			width: 100%;
+			
+			@media screen and (max-width: 792px) {
+				display: block;
+			}
+			
 		}
 
 		h1 {
