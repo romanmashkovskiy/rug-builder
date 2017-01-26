@@ -46,9 +46,11 @@ function startSlider() {
 		}
 	}
 
+	var slider;
+
 	if ( $('.slidee').data('total') > 1 ) {
 
-		$('.material-view-slider ul#material-view-slider-list').bxSlider({
+		slider = $('.material-view-slider ul#material-view-slider-list').bxSlider({
 			mode         : 'fade',
 			startSlide   : startIndex,
 
@@ -91,6 +93,18 @@ function startSlider() {
 				var newSlide      = $('#material-view-slider-list').children()[ newSlideIndex ];
 				var slideHeight   = $(newSlide).height();
 				$('.material-view-slider').css('min-height', slideHeight + 'px');
+
+				var newSlug       = $(newSlide).data('slug');
+				var currentUrl    = window.location.href;
+				var swatchesIndex = currentUrl.indexOf('/swatches');
+				var swatchesEnd   = swatchesIndex + 10;
+				var endSubstr     = currentUrl.substr(swatchesEnd);
+				var slashIndex    = endSubstr.indexOf('/');
+				var urlEnd        = swatchesEnd + slashIndex + 1;
+				var urlBase       = currentUrl.substr(0, urlEnd);
+				var newUrl        = urlBase + newSlug + '/';
+
+				window.history.pushState(null, '', newUrl);
 			},
 
 			onSlidePrev  : function() {
@@ -124,9 +138,35 @@ function startSlider() {
 				var newSlide      = $('#material-view-slider-list').children()[ newSlideIndex ];
 				var slideHeight   = $(newSlide).height();
 				$('.material-view-slider').css('min-height', slideHeight + 'px');
+
+				var newSlug       = $(newSlide).data('slug');
+				var currentUrl    = window.location.href;
+				var swatchesIndex = currentUrl.indexOf('/swatches');
+				var swatchesEnd   = swatchesIndex + 10;
+				var endSubstr     = currentUrl.substr(swatchesEnd);
+				var slashIndex    = endSubstr.indexOf('/');
+				var urlEnd        = swatchesEnd + slashIndex + 1;
+				var urlBase       = currentUrl.substr(0, urlEnd);
+				var newUrl        = urlBase + newSlug + '/';
+
+				window.history.pushState(null, '', newUrl);
 			},
 		});
-	}	
+	}
+
+	window.onpopstate = function(e) {
+		
+		var currentUrl    = window.location.href;
+		var swatchesIndex = currentUrl.indexOf('/swatches');
+		var swatchesEnd   = swatchesIndex + 10;
+		var endSubstr     = currentUrl.substr(swatchesEnd);
+		var slashIndex    = endSubstr.indexOf('/');
+		var urlEnd        = swatchesEnd + slashIndex + 1;
+		var newMaterial   = currentUrl.substring(urlEnd, currentUrl.length - 1);
+		var newMatIndex   = $('.slidee[data-slug="' + newMaterial + '"]').data('index');
+		
+		slider.goToSlide(newMatIndex);
+	}
 
 	$('.bx-prev').addClass('no-effect');
 	$('.bx-next').addClass('no-effect');

@@ -89,7 +89,7 @@ function material_view_slider( $atts = '' ) {
 				$current = $i;
 			}
 
-			$html .= '<li data-name="' . $product_name . '" data-total="' . $total . '" class="slidee" ' . $data_show . '>';
+			$html .= '<li data-name="' . $product_name . '" data-slug="' . $product_slug . '" data-total="' . $total . '" data-index="' . $i . '" class="slidee" ' . $data_show . '>';
 			$html .= do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '" multiple="' . $multiple_in_range . '"]' );
 			$html .= '</li>';
 
