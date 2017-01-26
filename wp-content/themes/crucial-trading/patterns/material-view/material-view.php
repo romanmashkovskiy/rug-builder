@@ -110,9 +110,9 @@ function material_view( $atts = '' ) {
 
 		$html .= '<img src="' . $src . '" alt="' . $post_title . '" class="material-img">';
 
-		if ( $src_angle != '' ) {
-			$html .= '<a href="#" class="change-image-view" data-view="top" data-top="' . $src . '" data-angle="' . $src_angle . '">Change View</a>';
-		}
+//		if ( $src_angle != '' ) {
+//			$html .= '<a href="#" class="change-image-view" data-view="top" data-top="' . $src . '" data-angle="' . $src_angle . '">Change View</a>';
+//		}
 
 		$html .= '</div>';
 
