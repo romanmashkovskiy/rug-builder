@@ -56,7 +56,13 @@ function material_view_slider( $atts = '' ) {
 
 		$current = 1;
 		
-		$total = count($woocommerce_products->posts);
+		$total = count( $woocommerce_products->posts );
+
+		$multiple_in_range = false;
+
+		if ( $total > 1 ) {
+			$multiple_in_range = true;
+		}
 
 		$this_product = '';
 
@@ -84,7 +90,7 @@ function material_view_slider( $atts = '' ) {
 			}
 
 			$html .= '<li data-name="' . $product_name . '" data-total="' . $total . '" class="slidee" ' . $data_show . '>';
-			$html .= do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '"]' );
+			$html .= do_shortcode( '[material-view post_id="' . $post->ID . '" material="' . $current_product_material . '" multiple="' . $multiple_in_range . '"]' );
 			$html .= '</li>';
 
 			$i++;

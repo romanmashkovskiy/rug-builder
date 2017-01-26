@@ -25,6 +25,12 @@ function material_view( $atts = '' ) {
 		$material = $atts['material'];
 	}
 
+	$multiple_in_range = false;
+
+	if ( is_array( $atts ) && array_key_exists( 'multiple', $atts ) && $atts['multiple'] == '1' ) {
+		$multiple_in_range = true;
+	}
+
 	$html = '';
 	
 	$post_title = get_the_title();
@@ -92,149 +98,31 @@ function material_view( $atts = '' ) {
 		$html .= '</div>';
 
 	$html .= '</div>';
-	$html .= '<div class="material__body">';
+	$html .= '<div class="material__body clearfix">';
 
-		$html .= '<div class="image-container object-fit-container">';
+		$multiple_class = '';
+
+		if ( !$multiple_in_range ) {
+			$multiple_class = 'full';
+		}
+
+		$html .= '<div class="image-container object-fit-container clearfix ' . $multiple_class . '">';
+
 		$html .= '<img src="' . $src . '" alt="' . $post_title . '" class="material-img">';
 
 		if ( $src_angle != '' ) {
 			$html .= '<a href="#" class="change-image-view" data-view="top" data-top="' . $src . '" data-angle="' . $src_angle . '">Change View</a>';
 		}
 
-		if ( $width || $backing || $fibre || $suit_1 || $suit_2 || $suit_3 || $under_1 || $under_2 || $under_3 || $design_1 || $design_2 || $design_3 ) {
-			$html .= '<div class="material__details clearfix">';
-			$html .= '<a href="#" class="hide-material-info" data-state="open">Hide</a>';
+		$html .= '</div>';
 
-			if ( $fibre ) {
-
-				$icon_material = '';
-
-				if ( stripos( $fibre, 'coir' ) !== false ) {
-					$icon_material = 'coir';
-				} else if ( stripos( $fibre, 'jute' ) !== false ) {
-					$icon_material = 'jute';
-				} else if ( stripos( $fibre, 'seagrass' ) !== false ) {
-					$icon_material = 'seagrass';
-				} else if ( stripos( $fibre, 'sisal' ) !== false ) {
-					$icon_material = 'sisal';
-				} else if ( stripos( $fibre, 'sisool' ) !== false ) {
-					$icon_material = 'sisool';
-				} else if ( stripos( $fibre, 'wool' ) !== false ) {
-					$icon_material = 'wool';
-				}
-
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-' . $icon_material . '"></i>';
-				$html .= '<h3>' . $fibre . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $price ) {
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-metres"></i>';
-				$html .= '<h3>£' . $price . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $width ) {
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-measurement"></i>';
-				$html .= '<h3>' . $width . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $backing ) {
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-backing"></i>';
-				$html .= '<h3>' . $backing . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $under_1 ) {
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-underlay"></i>';
-				$html .= '<h3>' . $under_1 . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $under_2 ) {
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-underlay"></i>';
-				$html .= '<h3>' . $under_2 . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $under_3 ) {
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-underlay"></i>';
-				$html .= '<h3>' . $under_3 . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $suit_1 ) {
-
-				$icon_suitability = '';
-
-				if ( stripos( $suit_1, 'stairs' ) !== false ) {
-					$icon_suitability = 'stairs';
-				} else if ( stripos( $suit_1, 'heavy' ) !== false ) {
-					$icon_suitability = 'heavy';
-				} else if ( stripos( $suit_1, 'light' ) !== false ) {
-					$icon_suitability = 'light';
-				} else if ( stripos( $suit_1, 'rug' ) !== false ) {
-					$icon_suitability = 'changeview';
-				}
-
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-' . $icon_suitability . '"></i>';
-				$html .= '<h3>' . $suit_1 . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $suit_2 ) {
-
-				$icon_suitability = '';
-
-				if ( stripos( $suit_2, 'stairs' ) !== false ) {
-					$icon_suitability = 'stairs';
-				} else if ( stripos( $suit_2, 'heavy' ) !== false ) {
-					$icon_suitability = 'heavy';
-				} else if ( stripos( $suit_2, 'light' ) !== false ) {
-					$icon_suitability = 'light';
-				} else if ( stripos( $suit_2, 'rug' ) !== false ) {
-					$icon_suitability = 'changeview';
-				}
-
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-' . $icon_suitability . '"></i>';
-				$html .= '<h3>' . $suit_2 . '</h3>';
-				$html .= '</div>';
-			}
-
-			if ( $suit_3 ) {
-
-				$icon_suitability = '';
-
-				if ( stripos( $suit_3, 'stairs' ) !== false ) {
-					$icon_suitability = 'stairs';
-				} else if ( stripos( $suit_3, 'heavy' ) !== false ) {
-					$icon_suitability = 'heavy';
-				} else if ( stripos( $suit_3, 'light' ) !== false ) {
-					$icon_suitability = 'light';
-				} else if ( stripos( $suit_3, 'rug' ) !== false ) {
-					$icon_suitability = 'changeview';
-				}
-
-				$html .= '<div class="info__section">';
-				$html .= '<i class="icon-crucial-' . $icon_suitability . '"></i>';
-				$html .= '<h3>' . $suit_3 . '</h3>';
-				$html .= '</div>';
-			}		
-
-			$html .= '</div>';
+		if ( $multiple_in_range ) {
+			include get_template_directory() . '/patterns/material-view/material-view-others-in-range.php';
 		}
 
-		$html .= '</div>';
+		if ( $width || $backing || $fibre || $suit_1 || $suit_2 || $suit_3 || $under_1 || $under_2 || $under_3 || $design_1 || $design_2 || $design_3 ) {
+			include get_template_directory() . '/patterns/material-view/material-view-info-section.php';
+		}
 
 	$html .= '</div>';
 	$html .= '</div>';

@@ -2,61 +2,6 @@ var $ = jQuery;
 
 $(document).ready(function() {
 
-	function closeInfoBox() {
-
-		var boxWidth;
-
-		if ( window.innerWidth > 992 ) {
-			boxWidth = 400;
-		} else if ( window.innerWidth > 768 && window.innerWidth < 993 ) {
-			boxWidth = 325;
-		} else {
-			boxWidth = 200;
-		}
-
-		$('.material__details').animate({
-			right: '-' + boxWidth + 'px'
-		})
-
-		$('.hide-material-info').text('Show')
-		$('.hide-material-info').data('state', 'closed');
-	}
-
-	function openInfoBox() {
-
-		var right; 
-
-		if ( window.innerWidth > 450 ) {
-			right = '20px';
-		} else {
-			right = '0px';
-		}
-
-		$('.material__details').animate({
-			right: right
-		})
-
-		$('.hide-material-info').text('Hide')
-		$('.hide-material-info').data('state', 'open');
-	}
-
-	$('.hide-material-info').on('click', function(e) {
-
-		e.preventDefault();
-		e.stopPropagation();
-
-		var state = $(this).data('state');
-
-		if ( state === 'open' ) {
-			closeInfoBox();
-		}
-		else if ( state === 'closed' ) {
-			openInfoBox();
-		}
-
-		return false;
-	});
-
 	$('.change-image-view').on('click', function(e) {
 
 		e.preventDefault();
@@ -84,7 +29,12 @@ $(document).ready(function() {
 		$(this).data('view', newView);
 
 		$(this).siblings('img').on('load', function(){
+
 			$(this).parent().css('height', newHeight);
+
+			var slideHeight = $(this).parent().parent().parent().parent().height();
+			$('.material-view-slider').css('min-height', slideHeight + 'px');
+
 		});
 
 		return false;
