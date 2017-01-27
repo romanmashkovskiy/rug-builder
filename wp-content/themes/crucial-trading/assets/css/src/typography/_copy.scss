@@ -31,7 +31,8 @@ a {
 	padding-bottom: 30px;
 	@extend .transition-all;
 	
-	&:hover {
+	&:hover,
+	&:active {
 		text-decoration: none;
 		color: lighten(#000000, 10%);
 	}
