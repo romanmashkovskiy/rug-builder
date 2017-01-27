@@ -45,9 +45,18 @@ function range_swatches( $atts = '' ) {
 				$products = new WP_Query( $args );
 				$link = '#';
 
+				$range_id = $value->term_id;
+
 				$title  = $value->name;
-				$src_id = get_woocommerce_term_meta( $value->term_id, 'thumbnail_id', true );
+				$src_id = get_woocommerce_term_meta( $range_id, 'thumbnail_id', true );
 				$src    = wp_get_attachment_url( $src_id );
+
+				$range_meta = get_option( "category_$range_id" );
+				$new_circle = '';
+
+				if ( is_array( $range_meta ) && array_key_exists( 'is_new', $range_meta ) && $range_meta['is_new'] == 'new' ) {
+					$new_circle = '<div class="new-product">New</div>';
+				}
 
 				if ( count( $products->posts ) > 0 ) {
 
@@ -64,6 +73,7 @@ function range_swatches( $atts = '' ) {
 				}
 
 				echo '<div class="swatch">';
+				echo $new_circle;
 				echo '<a href="' . $link  . '" class="no-effect">';
 				echo '<h3 class="vertical-align">' . $title . '</h3>';
 

@@ -9,7 +9,27 @@ function category_subtitles( $tag ) {
 	$term_id  = $tag->term_id;
 	$cat_meta = get_option( "category_$term_id" );
 
+	$checked = '';
+
+	if ( is_array( $cat_meta ) && array_key_exists( 'is_new', $cat_meta ) && $cat_meta['is_new'] == 'new' ) {
+		$checked = 'checked';
+	}
+
 	?>
+
+	<!-- Is New -->
+
+	<tr class="form-field">
+		<th scope="row" valign="top">
+			<label for="Cat_meta[is_new]"><?php _e('Is New'); ?></label>
+		</th>
+		<td>
+			<input type="hidden" name="Cat_meta[is_new]" value="old">
+			<input type="checkbox" name="Cat_meta[is_new]" id="Cat_meta[is_new]" value="new" <?php echo $checked; ?>>
+			<br />
+			<span class="description"><?php _e('Tick if this range has any new products'); ?></span>
+		</td>
+	</tr>
 
 	<!-- Subtitle -->
 
