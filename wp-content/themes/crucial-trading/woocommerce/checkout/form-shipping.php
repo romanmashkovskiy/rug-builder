@@ -28,6 +28,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php endforeach; ?>
 
+		<input type="hidden" name="payment_method" value="cod">
+
 		<?php do_action( 'woocommerce_after_checkout_shipping_form', $checkout ); ?>
 
 	</div>

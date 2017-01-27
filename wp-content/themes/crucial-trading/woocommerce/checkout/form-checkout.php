@@ -28,6 +28,10 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 	<h2>Shipping Address</h2>
 
 	<div class="shipping">
+		<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
+	</div>
+
+	<div class="shipping">
 		<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 	</div>
 

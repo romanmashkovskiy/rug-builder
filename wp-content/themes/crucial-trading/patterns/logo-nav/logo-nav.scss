@@ -1,10 +1,37 @@
 .top-bar {
 	background: transparent;
 	height: 100px;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	width: 100%; 
 	z-index: 9998;
+
+	&.headroom--not-top.headroom--pinned {
+		background: #383838;
+	}
+}
+
+body.page-template-home .top-bar.headroom--not-top.headroom--pinned {
+
+	span.main-menu__button__icon,
+	span.main-menu__button__icon:before,
+	span.main-menu__button__icon:after {
+		background: white !important;
+	}
+
+	.main-menu__button__text,
+	.main-menu__button__text--close {
+		color: white !important;
+	}
+
+	svg.main-menu__button__basket g {
+		fill: white !important;
+	}
+
+	#num-items-basket {
+		background: white !important;
+		color: black !important;
+	}
 }
 
 .show-menu .top-bar {
@@ -81,4 +108,70 @@
 	.full-logo {
 		display: none;
 	}
+}
+
+.headroom {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    will-change: transform,opacity
+}
+
+@-webkit-keyframes slideDown {
+    0% {
+        -webkit-transform: translateY(-100%)
+    }
+
+    100% {
+        -webkit-transform: translateY(0)
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%)
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+}
+
+.headroom.headroom--pinned {
+	-webkit-animation-duration: 500ms;
+	animation-duration: 500ms;
+    -webkit-animation-name: slideDown;
+    animation-name: slideDown
+}
+
+@-webkit-keyframes slideUp {
+    0% {
+        -webkit-transform: translateY(0)
+    }
+
+    100% {
+        -webkit-transform: translateY(-100%)
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0)
+    }
+
+    100% {
+        -webkit-transform: translateY(-100%);
+        transform: translateY(-100%)
+    }
+}
+
+.headroom.headroom--unpinned {
+	-webkit-animation-duration: 500ms;
+	animation-duration: 500ms;
+    -webkit-animation-name: slideUp;
+    animation-name: slideUp
 }
