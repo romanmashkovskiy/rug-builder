@@ -46,6 +46,8 @@ function material_swatches( $atts = '' ) {
 			// Create back to parent material link 
 			echo '<div class="swatches__back"><a href="'.get_category_link($range_parent).'"><i class="icon-crucial-left-arrow"></i>&nbsp;&nbsp;Back to '.get_cat_name($range_parent).'</a></div>';
 			
+			echo '<div class="swatch__container">';
+			
 			foreach ( $products->posts as $key => $value ) {
 
 				$product_id = $value->ID;
@@ -68,7 +70,7 @@ function material_swatches( $atts = '' ) {
 				echo '</div>';
 			}
 
-			echo '</div>';
+			echo '</div></div>';
 
 		endif;
 
