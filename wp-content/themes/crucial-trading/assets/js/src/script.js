@@ -15,6 +15,20 @@ function showBasketPopup(success, productName) {
 
 $(document).ready(function() {
 
+	// Cookies & Video Autoplay
+
+	if ( $('body').hasClass('page-template-home') ) {
+
+		var cookieExists = Cookies.get('visited');
+
+		if ( typeof cookieExists === 'undefined' ) {
+			$('.html5lightbox').click();
+			Cookies.set('visited', 'true');
+		}
+	}
+
+	
+
 	// Fade Out WC Basket Notice
 
 	if ( $('.woocommerce-message').length > 0 ) {
