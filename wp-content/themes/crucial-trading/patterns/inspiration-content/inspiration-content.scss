@@ -2,15 +2,31 @@
 
 	.inspiration-content {
 		margin-top: -105px;
+
+		@media screen and (max-width: 992px) {
+			margin-top: -178px;
+		}
 	}
 
 	.inspiration__social {
 		position: relative;
+
+		.timeline__centre-line,
+		.timeline__event__line {
+
+			@media screen and (max-width: 768px) {
+				display: none;
+			}
+		}
 	}
 
 	.social__posts {
 		background: #383838;
 		padding-bottom: 150px;
+
+		@media screen and (max-width: 992px) {
+			padding-bottom: 223px;
+		}
 	}
 
 	.timeline__event {
@@ -21,6 +37,15 @@
 		padding-right: 6%;
 		top: 160px;
 		z-index: 999;
+
+		@media screen and (max-width: 992px) {
+			top: 233px;
+		}
+
+		@media screen and (max-width: 768px) {
+			display: block;
+			width: 100%;
+		}
 
 		&:nth-child(even),
 		&:nth-child(odd) {
@@ -75,6 +100,10 @@
 			font-size: 22px;
 			line-height: 1.4;
 			z-index: 3;
+
+			@media screen and (max-width: 400px) {
+				font-size: 16px;
+			}
 		}
 
 		.twitter__time,
@@ -127,7 +156,7 @@
 
 		h2 {
 			color: white;
-			padding-bottom: 25px;
+			padding: 25px 0;
 		}
 	}
 
@@ -156,7 +185,7 @@
 
 		h2 {
 			color: white;
-			padding-bottom: 25px;
+			padding: 25px 0;
 		}
 
 		.video {

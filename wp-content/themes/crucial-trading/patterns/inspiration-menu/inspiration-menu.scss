@@ -21,8 +21,17 @@
 .insp-menu__item {
 	display: table-cell;
 	text-align: center;
+
+	@media screen and (max-width: 992px) {
+		display: block;
+		margin-bottom: 7.5px;
+	}
 }
 
 .insp-menu__title {
 	color: #aaaaaa;
+
+	@media screen and (max-width: 555px) {
+		font-size: 14px;
+	}
 }
