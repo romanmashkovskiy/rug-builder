@@ -11,6 +11,10 @@
 		margin-right: auto;
 	}
 
+	@media all and (max-width: 767px) {
+		padding: 80px 30px;
+	}
+	
 	.swatch {
 		border: 1px solid #ededed;
 		float: left;
@@ -71,11 +75,11 @@
 		@media screen and (max-width: 1300px) and (min-width: 768px) {
 			width: 49%;
 
-			&:not(:nth-child(4n)) {
+			&:not(:nth-child(2n)) {
 				margin-right: 0;
 			}
 
-			&:not(:nth-child(2n)) {
+			&:not(:nth-child(even)) {
 				margin-right: 2%;
 			}
 		}

@@ -1,5 +1,6 @@
 @import '../../assets/css/src/_variables';
 
+
 .bx-viewport {
 	overflow: visible !important;
 }
@@ -12,6 +13,11 @@
 	height: 100%;
 	margin: 0 !important;
 	padding: 0 !important;
+	
+	@media all and (max-width: 767px) {
+		padding-bottom: 50px;
+	}
+	
 }
 
 .material-slide {
@@ -19,9 +25,9 @@
 
 	.slide__content {
 
-		@media screen and (min-width: 769px) {
+		/*@media screen and (min-width: 769px) {
 			height: calc(100% - 60px);
-		}
+		}*/
 
 		&.slider-loaded {
 
@@ -133,7 +139,7 @@
 	.content__right {
 		float: left;
 		padding: 150px 0 195px;
-		width: 50%;
+		width: 47%;
 
 		@media screen and (max-width: 768px) {
 			padding: 25px 0 0;
@@ -147,6 +153,7 @@
 
 		@media screen and (max-width: 768px) {
 			padding-right: 0;
+			padding-top: 50px;
 			text-align: center;
 			-webkit-transform: none;
 			transform: none;

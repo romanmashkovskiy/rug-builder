@@ -1,5 +1,4 @@
 *.log
-.htaccess
 
 #wp-config.production.php
 wp-config.staging.php
