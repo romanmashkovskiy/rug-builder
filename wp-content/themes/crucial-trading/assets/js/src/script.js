@@ -27,7 +27,12 @@ $(document).ready(function() {
 		}
 	}
 
-	
+	// Headroom
+
+	$('.top-bar').headroom({
+		offset : 50,
+		tolerance : 5
+	})
 
 	// Fade Out WC Basket Notice
 
