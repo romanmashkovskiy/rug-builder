@@ -34,6 +34,30 @@ $(document).ready(function() {
 		tolerance : 5
 	})
 
+	if ( $('body').hasClass('page-template-home') ) {
+
+		var observer = new MutationObserver(function(mutations) {
+
+			mutations.forEach(function(mutation) {
+				
+				if ( $('.top-bar').hasClass('headroom--not-top') && $('.top-bar').hasClass('headroom--pinned') ) {
+					$('.full-logo').attr('src', 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174004/logo.svg');
+					$('.mobi-logo').attr('src', 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174002/logo-mobile.svg');
+				} else {
+					$('.full-logo').attr('src', 'http://d105txpzekqrfa.cloudfront.net/uploads/20170125174752/logo-black.svg');
+					$('.mobi-logo').attr('src', 'http://d105txpzekqrfa.cloudfront.net/uploads/20170125174756/logo-mobile-black.svg');
+				}
+			});    
+		});
+
+		var observerConfig = {
+			attributes: true
+		};
+
+		var targetNode = document.querySelector('.top-bar');
+		observer.observe(targetNode, observerConfig);
+	}
+
 	// Fade Out WC Basket Notice
 
 	if ( $('.woocommerce-message').length > 0 ) {
