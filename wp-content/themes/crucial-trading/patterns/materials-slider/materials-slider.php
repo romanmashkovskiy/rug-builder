@@ -68,8 +68,8 @@ function materials_slider() {
 			$all_materials .= '<li data-slide="' . $i . '"><img src="' . $mat_src . '" alt="' . $mat_alt . '" class="' . $active_class . ' transition-all"></li>';
 		}
 
-		$html .= '<div class="materials-slider-container">';
-		$html .= '<ul class="materials-slider">';
+		$html .= '<div class="materials-slider-container" style="height:675px;">';
+		$html .= '<ul class="materials-slider vertical-align">';
 
 		for ( $i2=0; $i2 < count( $categories ); $i2++ ) {
 
@@ -97,11 +97,10 @@ function materials_slider() {
 			$html .= $all_materials;
 			$html .= '</ul>';
 
-			$html .= '<div class="slide__content clearfix">';
-			$html .= '<div class="content__left vertical-align">';
+			$html .= '<div class="slide__content"><div class="content__left">';
 			$html .= '<img src="' . $icon . '" alt="' . $alt . '">';
 			$html .= '</div>';
-			$html .= '<div class="content__right vertical-align ' . $alt . '">';
+			$html .= '<div class="content__right ' . $alt . '">';
 			$html .= '<h3>True Survivor</h3>';
 			$html .= '<h1>' . $title . '</h1>';
 			$html .= '<p>' . $subtitle . '</p>';
