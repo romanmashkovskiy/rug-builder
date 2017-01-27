@@ -168,6 +168,32 @@ function startSlider() {
 		slider.goToSlide(newMatIndex);
 	}
 
+	$('.range__goto').on('click', function(e) {
+
+		e.preventDefault();
+		e.stopPropagation();
+
+		var index = $(this).parent().data('index');
+
+		slider.goToSlide(index);
+
+		var newSlideIndex = slider.getCurrentSlide();
+		var newSlide      = $('#material-view-slider-list').children()[ newSlideIndex ];
+		var newSlug       = $(newSlide).data('slug');
+		var currentUrl    = window.location.href;
+		var swatchesIndex = currentUrl.indexOf('/swatches');
+		var swatchesEnd   = swatchesIndex + 10;
+		var endSubstr     = currentUrl.substr(swatchesEnd);
+		var slashIndex    = endSubstr.indexOf('/');
+		var urlEnd        = swatchesEnd + slashIndex + 1;
+		var urlBase       = currentUrl.substr(0, urlEnd);
+		var newUrl        = urlBase + newSlug + '/';
+
+		window.history.pushState(null, '', newUrl);
+
+		return false;
+	})
+
 	$('.bx-prev').addClass('no-effect');
 	$('.bx-next').addClass('no-effect');
 

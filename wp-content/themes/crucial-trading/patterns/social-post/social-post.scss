@@ -27,19 +27,22 @@
 		}
 
 		.info {
-			//margin-top: 365px;
-			padding: 0 20px 0 60px;
-			position: absolute;
+			background: rgba(0,0,0,0.25);
 			bottom: 50px;
+			left: 5%;
+			padding: 10px;
+			position: absolute;
 			text-align: left;
+			width: 90%;
 
 			h2 {
 				color: white;
-				font-size: 30px;
+				font-size: 26px;
+				line-height: 1.4;
 			}
 
 			h3 {
-				color: #DDDDDD;
+				color: #eeeeee;
 			}
 		}
 	}
