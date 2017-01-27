@@ -11,6 +11,34 @@ $(document).ready(function() {
 
 		window.location.hash = content;
 
+		switch ( content ) {
+
+			case 'social' :
+				$('.inspiration__photos').hide();
+				$('.inspiration__videos').hide();
+				$('.inspiration__social').show();
+				break;
+
+			case 'room-shots' :
+				$('.inspiration__social').hide();
+				$('.inspiration__videos').hide();
+				$('.inspiration__photos').show();
+
+				$('.grid').masonry({
+					itemSelector    : '.grid-item',
+					percentPosition : true
+				});
+
+				break;
+
+			case 'videos' :
+				$('.inspiration__photos').hide();
+				$('.inspiration__social').hide();
+				$('.inspiration__videos').show();
+				break;
+
+		}
+
 		return false;
 	});
 })

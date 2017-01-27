@@ -18,3 +18,32 @@ function get_insta() {
 
 }
 
+function extract_instagram_image( $post ) {
+
+	$images = isset( $post->images ) ? $post->images : false;
+
+	if ( !$images ) {
+		return false;
+	}
+
+	if ( isset( $images->standard_resolution ) && isset( $images->standard_resolution->url ) ) {
+		return $images->standard_resolution->url;
+	}
+
+	if ( isset( $images->low_resolution ) && isset( $images->low_resolution->url ) ) {
+		return $images->low_resolution->url;
+	}
+
+	if ( isset( $images->thumbnail ) && isset( $images->thumbnail->url ) ) {
+		return $images->thumbnail->url;
+	}
+
+	return false;
+
+}
+
+function extract_instagram_link( $post ) {
+
+	return isset( $post->link ) ? $post->link : false;
+
+}

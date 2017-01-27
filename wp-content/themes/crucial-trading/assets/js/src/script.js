@@ -53,23 +53,6 @@ $(document).ready(function() {
 	$('#user_login').attr('placeholder', 'Username or Email');
 	$('#user_pass').attr('placeholder', 'Password');
 
-	// Inspiration Page Extra Content
-
-	if ( $('body').hasClass('page-template-inspiration') || $('body').hasClass('page-template-home') ) {
-
-		$('.fts-twitter-link-image').each(function(i, e) {
-			$(e).append('<i class="icon-crucial-twitter"></i>');
-		});
-
-		$('.fts-instagram-wrapper').each(function(i, e) {
-			$(e).append('<i class="icon-crucial-instagram"></i>');
-		});
-
-		$('.fts-twitter-text').each(function(i, e) {
-			$(e).append('<div class="twitter-shadow"></div>');
-		});
-	}
-
 	// Close Add to Basket Confirmation Message
 
 	$(document).on('click', '#close-basket-popup', function(e) {
