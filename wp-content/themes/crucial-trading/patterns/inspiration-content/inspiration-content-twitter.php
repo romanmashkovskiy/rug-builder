@@ -26,9 +26,7 @@ function extract_twitter_image( $post ) {
 
 		if ( is_array( $media ) && count( $media ) > 0 ) {
 
-			$image = $media[0]->media_url_https;
-
-			return $image;
+			return $media[0]->media_url_https;
 
 		}
 
@@ -44,9 +42,7 @@ function extract_twitter_image( $post ) {
 
 		if ( is_array( $r_media ) && count( $r_media ) > 0 ) {
 
-			$r_image = $r_media[0]->media_url_https;
-
-			return $r_image;
+			return $r_media[0]->media_url_https;
 
 		}
 

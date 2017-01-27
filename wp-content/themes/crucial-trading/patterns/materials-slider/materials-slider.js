@@ -4,11 +4,11 @@ $(document).ready(function() {
 
 	var slider = $('.materials-slider').bxSlider({
 		mode: 'fade',
-		onSliderLoad: function() {
-			setTimeout(function() {
-				$('.slide__content').addClass('vertical-align');
-			}, 100)
-		}
+//		onSliderLoad: function() {
+//			setTimeout(function() {
+//				$('.slide__content').addClass('vertical-align');
+//			}, 100)
+//		}
 	});
 
 	$('.next-slide.--material-slider').on('click', function() {
