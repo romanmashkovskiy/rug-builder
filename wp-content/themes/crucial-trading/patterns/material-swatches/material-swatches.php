@@ -57,7 +57,7 @@ function material_swatches( $atts = '' ) {
 				$src   = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'single-post-thumbnail' )[0];
 
 				$post_date     = $value->post_date;
-				$post_unix     = strtotime( $post_date );
+				$post_unix     = strtotime( $post_date ); 
 				$fourteen_days = strtotime( '-14 day', time() );
 
 				$new_circle = '';
