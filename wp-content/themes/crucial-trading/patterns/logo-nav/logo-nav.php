@@ -16,7 +16,7 @@ function logo_nav_shortcode( $atts = '' ) {
 
 	$html = '';
 	
-	$html .= '<div class="top-bar">';
+	$html .= '<div class="top-bar" offset="500">';
 
 	$html .= '<div class="top-bar__left vertical-align">';
 	$html .= '<a href="'.site_url().'">';

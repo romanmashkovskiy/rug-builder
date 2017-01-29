@@ -15,6 +15,49 @@ function showBasketPopup(success, productName) {
 
 $(document).ready(function() {
 
+	// Cookies & Video Autoplay
+
+	if ( $('body').hasClass('page-template-home') ) {
+
+		var cookieExists = Cookies.get('visited');
+
+		if ( typeof cookieExists === 'undefined' ) {
+			$('.html5lightbox').click();
+			Cookies.set('visited', 'true');
+		}
+	}
+
+	// Headroom
+
+	$('.top-bar').headroom({
+		offset : 50,
+		tolerance : 5
+	})
+
+	if ( $('body').hasClass('page-template-home') ) {
+
+		var observer = new MutationObserver(function(mutations) {
+
+			mutations.forEach(function(mutation) {
+				
+				if ( $('.top-bar').hasClass('headroom--not-top') && $('.top-bar').hasClass('headroom--pinned') ) {
+					$('.full-logo').attr('src', 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174004/logo.svg');
+					$('.mobi-logo').attr('src', 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174002/logo-mobile.svg');
+				} else {
+					$('.full-logo').attr('src', 'http://d105txpzekqrfa.cloudfront.net/uploads/20170125174752/logo-black.svg');
+					$('.mobi-logo').attr('src', 'http://d105txpzekqrfa.cloudfront.net/uploads/20170125174756/logo-mobile-black.svg');
+				}
+			});    
+		});
+
+		var observerConfig = {
+			attributes: true
+		};
+
+		var targetNode = document.querySelector('.top-bar');
+		observer.observe(targetNode, observerConfig);
+	}
+
 	// Fade Out WC Basket Notice
 
 	if ( $('.woocommerce-message').length > 0 ) {
@@ -52,23 +95,6 @@ $(document).ready(function() {
 
 	$('#user_login').attr('placeholder', 'Username or Email');
 	$('#user_pass').attr('placeholder', 'Password');
-
-	// Inspiration Page Extra Content
-
-	if ( $('body').hasClass('page-template-inspiration') || $('body').hasClass('page-template-home') ) {
-
-		$('.fts-twitter-link-image').each(function(i, e) {
-			$(e).append('<i class="icon-crucial-twitter"></i>');
-		});
-
-		$('.fts-instagram-wrapper').each(function(i, e) {
-			$(e).append('<i class="icon-crucial-instagram"></i>');
-		});
-
-		$('.fts-twitter-text').each(function(i, e) {
-			$(e).append('<div class="twitter-shadow"></div>');
-		});
-	}
 
 	// Close Add to Basket Confirmation Message
 

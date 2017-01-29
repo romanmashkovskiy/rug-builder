@@ -56,7 +56,18 @@ function material_swatches( $atts = '' ) {
 				$link  = get_the_permalink( $product_id );
 				$src   = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'single-post-thumbnail' )[0];
 
+				$post_date     = $value->post_date;
+				$post_unix     = strtotime( $post_date );
+				$fourteen_days = strtotime( '-14 day', time() );
+
+				$new_circle = '';
+
+				if ( $post_unix > $fourteen_days ) {
+					$new_circle = '<div class="new-product">New</div>';
+				}
+
 				echo '<div class="swatch">';
+				echo $new_circle;
 				echo '<a href="' . $link  . '" class="no-effect">';
 				echo '<h3 class="vertical-align">' . $title . '</h3>';
 

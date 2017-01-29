@@ -8,7 +8,7 @@
 	text-align: center;
 	top: -40px;
 	width: 80%;
-	z-index: 99;
+	z-index: 999;
 }
 
 .insp-menu__list {
@@ -21,8 +21,17 @@
 .insp-menu__item {
 	display: table-cell;
 	text-align: center;
+
+	@media screen and (max-width: 992px) {
+		display: block;
+		margin-bottom: 7.5px;
+	}
 }
 
 .insp-menu__title {
 	color: #aaaaaa;
+
+	@media screen and (max-width: 555px) {
+		font-size: 14px;
+	}
 }

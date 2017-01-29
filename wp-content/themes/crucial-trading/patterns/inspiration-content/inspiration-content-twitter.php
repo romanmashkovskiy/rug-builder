@@ -26,9 +26,7 @@ function extract_twitter_image( $post ) {
 
 		if ( is_array( $media ) && count( $media ) > 0 ) {
 
-			$image = $media[0]->media_url_https;
-
-			return $image;
+			return $media[0]->media_url_https;
 
 		}
 
@@ -39,17 +37,51 @@ function extract_twitter_image( $post ) {
 		$r_media    = $r_entities && isset( $r_entities->media ) ? $r_entities->media : false;
 
 		if ( !$r_media ) {
-			return '';
+			return false;
 		}
 
 		if ( is_array( $r_media ) && count( $r_media ) > 0 ) {
 
-			$r_image = $r_media[0]->media_url_https;
-
-			return $r_image;
+			return $r_media[0]->media_url_https;
 
 		}
 
 	}
+
+}
+
+function extract_twitter_text( $post ) {
+
+	return isset( $post->full_text ) ? substr( $post->full_text, 0, 75 ) . '...' : '';
+
+}
+
+function extract_twitter_time( $post ) {
+
+	$posted_unix = $post->created_time;
+	$now_unix    = time();
+	$difference  = $now_unix - $posted_unix;
+
+	$mins_ago  = round( abs( $difference ) / 60 );
+	$hours_ago = round( $mins_ago / 60 );
+	$days_ago  = round( $hours_ago / 24 );
+
+	if ( $days_ago > 0 ) {
+		return  "$days_ago days ago";
+	} else if ( $hours_ago > 0 ) {
+		return  "$hours_ago hours ago";
+	} else {
+		return  "$mins_ago minutes ago";
+	}
+}
+
+function extract_twitter_link( $post ) {
+
+	$entities = isset( $post->entities ) ? $post->entities : false;
+	$urls     = $entities && isset( $entities->urls ) ? $entities->urls : false;
+	$urls0    = $urls && is_array( $urls ) && count( $urls ) > 0 ? $urls[0] : false;
+	$url      = $urls0 && isset( $urls0->url ) ? $urls0->url : false;
+
+	return $url;
 
 }

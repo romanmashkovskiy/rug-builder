@@ -1,0 +1,213 @@
+.page-template-inspiration {
+
+	.inspiration-content {
+		margin-top: -105px;
+
+		@media screen and (max-width: 992px) {
+			margin-top: -178px;
+		}
+	}
+
+	.inspiration__social {
+		position: relative;
+
+		.timeline__centre-line,
+		.timeline__event__line {
+
+			@media screen and (max-width: 768px) {
+				display: none;
+			}
+		}
+	}
+
+	.social__posts {
+		background: #383838;
+		padding-bottom: 150px;
+
+		@media screen and (max-width: 992px) {
+			padding-bottom: 223px;
+		}
+	}
+
+	.timeline__event {
+		display: inline-block;
+		float: none;
+		margin-bottom: 50px;
+		padding-left: 6%;
+		padding-right: 6%;
+		top: 160px;
+		z-index: 999;
+
+		@media screen and (max-width: 992px) {
+			top: 233px;
+		}
+
+		@media screen and (max-width: 768px) {
+			display: block;
+			width: 100%;
+		}
+
+		&:nth-child(even),
+		&:nth-child(odd) {
+			margin-top: 0;
+		}
+
+		&:nth-child(even) {
+//			top: 160px;
+
+			& i {
+				left: calc(12% + 40px);
+			}
+		}
+
+		&:nth-child(odd) {
+//			top: 110px;
+
+			& i {
+				right: calc(12% + 40px);
+			}
+		}
+
+		i {
+			color: white;
+			position: absolute;
+			top: 40px;
+			z-index: 4;
+		}
+	}
+
+	.timeline__event.twitter-post {
+
+		.twitter__image {
+			box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.5);
+			object-fit: cover;
+			position: relative;
+			width: 100%;
+			z-index: 1;
+		}
+
+		.twitter__text,
+		.twitter__time,
+		.twitter__link {
+			left: calc(12% + 40px);
+			right: calc(12% + 40px);
+			position: absolute;
+		}
+
+		.twitter__text {
+			bottom: 120px;
+			color: white;
+			font-size: 22px;
+			line-height: 1.4;
+			z-index: 3;
+
+			@media screen and (max-width: 400px) {
+				font-size: 16px;
+			}
+		}
+
+		.twitter__time,
+		.twitter__link {
+			color: #eeeeee;
+			z-index: 3;
+		}
+
+		.twitter__time {
+			bottom: 75px;
+		}
+
+		.twitter__link {
+			bottom: 40px;
+			padding: 0;
+		}
+
+		.twitter__shadow {
+			background: rgba(0,0,0,0.3);
+			left: calc(12% + 30px);
+			position: absolute;
+			right: calc(12% + 30px);
+			top: 0;
+			z-index: 2;
+
+			&.has-link {
+				bottom: 40px;
+			}
+
+			&.no-link {
+				bottom: 75px;
+			}
+		}
+	}
+
+	.timeline__event.insta-post {
+
+		.insta__link {
+			display: block;
+			height: 100%;
+			padding: 0;
+			width: 100%;
+		}
+	}
+
+	.inspiration__photos {
+		background: #383838;
+		display: none;
+		padding: 105px 6% 0;
+
+		h2 {
+			color: white;
+			padding: 25px 0;
+		}
+	}
+
+	.grid-item {
+		margin-bottom: 30px;
+		padding: 0 15px;
+		width: 33%;
+
+		@media screen and (max-width: 992px) {
+			width: 50%;
+		}
+
+		@media screen and (max-width: 550px) {
+			width: 100%;
+		}
+
+		img {
+			object-fit: cover;
+		}
+	}
+
+	.inspiration__videos {
+		background: #383838;
+		display: none;
+		padding: 105px 6% 0;
+
+		h2 {
+			color: white;
+			padding: 25px 0;
+		}
+
+		.video {
+			margin-bottom: 100px;
+			position: relative;
+
+			a {
+				background: white;
+				color: black;
+				left: 50%;
+				line-height: 0;
+				padding: 25px;
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+
+		img {
+			object-fit: cover;
+			width: 100%;
+		}
+	}
+
+}

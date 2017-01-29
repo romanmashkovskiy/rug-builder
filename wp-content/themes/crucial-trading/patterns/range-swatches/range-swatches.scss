@@ -21,6 +21,7 @@
 		height: 130px;
 		margin-bottom: 20px; 
 		padding: 10px 20px;
+		position: relative;
 		transition: all .25s ease-in-out;
 		-webkit-transition: all .25s ease-in-out;
 		width: 32%;
@@ -108,4 +109,24 @@
 
 .swatches .swatches__back a:hover {
 	opacity: 1;
+}
+
+// New Product Circle
+
+.new-product {
+	position: absolute;
+	top: 0;
+	left: 0;
+	line-height: 1;
+	transform: translate(-26%,-50%);
+	background: #383838;
+	color: white;
+	height: 42px;
+	width: 42px;
+	border-radius: 50%;
+	padding-top: 14px;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: $font-sub-header;
+	font-size: 12px;
 }

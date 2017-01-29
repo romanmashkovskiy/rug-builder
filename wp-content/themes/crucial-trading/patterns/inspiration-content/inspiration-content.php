@@ -5,6 +5,12 @@
  * The menu for the inspiration page
  *
  * Contents:
+ * Social - Content
+ * Social - HTML
+ * Photos - Content
+ * Photos - HTML
+ * Videos - Content
+ * Videos - HTML
  *
  * @package Crucial Trading
  * @since Crucial Trading 1.0
@@ -14,6 +20,8 @@ require_once( get_template_directory() . '/patterns/inspiration-content/inspirat
 require_once( get_template_directory() . '/patterns/inspiration-content/inspiration-content-insta.php' );
 
 function inspiration_content() {
+
+	// Social - Content
 
 	$tweets = get_twitter();
 	$instas = get_insta();
@@ -41,43 +49,70 @@ function inspiration_content() {
 
 	usort( $social, 'cmp' );
 
+	// Social - HTML
+
 	$html = '';
 
 	$html .= '<div class="inspiration-content">';
 
-	// Social
-
 	$html .= '<div class="inspiration__social">';
 	$html .= '<div class="timeline__centre-line"></div>';
-	$html .= '<div class="social__posts">';
+	$html .= '<div class="social__posts clearfix">';
 
-	foreach ( $social as $key => $social_post ) {
-
-		$image = '';
-		$text  = '';
-		$time  = '';
-		$link  = '';
-
-		if ( $social_post->from == 'Twitter' ) {
-
-			$image = extract_twitter_image( $social_post );
-
-		} else {
-
-
-
-		}
-
-		$html .= "<div class='timeline__event' style='z-index:999;'>";
-		$html .= "<img src='$image'>";
-		$html .= "</div>'";
-
-	}
+	include get_template_directory() . '/patterns/inspiration-content/inspiration-content-social.php';
 
 	$html .= '</div>';
 	$html .= '</div>';
 
-	// Photos
+	// Photos - Content
+
+	$photo_args = array(
+		'post_type' => 'inspiration',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'inspiration_type',
+				'field'    => 'slug',
+				'terms'    => 'room-shot',
+			),
+		),
+		'orderby' => 'menu_order',
+		'order'   => 'ASC',
+	);
+
+	$photo_query = new WP_Query( $photo_args );
+	$photos      = $photo_query->posts;
+
+	// Photos - HTML
+
+	$html .= '<div class="inspiration__photos">';
+
+	include get_template_directory() . '/patterns/inspiration-content/inspiration-content-photos.php';
+
+	$html .= '</div>';
+
+	// Videos - Content
+
+	$video_args = array(
+		'post_type' => 'inspiration',
+		'tax_query' => array(
+			array(
+				'taxonomy' => 'inspiration_type',
+				'field'    => 'slug',
+				'terms'    => 'video',
+			),
+		),
+		'orderby' => 'menu_order',
+		'order'   => 'ASC',
+	);
+
+	$video_query = new WP_Query( $video_args );
+	$videos      = $video_query->posts;
+
+	// Videos - HTML
+
+	$html .= '<div class="inspiration__videos">';
+
+	include get_template_directory() . '/patterns/inspiration-content/inspiration-content-videos.php';
 
 	$html .= '</div>';
 

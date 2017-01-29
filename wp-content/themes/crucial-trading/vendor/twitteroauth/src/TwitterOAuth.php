@@ -460,6 +460,10 @@ class TwitterOAuth extends Config
      */
     private function pharRunning()
     {
-        return class_exists('Phar') && !empty(\Phar::running(false));
+    	if ( !isset($Phar) ) {
+    		return false;
+    	}
+    	$phar_running = $Phar::running(false);
+    	return class_exists('Phar') && !empty($phar_running);
     }
 }
