@@ -44,6 +44,7 @@ body {
 	-webkit-transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 	z-index: 9999;
+	border-left: 1px solid #3e3e3e;
 	
 	@media all and (max-width: 1024px) {
 		padding-top: 10px;
@@ -68,7 +69,9 @@ body {
 .show-menu .main-menu__wrap {
 	transform: translate3d(0,0,0);
 	transition: transform 0.65s;
+	//transition-timing-function: cubic-bezier(0.55,0,0.5,1);
 	transition-timing-function: cubic-bezier(0.55,0,0.5,1);
+
 }
 
 .show-menu .main-menu__button--wrap {
@@ -95,6 +98,19 @@ body {
 		transition: transform 0.65s;
 		transition-timing-function: cubic-bezier(0.55,0,0.5,1);
 	}
+}
+
+/*** Menu Fade In Animation ***/
+
+.main-menu__top,
+.main-menu__bottom {
+	transition: opacity 1.80s;
+	opacity: 0;
+}
+
+.show-menu .main-menu__top,
+.show-menu .main-menu__bottom {
+	opacity: 1;
 }
 
 /************** Menu Links - General **************/ 
