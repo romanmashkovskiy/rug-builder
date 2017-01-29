@@ -15,7 +15,14 @@ body {
 	font-family: $font-copy;
 	color: $copy-colour;
 	line-height: 2;
+	
+	@media all and (min-width: 1300px) {
+		font-size: 18px;
+		line-height: 2.1;
+	}
+	
 }
+
 
 /**************************************************************
 Links & special Link underline base styles
@@ -87,7 +94,7 @@ a.no-effect::after {
 **************************************************************/
 
 p {
-	@include typography-standards(#252525, $font-copy, 16px, 0px);
+	@include typography-standards(#252525, $font-copy, 18px, 0px);
 
 	@media screen and (max-width: 555px) {
 		font-size: 16px;
