@@ -37,7 +37,7 @@ function collection_swatches( $atts = '' ) {
 
 		$query = new WP_Query( $args );
 
-		$html .= '<div class="collection-swatches box-shadow clearfix">';
+		$html .= '<div class="collection-swatches swatches box-shadow clearfix">';
 		$html .= '<h3 class="collection__title">' . $title . '</h3>';
 		$html .= '<div class="swatch-container">';
 

@@ -45,11 +45,11 @@ function header_shortcode($atts = '') {
 
 	$html = '';
 
-	if (!empty($background)) :
-		$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
-	else : 
+	//if (!empty($background)) :
+		//$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
+	//else : 
 		$html .= '<header class="' . $header_size . '">';
-	endif;
+	//endif;
 	
 	$html .= '<div class="header__text vertical-align">';
 	$html .= '<h3 class="side-title">' . $title . '</h3>';
@@ -72,9 +72,9 @@ function header_shortcode($atts = '') {
 	$html .= '</div>';
 	
 	// Add dark image overlay if $atts set to true 
-	if (!empty($header_overlay) && (!empty($background)) ) : 
-		$html .= '<div class="header__overlay"></div>';
-	endif;
+	//if (!empty($header_overlay) && (!empty($background)) ) : 
+		//$html .= '<div class="header__overlay"></div>';
+	//endif;
 	
 	$html .= '</header>';
 
