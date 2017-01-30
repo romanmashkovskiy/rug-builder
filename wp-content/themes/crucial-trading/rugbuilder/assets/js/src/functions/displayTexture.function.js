@@ -9,7 +9,7 @@
  * @param (Object) maps        The object that contains the bump, normal, and displacement maps
  */
 
-RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps) {
+RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps, stitching) {
 
 	// If the thumbObj is undefined or null return as there is nothing to display on the rug
 	if ( thumbObj === undefined || thumbObj === null ) {
@@ -122,14 +122,18 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 				R[stageObj] = swatch;
 			}
 
-			console.log(R.scene.children)
-
 			for ( let i = 0; i < R.scene.children.length; i++ ) {
 				
 				if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 					R.scene.children[i].material = R.loadedTextures[swatch];
 					_loadMaps(R.scene.children[i].material, maps);
+
+					
 				}
+			}
+
+			if ( stageCode === 2 ) {
+				_setStitchingColor(stitching)
 			}
 
 			R.loadingScreens('full', 'close');
@@ -153,6 +157,10 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 				R.scene.children[i].material = R.loadedTextures[swatch];
 				_loadMaps(R.scene.children[i].material, maps);
 			}
+		}
+
+		if ( stageCode === 2 ) {
+			_setStitchingColor(stitching)
 		}
 		
 		R.loadingScreens('full', 'close');
@@ -215,4 +223,28 @@ function _loadMaps(material, maps) {
 	}
 
 	return false;
+}
+
+/*
+ * Set Stitching Colors
+ * 
+ * Sets the color of the stitches on the rug
+ *
+ * @param (String) stitching   The hex code of the color to set the stitches to
+ *
+ * @return (Boolean) false
+ */
+
+
+function _setStitchingColor(stitching) {
+
+	const R = rugBuilder;
+
+	const HEX   = stitching.substr(1)
+	const COLOR = '0x' + HEX;
+
+	R.json[R.borderType].stitches.material.color.setHex(COLOR);
+
+	return false;
+
 }
