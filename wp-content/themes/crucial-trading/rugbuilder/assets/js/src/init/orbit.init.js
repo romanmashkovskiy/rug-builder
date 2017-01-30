@@ -10,4 +10,4 @@ RugBuilder.prototype.initOrbit = function() {
 
 	// Setup Orbit Controls max rotation
 	R.orbitControls.maxPolarAngle = Math.PI / 2 - 0.1;
-}
+} 
