@@ -16,7 +16,7 @@ function showBasketPopup(success, productName) {
 $(document).ready(function() {
 
 	// Cookies & Video Autoplay
-
+/*
 	if ( $('body').hasClass('page-template-home') ) {
 
 		var cookieExists = Cookies.get('visited');
@@ -26,7 +26,7 @@ $(document).ready(function() {
 			Cookies.set('visited', 'true');
 		}
 	}
-
+*/
 	// Headroom
 
 	$('.top-bar').headroom({

@@ -4,10 +4,6 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 		return;
 	}
 
-	if ( thumb.indexOf('-150x150') > -1 ) {
-		thumb = thumb.replace('-150x150', '');
-	}
-
 	if ( stageCode === 1 || stageCode === 4 ) {
 		return;
 	}
@@ -21,29 +17,44 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 	let stageObj3;
 	let sceneChildren;
 
+	if ( thumb.indexOf('-150x150') > -1 ) {
+		thumb = thumb.replace('-150x150', '');
+	}
+
 	switch (stageCode) {
 
-		case 0 : stageObj = 'centerMaterial'; sceneChildren = ['center']; break;
-		case 2 : 
+		case 0 :
 
-			if ( BORDER_TYPE === 'single' ) {
+			stageObj = 'centerMaterial';
+			sceneChildren = ['center'];
+			break;
 
-				stageObj      = 'borderMaterials';
-				stageObj2     = 'single';
-				sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west'];
-			}
-			else if ( BORDER_TYPE === 'piping' ) {
+		case 2 :
 
-				stageObj      = 'borderMaterials';
-				stageObj2     = 'piping';
-				sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
-			}
-			else {
+			switch (BORDER_TYPE) {
 
-				stageObj      = 'borderMaterials';
-				stageObj2     = 'double';
-				stageObj3     = 'inner';
-				sceneChildren = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west'];
+				case 'single' :
+
+					stageObj      = 'borderMaterials';
+					stageObj2     = 'single';
+					sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west'];
+					break;
+
+				case 'piping' :
+
+					stageObj      = 'borderMaterials';
+					stageObj2     = 'piping';
+					sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
+					break;
+
+				default :
+
+					stageObj      = 'borderMaterials';
+					stageObj2     = 'double';
+					stageObj3     = 'inner';
+					sceneChildren = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west'];
+					break;
+
 			}
 
 			break;
@@ -54,6 +65,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 			stageObj2     = 'double';
 			stageObj3     = 'outer';
 			sceneChildren = ['border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west'];
+			break;
 	}
 
 	if ( R.loadedTextures[swatch] === undefined ) {
@@ -173,29 +185,3 @@ function _loadMaps(material, maps) {
 
 	return;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
