@@ -5,8 +5,6 @@ var sliderInterval = setInterval(function() {
 		var numOfSlides = $($('.slidee')[0]).data('total');
 
 		if ( $('.slidee').length === numOfSlides ) {
-			console.log($('.slidee').length)
-			console.log(numOfSlides)
 			startSlider();
 		}
 	}
@@ -38,7 +36,7 @@ function startSlider() {
 		'</g>',
 		'</g>',
 		'</g>', 
-		'</svg>'
+		'</svg>' 
 	];
 
 	var startIndex;
@@ -91,8 +89,8 @@ function startSlider() {
 					newNext = 1;
 				}
 
-				$('#material-view-slider-prev-text h3').text(newPrev + '/' + total);
-				$('#material-view-slider-next-text h3').text(newNext + '/' + total);
+//				$('#material-view-slider-prev-text h3').text(newPrev + '/' + total);
+//				$('#material-view-slider-next-text h3').text(newNext + '/' + total);
 
 				$('#material-view-slider-prev-text h3').data('current', newCurrent);
 
