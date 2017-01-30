@@ -6,8 +6,6 @@ RugBuilder.prototype.initScene = function() {
 	R.scene.add(R.camera);
 	R.scene.add(R.lights.spotLight);
 	R.scene.add(R.lights.spotLight);
-//	R.scene.add(R.lights.ambientLight);
-	R.scene.add(R.lights.directionalLight);
 
 	// Append the Three.js Renderer's DOM Element to the body
 	document.body.appendChild(R.renderer.domElement);

@@ -7,9 +7,11 @@
  * @param (Object) thumbObj    The object that contains the thumbnail to display on the rug
  * @param (Number) stageCode   The current stage the user is on
  * @param (Object) maps        The object that contains the bump, normal, and displacement maps
+ * @param (String) stitching   The hex code to use for the color of the stitches
+ * @param (Object) repeat      The x and y repeat values to use for the texture
  */
 
-RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps, stitching) {
+RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps, stitching, repeat) {
 
 	// If the thumbObj is undefined or null return as there is nothing to display on the rug
 	if ( thumbObj === undefined || thumbObj === null ) {
@@ -23,6 +25,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 
 	const R = rugBuilder;
 
+	// Get the user's currently selected border type
 	const BORDER_TYPE = R.borderType;
 
 	let stageObj;
@@ -31,10 +34,12 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 	let sceneChildren;
 	let thumb;
 
+	// Extract the url of the thumbnail to display on the rug from the thumbObj object
 	Object.keys(thumbObj).map((key) => {
 		thumb = thumbObj[key]['url'];
 	});
 
+	// If the thumbnail is the 150x150 version then get the full size version
 	if ( thumb.indexOf('-150x150') > -1 ) {
 		thumb = thumb.replace('-150x150', '');
 	}
@@ -93,15 +98,24 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 			texture.anisotropy = R.renderer.getMaxAnisotropy();
 
-			if ( stageCode === 0 ) {
-				// Center
-				texture.repeat.set(7,7);
+			if ( repeat.x !== '' && repeat.y !== '' ) {
+				texture.repeat.set(repeat.x, repeat.y)
+			} else {
+
+				const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
+
+				if ( repeat.x !== '' ) {
+					texture.repeat.set(repeat.x, DEFAULT_VAL);
+				} else if ( repeat.y !== '' ) {
+					texture.repeat.set(DEFAULT_VAL, repeat.y);
+				} else {
+					texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
+				}
 			}
-			else if ( stageCode === 2 || stageCode === 3 ) {
-				// Border
-				texture.repeat.set(10,10);
-	//			texture.flipY = true;
-	//			texture.repeat.x = - 1;
+
+			if ( stageCode === 2 || stageCode === 3 ) {
+//				texture.flipY = true;
+//				texture.repeat.x = - 1;
 			}
 
 			let material = new THREE.MeshPhongMaterial( {

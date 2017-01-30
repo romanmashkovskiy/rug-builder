@@ -355,7 +355,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				});
 		},
 
-		updateSwatchChoice: function(swatch, thumb, id, maps, stitching) {
+		updateSwatchChoice: function(swatch, thumb, id, maps, stitching, repeat) {
 
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
@@ -378,7 +378,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 
 			// Update the actual rug
-			R.displayTexture(swatch, thumb, this.state.stage, maps, stitching);
+			R.displayTexture(swatch, thumb, this.state.stage, maps, stitching, repeat);
 		},
 
 		updateBorderChoice: function(border) {
@@ -679,6 +679,10 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 			const code   = CURRENT_SWATCH.code;
 			const thumb  = CURRENT_SWATCH.thumb;
 			const stitch = CURRENT_SWATCH.stitching;
+			const repeat = {
+				x : CURRENT_SWATCH.repeatx,
+				y : CURRENT_SWATCH.repeaty
+			};
 			
 			let maps = {};
 
@@ -697,7 +701,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 			// Create a BtnSwatchComponent for each swatch in the SWATCH object
 
-			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 		})
 	}
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
