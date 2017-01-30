@@ -21,6 +21,22 @@ function materials_data() {
 		$value->thumb = $thumb;
 	}
 
+	for ( $o = 0; $o < count( $res ); $o++ ) {
+
+		$material      = $res[$o];
+		$material_id   = $material->term_id;
+		$material_meta = get_option( "category_$material_id" );
+
+		$material->order = array_key_exists( 'menu_order', $material_meta ) ? $material_meta['menu_order'] : 0;
+
+	}
+
+	function cmp( $a, $b ) {
+		return $a->order - $b->order;
+	}
+
+	usort( $res, 'cmp' );
+
 	return $res;
 }
 
