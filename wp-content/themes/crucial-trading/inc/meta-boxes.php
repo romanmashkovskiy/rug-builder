@@ -35,6 +35,39 @@ function meta_boxes($meta_boxes) {
 				'type'        => 'divider',
 			),
 			array(
+				'name'     => 'Texture Repeat X',
+				'id'       => 'rb_repeat_x',
+				'type'        => 'number',
+				'priority' => 'high',
+			),
+			array(
+				'name'     => 'divider',
+				'id'       => 'divider',
+				'type'        => 'divider',
+			),
+			array(
+				'name'     => 'Texture Repeat Y',
+				'id'       => 'rb_repeat_y',
+				'type'        => 'number',
+				'priority' => 'high',
+			),
+			array(
+				'name'     => 'divider',
+				'id'       => 'divider',
+				'type'        => 'divider',
+			),
+			array(
+				'name'     => 'Stitching Colour',
+				'id'       => 'rb_stitching_colour',
+				'type'        => 'color',
+				'priority' => 'high',
+			),
+			array(
+				'name'     => 'divider',
+				'id'       => 'divider',
+				'type'        => 'divider',
+			),
+			array(
 				'name'     => 'Bump Map',
 				'id'       => 'rb_bump_map',
 				'type'        => 'image_advanced',

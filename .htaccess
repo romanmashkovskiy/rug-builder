@@ -13,12 +13,22 @@ Header set X-Content-Type-Options: "nosniff"
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
+RewriteRule . - [E=rwbase:/]
+RewriteCond %{HTTP_HOST} localhost$
+RewriteRule . - [E=rwbase:crucial/]
+RewriteCond %{HTTP_HOST} localhost:8888$
+RewriteRule . - [E=rwbase:crucial-trading/]
+RewriteCond %{HTTP_HOST} vps.89hosting.co.uk$
+RewriteRule . - [E=rwbase:~crucialtrading/]
+RewriteCond %{HTTP_HOST} crucialtrading-env-test.eu-west-1.elasticbeanstalk.com$
+RewriteRule . - [E=rwbase:]
+
 RewriteEngine On
-RewriteBase /crucial/
+RewriteBase /%{ENV:rwbase}
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /crucial/index.php [L]
+RewriteRule . /%{ENV:rwbase}index.php [L]
 </IfModule>
 
 # END WordPress
