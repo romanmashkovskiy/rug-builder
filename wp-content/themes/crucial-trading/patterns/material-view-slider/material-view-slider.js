@@ -37,7 +37,7 @@ function startSlider() {
 		'<path d="M0,57.6057312 L28.6057312,29" id="Line"/>',
 		'</g>',
 		'</g>',
-		'</g>',
+		'</g>', 
 		'</svg>'
 	];
 
