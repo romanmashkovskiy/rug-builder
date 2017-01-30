@@ -8,7 +8,8 @@ RugBuilder.prototype.initThree = function() {
 	// Create the Three.js Scene, Renderer, and Camera
 	const SCENE    = new THREE.Scene();
 	const RENDERER = new THREE.WebGLRenderer({
-	    preserveDrawingBuffer: true 
+	    preserveDrawingBuffer: true,
+	    antialias: true
 	});
 	const CAMERA   = new THREE.PerspectiveCamera(
 		CAMERA_OPTIONS.viewAngle,
