@@ -212,6 +212,8 @@ class RugBuilder {
 
 	changeView(currentView) {
 
+		this.camera.zoom = 1;
+
 		if ( currentView === 0 ) {
 
 			// Change to above horizontal
