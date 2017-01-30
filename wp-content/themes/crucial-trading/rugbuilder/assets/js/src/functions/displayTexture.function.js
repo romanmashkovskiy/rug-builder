@@ -97,7 +97,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 
 			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 			texture.anisotropy = R.renderer.getMaxAnisotropy();
-			texture.generateMipmaps = false;
+			texture.generateMipmaps = true;
 
 			if ( repeat.x !== '' && repeat.y !== '' ) {
 				texture.repeat.set(repeat.x, repeat.y)
