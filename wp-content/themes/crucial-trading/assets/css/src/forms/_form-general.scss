@@ -73,24 +73,23 @@ select {
 	padding: 7px 15px;
 }
 
-button:not(.main-menu__button),
+button, 
 input[type="submit"],
 a.checkout-button.button {
-	background: #383838 !important;
-	border: none !important;
-	border-radius: 0 !important;
-	box-shadow: none !important;
+	background-color: #383838;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
 	color: white !important;
-	font-family: $font-sub-header !important;
-	font-size: 14px !important;
-	height: 45px !important;
-	letter-spacing: 3px !important;
-	padding-bottom: 8px !important;
-	text-shadow: none !important;
-	text-transform: uppercase !important;
+	font-family: $font-sub-header;
+	font-size: 14px;
+	height: 45px;
+	letter-spacing: 3px;
+	text-shadow: none;
+	text-transform: uppercase;
 	-webkit-transition: all ease-in-out 0.25s;
 	transition: all ease-in-out 0.25s;
-	width: 220px !important;
+	width: 220px;
 
 	@media screen and (max-width: 446px) {
 		width: 100% !important;
@@ -99,5 +98,5 @@ a.checkout-button.button {
 
 button:hover, 
 input[type="submit"]:hover {
-	background: lighten(#383838, 20%);	
+	background: lighten(#383838, 15%);	
 }
