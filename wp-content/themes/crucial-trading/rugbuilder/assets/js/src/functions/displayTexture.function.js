@@ -1,6 +1,6 @@
-RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
+RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps) {
 
-	if ( thumb === undefined || thumb === null ) {
+	if ( thumbObj === undefined || thumbObj === null ) {
 		return;
 	}
 
@@ -16,6 +16,12 @@ RugBuilder.prototype.displayTexture = function(swatch, thumb, stageCode, maps) {
 	let stageObj2;
 	let stageObj3;
 	let sceneChildren;
+	let thumb;
+
+	Object.keys(thumbObj).map((key) => {
+		console.log(key)
+		thumb = thumbObj[key]['url'];
+	});
 
 	if ( thumb.indexOf('-150x150') > -1 ) {
 		thumb = thumb.replace('-150x150', '');
