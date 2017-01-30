@@ -274,63 +274,15 @@ class RugBuilder {
 
 	zoomIn(currentView) {
 
-		const CURRENT_ZOOM_X = this.camera.position.x;
-		const CURRENT_ZOOM_Y = this.camera.position.y;
-		const CURRENT_ZOOM_Z = this.camera.position.z;
+		const CURRENT_ZOOM = this.camera.zoom;
+		const NEW_ZOOM     = CURRENT_ZOOM + 0.333333;
 
-		console.log(CURRENT_ZOOM_X + ' ' + CURRENT_ZOOM_Y + ' ' + CURRENT_ZOOM_Y + ' ' + this.camera.rotation.x + ' ' + this.camera.rotation.y + ' ' + this.camera.rotation.z)
-
-		let maxZoomX, maxZoomY, maxZoomZ, newZoomX, newZoomY, newZoomZ, valid = true;
-
-		if ( currentView === 0 || currentView === 1 ) {
-			maxZoomX = 0;
-			maxZoomY = 20;
-			maxZoomZ = 0;
-
-			newZoomX = 0;
-			newZoomY = CURRENT_ZOOM_Y - 30;
-			newZoomZ = 0;
-
-			if ( newZoomY < maxZoomY ) {
-				valid = false;
-			}
-		}
-		else if ( currentView === 2 ) {
-			maxZoomX = -5;
-			maxZoomY = 22.8673200406;
-			maxZoomZ = 33.526583016;
-
-			newZoomX = CURRENT_ZOOM_X - 15;
-			newZoomY = CURRENT_ZOOM_Y - 15;
-			newZoomZ = CURRENT_ZOOM_Z - 15;
-
-			if ( ( newZoomX < maxZoomX ) || ( newZoomY < maxZoomY ) || ( newZoomZ < maxZoomZ ) ) {
-				valid = false;
-			}
-		}
-		else if ( currentView === 3 ) {
-			maxZoomX = 10;
-			maxZoomY = 71.9786827047;
-			maxZoomZ = 0;
-
-			newZoomX = CURRENT_ZOOM_X + 15;
-			newZoomY = CURRENT_ZOOM_Y - 15;
-			newZoomZ = 0;
-
-			if ( ( newZoomX > maxZoomX ) || ( newZoomY < maxZoomY ) ) {
-				valid = false;
-			}
+		if ( NEW_ZOOM > 3.33 ) {
+			return;
 		}
 
-		if ( !valid ) {
-			return false;
-		}
-
-		this.camera.position.x = newZoomX;
-		this.camera.position.y = newZoomY;
-		this.camera.position.z = newZoomZ;
-
-		console.log(newZoomX + ' ' + newZoomY + ' ' + newZoomZ + ' ' + this.camera.rotation.x + ' ' + this.camera.rotation.y + ' ' + this.camera.rotation.z)
+		this.camera.zoom = NEW_ZOOM;
+		this.camera.updateProjectionMatrix();
 
 		return true;
 	};
@@ -339,59 +291,15 @@ class RugBuilder {
 
 	zoomOut(currentView) {
 
-		const CURRENT_ZOOM_X = this.camera.position.x;
-		const CURRENT_ZOOM_Y = this.camera.position.y;
-		const CURRENT_ZOOM_Z = this.camera.position.z;
-		
-		let maxZoomX, maxZoomY, maxZoomZ, newZoomX, newZoomY, newZoomZ, valid = true;
+		const CURRENT_ZOOM = this.camera.zoom;
+		const NEW_ZOOM     = CURRENT_ZOOM - 0.333333;
 
-		if ( currentView === 0 || currentView === 1 ) {
-			maxZoomX = 0;
-			maxZoomY = 200;
-			maxZoomZ = 0;
-
-			newZoomX = 0;
-			newZoomY = CURRENT_ZOOM_Y + 30;
-			newZoomZ = 0;
-
-			if ( newZoomY > maxZoomY ) {
-				valid = false;
-			}
-		}
-		else if ( currentView === 2 ) {
-			maxZoomX = 85;
-			maxZoomY = 112.8673200406;
-			maxZoomZ = 123.526583016;
-
-			newZoomX = CURRENT_ZOOM_X + 15;
-			newZoomY = CURRENT_ZOOM_Y + 15;
-			newZoomZ = CURRENT_ZOOM_Z + 15;
-
-			if ( ( newZoomX > maxZoomX ) || ( newZoomY > maxZoomY ) || ( newZoomZ > maxZoomZ ) ) {
-				valid = false;
-			}
-		}
-		else if ( currentView === 3 ) {
-			maxZoomX = -80;
-			maxZoomY = 161.9786827047;
-			maxZoomZ = 0;
-
-			newZoomX = CURRENT_ZOOM_X - 15;
-			newZoomY = CURRENT_ZOOM_Y + 15;
-			newZoomZ = 0;
-
-			if ( ( newZoomX < maxZoomX ) || ( newZoomY > maxZoomY ) ) {
-				valid = false;
-			}
+		if ( NEW_ZOOM < 0.66 ) {
+			return;
 		}
 
-		if ( !valid ) {
-			return false;
-		}
-
-		this.camera.position.x = newZoomX;
-		this.camera.position.y = newZoomY;
-		this.camera.position.z = newZoomZ;
+		this.camera.zoom = NEW_ZOOM;
+		this.camera.updateProjectionMatrix();
 
 		return true;
 	};
