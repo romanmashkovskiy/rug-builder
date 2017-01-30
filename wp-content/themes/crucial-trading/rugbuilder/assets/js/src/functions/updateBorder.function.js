@@ -60,10 +60,6 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 function _loadFiles(files, R, folder, type) {
 
-	console.log(files)
-	console.log(folder)
-	console.log(type)
-
 	return new Promise((res, rej) => {
 
 		let objects = [];
@@ -98,7 +94,6 @@ function _loadFiles(files, R, folder, type) {
 				objects.push(object);
 				R.json[type][name] = object;
 
-				console.log(R.json[type][name])
 			}
 		}
 
@@ -140,8 +135,6 @@ function _loadFiles(files, R, folder, type) {
 
 function _updateScene(R, type) {
 
-	console.log('update scene')
-
 	return new Promise((res, rej) => {
 
 		const CHILDREN_LENGTH = R.scene.children.length;
@@ -149,8 +142,6 @@ function _updateScene(R, type) {
 		let firstMesh;
 
 		for ( let i = 0; i < CHILDREN_LENGTH; i++ ) {
-
-			console.log(R.scene.children[i].type)
 			
 			if ( R.scene.children[i].type === 'Mesh' ) {
 				firstMesh = i;
@@ -170,8 +161,6 @@ function _updateScene(R, type) {
 				R.scene.children[R.scene.children.length-1].material = R.loadedTextures[R.centerMaterial];
 			}
 		})
-
-		console.log(R.scene.children)
 
 		PubSub.publish('borderUpdate', type);
 
