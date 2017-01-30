@@ -5,6 +5,7 @@ RugBuilder.prototype.initOrbit = function() {
 	// Create new Three.js Orbit Controls
 	R.orbitControls = new THREE.OrbitControls( R.camera, R.renderer.domElement );
 
+	// Disable mouse zoom as it messes up the zoom in/out buttons
 	R.orbitControls.enableZoom = false;
 
 	// Setup Orbit Controls max rotation
