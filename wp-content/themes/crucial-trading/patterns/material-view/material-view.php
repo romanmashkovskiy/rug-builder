@@ -25,6 +25,16 @@ function material_view( $atts = '' ) {
 		$material = $atts['material'];
 	}
 
+	$product_terms = get_the_terms( $post_id, 'product_cat' );
+	$range_parent = 0;
+
+	foreach ( $product_terms as $key => $term ) {
+		if ( $term->parent != 0 ) {
+			$range_parent = $term->term_id;
+			break;
+		}
+	}
+
 	$multiple_in_range = false;
 
 	if ( is_array( $atts ) && array_key_exists( 'multiple', $atts ) && $atts['multiple'] == '1' ) {
@@ -76,11 +86,14 @@ function material_view( $atts = '' ) {
 	$src_arr   = is_object( $product ) ? array_values( $product->get_gallery_attachment_ids() ) : array();
 	$src_angle = count( $src_arr ) > 0 ? wp_get_attachment_url( $src_arr[0] ) : '';
 
+	$range_link = get_category_link( $range_parent );
+	$range_name = get_cat_name( $range_parent );
+
 	$html .= '<div class="material-view ' . $material . ' box-shadow">';
 	$html .= '<div class="material__header">';
 
 		$html .= '<div class="header__back">';
-		$html .= '<a href="#" onclick="window.history.go(-1); return false;"><i class="icon-crucial-left-arrow"></i>&nbsp;&nbsp;Back to Materials</a>';
+		$html .= '<a href="' . $range_link . '"><i class="icon-crucial-left-arrow"></i>&nbsp;&nbsp;Back to ' . $range_name . '</a>';
 		$html .= '</div>';
 
 		$html .= '<div class="header__titles">';
