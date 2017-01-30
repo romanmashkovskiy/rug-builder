@@ -5,8 +5,6 @@ var sliderInterval = setInterval(function() {
 		var numOfSlides = $($('.slidee')[0]).data('total');
 
 		if ( $('.slidee').length === numOfSlides ) {
-			console.log($('.slidee').length)
-			console.log(numOfSlides)
 			startSlider();
 		}
 	}
