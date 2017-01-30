@@ -52,6 +52,12 @@ function collections_data() {
 				$parent_id = $value->parent;
 				$parent    = $material_ids[$parent_id]->name;
 
+				$range_id = $value->term_id;
+				$src_id   = get_woocommerce_term_meta( $range_id, 'thumbnail_id', true );
+				$src      = wp_get_attachment_url( $src_id );
+
+				$value->thumbnail = $src;
+
 				array_push( $res[$parent], $value );
 			}
 		}
@@ -103,18 +109,24 @@ function swatches_data() {
 		$key   = str_replace( ' ', '', $name );
 		$code  = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : '';
 
-		$thumb = rwmb_meta( 'rb_texture', array(), $product_id );
-		$bmap  = rwmb_meta( 'rb_bump_map', array(), $product_id );
-		$nmap  = rwmb_meta( 'rb_normal_map', array(), $product_id );
-		$dmap  = rwmb_meta( 'rb_displacement_map', array(), $product_id );
+		$thumb     = rwmb_meta( 'rb_texture', array(), $product_id );
+		$bmap      = rwmb_meta( 'rb_bump_map', array(), $product_id );
+		$nmap      = rwmb_meta( 'rb_normal_map', array(), $product_id );
+		$dmap      = rwmb_meta( 'rb_displacement_map', array(), $product_id );
+		$repeatx   = rwmb_meta( 'rb_repeat_x', array(), $product_id );
+		$repeaty   = rwmb_meta( 'rb_repeat_y', array(), $product_id );
+		$stitching = rwmb_meta( 'rb_stitching_colour', array(), $product_id );
 
-		$arr['id']    = $product_id;
-		$arr['name']  = $name;
-		$arr['code']  = $code;
-		$arr['thumb'] = $thumb;
-		$arr['bmap']  = $bmap;
-		$arr['nmap']  = $nmap;
-		$arr['dmap']  = $dmap;
+		$arr['id']        = $product_id;
+		$arr['name']      = $name;
+		$arr['code']      = $code;
+		$arr['thumb']     = $thumb;
+		$arr['bmap']      = $bmap;
+		$arr['nmap']      = $nmap;
+		$arr['dmap']      = $dmap;
+		$arr['repeatx']   = $repeatx;
+		$arr['repeaty']   = $repeaty;
+		$arr['stitching'] = $stitching;
 
 		if ( count( $thumb ) > 0 ) {
 			$res[$key] = $arr;

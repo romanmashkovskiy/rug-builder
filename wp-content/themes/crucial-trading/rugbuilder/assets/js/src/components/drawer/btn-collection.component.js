@@ -31,6 +31,9 @@ RugBuilder.prototype.btnCollectionComponent = function() {
 				<li className={ className } data-page={ this.props.page }>
 					<a href="#" onClick={ this.handleClick }>
 						<h3>{ this.props.collection }</h3>
+						<div className="swatch-img-container">
+							<img src={ this.props.image } />
+						</div>
 					</a>
 				</li>
 			);
