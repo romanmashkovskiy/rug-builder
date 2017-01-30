@@ -32,11 +32,17 @@ RugBuilder.prototype.btnSwatchComponent = function() {
 			else {
 				classes += ' hidden';
 			}
+
+			let src = '';
+
+			Object.keys(this.props.thumb).map((key) => {
+				src = this.props.thumb[key]['path'];
+			});
 			
 			return (
 				<li className={ classes } >
 					<a href="#" onClick={ this.handleClick }>
-						<img src={ this.props.thumb } alt={ this.props.swatch } />
+						<img src={ src } alt={ this.props.swatch } />
 						<h3>{ this.props.code }</h3>
 					</a>
 				</li>

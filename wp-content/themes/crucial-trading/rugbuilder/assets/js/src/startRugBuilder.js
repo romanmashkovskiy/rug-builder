@@ -8,22 +8,20 @@ RugBuilder.prototype.start = function() {
 
 	// Get WC Data, then either load rest of the app or error
 
-	R.getMaterialsData()
-		.then(()     => { return R.getCollectionsData() })
-		.then(()     => { continueLoading() })
-		.catch((err) => { error( err ) });
+	R.getMaterialsData()                                                                     // ./data/materials.data.js
+		.then(()     => { return R.getCollectionsData() })                                   // ./data/collections.data.js
+		.then(()     => { continueLoading() })                                               // Line 16
+		.catch((err) => { error( err ) });                                                   // Line 181
 
 	function continueLoading() {
 
-		// React Components
-
-		// Progress Menu
+		// Load Progress Menu Component                                                         ./components/progress-menu/*.component.js
 		const BtnExitComponent    = R.btnExitComponent();
 		const BtnRestartComponent = R.btnRestartComponent();
 		const BtnStageComponent   = R.btnStageComponent();
 		R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnStageComponent);
 
-		// Drawer
+		// Load Drawer Component                                                                ./components/drawer/*.component.js
 		const BtnExpandCollapseComponent = R.btnExpandCollapseComponent();
 		const BtnMaterialComponent       = R.btnMaterialComponent();
 		const BtnCollectionComponent     = R.btnCollectionComponent();
@@ -32,29 +30,36 @@ RugBuilder.prototype.start = function() {
 		const SideMenuComponent          = R.sideMenuComponent();
 		R.drawerComponent(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent, BtnBorderComponent);
 
-		// Other
+		// Load Price Component                                                                 ./components/price.component.js
 		R.priceComponent();
 
-		// View Controls
+		// Load View Controls Component                                                         ./components/view-controls.component.js
 		R.viewControls();
 
 		// Init THREE.js
-		R.initThree();
-		R.initLights();
-		R.initScene();
+		R.initThree();                                                                       // ./init.js
+		R.initLights();                                                                      // ./init/lights.init.js
+		R.initScene();                                                                       // ./init/scene.init.js
 
 		// Add default rug - Single & Piping
-		R.updateBorder('Single & Piping')
-			.then(() => { loaded() });
+		R.updateBorder('Single & Piping')                                                    // ./functions/updateBorder.function.js
+			.then(() => { loaded() });                                                       // Line 48 
 
 		function loaded() {
 
-			R.initOrbit();
-//			R.initHelpers();
+			// Basic components of app are loaded
 
+			// Init the Three.js order controls
+			R.initOrbit();                                                                   // ./init/orbit.init.js
+
+			// Init the Three.js helpers
+//			R.initHelpers();                                                                 // .init/helpers.init.js
+
+			// Set the Three.js standard camera X and Y axis position
 			R.camera.position.x = 0;
 			R.camera.position.y = 170;
 
+			// Get the height of the window and set the camera Z axis position based on the height
 			const WINDOW_HEIGHT = window.innerHeight;
 
 			if ( WINDOW_HEIGHT > 1000 ) {
@@ -70,34 +75,45 @@ RugBuilder.prototype.start = function() {
 				R.camera.position.z = -90;
 			}
 
+			// Set the standard camera rotation
 			R.camera.rotation.x = -1.5708;
 			R.camera.rotation.z = 0;
 			R.camera.rotation.z = 0;
 
-			// Render
-
+			
 			function render() {
+
+				// Render the Three.js scene
 				requestAnimationFrame( render );
 				R.renderer.render( R.scene, R.camera );
 			}
 
-			render();
-			R.loadingScreens('full', 'close');
+			// Call the render function and close the loading screen
+			render();                                                                        // Line 84
+			R.loadingScreens('full', 'close');                                               // ./functions/loadingScreens.function.js
 
+			// Add the window resize event listener                                             Line 98
 			window.addEventListener( 'resize', onWindowResize, false );
 
 			function onWindowResize(){
 
+				// Window resize event listener
+
+				// Get the new screen width and height
 				R.screenWidth  = window.innerWidth;
 				R.screenHeight = window.innerHeight;
 
+				// Work out the new Three.js camera aspect ratio
 				R.cameraOptions.aspectRatio = R.screenWidth / R.screenHeight;
 
+				// Update the camera aspect ration
 				R.camera.aspect = R.cameraOptions.aspectRatio;
 				R.camera.updateProjectionMatrix();
 
+				// Update the Three.js reneder size
 				R.renderer.setSize( R.screenWidth, R.screenHeight );
 
+				// Based on the new screen height, adjust the camera Z axis position and scale the rug JSON so it fits in the screen
 				if ( R.screenHeight > 1000 ) {
 					R.camera.position.z = -55;
 
@@ -164,7 +180,7 @@ RugBuilder.prototype.start = function() {
 
 	function error( err ) {
 		let errorCode = 100 + err;
-		R.error(errorCode, true);
+		R.error(errorCode, true);                                                        // ./functions/error.function.js
 		return;
 	}
 }
