@@ -102,8 +102,26 @@ function _loadFiles(files, R, folder, type) {
 
 				let url  = templateDirectoryUri + '/rugbuilder/json/' + folder + '/' + files[i] + '.json';
 				let name = files[i];
-
+/*
 				new THREE.BufferGeometryLoader().load(url, loadCompleted(name));
+*/
+				var loader = new THREE.JSONLoader();
+
+				// load a resource
+				loader.load(
+					url,
+					function ( geometry, materials ) {
+
+						var material = new THREE.MultiMaterial( materials );
+						var object = new THREE.Mesh( geometry, material );
+
+						object.name = name;
+
+						objects.push(object);
+						R.json[type][name] = object;
+					}
+				);
+
 			}
 			else {
 				objects.push(R.json[type][files[i]]);

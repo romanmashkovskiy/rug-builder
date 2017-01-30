@@ -10,6 +10,8 @@ RugBuilder.prototype.start = function() {
 			err  : error
 		}
 
+		console.log(err_obj)
+
 		R.error(1000, err_obj, true);
 	}
 
@@ -200,6 +202,8 @@ RugBuilder.prototype.start = function() {
 	}
 
 	function error( code ) {
+
+		console.log(code)
 
 		let message;
 
