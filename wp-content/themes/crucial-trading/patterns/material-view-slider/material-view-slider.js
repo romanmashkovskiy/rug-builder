@@ -1,7 +1,14 @@
 var sliderInterval = setInterval(function() {
 
-	if ( document.querySelectorAll('.material-view-slider ul li').length > 0 && $('.slidee').length > 0 && $('.material-view-slider ul#material-view-slider-list').length > 0 ) {
-		startSlider();
+	if ( $('.slidee').length > 0 ) {
+
+		var numOfSlides = $($('.slidee')[0]).data('total');
+
+		if ( $('.slidee').length === numOfSlides ) {
+			console.log($('.slidee').length)
+			console.log(numOfSlides)
+			startSlider();
+		}
 	}
 
 }, 1)
