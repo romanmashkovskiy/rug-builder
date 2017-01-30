@@ -85,11 +85,11 @@ if ( array_key_exists( 'err', $_GET ) ) {
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/PubSub/pubsub.min.js"></script>
 
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/react/react.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/react/react-dom.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/react/react.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/react/react-dom.min.js"></script>
 
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/three.js/build/three.js"></script>
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/orbitcontrols/orbitcontrols.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/three.js/build/three.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/orbitcontrols/orbitcontrols.min.js"></script>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/js/dist/rugBuilder.min.js"></script>
 
