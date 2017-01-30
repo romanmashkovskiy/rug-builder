@@ -38,7 +38,7 @@ function startSlider() {
 		'</g>',
 		'</g>',
 		'</g>', 
-		'</svg>'
+		'</svg>' 
 	];
 
 	var startIndex;
