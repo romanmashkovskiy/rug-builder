@@ -4,7 +4,7 @@ RugBuilder.prototype.btnExitComponent = function() {
 
 		render: function() {
 
-			const SRC = templateDirectoryUri + '/rugbuilder/assets/icons/exit.svg';
+			const SRC = 'http://d105txpzekqrfa.cloudfront.net/uploads/20170110133952/exit.svg';
 			const URL = siteUrl + '/start-rugbuilder';
 			
 			return (
