@@ -40,16 +40,19 @@ function material_view_slider( $atts = '' ) {
 		if ( is_array( $atts ) && array_key_exists( 'material', $atts ) ) {
 			$current_product_material = $atts['material'];
 		}
-		
-		// Get all WooCommerce products
-		$woocommerce_products = new WP_Query( array( 'post_type' => 'product', 'order' => 'ASC', 'tax_query' => array(
-			array(
-				'taxonomy' => 'product_cat',
-				'field'    => 'slug',
-				'terms'    => $current_product_range,
+
+		$args = array(
+			'post_type'   => 'product',
+			'tax_query'   => array(
+				array (
+					'taxonomy' => 'product_cat',
+					'field'    => 'slug',
+					'terms'    => $current_product_range,
+				),
 			),
-		), 'ignore_sticky_posts'    => true,
-			'no_found_rows'        => true ) );
+		);
+
+		$woocommerce_products = new WP_Query( $args );
 
 		$html .= '<div class="material-view-slider">';
 		$html .= '<ul id="material-view-slider-list">';
@@ -112,9 +115,9 @@ function material_view_slider( $atts = '' ) {
 
 		if ( $total > 1 ) {
 			$html .= '<span id="material-view-slider-prev" class="vertical-align"></span>';
-			$html .= '<span id="material-view-slider-prev-text"><h3 data-current="' . $current . '" data-total="' . $total . '">' . $prev . '/' . $total . '</h3></span>';
+			$html .= '<span id="material-view-slider-prev-text"><h3 data-current="' . $current . '" data-total="' . $total . '"></h3></span>';
 			$html .= '<span id="material-view-slider-next" class="vertical-align"></span>';
-			$html .= '<span id="material-view-slider-next-text"><h3>' . $next . '/' . $total . '</h3></span>';
+			$html .= '<span id="material-view-slider-next-text"><h3></h3></span>';
 		}
 			
 		$html .= '</div>';
