@@ -77,8 +77,9 @@
 	}
 
 	.slide__title {
-		left: -35px;
+		left: -50px;
 		top: 110px;
+		opacity: 0.5;
 
 		&.coir {
 			color: transparentize($color-coir-main, 0.5);
