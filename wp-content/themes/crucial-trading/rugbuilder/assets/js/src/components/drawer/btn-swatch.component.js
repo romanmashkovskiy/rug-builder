@@ -36,7 +36,7 @@ RugBuilder.prototype.btnSwatchComponent = function() {
 			let src = '';
 
 			Object.keys(this.props.thumb).map((key) => {
-				src = this.props.thumb[key]['path'];
+				src = this.props.thumb[key]['url'];
 			});
 			
 			return (
