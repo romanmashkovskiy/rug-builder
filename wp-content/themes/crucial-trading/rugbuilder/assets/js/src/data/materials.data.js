@@ -17,7 +17,7 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 				function loaded() {
 					
 					if ( this.status !== 200 ) {
-						rej(0);
+						rej(100);
 					}
 
 					if ( type === 'border' ) {

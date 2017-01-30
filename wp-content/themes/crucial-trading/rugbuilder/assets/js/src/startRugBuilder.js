@@ -1,8 +1,17 @@
 RugBuilder.prototype.start = function() {
 
-//	window.onerror = function() {
-//		R.error(1000, true);
-//	}
+	window.onerror = function(message, source, line, col, error) {
+
+		let err_obj = {
+			msg  : message,
+			src  : source,
+			line : line,
+			col  : col,
+			err  : error
+		}
+
+		R.error(1000, err_obj, true);
+	}
 
 	const R = rugBuilder;
 
@@ -43,7 +52,8 @@ RugBuilder.prototype.start = function() {
 
 		// Add default rug - Single & Piping
 		R.updateBorder('Single & Piping')                                                    // ./functions/updateBorder.function.js
-			.then(() => { loaded() });                                                       // Line 48 
+			.then(() => { loaded() })                                                        // Line 48
+			.catch((err) => { error( err ) });                                               // Line 181
 
 		function loaded() {
 
@@ -178,9 +188,36 @@ RugBuilder.prototype.start = function() {
 		}
 	}
 
-	function error( err ) {
-		let errorCode = 100 + err;
-		R.error(errorCode, true);                                                        // ./functions/error.function.js
+	function error( code ) {
+
+		let message;
+
+		switch ( code ) {
+
+			case 100 :
+				message = 'An error occured loading the materials.';
+				break;
+
+			case 101 :
+				message = 'An error occured loading the collections';
+				break;
+
+			case 200 :
+				message = 'An error occured loading the single border JSON'
+
+			case 201 :
+				message = 'An error occured loading the piping border JSON'
+
+			case 202 :
+				message = 'An error occured loading the double border JSON'
+
+			default :
+				code    = 1000;
+				message = 'An error occured';
+
+		}
+
+		R.error(code, message, true);                                                        // ./functions/error.function.js
 		return;
 	}
 }

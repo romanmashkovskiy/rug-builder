@@ -150,7 +150,7 @@ function header_material_shortcode($atts = '') {
 //		}
 		$html .= '</div>';
 
-		if ( $header_size == 'large' ) {
+//		if ( $header_size == 'large' ) {
 
 			$html .= '<div class="material__sidememu">';
 			$html .= '<ul>';
@@ -179,7 +179,7 @@ function header_material_shortcode($atts = '') {
 
 			$html .= '</ul>';
 			$html .= '</div>';
-		}
+//		}
 
 		$html .= '</header>';
 	}
@@ -235,7 +235,7 @@ function header_range_shortcode($atts = '') {
 		$html .= '<h1>' . $range . '</h1>';
 		$html .= '</div>';
 
-		/*$html .= '<div class="material__sidememu">';
+		$html .= '<div class="material__sidememu">';
 		$html .= '<ul>';
 
 		for ( $i=0; $i<count( $categories ); $i++ ) {
@@ -261,7 +261,7 @@ function header_range_shortcode($atts = '') {
 		}
 
 		$html .= '</ul>';
-		$html .= '</div>';*/
+		$html .= '</div>';
 
 		$html .= '</header>';
 	}

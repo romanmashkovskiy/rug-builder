@@ -17,7 +17,7 @@ RugBuilder.prototype.getCollectionsData = function(collection) {
 				function loaded() {
 					
 					if ( this.status !== 200 ) {
-						rej(1);
+						rej(101);
 					}
 
 					if ( !collection ) {

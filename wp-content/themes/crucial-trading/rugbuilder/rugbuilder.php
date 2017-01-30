@@ -31,6 +31,27 @@ if ( array_key_exists( 'products', $_GET ) ) {
 	exit();
 }
 
+if ( array_key_exists( 'err', $_GET ) ) {
+
+	$error_code = (int) $_GET['err'];
+
+	if ( $error_code > 0 ) {
+
+		$user_agent = array_key_exists( 'HTTP_USER_AGENT', $_SERVER ) ? $_SERVER['HTTP_USER_AGENT'] : '';
+		$message    = array_key_exists( 'message', $_GET ) ? filter_var( $_GET['message'], FILTER_SANITIZE_STRING ) : '';
+
+		$error_info = array(
+			'code'    => $error_code,
+			'agent'   => $user_agent,
+			'message' => $message,
+		);
+
+		echo log_error( $error_info );
+	}
+
+	exit();
+}
+
 ?>
 
 <!doctype html>

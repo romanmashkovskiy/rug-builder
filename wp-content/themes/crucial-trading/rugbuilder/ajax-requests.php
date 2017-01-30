@@ -203,6 +203,23 @@ function price_data() {
 	return $price;
 }
 
+function log_error( $error_info ) {
+
+	$error_file = get_template_directory() . '/rugbuilder/error.log';
+
+	$error_time    = time();
+	$error_code    = $error_info['code'];
+	$error_agent   = $error_info['agent'];
+	$error_message = $error_info['message'];
+
+	$error_string = "RugBuilder Error: \r\n Time of Error: $error_time \r\n Error Code: $error_code \r\n User Agent: $error_agent \r\n Error Message: $error_message \r\n\r\n";
+
+	file_put_contents( $error_file, $error_string, FILE_APPEND );
+
+	return mail( 'elliot@kijo.co', 'RugBuilder Error', $error_string );
+
+}
+
 function add_rug_to_cart() {
 
 	// From http://dsgnwrks.pro/snippets/woocommerce-allow-adding-multiple-products-to-the-cart-via-the-add-to-cart-query-string/ (slighty modified)

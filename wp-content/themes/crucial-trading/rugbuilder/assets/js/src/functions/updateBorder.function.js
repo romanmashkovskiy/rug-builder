@@ -18,7 +18,7 @@ RugBuilder.prototype.updateBorder = function(border) {
 					.then(()  => { return _updateScene(R, 'single') })
 					.then(()  => { res() })
 					.catch(() => {
-						R.error(200, true);
+						rej(200);
 						return;
 					});
 
@@ -34,7 +34,7 @@ RugBuilder.prototype.updateBorder = function(border) {
 					.then(()  => { return _updateScene(R, 'piping') })
 					.then(()  => { res() })
 					.catch(() => {
-						R.error(201, true);
+						rej(201);
 						return;
 					});
 				break;
@@ -49,7 +49,7 @@ RugBuilder.prototype.updateBorder = function(border) {
 					.then(()  => { return _updateScene(R, 'double') })
 					.then(()  => { res() })
 					.catch(() => {
-						R.error(202, true);
+						rej(202);
 						return;
 					});
 

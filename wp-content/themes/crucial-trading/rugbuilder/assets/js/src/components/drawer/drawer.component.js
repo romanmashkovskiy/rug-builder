@@ -297,7 +297,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			R.getMaterialsData('border')
 				.then((res) => { this.setState({ _materials: R.WCborderMaterials }) })
 				.catch(()   => {
-					R.error(103, true);
+					R.error(103, 'An error occured loading the requested border', true);
 					return;
 				});
 		},
@@ -325,7 +325,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 						this.forceUpdate()
 					})
 					.catch(()   => {
-						R.error(101, true);
+						R.error(101, 'An error occured loading the requested collections', true);
 						return;
 					});
 			}
@@ -350,7 +350,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					this.forceUpdate();
 				})
 				.catch(() => {
-					R.error(102, true);
+					R.error(102, 'An error occured loading the requested swatches', true);
 					return;
 				});
 		},
