@@ -5,7 +5,7 @@ RugBuilder.prototype.initLights = function(RugBuilder) {
 	// Create the lights
 	const SPOTLIGHT  = new THREE.SpotLight(
 		16777215,
-		0.8,
+		1,
 		0,
 		0.3141592653589793,
 		0,
