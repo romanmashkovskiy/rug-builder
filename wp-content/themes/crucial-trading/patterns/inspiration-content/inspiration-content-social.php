@@ -28,8 +28,8 @@ foreach ( $social as $key => $post ) {
 		
 		$html .= "<div class='timeline__text_container'>";
 		
-		$html .= "<h2 class='twitter__text'>$text</h2>";
-		$html .= "<h3 class='twitter__time'>$time</h3>";
+		$html .= "<div class='twitter__text'>$text</div>";
+		$html .= "<div class='twitter__time'>$time</div>";
 
 		/*if ( $link ) {
 			$html .= "<a href='$link' target='_blank' class='twitter__link'>View Tweet</a>";

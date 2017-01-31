@@ -25,11 +25,13 @@ function social_post( $atts = '' ) {
 		$html .= '<div style="background-image:url(';
 		$html .= "'" . $img . "'";
 		$html .= ')" class="box-shadow">';
-		$html .= '<div class="border-box"></div>';
-		$html .= '<i class="icon-crucial-' . $from . '"></i>';
-		$html .= '<div class="info">';
+		//$html .= '<div class="border-box"></div>';
+		//$html .= '<i class="icon-crucial-' . $from . '"></i>';
+		$html .= '<div class="social__post__info-container">';
+		$html .= '<div class="social__post__info">';
 		$html .= '<h2>' . $title . '</h2>';
 		$html .= '<h3>' . $time . '</h3>';
+		$html .= '</div>';
 		$html .= '</div>';
 		$html .= '</div>';
 		$html .= '</div>';
