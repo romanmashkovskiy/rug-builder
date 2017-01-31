@@ -16,9 +16,26 @@ var $ = jQuery;
 	  		$(this).toggleClass("is-active");
 		    $('body').toggleClass("show-menu");
 
+		    var collapseHeader = true;
+
+		    if ( $('header').hasClass('collapsed') ) {
+
+		    	$('header').removeClass('collapsed');
+		    	collapseHeader = false;
+
+		    }
+
 		    setTimeout(function() {
+
 		    	$('.top-bar').toggleClass('-relative');
-		    }, 650)
+
+		    	if ( collapseHeader ) {
+
+		    		$('header').addClass('collapsed');
+
+		    	}
+
+		    }, 800)
 		    
 
 		    if ( window.innerWidth < 993 ) {
