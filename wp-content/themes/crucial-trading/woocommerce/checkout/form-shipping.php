@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php endforeach; ?>
 
 		<input type="hidden" name="payment_method" value="cod">
+		<input type="hidden" name="ship_to_different_address" value="true">
 
 		<?php do_action( 'woocommerce_after_checkout_shipping_form', $checkout ); ?>
 
