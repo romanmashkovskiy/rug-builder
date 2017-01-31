@@ -1,0 +1,37 @@
+.page-template-register{
+
+	#wppb-register-user {
+		background: white;
+		box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);
+		margin-bottom: 100px;
+		margin-left: 7%;
+		margin-top: -50px;
+		max-width: 1300px;
+		padding: 75px;
+		position: relative;
+		width: 86%;
+		z-index: 999;
+
+		ul {
+			max-width: none;
+		}
+
+		ul:nth-child(1) {
+			margin-bottom: 3px;
+		}
+
+		ul:nth-child(2) {
+			display: none;
+		}
+
+		input {
+			width: 100%;
+		}
+	}
+
+	label {
+		display: none !important;
+	}
+
+
+}

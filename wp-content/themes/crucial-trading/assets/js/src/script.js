@@ -157,6 +157,19 @@ $(document).ready(function() {
 	$('#user_login').attr('placeholder', 'Username or Email');
 	$('#user_pass').attr('placeholder', 'Password');
 
+	// Register Form Placeholder
+
+	if ( $('body').hasClass('page-template-register') ) {
+
+		$('.wppb-form-field').each(function(i, e) {
+
+			var label       = $(e).children('label').text();
+			var placeholder = label.replace('*', '');
+
+			$(e).children('input').attr('placeholder', placeholder);
+		});
+	}
+
 	// Close Add to Basket Confirmation Message
 
 	$(document).on('click', '#close-basket-popup', function(e) {

@@ -323,3 +323,13 @@ function cf_search_distinct( $where ) {
     return $where;
 }
 add_filter( 'posts_distinct', 'cf_search_distinct' );
+
+/**
+ * Redirect to login page after successful registration
+ *
+ */
+add_action( 'wppb_before_saving_form_values', 'abc' );
+
+function abc() {
+	echo '<script>window.location.href = "' . site_url() . '/my-login"</script>';
+}
