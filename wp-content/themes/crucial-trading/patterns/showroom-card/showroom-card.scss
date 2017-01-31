@@ -51,7 +51,7 @@
 	&.showroom {
 
 		.card__address {
-			float: left;
+//			float: left;
 			width: 60%;
 		}
 	}	
@@ -67,12 +67,24 @@
 	}
 
 	.card__link {
-		bottom: 10px;
-		left: 50px;
-		position: absolute;
+//		bottom: 10px;
+//		left: 50px;
+//		position: absolute;
 
-		@media screen and (max-width: 768px) {
-			padding-bottom: 0;
+//		@media screen and (max-width: 768px) {
+//			padding-bottom: 0;
+//		}
+	}
+
+	.card__link,
+	.card__email {
+		margin-right: 15px;
+	}
+
+	@media screen and (min-width: 550px) {
+
+		br {
+			display: none;
 		}
 	}
 }

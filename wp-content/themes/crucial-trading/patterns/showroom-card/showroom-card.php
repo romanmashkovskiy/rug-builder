@@ -39,7 +39,7 @@ function showroom_card( $atts = '' ) {
 	$address_5 = rwmb_meta( 'retailer_address_5', array(), $post_id );
 	$address_6 = rwmb_meta( 'retailer_town', array(), $post_id );
 	$address_7 = rwmb_meta( 'retailer_county', array(), $post_id );
-	$address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
+	$address_8 = rwmb_meta( 'retailer_address_postcode', array(), $post_id );
 
 	$address = '';
 
@@ -85,18 +85,18 @@ function showroom_card( $atts = '' ) {
 	if ( $type == 'showroom' ) {
 
 		$html .= '<p class="card__address">' . nl2br( $address ) . '</p>';
-		$html .= '<div class="card__contact">';
-		$html .= '<p class="card__phone">' . $phone . '</p>';
-		$html .= '<a href="mailto:' . $email . '" class="card__email">Send Email</a>';
-		$html .= '</div>';
-		$html .= '<a href="' . $url . '" class="card__link">Get Directions</a>';
+//		$html .= '<div class="card__contact">';
+//		$html .= '<p class="card__phone">' . $phone . '</p>';
+//		$html .= '<a href="mailto:' . $email . '" class="card__email">Send Email</a>';
+//		$html .= '</div>';
+		$html .= '<p><a href="' . $url . '" class="card__link">Get Directions</a> <br> <a href="mailto:' . $email . '" class="card__email">Send Email</a></p>';
 
 	}
 	else if ( $type == 'online' ) {
 
 		$html .= '<p class="card__address">' . $website . '</p>';
 		$html .= '<p class="card__phone">' . $phone . '</p>';
-		$html .= '<a href="mailto:' . $email . '" class="card__email">Send Email</a>';
+		$html .= '<a href="mailto:' . $email . '" class="card__email">Send Email</a> <br>';
 		$html .= '<a href="' . $website . '" class="card__link">Visit Website</a>';
 	}
 
