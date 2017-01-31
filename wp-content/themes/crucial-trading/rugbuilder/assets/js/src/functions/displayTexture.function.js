@@ -147,8 +147,6 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 				if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 					R.scene.children[i].material = R.loadedTextures[swatch];
 					_loadMaps(R.scene.children[i].material, maps);
-
-					
 				}
 			}
 
