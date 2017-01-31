@@ -37,40 +37,64 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</style>
 	</head>
 	<body <?php echo is_rtl() ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+		<div id="wrapper" dir="<?php echo is_rtl() ? 'rtl' : 'ltr'?>" style="background-color: #383838;
+    border-radius: 3px 3px 0 0 !important;
+    color: #ffffff;
+    border-bottom: 0;
+    font-weight: bold;
+    line-height: 100%;
+    vertical-align: middle;
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;">
+			<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+				<tr>
+					<td align="center" valign="top">
+						<div id="template_header_image">
+							<p style="margin-top:0;text-align:center;"><img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174004/logo.svg" alt="Crucial Trading"/></p>
+						</div>
+						<table border="0" cellpadding="0" cellspacing="0" width="600">
+							<tr>
+								<td align="center" valign="top">
+										<tr style="background:#383838;">
+											<td id="header_wrapper">
+												<h1 style="font-size:52px;text-align:center;color:#ffffff;">
+													<?php
 
-									<!-- Header -->
-									<div style="width:100%; padding: 100px 0;" id="template_header">
-										<div id="template_header_image">
-											<p style="margin-top:0;text-align:center;"><img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174004/logo.svg" alt="Crucial Trading"/></p>
-										</div>
-										<h1 style="font-size:52px;text-align:center;">
-											<?php
+													$heading = '';
 
-											$heading = '';
+													switch ( $email_heading ) {
 
-											switch ( $email_heading ) {
+														case 'Welcome to Crucial Trading' :
+															$heading = 'Account Registered';
+															break;
 
-												case 'Welcome to Crucial Trading' :
-													$heading = 'Account Registered';
-													break;
+														case 'Your order is complete' :
+															$heading = 'Order Complete';
+															break;
 
-												case 'Your order is complete' :
-													$heading = 'Order Complete';
-													break;
+														case 'Thank you for your order' :
+															$heading = 'Order Received';
+															break;
 
-												case 'Thank you for your order' :
-													$heading = 'Order Received';
-													break;
+														default :
+															$heading = $email_heading;
+															break;
+													}
 
-												default :
-													$heading = $email_heading;
-													break;
-											}
+													echo $heading; 
+													?>
+												</h1>
+											</td>
+										</tr>
+									<!-- End Header -->
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
 
-											echo $heading; 
-											?>
-										</h1>
-									</div>
+
 
 									<!-- Body -->
 									<table border="0" cellpadding="0" cellspacing="0" width="600" id="template_body" style="width:100%;">
@@ -80,4 +104,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 												<table border="0" cellpadding="20" cellspacing="0" width="100%" style="width:100%;">
 													<tr style="width:100%;">
 														<td valign="top" style="width:100%;">
-															<div id="body_content_inner" style="width:100%;">
+															<div id="body_content_inner" style="width:100%;" style="padding:25px;">
