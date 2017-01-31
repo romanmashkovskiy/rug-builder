@@ -78,6 +78,14 @@
 
 	.timeline__event.twitter-post {
 
+		&:hover .twitter__text,
+		&:hover .twitter__time,
+		&:hover .twitter__link,
+		&:hover .twitter__shadow {
+			opacity: 1;
+			visibility: visible;
+		}
+
 		.twitter__image {
 			box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.5);
 			object-fit: cover;
@@ -90,8 +98,11 @@
 		.twitter__time,
 		.twitter__link {
 			left: calc(12% + 40px);
+			opacity: 0;
 			right: calc(12% + 40px);
 			position: absolute;
+			transition: all ease-in-out 0.6s;
+			visibility: hidden;
 		}
 
 		.twitter__text {
@@ -124,8 +135,11 @@
 		.twitter__shadow {
 			background: rgba(0,0,0,0.3);
 			left: calc(12% + 30px);
+			opacity: 0;
 			position: absolute;
 			right: calc(12% + 30px);
+			transition: all ease-in-out 0.6s;
+			visibility: hidden;
 			top: 0;
 			z-index: 2;
 
