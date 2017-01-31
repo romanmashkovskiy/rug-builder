@@ -1,4 +1,4 @@
-// Add to Basket Confirmation Message
+// Add to Basket Confirmation Message 
 
 function showBasketPopup(success, productName) {
 
