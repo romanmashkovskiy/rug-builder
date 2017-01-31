@@ -229,7 +229,7 @@ function header_range_shortcode($atts = '') {
 		$html .= '<header class="material small -range clearfix">';
 
 		$html .= '<div class="material__name">';
-		$html .= '<h3 class="rotate">' . $range . '</h3>';
+		$html .= '<h3 class="side-title rotate">' . $range . '</h3>';
 		//$html .= '<h3 class="subtitle">' . $material_desc . '</h3>';
 		$html .= '<h3 class="subtitle">' . get_cat_name($range_parent) . '</h3>';
 		$html .= '<h1>' . $range . '</h1>';
