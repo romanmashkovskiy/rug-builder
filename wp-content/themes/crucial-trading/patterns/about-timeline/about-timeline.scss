@@ -311,7 +311,8 @@ body {
 *     Timeline Page Layout 
 ****************************************************************************/ 
 
-.about__timeline__content {
+.about__timeline__content,
+.about__timeline__content.clearfix {
 	display: none;
 	opacity: 0;
 	//opacity: 1;
@@ -320,7 +321,7 @@ body {
 	padding-bottom: 10%;
 	position: relative;
 	z-index: 999;
-	height: 6000px;
+	//height: 8000px;
 }
 
 .show-about-timeline .about__timeline__content {
@@ -394,12 +395,12 @@ body {
 
 .timeline__event:nth-child(odd) {
 	float: left;
-	margin-top: 30%;
+	margin-top: 35%;
 }
 
 .timeline__event:nth-child(even) {
 	float: right;
-	margin-top: 15%;
+	margin-top: 20%;
 }
 
 /************** Event Details **************/ 
@@ -407,8 +408,10 @@ body {
 h4.timeline__event__heading {
 	font-family: $font-header;
 	font-size: 30px;
-	margin-bottom: 25px;
+	margin-bottom: 5px;
+	padding-bottom: 25px;
 	position: relative;
+	border-bottom: 1px solid rgba(255,255,255,0.09);
 }
 
 .timeline__event__date {
@@ -417,10 +420,32 @@ h4.timeline__event__heading {
 	position: absolute;
 	left: -70px;
 	top: 7px;
+	opacity: 0.2;
 }
+
+/*** Large Date ***/ 
+
+.timeline__event__large-date {
+	min-height: 225px;
+	//background-color: 	darken($page-header-background, 1%);
+	font-size: 30px;
+	font-style: italic;
+	font-family: "Playfair Display", serif;
+}
+
+.timeline__event__large-date--lg {
+	font-size: 120px;
+	opacity: 0.07;
+	color: #FFF;
+}
+
+/*** Image ***/ 
 
 .timeline__event__img {
 }
+
+
+/*** Image ***/ 
 
 .timeline__event__description {
 	margin-top: 35px;
@@ -439,7 +464,7 @@ h4.timeline__event__heading {
 	z-index: 99;
 	position: absolute;
 	right: -0.1%;
-	top: 17.5%;
+	top: 42%;
 }
 
 .timeline__event__ball {

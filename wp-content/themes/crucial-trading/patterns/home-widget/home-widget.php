@@ -51,11 +51,11 @@ function home_inspiration_widget( $atts = '' ) {
 	//$html .= do_shortcode( '[fts_twitter twitter_name=crucialtrading tweets_count=1 show_retweets=no]' );
 
 	$html .= '<div class="widget__text">';
-	$html .= '<h3>Social Satisfaction</h3>';
-	$html .= '<h2>Get Inspired</h2>';
+	$html .= '<h3>Inspirational Journeys</h3>';
+	$html .= '<h2>Be Inspired</h2>';
 	$html .= '<span></span>';
-	$html .= '<p>See how our unique products have been used as the centre of beautiful interior design</p>';
-	$html .= '<a href="' . site_url() . '/inspiration">Get Inspired</a>';
+	$html .= '<p>Follow us across social media platforms to stay inspired and see how our beautiful products have been used to as the centre of inspiring interior design.</p>';
+	$html .= '<a href="' . site_url() . '/inspiration">Be Inspired</a>';
 	$html .= '</div>';
 
 	$html .= '</div>';
