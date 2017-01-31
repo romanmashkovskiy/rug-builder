@@ -100,6 +100,8 @@ function material_view_slider( $atts = '' ) {
 
 		endwhile;
 
+		$current = $current + 1;
+
 		$prev  = $current - 1;
 		$next  = $current + 1;
 		
@@ -115,9 +117,13 @@ function material_view_slider( $atts = '' ) {
 
 		if ( $total > 1 ) {
 			$html .= '<span id="material-view-slider-prev" class="vertical-align"></span>';
-			$html .= '<span id="material-view-slider-prev-text"><h3 data-current="' . $current . '" data-total="' . $total . '"></h3></span>';
+			$html .= '<span id="material-view-slider-prev-text"><h3 data-current="' . $current . '" data-total="' . $total . '">';
+			$html .= '<span id="material-prev-index">' . $prev . '</span>/' . $total;
+			$html .= '</h3></span>';
 			$html .= '<span id="material-view-slider-next" class="vertical-align"></span>';
-			$html .= '<span id="material-view-slider-next-text"><h3></h3></span>';
+			$html .= '<span id="material-view-slider-next-text"><h3>';
+			$html .= '<span id="material-next-index">' . $next . '</span>/' . $total;
+			$html .= '</h3></span>';
 		}
 			
 		$html .= '</div>';
