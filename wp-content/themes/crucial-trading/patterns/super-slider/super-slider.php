@@ -181,12 +181,22 @@ function crucial_slider_slides() {
 				$html .= '</div>';
 
 				$html .= '<div class="slide__image">';
-				$html .= '<img src="' . $src . '" alt="' . $alt . '">';
 
+				if ( $post_title != 'Opening' ) {
+					$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+				}
+				
 				if ( $post_title == 'Opening' ) {
-					$html .= '<a href="http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4" class="html5lightbox">';
-					$html .= '<div class="video-play-button"></div>';
-					$html .= '</a>';
+
+					$poster = 'http://d105txpzekqrfa.cloudfront.net/uploads/20161212170153/CT_LogoStrapline_Black1.svg';
+					$video  = 'http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4';
+
+					$html .= do_shortcode( '[video src="' . $video . '" poster="' . $poster .'"]' );
+
+//					$html .= '<video controls preload="auto" poster="' . $poster . '" >';
+//					$html .= '<source src="' . $video . '" type="video/mp4">';
+//					$html .= '</video>';
+
 				}
 
 				$html .= '</div>';

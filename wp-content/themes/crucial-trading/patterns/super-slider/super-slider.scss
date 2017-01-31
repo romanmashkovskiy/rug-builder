@@ -1,9 +1,5 @@
 @import '../../assets/css/src/_variables';
 
-#html5-watermark {
-	display: none !important;
-}
-
 #super-slider {
 	max-height: 100vh !important;
 	min-height: 100vh !important;
@@ -320,6 +316,40 @@
 
 	&.opening {
 
+		.wp-video {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 100% !important;
+
+			.mejs-container {
+				bottom: 0;
+				position: absolute;
+				width: 100% !important;
+
+				@media screen and (max-width: 992px) {
+					bottom: auto;
+					top: 50%;
+				}
+			}
+
+			.mejs-controls {
+
+				@media screen and (max-width: 600px) {
+					display: none !important;
+				}
+			}
+		}
+
+		.slide__image {
+
+			@media screen and (max-width: 768px) {
+				width: 100% !important;
+			}
+		}		
+
 		img:not(.opening-slide-logo) {
 			height: 100% !important;
 			object-fit: contain;
@@ -337,32 +367,6 @@
 
 			@media screen and (max-height: 635px) {
 				top: -2px !important;
-			}
-		}
-
-		.html5lightbox {
-			background: rgba(255,255,255,0.6);
-			border-radius: 50%;
-			display: inline-block;
-			height: 60px;
-			left: 50%;
-			line-height: 0;
-			position: relative;
-			top: 50%;
-			transform: translate(-50%,-50%);
-			width: 60px;
-
-			&:after {
-				border-bottom: 15px solid transparent;
-				border-left: 27px solid black;
-				border-top: 15px solid transparent;
-				bottom: 0;
-				height: 0;
-				left: 20px;
-				top: 15px;
-				transform: none;
-				visibility: visible;
-				width: 0;
 			}
 		}
 	}
