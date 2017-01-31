@@ -53,6 +53,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			</div>
 		
+		<?php else : ?>
+
+			<input type="hidden" name="billing_email" value="<?php echo wp_get_current_user()->data->user_email; ?>">
+
 		<?php endif; ?>
 
 		<input type="hidden" name="payment_method" value="cod">

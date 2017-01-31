@@ -88,40 +88,43 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 			fclose( $file );
 
 			// Send file via ftp
-/*
+
 			$ftp_connection = ftp_connect('195.102.23.61');
-			$login_result   = ftp_login($ftp_connection, 'KJOCRU', 'Cr0k1J0s');
 
-			$remote_file = './out/CRU04.' . $extension;
-			$local_file  = get_template_directory() . '/inc/woocommerce/cru04/cru04.' . $extension;
+			if ( $ftp_connection ) {
 
-			$result = '';
+				$login_result   = ftp_login($ftp_connection, 'KJOCRU', 'Cr0k1J0s');
 
-			if ( ftp_put( $ftp_connection, $remote_file, $local_file, FTP_ASCII ) ) {
-				$result = 'success';
-			} else {
-				$result = 'failure';
+				$remote_file = './out/CRU04.' . $extension;
+				$local_file  = get_template_directory() . '/inc/woocommerce/cru04/cru04.' . $extension;
+
+				$result = '';
+
+				if ( ftp_put( $ftp_connection, $remote_file, $local_file, FTP_ASCII ) ) {
+					$result = 'success';
+				} else {
+					$result = 'failure';
+				}
+
+				ftp_close( $ftp_connection );
+
+				// Write result of ftp and time file sent to logs, clean orders.txt file
+
+				file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/upload.log', $result, FILE_APPEND );
+				file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/send.log', time() );
+				file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/orders.txt', '' );
+
+				// Send email
+
+				$to      = 'elliot@kijo.co, jord@kijo.co';
+				$subject = 'FTP Send Result';
+				$message = '';
+	 
+				$br = "\r\n";
+
+				$message .= 'Timestamp: ' . time() . $br;
+				$message .= 'FTP Result: ' . $result . $br;
 			}
-
-			ftp_close( $ftp_connection );
-
-			// Write result of ftp and time file sent to logs, clean orders.txt file
-
-			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/upload.log', $result, FILE_APPEND );
-			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/send.log', time() );
-			file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/orders.txt', '' );
-
-			// Send email
-
-			$to      = 'elliot@kijo.co, jord@kijo.co';
-			$subject = 'FTP Send Result';
-			$message = '';
- 
-			$br = "\r\n";
-
-			$message .= 'Timestamp: ' . time() . $br;
-			$message .= 'FTP Result: ' . $result . $br;
-*/
 		}
 	}
 }
