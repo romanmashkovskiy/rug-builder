@@ -95,40 +95,17 @@
 .drawer__content__swatches--selected,
 .drawer__content__border,
 .drawer__content__size {
+	overflow: hidden;
 
 	&.open {
-		margin-top: 0;
 		max-height: 2000px;
-		overflow: initial;
-		padding: 25px;
-		-webkit-transition: 0.65s;
 		transition: 0.65s;
-		transition: 0.65s;
-		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
-		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
-	}
-
-	&.opening {
-		margin-top: 0;
-		max-height: 2000px;
-		overflow: hidden;
-		padding: 25px;
-		-webkit-transition: 0.65s;
-		transition: 0.65s;
-		transition: 0.65s;
-		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 	}
 
 	&.closed {
-		margin-top: -50px;
 		max-height: 0;
-		overflow: hidden;
-		padding: 25px;
-		-webkit-transition: 0.65s;
 		transition: 0.65s;
-		transition: 0.65s;
-		-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 	}
 }

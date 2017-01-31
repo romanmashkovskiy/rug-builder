@@ -57,29 +57,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			document.querySelector('.drawer__content__border').classList.remove('closed');
 			document.querySelector('.drawer__content__size').classList.remove('closed');
 
-			document.querySelector('.drawer__content__material').classList.add('opening');
-			document.querySelector('.drawer__content__collections').classList.add('opening');
-			document.querySelector('.drawer__content__swatches').classList.add('opening');
-			document.querySelector('.drawer__content__swatches--selected').classList.add('opening');
-			document.querySelector('.drawer__content__border').classList.add('opening');
-			document.querySelector('.drawer__content__size').classList.add('opening');
-
-			setTimeout(function() {
-
-				document.querySelector('.drawer__content__material').classList.remove('opening');
-				document.querySelector('.drawer__content__collections').classList.remove('opening');
-				document.querySelector('.drawer__content__swatches').classList.remove('opening');
-				document.querySelector('.drawer__content__swatches--selected').classList.remove('opening');
-				document.querySelector('.drawer__content__border').classList.remove('opening');
-				document.querySelector('.drawer__content__size').classList.remove('opening');
-
-				document.querySelector('.drawer__content__material').classList.add('open');
-				document.querySelector('.drawer__content__collections').classList.add('open');
-				document.querySelector('.drawer__content__swatches').classList.add('open');
-				document.querySelector('.drawer__content__swatches--selected').classList.add('open');
-				document.querySelector('.drawer__content__border').classList.add('open');
-				document.querySelector('.drawer__content__size').classList.add('open');
-			}, 650)
+			document.querySelector('.drawer__content__material').classList.add('open');
+			document.querySelector('.drawer__content__collections').classList.add('open');
+			document.querySelector('.drawer__content__swatches').classList.add('open');
+			document.querySelector('.drawer__content__swatches--selected').classList.add('open');
+			document.querySelector('.drawer__content__border').classList.add('open');
+			document.querySelector('.drawer__content__size').classList.add('open');
 			
 			this.setState({
 				open : true,
@@ -457,7 +440,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			const OPEN             = _this.state.open ? 'open' : 'closed';
 			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.content;
-			const MATERIAL_CLASSES = 'drawer__content__material stage' + this.state.stage;
+			const MATERIAL_CLASSES = 'drawer__content__material open stage' + this.state.stage;
 
 			let btnsHTML = '', topCSS = '';
 
@@ -489,7 +472,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 								{ MATERIAL_HTML }
 							</ul>
 						</div>
-						<div className="drawer__content__collections clearfix">
+						<div className="drawer__content__collections open clearfix">
 							<div className="drawer__collections__sidebar">
 								<ul>
 									{ SIDEBAR_HTML('collections') }
@@ -501,7 +484,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 								</ul>
 							</div>
 						</div>
-						<div className="drawer__content__swatches clearfix">
+						<div className="drawer__content__swatches open clearfix">
 							<div className="drawer__swatches__sidebar">
 								<ul>
 									{ SIDEBAR_HTML('swatches') }
@@ -513,7 +496,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 								</ul>
 							</div>
 						</div>
-						<div className="drawer__content__swatches--selected clearfix">
+						<div className="drawer__content__swatches--selected open clearfix">
 							<div className="drawer__swatches--selected__sidebar">
 								<ul>
 									{ SIDEBAR_HTML('swatches--selected') }
@@ -525,12 +508,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 								</ul>
 							</div>
 						</div>
-						<div className="drawer__content__border">
+						<div className="drawer__content__border open">
 							<ul>
 								{ BORDER_HTML }
 							</ul>
 						</div>
-						<div className="drawer__content__size">
+						<div className="drawer__content__size open">
 							{ SIZE_HTML }
 							{ PRICE_HTML }
 						</div>

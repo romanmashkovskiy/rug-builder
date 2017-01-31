@@ -14,10 +14,10 @@ RugBuilder.prototype.viewControls = function() {
 		},
 
 		iconURLS: [
-			templateDirectoryUri + '/rugbuilder/assets/icons/above-horizontal.svg',
-			templateDirectoryUri + '/rugbuilder/assets/icons/angled.svg',
-			templateDirectoryUri + '/rugbuilder/assets/icons/angled-horizontal.svg',
-			templateDirectoryUri + '/rugbuilder/assets/icons/above-vertical.svg'
+			'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102546/above-horizontal.svg',
+			'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102558/angled.svg',
+			'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102555/angled-horizontal.svg',
+			'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102554/above-vertical.svg'
 		],
 
 		changeView: function() {
@@ -36,8 +36,8 @@ RugBuilder.prototype.viewControls = function() {
 		render: function() {
 
 			const ICON_URL = this.iconURLS[this.state.view];
-			const ZOOM_IN  = templateDirectoryUri + '/rugbuilder/assets/icons/zoom-in.svg';
-			const ZOOM_OUT = templateDirectoryUri + '/rugbuilder/assets/icons/zoom-out.svg';
+			const ZOOM_IN  = 'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102559/zoom-in.svg';
+			const ZOOM_OUT = 'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102601/zoom-out.svg';
 			const CLASS    = 'view' + this.state.view;
 
 			return (
