@@ -18,12 +18,12 @@ var $ = jQuery;
 				  $('body').toggleClass("hide-about-timeline");
 			  });
 	     
-				var s = skrollr.init({
+				/*var s = skrollr.init({
 				render: function(data) {
 					//Debugging - Log the current scroll position.
 					console.log(data.curTop);
 					}
-				});
+				});*/
 	     
 	  });
 	});
