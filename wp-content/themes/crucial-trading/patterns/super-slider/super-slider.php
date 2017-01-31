@@ -159,7 +159,9 @@ function crucial_slider_slides() {
 					$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161213220240/crucial-logo-white%402x.png" alt="Crucial Trading - Where Inspiration Begins" class="opening-slide-logo">';
 					$html .= '<p>Welcome to the start of your journey where imagination flourishes, ideas form and decisions are made. We aim to inspire and delight. Choose the right floorcovering and everything else falls into place.</p>';
 					$html .= '<span></span>';
-					$html .= '<a href="http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4" class="html5lightbox" data-fullscreenmode="true">' . $link_text . '</a>';
+					$html .= '<a href="http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4" class="html5lightbox">';
+					$html .= '<div class="video-play-button"></div>';
+					$html .= '</a>';
 				}
 
 				$html .= '</div>';
@@ -182,7 +184,9 @@ function crucial_slider_slides() {
 				$html .= '<img src="' . $src . '" alt="' . $alt . '">';
 
 				if ( $post_title == 'Opening' ) {
-					$html .= '<a href="http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4" class="html5lightbox" data-fullscreenmode="true">' . $link_text . '</a>';
+					$html .= '<a href="http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4" class="html5lightbox">';
+					$html .= '<div class="video-play-button"></div>';
+					$html .= '</a>';
 				}
 
 				$html .= '</div>';

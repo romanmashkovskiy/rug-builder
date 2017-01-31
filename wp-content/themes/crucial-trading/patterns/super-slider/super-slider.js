@@ -11,7 +11,7 @@ var superslidesInterval = setInterval(function() {
 function createSuperslider() {
 
 	$('#super-slider').superslides({
-		play: 5000,
+		play: 5000000,
 		animation: 'fade',
 		animation_speed: 1200
 	});
