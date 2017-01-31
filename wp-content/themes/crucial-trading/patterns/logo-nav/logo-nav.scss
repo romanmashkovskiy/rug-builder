@@ -6,7 +6,8 @@
 	width: 100%; 
 	z-index: 9998;
 
-	&.headroom--not-top.headroom--pinned {
+	&.headroom--not-top.headroom--pinned,
+	&.headroom--not-top.headroom--unpinned {
 		background: #383838;
 	}
 }
