@@ -20,19 +20,25 @@ foreach ( $social as $key => $post ) {
 		$html .= "<div class='timeline__event__line'><span class='timeline__event__ball'></span></div>";
 		$html .= "<i class='icon-crucial-twitter'></i>";
 
+		$html .= "<div class='timeline__event_container'>";
+		
 		if ( $image ) {
 			$html .= "<img src='$image' class='twitter__image box-shadow'>";
 		}
 		
+		$html .= "<div class='timeline__text_container'>";
+		
 		$html .= "<h2 class='twitter__text'>$text</h2>";
 		$html .= "<h3 class='twitter__time'>$time</h3>";
 
-		if ( $link ) {
+		/*if ( $link ) {
 			$html .= "<a href='$link' target='_blank' class='twitter__link'>View Tweet</a>";
-		}
+		}*/
+		
+		$html .= "</div>";
 		
 		$html .= "<div class='twitter__shadow $shadow_class'></div>";
-		$html .= "</div>";
+		$html .= "</div></div>";
 
 	} else {
 

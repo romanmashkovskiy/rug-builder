@@ -1,10 +1,12 @@
+@import '../../assets/css/src/_utilities';
+
 .page-template-inspiration {
 
 	.inspiration-content {
-		margin-top: -105px;
+		margin-top: -120px;
 
 		@media screen and (max-width: 992px) {
-			margin-top: -178px;
+			margin-top: -200px;
 		}
 	}
 
@@ -32,7 +34,7 @@
 	.timeline__event {
 		display: inline-block;
 		float: none;
-		margin-bottom: 50px;
+		margin-bottom: 140px;
 		padding-left: 6%;
 		padding-right: 6%;
 		top: 160px;
@@ -73,11 +75,26 @@
 			position: absolute;
 			top: 40px;
 			z-index: 4;
+			font-size: 22px;
 		}
 	}
 
 	.timeline__event.twitter-post {
-
+		
+		// Timeline Event Container
+		
+		.timeline__event_container {
+			overflow: hidden;
+			position: relative;
+		}
+		
+		.timeline__event_container:hover .timeline__text_container,
+		.timeline__event_container:hover .twitter__shadow {
+			opacity: 1;
+		}
+		
+		// Image 
+		
 		.twitter__image {
 			box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.5);
 			object-fit: cover;
@@ -85,21 +102,32 @@
 			width: 100%;
 			z-index: 1;
 		}
-
+		
+		.timeline__text_container {
+			position: absolute;
+			bottom: 80px;
+			left: 50px;
+			right: 50px;
+			z-index: 3;
+			opacity: 0;
+			transition: all ease-in-out 0.35s;
+			-webkit-transition: all ease-in-out 0.35s;
+		}
+		
 		.twitter__text,
 		.twitter__time,
 		.twitter__link {
-			left: calc(12% + 40px);
+			/*left: calc(12% + 40px);
 			right: calc(12% + 40px);
-			position: absolute;
+			position: absolute;*/
 		}
 
 		.twitter__text {
-			bottom: 120px;
 			color: white;
 			font-size: 22px;
 			line-height: 1.4;
 			z-index: 3;
+			font-family: $font-copy;
 
 			@media screen and (max-width: 400px) {
 				font-size: 16px;
@@ -113,7 +141,7 @@
 		}
 
 		.twitter__time {
-			bottom: 75px;
+			padding-top: 30px;
 		}
 
 		.twitter__link {
@@ -122,20 +150,17 @@
 		}
 
 		.twitter__shadow {
-			background: rgba(0,0,0,0.3);
-			left: calc(12% + 30px);
+			background: rgba(0,0,0,0.8);
 			position: absolute;
-			right: calc(12% + 30px);
 			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			width: 100%;
 			z-index: 2;
-
-			&.has-link {
-				bottom: 40px;
-			}
-
-			&.no-link {
-				bottom: 75px;
-			}
+			opacity: 0;			
+			transition: all ease-in-out 0.35s;
+			-webkit-transition: all ease-in-out 0.35s;
 		}
 	}
 
