@@ -104,6 +104,18 @@ $(document).ready(function() {
 				stop = true;
 			}
 
+			if ( $('#billing_email').val() === '' ) {
+				$('#billing_email').css('cssText', 'border: 1px solid #a00 !important');
+				$('.shipping-address-errors').append('<p>Please enter an email address.</p>');
+				stop = true;
+			}
+
+			if ( $('#account_password').val() === '' ) {
+				$('#account_password').css('cssText', 'border: 1px solid #a00 !important');
+				$('.shipping-address-errors').append('<p>Please enter an email address.</p>');
+				stop = true;
+			}
+
 			if ( stop ) {
 				console.log(6)
 				e.preventDefault();

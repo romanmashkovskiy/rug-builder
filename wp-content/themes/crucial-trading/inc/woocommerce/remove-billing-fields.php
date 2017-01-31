@@ -28,7 +28,6 @@ function custom_override_checkout_fields( $fields ) {
     unset($fields['billing']['billing_postcode']);
     unset($fields['billing']['billing_company']);
     unset($fields['billing']['billing_last_name']);
-    unset($fields['billing']['billing_email']);
     unset($fields['billing']['billing_city']);
     return $fields;
 }

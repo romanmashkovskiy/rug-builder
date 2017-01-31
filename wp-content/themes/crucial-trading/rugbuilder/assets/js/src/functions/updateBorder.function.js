@@ -116,13 +116,13 @@ function _loadFiles(files, R, folder, type) {
 		let counter = 0;
 
 		let interval = setInterval(function() {
-
+/*
 			if ( counter === 100 ) {
 				// Timeout after 10 seconds
 				rej();
 				return;
 			}
-
+*/
 			if ( files.length === objects.length ) {
 				res();
 				clearInterval(interval)

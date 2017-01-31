@@ -216,7 +216,9 @@ function log_error( $error_info ) {
 
 	file_put_contents( $error_file, $error_string, FILE_APPEND );
 
-	return mail( 'elliot@kijo.co', 'RugBuilder Error', $error_string );
+	return true;
+
+//	return mail( 'elliot@kijo.co', 'RugBuilder Error', $error_string );
 
 }
 
