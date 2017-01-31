@@ -60,19 +60,20 @@ canvas {
 
 #full-loading {
 	background: white;
-	bottom: calc(50% - 150px);
+	bottom: calc(50% - 105px);
 	box-shadow: -5px 5px 18px 0 rgba(0,0,0,.08);
-	left: calc(50% - 150px);
+	left: calc(50% - 105px);
+	padding-top: 20px;
 	position: absolute;
-	right: calc(50% - 150px);
-	top: calc(50% - 150px);
+	right: calc(50% - 105px);
+	top: calc(50% - 105px);
 	z-index: 99999;
 
 	h1 {
 		color: #383838;
-		font-family: 'Playfair Display', serif;
+		font-family: 'Montserrat', serif;
+		font-size: 35px;
 		text-align: center;
-		top: 35%;
 	}
 
 	.loader,
@@ -83,7 +84,7 @@ canvas {
 	}
 
 	.loader {
-		font-size: 10px;
+		font-size: 5px;
 		position: relative;
 		margin: 20px auto 0;
 		text-indent: -9999em;

@@ -16,18 +16,7 @@ RugBuilder.prototype.start = function() {
 	}
 
 	const R = rugBuilder;
-/*
-	// Check cache
 
-	const UPDATE_DATE = localStorage.getItem('rb_update_cache_date');
-
-	if ( UPDATE_DATE === null ) {
-		console.log('new date')
-		localStorage.setItem('rb_update_cache_date', 1488326400)
-	} else {
-		console.log(UPDATE_DATE)
-	}
-*/
 	// Get WC Data, then either load rest of the app or error
 
 	R.getMaterialsData()                                                                     // ./data/materials.data.js

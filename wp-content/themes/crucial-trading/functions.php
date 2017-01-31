@@ -165,10 +165,14 @@ for ( $i = 0; $i < count($scan); $i++ ) {
 /**
  * Allow SVG upload.
  */
+
 add_filter( 'wp_check_filetype_and_ext', function($data, $file, $filename, $mimes) {
 
   global $wp_version;
-  if ( $wp_version !== '4.7.1' ) {
+
+  $wp_versions = array( '4.7.1', '4.7.2' );
+
+  if ( !in_array( $wp_version, $wp_versions ) ) {
      return $data;
   }
 
