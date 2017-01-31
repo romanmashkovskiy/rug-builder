@@ -66,6 +66,54 @@ $(document).ready(function() {
 		}, 4000)
 	}
 
+	// Check Form Validation
+
+	if ( $('#place_order').length > 0 ) {
+
+		$('#place_order').on('click', function(e) {
+
+			var stop = false;
+
+			if ( $('#shipping_first_name').val() === '' ) {
+				$('#shipping_first_name').css('cssText', 'border: 1px solid #a00 !important');
+				$('.shipping-address-errors').append('<p>Please enter a first name.</p>');
+				stop = true;
+			}
+
+			if ( $('#shipping_last_name').val() === '' ) {
+				$('#shipping_last_name').css('cssText', 'border: 1px solid #a00 !important');
+				$('.shipping-address-errors').append('<p>Please enter a last name.</p>');
+				stop = true;
+			}
+
+			if ( $('#shipping_address_1').val() === '' ) {
+				$('#shipping_address_1').css('cssText', 'border: 1px solid #a00 !important');
+				$('.shipping-address-errors').append('<p>Please enter a street address.</p>');
+				stop = true;
+			}
+
+			if ( $('#shipping_city').val() === '' ) {
+				$('#shipping_city').css('cssText', 'border: 1px solid #a00 !important');
+				$('.shipping-address-errors').append('<p>Please enter a town or city.</p>');
+				stop = true;
+			}
+
+			if ( $('#shipping_postcode').val() === '' ) {
+				$('#shipping_postcode').css('cssText', 'border: 1px solid #a00 !important');
+				$('.shipping-address-errors').append('<p>Please enter a post code.</p>');
+				stop = true;
+			}
+
+			if ( stop ) {
+				console.log(6)
+				e.preventDefault();
+				e.stopPropagation();
+				return false;
+			}
+
+		})
+	}
+
 	// Checkout Form Fix Styling
 
 	if ( $('.woocommerce').length > 0 ) {
@@ -73,6 +121,7 @@ $(document).ready(function() {
 		$('.woocommerce .form-row').each(function(i, e) {
 
 			var label       = $(e).children('label');
+			var current     = label.text();
 			var input       = $(e).children('input');
 			var placeholder = input.attr('placeholder');
 
@@ -81,10 +130,10 @@ $(document).ready(function() {
 			}
 
 			if ( placeholder !== '' ) {
-				return;
+				current = placeholder;
 			}
 
-			var text = label.text().replace('*','');
+			var text = current.replace('*', '').replace('(optional)', '');
 
 			input.attr('placeholder', text);
 

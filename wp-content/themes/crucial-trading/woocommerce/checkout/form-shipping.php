@@ -18,6 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <div class="woocommerce-shipping-fields">
 
+	<div class="shipping-address-errors"></div>
+
 	<div class="shipping_address">
 
 		<?php do_action( 'woocommerce_before_checkout_shipping_form', $checkout ); ?>

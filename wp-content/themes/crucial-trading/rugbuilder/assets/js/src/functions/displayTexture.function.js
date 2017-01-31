@@ -120,7 +120,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			}
 
 			if ( stageCode === 2 || stageCode === 3 ) {
-//				texture.flipY = true;
+				texture.flipY = true;
 //				texture.repeat.x = - 1;
 			}
 
