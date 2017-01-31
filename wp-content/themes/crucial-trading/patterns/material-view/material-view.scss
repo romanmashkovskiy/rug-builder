@@ -225,6 +225,17 @@
 				top: 0;
 				width: 100%;
 			}
+
+			&.current a:after {
+				display: none;
+				color: white;
+				font-family: WooCommerce;
+				content: "\e028";
+				display: inline-block;
+				position: absolute;
+				top: 1em;
+				left: 1.5em;
+			}
 		}
 	}
 
