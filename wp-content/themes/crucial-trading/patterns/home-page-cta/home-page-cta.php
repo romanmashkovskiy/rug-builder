@@ -55,7 +55,7 @@ function home_page_cta( $atts = '' ) {
 			}
 
 			$title  = 'Order Brochure';
-			$text   = 'Use our new immersive 3D rug builder and create your own bespoke luxary.';
+			$text   = 'Filled with inspirational photography and a swatch directory, featuring every colour-way across our extensive portfolio, The Book aims to inspire and delight, opening your eyes to further possibilities whilst aiding your decision making process.';
 			$bg_col = '#343233';
 			$src    = get_template_directory_uri() . '/assets/icons/brochure.svg';
 			$link   = site_url() . '/?add-to-cart=1610';

@@ -202,7 +202,7 @@ header.material {
 		-webkit-transform: translateY(-50%);
 		transform: translateY(-50%);
 	}
-
+	
 	.material__name {
 		left: 15px;
 
@@ -291,4 +291,25 @@ header.collection {
 
 header.collapsed {
 	height: 0;
+}
+
+// Adjust position for archive & single 
+	
+.archive.tax-product_cat .material__sidememu,
+.single-product header.material .material__sidememu {
+	top: 57%;
+}
+
+
+.single-product header.material .material__sidememu,
+.tax-product_cat header.material .material__sidememu {
+
+		img:not(.active) {
+			opacity: 0.8;
+		}
+
+		img:not(.active):hover {
+			opacity: 1;
+		}
+
 }
