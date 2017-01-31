@@ -261,6 +261,25 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					break;
 			}
 
+			this.setState({
+				open : true,
+				text : 'Collapse'
+			});
+
+			document.querySelector('.drawer__content__material').classList.remove('closed');
+			document.querySelector('.drawer__content__collections').classList.remove('closed');
+			document.querySelector('.drawer__content__swatches').classList.remove('closed');
+			document.querySelector('.drawer__content__swatches--selected').classList.remove('closed');
+			document.querySelector('.drawer__content__border').classList.remove('closed');
+			document.querySelector('.drawer__content__size').classList.remove('closed');
+
+			document.querySelector('.drawer__content__material').classList.add('open');
+			document.querySelector('.drawer__content__collections').classList.add('open');
+			document.querySelector('.drawer__content__swatches').classList.add('open');
+			document.querySelector('.drawer__content__swatches--selected').classList.add('open');
+			document.querySelector('.drawer__content__border').classList.add('open');
+			document.querySelector('.drawer__content__size').classList.add('open');
+
 			this.updateContentState(content);
 		},
 

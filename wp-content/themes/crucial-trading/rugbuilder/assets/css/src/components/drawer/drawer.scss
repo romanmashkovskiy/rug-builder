@@ -53,7 +53,6 @@
 		}
 
 		&.border {
-			margin-top: -16px;
 
 			.drawer__content__material,
 			.drawer__content__collections,
@@ -98,13 +97,21 @@
 	overflow: hidden;
 
 	&.open {
-		max-height: 2000px;
+
+		@media screen and (min-width: 768px) {
+			max-height: 570px;
+		}
+		
 		transition: 0.65s;
 		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 	}
 
 	&.closed {
-		max-height: 0;
+
+		@media screen and (min-width: 768px) {
+			max-height: 0;
+		}
+		
 		transition: 0.65s;
 		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 	}

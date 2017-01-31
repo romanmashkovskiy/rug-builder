@@ -99,14 +99,13 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			texture.anisotropy = R.renderer.getMaxAnisotropy();
 			texture.generateMipmaps = true;
 
+			const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
+
 			if ( typeof repeat === 'object' ) {
 
 				if ( repeat.x !== '' && repeat.y !== '' ) {
 					texture.repeat.set(repeat.x, repeat.y)
 				} else {
-
-					const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
-
 					if ( repeat.x !== '' ) {
 						texture.repeat.set(repeat.x, DEFAULT_VAL);
 					} else if ( repeat.y !== '' ) {
@@ -115,11 +114,10 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 						texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
 					}
 				}
+
 			} else {
 				texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
 			}
-
-				
 
 			if ( stageCode === 2 || stageCode === 3 ) {
 //				texture.flipY = true;
