@@ -4,11 +4,14 @@ $(document).ready(function() {
 
 	var slider = $('.materials-slider').bxSlider({
 		mode: 'fade',
-//		onSliderLoad: function() {
-//			setTimeout(function() {
-//				$('.slide__content').addClass('vertical-align');
-//			}, 100)
-//		}
+		onSliderLoad: function() {
+
+			var firstSlide    = $('.materials-slider li.material-slide')[0];
+			var firstMaterial = $(firstSlide).data('material');
+
+			$('.next-slide.--material-slider').addClass(firstMaterial);
+			$('.prev-slide.--material-slider').addClass(firstMaterial);
+		}
 	});
 
 	$('.next-slide.--material-slider').on('click', function() {
