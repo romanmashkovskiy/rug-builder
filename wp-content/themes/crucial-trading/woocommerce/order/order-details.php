@@ -32,8 +32,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 	<table class="shop_table order_details">
 		<thead>
 			<tr>
-				<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-				<th class="product-total"><?php _e( 'Total', 'woocommerce' ); ?></th>
+				<th class="product-name"><?php _e( 'Items', 'woocommerce' ); ?></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -51,20 +50,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 					) );
 				}
 			?>
-			<?php do_action( 'woocommerce_order_items_table', $order ); ?>
 		</tbody>
-		<tfoot>
-			<?php
-				foreach ( $order->get_order_item_totals() as $key => $total ) {
-					?>
-					<tr>
-						<th scope="row"><?php echo $total['label']; ?></th>
-						<td><?php echo $total['value']; ?></td>
-					</tr>
-					<?php
-				}
-			?>
-		</tfoot>
 	</table>
 
 	<?php do_action( 'woocommerce_order_details_after_order_table', $order ); ?>
