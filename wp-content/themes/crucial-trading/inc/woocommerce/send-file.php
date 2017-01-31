@@ -110,7 +110,9 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 
 				// Write result of ftp and time file sent to logs, clean orders.txt file
 
-				file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/upload.log', $result, FILE_APPEND );
+				$str = 'Result of FTP put: ' . var_dump( $result ) . ' ' . time();
+
+				file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/upload.log', $str, FILE_APPEND );
 				file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/send.log', time() );
 				file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/orders.txt', '' );
 
