@@ -34,6 +34,7 @@ echo do_shortcode( '[logo-nav]' ); ?>
 				<h1 class="about__scroller__heading vertical-align">Our Process</h1>
 				<a href="#" title="Our Process" class="about__scroller__btn">Read More</a>
 			</div>
+			<a href="#" class="about__scroller__start">Start</a>
 		</div>
 		
 				
@@ -43,17 +44,17 @@ echo do_shortcode( '[logo-nav]' ); ?>
 
 			<?php
 
-			$args = array(
+			$timeline_args = array(
 				'post_type' => 'timeline',
 				'orderby'   => 'menu_order',
 				'order'     => 'ASC',
 			);
 
-			$query = new WP_Query( $args );
+			$timeline_query = new WP_Query( $timeline_args );
 
-			if ( $query->have_posts() ) {
+			if ( $timeline_query->have_posts() ) {
 
-				foreach ( $query->posts as $key => $post ) {
+				foreach ( $timeline_query->posts as $key => $post ) {
 
 					$post_id = $post->ID;
 					$year    = rwmb_meta( 'timeline-year', array(), $post_id );
@@ -89,7 +90,60 @@ echo do_shortcode( '[logo-nav]' ); ?>
 		
 		<div class="about__scroller__content clearfix">
 			
-			
+			<div id="pagepilling">
+
+				<?php
+
+				$scroller_args = array(
+					'post_type' => 'scroller',
+					'orderby'   => 'menu_order',
+					'order'     => 'ASC',
+				);
+
+				$scroller_query = new WP_Query( $scroller_args );
+
+				if ( $scroller_query->have_posts() ) {
+
+					$i = 1;
+
+					foreach ( $scroller_query->posts as $key => $post ) {
+
+						$post_id = $post->ID;
+						$title   = $post->post_title;
+						$_image  = rwmb_meta( 'scroller-image', array(), $post_id );
+						$image   = array_values( $_image );
+						$content = rwmb_meta( 'scroller-content', array(), $post_id );
+						$src     = array_key_exists( 0, $image ) ? $image[0]['url'] : '';
+
+						?>
+
+						<div class="section">
+							<a href="#" class="scroller__top">Back</a>
+							<div class="section__image">
+								<img src="<?php echo $src; ?>" alt="<?php echo $title; ?>">
+							</div>
+							<div class="section__content box-shadow">
+								<h2 class="section__title"><?php echo $title; ?></h2>
+								<p class="section__text"><?php echo $content; ?></p>
+
+								<?php if ( $i < count($scroller_query->posts) ) { ?>
+									<a class="section__next" href="#">Next</a>
+								<?php } ?>
+
+							</div>
+						</div>
+
+						<?php
+
+						$i++;
+
+					}
+
+				}
+
+				?>
+
+			</div>
 
 		</div>
 
