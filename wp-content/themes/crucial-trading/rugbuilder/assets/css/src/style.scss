@@ -19,20 +19,29 @@ canvas {
 }
 
 .scroll-btns {
-	bottom: 0;
+	bottom: 60%;
+	left: 19%;
 	position: absolute;
-	right: 0;
+	right: 2%;
 }
 
 .scroll__left,
 .scroll__right {
-	float: left;
 	padding: 5px;
+	position: absolute;
 
 	a {
 		display: block;
 		padding: 0;
 	}
+}
+
+.scroll__left {
+	left: 0;
+}
+
+.scroll__right {
+	right: 0;
 }
 
 #error-box {
