@@ -6,6 +6,7 @@
  * Contents:
  * Register Post Type
  * Meta Boxes
+ * Columns
  *
  * @package Crucial Trading
  * @since Crucial Trading 1.0
@@ -80,4 +81,44 @@ function super_slider_meta_boxes( $meta_boxes ) {
 	);
 
 	return $meta_boxes;
+}
+
+// Columns
+
+add_filter('manage_timeline_posts_columns' , 'add_timeline_columns');
+
+function add_timeline_columns( $columns ) {
+
+    return array(
+    	'cb'      => '<input type="checkbox" />',
+    	'year'    => __('Year'),
+    	'm_title' => __('Title'),
+    	'date'    => __('Date'),
+    );
+}
+
+add_action( 'manage_posts_custom_column' , 'custom_columns', 10, 2 );
+
+function custom_columns( $column, $post_id ) {
+
+	switch ( $column ) {
+
+		case 'year' :
+
+			$link = get_edit_post_link( $post_id );
+			$year = rwmb_meta( 'timeline-year', array(), $post_id );
+
+			echo "<a href='$link'>$year</a>";
+
+			break;
+
+		case 'm_title' :
+
+			$title = rwmb_meta( 'timeline-title', array(), $post_id );
+
+			echo "<p>$title</p>";
+
+			break;
+	}
+
 }
