@@ -265,18 +265,3 @@ function add_rug_to_cart() {
 		}
 	}
 }
-
-function save_cart_item_data( $cart_item_data, $product_id, $variation_id ) {
-
-	$cart_item_data = array();
-
-	if ( array_key_exists( 'center', $_GET ) && $_GET['center'] == $product_id ) {
-		$cart_item_data['length'] = array_key_exists( 'length', $_GET ) ? $_GET['length'] : 0;
-		$cart_item_data['width']  = array_key_exists( 'width', $_GET ) ? $_GET['width'] : 0;
-		$cart_item_data['price']  = array_key_exists( 'price', $_GET ) ? $_GET['price'] : 0;
-	}
-
-	return $cart_item_data;
-}
-
-add_filter( 'woocommerce_add_cart_item_data', 'save_cart_item_data', 10, 3 );

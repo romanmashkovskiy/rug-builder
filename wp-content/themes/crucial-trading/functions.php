@@ -332,3 +332,92 @@ add_action( 'wppb_before_saving_form_values', 'abc' );
 function abc() {
 	echo '<script>window.location.href = "' . site_url() . '/my-login"</script>';
 }
+
+/**
+ * Save custom Rug Builder data
+ *
+ */
+
+add_filter( 'woocommerce_add_cart_item_data', 'save_cart_item_data', 10, 3 );
+
+function save_cart_item_data( $cart_item_data, $product_id, $variation_id ) {
+
+	$cart_item_data = array();
+
+	if ( array_key_exists( 'center', $_GET ) && $_GET['center'] == $product_id ) {
+		$cart_item_data['length'] = array_key_exists( 'length', $_GET ) ? $_GET['length'] : 0;
+		$cart_item_data['width']  = array_key_exists( 'width', $_GET ) ? $_GET['width'] : 0;
+		$cart_item_data['price']  = array_key_exists( 'price', $_GET ) ? $_GET['price'] : 0;
+		$cart_item_data['inner']  = array_key_exists( 'inner', $_GET ) ? $_GET['inner'] : 0;
+
+		if ( array_key_exists( 'piping', $_GET ) ) {
+			$cart_item_data['piping'] = $_GET['piping'];
+		}
+
+		if ( array_key_exists( 'outer', $_GET ) ) {
+			$cart_item_data['outer'] = $_GET['outer'];
+		}
+	}
+
+	return $cart_item_data;
+}
+
+add_filter( 'woocommerce_get_cart_item_from_session', 'restore_cart_item_data', 10, 3 );
+
+function restore_cart_item_data( $cartItemData, $cartItemSessionData, $cartItemKey ) {
+
+	if ( isset( $cartItemSessionData['length'] ) ) {
+		$cartItemData['length'] = $cartItemSessionData['length'];
+	}
+
+	if ( isset( $cartItemSessionData['width'] ) ) {
+		$cartItemData['width'] = $cartItemSessionData['width'];
+	}
+
+	if ( isset( $cartItemSessionData['price'] ) ) {
+		$cartItemData['price'] = $cartItemSessionData['price'];
+	}
+
+	if ( isset( $cartItemSessionData['inner'] ) ) {
+		$cartItemData['inner'] = $cartItemSessionData['inner'];
+	}
+
+	if ( isset( $cartItemSessionData['piping'] ) ) {
+		$cartItemData['piping'] = $cartItemSessionData['piping'];
+	}
+
+	if ( isset( $cartItemSessionData['outer'] ) ) {
+		$cartItemData['outer'] = $cartItemSessionData['outer'];
+	}
+
+	return $cartItemData;
+}
+
+add_action( 'woocommerce_add_order_item_meta', 'save_item_meta', 10, 3 );
+
+function save_item_meta( $itemId, $values, $key ) {
+
+	if ( isset( $values['length'] ) ) {
+		wc_add_order_item_meta( $itemId, 'Length', $values['length'] );
+	}
+
+	if ( isset( $values['width'] ) ) {
+		wc_add_order_item_meta( $itemId, 'Width', $values['width'] );
+	}
+
+	if ( isset( $values['price'] ) ) {
+		wc_add_order_item_meta( $itemId, 'Price', '£' . $values['price'] );
+	}
+
+	if ( isset( $values['inner'] ) ) {
+		wc_add_order_item_meta( $itemId, 'Inner Border', get_the_title( $values['inner'] ) );
+	}
+
+	if ( isset( $values['piping'] ) ) {
+		wc_add_order_item_meta( $itemId, 'Piping', get_the_title( $values['piping'] ) );
+	}
+
+	if ( isset( $values['outer'] ) ) {
+		wc_add_order_item_meta( $itemId, 'Outer Border', get_the_title( $values['outer'] ) );
+	}
+}

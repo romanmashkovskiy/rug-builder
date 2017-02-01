@@ -98,11 +98,25 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			function loaded() {
 				
 				if ( this.status !== 200 ) {
-					alert('error')
+					R.error(1000, this, true);
 					return;
 				}
 
-				alert('samples added to your basket')
+				const CONTAINER = document.createElement('div');
+				const MESSAGE   = document.createElement('h3');
+
+				CONTAINER.style.position = 'absolute';
+				CONTAINER.style.top = '170px';
+				CONTAINER.style.left = '0';
+				CONTAINER.style.right = '0';
+				CONTAINER.style.zIndex = '999999';
+				CONTAINER.style.background = 'white';
+				CONTAINER.style.textAlign = 'center';
+
+				MESSAGE.innerHTML = 'Samples added to your <a href="' + siteUrl + '/basket">basket</a>.';
+
+				CONTAINER.appendChild(MESSAGE);
+				document.body.appendChild(CONTAINER);
 			}
 		},
 
@@ -133,6 +147,18 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			url += '&width=' + this.state.width;
 			url += '&price=' + this.state.price;
 
+			if ( BORDER_TYPE === 'single' ) {
+				url += '&inner=' + this.state.singleBorderID;
+			} 
+			else if ( BORDER_TYPE === 'piping' ) {
+				url += '&inner=' + this.state.singleBorderID;
+				url += '&piping=' + this.state.singleBorderID;
+			}
+			else if ( BORDER_TYPE === 'double' ) {
+				url += '&inner=' + this.state.innerBorderID;
+				url += '&outer=' + this.state.outerBorderID;
+			}
+
 			let req = new XMLHttpRequest();
 
 			req.addEventListener( 'load', loaded );
@@ -142,11 +168,25 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			function loaded() {
 				
 				if ( this.status !== 200 ) {
-					alert('error')
+					R.error(1000, this, true);
 					return;
 				}
 
-				alert('rug added to your basket')
+				const CONTAINER = document.createElement('div');
+				const MESSAGE   = document.createElement('h3');
+
+				CONTAINER.style.position = 'absolute';
+				CONTAINER.style.top = '170px';
+				CONTAINER.style.left = '0';
+				CONTAINER.style.right = '0';
+				CONTAINER.style.zIndex = '999999';
+				CONTAINER.style.background = 'white';
+				CONTAINER.style.textAlign = 'center';
+
+				MESSAGE.innerHTML = 'Rug added to your <a href="' + siteUrl + '/basket">basket</a>. It will appear in your basket as seperate pieces.';
+
+				CONTAINER.appendChild(MESSAGE);
+				document.body.appendChild(CONTAINER);
 			}
 		},
 
