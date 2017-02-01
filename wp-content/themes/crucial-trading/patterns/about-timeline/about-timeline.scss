@@ -157,7 +157,7 @@ body {
 
 .show-about-timeline .about__timeline__text {
 	//z-index: 109;
-	transform: translate3d(50%,-40%,0);
+	transform: translate3d(17%,-40%,0);
 	transition: transform 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 }
@@ -338,6 +338,14 @@ body {
 	z-index: 99;
 	position: absolute;
 	left: 50%;
+
+	@media screen and (max-width: 768px) {
+		left: 90%;
+	}
+
+	@media screen and (max-width: 550px) {
+		display: none;
+	}
 }
 
 .timeline__top-line {
@@ -386,6 +394,14 @@ body {
 	position: relative;
 	padding-left: 12%;
 	padding-right: 12%;
+
+	@media screen and (max-width: 768px) {
+		width: 90%;
+	}
+
+	@media screen and (max-width: 550px) {
+		width: 100%;
+	}
 }
 
 /*.timeline__event#three,
@@ -396,11 +412,20 @@ body {
 .timeline__event:nth-child(odd) {
 	float: left;
 	margin-top: 35%;
+
+	@media screen and (max-width: 768px) {
+		float: none;
+		margin-top: 15%;
+	}
 }
 
 .timeline__event:nth-child(even) {
 	float: right;
 	margin-top: 20%;
+
+	@media screen and (max-width: 768px) {
+		float: none;
+	}
 }
 
 /************** Event Details **************/ 
@@ -421,6 +446,10 @@ h4.timeline__event__heading {
 	left: -70px;
 	top: 7px;
 	opacity: 0.2;
+
+	@media screen and (max-width: 625px) {
+		display: none;
+	}
 }
 
 /*** Large Date ***/ 
@@ -465,6 +494,10 @@ h4.timeline__event__heading {
 	position: absolute;
 	right: -0.1%;
 	top: 42%;
+
+	@media screen and (max-width: 550px) {
+		display: none;
+	}
 }
 
 .timeline__event__ball {
@@ -476,11 +509,20 @@ h4.timeline__event__heading {
 	top: -4px;
 	left: 96%;
 	background-color: $main-menu-link-color-dark;
+
+	@media screen and (max-width: 550px) {
+		display: none;
+	}
 }
 	
 .timeline__event:nth-child(even) .timeline__event__line {
 	left: -0.1%;
 	transform: rotate(180deg);
+
+	@media screen and (max-width: 768px) {
+		left: auto;
+		transform: none;
+	}
 }
 
 

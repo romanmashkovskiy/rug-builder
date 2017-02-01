@@ -12,3 +12,4 @@
 include_once('inspiration.php');
 include_once('retailer.php');
 include_once('super-slider.php');
+include_once('timeline.php');
