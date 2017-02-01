@@ -22,4 +22,4 @@ RugBuilder.prototype.showWebGLError = function(supported) {
 	CONTAINER.appendChild(MESSAGE);
 	document.body.appendChild(CONTAINER);
 
-} 
+}
