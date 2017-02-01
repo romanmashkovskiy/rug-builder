@@ -31,6 +31,10 @@
 	.order__image {
 		padding-right: 30px;
 
+		@media screen and (max-width: 992px) {
+			float: none;
+		}
+
 		img {
 			height: auto;
 			width: 100%;
@@ -39,6 +43,11 @@
 
 	.order__details {
 		padding-left: 30px;
+
+		@media screen and (max-width: 992px) {
+			float: none;
+			width: 100%;
+		}
 	}
 
 	.details__row {
@@ -64,6 +73,13 @@
 		p:last-child {
 			float: left;
 			width: 30%;
+		}
+	}
+
+	.order__links {
+
+		@media screen and (max-width: 992px) {
+			margin-top: 25px;
 		}
 	}
 }

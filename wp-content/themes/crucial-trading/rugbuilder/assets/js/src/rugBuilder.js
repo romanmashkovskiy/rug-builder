@@ -377,6 +377,8 @@ class RugBuilder {
 
 	calculatePrice(LENGTH, WIDTH) {
 
+		const R = rugBuilder;
+
 		let totalPrice;
 
 		// If the length/width is empty or 0, publish the newPrice event so the price can be updated to zero, and return
@@ -395,7 +397,178 @@ class RugBuilder {
 				// Work out the center area and how much that will cost
 				const AREA         = LENGTH * WIDTH;
 				const CENTER_PRICE = price * AREA;
+				let BORDER_PRICE;
 
+				const BORDER_TYPE = R.borderType;
+
+				let INNER_BORDER = false;
+				let PIPING       = false;
+				let OUTER_BORDER = false;
+
+				switch ( BORDER_TYPE ) {
+
+					case 'single' :
+						let single_choice = R.borderMaterials.single.split(' ').join('');
+						INNER_BORDER      = R.WCswatches[single_choice];
+						break;
+
+					case 'piping' :
+						let border_choice = R.borderMaterials.piping.split(' ').join('');
+						let piping_choice = R.borderMaterials.piping.split(' ').join('');
+						INNER_BORDER      = R.WCswatches[border_choice];
+						PIPING            = R.WCswatches[piping_choice];
+						break;
+
+					case 'double' :
+						let inner_choice = R.borderMaterials.double.inner.split(' ').join('');
+						let outer_choice = R.borderMaterials.double.outer.split(' ').join('');
+						INNER_BORDER     = R.WCswatches[inner_choice];
+						OUTER_BORDER     = R.WCswatches[outer_choice];
+						break
+				}
+
+				if ( BORDER_TYPE === 'single' ) {
+
+					let s_singleBorderMaterial, s_singleBorderPrice = 0;
+
+					for ( let i = 0; i < INNER_BORDER.cats.length; i++ ) {
+
+						if ( INNER_BORDER.cats[i].parent === 487 ) {
+							s_singleBorderMaterial = INNER_BORDER.cats[i].slug;
+							break;
+						}
+
+					}
+
+					if ( s_singleBorderMaterial === 'cotton' || s_singleBorderMaterial === 'linen' ) {
+						s_singleBorderPrice = 17;
+					} else if ( s_singleBorderMaterial === 'leather' || s_singleBorderMaterial === 'suede' ) {
+						s_singleBorderPrice = 38;
+					}
+
+					BORDER_PRICE = s_singleBorderPrice * ((LENGTH * 2) + (WIDTH * 2));
+
+				} else if ( BORDER_TYPE === 'piping' ) {
+
+					let p_singleBorderMaterial, p_singleBorderPrice = 0;
+
+					for ( let i = 0; i < INNER_BORDER.cats.length; i++ ) {
+
+						if ( INNER_BORDER.cats[i].parent === 487 ) {
+							p_singleBorderMaterial = INNER_BORDER.cats[i].slug;
+							break;
+						}
+
+					}
+
+					if ( p_singleBorderMaterial === 'cotton' || p_singleBorderMaterial === 'linen' ) {
+						p_singleBorderPrice = 25;
+					} else if ( p_singleBorderMaterial === 'leather' || p_singleBorderMaterial === 'suede' ) {
+						p_singleBorderPrice = 50;
+					}
+
+					BORDER_PRICE = p_singleBorderPrice * ((LENGTH * 2) + (WIDTH * 2));
+					
+
+				} else if ( BORDER_TYPE === 'double' ) {
+
+					let innerBorderMaterial, outerBorderMaterial;
+
+					for ( let i = 0; i < INNER_BORDER.cats.length; i++ ) {
+
+						if ( INNER_BORDER.cats[i].parent === 487 ) {
+							innerBorderMaterial = INNER_BORDER.cats[i].slug;
+							break;
+						}
+
+					}
+
+					for ( let i = 0; i < OUTER_BORDER.cats.length; i++ ) {
+
+						if ( OUTER_BORDER.cats[i].parent === 487 ) {
+							outerBorderMaterial = OUTER_BORDER.cats[i].slug;
+							break;
+						}
+
+					}
+
+					let basePrice;
+
+					switch ( innerBorderMaterial ) {
+
+						case 'cotton' :
+
+							if ( outerBorderMaterial === 'cotton' ) {
+								basePrice = 25;
+							} else if ( outerBorderMaterial === 'linen' ) {
+								basePrice = 25;
+							} else if ( outerBorderMaterial === 'suede' ) {
+								basePrice = 50;
+							} else if ( outerBorderMaterial === 'leather' ) {
+								basePrice = 50;
+							}
+
+							break;
+
+						case 'linen' :
+
+							if ( outerBorderMaterial === 'cotton' ) {
+								basePrice = 25;
+							} else if ( outerBorderMaterial === 'linen' ) {
+								basePrice = 25;
+							} else if ( outerBorderMaterial === 'suede' ) {
+								basePrice = 50;
+							} else if ( outerBorderMaterial === 'leather' ) {
+								basePrice = 50;
+							}
+
+							break;
+
+						case 'leather' :
+
+							if ( outerBorderMaterial === 'cotton' ) {
+								basePrice = 50;
+							} else if ( outerBorderMaterial === 'linen' ) {
+								basePrice = 50;
+							} else if ( outerBorderMaterial === 'suede' ) {
+								basePrice = 60;
+							} else if ( outerBorderMaterial === 'leather' ) {
+								basePrice = 60;
+							}
+
+							break;
+
+						case 'suede' :
+
+							if ( outerBorderMaterial === 'cotton' ) {
+								basePrice = 50;
+							} else if ( outerBorderMaterial === 'linen' ) {
+								basePrice = 50;
+							} else if ( outerBorderMaterial === 'suede' ) {
+								basePrice = 60;
+							} else if ( outerBorderMaterial === 'leather' ) {
+								basePrice = 60;
+							}
+
+							break;
+
+					}
+
+					BORDER_PRICE = basePrice * ((LENGTH * 2) + (WIDTH * 2));
+
+				}
+
+				const TOTAL_PRICE = CENTER_PRICE + BORDER_PRICE;
+
+				// Publish the newPrice event so the price can be updated
+				PubSub.publish('newPrice', TOTAL_PRICE);
+
+				// Save the user selected length and width, and the price
+				this.length = LENGTH;
+				this.width  = WIDTH;
+				this.price  = TOTAL_PRICE;
+
+/*
 				// Get the user's current border type choice
 				const CURRENT_BORDER_TYPE = this.borderType;
 
@@ -406,8 +579,12 @@ class RugBuilder {
 					this.getPriceData(CURRENT_BORDER_MATERIAL)
 						.then((price2) => {
 
+							console.log(price2)
+
 							// Work out price of the border and add it to the price of the center
-							totalPrice = CENTER_PRICE + price2; 
+							totalPrice = CENTER_PRICE + parseInt(price2); 
+
+							console.log(totalPrice)
 
 							// Publish the newPrice event so the price can be updated
 							PubSub.publish('newPrice', totalPrice);
@@ -435,8 +612,13 @@ class RugBuilder {
 						})
 						.then((price3) => {
 
+							console.log(price2)
+							console.log(price3)
+
 							// Work out price of the border and add it to the price of the center
-							totalPrice = CENTER_PRICE + price2 + price3;
+							totalPrice = CENTER_PRICE + parseInt(price2) + parseInt(price3);
+
+							console.log(totalPrice)
 
 							// Publish the newPrice event so the price can be updated
 							PubSub.publish('newPrice', totalPrice);
@@ -452,6 +634,7 @@ class RugBuilder {
 							R.error(1000, true)
 						});
 				}
+*/
 			})
 			.catch(() => {
 				R.error(1000, true)

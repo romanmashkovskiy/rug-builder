@@ -121,6 +121,8 @@ function swatches_data() {
 		$product_id   = $products[$s]->ID;
 		$product_meta = get_post_meta( $product_id, '_product_attributes', true );
 
+		$cats = get_the_terms( $product_id, 'product_cat' );
+
 		$name  = $products[$s]->post_title;
 		$key   = str_replace( ' ', '', $name );
 		$code  = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : '';
@@ -134,6 +136,7 @@ function swatches_data() {
 		$stitching = rwmb_meta( 'rb_stitching_colour', array(), $product_id );
 
 		$arr['id']        = $product_id;
+		$arr['cats']      = $cats;
 		$arr['name']      = $name;
 		$arr['code']      = $code;
 		$arr['thumb']     = $thumb;
