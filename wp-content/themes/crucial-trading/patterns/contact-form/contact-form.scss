@@ -2,22 +2,15 @@
 
 .contact-form {
 	background: white;
-	margin-left: 13%;
 	max-width: 1300px;
 	padding: 10px;
 	position: relative;
 	width: 74%;
+	margin-left: auto;
+	margin-right: auto;
 
-	@media screen and (max-width: 555px) {
-
-		input, select, textarea {
-			font-size: 12px !important;
-		}
-	}
-
-	@media screen and (min-width: 1756px) {
-		margin-left: auto;
-		margin-right: auto;
+	@media all and (max-width: 450px) {
+		width: 85%;
 	}
 
 	& >div {
@@ -46,7 +39,27 @@
 	form .gfield_required {
 		display: none;
 	}
+	
+	
+		/***** Trade & General ****/ 
 
+	#general,
+	#trade {
+
+		.border-div {
+			border: 1px solid #E6E6E6;
+			padding: 50px;
+			
+			@media all and (max-width: 450px) {
+				padding: 25px;
+				border: none;
+			}
+			
+		}
+	}
+	
+	/***** General ****/ 
+	
 	#general form {
 
 		ul li:not(:last-child) {
@@ -71,7 +84,13 @@
 			label {
 				display: none;
 			}
-
+			
+			textarea {
+				width: 100%;
+				box-sizing: border-box;
+				height: 190px;
+			}
+			
 			@media screen and (max-width: 768px) {
 				margin-top: 17px;
 				position: static;
@@ -83,25 +102,40 @@
 			margin-top: 0 !important;
 		}
 	}
-
+	
+	
+	/***** Trade Form ****/ 
+	
 	#trade form {
+
+		textarea {
+			width: 100%;
+			@extend .clearfix;
+		}
+		
+		#vfield_3_14 {
+			clear: both;
+		}
 
 		select {
 			padding: 8px 0 7px 19px;
 		}
 
 		ul li {
-			margin-top: 9px !important;
 
 			label {
 				display: none;
 			}
 		}
-
+		
+		ul li:nth-child(odd) {
+			margin-right:3%;
+		}
+		
 		ul li:not(:last-child) {
 			clear: none;
 			float: left;
-			width: 50%;
+			width: 48.5%;
 
 			@media screen and (max-width: 768px) {
 				width: 100%;
@@ -109,8 +143,8 @@
 		}
 
 		ul li:last-child {
-			position: relative;
-			top: 17px;
+			clear: both;
+			margin-right: 0px;
 		}
 
 		ul li:last-child .ginput_container {
@@ -118,23 +152,17 @@
 		}
 	}
 
-	input[type="submit"] {
-		left: calc(50% - 110px);
-		position: relative;
-	}
-
-	#general,
-	#trade {
-
-		.border-div {
-			border: 1px solid #E6E6E6;
-			padding: 50px;
-		}
-	}
-
+	
+	
+	/***** Press ****/ 
+	
 	#press {
 		position: relative;
-
+		
+		textarea {
+			width: 100%;
+		}
+		
 		h2 {
 			font-weight: bold;
 
@@ -168,6 +196,11 @@
 			float: left;
 			padding: 50px;
 			width: 48%;
+			
+						
+			@media all and (max-width: 450px) {
+				padding: 25px;
+			}
 
 			@media screen and (max-width: 768px) {
 				width: 100%;
@@ -220,8 +253,13 @@
 			}
 		}
 	}
-
-	#trade {
-
-	}
 }
+
+
+.page-template-contact .gform_wrapper .gform_footer {
+	clear: both;
+	display: block;
+	text-align: center;
+	margin-top: 40px;
+}
+
