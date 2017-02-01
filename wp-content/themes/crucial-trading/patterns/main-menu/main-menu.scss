@@ -271,6 +271,10 @@ body {
 .main-menu__social {
 	border-top: 1px solid $main-menu-border-color;
 	border-bottom: 1px solid $main-menu-border-color;
+
+	@media screen and (max-width: 450px) {
+		display: none;
+	}
 }
 
 .main-menu__social a i,
