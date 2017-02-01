@@ -169,13 +169,19 @@ function crucial_slider_slides() {
 			} else {
 
 				$html .= '<div class="slide__title">';
-
+	
 				if ( $post_title != 'Opening' ) {
 					$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
 					$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
 				} else {
+					
+					$html .= '<div class="slide__title__wrapper">';
+					
 					$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161212170153/CT_LogoStrapline_Black1.svg" alt="Crucial Trading - Where Inspiration Begins" class="opening-slide-logo">';
 					$html .= '<p>Welcome to the start of your journey where imagination flourishes, ideas form and decisions are made. We aim to inspire and delight. Choose the right floorcovering and everything else falls into place.</p>';
+					
+					$html .= '</div>';
+					
 				}
 
 				$html .= '</div>';
@@ -187,7 +193,9 @@ function crucial_slider_slides() {
 				}
 				
 				if ( $post_title == 'Opening' ) {
-
+				
+				$html .= '<div class="slide__image__wrapper">';
+				
 					$poster = 'http://d105txpzekqrfa.cloudfront.net/uploads/20170201123219/video-inspiration-begins-169.jpg';
 					$video  = 'http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4';
 
@@ -196,6 +204,8 @@ function crucial_slider_slides() {
 //					$html .= '<video controls preload="auto" poster="' . $poster . '" >';
 //					$html .= '<source src="' . $video . '" type="video/mp4">';
 //					$html .= '</video>';
+
+				$html .= '</div>';
 
 				}
 
