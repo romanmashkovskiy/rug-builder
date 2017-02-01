@@ -368,7 +368,7 @@ function restore_cart_item_data( $cartItemData, $cartItemSessionData, $cartItemK
 
 	if ( isset( $cartItemSessionData['length'] ) ) {
 		$cartItemData['length'] = $cartItemSessionData['length'];
-	}
+	} 
 
 	if ( isset( $cartItemSessionData['width'] ) ) {
 		$cartItemData['width'] = $cartItemSessionData['width'];
