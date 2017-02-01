@@ -15,14 +15,14 @@ button {
 	-webkit-font-smoothing: antialiased; 
 }
 
-input,
-textarea {
+body input,
+body textarea {
 	background: #F7F7F7;
-	border: 1px solid #E6E6E6 !important;
-	border-radius: 0 !important;
-	color: #878787 !important;
-	font-family: $font-copy !important;
-	padding: 8px 20px !important;
+	border: 1px solid #E6E6E6;
+	border-radius: 0;
+	color: #878787;
+	font-family: $font-copy;
+	padding: 8px 20px;
 	font-weight: normal;
 }
 
@@ -73,8 +73,10 @@ select {
 	padding: 7px 15px;
 }
 
-button, 
-input[type="submit"] {
+body button, 
+body input[type="submit"], 
+body .gform_wrapper .gform_page_footer input[type=submit],
+body .gform_wrapper .gform_page_footer input.button {
 	background-color: #383838;
 	border: none;
 	border-radius: 0;
@@ -120,4 +122,30 @@ a.checkout-button.button,
 button:hover, 
 input[type="submit"]:hover {
 	background: lighten(#383838, 15%);	
+}
+
+// Gravity Forms
+
+body .gform_body ul {
+	margin: 0;
+	list-style-type: none;
+	padding: 0;
+}
+
+body .gform_body input {
+	width: 100%;
+	box-sizing: border-box;
+	margin-bottom: 30px;
+}
+
+body .gform_wrapper .gform_page_footer input[type=submit],
+body .gform_wrapper .gform_page_footer input.button {
+	font-size: 14px !important;
+	margin: 0px !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+}
+
+ul#gform_fields_1.gform_fields.top_label.form_sublabel_below.description_below {
+	margin: 0;
 }

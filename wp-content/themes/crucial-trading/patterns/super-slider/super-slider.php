@@ -32,7 +32,7 @@ function crucial_slider_slides() {
 
 	if ( $query->have_posts() ) :
 
-		$html .= '<div id="super-slider">';
+		$html .= '<div id="super-slider" class="animated fadeIn">';
 		$html .= '<ul class="slides-container">';
 
 		while ( $query->have_posts() ) : $query->the_post();
@@ -188,7 +188,7 @@ function crucial_slider_slides() {
 				
 				if ( $post_title == 'Opening' ) {
 
-					$poster = 'http://d105txpzekqrfa.cloudfront.net/uploads/20161212170153/CT_LogoStrapline_Black1.svg';
+					$poster = 'http://d105txpzekqrfa.cloudfront.net/uploads/20170201123219/video-inspiration-begins-169.jpg';
 					$video  = 'http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4';
 
 					$html .= do_shortcode( '[video src="' . $video . '" poster="' . $poster .'"]' );
