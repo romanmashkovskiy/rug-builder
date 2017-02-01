@@ -24,9 +24,16 @@
 		}
 	}
 	
+	.header__back {
+		position: absolute;
+		margin-top: 0px;
+		top: 15px;
+		left: 15px;
+	}
+	
 	.header__back a {
-		font-size: 14px;
-		opacity: 0.7;
+		font-size: 13px;
+		opacity: 0.5;
 	}
 	
 	.header__back a:hover {
@@ -35,7 +42,7 @@
 	
 	.header__titles {
 		text-align: center;
-		margin-top: 40px;
+		margin-top: 20px;
 	  margin-bottom: 60px;
 
 		h1 {
