@@ -160,6 +160,7 @@
 		.range__material {
 			float: left;
 			margin-bottom: 15px;
+			position: relative;
 			width: 50%;
 
 			@media screen and (max-width: 992px) {
@@ -213,6 +214,16 @@
 				width: 100%;
 			}
 
+			i {
+				color: rgba(255,255,255,0.9);
+				font-size: 30px;
+				left: 50%;
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%,-50%);
+				z-index: 999;
+			}
+
 			&.current a:before {
 				background: rgba(0,0,0,0.45);
 				bottom: 0;
@@ -224,17 +235,6 @@
 				right: 0;
 				top: 0;
 				width: 100%;
-			}
-
-			&.current a:after {
-				display: none;
-				color: white;
-				font-family: WooCommerce;
-				content: "\e028"; 
-				display: inline-block;
-				position: absolute;
-				top: 1em;
-				left: 1.5em;
 			}
 		}
 	}
