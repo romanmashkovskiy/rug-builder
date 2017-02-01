@@ -63,7 +63,7 @@ function scoller_meta_boxes( $meta_boxes ) {
 
 	$meta_boxes[] = array(
 		'title'      => 'Information',
-		'post_types' => 'scoller',
+		'post_types' => 'scroller',
 		'fields'     => array(
 			array(
 				'name'      => 'Image',
