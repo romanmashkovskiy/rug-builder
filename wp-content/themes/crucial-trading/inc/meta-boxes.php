@@ -37,7 +37,7 @@ function meta_boxes($meta_boxes) {
 			array(
 				'name'     => 'Texture Repeat X',
 				'id'       => 'rb_repeat_x',
-				'type'     => 'number',
+				'type'     => 'text',
 				'priority' => 'high',
 				'desc'     => 'Defaults: Center - 7, Border - 10',
 			),
@@ -49,7 +49,7 @@ function meta_boxes($meta_boxes) {
 			array(
 				'name'     => 'Texture Repeat Y',
 				'id'       => 'rb_repeat_y',
-				'type'     => 'number',
+				'type'     => 'text',
 				'priority' => 'high',
 				'desc'     => 'Defaults: Center - 7, Border - 10',
 			),
