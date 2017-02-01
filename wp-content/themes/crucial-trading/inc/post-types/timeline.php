@@ -68,7 +68,7 @@ function timeline_meta_boxes( $meta_boxes ) {
 			array(
 				'name'      => 'Year',
 				'id'        => 'timeline-year',
-				'type'      => 'date',
+				'type'      => 'number',
 			),
 			array(
 				'name'     => 'Title',
