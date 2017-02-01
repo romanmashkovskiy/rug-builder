@@ -45,9 +45,10 @@ foreach ( $query->posts as $key => $material ) {
 	$src  = is_array( $_src ) && array_key_exists( 0, $_src ) ? $_src[0] : '';
 	$alt  = $material->post_title;
 
+	$current       = $material_id == $post_id;
 	$current_class = '';
 
-	if ( $material_id == $post_id ) {
+	if ( $current ) {
 		$current_class = 'current';
 	}
 
@@ -55,6 +56,11 @@ foreach ( $query->posts as $key => $material ) {
 	$html .= "<a href='#' class='range__goto'>";
 	$html .= "<img src='$src' alt='$alt'>";
 	$html .= "</a>";
+
+	if ( $current ) {
+		$html .= "<i class='icon-crucial-tick-thin'></i>";
+	}
+
 	$html .= "</div>";
 
 	$i++;

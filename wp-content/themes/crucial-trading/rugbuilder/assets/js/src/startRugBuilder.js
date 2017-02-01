@@ -17,6 +17,27 @@ RugBuilder.prototype.start = function() {
 
 	const R = rugBuilder;
 
+	// Load Progress Menu Component                                                         ./components/progress-menu/*.component.js
+	const BtnExitComponent    = R.btnExitComponent();
+	const BtnRestartComponent = R.btnRestartComponent();
+	const BtnStageComponent   = R.btnStageComponent();
+	R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnStageComponent);
+
+	// Check for WebGL	
+
+	if ( !window.WebGLRenderingContext ) {
+		R.showWebGLError(false);
+		return;
+	}
+
+	let canvas = document.createElement('canvas');
+	let webgl  = canvas.getContext('webgl');
+
+	if ( !webgl ) {
+		R.showWebGLError(true);
+		return;
+	}
+
 	// Get WC Data, then either load rest of the app or error
 
 	R.getMaterialsData()                                                                     // ./data/materials.data.js
@@ -25,12 +46,6 @@ RugBuilder.prototype.start = function() {
 		.catch((err) => { error( err ) });                                                   // Line 181
 
 	function continueLoading() {
-
-		// Load Progress Menu Component                                                         ./components/progress-menu/*.component.js
-		const BtnExitComponent    = R.btnExitComponent();
-		const BtnRestartComponent = R.btnRestartComponent();
-		const BtnStageComponent   = R.btnStageComponent();
-		R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnStageComponent);
 
 		// Load Drawer Component                                                                ./components/drawer/*.component.js
 		const BtnExpandCollapseComponent = R.btnExpandCollapseComponent();
@@ -191,8 +206,6 @@ RugBuilder.prototype.start = function() {
 	}
 
 	function error( code ) {
-
-		console.log(code)
 
 		let message;
 
