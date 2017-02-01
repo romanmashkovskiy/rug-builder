@@ -98,6 +98,10 @@
 	transition: transform scale 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 	-webkit-backface-visibility: hidden;
+
+	@media screen and (max-width: 768px) {
+		transform: translate(-25%,0) scale(3.5);
+	}
 }
 
 body {
@@ -131,6 +135,10 @@ body {
 	transition: transform scale 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 	-webkit-backface-visibility: hidden;
+
+	@media screen and (max-width: 768px) {
+		transform: translate(-25%,0) scale(3.5);
+	}
 }
 
 .show-about-scroller .about__timeline__bg,
@@ -160,6 +168,10 @@ body {
 	transform: translate3d(17%,-40%,0);
 	transition: transform 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+
+	@media screen and (max-width: 768px) {
+		transform: translate3d(17%,40%,0);
+	}
 }
 
 .show-about-scroller .about__scroller__text {
@@ -167,6 +179,10 @@ body {
 	transform: translate3d(-50%,-40%,0);
 	transition: transform 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+
+	@media screen and (max-width: 768px) {
+		transform: translate3d(0%, -100%, 0);
+	}
 }
 
 .about__scroller__subtitle,

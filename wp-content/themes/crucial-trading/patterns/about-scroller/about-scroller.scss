@@ -34,15 +34,24 @@
 }
 
 .about__scroller__start {
-	display: none;
-}
-
-body.show-about-scroller .about__scroller__start {
 	bottom: 20px;
 	display: inline-block;
 	left: 0;
+	opacity: 0;
 	position: absolute;
 	transform: translateX(-50%);
+	transition: all ease-in-out 1.2s;
+	visibility: hidden;
+
+	@media screen and (max-width: 768px) {
+		bottom: 43%;
+		left: 50%;
+	}
+}
+
+body.show-about-scroller .about__scroller__start {
+	opacity: 1;
+	visibility: visible;
 }
 
 #pagepilling {
