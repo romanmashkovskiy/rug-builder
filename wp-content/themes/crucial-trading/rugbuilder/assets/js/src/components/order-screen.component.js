@@ -103,20 +103,18 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				}
 
 				const CONTAINER = document.createElement('div');
-				const MESSAGE   = document.createElement('h3');
+				const MESSAGE   = document.createElement('p');
 
-				CONTAINER.style.position = 'absolute';
-				CONTAINER.style.top = '170px';
-				CONTAINER.style.left = '0';
-				CONTAINER.style.right = '0';
-				CONTAINER.style.zIndex = '999999';
-				CONTAINER.style.background = 'white';
-				CONTAINER.style.textAlign = 'center';
+				CONTAINER.classList.add('basket-confirm');
 
 				MESSAGE.innerHTML = 'Samples added to your <a href="' + siteUrl + '/basket">basket</a>.';
 
 				CONTAINER.appendChild(MESSAGE);
 				document.body.appendChild(CONTAINER);
+
+				setTimeout(function() {
+					CONTAINER.classList.add('hidden');
+				}, 7000)
 			}
 		},
 
@@ -173,20 +171,18 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				}
 
 				const CONTAINER = document.createElement('div');
-				const MESSAGE   = document.createElement('h3');
+				const MESSAGE   = document.createElement('p');
 
-				CONTAINER.style.position = 'absolute';
-				CONTAINER.style.top = '170px';
-				CONTAINER.style.left = '0';
-				CONTAINER.style.right = '0';
-				CONTAINER.style.zIndex = '999999';
-				CONTAINER.style.background = 'white';
-				CONTAINER.style.textAlign = 'center';
+				CONTAINER.classList.add('basket-confirm');
 
 				MESSAGE.innerHTML = 'Rug added to your <a href="' + siteUrl + '/basket">basket</a>. It will appear in your basket as seperate pieces.';
 
 				CONTAINER.appendChild(MESSAGE);
 				document.body.appendChild(CONTAINER);
+
+				setTimeout(function() {
+					CONTAINER.classList.add('hidden');
+				}, 7000)
 			}
 		},
 
