@@ -72,13 +72,15 @@
 
 		&.right-of-window {
 			position: absolute;
-			top: -174px;
+			margin-top: -140px;
+//			top: -174px;
 			transform: translateX(100vw);
 		}
 
 		&.moving-in-from-right {
 			position: relative;
-			top: -174px;
+			margin-top: -140px;
+//			top: -174px;
 			transform: translateX(0);
 			-webkit-transition: 0.65s;
 			transition: 0.65s;
@@ -89,7 +91,8 @@
 
 		&.moving-out-to-right {
 			position: relative;
-			top: -174px;
+			margin-top: -140px;
+//			top: -174px;
 			transform: translateX(100vw);
 			-webkit-transition: 0.65s;
 			transition: 0.65s;

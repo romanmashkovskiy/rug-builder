@@ -253,18 +253,12 @@ function _setRepeat(repeat, texture, stage) {
 
 	if ( typeof repeat === 'object' ) {
 
-		if ( ( stage === 2 || stage === 3 ) && R.borderType === 'double' ) {
+		repeatX = parseInt(repeat.x);
+		repeatY = parseInt(repeat.y);
 
-			if ( stage === 2 ) {
-				repeatX = parseInt(repeat.x) * 4;
-				repeatY = parseInt(repeat.y) * 1;
-			} else {
-				repeatX = parseInt(repeat.x);
-				repeatY = parseInt(repeat.y);
-			}
-		} else {
-			repeatX = parseInt(repeat.x);
-			repeatY = parseInt(repeat.y);
+		if ( stage === 2 && R.borderType === 'double' ) {
+			repeatX = parseInt(repeat.x) * 4;
+			repeatY = parseInt(repeat.y) / 2;
 		}
 
 		if ( repeat.x !== '' && repeat.y !== '' ) {

@@ -153,6 +153,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				return;
 			}
 
+			console.log(this.state.pageInView)
+
 			if ( this.state.pageInView === 1 ) {
 				this.calcDrawerMaxHeight();
 			}
