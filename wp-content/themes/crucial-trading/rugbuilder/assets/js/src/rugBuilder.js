@@ -268,7 +268,7 @@ class RugBuilder {
 			this.camera.rotation.x = -1.5708;
 			this.camera.rotation.y = 0;
 			this.camera.rotation.z = 0;
-
+ 
 			return 0;
 		}
 	};
