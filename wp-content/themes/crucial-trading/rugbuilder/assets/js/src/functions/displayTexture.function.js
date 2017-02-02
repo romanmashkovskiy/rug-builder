@@ -47,8 +47,6 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 		})
 	}
 
-	console.log(thumb)
-
 	switch (stageCode) {
 
 		case 0 :

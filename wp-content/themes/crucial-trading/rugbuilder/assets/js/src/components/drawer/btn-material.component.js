@@ -15,6 +15,7 @@ RugBuilder.prototype.btnMaterialComponent = function() {
 		},
 
 		render: function() {
+
 			return (
 				<li>
 					<a href="#" onClick={ this.handleClick }>

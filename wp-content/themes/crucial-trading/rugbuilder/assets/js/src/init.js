@@ -6,7 +6,10 @@ RugBuilder.prototype.initThree = function() {
 	const CAMERA_OPTIONS = R.cameraOptions;
 
 	// Create the Three.js Scene, Renderer, and Camera
-	const SCENE    = new THREE.Scene();
+	const SCENE = new THREE.Scene();
+
+	SCENE.background = new THREE.Color( 0xf3f3f3 );
+
 	const RENDERER = new THREE.WebGLRenderer({
 	    preserveDrawingBuffer: true,
 	    antialias: true
