@@ -733,12 +733,10 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 		// Work out which page selectedSwatchIndex is on then set state.pageInView to that page
 
-		// BUT ONLY IF ITS CALLED FROM THE FIRST RENDER, IF ITS CALLED FROM A SCROLL DO NOT DO THIS
+		let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
+		let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
 
-//		let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
-//		let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
-
-//		_this.state.pageInView = pageSelectedSwatchIsOn;
+		_this.state.pageInView = pageSelectedSwatchIsOn;
 
 		// Create a BtnSwatchComponent for each swatch in the swatchArr array
 
