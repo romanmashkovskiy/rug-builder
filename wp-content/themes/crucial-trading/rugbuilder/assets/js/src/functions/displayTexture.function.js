@@ -11,7 +11,7 @@
  * @param (Object) repeat      The x and y repeat values to use for the texture
  */
 
-RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps, stitching, repeat) {
+RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps, stitching, repeat, rthumb) {
 
 	// If the thumbObj is undefined or null return as there is nothing to display on the rug
 	if ( thumbObj === undefined || thumbObj === null ) {
@@ -36,13 +36,18 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 
 	// Extract the url of the thumbnail to display on the rug from the thumbObj object
 	Object.keys(thumbObj).map((key) => {
-		thumb = thumbObj[key]['url'];
+		thumb = thumbObj[key]['full_url'];
 	});
 
-	// If the thumbnail is the 150x150 version then get the full size version
-	if ( thumb.indexOf('-150x150') > -1 ) {
-		thumb = thumb.replace('-150x150', '');
+	// If outer border use rotated thumb
+	if ( rthumb && R.borderType === 'double' && stageCode === 3 ) {
+
+		Object.keys(rthumb).map((key) => {
+			thumb = rthumb[key]['full_url'];
+		})
 	}
+
+	console.log(thumb)
 
 	switch (stageCode) {
 
@@ -257,7 +262,7 @@ function _setRepeat(repeat, texture, stage) {
 		repeatY = parseInt(repeat.y);
 
 		if ( stage === 2 && R.borderType === 'double' ) {
-			repeatX = parseInt(repeat.x) * 4;
+			repeatX = parseInt(repeat.x) * 5;
 			repeatY = parseInt(repeat.y) / 2;
 		}
 

@@ -128,6 +128,7 @@ function swatches_data() {
 		$code  = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : '';
 
 		$thumb     = rwmb_meta( 'rb_texture', array(), $product_id );
+		$rthumb    = rwmb_meta( 'rb_texture_portrait', array(), $product_id );
 		$bmap      = rwmb_meta( 'rb_bump_map', array(), $product_id );
 		$nmap      = rwmb_meta( 'rb_normal_map', array(), $product_id );
 		$dmap      = rwmb_meta( 'rb_displacement_map', array(), $product_id );
@@ -140,6 +141,7 @@ function swatches_data() {
 		$arr['name']      = $name;
 		$arr['code']      = $code;
 		$arr['thumb']     = $thumb;
+		$arr['rthumb']    = $rthumb;
 		$arr['bmap']      = $bmap;
 		$arr['nmap']      = $nmap;
 		$arr['dmap']      = $dmap;

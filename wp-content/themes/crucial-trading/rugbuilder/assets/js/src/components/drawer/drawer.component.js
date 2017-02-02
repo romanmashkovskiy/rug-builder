@@ -153,8 +153,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				return;
 			}
 
-			console.log(this.state.pageInView)
-
 			if ( this.state.pageInView === 1 ) {
 				this.calcDrawerMaxHeight();
 			}
@@ -371,7 +369,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				});
 		},
 
-		updateSwatchChoice: function(swatch, thumb, id, maps, stitching, repeat) {
+		updateSwatchChoice: function(swatch, thumb, id, maps, stitching, repeat, rthumb) {
 
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
@@ -394,7 +392,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 
 			// Update the actual rug
-			R.displayTexture(swatch, thumb, this.state.stage, maps, stitching, repeat);
+			R.displayTexture(swatch, thumb, this.state.stage, maps, stitching, repeat, rthumb);
 		},
 
 		updateBorderChoice: function(border) {
@@ -765,6 +763,12 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				y : CURRENT_SWATCH.repeaty
 			};
 			
+			let rthumb = false;
+
+			if ( Object.keys(CURRENT_SWATCH.rthumb).length > 0 ) {
+				rthumb = CURRENT_SWATCH.rthumb;
+			}
+
 			let maps = {};
 
 			if ( CURRENT_SWATCH.bmap !== '' ) {
@@ -782,7 +786,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 			// Create a BtnSwatchComponent for each swatch in the SWATCH object
 
-			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 		})
 	}
 	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
@@ -833,6 +837,12 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				x : CURRENT_SWATCH.repeatx,
 				y : CURRENT_SWATCH.repeaty
 			};
+
+			let rthumb = false;
+
+			if ( typeof CURRENT_SWATCH.rthumb === 'object' ) {
+				rthumb = CURRENT_SWATCH.rthumb;
+			}
 			
 			let maps = {};
 
@@ -849,7 +859,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 			let indexPlusOne = index + 1;
 			let page         = Math.ceil( indexPlusOne / elemsPerPage );
 
-			return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+			return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 		});
 	}
 }
