@@ -21,7 +21,7 @@ header {
 	}
 	
 	&.small {
-		height: 450px;
+		height: 400px;
 
 		@media screen and (max-width: 768px) {
 			height: 350px;
@@ -31,9 +31,13 @@ header {
 			text-align: center;
 		}
 	}
-
+	
+	&.small.-range {
+		height: 300px;
+	}
+	
 	&.large {
-		height: 750px;
+		height: 650px;
 
 		@media screen and (max-width: 768px) {
 			height: 550px;
@@ -104,9 +108,9 @@ header.material {
 	}
 */
 	.material__info {
-		left: 65%;
+		left: 60%;
 		position: absolute;
-		top: 200px;
+		top: 150px;
 
 		@media screen and (max-width: 1250px) {
 			max-width: 22.5%;
@@ -293,16 +297,46 @@ header.collapsed {
 	height: 0;
 }
 
-// Adjust position for archive & single 
-	
-.archive.tax-product_cat .material__sidememu,
-.single-product header.material .material__sidememu {
-	top: 57%;
+
+
+
+
+.tax-product_cat header.material.large {
+	height: 575px;
 }
 
 
-.single-product header.material .material__sidememu,
-.tax-product_cat header.material .material__sidememu {
+.single-product header.material {
+	background-position: bottom  center;
+}
+
+header .material__info.jute {
+	top: 120px;
+}
+
+
+// Adjust position for archive & single 
+
+.archive.tax-product_cat.term-wool .material__sidememu,
+.archive.tax-product_cat.term-sisal .material__sidememu,
+.archive.tax-product_cat.term-sisool .material__sidememu,
+.archive.tax-product_cat.term-seagrass .material__sidememu,
+.archive.tax-product_cat.term-jute .material__sidememu,
+.archive.tax-product_cat.term-coir .material__sidememu {
+	top: 50%;
+	right: 35px;
+}
+
+.archive.tax-product_cat.term-wool .material__sidememu ul li,
+.archive.tax-product_cat.term-sisal .material__sidememu ul li, 
+.archive.tax-product_cat.term-sisool .material__sidememu ul li,
+.archive.tax-product_cat.term-seagrass .material__sidememu ul li, 
+.archive.tax-product_cat.term-jute .material__sidememu ul li, 
+.archive.tax-product_cat.term-coir .material__sidememu ul li  {
+	display: block;
+}
+
+.single-product header.material .material__sidememu {
 
 		img:not(.active) {
 			opacity: 0.8;
@@ -313,3 +347,42 @@ header.collapsed {
 		}
 
 }
+	
+	
+	
+	
+.archive.tax-product_cat .material__sidememu,
+.single-product header.material .material__sidememu {
+	top: 83%;
+	position: absolute;
+	bottom: 0px;
+	//margin: auto;
+	//left: 0;
+	//right: 0;
+}
+
+.archive.tax-product_cat .material__sidememu ul li {
+	display: inline-block;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.tax-product_cat header.material .material__sidememu {
+
+		img:not(.active) {
+			opacity: 0.3;
+		}
+
+		img:not(.active):hover {
+			opacity: 1;
+		}
+
+}
+
+
+
+
+.single-product header.material .material__sidememu {
+	display: none;
+}
+

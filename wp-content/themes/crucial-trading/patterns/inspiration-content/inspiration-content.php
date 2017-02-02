@@ -63,6 +63,7 @@ function inspiration_content() {
 
 	$html .= '</div>';
 	$html .= '</div>';
+	$html .= '</div>';
 
 	// Photos - Content
 
