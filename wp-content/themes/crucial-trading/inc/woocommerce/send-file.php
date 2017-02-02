@@ -68,6 +68,11 @@ if ( file_exists( get_template_directory() . '/inc/woocommerce/orders.txt' ) &&
 
 			// Write the contents of the orders.txt file in the 
 			// cru04 file, surrounded by the header and trailer
+
+			if ( !file_exists( 'wp-content/themes/crucial-trading/inc/woocommerce/cru04/cru04.' . $extension ) ) {
+				return;
+			}
+
 			$file = fopen( 'wp-content/themes/crucial-trading/inc/woocommerce/cru04/cru04.' . $extension , 'w' );
 
 			// Header, the letter H followed by the extension number
