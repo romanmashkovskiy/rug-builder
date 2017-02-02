@@ -525,7 +525,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				if ( typeof swatch !== 'undefined' ) {
 
 					let elemsPerPage = window.innerWidth > 992 ? 18 : 9;
-					let numOfSwatches = Object.keys(swatch).length;
+					let numOfSwatches = Object.keys(swatch).length; 
 
 					numOfPages = Math.ceil( numOfSwatches / elemsPerPage );
 				}
