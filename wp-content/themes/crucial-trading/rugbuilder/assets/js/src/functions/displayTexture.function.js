@@ -99,25 +99,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			texture.anisotropy = R.renderer.getMaxAnisotropy();
 			texture.generateMipmaps = true;
 
-			const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
-
-			if ( typeof repeat === 'object' ) {
-
-				if ( repeat.x !== '' && repeat.y !== '' ) {
-					texture.repeat.set(repeat.x, repeat.y)
-				} else {
-					if ( repeat.x !== '' ) {
-						texture.repeat.set(repeat.x, DEFAULT_VAL);
-					} else if ( repeat.y !== '' ) {
-						texture.repeat.set(DEFAULT_VAL, repeat.y);
-					} else {
-						texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
-					}
-				}
-
-			} else {
-				texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
-			}
+			texture = _setRepeat(repeat, texture, stageCode);
 
 			if ( stageCode === 2 || stageCode === 3 ) {
 				texture.flipY = true;
@@ -146,7 +128,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 				
 				if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 					R.scene.children[i].material = R.loadedTextures[swatch];
-					_loadMaps(R.scene.children[i].material, maps, repeat);
+					_loadMaps(R.scene.children[i].material, maps, repeat, stageCode);
 				}
 			}
 
@@ -173,7 +155,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			
 			if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 				R.scene.children[i].material = R.loadedTextures[swatch];
-				_loadMaps(R.scene.children[i].material, maps, repeat);
+				_loadMaps(R.scene.children[i].material, maps, repeat, stageCode);
 			}
 		}
 
@@ -196,7 +178,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
  * @return (Boolean) false
  */
 
-function _loadMaps(material, maps, repeat) {
+function _loadMaps(material, maps, repeat, stage) {
 
 	if ( maps !== undefined ) {
 
@@ -206,28 +188,11 @@ function _loadMaps(material, maps, repeat) {
 				let url = maps.nmap[key].full_url;
 
 				new THREE.TextureLoader().load( url, (texture) => {
+
+					texture = _setRepeat(repeat, texture, stage);
+
 					material.normalMap = texture;
 					material.needsUpdate = true;
-
-					const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
-
-					if ( typeof repeat === 'object' ) {
-
-						if ( repeat.x !== '' && repeat.y !== '' ) {
-							texture.repeat.set(repeat.x, repeat.y)
-						} else {
-							if ( repeat.x !== '' ) {
-								texture.repeat.set(repeat.x, DEFAULT_VAL);
-							} else if ( repeat.y !== '' ) {
-								texture.repeat.set(DEFAULT_VAL, repeat.y);
-							} else {
-								texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
-							}
-						}
-
-					} else {
-						texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
-					}
 //					return false;
 				});
 			});
@@ -239,28 +204,11 @@ function _loadMaps(material, maps, repeat) {
 				let url = maps.bmap[key].full_url;
 
 				new THREE.TextureLoader().load( url, (texture) => {
+
+					texture = _setRepeat(repeat, texture, stage);
+
 					material.bumpMap = texture;
 					material.needsUpdate = true;
-
-					const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
-
-					if ( typeof repeat === 'object' ) {
-
-						if ( repeat.x !== '' && repeat.y !== '' ) {
-							texture.repeat.set(repeat.x, repeat.y)
-						} else {
-							if ( repeat.x !== '' ) {
-								texture.repeat.set(repeat.x, DEFAULT_VAL);
-							} else if ( repeat.y !== '' ) {
-								texture.repeat.set(DEFAULT_VAL, repeat.y);
-							} else {
-								texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
-							}
-						}
-
-					} else {
-						texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
-					}
 //					return false;
 				});
 			});
@@ -272,29 +220,12 @@ function _loadMaps(material, maps, repeat) {
 				let url = maps.dmap[key].full_url;
 
 				new THREE.TextureLoader().load( url, (texture) => {
+
+					texture = _setRepeat(repeat, texture, stage);
+
 					material.displacementMap = texture;
 					material.displacementScale = 2;
 					material.needsUpdate = true;
-
-					const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
-
-					if ( typeof repeat === 'object' ) {
-
-						if ( repeat.x !== '' && repeat.y !== '' ) {
-							texture.repeat.set(repeat.x, repeat.y)
-						} else {
-							if ( repeat.x !== '' ) {
-								texture.repeat.set(repeat.x, DEFAULT_VAL);
-							} else if ( repeat.y !== '' ) {
-								texture.repeat.set(DEFAULT_VAL, repeat.y);
-							} else {
-								texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
-							}
-						}
-
-					} else {
-						texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
-					}
 //					return false;
 				});
 			});
@@ -302,6 +233,43 @@ function _loadMaps(material, maps, repeat) {
 	}
 
 	return false;
+}
+
+/*
+ * Set Repeat
+ * 
+ * Sets repeat of the texture
+ *
+ * @param (Object) repeat    The repeat values
+ * @param (Object) texture   The texture to apply the repeat values to
+ * @param (Number) stage     The current stage the user is on
+ *
+ * @return (Object) texture   The texture with the repeat values applied
+ */
+
+function _setRepeat(repeat, texture, stage) {
+
+	const DEFAULT_VAL = stage === 0 ? 7 : 10;
+
+	if ( typeof repeat === 'object' ) {
+
+		if ( repeat.x !== '' && repeat.y !== '' ) {
+			texture.repeat.set(parseInt(repeat.x), parseInt(repeat.y))
+		} else {
+			if ( repeat.x !== '' ) {
+				texture.repeat.set(parseInt(repeat.x), DEFAULT_VAL);
+			} else if ( repeat.y !== '' ) {
+				texture.repeat.set(DEFAULT_VAL, parseInt(repeat.y));
+			} else {
+				texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
+			}
+		}
+
+	} else {
+		texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
+	}
+
+	return texture;
 }
 
 /*
