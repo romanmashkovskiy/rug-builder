@@ -2,7 +2,7 @@
 	background: white;
 	bottom: 0;
 	left: 0;
-	padding: 75px;
+	padding: 50px 75px;
 	position: absolute;
 	right: 0;
 	top: 161px;
@@ -77,9 +77,62 @@
 	}
 
 	.order__links {
+		margin-top: 40px;
 
-		@media screen and (max-width: 992px) {
-			margin-top: 25px;
+		a {
+			position: absolute;
 		}
 	}
+
+	.link__edit {
+
+		img {
+			margin-right: 10px;
+			position: relative;
+			top: 2px;
+		}
+	}
+
+	.link__edit,
+	.link__print,
+	.link__order {
+		margin-top: 10px;
+	}
+
+	.link__print {
+		left: calc(((100% - 150px) / 2) - 33px);
+		text-align: right;
+		transform: translateX(-50%);
+	}
+
+	.link__order {
+		right: calc(((100% - 150px) / 2) - 46px);
+		transform: translateX(50%);
+	}
+
+	.link__basket {
+		background: #383838;
+		color: white;
+		padding: 20px;
+		right: 75px;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
