@@ -482,6 +482,60 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				);
 			}
 
+			let numOfPages = 0, dots = [];
+
+			if ( this.state.content === 'collections' ) {
+
+				let collections = _this.state._collections;
+				let collection  = collections[ _this.state.chosenMaterial ];
+
+				let elemsPerPage = 0;
+
+				if ( window.innerWidth > 768 ) {
+					elemsPerPage = 12;
+				}
+
+				numOfPages = Math.ceil( collection.length / elemsPerPage );
+
+			} else if ( this.state.content === 'swatches' ) {
+
+				let swatches = _this.state._swatches;
+				let swatch   = swatches[ _this.state.chosenCollection ];
+
+				if ( typeof swatch !== 'undefined' ) {
+
+					let elemsPerPage = window.innerWidth > 992 ? 18 : 9;
+					let numOfSwatches = Object.keys(swatch).length;
+
+					numOfPages = Math.ceil( numOfSwatches / elemsPerPage );
+				}
+
+			} else if ( this.state.content === 'swatchesSelected' ) {
+
+				let selectedSwatch     = _this.state.chosenSwatch.replace(/ /g, '');
+				let selectedCollection = _this.state._swatches[ _this.state.chosenCollection ];
+
+				let elemsPerPage  = window.innerWidth > 992 ? 6 : 3;
+				let numOfSelected = Object.keys(selectedCollection).length
+
+				numOfPages = Math.ceil( numOfSelected / elemsPerPage );
+
+			}
+
+			for ( let i = 0; i < numOfPages; i++ ) {
+
+				let index = i + 1;
+				let className = 'dot';
+
+				if ( this.state.pageInView === index ) {
+					className += ' dot-active';
+				}
+
+				dots.push(<div className={ className } data-page={ index }></div>);
+			}
+
+			let dotsHTML = <div className="dots clearfix">{ dots }</div>;
+
 			return (
 				<div className="react-container drawer__container">
 					<div className={ DRAWER_CLASSES }>
@@ -536,6 +590,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							{ PRICE_HTML }
 						</div>
 						{ btnsHTML }
+						{ dotsHTML }
 					</div>
 					<BtnExpandCollapseComponent currentlyOpen={ this.state.open } text={ this.state.text } open={ this.open } close={ this.close } />
 				</div>	
@@ -798,8 +853,8 @@ function _createSizeHTML(_this, R) {
 
 	return (
 		<span>
-			<input type="number" onChange={ _this.handleSizeInputChange } value={ _this.state.length } name="length" placeholder="Enter Length (m)" />
-			<input type="number" onChange={ _this.handleSizeInputChange } value={ _this.state.width } name="width" placeholder="Enter Width (m)" />
+			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.length } name="length" placeholder="Enter Length (m)" />
+			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.width } name="width" placeholder="Enter Width (m)" />
 		</span>
 	);
 }
