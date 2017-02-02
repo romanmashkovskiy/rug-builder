@@ -23,7 +23,6 @@ canvas {
 .scroll-btns {
 	bottom: 60%;
 	left: 25%;
-	overflow: hidden;
 	position: absolute;
 	right: 0%;
 }
@@ -45,22 +44,29 @@ canvas {
 
 .scroll__right {
 	right: 100vw;
-	transform: translateX(100%);
 }
 
-.drawer__content.open.collections .scroll__left,
-.drawer__content.open.swatches .scroll__left,
-.drawer__content.open.swatchesSelected .scroll__left {
-	left: -15px;
+.drawer__content.open.collections {
+
+	.drawer__content__material.open ~ .scroll-btns .scroll__left {
+		left: -15px;
+	}
+
+	.drawer__content__material.open ~ .scroll-btns .scroll__right {
+		right: 55px;
+	}
 }
 
-.drawer__content.open.collections .scroll__right {
-	right: 85px;
-}
+.drawer__content.open.swatches,
+.drawer__content.open.swatchesSelected {
 
-.drawer__content.open.swatches .scroll__right,
-.drawer__content.open.swatchesSelected .scroll__right {
-	right: 35px;
+	.drawer__content__material.open ~ .scroll-btns .scroll__left {
+		left: -15px;
+	}
+
+	.drawer__content__material.open ~ .scroll-btns .scroll__right {
+		right: 5px;
+	}
 }
 
 .dots {
