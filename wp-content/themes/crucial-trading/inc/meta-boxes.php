@@ -35,6 +35,18 @@ function meta_boxes($meta_boxes) {
 				'type'        => 'divider',
 			),
 			array(
+				'name'     => 'Texture Portrait',
+				'id'       => 'rb_texture_portrait',
+				'type'        => 'image_advanced',
+				'max_uploads' => 1,
+				'priority' => 'high',
+			),
+			array(
+				'name'     => 'divider',
+				'id'       => 'divider',
+				'type'        => 'divider',
+			),
+			array(
 				'name'     => 'Texture Repeat X',
 				'id'       => 'rb_repeat_x',
 				'type'     => 'text',
