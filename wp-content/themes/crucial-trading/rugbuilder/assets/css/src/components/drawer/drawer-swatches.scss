@@ -12,8 +12,27 @@
 		float: left;
 		list-style: none;
 
-		&.selected img {
-			opacity: 0.3;
+		i {
+			color: rgba(255,255,255,0.9);
+			display: none;
+			font-size: 30px;
+			left: 50%;
+			position: absolute;
+			top: 50%;
+			-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+			z-index: 999;
+		}
+
+		&.selected {
+
+			img {
+				filter: brightness(0.5);
+			}
+
+			i {
+				display: block;
+			}
 		}
 	}
 
