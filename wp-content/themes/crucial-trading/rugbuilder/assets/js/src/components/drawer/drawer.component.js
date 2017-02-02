@@ -9,6 +9,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			let materials   = R.WCmaterials;
 			let collections = R.WCcollections;
 
+
 			// Set initial state
 			return {
 				stage : R.currentStage,
@@ -230,7 +231,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							chosenSwatch     : undefined
 						})
 
-						this.getBorderMaterials();
+						this.showBorderMaterials();
 					}
 					else {
 
@@ -294,14 +295,17 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			return;
 		},
 
-		getBorderMaterials: function() {
+		showBorderMaterials: function() {
 
+			this.setState({ _materials: R.WCborderMaterials })
+/*
 			R.getMaterialsData('border')
 				.then((res) => { this.setState({ _materials: R.WCborderMaterials }) })
 				.catch(()   => {
 					R.error(103, 'An error occured loading the requested border', true);
 					return;
 				});
+*/
 		},
 
 		updateContentState: function(content) {

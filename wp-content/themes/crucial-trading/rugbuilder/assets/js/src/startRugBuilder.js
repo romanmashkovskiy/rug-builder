@@ -42,6 +42,7 @@ RugBuilder.prototype.start = function() {
 
 	R.getMaterialsData()                                                                     // ./data/materials.data.js
 		.then(()     => { return R.getCollectionsData() })                                   // ./data/collections.data.js
+		.then(()     => { return R.getMaterialsData('border') })                             // ./data/materials.data.js
 		.then(()     => { continueLoading() })                                               // Line 16
 		.catch((err) => { error( err ) });                                                   // Line 181
 
