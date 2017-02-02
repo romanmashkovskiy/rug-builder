@@ -296,16 +296,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		},
 
 		showBorderMaterials: function() {
-
 			this.setState({ _materials: R.WCborderMaterials })
-/*
-			R.getMaterialsData('border')
-				.then((res) => { this.setState({ _materials: R.WCborderMaterials }) })
-				.catch(()   => {
-					R.error(103, 'An error occured loading the requested border', true);
-					return;
-				});
-*/
 		},
 
 		updateContentState: function(content) {

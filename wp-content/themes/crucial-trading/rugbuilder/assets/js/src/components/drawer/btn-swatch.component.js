@@ -15,7 +15,7 @@ RugBuilder.prototype.btnSwatchComponent = function() {
 			let classes = '';
 
 			if ( this.props.selected === this.props.swatch ) {
-				classes = 'selected';
+				classes = 'selected ';
 			}
 
 			classes += 'page-' + this.props.page;

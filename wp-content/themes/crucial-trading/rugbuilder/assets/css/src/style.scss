@@ -38,13 +38,19 @@ canvas {
 }
 
 .scroll__left {
-	left: -15px;
+	left: -100vw;
 	transform: translateX(-100%);
 }
 
 .scroll__right {
 	right: 0;
 	transform: translateX(100%);
+}
+
+.drawer__content.open.collections .scroll__left,
+.drawer__content.open.swatches .scroll__left,
+.drawer__content.open.swatchesSelected .scroll__left {
+	left: -15px;
 }
 
 .drawer__content.open.collections .scroll__right {

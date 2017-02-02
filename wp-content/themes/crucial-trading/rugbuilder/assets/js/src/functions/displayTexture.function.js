@@ -208,7 +208,7 @@ function _loadMaps(material, maps) {
 				new THREE.TextureLoader().load( url, (texture) => {
 					material.normalMap = texture;
 					material.needsUpdate = true;
-					return false;
+//					return false;
 				});
 			});
 		}
@@ -221,7 +221,7 @@ function _loadMaps(material, maps) {
 				new THREE.TextureLoader().load( url, (texture) => {
 					material.bumpMap = texture;
 					material.needsUpdate = true;
-					return false;
+//					return false;
 				});
 			});
 		}
@@ -233,8 +233,9 @@ function _loadMaps(material, maps) {
 
 				new THREE.TextureLoader().load( url, (texture) => {
 					material.displacementMap = texture;
+					material.displacementScale = 2;
 					material.needsUpdate = true;
-					return false;
+//					return false;
 				});
 			});
 		}
