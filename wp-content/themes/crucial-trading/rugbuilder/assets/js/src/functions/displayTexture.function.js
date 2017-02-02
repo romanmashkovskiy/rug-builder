@@ -146,7 +146,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 				
 				if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 					R.scene.children[i].material = R.loadedTextures[swatch];
-					_loadMaps(R.scene.children[i].material, maps);
+					_loadMaps(R.scene.children[i].material, maps, repeat);
 				}
 			}
 
@@ -173,7 +173,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			
 			if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 				R.scene.children[i].material = R.loadedTextures[swatch];
-				_loadMaps(R.scene.children[i].material, maps);
+				_loadMaps(R.scene.children[i].material, maps, repeat);
 			}
 		}
 
@@ -196,7 +196,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
  * @return (Boolean) false
  */
 
-function _loadMaps(material, maps) {
+function _loadMaps(material, maps, repeat) {
 
 	if ( maps !== undefined ) {
 
@@ -208,6 +208,26 @@ function _loadMaps(material, maps) {
 				new THREE.TextureLoader().load( url, (texture) => {
 					material.normalMap = texture;
 					material.needsUpdate = true;
+
+					const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
+
+					if ( typeof repeat === 'object' ) {
+
+						if ( repeat.x !== '' && repeat.y !== '' ) {
+							texture.repeat.set(repeat.x, repeat.y)
+						} else {
+							if ( repeat.x !== '' ) {
+								texture.repeat.set(repeat.x, DEFAULT_VAL);
+							} else if ( repeat.y !== '' ) {
+								texture.repeat.set(DEFAULT_VAL, repeat.y);
+							} else {
+								texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
+							}
+						}
+
+					} else {
+						texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
+					}
 //					return false;
 				});
 			});
@@ -221,6 +241,26 @@ function _loadMaps(material, maps) {
 				new THREE.TextureLoader().load( url, (texture) => {
 					material.bumpMap = texture;
 					material.needsUpdate = true;
+
+					const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
+
+					if ( typeof repeat === 'object' ) {
+
+						if ( repeat.x !== '' && repeat.y !== '' ) {
+							texture.repeat.set(repeat.x, repeat.y)
+						} else {
+							if ( repeat.x !== '' ) {
+								texture.repeat.set(repeat.x, DEFAULT_VAL);
+							} else if ( repeat.y !== '' ) {
+								texture.repeat.set(DEFAULT_VAL, repeat.y);
+							} else {
+								texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
+							}
+						}
+
+					} else {
+						texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
+					}
 //					return false;
 				});
 			});
@@ -235,6 +275,26 @@ function _loadMaps(material, maps) {
 					material.displacementMap = texture;
 					material.displacementScale = 2;
 					material.needsUpdate = true;
+
+					const DEFAULT_VAL = stageCode === 0 ? 7 : 10;
+
+					if ( typeof repeat === 'object' ) {
+
+						if ( repeat.x !== '' && repeat.y !== '' ) {
+							texture.repeat.set(repeat.x, repeat.y)
+						} else {
+							if ( repeat.x !== '' ) {
+								texture.repeat.set(repeat.x, DEFAULT_VAL);
+							} else if ( repeat.y !== '' ) {
+								texture.repeat.set(DEFAULT_VAL, repeat.y);
+							} else {
+								texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
+							}
+						}
+
+					} else {
+						texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
+					}
 //					return false;
 				});
 			});
