@@ -23,6 +23,7 @@ canvas {
 .scroll-btns {
 	bottom: 60%;
 	left: 25%;
+	overflow: hidden;
 	position: absolute;
 	right: 0%;
 }
@@ -43,7 +44,7 @@ canvas {
 }
 
 .scroll__right {
-	right: 0;
+	right: 100vw;
 	transform: translateX(100%);
 }
 

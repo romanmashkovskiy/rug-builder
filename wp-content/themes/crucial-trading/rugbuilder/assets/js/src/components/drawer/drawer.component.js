@@ -489,13 +489,16 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				let collections = _this.state._collections;
 				let collection  = collections[ _this.state.chosenMaterial ];
 
-				let elemsPerPage = 0;
+				if ( typeof collection !== 'undefined' ) {
 
-				if ( window.innerWidth > 768 ) {
-					elemsPerPage = 12;
+					let elemsPerPage = 0;
+
+					if ( window.innerWidth > 768 ) {
+						elemsPerPage = 12;
+					}
+
+					numOfPages = Math.ceil( collection.length / elemsPerPage );
 				}
-
-				numOfPages = Math.ceil( collection.length / elemsPerPage );
 
 			} else if ( this.state.content === 'swatches' ) {
 
@@ -515,10 +518,13 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				let selectedSwatch     = _this.state.chosenSwatch.replace(/ /g, '');
 				let selectedCollection = _this.state._swatches[ _this.state.chosenCollection ];
 
-				let elemsPerPage  = window.innerWidth > 992 ? 6 : 3;
-				let numOfSelected = Object.keys(selectedCollection).length
+				if ( typeof selectedCollection !== 'undefined' ) {
 
-				numOfPages = Math.ceil( numOfSelected / elemsPerPage );
+					let elemsPerPage  = window.innerWidth > 992 ? 6 : 3;
+					let numOfSelected = Object.keys(selectedCollection).length
+
+					numOfPages = Math.ceil( numOfSelected / elemsPerPage );
+				}
 
 			}
 

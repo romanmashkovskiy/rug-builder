@@ -91,26 +91,22 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			break;
 	}
 
-	if ( R.loadedTextures[swatch] === undefined ) {
+//	if ( R.loadedTextures[swatch] === undefined ) {
 
 		new THREE.TextureLoader().load( thumb, (texture) => {
 
 			texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 			texture.anisotropy = R.renderer.getMaxAnisotropy();
-			texture.generateMipmaps = true;
 
 			texture = _setRepeat(repeat, texture, stageCode);
-
-			if ( stageCode === 2 || stageCode === 3 ) {
-				texture.flipY = true;
-//				texture.repeat.x = - 1;
-			}
 
 			let material = new THREE.MeshPhongMaterial( {
 				map       : texture,
 				color     : 0xffffff,
 				shininess : 5
 			});
+
+			let id = swatch + '' + stageCode;
 
 			R.loadedTextures[swatch] = material;
 
@@ -138,7 +134,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 
 			R.loadingScreens('full', 'close');
 		});
-	}
+/*	}
 	else {
 
 		if ( stageObj3 !== undefined ) {
@@ -164,7 +160,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 		}
 		
 		R.loadingScreens('full', 'close');
-	}
+	}*/
 }
 
 /*
@@ -249,17 +245,35 @@ function _loadMaps(material, maps, repeat, stage) {
 
 function _setRepeat(repeat, texture, stage) {
 
+	const R = rugBuilder;
+
 	const DEFAULT_VAL = stage === 0 ? 7 : 10;
+
+	let repeatX, repeatY;
 
 	if ( typeof repeat === 'object' ) {
 
+		if ( ( stage === 2 || stage === 3 ) && R.borderType === 'double' ) {
+
+			if ( stage === 2 ) {
+				repeatX = parseInt(repeat.x) * 4;
+				repeatY = parseInt(repeat.y) * 1;
+			} else {
+				repeatX = parseInt(repeat.x);
+				repeatY = parseInt(repeat.y);
+			}
+		} else {
+			repeatX = parseInt(repeat.x);
+			repeatY = parseInt(repeat.y);
+		}
+
 		if ( repeat.x !== '' && repeat.y !== '' ) {
-			texture.repeat.set(parseInt(repeat.x), parseInt(repeat.y))
+			texture.repeat.set(repeatX, repeatY)
 		} else {
 			if ( repeat.x !== '' ) {
-				texture.repeat.set(parseInt(repeat.x), DEFAULT_VAL);
+				texture.repeat.set(repeatX, DEFAULT_VAL);
 			} else if ( repeat.y !== '' ) {
-				texture.repeat.set(DEFAULT_VAL, parseInt(repeat.y));
+				texture.repeat.set(DEFAULT_VAL, repeatY);
 			} else {
 				texture.repeat.set(DEFAULT_VAL, DEFAULT_VAL);
 			}

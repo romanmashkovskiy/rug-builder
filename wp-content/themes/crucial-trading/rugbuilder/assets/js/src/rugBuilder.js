@@ -24,6 +24,7 @@ class RugBuilder {
 		this.WCborderMaterials   = [];
 		this.WCBorderCollections = {};
 		this.WCborderSwatches    = {};
+		this.WCpiping            = [];
 
 		// Three.js - All the things for the Three.js rendering
 		this.scene    = undefined;
@@ -89,9 +90,13 @@ class RugBuilder {
 		this.borderType      = undefined;
 		this.centerMaterial  = undefined;
 		this.borderMaterials = {
-			single : undefined,
-			piping : undefined,
-			double : {
+			single  : undefined,
+			piping  : undefined,
+			_piping : {
+				inner  : undefined,
+				piping : undefined
+			},
+			double  : {
 				inner : undefined,
 				outer : undefined
 			}
@@ -99,6 +104,7 @@ class RugBuilder {
 
 		this.centerID       = 0;
 		this.singleBorderID = 0;
+		this.pipingID       = 0;
 		this.innerBorderID  = 0;
 		this.outerBorderID  = 0;
 
@@ -190,11 +196,15 @@ class RugBuilder {
 		else if ( this.stageVisited[ stage - 1 ] ) {
 			stageValid = true;
 		}
-		// If user has selected single or piping border type, is currently on stage 2 (inner border) and is trying to go stage 4 (rug size), then yes
-		// as there is no need for stage 3, as there is no outer border with single/piping
+		// If user has selected single border type, is currently on stage 2 (inner border) and is trying to go stage 4 (rug size), then yes
+		// as there is no need for stage 3, as there is no outer border/piping with single
 		else if ( ( this.borderType === 'single' || this.borderType === 'piping' ) && this.currentStage === 2 && stage === 4 ) {
 			stageValid = true;
 		}
+
+//		else if ( this.borderType === 'single' && this.currentStage === 2 && stage === 4 ) {
+//			stageValid = true;
+//		}
 
 		// If the user is not allowed to visit the stage they have selected, return
 		if ( !stageValid ) {
@@ -280,9 +290,9 @@ class RugBuilder {
 		const CURRENT_ZOOM = this.camera.zoom;
 		const NEW_ZOOM     = CURRENT_ZOOM + 0.333333;
 
-//		if ( NEW_ZOOM > 3.33 ) {
-//			return;
-//		}
+		if ( NEW_ZOOM > 3.33 ) {
+			return;
+		}
 
 		this.camera.zoom = NEW_ZOOM;
 		this.camera.updateProjectionMatrix();
@@ -315,59 +325,64 @@ class RugBuilder {
 		this.stageVisited = [ true, false, false, false, false ];
 		this.json         = {
 			single : {
-				borderEast  : undefined,
-				borderNorth : undefined,
-				borderSouth : undefined,
-				borderWest  : undefined,
-				center      : undefined,
-				stitches    : undefined
+				'border-east'  : undefined,
+				'border-north' : undefined,
+				'border-south' : undefined,
+				'border-west'  : undefined,
+				'center'       : undefined,
+				'stitches'     : undefined
 			},
 			double : {
-				center           : undefined,
-				innerBorderEast  : undefined,
-				innerBorderNorth : undefined,
-				innerBorderSouth : undefined,
-				innerBorderWest  : undefined,
-				outerBorderEast  : undefined,
-				outerBorderNorth : undefined,
-				outerBorderSouth : undefined,
-				outerBorderWest  : undefined,
-				stitches         : undefined
+				'border-inner-east'  : undefined,
+				'border-inner-north' : undefined,
+				'border-inner-south' : undefined,
+				'border-inner-west'  : undefined,
+				'border-outer-east'  : undefined,
+				'border-outer-north' : undefined,
+				'border-outer-south' : undefined,
+				'border-outer-west'  : undefined,
+				'center'             : undefined,
+				'stitches'           : undefined
 			},
 			piping : {
-				center           : undefined,
-				innerBorderEast  : undefined,
-				innerBorderNorth : undefined,
-				innerBorderSouth : undefined,
-				innerBorderWest  : undefined,
-				outerBorderEast  : undefined,
-				outerBorderNorth : undefined,
-				outerBorderSouth : undefined,
-				outerBorderWest  : undefined,
-				stitches         : undefined
+				'center'       : undefined,
+				'border-east'  : undefined,
+				'border-north' : undefined,
+				'border-south' : undefined,
+				'border-west'  : undefined,
+				'stitches'     : undefined,
+				'trim-east'    : undefined,
+				'trim-north'   : undefined,
+				'trim-south'   : undefined,
+				'trim-west'    : undefined
 			}
 		};
-		this.centerMaterial = undefined;
 		this.loadedTextures = {};
-		this.materialChoice = {
-			single : {
-				border   : undefined,
-				center   : undefined,
-				stitches : undefined
+		this.borderType      = undefined;
+		this.centerMaterial  = undefined;
+		this.borderMaterials = {
+			single  : undefined,
+			piping  : undefined,
+			_piping : {
+				inner  : undefined,
+				piping : undefined
 			},
-			double : {
-				center      : undefined,
-				innerBorder : undefined,
-				outerBorder : undefined,
-				stitches    : undefined
-			},
-			piping : {
-				center      : undefined,
-				innerBorder : undefined,
-				outerBorder : undefined,
-				stitches    : undefined
+			double  : {
+				inner : undefined,
+				outer : undefined
 			}
 		};
+
+		this.centerID       = 0;
+		this.singleBorderID = 0;
+		this.pipingID       = 0;
+		this.innerBorderID  = 0;
+		this.outerBorderID  = 0;
+
+		this.length = 0;
+		this.width  = 0;
+
+		this.price = 0;
 
 		PubSub.publish('stageChange', 0);
 		return;
@@ -411,7 +426,7 @@ class RugBuilder {
 						let single_choice = R.borderMaterials.single.split(' ').join('');
 						INNER_BORDER      = R.WCswatches[single_choice];
 						break;
-
+//
 					case 'piping' :
 						let border_choice = R.borderMaterials.piping.split(' ').join('');
 						let piping_choice = R.borderMaterials.piping.split(' ').join('');
@@ -567,74 +582,6 @@ class RugBuilder {
 				this.length = LENGTH;
 				this.width  = WIDTH;
 				this.price  = TOTAL_PRICE;
-
-/*
-				// Get the user's current border type choice
-				const CURRENT_BORDER_TYPE = this.borderType;
-
-				if ( CURRENT_BORDER_TYPE === 'single' || CURRENT_BORDER_TYPE === 'piping' ) {
-
-					const CURRENT_BORDER_MATERIAL = this.borderMaterials[CURRENT_BORDER_TYPE];
-
-					this.getPriceData(CURRENT_BORDER_MATERIAL)
-						.then((price2) => {
-
-							console.log(price2)
-
-							// Work out price of the border and add it to the price of the center
-							totalPrice = CENTER_PRICE + parseInt(price2); 
-
-							console.log(totalPrice)
-
-							// Publish the newPrice event so the price can be updated
-							PubSub.publish('newPrice', totalPrice);
-
-							// Save the user selected length and width, and the price
-							this.length = LENGTH;
-							this.width  = WIDTH;
-							this.price  = totalPrice;
-
-							return;
-						})
-						.catch(() => {
-							R.error(1000, true)
-						});
-
-				}
-				else if ( CURRENT_BORDER_TYPE === 'double' ) {
-
-					const CURRENT_INNER_MATERIAL = this.borderMaterials.double.inner;
-					const CURRENT_OUTER_MATERIAL = this.borderMaterials.double.outer;
-
-					this.getPriceData(CURRENT_INNER_MATERIAL)
-						.then((price2) => {
-							return this.getPriceData(CURRENT_OUTER_MATERIAL);
-						})
-						.then((price3) => {
-
-							console.log(price2)
-							console.log(price3)
-
-							// Work out price of the border and add it to the price of the center
-							totalPrice = CENTER_PRICE + parseInt(price2) + parseInt(price3);
-
-							console.log(totalPrice)
-
-							// Publish the newPrice event so the price can be updated
-							PubSub.publish('newPrice', totalPrice);
-
-							// Save the user selected length and width, and the price
-							this.length = LENGTH;
-							this.width  = WIDTH;
-							this.price  = totalPrice;
-
-							return;
-						})
-						.catch(() => {
-							R.error(1000, true)
-						});
-				}
-*/
 			})
 			.catch(() => {
 				R.error(1000, true)
