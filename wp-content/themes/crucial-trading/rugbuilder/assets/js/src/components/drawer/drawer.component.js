@@ -1083,8 +1083,8 @@ function _createSizeHTML(_this, R) {
 
 		<span>
 			<p className="length">Length (m)</p><p className="width">Width (m)</p>
-			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.length } name="length" placeholder="Enter Length (m)" />
-			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.width } name="width" placeholder="Enter Width (m)" />
+			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.length } name="length" className="input-length" placeholder="Enter Length (m)" />
+			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.width } name="width" className="input-width" placeholder="Enter Width (m)" />
 			<button type="button" onClick={ _this.fireCalculatePrice } className="calc-price-btn">Calculate Price</button>
 		</span>
 	);

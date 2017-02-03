@@ -49,7 +49,7 @@ RugBuilder.prototype.btnStageComponent = function() {
 
 			let stageClass = '';
 
-			if ( this.props.index === CURRENT_STAGE ) {
+			if ( ( this.props.index === CURRENT_STAGE ) || ( R.borderType === 'single' && this.props.index === 3 && CURRENT_STAGE === 4 ) ) {
 				stageClass = 'active';
 			}
 
