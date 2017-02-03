@@ -36,13 +36,17 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				width  : '',
 				price  : false,
 
-				_resize : 0
+				_resize : 0,
+
+				drawerSlide : false
 			}
 		},
 
 		componentDidMount: function() {
 			this.stageChange  = PubSub.subscribe( 'stageChange', this.updateStageState );
 			this.newPrice     = PubSub.subscribe( 'newPrice', this.showNewPrice );
+
+			let _t = this;
 		},
 
 		componentWillUnmount: function() {
@@ -158,6 +162,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				this.calcDrawerMaxHeight();
 			}
 
+			this.setState({ drawerSlide : true });
+
 			let array = [], array2 = [];
 
 			array.forEach.call(document.querySelectorAll('li.in-window'), (e, i) => {
@@ -186,6 +192,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				return;
 			}
 
+			this.setState({ drawerSlide : true });
+
 			let array = [], array2 = [];
 
 			array.forEach.call(document.querySelectorAll('li.in-window'), (e, i) => {
@@ -210,7 +218,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		updateStageState: function(stage) {
 
-			this.setState({ stage : stage, pageInView : 1 });
+			this.setState({ stage : stage, pageInView : 1, drawerSlide : false });
 
 	//		R.numOfPages = 1;
 
@@ -340,7 +348,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Function for updating the content state.
 			// Gets passed to all of the content components as props.
 			// Updates the content state to whatever is given to it by the component.
-			this.setState({ content: content, pageInView : 1 });
+
+			if ( content !== 'swatchesSelected' ) {
+				this.setState({ content: content, pageInView : 1 });
+			} else {
+				this.setState({ content: content });
+			}
 		},
 
 		updateMaterialChoice: function(material) {
@@ -348,7 +361,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Function for updating the chosenMaterial state.
 			// Get passed to the Material Button Components as props.
 			// Updates the chosenMaterial state to whatever is given to it by the component.
-			this.setState({ chosenMaterial: material, chosenCollection: undefined });
+			this.setState({ chosenMaterial: material, chosenCollection: undefined, drawerSlide : false });
 
 			if ( this.state.stage === 2 || this.state.stage === 3 ) {
 
@@ -369,7 +382,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Function for updating the chosenCollection state and getting swatch data.
 			// Get passed to the Collection Button Components as props.
 			// Updates the chosenCollection state to whatever is given to it by the component.
-			this.setState({ chosenCollection: collection });
+			this.setState({ chosenCollection: collection, drawerSlide : false });
 
 			R.loadingScreens('full', 'open');
 
@@ -393,7 +406,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
 			// Updates the chosenSwatch state to whatever is given to it by the component.
-			this.setState({ chosenSwatch : swatch });
+			this.setState({ chosenSwatch : swatch, drawerSlide : false });
 
 			R.loadingScreens('full', 'open');
 
@@ -446,7 +459,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			// Function for updating the chosenBorder state.
 			// Get passed to the Border Button Components as props.
 			// Updates the chosenBorder state to whatever is given to it by the component.
-			this.setState({ chosenBorder: border });
+			this.setState({ chosenBorder: border, drawerSlide : false });
 
 			R.loadingScreens('full', 'open');
 
@@ -505,7 +518,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			const _this = this;
 
-//			setInterval(function(){console.log(_this.state)},5000)
+//			setInterval(function(){console.log(_this.state.pageInView)},1000)
 			
 			// Create the dynamic HTML sections of the content
 
@@ -601,7 +614,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 
 			let currentPage = this.state.pageInView
-
+/*
 			if ( this.state.content === 'swatchesSelected' ) {
 
 				const SELECTED_SWATCH     = _this.state.chosenSwatch.replace(/ /g, '');
@@ -636,7 +649,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				this.state.pageInView = currentPage;
 
 			}
-
+*/
 			for ( let i = 0; i < numOfPages; i++ ) {
 
 				let index = i + 1;
@@ -888,10 +901,13 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				}
 			})
 
-			let selectedPipingIndexPlusOne = selectedPipingIndex + 1;
-			let pageSelectedSwatchIsOn     = Math.ceil( selectedPipingIndexPlusOne / elemsPerPage );
+			if( !_this.state.drawerSlide ) {
 
-			_this.state.pageInView = pageSelectedSwatchIsOn;
+				let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
+				let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
+
+				_this.state.pageInView = pageSelectedSwatchIsOn;
+			}
 
 			return PIPING.map((piping, index) => {
 
@@ -1020,10 +1036,13 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 			// Work out which page selectedSwatchIndex is on then set state.pageInView to that page
 
-			let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
-			let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
+			if( !_this.state.drawerSlide ) {
 
-			_this.state.pageInView = pageSelectedSwatchIsOn;
+				let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
+				let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
+
+				_this.state.pageInView = pageSelectedSwatchIsOn;
+			}
 
 			// Create a BtnSwatchComponent for each swatch in the swatchArr array
 
