@@ -600,12 +600,47 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			}
 
+			let currentPage = this.state.pageInView
+
+			if ( this.state.content === 'swatchesSelected' ) {
+
+				const SELECTED_SWATCH     = _this.state.chosenSwatch.replace(/ /g, '');
+				const SELECTED_COLLECTION = _this.state._swatches[ _this.state.chosenCollection ];
+
+				let elemsPerPage  = window.innerWidth > 992 ? 6 : 3;
+				let numOfSwatches = Object.keys(SELECTED_COLLECTION).length
+
+				if ( SELECTED_COLLECTION !== undefined ) {
+					let numOfPages = Math.ceil( numOfSwatches / elemsPerPage );
+					R.numOfPages = numOfPages;
+				}
+
+				let selectedSwatchIndex;
+
+				let i = 0;
+
+				Object.keys(SELECTED_COLLECTION).forEach((key) => {
+
+					if ( key === SELECTED_SWATCH ) {
+						selectedSwatchIndex = i;
+					}
+
+					i++;
+				});
+
+				// Work out which page selectedSwatchIndex is on then set state.pageInView to that page
+
+				let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
+				currentPage                    = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
+
+			}
+
 			for ( let i = 0; i < numOfPages; i++ ) {
 
 				let index = i + 1;
 				let className = 'dot';
 
-				if ( this.state.pageInView === index ) {
+				if ( currentPage === index ) {
 					className += ' dot-active';
 				}
 
