@@ -1,16 +1,10 @@
 .drawer__content__material {
 
-	&.stage2 ul,
-	&.stage3 ul {
-		margin-left: calc(33.3333333% / 2)!important;
-		width: 66.6666666% !important;
-	}
-
 	ul {
 		display: flex;
-		margin: 0;
+		justify-content: center;
+		margin: auto;
 		padding: 30px 0 0;
-		padding-left: calc(50% - 600px);
 
 		@media screen and (max-width: 768px) {
 			display: block;
