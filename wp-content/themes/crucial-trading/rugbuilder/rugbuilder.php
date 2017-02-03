@@ -67,6 +67,7 @@ if ( array_key_exists( 'err', $_GET ) ) {
 </head>
 <body>
 
+	<div id="background-div"></div>
 	<div id="app">
 		<div id="full-loading">
 			<h1>Loading</h1>

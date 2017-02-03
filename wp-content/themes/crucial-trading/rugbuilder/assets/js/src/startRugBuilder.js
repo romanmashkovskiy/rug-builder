@@ -119,7 +119,8 @@ RugBuilder.prototype.start = function() {
 
 			// Call the render function and close the loading screen
 			render();                                                                        // Line 84
-			R.loadingScreens('full', 'close');                                               // ./functions/loadingScreens.function.js
+
+			document.querySelector('#background-div').style.background = 'none';
 
 			// Add the window resize event listener                                             Line 98
 			window.addEventListener( 'resize', onWindowResize, false );

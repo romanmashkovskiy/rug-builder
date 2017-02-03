@@ -22,7 +22,7 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 
 					if ( type === 'border' ) {
 						R.WCborderMaterials = JSON.parse(this.response);
-						R.loadingScreens('full', 'close');
+				//		R.loadingScreens('full', 'close');
 					}
 					else {
 						R.WCmaterials = JSON.parse(this.response);
