@@ -218,6 +218,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		updateStageState: function(stage) {
 
+			PubSub.publish('newPrice', [0, 0, 0]);
+
 			this.setState({ stage : stage, pageInView : 1, drawerSlide : false });
 
 	//		R.numOfPages = 1;

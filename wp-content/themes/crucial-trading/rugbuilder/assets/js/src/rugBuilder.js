@@ -381,7 +381,20 @@ class RugBuilder {
 
 		this.price = 0;
 
+		this.camera.position.x = 0;
+		this.camera.position.y = 170;
+		this.camera.position.z = -55;
+
+		this.camera.rotation.x = -1.5708;
+		this.camera.rotation.y = 0;
+		this.camera.rotation.z = 0;
+
+		this.camera.zoom = 1;
+
+		this.camera.updateProjectionMatrix();
+
 		PubSub.publish('stageChange', 0);
+		PubSub.publish('newPrice', [0, 0, 0]);
 		return;
 	};
 

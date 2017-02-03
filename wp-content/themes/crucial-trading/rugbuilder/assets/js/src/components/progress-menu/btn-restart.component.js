@@ -7,7 +7,8 @@ RugBuilder.prototype.btnRestartComponent = function() {
 		restart: function() {
 			R.updateStage(0);
 			R.startAgain();
-			R.updateBorder('Single & Piping');
+			R.updateBorder('Single Border');
+			ReactDOM.unmountComponentAtNode(document.querySelector('#order-screen'));
 		},
 
 		render: function() {
