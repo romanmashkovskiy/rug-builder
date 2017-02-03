@@ -136,13 +136,15 @@ function swatches_data() {
 		$repeaty   = rwmb_meta( 'rb_repeat_y', array(), $product_id );
 		$stitching = rwmb_meta( 'rb_stitching_colour', array(), $product_id );
 
+/* This adds in the featured image is the texture is missing
 		if ( count( $thumb ) == 0 ) {
 			$thumb = array( 1 => array(
 				'full_url' => wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'full' )[0],
 				'url'      => wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0],
 			) );
 		}
-
+*/
+		
 		$arr['id']        = $product_id;
 		$arr['cats']      = $cats;
 		$arr['name']      = $name;
