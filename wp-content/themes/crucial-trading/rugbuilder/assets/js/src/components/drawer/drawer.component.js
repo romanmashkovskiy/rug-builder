@@ -633,6 +633,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
 				currentPage                    = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
 
+				this.state.pageInView = currentPage;
+
 			}
 
 			for ( let i = 0; i < numOfPages; i++ ) {

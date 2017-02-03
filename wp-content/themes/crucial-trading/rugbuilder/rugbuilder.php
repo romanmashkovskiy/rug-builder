@@ -80,7 +80,7 @@ if ( array_key_exists( 'err', $_GET ) ) {
 		<div id="error-box">
 			<p id="error-msg"></p>
 			<p id="error-code"></p>
-			<img src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder/assets/icons/exit.svg" id="close-error">
+			<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20170110133952/exit.svg" id="close-error">
 		</div>
 	</div>
 
