@@ -2,6 +2,23 @@
 	position: relative;
 	text-align: center;
 
+	p {
+		color: #878787;
+		position: absolute;
+		left: 50%;
+		top: 80px;
+		font-size: 12px;
+		font-family: Open Sans,sans-serif;
+
+		&.width {
+			margin-left: 11px;
+		}
+
+		&.length {
+			margin-left: -262px;
+		}
+	}
+
 	span {
 		display: block;
 		padding: 50px 0 40px;
@@ -66,7 +83,7 @@
 		font-family: Montserrat,sans-serif;
 		font-size: 14px;
 		letter-spacing: 2.5px;
-		margin: 25px auto 0;
+		margin: 40px auto 0;
 		padding: 15px 20px;
 		text-transform: uppercase;
 	}

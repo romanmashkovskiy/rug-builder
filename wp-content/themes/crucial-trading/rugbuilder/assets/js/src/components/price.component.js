@@ -68,8 +68,6 @@ RugBuilder.prototype.priceComponent = function() {
 			}
 			else {
 				HTML = <span>
-					<h3 className="tab">Length: { this.state.length }m</h3>
-					<h3 className="tab">Width: { this.state.width }m</h3>
 					<h3>£ { this.state.price }</h3>
 					<a href="#" onClick={ this.goToOrderScreen }>Finish Building</a>
 				</span>;
