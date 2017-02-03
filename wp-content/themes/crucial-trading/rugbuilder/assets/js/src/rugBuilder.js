@@ -24,7 +24,7 @@ class RugBuilder {
 		this.WCborderMaterials   = [];
 		this.WCBorderCollections = {};
 		this.WCborderSwatches    = {};
-		this.WCpiping            = [];
+		this.WCpiping            = {};
 
 		// Three.js - All the things for the Three.js rendering
 		this.scene    = undefined;
@@ -91,8 +91,7 @@ class RugBuilder {
 		this.centerMaterial  = undefined;
 		this.borderMaterials = {
 			single  : undefined,
-			piping  : undefined,
-			_piping : {
+			piping : {
 				inner  : undefined,
 				piping : undefined
 			},
@@ -198,13 +197,13 @@ class RugBuilder {
 		}
 		// If user has selected single border type, is currently on stage 2 (inner border) and is trying to go stage 4 (rug size), then yes
 		// as there is no need for stage 3, as there is no outer border/piping with single
-		else if ( ( this.borderType === 'single' || this.borderType === 'piping' ) && this.currentStage === 2 && stage === 4 ) {
-			stageValid = true;
-		}
-
-//		else if ( this.borderType === 'single' && this.currentStage === 2 && stage === 4 ) {
+//		else if ( ( this.borderType === 'single' || this.borderType === 'piping' ) && this.currentStage === 2 && stage === 4 ) {
 //			stageValid = true;
 //		}
+
+		else if ( this.borderType === 'single' && this.currentStage === 2 && stage === 4 ) {
+			stageValid = true;
+		}
 
 		// If the user is not allowed to visit the stage they have selected, return
 		if ( !stageValid ) {
@@ -362,8 +361,7 @@ class RugBuilder {
 		this.centerMaterial  = undefined;
 		this.borderMaterials = {
 			single  : undefined,
-			piping  : undefined,
-			_piping : {
+			piping : {
 				inner  : undefined,
 				piping : undefined
 			},
@@ -428,10 +426,17 @@ class RugBuilder {
 						break;
 //
 					case 'piping' :
-						let border_choice = R.borderMaterials.piping.split(' ').join('');
-						let piping_choice = R.borderMaterials.piping.split(' ').join('');
+						let border_choice = R.borderMaterials.piping.inner.split(' ').join('');
+						let piping_choice = R.borderMaterials.piping.piping;
 						INNER_BORDER      = R.WCswatches[border_choice];
-						PIPING            = R.WCswatches[piping_choice];
+
+						for ( let i = 0; i < R.WCpiping.length; i++ ) {
+							if ( piping_choice === R.WCpiping[i].post_title ) {
+								PIPING = R.WCpiping[i];
+								break;
+							}
+						}
+
 						break;
 
 					case 'double' :
@@ -482,8 +487,14 @@ class RugBuilder {
 						p_singleBorderPrice = 50;
 					}
 
-					BORDER_PRICE = p_singleBorderPrice * ((LENGTH * 2) + (WIDTH * 2));
-					
+					let outerBorderPrice = p_singleBorderPrice * ((LENGTH * 2) + (WIDTH * 2));
+
+					// have PIPING the obj that contains the piping but no idea if needed or not
+					// For now assume £0 per m2 and times by perimeter and add to actual border price
+
+					let pipingPrice      = 0 * ((LENGTH * 2) + (WIDTH * 2));
+
+					BORDER_PRICE = outerBorderPrice + pipingPrice;
 
 				} else if ( BORDER_TYPE === 'double' ) {
 

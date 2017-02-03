@@ -9,17 +9,32 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			this.centerID       = 0;
 			this.singleBorderID = 0;
 			this.innerBorderID  = 0;
+			this.pipingID       = 0;
 			this.outerBorderID  = 0;
 			
 			const CENTER_MATERIAL        = R.centerMaterial;
 			const CENTER_ID              = R.centerID;
 			const BORDER_TYPE            = R.borderType;
-			const SINGLE_BORDER_MATERIAL = BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ? R.borderMaterials[BORDER_TYPE] : false;
+
+			let SINGLE_BORDER_MATERIAL = false;
+
+			if ( BORDER_TYPE === 'single' ) {
+				SINGLE_BORDER_MATERIAL = R.borderMaterials.single;
+			} else if ( BORDER_TYPE === 'piping' ) {
+				SINGLE_BORDER_MATERIAL = R.borderMaterials.piping.inner;
+			}
+
 			const SINGLE_BORDER_ID       = BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ? R.singleBorderID : false;
+
+			const PIPING_BORDER_MATERIAL = BORDER_TYPE === 'piping' ? R.borderMaterials.piping.piping : false;
+			const PIPING_BORDER_ID       = BORDER_TYPE === 'piping' ? R.pipingID : false;
+
 			const INNER_BORDER_MATERIAL  = BORDER_TYPE === 'double' ? R.borderMaterials.double.inner : false;
-			const OUTER_BORDER_MATERIAL  = BORDER_TYPE === 'double' ? R.borderMaterials.double.outer : false;
 			const INNER_BORDER_ID        = BORDER_TYPE === 'double' ? R.innerBorderID : false;
+
+			const OUTER_BORDER_MATERIAL  = BORDER_TYPE === 'double' ? R.borderMaterials.double.outer : false;
 			const OUTER_BORDER_ID        = BORDER_TYPE === 'double' ? R.outerBorderID : false;
+
 			const LENGTH                 = R.length;
 			const WIDTH                  = R.width;
 			const PRICE                  = R.price;
@@ -32,9 +47,11 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				centerID             : CENTER_ID,
 				borderType           : BORDER_TYPE,
 				singleBorderMaterial : SINGLE_BORDER_MATERIAL,
+				pipingMaterial       : PIPING_BORDER_MATERIAL,
 				innerBorderMaterial  : INNER_BORDER_MATERIAL,
 				outerBorderMaterial  : OUTER_BORDER_MATERIAL,
 				singleBorderID       : SINGLE_BORDER_ID,
+				pipingID             : PIPING_BORDER_ID,
 				innerBorderID        : INNER_BORDER_ID,
 				outerBorderID        : OUTER_BORDER_ID,
 				length               : LENGTH,
@@ -81,8 +98,12 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			url += '?products=';
 			url += this.state.centerID + ',';
 
-			if ( BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ) {
+			if ( BORDER_TYPE === 'single' ) {
 				url += this.state.singleBorderID;
+			}
+			else if ( BORDER_TYPE === 'piping' ) {
+				url += this.state.singleBorderID + ',';
+				url += this.state.pipingID;
 			}
 			else if ( BORDER_TYPE === 'double' ) {
 				url += this.state.innerBorderID + ',';
@@ -132,8 +153,12 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			url += '?products=';
 			url += this.state.centerID + ',';
 
-			if ( BORDER_TYPE === 'single' || BORDER_TYPE === 'piping' ) {
+			if ( BORDER_TYPE === 'single' ) {
 				url += this.state.singleBorderID;
+			}
+			else if ( BORDER_TYPE === 'piping' ) {
+				url += this.state.singleBorderID + ',';
+				url += this.state.pipingID;
 			}
 			else if ( BORDER_TYPE === 'double' ) {
 				url += this.state.innerBorderID + ',';
@@ -150,7 +175,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			} 
 			else if ( BORDER_TYPE === 'piping' ) {
 				url += '&inner=' + this.state.singleBorderID;
-				url += '&piping=' + this.state.singleBorderID;
+				url += '&piping=' + this.state.pipingID;
 			}
 			else if ( BORDER_TYPE === 'double' ) {
 				url += '&inner=' + this.state.innerBorderID;
@@ -194,8 +219,11 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 			if ( this.state.borderType === 'single' || this.state.borderType === 'piping' ) {
 				materialObj['Border'] = this.state.singleBorderMaterial;
-			}
-			else if ( this.state.borderType === 'double' ) {
+
+				if ( this.state.borderType === 'piping' ) {
+					materialObj['Piping'] = this.state.pipingMaterial;
+				}
+			} else if ( this.state.borderType === 'double' ) {
 				materialObj['Inner Border'] = this.state.innerBorderMaterial;
 				materialObj['Outer Border'] = this.state.outerBorderMaterial;
 			}

@@ -35,6 +35,7 @@ gulp.task('js', function() {
 		'./js/src/startRugbuilder.js',
 		'./js/src/data/materials.data.js',
 		'./js/src/data/collections.data.js',
+		'./js/src/data/piping.data.js',
 		'./js/src/data/swatches.data.js',
 		'./js/src/data/price.data.js',
 		'./js/src/init.js',

@@ -70,7 +70,8 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 
 					stageObj      = 'borderMaterials';
 					stageObj2     = 'piping';
-					sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
+					stageObj3     = 'inner';
+					sceneChildren = ['border-east', 'border-north', 'border-south', 'border-west'];
 					break;
 
 				default :
@@ -87,11 +88,26 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 
 		case 3 :
 
-			stageObj      = 'borderMaterials';
-			stageObj2     = 'double';
-			stageObj3     = 'outer';
-			sceneChildren = ['border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west'];
+			if ( BORDER_TYPE === 'piping' ) {
+
+				stageObj      = 'borderMaterials';
+				stageObj2     = 'piping';
+				stageObj3     = 'piping';
+				sceneChildren = ['trim-east', 'trim-north', 'trim-south', 'trim-west'];
+
+			} else if ( BORDER_TYPE === 'double' ) {
+
+				stageObj      = 'borderMaterials';
+				stageObj2     = 'double';
+				stageObj3     = 'outer';
+				sceneChildren = ['border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west'];
+
+			} else {
+				return;
+			}
+
 			break;
+			
 	}
 
 //	if ( R.loadedTextures[swatch] === undefined ) {
@@ -250,7 +266,7 @@ function _setRepeat(repeat, texture, stage) {
 
 	const R = rugBuilder;
 
-	const DEFAULT_VAL = stage === 0 ? 7 : 10;
+	const DEFAULT_VAL = stage === 0 ? 5 : 10;
 
 	let repeatX, repeatY;
 

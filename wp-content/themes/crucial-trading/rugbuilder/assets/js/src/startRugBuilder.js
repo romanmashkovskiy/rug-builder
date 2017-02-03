@@ -43,7 +43,7 @@ RugBuilder.prototype.start = function() {
 	R.getMaterialsData()                                                                     // ./data/materials.data.js
 		.then(()     => { return R.getCollectionsData() })                                   // ./data/collections.data.js
 		.then(()     => { return R.getMaterialsData('border') })                             // ./data/materials.data.js
-//		.then(()     => { return R.getPipingData() })                                        // 
+		.then(()     => { return R.getPipingData() })                                        // ./data/piping.data.js
 		.then(()     => { continueLoading() })                                               // Line 16
 		.catch((err) => { error( err ) });                                                   // Line 181
 
@@ -69,8 +69,8 @@ RugBuilder.prototype.start = function() {
 		R.initLights();                                                                      // ./init/lights.init.js
 		R.initScene();                                                                       // ./init/scene.init.js
 
-		// Add default rug - Single & Piping
-		R.updateBorder('Single & Piping')                                                    // ./functions/updateBorder.function.js
+		// Add default rug - Single
+		R.updateBorder('Single Border')                                                    // ./functions/updateBorder.function.js
 			.then(() => { loaded() })                                                        // Line 48
 			.catch((err) => { error( err ) });                                               // Line 181
 

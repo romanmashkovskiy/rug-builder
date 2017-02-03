@@ -191,6 +191,53 @@ function border_data() {
 	return $res;
 }
 
+function piping_data() {
+
+	$args = array(
+		'post_type'      => 'product',
+		'posts_per_page' => -1,
+		'tax_query'      => array(
+			array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms'    => 'piping',
+			),
+		),
+	);
+
+	$query = new WP_Query( $args );
+
+	foreach ( $query->posts as $key => $post ) {
+
+		$product_id = $post->ID;
+
+		$thumb   = rwmb_meta( 'rb_texture', array(), $product_id );
+		$rthumb  = rwmb_meta( 'rb_texture_portrait', array(), $product_id );
+		$bmap    = rwmb_meta( 'rb_bump_map', array(), $product_id );
+		$nmap    = rwmb_meta( 'rb_normal_map', array(), $product_id );
+		$dmap    = rwmb_meta( 'rb_displacement_map', array(), $product_id );
+		$repeatx = rwmb_meta( 'rb_repeat_x', array(), $product_id );
+		$repeaty = rwmb_meta( 'rb_repeat_y', array(), $product_id );
+
+		if ( count( $thumb ) == 0 ) {
+			$thumb = array( 1 => array(
+				'full_url' => wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'full' )[0],
+				'url'      => wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0],
+			) );
+		}
+
+		$post->thumb   = $thumb;
+		$post->rthumb  = $rthumb;
+		$post->bmap    = $bmap;
+		$post->nmap    = $nmap;
+		$post->dmap    = $dmap;
+		$post->repeatx = $repeatx;
+		$post->repeaty = $repeaty;
+	}
+
+	return $query->posts;
+}
+
 function price_data() {
 
 	$material = $_GET['material'];

@@ -20,10 +20,10 @@ RugBuilder.prototype.btnStageComponent = function() {
 
 			// If the user has a single border rug and clicks from 'border' to 'rug size',
 			// instead of going to STAGE_CLICKED, go to stage 4, as that is the size stage
-			// and STAGE_CLICKED will have a value of 3, whic is the outer border stage,
+			// and STAGE_CLICKED will have a value of 3, which is the outer border stage,
 			// which is not used on single border rugs. Then return.
 
-			if ( ( R.borderType === 'single' || R.borderType === 'piping' ) && CURRENT_STAGE === 2 && STAGE_CLICKED === 3 ) {
+			if ( R.borderType === 'single' && CURRENT_STAGE === 2 && STAGE_CLICKED === 3 ) {
 				R.updateStage(4);
 				return;
 			}

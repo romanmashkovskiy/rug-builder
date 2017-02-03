@@ -8,7 +8,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			let materials   = R.WCmaterials;
 			let collections = R.WCcollections;
-
+			let piping      = R.WCpiping;
 
 			// Set initial state
 			return {
@@ -28,6 +28,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				_materials   : materials,
 				_collections : collections,
+				_piping      : piping,
 				_swatches    : {},
 				_borders     : ['Single Border', 'Single & Piping', 'Double Border'],
 
@@ -249,26 +250,44 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 						})
 
 						this.showBorderMaterials();
+
 					}
 					else {
 
 						this.setState({
 							_materials : R.WCborderMaterials
 						})
+
 					}
 
 					break;
 
 				case 3 : 
 
-					content = 'materials';
+					if ( this.state.chosenBorder === 'Single & Piping' ) {
 
-					this.setState({
-						_materials : R.WCborderMaterials,
+						content = 'swatches';
+
+						this.setState({
 							chosenMaterial   : undefined,
 							chosenCollection : undefined,
 							chosenSwatch     : undefined
-					})
+						});							
+
+					} else if ( this.state.chosenBorder === 'Double Border' ) {
+
+						content = 'materials';
+
+						this.setState({
+							_materials       : R.WCborderMaterials,
+							chosenMaterial   : undefined,
+							chosenCollection : undefined,
+							chosenSwatch     : undefined
+						});
+
+					}
+
+					
 
 					break;
 
@@ -378,17 +397,44 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			R.loadingScreens('full', 'open');
 
-			if ( this.state.stage === 0 ) {
+			const CURRENT_STAGE = this.state.stage;
+
+			if ( CURRENT_STAGE === 0 ) {
 				R.centerID = id;
-			} 
-			else if ( this.state.stage === 2 && ( this.state.chosenBorder === 'Single Border' || this.state.chosenBorder === 'Single & Piping' ) ) {
-				R.singleBorderID = id;
-			}
-			else if ( this.state.stage === 2 && this.state.chosenBorder === 'Double Border' ) {
-				R.innerBorderID = id;
-			}
-			else if ( this.state.stage === 3 && this.state.chosenBorder === 'Double Border' ) {
-				R.outerBorderID = id;
+			} else {
+
+				switch ( this.state.chosenBorder ) {
+
+					case 'Single Border' :
+
+						if ( CURRENT_STAGE === 2 ) {
+							R.singleBorderID = id;
+						}
+
+						break;
+
+					case 'Single & Piping' :
+
+						if ( CURRENT_STAGE === 2 ) {
+							R.singleBorderID = id;
+						} else if ( CURRENT_STAGE === 3 ) {
+							R.pipingID = id;
+						}
+
+						break;
+
+					case 'Double Border' :
+
+						if ( CURRENT_STAGE === 2 ) {
+							R.innerBorderID = id;
+						} else if ( CURRENT_STAGE === 3 ) {
+							R.outerBorderID = id;
+						}
+
+						break;
+
+				}
+
 			}
 
 			// Update the actual rug
@@ -449,6 +495,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		createBorderHTML      : function() { return _createBorderHTML(this, BtnBorderComponent, R) },
 
+		createPipingHTML      : function() { return _createPipingHTML(this, BtnSwatchComponent, R) },
+
 		createSizeHTML        : function() { return _createSizeHTML(this, R) },
 
 		createPriceHTML       : function() { return _createPriceHTML(this, R) },
@@ -470,8 +518,15 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			const PRICE_HTML       = _this.createPriceHTML();		
 
 			const OPEN             = _this.state.open ? 'open' : 'closed';
-			const DRAWER_CLASSES   = 'drawer__content ' + OPEN + ' ' + this.state.content;
 			const MATERIAL_CLASSES = 'drawer__content__material open stage' + this.state.stage;
+
+			let DRAWER_CLASSES = '';
+
+			DRAWER_CLASSES += 'drawer__content ';
+			DRAWER_CLASSES += OPEN + ' ';
+			DRAWER_CLASSES += this.state.content + ' ';
+			DRAWER_CLASSES += _this.state.chosenBorder === 'Single & Piping' && _this.state.stage === 3 && _this.state.content === 'swatches' ? '-piping' : '';
+			DRAWER_CLASSES += _this.state.chosenBorder === 'Single & Piping' && _this.state.stage === 3 && _this.state.content === 'swatchesSelected' ? '-piping-selected' : '';
 
 			let btnsHTML = '', topCSS = '';
 
@@ -731,136 +786,249 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 		return;
 	}
 
-	// Get the swatches for the user selected collection
+	if ( _this.state.chosenBorder === 'Single & Piping' && _this.state.stage === 3 ) {
 
-	const SWATCHES = _this.state._swatches;
-	const SWATCH   = SWATCHES[ _this.state.chosenCollection ];
+		// If user is on piping stage 
 
-	if ( _this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
+		const PIPING = _this.state._piping;
 
-		// Since the state._swatches[chosenCollection] is an object, not an array, we
-		// can't just run map on it. Instead run map on each of the keys, then use that
-		// key to get the individual swatches from the object
+		if ( _this.state.content === 'swatches' && caller === 'swatches' ) {
 
-		let elemsPerPage = window.innerWidth > 992 ? 18 : 9;
+			let elemsPerPage = 10;
+			R.numOfPages     = 1;
 
-		if ( SWATCH !== undefined ) {
-			let numOfPages = Math.ceil( Object.keys(SWATCH).length / elemsPerPage );
-			R.numOfPages = numOfPages;
+			return PIPING.map((piping, index) => {
+
+				const id     = piping.ID;
+				const name   = piping.post_title;
+				const thumb  = piping.thumb;
+				const repeat = {
+					x : piping.repeatx,
+					y : piping.repeaty
+				};
+				
+				let rthumb = false;
+
+				if ( Object.keys(piping.rthumb).length > 0 ) {
+					rthumb = piping.rthumb;
+				}
+
+				let maps = {};
+
+				if ( piping.bmap.length > 0 ) {
+					maps.bmap = piping.bmap;
+				}
+				if ( piping.nmap.length > 0 ) {
+					maps.nmap = piping.nmap;
+				}
+				if ( piping.dmap.length > 0 ) {
+					maps.dmap = piping.dmap;
+				}
+
+				let page = 1;
+
+				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ page } />
+			});
+
+		} else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
+
+			const SELECTED_PIPING = _this.state.chosenSwatch;
+
+			let elemsPerPage  = window.innerWidth > 992 ? 6 : 3;
+			let numOfSwatches = PIPING.length;
+
+			if ( SELECTED_PIPING !== undefined ) {
+				let numOfPages = Math.ceil( numOfSwatches / elemsPerPage );
+				R.numOfPages   = numOfPages;
+			}
+
+			let selectedPipingIndex;
+
+			PIPING.map((piping, index) => {
+				
+				if ( piping.post_title === SELECTED_PIPING ) {
+					selectedPipingIndex = index;
+				}
+			})
+
+			let selectedPipingIndexPlusOne = selectedPipingIndex + 1;
+			let pageSelectedSwatchIsOn     = Math.ceil( selectedPipingIndexPlusOne / elemsPerPage );
+
+			_this.state.pageInView = pageSelectedSwatchIsOn;
+
+			return PIPING.map((piping, index) => {
+
+				const id     = piping.ID;
+				const name   = piping.post_title;
+				const thumb  = piping.thumb;
+				const repeat = {
+					x : piping.repeatx,
+					y : piping.repeaty
+				};
+				
+				let rthumb = false;
+
+				if ( Object.keys(piping.rthumb).length > 0 ) {
+					rthumb = piping.rthumb;
+				}
+
+				let maps = {};
+
+				if ( piping.bmap.length > 0 ) {
+					maps.bmap = piping.bmap;
+				}
+				if ( piping.nmap.length > 0 ) {
+					maps.nmap = piping.nmap;
+				}
+				if ( piping.dmap.length > 0 ) {
+					maps.dmap = piping.dmap;
+				}
+
+				let indexPlusOne = index + 1;
+				let page         = Math.ceil( indexPlusOne / elemsPerPage );
+
+				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+			});
+
 		}
 
-		return Object.keys(SWATCH).map((swatch, index) => {
 
-			const CURRENT_SWATCH = SWATCH[swatch];
+	} else {
 
-			const id     = CURRENT_SWATCH.id;
-			const name   = CURRENT_SWATCH.name;
-			const code   = CURRENT_SWATCH.code;
-			const thumb  = CURRENT_SWATCH.thumb;
-			const stitch = CURRENT_SWATCH.stitching;
-			const repeat = {
-				x : CURRENT_SWATCH.repeatx,
-				y : CURRENT_SWATCH.repeaty
-			};
-			
-			let rthumb = false;
+		// User is on any other stage
 
-			if ( Object.keys(CURRENT_SWATCH.rthumb).length > 0 ) {
-				rthumb = CURRENT_SWATCH.rthumb;
+		// Get the swatches for the user selected collection
+
+		const SWATCHES = _this.state._swatches;
+		const SWATCH   = SWATCHES[ _this.state.chosenCollection ];
+
+		if ( _this.state.content === 'swatches' && caller === 'swatches' && SWATCH !== undefined ) {
+
+			// Since the state._swatches[chosenCollection] is an object, not an array, we
+			// can't just run map on it. Instead run map on each of the keys, then use that
+			// key to get the individual swatches from the object
+
+			let elemsPerPage = window.innerWidth > 992 ? 18 : 9;
+
+			if ( SWATCH !== undefined ) {
+				let numOfPages = Math.ceil( Object.keys(SWATCH).length / elemsPerPage );
+				R.numOfPages = numOfPages;
 			}
 
-			let maps = {};
+			return Object.keys(SWATCH).map((swatch, index) => {
 
-			if ( CURRENT_SWATCH.bmap !== '' ) {
-				maps.bmap = CURRENT_SWATCH.bmap;
+				const CURRENT_SWATCH = SWATCH[swatch];
+
+				const id     = CURRENT_SWATCH.id;
+				const name   = CURRENT_SWATCH.name;
+				const code   = CURRENT_SWATCH.code;
+				const thumb  = CURRENT_SWATCH.thumb;
+				const stitch = CURRENT_SWATCH.stitching;
+				const repeat = {
+					x : CURRENT_SWATCH.repeatx,
+					y : CURRENT_SWATCH.repeaty
+				};
+				
+				let rthumb = false;
+
+				if ( Object.keys(CURRENT_SWATCH.rthumb).length > 0 ) {
+					rthumb = CURRENT_SWATCH.rthumb;
+				}
+
+				let maps = {};
+
+				if ( CURRENT_SWATCH.bmap !== '' ) {
+					maps.bmap = CURRENT_SWATCH.bmap;
+				}
+				if ( CURRENT_SWATCH.nmap !== '' ) {
+					maps.nmap = CURRENT_SWATCH.nmap;
+				}
+				if ( CURRENT_SWATCH.dmap !== '' ) {
+					maps.dmap = CURRENT_SWATCH.dmap;
+				}
+
+				let indexPlusOne = index + 1;
+				let page         = Math.ceil( indexPlusOne / elemsPerPage );
+
+				// Create a BtnSwatchComponent for each swatch in the SWATCH object
+
+				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+			})
+		}
+		else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
+
+			const SELECTED_SWATCH     = _this.state.chosenSwatch.replace(/ /g, '');
+			const SELECTED_COLLECTION = _this.state._swatches[ _this.state.chosenCollection ];
+
+			let elemsPerPage  = window.innerWidth > 992 ? 6 : 3;
+			let numOfSwatches = Object.keys(SELECTED_COLLECTION).length
+
+			if ( SELECTED_COLLECTION !== undefined ) {
+				let numOfPages = Math.ceil( numOfSwatches / elemsPerPage );
+				R.numOfPages = numOfPages;
 			}
-			if ( CURRENT_SWATCH.nmap !== '' ) {
-				maps.nmap = CURRENT_SWATCH.nmap;
-			}
-			if ( CURRENT_SWATCH.dmap !== '' ) {
-				maps.dmap = CURRENT_SWATCH.dmap;
-			}
 
-			let indexPlusOne = index + 1;
-			let page         = Math.ceil( indexPlusOne / elemsPerPage );
+			let selectedSwatchIndex;
 
-			// Create a BtnSwatchComponent for each swatch in the SWATCH object
+			let i = 0;
 
-			return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
-		})
-	}
-	else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
+			Object.keys(SELECTED_COLLECTION).forEach((key) => {
 
-		const SELECTED_SWATCH     = _this.state.chosenSwatch.replace(/ /g, '');
-		const SELECTED_COLLECTION = _this.state._swatches[ _this.state.chosenCollection ];
+				if ( key === SELECTED_SWATCH ) {
+					selectedSwatchIndex = i;
+				}
 
-		let elemsPerPage  = window.innerWidth > 992 ? 6 : 3;
-		let numOfSwatches = Object.keys(SELECTED_COLLECTION).length
+				i++;
+			});
 
-		if ( SELECTED_COLLECTION !== undefined ) {
-			let numOfPages = Math.ceil( numOfSwatches / elemsPerPage );
-			R.numOfPages = numOfPages;
+			// Work out which page selectedSwatchIndex is on then set state.pageInView to that page
+
+			let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
+			let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
+
+			_this.state.pageInView = pageSelectedSwatchIsOn;
+
+			// Create a BtnSwatchComponent for each swatch in the swatchArr array
+
+			return Object.keys(SELECTED_COLLECTION).map((swatch, index) => {
+
+				const CURRENT_SWATCH = SWATCH[swatch];
+
+				const id     = CURRENT_SWATCH.id;
+				const name   = CURRENT_SWATCH.name;
+				const code   = CURRENT_SWATCH.code;
+				const thumb  = CURRENT_SWATCH.thumb;
+				const stitch = CURRENT_SWATCH.stitching;
+				const repeat = {
+					x : CURRENT_SWATCH.repeatx,
+					y : CURRENT_SWATCH.repeaty
+				};
+
+				let rthumb = false;
+
+				if ( typeof CURRENT_SWATCH.rthumb === 'object' ) {
+					rthumb = CURRENT_SWATCH.rthumb;
+				}
+				
+				let maps = {};
+
+				if ( CURRENT_SWATCH.bmap !== '' ) {
+					maps.bmap = CURRENT_SWATCH.bmap;
+				}
+				if ( CURRENT_SWATCH.nmap !== '' ) {
+					maps.nmap = CURRENT_SWATCH.nmap;
+				}
+				if ( CURRENT_SWATCH.dmap !== '' ) {
+					maps.dmap = CURRENT_SWATCH.dmap;
+				}
+
+				let indexPlusOne = index + 1;
+				let page         = Math.ceil( indexPlusOne / elemsPerPage );
+
+				return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+			});
 		}
 
-		let selectedSwatchIndex;
-
-		let i = 0;
-
-		Object.keys(SELECTED_COLLECTION).forEach((key) => {
-
-			if ( key === SELECTED_SWATCH ) {
-				selectedSwatchIndex = i;
-			}
-
-			i++;
-		});
-
-		// Work out which page selectedSwatchIndex is on then set state.pageInView to that page
-
-		let selectedSwatchIndexPlusOne = selectedSwatchIndex + 1;
-		let pageSelectedSwatchIsOn     = Math.ceil( selectedSwatchIndexPlusOne / elemsPerPage );
-
-		_this.state.pageInView = pageSelectedSwatchIsOn;
-
-		// Create a BtnSwatchComponent for each swatch in the swatchArr array
-
-		return Object.keys(SELECTED_COLLECTION).map((swatch, index) => {
-
-			const CURRENT_SWATCH = SWATCH[swatch];
-
-			const id     = CURRENT_SWATCH.id;
-			const name   = CURRENT_SWATCH.name;
-			const code   = CURRENT_SWATCH.code;
-			const thumb  = CURRENT_SWATCH.thumb;
-			const stitch = CURRENT_SWATCH.stitching;
-			const repeat = {
-				x : CURRENT_SWATCH.repeatx,
-				y : CURRENT_SWATCH.repeaty
-			};
-
-			let rthumb = false;
-
-			if ( typeof CURRENT_SWATCH.rthumb === 'object' ) {
-				rthumb = CURRENT_SWATCH.rthumb;
-			}
-			
-			let maps = {};
-
-			if ( CURRENT_SWATCH.bmap !== '' ) {
-				maps.bmap = CURRENT_SWATCH.bmap;
-			}
-			if ( CURRENT_SWATCH.nmap !== '' ) {
-				maps.nmap = CURRENT_SWATCH.nmap;
-			}
-			if ( CURRENT_SWATCH.dmap !== '' ) {
-				maps.dmap = CURRENT_SWATCH.dmap;
-			}
-
-			let indexPlusOne = index + 1;
-			let page         = Math.ceil( indexPlusOne / elemsPerPage );
-
-			return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
-		});
 	}
 }
 

@@ -27,8 +27,11 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 
 		borderHasChanged: function(border) {
 			
-			if ( border === 'single' || border === 'piping' ) {
+			if ( border === 'single' ) {
 				this.setState({ stages : [ 'Center', 'Border Type', 'Border', 'Rug Size' ] });
+			}
+			else if ( border === 'piping' ) {
+				this.setState({ stages : [ 'Center', 'Border Type', 'Border', 'Piping', 'Rug Size' ] });
 			}
 			else if ( border === 'double' ) {
 				this.setState({ stages : [ 'Center', 'Border Type', 'Inner Border', 'Outer Border', 'Rug Size' ] });
