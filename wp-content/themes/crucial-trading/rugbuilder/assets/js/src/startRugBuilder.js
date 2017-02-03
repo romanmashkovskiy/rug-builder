@@ -121,6 +121,7 @@ RugBuilder.prototype.start = function() {
 			render();                                                                        // Line 84
 
 			document.querySelector('#background-div').style.background = 'none';
+			document.querySelector('#background-div').style.zIndex     = '-9';
 
 			// Add the window resize event listener                                             Line 98
 			window.addEventListener( 'resize', onWindowResize, false );
