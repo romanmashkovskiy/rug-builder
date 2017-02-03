@@ -481,7 +481,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			else if ( event.target.name === 'width' ) {
 				this.setState({ width: event.target.value });
 			}
-
+/*
 			if ( ( this.state.length !== '' && event.target.name === 'width' ) || ( this.state.width !== '' && event.target.name === 'length' ) ) {
 
 				const _this = this;
@@ -490,8 +490,12 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 					R.calculatePrice(_this.state.length, _this.state.width);
 				}, 250)
 			}
-
+*/
 			return;
+		},
+
+		fireCalculatePrice: function() {
+			R.calculatePrice(this.state.length, this.state.width);
 		},
 
 		// Functions used for creating the dynamic HTML content of the drawer - 
@@ -1079,11 +1083,16 @@ function _createSizeHTML(_this, R) {
 		<span>
 			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.length } name="length" placeholder="Enter Length (m)" />
 			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.width } name="width" placeholder="Enter Width (m)" />
+			<button type="button" onClick={ _this.fireCalculatePrice } className="calc-price-btn">Calculate Price</button>
 		</span>
 	);
 }
 
 function _createPriceHTML(_this, R) {
+
+	// Disable this for now
+
+	return <div></div>;
 
 	if ( _this.state.stage !== 4 || !_this.state.price ) {
 		return;

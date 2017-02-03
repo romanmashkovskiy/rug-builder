@@ -5,7 +5,14 @@ RugBuilder.prototype.priceComponent = function() {
 	const PriceComponent = React.createClass({
 
 		getInitialState: function() {
-			return { price : 0 };
+
+			console.log(R)
+
+			return {
+				length : 0,
+				price  : 0,
+				width  : 0
+			};
 		},
 
 		componentDidMount: function() {
@@ -16,14 +23,18 @@ RugBuilder.prototype.priceComponent = function() {
 			PubSub.unsubscribe( this.newPrice );
 		},
 
-		showNewPrice: function(price) {
+		showNewPrice: function(data) {
+
+			let price  = data[0];
+			let length = data[1];
+			let width  = data[2];
 
 			if ( price === 0 ) {
 				this.setState({ price : false });
 				return;
 			}
 
-			this.setState({ price: price });
+			this.setState({ length : length, price : price, width : width });
 			return;
 		},
 
@@ -57,6 +68,8 @@ RugBuilder.prototype.priceComponent = function() {
 			}
 			else {
 				HTML = <span>
+					<h3 className="tab">Length: { this.state.length }m</h3>
+					<h3 className="tab">Width: { this.state.width }m</h3>
 					<h3>£ { this.state.price }</h3>
 					<a href="#" onClick={ this.goToOrderScreen }>Finish Building</a>
 				</span>;

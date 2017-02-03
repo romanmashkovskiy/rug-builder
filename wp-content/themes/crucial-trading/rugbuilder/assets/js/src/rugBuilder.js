@@ -586,7 +586,7 @@ class RugBuilder {
 				const TOTAL_PRICE = CENTER_PRICE + BORDER_PRICE;
 
 				// Publish the newPrice event so the price can be updated
-				PubSub.publish('newPrice', TOTAL_PRICE);
+				PubSub.publish('newPrice', [TOTAL_PRICE, LENGTH, WIDTH]);
 
 				// Save the user selected length and width, and the price
 				this.length = LENGTH;
