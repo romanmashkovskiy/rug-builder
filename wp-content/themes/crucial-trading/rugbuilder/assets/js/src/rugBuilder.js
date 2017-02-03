@@ -195,12 +195,11 @@ class RugBuilder {
 		else if ( this.stageVisited[ stage - 1 ] ) {
 			stageValid = true;
 		}
-		// If user has selected single border type, is currently on stage 2 (inner border) and is trying to go stage 4 (rug size), then yes
-		// as there is no need for stage 3, as there is no outer border/piping with single
-//		else if ( ( this.borderType === 'single' || this.borderType === 'piping' ) && this.currentStage === 2 && stage === 4 ) {
-//			stageValid = true;
-//		}
-
+		// Jump straight to border from center as can assume Single border is picked
+		else if ( this.currentStage === 0 && stage === 2 ) {
+			stageValid = true;
+		}
+		// If going from border (2) to rug size (4) as there is no stage 3 (piping/outer) with single border
 		else if ( this.borderType === 'single' && this.currentStage === 2 && stage === 4 ) {
 			stageValid = true;
 		}
