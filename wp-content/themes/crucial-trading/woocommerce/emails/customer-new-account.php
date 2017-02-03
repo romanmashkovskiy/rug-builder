@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<table style="width:75%;margin-left:12.5%;-webkit-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);-moz-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);padding: 75px;text-align:center;">
+<div style="width:75%;margin-left:12.5%;-webkit-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);-moz-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);padding: 75px;text-align:center;">
 
 	<p><?php printf( __( 'Thanks for creating an account on %s. Your username is <br><br><br><strong style="font-size:40px;padding-top:30px;">%s</strong><br><br>', 'woocommerce' ), esc_html( $blogname ), esc_html( $user_login ) ); ?></p>
 
@@ -40,4 +40,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-</table>
+</div>

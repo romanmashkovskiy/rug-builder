@@ -90,8 +90,6 @@
 
 .drawer__content__material,
 .drawer__content__collections,
-.drawer__content__swatches,
-.drawer__content__swatches--selected,
 .drawer__content__border,
 .drawer__content__size {
 	overflow: hidden;
@@ -110,6 +108,74 @@
 
 		@media screen and (min-width: 768px) {
 			max-height: 570px;
+		}
+		
+		transition: 0.65s;
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.closed {
+
+		@media screen and (min-width: 768px) {
+			max-height: 0;
+		}
+		
+		transition: 0.65s;
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+}
+
+.drawer__content__swatches {
+	overflow: hidden;
+
+	&.open {
+
+		@media screen and (min-width: 768px) {
+			max-height: 481px;
+		}
+		
+		transition: 0.65s;
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.opening {
+
+		@media screen and (min-width: 768px) {
+			max-height: 481px;
+		}
+		
+		transition: 0.65s;
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.closed {
+
+		@media screen and (min-width: 768px) {
+			max-height: 0;
+		}
+		
+		transition: 0.65s;
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+}
+
+.drawer__content__swatches--selected {
+	overflow: hidden;
+
+	&.open {
+
+		@media screen and (min-width: 768px) {
+			max-height: 220px;
+		}
+		
+		transition: 0.65s;
+		transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+	}
+
+	&.opening {
+
+		@media screen and (min-width: 768px) {
+			max-height: 220px;
 		}
 		
 		transition: 0.65s;
