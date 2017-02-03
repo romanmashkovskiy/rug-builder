@@ -49,11 +49,11 @@ canvas {
 .drawer__content.open.collections {
 
 	.drawer__content__material.open ~ .scroll-btns .scroll__left {
-		left: -15px;
+		left: -36px;
 	}
 
 	.drawer__content__material.open ~ .scroll-btns .scroll__right {
-		right: 55px;
+		right: 78px;
 	}
 }
 
@@ -61,18 +61,18 @@ canvas {
 .drawer__content.open.swatchesSelected {
 
 	.drawer__content__material.open ~ .scroll-btns .scroll__left {
-		left: -15px;
+		left: -36px;
 	}
 
 	.drawer__content__material.open ~ .scroll-btns .scroll__right {
-		right: 5px;
+		right: 28px;
 	}
 }
 
 .dots {
 	position: absolute;
 	bottom: 15px;
-	right: 5px;
+	right: 20px;
 
 	.dot {
 		width: 10px;
