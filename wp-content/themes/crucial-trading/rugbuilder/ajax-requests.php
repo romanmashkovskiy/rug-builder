@@ -86,6 +86,13 @@ function collections_data() {
 		$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => $collection_id ) );
 
 		foreach ( $terms as $key => $value ) {
+
+			$range_id = $value->term_id;
+			$src_id   = get_woocommerce_term_meta( $range_id, 'thumbnail_id', true );
+			$src      = wp_get_attachment_url( $src_id );
+
+			$value->thumbnail = $src;
+			
 			array_push( $res, $value );
 		}
 	}
