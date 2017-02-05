@@ -34,6 +34,10 @@ switch ($hostname) {
     case 'crucial-trading.com':
         define('WP_ENV', 'production');
         break;
+      
+    case 'www.crucial-trading.com':
+      define('WP_ENV', 'production');
+      break;
         
     case 'http://crucialtrading-env-test.eu-west-1.elasticbeanstalk.com':
         define('WP_ENV', 'production');
