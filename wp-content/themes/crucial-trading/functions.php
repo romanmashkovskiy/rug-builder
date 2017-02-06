@@ -5,6 +5,24 @@
  * @package Crucial_Trading
  */
 
+
+/**
+ * Create first time visitor cookie 
+ *
+ */
+/*add_action( 'init', 'is_first_time');
+function is_first_time() {
+    if (isset($_COOKIE['_wp_first_time'])) {
+        return false;
+    } else {
+        // expires in 30 days.
+        setcookie('_wp_first_time', 1, time() + (WEEK_IN_SECONDS * 4), COOKIEPATH, COOKIE_DOMAIN, false);
+
+        return true;
+    }
+}*/
+
+
 /**
  * Load Custom Post Types
  */
@@ -147,7 +165,7 @@ function crucial_trading_scripts() {
 	//wp_enqueue_script( 'skrollr', get_template_directory_uri() . '/assets/js/vendor/skrollr.min.js"', false );
 	wp_enqueue_script( 'bx-slider', get_template_directory_uri() . '/assets/js/vendor/bxslider.min.js', false );
 	wp_enqueue_script( 'zoom', get_template_directory_uri() . '/assets/js/vendor/jquery.elevatezoom.min.js', false );
-	wp_enqueue_script( 'gmap', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCv6sAk010SfQFWdRWY-fuGuROBhcYtd-o', false );
+	wp_enqueue_script( 'gmap', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC2TBY8zzbNJ9o0DeoLZGZM6oDCDOruKdE', false );
 	wp_enqueue_script( 'wow', get_template_directory_uri() . '/assets/js/vendor/wow.min.js', false );
 	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/assets/js/vendor/modernizr.object-fit.min.js', false );
 	wp_enqueue_script( 'masonry', 'https://cdnjs.cloudflare.com/ajax/libs/masonry/4.1.1/masonry.pkgd.min.js', false );
@@ -432,3 +450,10 @@ function save_item_meta( $itemId, $values, $key ) {
 		wc_add_order_item_meta( $itemId, 'Outer Border', get_the_title( $values['outer'] ) );
 	}
 }
+
+
+
+
+
+
+

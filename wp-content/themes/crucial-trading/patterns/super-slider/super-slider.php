@@ -198,8 +198,14 @@ function crucial_slider_slides() {
 				
 					$poster = 'http://d105txpzekqrfa.cloudfront.net/uploads/20170201123219/video-inspiration-begins-169.jpg';
 					$video  = 'http://d105txpzekqrfa.cloudfront.net/uploads/crucial-trading-brand-film.mp4';
-
-					$html .= do_shortcode( '[video src="' . $video . '" poster="' . $poster .'"]' );
+					
+					// Check if cookie set uses is_first_time function created in functions.php 
+					
+					//if (is_first_time() == true) :
+						//$html .= do_shortcode( '[video src="' . $video . '" poster="' . $poster .'" autoplay="on"]' );
+					//else: 
+						$html .= do_shortcode( '[video src="' . $video . '" poster="' . $poster .'"]' );
+					//endif;
 
 //					$html .= '<video controls preload="auto" poster="' . $poster . '" >';
 //					$html .= '<source src="' . $video . '" type="video/mp4">';
