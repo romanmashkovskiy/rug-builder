@@ -5,6 +5,24 @@
  * @package Crucial_Trading
  */
 
+
+/**
+ * Create first time visitor cookie 
+ *
+ */
+/*add_action( 'init', 'is_first_time');
+function is_first_time() {
+    if (isset($_COOKIE['_wp_first_time'])) {
+        return false;
+    } else {
+        // expires in 30 days.
+        setcookie('_wp_first_time', 1, time() + (WEEK_IN_SECONDS * 4), COOKIEPATH, COOKIE_DOMAIN, false);
+
+        return true;
+    }
+}*/
+
+
 /**
  * Load Custom Post Types
  */
@@ -432,3 +450,10 @@ function save_item_meta( $itemId, $values, $key ) {
 		wc_add_order_item_meta( $itemId, 'Outer Border', get_the_title( $values['outer'] ) );
 	}
 }
+
+
+
+
+
+
+
