@@ -1,8 +1,15 @@
-.page-template-login {
+.page-template-account {
 	background: #f7f7f7;
 
-	#loginform {
+	h2 {
+		display: none;
+	}
+
+	.woocommerce form.login,
+	.woocommerce form.lost_reset_password {
 		background: white;
+		border: none;
+		border-radius: 0;
 		-webkit-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
 		-moz-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
 		box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
@@ -17,6 +24,10 @@
 			margin-right: auto;
 		}
 
+		.form-row {
+			width: 100%;
+		}
+
 		p label {
 			display: none;
 		}
@@ -24,6 +35,23 @@
 		p input {
 			margin-bottom: 8px;
 			width: 100%;
+		}
+
+		input[type="submit"] {
+			background-color: #383838;
+			border: none;
+			border-radius: 0;
+			box-shadow: none;
+			color: #fff!important;
+			font-family: Montserrat,sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			height: 45px;
+			letter-spacing: 3px;
+			text-shadow: none;
+			text-transform: uppercase;
+			-webkit-transition: all ease-in-out .25s;
+			transition: all ease-in-out .25s;
 		}
 	}
 } 

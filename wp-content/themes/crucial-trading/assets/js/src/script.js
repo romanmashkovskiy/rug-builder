@@ -154,8 +154,8 @@ $(document).ready(function() {
 
 	// Login Form Placeholders
 
-	$('#user_login').attr('placeholder', 'Username or Email');
-	$('#user_pass').attr('placeholder', 'Password');
+	$('input#username').attr('placeholder', 'Username or Email');
+	$('input#password').attr('placeholder', 'Password');
 
 	// Register Form Placeholder
 
