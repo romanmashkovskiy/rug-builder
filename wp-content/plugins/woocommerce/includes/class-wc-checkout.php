@@ -744,7 +744,6 @@ class WC_Checkout {
 	 * @return string
 	 */
 	public function get_posted_address_data( $key, $type = 'billing' ) {
-
 		if ( 'billing' === $type || false === $this->posted['ship_to_different_address'] ) {
 			$return = isset( $this->posted[ 'billing_' . $key ] ) ? $this->posted[ 'billing_' . $key ] : '';
 		} else {
