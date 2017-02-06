@@ -1,4 +1,5 @@
-.page-template-account {
+.page-template-account,
+.page-template-hospitality-register {
 	background: #f7f7f7;
 
 	.woocommerce .col2-set .col-1,
@@ -22,7 +23,8 @@
 
 	.woocommerce form.login,
 	.woocommerce form.lost_reset_password,
-	.woocommerce form.register {
+	.woocommerce form.register,
+	.woocommerce .hosp-register {
 		background: white;
 		border: none;
 		border-radius: 0;
@@ -42,6 +44,26 @@
 
 		.form-row {
 			width: 100%;
+
+			&.checkbox {
+				display: inline;
+				position: relative;
+				top: 8px;
+				width: auto;
+
+				input[type="checkbox"] {
+					display: inline-block;
+					width: auto;
+				}
+
+				& + p {
+					position: relative;
+					top: 1px;
+					margin-left: 10px;
+					display: inline-block;
+					width: auto;
+				}
+			}
 		}
 
 		p label {

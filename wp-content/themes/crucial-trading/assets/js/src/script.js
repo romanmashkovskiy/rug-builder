@@ -159,6 +159,13 @@ $(document).ready(function() {
 	$('input#reg_email').attr('placeholder', 'Email');
 	$('input#reg_password').attr('placeholder', 'Password');
 
+	// Set Hospitality Username to Email
+
+	$('.page-template-hospitality-register input[name="reg_submit"]').on('click', function() {
+		var email = $('input[name="reg_email"]').val();
+		$('input[name="reg_username"]').val(email);
+	})
+
 	// Close Add to Basket Confirmation Message
 
 	$(document).on('click', '#close-basket-popup', function(e) {

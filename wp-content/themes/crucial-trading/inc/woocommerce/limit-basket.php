@@ -56,7 +56,7 @@ function limit_wc_basket( $cart_item_key, $product_id ) {
 
 			if ( isset( $product['outer'] ) ) {
 				$inner_id = $product['outer'];
-			}
+			} 
 
 			continue;
 		}
