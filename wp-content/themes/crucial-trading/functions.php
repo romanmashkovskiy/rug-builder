@@ -437,3 +437,112 @@ function save_item_meta( $itemId, $values, $key ) {
 		wc_add_order_item_meta( $itemId, 'Outer Border', get_the_title( $values['outer'] ) );
 	}
 }
+
+// Add user meta and update role for Hospitality Users
+
+add_action( 'pp_after_registration', 'add_hosp_user_meta', 10, 3 );
+
+function add_hosp_user_meta( $form_id, $user_data, $user_id ) {
+
+	// Meta
+
+	$city    = array_key_exists( 'reg_city', $_POST ) ? $_POST['reg_city'] : false;
+	$state   = array_key_exists( 'reg_state', $_POST ) ? $_POST['reg_state'] : false;
+	$country = array_key_exists( 'reg_country', $_POST ) ? $_POST['reg_country'] : false;
+	$phone   = array_key_exists( 'reg_phone', $_POST ) ? $_POST['reg_phone'] : false;
+	$company = array_key_exists( 'reg_company', $_POST ) ? $_POST['reg_company'] : false;
+	$dso     = array_key_exists( 'reg_dso', $_POST ) ? $_POST['reg_dso'] : false;
+	$rep     = array_key_exists( 'reg_rep', $_POST ) ? $_POST['reg_rep'] : false;
+
+	if ( $city ) {
+		update_user_meta( $user_id, 'shipping_city', $city );
+	}
+
+	if ( $state ) {
+		update_user_meta( $user_id, 'shipping_state', $state );
+	}
+
+	if ( $country ) {
+		update_user_meta( $user_id, 'shipping_country', $country );
+	}
+
+	if ( $phone ) {
+		update_user_meta( $user_id, 'billing_phone', $country );
+	}
+
+	if ( $company ) {
+		update_user_meta( $user_id, '_hospitality_company', $company );
+	}
+
+	if ( $dso ) {
+		update_user_meta( $user_id, '_hospitality_dso', $dso );
+	}
+
+	if ( $rep ) {
+		update_user_meta( $user_id, '_hospitality_rep', $rep );
+	}
+
+	// Role
+
+	$user = new WP_User( $user_id );
+
+	$user->remove_role( 'subscriber' );
+	$user->add_role( 'hospitality' );
+}
+
+// Show hospitality meta in profile page
+
+add_action( 'show_user_profile', 'my_show_extra_profile_fields' );
+add_action( 'edit_user_profile', 'my_show_extra_profile_fields' );
+
+function my_show_extra_profile_fields( $user ) {
+
+	if ( $user->roles[0] != 'hospitality' ) {
+		return;
+	}
+
+	$dso_meta = esc_attr( get_the_author_meta( '_hospitality_dso', $user->ID ) );
+	$dso      = $dso_meta == 'on' ? 'checked' : '';
+
+	?>
+
+	<h3>Information</h3>
+
+	<table class="form-table">
+
+		<tr>
+			<th><label for="company">Company</label></th>
+			<td>
+				<input type="text" name="_hospitality_company" id="company" value="<?php echo esc_attr( get_the_author_meta( '_hospitality_company', $user->ID ) ); ?>" class="regular-text" /><br />
+			</td>
+		</tr>
+
+		<tr>
+			<th><label for="dso">Design Studio Online Access</label></th>
+			<td>
+				<input type="checkbox" name="_hospitality_dso" id="dso" <?php echo $dso; ?> /><br />
+			</td>
+		</tr>
+
+		<tr>
+			<th><label for="rep">Brittons Sales Representitve</label></th>
+			<td>
+				<input type="text" name="_hospitality_rep" id="rep" value="<?php echo esc_attr( get_the_author_meta( '_hospitality_rep', $user->ID ) ); ?>" class="regular-text" /><br />
+			</td>
+		</tr>
+
+	</table>
+<?php }
+
+add_action( 'personal_options_update', 'my_save_extra_profile_fields' );
+add_action( 'edit_user_profile_update', 'my_save_extra_profile_fields' );
+
+function my_save_extra_profile_fields( $user_id ) {
+
+	if ( !current_user_can( 'edit_user', $user_id ) )
+		return false;
+
+	update_usermeta( $user_id, '_hospitality_company', $_POST['_hospitality_company'] );
+	update_usermeta( $user_id, '_hospitality_dso', $_POST['_hospitality_dso'] );
+	update_usermeta( $user_id, '_hospitality_rep', $_POST['_hospitality_rep'] );
+}
