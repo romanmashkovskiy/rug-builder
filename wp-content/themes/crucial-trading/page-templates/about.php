@@ -24,17 +24,16 @@ echo do_shortcode( '[logo-nav]' ); ?>
 			<h3 class="about__timeline__subtitle subtitle">Our Story</h3>
 			<div class="about__timeline__text vertical-align">
 				<h1 class="about__timeline__heading vertical-align">Our Story</h1>
-				<a href="#" title="Our Story" class="about__timeline__btn">Read More</a>
+				<a href="#" title="Our Story" class="about__timeline__btn">View Story</a>
 			</div>
 		</div><div class="about__scroller" id="about-scroller">
 			<div class="about__scroller__bg"></div>
-			<div class="about__scroller__btn--close">Back to Start</div>
 			<h3 class="about__scroller__subtitle subtitle">Our Process</h3>
 			<div class="about__scroller__text vertical-align">
 				<h1 class="about__scroller__heading vertical-align">Our Process</h1>
-				<a href="#" title="Our Process" class="about__scroller__btn">Read More</a>
+				<a href="#" title="Our Process" class="about__scroller__btn">View Process</a>
 			</div>
-			<a href="#" class="about__scroller__start">Start</a>
+			<a href="#" class="about__scroller__start">Begin</a>
 		</div>
 		
 				

@@ -34,7 +34,7 @@
 }
 
 .about__scroller__start {
-	bottom: 20px;
+	bottom: 30%;
 	display: inline-block;
 	left: 0;
 	opacity: 0;
@@ -94,12 +94,13 @@ body.show-about-scroller .about__scroller__start {
 		position: absolute;
 		right: 10%;
 		top: 22%;
+		overflow: hidden;
 
 		@media screen and (max-width: 992px) {
-			height: 27%;
+			height: 43%;
 			left: 10%;
 			padding: 25px;
-			top: 58%;
+			top: 52%;
 		}
 
 		@media screen and (max-width: 550px) {
@@ -109,7 +110,8 @@ body.show-about-scroller .about__scroller__start {
 
 		h2 {
 			color: black;
-			margin-bottom: 50px;
+			margin-bottom: 40px;
+			font-size: 42px;
 
 			@media screen and (max-width: 992px) {
 				line-height: 1.1;
@@ -117,8 +119,8 @@ body.show-about-scroller .about__scroller__start {
 			}
 
 			@media screen and (max-width: 550px) {
-				font-size: 22px;
-				margin-bottom: 10px;
+				font-size: 26px;
+				margin-bottom: 25px;
 			}
 		}
 
@@ -167,6 +169,7 @@ body.show-about-scroller .about__scroller__start {
 	@media screen and (max-width: 550px) {
 		left: 78%;
 		z-index: 99;
+		display: none;
 	}
 }
 
