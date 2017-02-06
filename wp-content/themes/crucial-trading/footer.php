@@ -23,7 +23,7 @@
 			<div class="basket-dropdown">
 				<h2>Basket</h2>
 				<span></span>
-				<a href="#" class="close-basket-dropdown">
+				<a href="" class="close-basket-dropdown">
 					<span class="main-menu__button__icon"></span>
 				</a>
 				<form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post"> 

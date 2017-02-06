@@ -13,7 +13,11 @@ $(document).ready(function() {
   		}
 	});
 
-	$('.close-basket-dropdown').on('click', function() {
+	$('.close-basket-dropdown').on('click', function(e) {
+
+		e.preventDefault();
+  		e.stopPropagation();
+
 		document.querySelector('.basket-dropdown').classList.remove('open');
 	});
 });
