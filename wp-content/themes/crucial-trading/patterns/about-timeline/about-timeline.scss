@@ -165,12 +165,12 @@ body {
 
 .show-about-timeline .about__timeline__text {
 	//z-index: 109;
-	transform: translate3d(17%,-40%,0);
+	transform: translate3d(50%,-40%,0);
 	transition: transform 1.2s;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
 
 	@media screen and (max-width: 768px) {
-		transform: translate3d(17%,40%,0);
+		transform: translate3d(0%,200%,0);
 	}
 }
 
@@ -235,8 +235,13 @@ body {
 	color: #FFF;
 	position: absolute;
 	
+	@media all and (max-width: 1200px) {
+		font-size: 90px;
+		line-height: 95px;
+	}
+	
 	@media all and (max-width: 769px) {
-		font-size: 80px;
+		font-size: 70px;
 	}
 	
 }
@@ -256,13 +261,13 @@ body {
 	
 	.about__timeline__subtitle {
 		right: 0px;
-		bottom: -30px;
+		bottom: -20px;
 	}
 	
 	.about__scroller__subtitle {
 		transform: rotate(0deg);
 		right: 0px;
-		bottom: -50px;
+		bottom: -20px;
 	}
 	
 }
@@ -299,6 +304,13 @@ body {
 	opacity: 0;
 	z-index: 9999;
 	transition: opacity 1.2s;
+	
+	@media all and (max-width: 767px) {
+		left: 45px;
+		top: 130px;
+		font-size: 13px;
+	}
+	
 }
 
 .show-about-timeline .about__timeline__btn--close {
@@ -376,6 +388,11 @@ body {
 	transition: transform 1.2s;
 	transform-origin: bottom;
 	transition-timing-function: cubic-bezier(0.62,0,0.5,1);
+	
+	@media all and (max-width: 767px) {
+		left: 50%;
+	}
+	
 }
 
 .timeline__top-line--horizontal {
