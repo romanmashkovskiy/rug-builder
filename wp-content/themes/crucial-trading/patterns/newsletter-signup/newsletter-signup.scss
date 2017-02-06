@@ -29,7 +29,7 @@
 	}
 	
 	h3 {
-		color: lighten($light-grey-text, 10%);
+		color: lighten($light-grey-text, 5%);
 		top: 25%;
 		right: 97%;
 		opacity: 0.2;
@@ -63,11 +63,12 @@
 		background: #444444;
 		border: none !important;
 		color: #878787 !important;
-		font-family: "Montserrat",sans-serif !important;
 		margin-right: 2%;
 		padding: 20px !important;
 		width: 100%;
 		outline: none;
+		max-width: 1000px;
+		font-size: 20px;
 		@extend .transition-all;
 
 		@media screen and (max-width: 666px) {
@@ -84,25 +85,11 @@
 		background-color: lighten(#444444, 5%);
 	}
 	
-	button {
-		background: #2d2d2d;
-		color: #5e5e5e !important;
-		height: 62px !important;
-		@extend .transition-all;
-
-		@media screen and (max-width: 1100px) {
-			margin-top: 20px;
-		}
-	}
-	
-	button:focus, 
-	button:hover { 
-		background: lighten(#2d2d2d, 5%);
-	}
-	
 	.mce-responses {
 		color: #bababa;
 	}
+	
+	// Response Messages
 	
 	div#mce-success-response.response {
 		color: #FFF;
@@ -110,4 +97,33 @@
 		margin-bottom: 5px;
 	}
 	
+	div.mce_inline_error{
+		color: #b61d45 !important;
+		margin-top: 25px;
+		margin-bottom: 5px;
+	}
+	
 }
+
+// Button 
+
+body .newsletter input.button {
+	background-color: #2d2d2d;
+	color: #5e5e5e !important;
+	height: 62px !important;
+	border-radius: 0;
+	font-size: 14px;
+	letter-spacing: 3px;
+	font-weight: normal;
+	@extend .transition-all;
+
+	@media screen and (max-width: 1100px) {
+		margin-top: 20px;
+	}
+}
+
+body .newsletter input.button:focus, 
+body .newsletter input.button:hover { 
+	background: lighten(#2d2d2d, 5%);
+}
+

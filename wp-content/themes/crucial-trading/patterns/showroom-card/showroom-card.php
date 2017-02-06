@@ -89,15 +89,15 @@ function showroom_card( $atts = '' ) {
 //		$html .= '<p class="card__phone">' . $phone . '</p>';
 //		$html .= '<a href="mailto:' . $email . '" class="card__email">Send Email</a>';
 //		$html .= '</div>';
-		$html .= '<p><a href="' . $url . '" class="card__link">Get Directions</a> <br> <a href="mailto:' . $email . '" class="card__email">Send Email</a></p>';
+		$html .= '<p class="card__links"><a href="' . $url . '" class="card__link">Get Directions</a> <br> <a href="mailto:' . $email . '" class="card__email">Send Email</a></p>';
 
 	}
 	else if ( $type == 'online' ) {
 
 		$html .= '<p class="card__address">' . $website . '</p>';
 		$html .= '<p class="card__phone">' . $phone . '</p>';
-		$html .= '<a href="mailto:' . $email . '" class="card__email">Send Email</a> <br>';
-		$html .= '<a href="' . $website . '" class="card__link">Visit Website</a>';
+		$html .= '<p class="card__links"><a href="mailto:' . $email . '" class="card__email">Send Email</a> <br><a href="' . $website . '" class="card__link">Visit Website</a></p>';
+		
 	}
 
 	$html .= '</div>';

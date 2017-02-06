@@ -27,8 +27,8 @@ $(document).ready(function() {
 		}
 	}
 */
-	// Headroom
-
+	// Headroom  
+	
 	$('.top-bar').headroom({
 		offset : 50,
 		tolerance : 5
@@ -64,7 +64,7 @@ $(document).ready(function() {
 		setTimeout(function() {
 			$('.woocommerce-message').fadeOut(800);
 		}, 4000)
-	}
+	} 
 
 	// Check Form Validation
 

@@ -51,6 +51,8 @@ echo do_shortcode( '[material-view-slider material="' . $material . '" range="' 
 
 echo do_shortcode( '[other-ranges material="' . $material . '"]' );
 
-echo do_shortcode( '[share-links material="' . $material . '"]' );
+echo do_shortcode( '[newsletter-signup]' );
+
+//echo do_shortcode( '[share-links material="' . $material . '"]' );
 
 get_footer();

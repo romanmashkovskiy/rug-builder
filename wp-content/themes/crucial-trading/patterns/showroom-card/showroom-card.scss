@@ -66,19 +66,19 @@
 		}
 	}
 
-	.card__link {
-//		bottom: 10px;
-//		left: 50px;
-//		position: absolute;
-
-//		@media screen and (max-width: 768px) {
-//			padding-bottom: 0;
-//		}
+	.card__links {
+		bottom: 30px;
+		left: 50px;
+		position: absolute;
+		
+		@media screen and (max-width: 768px) {
+			padding-bottom: 0;
+		}
 	}
 
 	.card__link,
 	.card__email {
-		margin-right: 15px;
+		margin-right: 35px;
 	}
 
 	@media screen and (min-width: 550px) {
