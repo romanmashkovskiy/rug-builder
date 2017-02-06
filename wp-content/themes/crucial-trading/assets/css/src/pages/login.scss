@@ -1,19 +1,35 @@
 .page-template-account {
 	background: #f7f7f7;
 
+	.woocommerce .col2-set .col-1,
+	.woocommerce-page .col2-set .col-1,
+	.woocommerce .col2-set .col-2,
+	.woocommerce-page .col2-set .col-2 {
+		width: 100%;
+	}
+
 	h2 {
-		display: none;
+		margin-left: 13%;
+
+		@media screen and (min-width: 1232px) {
+			margin-left: calc(50% - 450px);
+		}
+	}
+
+	.woocommerce {
+		margin: 40px 0 50px;
 	}
 
 	.woocommerce form.login,
-	.woocommerce form.lost_reset_password {
+	.woocommerce form.lost_reset_password,
+	.woocommerce form.register {
 		background: white;
 		border: none;
 		border-radius: 0;
 		-webkit-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
 		-moz-box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
 		box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
-		margin: 100px auto;
+		margin: 20px auto;
 		max-width: 900px;
 		padding: 50px 50px 32px;
 		position: relative;

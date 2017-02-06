@@ -152,23 +152,12 @@ $(document).ready(function() {
 		})
 	}		
 
-	// Login Form Placeholders
+	// Login and Register Form Placeholders
 
-	$('input#username').attr('placeholder', 'Username or Email');
+	$('input#username').attr('placeholder', 'Email');
 	$('input#password').attr('placeholder', 'Password');
-
-	// Register Form Placeholder
-
-	if ( $('body').hasClass('page-template-register') ) {
-
-		$('.wppb-form-field').each(function(i, e) {
-
-			var label       = $(e).children('label').text();
-			var placeholder = label.replace('*', '');
-
-			$(e).children('input').attr('placeholder', placeholder);
-		});
-	}
+	$('input#reg_email').attr('placeholder', 'Email');
+	$('input#reg_password').attr('placeholder', 'Password');
 
 	// Close Add to Basket Confirmation Message
 
