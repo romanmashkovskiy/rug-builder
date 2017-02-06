@@ -437,10 +437,3 @@ function save_item_meta( $itemId, $values, $key ) {
 		wc_add_order_item_meta( $itemId, 'Outer Border', get_the_title( $values['outer'] ) );
 	}
 }
-
-
-
-
-
-
-
