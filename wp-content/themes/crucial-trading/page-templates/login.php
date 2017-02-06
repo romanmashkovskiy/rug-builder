@@ -14,6 +14,8 @@ if ( is_user_logged_in() ) {
 
 get_header();
 
+echo do_shortcode( '[logo-nav]' );
+
 echo do_shortcode( '[header size="small"]' );
 
 wp_login_form();
