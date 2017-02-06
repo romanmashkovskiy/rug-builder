@@ -403,7 +403,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				});
 		},
 
-		updateSwatchChoice: function(swatch, thumb, id, maps, stitching, repeat, rthumb) {
+		updateSwatchChoice: function(swatch, thumb, id, maps, stitching, repeat, innerRepeat, rthumb) {
 
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
@@ -453,7 +453,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 
 			// Update the actual rug
-			R.displayTexture(swatch, thumb, this.state.stage, maps, stitching, repeat, rthumb);
+			R.displayTexture(swatch, thumb, this.state.stage, maps, stitching, repeat, innerRepeat, rthumb);
 		},
 
 		updateBorderChoice: function(border) {
@@ -952,6 +952,16 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 					x : CURRENT_SWATCH.repeatx,
 					y : CURRENT_SWATCH.repeaty
 				};
+
+				let innerRepeat = false;
+
+				if ( _this.state.chosenBorder === 'Double Border' && _this.state.stage === 2 ) {
+
+					innerRepeat = {
+						x : CURRENT_SWATCH.repeatxinner,
+						y : CURRENT_SWATCH.repeatyinner
+					}
+				}
 				
 				let rthumb = false;
 
@@ -976,7 +986,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 				// Create a BtnSwatchComponent for each swatch in the SWATCH object
 
-				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 			})
 		}
 		else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
@@ -1031,6 +1041,16 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 					y : CURRENT_SWATCH.repeaty
 				};
 
+				let innerRepeat = false;
+
+				if ( _this.state.chosenBorder === 'Double Border' && _this.state.stage === 2 ) {
+
+					innerRepeat = {
+						x : CURRENT_SWATCH.repeatxinner,
+						y : CURRENT_SWATCH.repeatyinner
+					}
+				}
+
 				let rthumb = false;
 
 				if ( typeof CURRENT_SWATCH.rthumb === 'object' ) {
@@ -1052,7 +1072,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				let indexPlusOne = index + 1;
 				let page         = Math.ceil( indexPlusOne / elemsPerPage );
 
-				return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+				return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat }  stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 			});
 		}
 

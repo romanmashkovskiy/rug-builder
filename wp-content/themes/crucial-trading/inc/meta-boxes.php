@@ -47,7 +47,7 @@ function meta_boxes($meta_boxes) {
 				'type'        => 'divider',
 			),
 			array(
-				'name'     => 'Texture Repeat X',
+				'name'     => 'Texture Repeat X (Center/Outer Border)',
 				'id'       => 'rb_repeat_x',
 				'type'     => 'text',
 				'priority' => 'high',
@@ -59,11 +59,33 @@ function meta_boxes($meta_boxes) {
 				'type'     => 'divider',
 			),
 			array(
-				'name'     => 'Texture Repeat Y',
+				'name'     => 'Texture Repeat Y (Center/Outer Border)',
 				'id'       => 'rb_repeat_y',
 				'type'     => 'text',
 				'priority' => 'high',
 				'desc'     => 'Defaults: Center - 7, Border - 10',
+			),
+			array(
+				'name'     => 'divider',
+				'id'       => 'divider',
+				'type'     => 'divider',
+			),
+			array(
+				'name'     => 'Texture Repeat X (Inner Border)',
+				'id'       => 'rb_repeat_x_inner',
+				'type'     => 'text',
+				'priority' => 'high',
+			),
+			array(
+				'name'     => 'divider',
+				'id'       => 'divider',
+				'type'     => 'divider',
+			),
+			array(
+				'name'     => 'Texture Repeat Y (Inner Border)',
+				'id'       => 'rb_repeat_y_inner',
+				'type'     => 'text',
+				'priority' => 'high',
 			),
 			array(
 				'name'     => 'divider',

@@ -141,6 +141,8 @@ function swatches_data() {
 		$dmap      = rwmb_meta( 'rb_displacement_map', array(), $product_id );
 		$repeatx   = rwmb_meta( 'rb_repeat_x', array(), $product_id );
 		$repeaty   = rwmb_meta( 'rb_repeat_y', array(), $product_id );
+		$repeatx_i = rwmb_meta( 'rb_repeat_x_inner', array(), $product_id );
+		$repeaty_i = rwmb_meta( 'rb_repeat_y_inner', array(), $product_id );
 		$stitching = rwmb_meta( 'rb_stitching_colour', array(), $product_id );
 
 /* This adds in the featured image is the texture is missing
@@ -152,18 +154,20 @@ function swatches_data() {
 		}
 */
 		
-		$arr['id']        = $product_id;
-		$arr['cats']      = $cats;
-		$arr['name']      = $name;
-		$arr['code']      = $code;
-		$arr['thumb']     = $thumb;
-		$arr['rthumb']    = $rthumb;
-		$arr['bmap']      = $bmap;
-		$arr['nmap']      = $nmap;
-		$arr['dmap']      = $dmap;
-		$arr['repeatx']   = $repeatx;
-		$arr['repeaty']   = $repeaty;
-		$arr['stitching'] = $stitching;
+		$arr['id']           = $product_id;
+		$arr['cats']         = $cats;
+		$arr['name']         = $name;
+		$arr['code']         = $code;
+		$arr['thumb']        = $thumb;
+		$arr['rthumb']       = $rthumb;
+		$arr['bmap']         = $bmap;
+		$arr['nmap']         = $nmap;
+		$arr['dmap']         = $dmap;
+		$arr['repeatx']      = $repeatx;
+		$arr['repeaty']      = $repeaty;
+		$arr['repeatxinner'] = $repeatx_i;
+		$arr['repeatyinner'] = $repeaty_i;
+		$arr['stitching']    = $stitching;
 
 		if ( count( $thumb ) > 0 ) {
 			$res[$key] = $arr;
