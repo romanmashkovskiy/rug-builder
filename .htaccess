@@ -327,23 +327,4 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 Header set X-XSS-Protection "1; mode=block"
 Header always append X-Frame-Options SAMEORIGIN
 Header set X-Content-Type-Options: "nosniff"
-<<<<<<< HEAD
 </ifModule>
-=======
-</ifModule>
-
-
-# Multi env config
-
-# BEGIN WordPress
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /crucial/
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /crucial/index.php [L]
-</IfModule>
-
-# END WordPress
->>>>>>> 0d94e425f96af0c50b687b9f9ce8806bb11177aa
