@@ -107,6 +107,15 @@ function create_order_code($order_id) {
 
 	$order_header_str .= "\r\n";
 
-	file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/orders.txt', $order_header_str, FILE_APPEND );
-	file_put_contents( 'wp-content/themes/crucial-trading/inc/woocommerce/orders.txt', $order_line_str, FILE_APPEND );
+	$orders = get_option( '_crucial_ftp_orders' );
+
+	if ( !$orders ) {
+		$orders = '';
+	}
+
+	$orders .= $order_header_str;
+	$orders .= $order_line_str;
+
+	update_option( '_crucial_ftp_orders', $orders );
+
 }

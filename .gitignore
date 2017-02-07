@@ -1,3 +1,6 @@
+CRU04.*
+aws/
+
 *.log
 
 #wp-config.production.php
