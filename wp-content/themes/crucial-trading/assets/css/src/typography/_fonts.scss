@@ -3,12 +3,14 @@
 	src: url('../../fonts/din/din.otf') format('OpenType');
 }
 
-@font-face {
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Playfair+Display');
+
+/*@font-face {
 	font-family: 'Playfair Display';
 	src: url('../../fonts/playfair-display/PlayfairDisplay-Regular.ttf') format('truetype');
 }
 
-@font-face {
+/*@font-face {
 	font-family: 'Montserrat';
 	src: url('../../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
 }
@@ -16,7 +18,7 @@
 @font-face {
 	font-family: 'Open Sans';
 	src: url('../../fonts/open-sans/OpenSans-Regular.ttf') format('truetype');
-}
+}*/
 
 @mixin typography-standards($color, $font, $size, $spacing) {
 	color: $color;
