@@ -29,7 +29,7 @@ var $ = jQuery;
 
 		    	$('.top-bar').toggleClass('-relative');
 
-		    	if ( collapseHeader ) {
+		    	if ( collapseHeader && window.innerWidth < 451 ) {
 
 		    		$('header').addClass('collapsed');
 
