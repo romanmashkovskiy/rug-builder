@@ -107,7 +107,22 @@ class SendFiles {
 
 		fclose( $file );
 
-		$ftp_connection = ftp_connect( '195.102.23.61' );
+		$ip_address = '';
+
+		if ( defined( WP_ENV ) && WP_ENV === 'production' ) {
+			$ip_address = '195.102.23.61';
+		} else {
+			$ip_address = '89.187.86.163';
+		}
+
+		$this->log( array(
+			'time'  => $sql_time,
+			'stage' => 'FTP IP Address',
+			'error' => false,
+			'log'   => 'IP Address: ' . $ip_address,
+		) );
+
+		$ftp_connection = ftp_connect( $ip_address );
 
 		if ( !$ftp_connection ) {
 
@@ -123,7 +138,18 @@ class SendFiles {
 			return;
 		}
 
-		$ftp_login = ftp_login( $ftp_connection, 'KJOCRU', 'Cr0k1J0s' );
+		$username = '';
+		$password = '';
+
+		if ( defined( WP_ENV ) && WP_ENV === 'production' ) {
+			$username = 'KJOCRU';
+			$password = 'Cr0k1J0s';
+		} else {
+			$username = 'elliot@kijo.co';
+			$password = 'K2i0j1o5!';
+		}
+
+		$ftp_login = ftp_login( $ftp_connection, $username, $password );
 
 		if ( !$ftp_login ) {
 
@@ -139,56 +165,48 @@ class SendFiles {
 			return;
 		}
 
-		$remote_file = "./out/CRU04.$new_extension";
-		$local_file  = "CRU04.$new_extension";
+		ftp_pasv( $ftp_connection, true );
+
+		$remote_file = '';
 
 		if ( defined( WP_ENV ) && WP_ENV === 'production' ) {
-
-			$ftp_put = ftp_put( $ftp_connection, $remote_file, $local_file, FTP_ASCII );
-
-			if ( !$ftp_put ) {
-
-				$this->log( array(
-					'time'  => $sql_time,
-					'stage' => 'FTP Put',
-					'error' => true,
-					'log'   => 'Error uploading the file to FTP',
-				) );
-
-				unlink( "CRU04.$new_extension" );
-
-				return;
-			}
-
-			$this->log( array(
-				'time'  => $sql_time,
-				'stage' => 'File Uploaded',
-				'error' => false,
-				'log'   => 'File uploaded via FTP',
-			) );
-
-			ftp_close( $ftp_connection );
-			unlink( "CRU04.$new_extension" );
-
-			update_option( '_crucial_ftp_orders', '' );
-			update_option( '_crucial_ftp_cru_extension', $new_extension_int );
-
-			return;
-
+			$remote_file = "./out/CRU04.$new_extension";
 		} else {
+			$remote_file = "./public_html/crucial-trading/CRU04/CRU04.$new_extension";
+		}
+		
+		$local_file  = "CRU04.$new_extension";
+
+		$ftp_put = ftp_put( $ftp_connection, $remote_file, $local_file, FTP_ASCII );
+
+		if ( !$ftp_put ) {
 
 			$this->log( array(
 				'time'  => $sql_time,
-				'stage' => 'Environment',
-				'error' => false,
-				'log'   => 'Not in production environment, do not upload file via FTP',
+				'stage' => 'FTP Put',
+				'error' => true,
+				'log'   => 'Error uploading the file to FTP',
 			) );
 
 			unlink( "CRU04.$new_extension" );
 
 			return;
-
 		}
+
+		$this->log( array(
+			'time'  => $sql_time,
+			'stage' => 'File Uploaded',
+			'error' => false,
+			'log'   => 'File uploaded via FTP',
+		) );
+
+		ftp_close( $ftp_connection );
+		unlink( "CRU04.$new_extension" );
+
+		update_option( '_crucial_ftp_orders', '' );
+		update_option( '_crucial_ftp_cru_extension', $new_extension_int );
+
+		return;
 
 	}
 
