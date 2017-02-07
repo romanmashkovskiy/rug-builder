@@ -19,6 +19,22 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11">
 
+		<?php // WEAKMAP POLYFILL ?>
+		<script src="<?php echo get_template_directory_uri(); ?>/assets/js/vendor/modernizr.es6collections.min.js"></script>
+		<script>
+		if ( !Modernizr.es6collections ) {
+			var scripts       = document.scripts;
+			var scriptsLength = scripts.length;
+			var thisScript    = scripts[scriptsLength - 1];
+			var parent        = thisScript.parentElement;
+
+			var polyfill = document.createElement('script');
+			polyfill.src = '<?php echo get_template_directory_uri(); ?>/assets/js/vendor/WeakMap.js';
+
+			parent.insertBefore(polyfill, thisScript.nextSibling);
+		}
+		</script>
+
 		<?php // MUTATION OBSERVER POLYFILL ?>
 		<script src="<?php echo get_template_directory_uri(); ?>/assets/js/vendor/modernizr.mutation-observer.min.js"></script>
 		<script>
