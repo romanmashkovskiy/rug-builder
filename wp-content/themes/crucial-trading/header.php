@@ -18,6 +18,23 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11">
+
+		<?php // MUTATION OBSERVER POLYFILL ?>
+		<script src="<?php echo get_template_directory_uri(); ?>/assets/js/vendor/modernizr.mutation-observer.min.js"></script>
+		<script>
+		if ( !Modernizr.mutationobserver ) {
+			var scripts       = document.scripts;
+			var scriptsLength = scripts.length;
+			var thisScript    = scripts[scriptsLength - 1];
+			var parent        = thisScript.parentElement;
+
+			var polyfill = document.createElement('script');
+			polyfill.src = '<?php echo get_template_directory_uri(); ?>/assets/js/vendor/MutationObserver.js';
+
+			parent.insertBefore(polyfill, thisScript.nextSibling);
+		}
+		</script>
+
 		<?php wp_head(); ?>
 		<script>var siteURL = '<?php echo site_url(); ?>';</script>
 		<!--[if lt IE 9]> 
