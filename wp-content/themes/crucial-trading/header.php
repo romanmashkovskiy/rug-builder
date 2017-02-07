@@ -20,6 +20,11 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 		<link rel="profile" href="http://gmpg.org/xfn/11">
 		<?php wp_head(); ?>
 		<script>var siteURL = '<?php echo site_url(); ?>';</script>
+		<!--[if lt IE 9]> 
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+		<![endif]-->
 	</head>
 	<body <?php body_class( $header_class ); ?>>
 		<?php wc_print_notices(); ?>
