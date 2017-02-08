@@ -115,3 +115,15 @@ gulp.task('watch', function() {
 	gulp.watch('./js/src/script.js', ['js']);
 
 });
+
+gulp.task('ie9', function() {
+
+	return gulp.src('./css/src/ie9.scss')
+		.pipe(sass({
+			outputStyle: 'compressed'
+		})
+		.on('error', sass.logError))
+		.pipe(autoprefixer())
+		.pipe(rename({ suffix: '.min' }))
+		.pipe(gulp.dest('./css/dist'));
+})

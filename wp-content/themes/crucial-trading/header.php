@@ -58,6 +58,9 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
 		<![endif]-->
+		<!--[if lte IE 9]>
+		<link href="<?php echo get_template_directory_uri(); ?>/assets/css/dist/ie9.min.css">
+		<![endif]-->
 	</head>
 	<body <?php body_class( $header_class ); ?>>
 		<?php wc_print_notices(); ?>
