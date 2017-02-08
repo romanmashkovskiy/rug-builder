@@ -98,6 +98,11 @@ if ( array_key_exists( 'err', $_GET ) ) {
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/js/dist/rugBuilder.min.js"></script>
 
 	<script>
+
+		if ( !Modernizer.promises ) {
+			window.Promise = ES6Promise;
+		}
+
 		var templateDirectoryUri = '<?php echo get_template_directory_uri(); ?>';
 		var siteUrl = '<?php echo site_url(); ?>';
 		var rugBuilder = new RugBuilder('website');
