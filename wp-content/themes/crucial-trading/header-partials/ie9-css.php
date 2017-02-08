@@ -1,3 +1,4 @@
+<!--
 <script>
 if ( !Modernizr.csstransitions ) {
 	var scripts       = document.scripts;
@@ -12,3 +13,6 @@ if ( !Modernizr.csstransitions ) {
 	parent.insertBefore(ie9, thisScript.nextSibling);
 }
 </script>
+-->
+
+<link href="<?php echo get_template_directory_uri(); ?>/assets/css/dist/ie9.min.css" type="text/css">
