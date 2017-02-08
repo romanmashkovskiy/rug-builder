@@ -16,7 +16,7 @@ RugBuilder.prototype.showWebGLError = function(supported) {
 	if ( supported ) {
 		MESSAGE.innerHTML = 'Sorry, WebGL is currently disabled in your browser. Please enable it and refresh the page.';
 	} else {
-		MESSAGE.innerHTML = 'Sorry, your browser does not support WebGL. Please upgrade to a browser that supports WebGL to access the Rug Builder.<br><a href="https://get.webgl.org/" target="_blank">https://get.webgl.org/</a>';
+		MESSAGE.innerHTML = 'Sorry, your browser does not support WebGL. Please upgrade to a browser that supports WebGL such as Google Chrome, Firefox, Safari, Internet Explorer 11, or Microsoft Edge.';
 	}
 
 	CONTAINER.appendChild(MESSAGE);
