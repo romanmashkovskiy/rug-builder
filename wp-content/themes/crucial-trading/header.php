@@ -18,60 +18,10 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="profile" href="http://gmpg.org/xfn/11">
-
-		<?php // WEAKMAP POLYFILL ?>
-		<script src="<?php echo get_template_directory_uri(); ?>/assets/js/vendor/modernizr.es6collections.min.js"></script>
-		<script>
-		if ( !Modernizr.es6collections ) {
-			var scripts       = document.scripts;
-			var scriptsLength = scripts.length;
-			var thisScript    = scripts[scriptsLength - 1];
-			var parent        = thisScript.parentElement;
-
-			var polyfill = document.createElement('script');
-			polyfill.src = '<?php echo get_template_directory_uri(); ?>/assets/js/vendor/WeakMap.js';
-
-			parent.insertBefore(polyfill, thisScript.nextSibling);
-		}
-		</script>
-
-		<?php // MUTATION OBSERVER POLYFILL ?>
-		<script src="<?php echo get_template_directory_uri(); ?>/assets/js/vendor/modernizr.mutation-observer.min.js"></script>
-		<script>
-		if ( !Modernizr.mutationobserver ) {
-			var scripts       = document.scripts;
-			var scriptsLength = scripts.length;
-			var thisScript    = scripts[scriptsLength - 1];
-			var parent        = thisScript.parentElement;
-
-			var polyfill = document.createElement('script');
-			polyfill.src = '<?php echo get_template_directory_uri(); ?>/assets/js/vendor/MutationObserver.js';
-
-			parent.insertBefore(polyfill, thisScript.nextSibling);
-		}
-		</script>
-
+		<?php include get_template_directory() . '/header-partials/modernizr.php'; ?>
 		<?php wp_head(); ?>
-		<script>var siteURL = '<?php echo site_url(); ?>';</script>
-		<!--[if lt IE 9]> 
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-		<![endif]-->
-		<script src="<?php echo get_template_directory_uri(); ?>/assets/js/vendor/modernizr.csstransitions.min.js"></script>
-		<script>
-		if ( !Modernizr.csstransitions ) {
-			var scripts       = document.scripts;
-			var scriptsLength = scripts.length;
-			var thisScript    = scripts[scriptsLength - 1];
-			var parent        = thisScript.parentElement;
-
-			var ie9 = document.createElement('link');
-			ie9.href = '<?php echo get_template_directory_uri(); ?>/assets/css/dist/ie9.min.css';
-
-			parent.insertBefore(ie9, thisScript.nextSibling);
-		}
-		</script>
+		<?php include get_template_directory() . '/header-partials/lt-ie9.php'; ?>
+		<?php include get_template_directory() . '/header-partials/ie9-css.php'; ?>
 	</head>
 	<body <?php body_class( $header_class ); ?>>
 		<?php wc_print_notices(); ?>
