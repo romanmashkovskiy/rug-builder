@@ -11,7 +11,7 @@
 * @since Crucial Trading 1.0
 */
 
-// Add WooCommerce Action 
+// Add WooCommerce Action  
 
 add_action( 'woocommerce_checkout_order_processed', 'create_order_code' );
 
