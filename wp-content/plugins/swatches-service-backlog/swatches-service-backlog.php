@@ -12,6 +12,8 @@ class SendBacklogFiles {
 
 	public function run() {
 
+		mail('lewell94@gmail.com','test',var_dump(defined( 'WP_ENV' ) && WP_ENV === 'production'));
+
 		if ( is_admin() ) {
 			return;
 		}
@@ -170,7 +172,7 @@ class SendBacklogFiles {
 		ftp_close( $ftp_connection );
 		unlink( "CRU04.000001" );
 
-		update_option( '_crucial_swatch_backlog', "Backlog of swatches successfully sent to I.P. Address $ip_address" );
+		update_option( '_crucial_swatch_backlog', "Backlog of swatches sent to I.P. Address $ip_address result: $ftp_put" );
 		update_option( '_crucial_swatch_backlog_', "$order_str" );
 
 
