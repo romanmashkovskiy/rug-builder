@@ -231,8 +231,11 @@ canvas {
 
 .no-promises {
 
-	.drawer__content__material ul,
-	.drawer__content__border ul {
+	.drawer__content__material ul {
 		margin-left: -100%;
+	}
+
+	.drawer__content__border ul {
+		margin-left: -25%;
 	}
 }
