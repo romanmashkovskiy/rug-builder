@@ -12,8 +12,6 @@ class SendBacklogFiles {
 
 	public function run() {
 
-		mail('lewell94@gmail.com','test',var_dump(defined( 'WP_ENV' ) && WP_ENV === 'production'));
-
 		if ( is_admin() ) {
 			return;
 		}
