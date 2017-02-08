@@ -85,21 +85,7 @@ if ( array_key_exists( 'err', $_GET ) ) {
 		</div>
 	</div>
 
-	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/Modernizr/modernizr.min.js"></script>
-
-	<script>
-	if ( !Modernizr.promises ) {
-		var scripts       = document.scripts;
-		var scriptsLength = scripts.length;
-		var thisScript    = scripts[scriptsLength - 1];
-		var parent        = thisScript.parentElement;
-
-		var polyfill = document.createElement('script');
-		polyfill.src = '<?php echo get_template_directory_uri(); ?>/assets/js/vendor/polyfills/promises.min.js';
-
-		parent.insertBefore(polyfill, thisScript.nextSibling);
-	}
-	</script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/polyfills/promises.min.js"></script>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/PubSub/pubsub.min.js"></script>
 
