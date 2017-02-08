@@ -126,4 +126,10 @@ gulp.task('ie9', function() {
 		.pipe(autoprefixer())
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('./css/dist'));
-})
+});
+
+gulp.task('watch-ie9', function() {
+
+	gulp.watch('./css/src/ie9.scss', ['ie9']);
+
+});
