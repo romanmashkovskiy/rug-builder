@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name: Swatches Service Backlog
- * Description: Send the backlogged swatches via FTP
+ * Description: Send the backlogged swatches via FTP. DO NOT ACTIVATE.
  * Author: KIJO
  * Author URI: http://kijo.co
  * Version: 1.1.0
