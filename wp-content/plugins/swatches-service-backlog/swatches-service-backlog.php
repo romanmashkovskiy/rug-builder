@@ -161,7 +161,7 @@ class SendBacklogFiles {
 			$remote_file = "./out/CRU04.000001";
 		} else {
 			$remote_file = "./public_html/crucial-trading/CRU04/CRU04.000001";
-		}
+		} 
 		
 		$local_file  = "CRU04.000001";
 
