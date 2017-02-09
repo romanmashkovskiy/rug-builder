@@ -1,15 +1,21 @@
 # Multi env config
 
 # BEGIN WordPress
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /crucial/
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /crucial/index.php [L]
-</IfModule>
-
+RewriteRule . - [E=rwbase:/]
+RewriteCond %{HTTP_HOST} localhost$
+RewriteRule . - [E=rwbase:crucial/]
+RewriteCond %{HTTP_HOST} localhost:8888$
+RewriteRule . - [E=rwbase:crucial-trading/]
+RewriteCond %{HTTP_HOST} vps.89hosting.co.uk$
+RewriteRule . - [E=rwbase:~crucialtrading/]
+RewriteCond %{HTTP_HOST} http://crucialtrading-env-test.eu-west-1.elasticbeanstalk.com$
+RewriteRule . - [E=rwbase:]
+RewriteCond %{HTTP_HOST} http://crucialtrading-env-test-1.eu-west-1.elasticbeanstalk.com$
+RewriteRule . - [E=rwbase:]
+RewriteCond %{HTTP_HOST} http://www.crucial-trading.com$
+RewriteRule . - [E=rwbase:]
+RewriteCond %{HTTP_HOST} http://crucial-trading.com$
+RewriteRule . - [E=rwbase:]
 # END WordPress
 
 
