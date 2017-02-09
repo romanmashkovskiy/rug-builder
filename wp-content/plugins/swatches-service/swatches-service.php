@@ -139,7 +139,7 @@ class SendFiles {
 
 			return;
 		}
-
+/*
 		$username = '';
 		$password = '';
 
@@ -150,6 +150,10 @@ class SendFiles {
 			$username = 'elliot@kijo.co';
 			$password = 'K2i0j1o5!';
 		}
+*/
+
+		$username = 'KJOCRU';
+		$password = 'Cr0k1J0s';
 
 		$ftp_login = ftp_login( $ftp_connection, $username, $password );
 
@@ -168,7 +172,7 @@ class SendFiles {
 		}
 
 		ftp_pasv( $ftp_connection, true );
-
+/*
 		$remote_file = '';
 
 		if ( defined( WP_ENV ) && WP_ENV === 'production' && strpos( $_SERVER['HTTP_HOST'], 'beanstalk' ) === false ) {
@@ -176,6 +180,9 @@ class SendFiles {
 		} else {
 			$remote_file = "./public_html/crucial-trading/CRU04/CRU04.$new_extension";
 		}
+*/
+
+		$remote_file = "./out/CRU04.$new_extension";
 		
 		$local_file  = "CRU04.$new_extension";
 
