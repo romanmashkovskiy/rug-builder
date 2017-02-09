@@ -49,8 +49,9 @@ function range_swatches( $atts = '' ) {
 
 				$title  = $value->name;
 				$src_id = get_woocommerce_term_meta( $range_id, 'thumbnail_id', true );
-				$src    = wp_get_attachment_url( $src_id );
-
+				//$src    = wp_get_attachment_url( $src_id );
+				$src   = wp_get_attachment_image_src( $src_id, 'thumbnail' )[0];
+				
 				$range_meta = get_option( "category_$range_id" );
 				$new_circle = '';
 

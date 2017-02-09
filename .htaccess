@@ -309,7 +309,7 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 		RewriteCond %{QUERY_STRING} base64_decode\( [NC,OR]
 		RewriteCond %{QUERY_STRING} %24&x [NC,OR]
 		RewriteCond %{QUERY_STRING} 127\.0 [NC,OR]
-		RewriteCond %{QUERY_STRING} (globals|encode|localhost|loopback) [NC,OR]
+		#RewriteCond %{QUERY_STRING} (globals|encode|localhost|loopback) [NC,OR]
 		RewriteCond %{QUERY_STRING} (request|concat|insert|union|declare) [NC,OR]
 		RewriteCond %{QUERY_STRING} %[01][0-9A-F] [NC]
 		RewriteCond %{QUERY_STRING} !^loggedout=true

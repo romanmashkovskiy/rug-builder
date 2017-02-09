@@ -609,3 +609,5 @@
 	Enhancement: Changed log entry description of "IP Flagged as bad by iThemes IPCheck" to "IP Flagged by Network Brute Force Protection". This should help clarify the meaning of the log entry.
 	Enhancement: Improved efficiency of the Network Brute Force Protection feature.
 	Bug Fix: Fixed bug that prevented Network Brute Force Protection from working properly on some sites.
+6.1.1 - 2017-02-09 - Chris Jean
+	Bug Fix: Fixed bug that prevented Away Mode from activating on some sites.

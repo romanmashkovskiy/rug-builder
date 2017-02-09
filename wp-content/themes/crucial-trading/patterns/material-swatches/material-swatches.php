@@ -26,6 +26,7 @@ function material_swatches( $atts = '' ) {
 
 		$args = array(
 			'post_type'   => 'product',
+			'posts_per_page' => '-1',
 			'tax_query'   => array(
 				array(
 					'taxonomy' => 'product_cat',
@@ -54,7 +55,7 @@ function material_swatches( $atts = '' ) {
 
 				$title = get_the_title( $product_id );
 				$link  = get_the_permalink( $product_id );
-				$src   = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'single-post-thumbnail' )[0];
+				$src   = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0];
 
 				$post_date     = $value->post_date;
 				$post_unix     = strtotime( $post_date ); 
