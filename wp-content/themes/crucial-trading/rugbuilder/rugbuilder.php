@@ -85,6 +85,9 @@ if ( array_key_exists( 'err', $_GET ) ) {
 		</div>
 	</div>
 
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/Modernizr/modernizr.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/polyfills/promises.min.js"></script>
+
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/PubSub/pubsub.min.js"></script>
 
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/react/react.min.js"></script>
@@ -96,6 +99,11 @@ if ( array_key_exists( 'err', $_GET ) ) {
 	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/js/dist/rugBuilder.min.js"></script>
 
 	<script>
+
+		if ( !Modernizr.promises ) {
+			window.Promise = ES6Promise;
+		}
+
 		var templateDirectoryUri = '<?php echo get_template_directory_uri(); ?>';
 		var siteUrl = '<?php echo site_url(); ?>';
 		var rugBuilder = new RugBuilder('website');

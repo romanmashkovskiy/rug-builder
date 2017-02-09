@@ -106,14 +106,16 @@ class SendFiles {
 		fwrite( $file, "T|$footer_number" );
 
 		fclose( $file );
-
+/*
 		$ip_address = '';
 
-		if ( defined( WP_ENV ) && WP_ENV === 'production' ) {
+		if ( defined( WP_ENV ) && WP_ENV === 'production' && strpos( $_SERVER['HTTP_HOST'], 'beanstalk' ) === false ) {
 			$ip_address = '195.102.23.61';
 		} else {
 			$ip_address = '89.187.86.163';
 		}
+*/
+		$ip_address = '195.102.23.61';
 
 		$this->log( array(
 			'time'  => $sql_time,
@@ -141,7 +143,7 @@ class SendFiles {
 		$username = '';
 		$password = '';
 
-		if ( defined( WP_ENV ) && WP_ENV === 'production' ) {
+		if ( defined( WP_ENV ) && WP_ENV === 'production' && strpos( $_SERVER['HTTP_HOST'], 'beanstalk' ) === false ) {
 			$username = 'KJOCRU';
 			$password = 'Cr0k1J0s';
 		} else {
@@ -169,7 +171,7 @@ class SendFiles {
 
 		$remote_file = '';
 
-		if ( defined( WP_ENV ) && WP_ENV === 'production' ) {
+		if ( defined( WP_ENV ) && WP_ENV === 'production' && strpos( $_SERVER['HTTP_HOST'], 'beanstalk' ) === false ) {
 			$remote_file = "./out/CRU04.$new_extension";
 		} else {
 			$remote_file = "./public_html/crucial-trading/CRU04/CRU04.$new_extension";

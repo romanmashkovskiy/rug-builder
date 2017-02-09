@@ -11,7 +11,7 @@
 * @since Crucial Trading 1.0
 */
 
-// Add WooCommerce Action 
+// Add WooCommerce Action  
 
 add_action( 'woocommerce_checkout_order_processed', 'create_order_code' );
 
@@ -20,9 +20,6 @@ add_action( 'woocommerce_checkout_order_processed', 'create_order_code' );
 function create_order_code($order_id) {
 
 	$order         = new WC_Order( $order_id );
-	$customer_id   = $order->post->post_author;
-	$customer      = new WC_Customer( $customer_id );
-	$customer_data = $customer->data;
 	$_items        = $order->get_items();
 	$items         = array_values($_items);
 	$cor           = 90000 + $order_id;
@@ -39,13 +36,13 @@ function create_order_code($order_id) {
 		'retailerAddressLine5'    => '',
 		'retailerAddressLine6'    => '',
 		'retailerPostcode'        => '',
-		'customerAddressLine1'    => $customer->shipping_address_1,
-		'customerAddressLine2'    => $customer->shipping_address_2,
-		'customerAddressLine3'    => '',
+		'customerAddressLine1'    => $order->shipping_address_1,
+		'customerAddressLine2'    => $order->shipping_address_2,
+		'customerAddressLine3'    => $order->shipping_city,
 		'customerAddressLine4'    => '',
 		'customerAddressLine5'    => '',
 		'customerAddressLine6'    => '',
-		'customerPostcode'        => $customer->shipping_postcode,
+		'customerPostcode'        => $order->shipping_postcode,
 		'outOfArea'               => 0,
 		'consumerTitle'           => '',
 		'consumerChristianName'   => $order->billing_first_name,

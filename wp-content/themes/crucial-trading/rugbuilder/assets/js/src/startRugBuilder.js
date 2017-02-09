@@ -31,7 +31,7 @@ RugBuilder.prototype.start = function() {
 	}
 
 	let canvas = document.createElement('canvas');
-	let webgl  = canvas.getContext('webgl');
+	let webgl  = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
 
 	if ( !webgl ) {
 		R.showWebGLError(true);

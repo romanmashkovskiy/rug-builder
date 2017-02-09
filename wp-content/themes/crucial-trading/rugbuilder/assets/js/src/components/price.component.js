@@ -6,8 +6,6 @@ RugBuilder.prototype.priceComponent = function() {
 
 		getInitialState: function() {
 
-			console.log(R)
-
 			return {
 				length : 0,
 				price  : 0,

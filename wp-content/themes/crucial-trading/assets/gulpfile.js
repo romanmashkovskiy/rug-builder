@@ -92,7 +92,6 @@ gulp.task('js', ['build-master-js'], function() {
 		'./js/vendor/bxslider.min.js',
 		'./js/vendor/jquery.elevatezoom.min.js',
 		'./js/vendor/wow.min.js',
-		'./js/vendor/modernizr.object-fit.min.js',
 		'./js/vendor/masonry.pkgd.min.js',
 		'./js/vendor/js.cookie.min.js',
 		'./js/vendor/headroom.min.js',
