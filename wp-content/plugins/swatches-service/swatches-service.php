@@ -106,7 +106,7 @@ class SendFiles {
 		fwrite( $file, "T|$footer_number" );
 
 		fclose( $file );
-
+/*
 		$ip_address = '';
 
 		if ( defined( WP_ENV ) && WP_ENV === 'production' && strpos( $_SERVER['HTTP_HOST'], 'beanstalk' ) === false ) {
@@ -114,6 +114,8 @@ class SendFiles {
 		} else {
 			$ip_address = '89.187.86.163';
 		}
+*/
+		$ip_address = '195.102.23.61';
 
 		$this->log( array(
 			'time'  => $sql_time,
