@@ -119,3 +119,11 @@ Remove Trackbacks Link
 
 #commentstatusdiv #ping_status {display:none;}
 #commentstatusdiv label[for=ping_status] {display:none;}
+
+/************************************************************************************
+Hide Plugin Activation
+*************************************************************************************/
+
+#setting-error-tgmpa {
+	display: none;
+}

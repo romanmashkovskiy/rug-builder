@@ -67,7 +67,8 @@ function create_order_code($order_id) {
 		$item_id   = $item['product_id'];
 		$item_meta = get_post_meta( $item_id, '_product_attributes', true );
 
-		$gpc = is_array($item_meta) && array_key_exists( 'gpc', $item_meta ) ? $item_meta['gpc']['value'] : '';
+		$gpc_arr = wc_get_product_terms( $item_id, 'pa_gpc', array( 'fields' => 'names' ) );
+		$gpc     = array_shift( $gpc_arr );
 
 		$order_line = array(
 			'recordTypeIdentifier' => 'L',

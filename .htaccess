@@ -11,6 +11,8 @@ RewriteCond %{HTTP_HOST} vps.89hosting.co.uk$
 RewriteRule . - [E=rwbase:~crucialtrading/]
 RewriteCond %{HTTP_HOST} http://crucialtrading-env-test.eu-west-1.elasticbeanstalk.com$
 RewriteRule . - [E=rwbase:]
+RewriteCond %{HTTP_HOST} http://crucialtrading-env-test-1.eu-west-1.elasticbeanstalk.com$
+RewriteRule . - [E=rwbase:]
 RewriteCond %{HTTP_HOST} http://www.crucial-trading.com$
 RewriteRule . - [E=rwbase:]
 RewriteCond %{HTTP_HOST} http://crucial-trading.com$
