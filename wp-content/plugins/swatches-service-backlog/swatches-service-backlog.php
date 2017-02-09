@@ -183,7 +183,7 @@ add_action( 'wp_loaded', 'hello' );
 
 function hello() {
 
-	$s = new SendBacklogFiles();
+	$s = new SendBacklogFiles(); 
 
 	$s->run( false );
 }
