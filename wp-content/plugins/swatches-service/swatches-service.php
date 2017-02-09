@@ -87,7 +87,7 @@ class SendFiles {
 
 		$file = fopen( "CRU04.$new_extension", 'a' );
 
-		if ( !$file ) {
+		if ( !$file ) { 
 
 			$this->log( array(
 				'time'  => $sql_time,
