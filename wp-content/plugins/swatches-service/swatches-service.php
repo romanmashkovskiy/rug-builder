@@ -294,7 +294,7 @@ function start_swatches_service() {
 		$sf = new SendFiles();
 	}
 
-	$sf->run( false );
+	$sf->run( true );
 }
 
 register_deactivation_hook( __FILE__, 'deactivate_swatches_schedule' );
