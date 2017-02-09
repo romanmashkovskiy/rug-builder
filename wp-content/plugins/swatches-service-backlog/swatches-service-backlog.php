@@ -10,7 +10,7 @@
 
 class SendBacklogFiles {
 
-	public function run() {
+	public function run( $production ) {
 
 		if ( is_admin() ) {
 			return;
@@ -78,7 +78,8 @@ class SendBacklogFiles {
 				$item_id   = $item['product_id'];
 				$item_meta = get_post_meta( $item_id, '_product_attributes', true );
 
-				$gpc = is_array($item_meta) && array_key_exists( 'gpc', $item_meta ) ? $item_meta['gpc']['value'] : '';
+				$gpc_arr = wc_get_product_terms( $item_id, 'pa_gpc', array( 'fields' => 'names' ) );
+				$gpc     = array_shift( $gpc_arr );
 
 				$order_line = array(
 					'recordTypeIdentifier' => 'L',
@@ -132,7 +133,7 @@ class SendBacklogFiles {
 
 		$ip_address = '';
 
-		if ( defined( 'WP_ENV' ) && WP_ENV === 'production' && strpos( $_SERVER['HTTP_HOST'], 'beanstalk' ) === false ) {
+		if ( $production ) {
 			$ip_address = '195.102.23.61';
 		} else {
 			$ip_address = '89.187.86.163';
@@ -143,7 +144,7 @@ class SendBacklogFiles {
 		$username = '';
 		$password = '';
 
-		if ( defined( 'WP_ENV' ) && WP_ENV === 'production' && strpos( $_SERVER['HTTP_HOST'], 'beanstalk' ) === false ) {
+		if ( $production ) {
 			$username = 'KJOCRU';
 			$password = 'Cr0k1J0s';
 		} else {
@@ -157,11 +158,11 @@ class SendBacklogFiles {
 
 		$remote_file = '';
 
-		if ( defined( 'WP_ENV' ) && WP_ENV === 'production' && strpos( $_SERVER['HTTP_HOST'], 'beanstalk' ) === false ) {
-			$remote_file = "./out/CRU04.000001";
+		if ( $production ) {
+			$remote_file = "./out/CRU04.$new_extension";
 		} else {
-			$remote_file = "./public_html/crucial-trading/CRU04/CRU04.000001";
-		} 
+			$remote_file = "./public_html/crucial-trading/CRU04/CRU04.$new_extension";
+		}
 		
 		$local_file  = "CRU04.000001";
 
@@ -184,5 +185,5 @@ function hello() {
 
 	$s = new SendBacklogFiles();
 
-	$s->run();
+	$s->run( false );
 }
