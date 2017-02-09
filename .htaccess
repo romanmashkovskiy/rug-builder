@@ -1,7 +1,6 @@
 # Multi env config
 
 # BEGIN WordPress
-<IfModule mod_rewrite.c>
 RewriteRule . - [E=rwbase:/]
 RewriteCond %{HTTP_HOST} localhost$
 RewriteRule . - [E=rwbase:crucial/]
@@ -11,19 +10,12 @@ RewriteCond %{HTTP_HOST} vps.89hosting.co.uk$
 RewriteRule . - [E=rwbase:~crucialtrading/]
 RewriteCond %{HTTP_HOST} http://crucialtrading-env-test.eu-west-1.elasticbeanstalk.com$
 RewriteRule . - [E=rwbase:]
+RewriteCond %{HTTP_HOST} http://crucialtrading-env-test-1.eu-west-1.elasticbeanstalk.com$
+RewriteRule . - [E=rwbase:]
 RewriteCond %{HTTP_HOST} http://www.crucial-trading.com$
 RewriteRule . - [E=rwbase:]
 RewriteCond %{HTTP_HOST} http://crucial-trading.com$
 RewriteRule . - [E=rwbase:]
-
-RewriteEngine On
-RewriteBase /%{ENV:rwbase}
-RewriteRule ^index\.php$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /%{ENV:rwbase}index.php [L]
-</IfModule>
-
 # END WordPress
 
 
@@ -307,7 +299,7 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 		RewriteCond %{QUERY_STRING} base64_decode\( [NC,OR]
 		RewriteCond %{QUERY_STRING} %24&x [NC,OR]
 		RewriteCond %{QUERY_STRING} 127\.0 [NC,OR]
-		RewriteCond %{QUERY_STRING} (globals|encode|localhost|loopback) [NC,OR]
+		#RewriteCond %{QUERY_STRING} (globals|encode|localhost|loopback) [NC,OR]
 		RewriteCond %{QUERY_STRING} (request|concat|insert|union|declare) [NC,OR]
 		RewriteCond %{QUERY_STRING} %[01][0-9A-F] [NC]
 		RewriteCond %{QUERY_STRING} !^loggedout=true
