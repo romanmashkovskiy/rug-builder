@@ -87,7 +87,7 @@ class SendFiles {
 
 		$file = fopen( "CRU04.$new_extension", 'a' );
 
-		if ( !$file ) { 
+		if ( !$file ) {
 
 			$this->log( array(
 				'time'  => $sql_time,
@@ -183,7 +183,7 @@ class SendFiles {
 */
 
 		$remote_file = "./out/CRU04.$new_extension";
-		
+
 		$local_file  = "CRU04.$new_extension";
 
 		$ftp_put = ftp_put( $ftp_connection, $remote_file, $local_file, FTP_ASCII );
