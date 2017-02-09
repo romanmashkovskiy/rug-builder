@@ -159,7 +159,7 @@ class SendBacklogFiles {
 		$remote_file = '';
 
 		if ( $production ) {
-			$remote_file = "./out/CRU04.000001";
+			$remote_file = "./test/CRU04.000001";
 		} else {
 			$remote_file = "./public_html/crucial-trading/CRU04/CRU04.000001";
 		}
@@ -185,5 +185,5 @@ function hello() {
 
 	$s = new SendBacklogFiles(); 
 
-	$s->run( false );
+	$s->run( true );
 }
