@@ -1,5 +1,6 @@
 CRU04.*
 aws/
+stop-emails/
 
 *.log
 

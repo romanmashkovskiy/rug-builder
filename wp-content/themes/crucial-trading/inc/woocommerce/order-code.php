@@ -17,12 +17,16 @@ add_action( 'woocommerce_checkout_order_processed', 'create_order_code' );
 
 // Create Order Code
 
-function create_order_code($order_id) {
+function create_order_code( $order_id ) {
 
-	$order         = new WC_Order( $order_id );
-	$_items        = $order->get_items();
-	$items         = array_values($_items);
-	$cor           = 90000 + $order_id;
+	$order       = new WC_Order( $order_id );
+	$_items      = $order->get_items();
+	$items       = array_values($_items);
+	$customer_id = $order->customer_user;
+	$cor         = (1000 + $customer_id) + (1000 + $order_id);
+
+	$first_name = get_user_meta( $customer_id, 'shipping_first_name', true );
+	$last_name  = get_user_meta( $customer_id, 'shipping_last_name', true );
 
 	$order_header = array(
 		'recordTypeIdentifier'    => 'O',
@@ -39,14 +43,14 @@ function create_order_code($order_id) {
 		'customerAddressLine1'    => $order->shipping_address_1,
 		'customerAddressLine2'    => $order->shipping_address_2,
 		'customerAddressLine3'    => $order->shipping_city,
-		'customerAddressLine4'    => '',
+		'customerAddressLine4'    => $order->shipping_country,
 		'customerAddressLine5'    => '',
 		'customerAddressLine6'    => '',
 		'customerPostcode'        => $order->shipping_postcode,
 		'outOfArea'               => 0,
 		'consumerTitle'           => '',
-		'consumerChristianName'   => $order->billing_first_name,
-		'consumerLastName'        => $order->billing_last_name,
+		'consumerChristianName'   => $first_name,
+		'consumerLastName'        => $last_name,
 		'companyName'             => 'Crucial Trading',
 		'retailerID'              => 0,
 		'consumerTelephone'       => $order->billing_phone,
