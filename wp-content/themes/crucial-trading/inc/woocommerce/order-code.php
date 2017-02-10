@@ -23,7 +23,7 @@ function create_order_code( $order_id ) {
 	$_items      = $order->get_items();
 	$items       = array_values($_items);
 	$customer_id = $order->customer_user;
-	$cor         = (1000 + $customer_id) + (1000 + $order_id);
+	$cor         = 99999 + $order_id;
 
 	$first_name = get_user_meta( $customer_id, 'shipping_first_name', true );
 	$last_name  = get_user_meta( $customer_id, 'shipping_last_name', true );
