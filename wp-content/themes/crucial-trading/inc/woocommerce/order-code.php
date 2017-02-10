@@ -26,9 +26,9 @@ function create_order_code( $order_id ) {
 
 	$first_digits = (int)substr( $order_id, 0, -3 );
 	$last_digits  = (int)substr( $order_id, -3 );
-	$thousand     = (int)($first_digits - 3) * 1000;
+	$thousand     = (int)(($first_digits - 3) * 1000);
 
-	$cor = (int)95000 + $thousand + $last_digits;
+	$cor = (int)(95000 + $thousand + $last_digits);
 
 	$first_name = get_user_meta( $customer_id, 'shipping_first_name', true );
 	$last_name  = get_user_meta( $customer_id, 'shipping_last_name', true );
