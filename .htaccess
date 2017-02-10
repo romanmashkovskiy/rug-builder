@@ -30,8 +30,6 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 
 
 
-
-
 # BEGIN iThemes Security - Do not modify or remove this line
 # iThemes Security Config Details: 2
 	# Enable HackRepair.com's blacklist feature - Security > Settings > Banned Users > Default Blacklist
