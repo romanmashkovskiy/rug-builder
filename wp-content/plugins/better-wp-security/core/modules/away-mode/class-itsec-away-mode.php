@@ -3,7 +3,6 @@
 final class ITSEC_Away_Mode {
 
 	public function run() {
-		return;
 
 		//Execute away mode functions on admin init
 		add_filter( 'itsec_logger_modules', array( $this, 'register_logger' ) );

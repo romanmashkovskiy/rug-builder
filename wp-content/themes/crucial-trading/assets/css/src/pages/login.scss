@@ -24,7 +24,8 @@
 	.woocommerce form.login,
 	.woocommerce form.lost_reset_password,
 	.woocommerce form.register,
-	.woocommerce .hosp-register {
+	.woocommerce .hosp-register,
+	.profilepress-reg-status {
 		background: white;
 		border: none;
 		border-radius: 0;
@@ -93,3 +94,13 @@
 		}
 	}
 } 
+
+
+/********* Hosptitality Register **********/ 
+
+.page-template-hospitality-register header h3.side-title {
+	display: none;
+}
+
+
+
