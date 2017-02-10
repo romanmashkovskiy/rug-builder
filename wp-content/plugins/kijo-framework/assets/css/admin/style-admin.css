@@ -232,9 +232,11 @@ Update plugins count
 .plugins .active td, .plugins .active th {
   background-color: #f2f3f2; }
 
-#adminmenu .awaiting-mod,
-#adminmenu .update-plugins {
-  background: #6D7C6A; }
+#adminmenu .awaiting-mod, 
+#adminmenu .update-plugins,
+#adminmenu li.current a .awaiting-mod {
+	background: $accent-color;
+}
 
 /************************************************************************************
 Hide Help Menu

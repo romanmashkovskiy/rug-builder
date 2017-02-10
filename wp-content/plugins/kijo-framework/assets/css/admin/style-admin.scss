@@ -90,9 +90,11 @@ Update plugins count
 
 // Number alert colour
 #adminmenu .awaiting-mod, 
-#adminmenu .update-plugins {
+#adminmenu .update-plugins,
+#adminmenu li.current a .awaiting-mod {
 	background: $accent-color;
 }
+
 
 /************************************************************************************
 Hide Help Menu
