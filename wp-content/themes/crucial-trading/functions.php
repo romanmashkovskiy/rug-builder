@@ -5,24 +5,6 @@
  * @package Crucial_Trading
  */
 
-
-/**
- * Create first time visitor cookie 
- *
- */
-/*add_action( 'init', 'is_first_time');
-function is_first_time() {
-    if (isset($_COOKIE['_wp_first_time'])) {
-        return false;
-    } else {
-        // expires in 30 days.
-        setcookie('_wp_first_time', 1, time() + (WEEK_IN_SECONDS * 4), COOKIEPATH, COOKIE_DOMAIN, false);
-
-        return true;
-    }
-}*/
-
-
 /**
  * Load Custom Post Types
  */
@@ -350,6 +332,8 @@ function cf_search_distinct( $where ) {
 }
 add_filter( 'posts_distinct', 'cf_search_distinct' );
 
+
+
 /**
  * Redirect to login page after successful registration
  *
@@ -359,6 +343,28 @@ add_action( 'wppb_before_saving_form_values', 'abc' );
 function abc() {
 	echo '<script>window.location.href = "' . site_url() . '/my-login"</script>';
 }
+
+
+/**
+ * Re-order date on admin columns
+ *
+ */
+add_filter( 'post_date_column_time' , 'woo_custom_post_date_column_time' );
+/**
+ * woo_custom_post_date_column_time
+ *
+ * @access      public
+ * @since       1.0 
+ * @return      void
+*/
+function woo_custom_post_date_column_time( $post ) {
+	
+	$h_time = get_post_time( __( 'd/m/Y', 'woocommerce' ), $post );
+	
+	return $h_time;
+	
+}
+
 
 /**
  * Save custom Rug Builder data
@@ -536,7 +542,7 @@ function my_show_extra_profile_fields( $user ) {
 		</tr>
 
 		<tr>
-			<th><label for="rep">Brittons Sales Representitve</label></th>
+			<th><label for="rep">Sales Representitve</label></th>
 			<td>
 				<input type="text" name="_hospitality_rep" id="rep" value="<?php echo esc_attr( get_the_author_meta( '_hospitality_rep', $user->ID ) ); ?>" class="regular-text" /><br />
 			</td>
