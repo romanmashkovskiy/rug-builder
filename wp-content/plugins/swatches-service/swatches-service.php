@@ -197,7 +197,7 @@ class SendFiles {
 			'time'  => $sql_time,
 			'stage' => 'File Uploaded',
 			'error' => false,
-			'log'   => 'File uploaded via FTP',
+			'log'   => $orders,
 		) );
 
 		ftp_close( $ftp_connection );
