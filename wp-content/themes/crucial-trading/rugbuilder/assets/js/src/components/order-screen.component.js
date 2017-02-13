@@ -237,7 +237,8 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				});
 			};
 
-			const CANVAS_SRC = document.querySelector('canvas').toDataURL();
+			const CANVAS_SRC  = document.querySelector('canvas').toDataURL();
+			const CANVAS_SRC2 = decodeURIComponent(CANVAS_SRC);
 
 			R.loadingScreens('full', 'close');
 
@@ -247,7 +248,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 					<span className="order__underline"></span>
 					<div className="order__content clearfix">
 						<div className="order__image">
-							<img src={ CANVAS_SRC } alt="Your Rug" />
+							<img src={ CANVAS_SRC2 } alt="Your Rug" />
 						</div>
 						<div className="order__details">
 							<div className="details__row header clearfix">
