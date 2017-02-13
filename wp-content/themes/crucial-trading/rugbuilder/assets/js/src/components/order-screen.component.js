@@ -237,7 +237,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				});
 			};
 
-			const CANVAS_SRC  = document.querySelector('canvas').toDataURL('image/jpeg', 0.1);
+			const CANVAS_SRC  = document.querySelector('canvas').toDataURL('image/jpeg');
 			const CANVAS_SRC2 = decodeURIComponent(CANVAS_SRC);
 
 			console.log(CANVAS_SRC2)
