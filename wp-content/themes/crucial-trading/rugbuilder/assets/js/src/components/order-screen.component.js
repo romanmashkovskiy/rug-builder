@@ -233,7 +233,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 					return <div className="details__row clearfix" key={ index }>
 						<p>{ materialObj[key] }</p>
 						<p>{ key }</p>
-					</div>
+					</div> 
 				});
 			};
 
