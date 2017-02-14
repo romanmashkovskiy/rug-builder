@@ -143,7 +143,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 			const RUG_PRODUCT_ID = 160;
 			const BORDER_TYPE = this.state.borderType;
-
+/*
 			let url = window.location.href;
 
 			if ( url[url.length-1] === '#' ) {
@@ -181,6 +181,34 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				url += '&inner=' + this.state.innerBorderID;
 				url += '&outer=' + this.state.outerBorderID;
 			}
+*/
+
+			let href = window.location.href;
+
+			if ( href[href.length-1] === '#' ) {
+				href = href.substr(0, href.length-1);
+			}
+
+			let url = href + '?products=3786';
+
+			url += '&center=' + this.state.centerID;
+			url += '&length=' + this.state.length;
+			url += '&width=' + this.state.width;
+			url += '&price=' + this.state.price;
+
+			if ( BORDER_TYPE === 'single' ) {
+				url += '&inner=' + this.state.singleBorderID;
+			} 
+			else if ( BORDER_TYPE === 'piping' ) {
+				url += '&inner=' + this.state.singleBorderID;
+				url += '&piping=' + this.state.pipingID;
+			}
+			else if ( BORDER_TYPE === 'double' ) {
+				url += '&inner=' + this.state.innerBorderID;
+				url += '&outer=' + this.state.outerBorderID;
+			}
+
+			console.log(url)
 
 			let req = new XMLHttpRequest();
 
@@ -200,7 +228,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 				CONTAINER.classList.add('basket-confirm');
 
-				MESSAGE.innerHTML = 'Rug added to your <a href="' + siteUrl + '/basket">basket</a>. It will appear in your basket as seperate pieces.';
+				MESSAGE.innerHTML = 'Rug added to your <a href="' + siteUrl + '/basket">basket</a>.';
 
 				CONTAINER.appendChild(MESSAGE);
 				document.body.appendChild(CONTAINER);

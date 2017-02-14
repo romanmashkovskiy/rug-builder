@@ -43,8 +43,71 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		foreach ( $items as $key => $value ) {
 			?>
-			<div style="width:50%;border-bottom:1px solid #e4e4e4;float:left;padding:12px 10px;box-sizing:border-box;"><?php echo $value['name']; ?></div>
-			<div style="width:50%;border-bottom:1px solid #e4e4e4;float:left;text-align:right;padding:12px 10px;box-sizing:border-box;"><?php echo $value['qty']; ?></div>
+			<div>
+			<div style="width:50%;border-bottom:1px solid #e4e4e4;float:left;padding:12px 10px;box-sizing:border-box;">
+				<?php
+
+					echo $value['name'];
+
+					$br = 0;
+
+					if ( $value['name'] == 'Bespoke Rug' ) {
+
+						echo '<br>';
+						
+						if ( array_key_exists( 'Length', $value ) ) {
+							echo '<span style="font-size:12px;margin:0;">Length: ' . $value['Length'] . '</span><br>';
+							$br++;
+						}
+
+						if ( array_key_exists( 'Width', $value ) ) {
+							echo '<span style="font-size:12px;margin:0;">Width: ' . $value['Width'] . '</span><br>';
+							$br++;
+						}
+
+						if ( array_key_exists( 'Center Material', $value ) ) {
+							echo '<span style="font-size:12px;margin:0;">Center Material: ' . $value['Center Material'] . '</span><br>';
+							$br++;
+						}
+
+						if ( array_key_exists( 'Inner Border', $value ) ) {
+							echo '<span style="font-size:12px;margin:0;">Inner Border: ' . $value['Inner Border'] . '</span><br>';
+							$br++;
+						}
+
+						if ( array_key_exists( 'Piping', $value ) ) {
+							echo '<span style="font-size:12px;margin:0;">Piping: ' . $value['Piping'] . '</span><br>';
+							$br++;
+						}
+
+						if ( array_key_exists( 'Outer Border', $value ) ) {
+							echo '<span style="font-size:12px;margin:0;">Outer Border: ' . $value['Outer Border'] . '</span><br>';
+							$br++;
+						}
+
+						if ( array_key_exists( 'Price', $value ) ) {
+							echo '<span style="font-size:12px;margin:0;">Price: ' . $value['Price'] . '</span><br>';
+							$br++;
+						}
+
+						echo '<div style="height:1px;width:100%;"></div>';
+
+					}
+
+				?>
+			</div>
+			<div style="width:50%;border-bottom:1px solid #e4e4e4;float:left;text-align:right;padding:12px 10px;box-sizing:border-box;">
+				<?php
+
+					echo $value['qty'];
+
+					for ( $i = 0; $i < $br + 1; $i++ ) {
+						echo '<span style="font-size:12px;margin:0;"></span><br>';
+					}
+
+				?>
+			</div>
+			</div>
 			<?
 		}
 

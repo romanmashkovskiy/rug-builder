@@ -365,6 +365,60 @@ function woo_custom_post_date_column_time( $post ) {
 	
 }
 
+/**
+ * Calculate distance between two lat/lng co-ords
+ *
+ */
+
+function distance_between_lat_lng( $lat1, $lon1, $lat2, $lon2 ) {
+
+	$theta = $lon1 - $lon2;
+	$dist  = sin( deg2rad( $lat1 ) ) * sin( deg2rad( $lat2 ) ) +  cos( deg2rad( $lat1 ) ) * cos( deg2rad( $lat2 ) ) * cos( deg2rad( $theta ) );
+	$dist  = acos( $dist );
+	$dist  = rad2deg( $dist );
+
+	return $dist * 60 * 1.1515;
+
+}
+
+/**
+ * Add 'Number of Retailers to Send Email to' setting
+ *
+ */
+
+add_action( 'admin_init', 'register_email_setting' );
+
+function register_email_setting() {  
+    add_settings_section(  
+        'my_settings_section', // Section ID 
+        '', // Section Title
+        'my_section_options_callback', // Callback
+        'general' // What Page?  This makes the section show up on the General Settings Page
+    );
+
+    add_settings_field( // Option 1
+        'option_1', // Option ID
+        'Number of Retailers to Send Bespoke Rug Emails to', // Label
+        'my_textbox_callback', // !important - This is where the args go!
+        'general', // Page it will be displayed (General Settings)
+        'my_settings_section', // Name of our section
+        array( // The $args
+            'number_bespoke_emails' // Should match Option ID
+        )  
+    ); 
+
+    register_setting('general', 'number_bespoke_emails', 'esc_attr');
+}
+
+function my_section_options_callback() { // Section Callback
+    return;
+}
+
+function my_textbox_callback($args) {  // Textbox Callback
+    $option = get_option($args[0]);
+    echo '<input type="text" id="'. $args[0] .'" name="'. $args[0] .'" value="' . $option . '" />';
+}
+
 
 /**
  * Save custom Rug Builder data
@@ -377,7 +431,8 @@ function save_cart_item_data( $cart_item_data, $product_id, $variation_id ) {
 
 	$cart_item_data = array();
 
-	if ( array_key_exists( 'center', $_GET ) && $_GET['center'] == $product_id ) {
+	if ( array_key_exists( 'center', $_GET ) ) {
+		$cart_item_data['center'] = array_key_exists( 'center', $_GET ) ? $_GET['center'] : 0;
 		$cart_item_data['length'] = array_key_exists( 'length', $_GET ) ? $_GET['length'] : 0;
 		$cart_item_data['width']  = array_key_exists( 'width', $_GET ) ? $_GET['width'] : 0;
 		$cart_item_data['price']  = array_key_exists( 'price', $_GET ) ? $_GET['price'] : 0;
@@ -407,9 +462,9 @@ function restore_cart_item_data( $cartItemData, $cartItemSessionData, $cartItemK
 		$cartItemData['width'] = $cartItemSessionData['width'];
 	}
 
-	if ( isset( $cartItemSessionData['price'] ) ) {
-		$cartItemData['price'] = $cartItemSessionData['price'];
-	}
+	if ( isset( $cartItemSessionData['center'] ) ) {
+		$cartItemData['center'] = $cartItemSessionData['center'];
+	} 
 
 	if ( isset( $cartItemSessionData['inner'] ) ) {
 		$cartItemData['inner'] = $cartItemSessionData['inner'];
@@ -423,7 +478,99 @@ function restore_cart_item_data( $cartItemData, $cartItemSessionData, $cartItemK
 		$cartItemData['outer'] = $cartItemSessionData['outer'];
 	}
 
+	if ( isset( $cartItemSessionData['price'] ) ) {
+		$cartItemData['price'] = $cartItemSessionData['price'];
+	}
+
 	return $cartItemData;
+}
+
+add_filter( 'woocommerce_get_item_data', 'get_cart_item_data', 10, 2 );
+
+function get_cart_item_data( $data, $cart_item ) {
+
+	if ( isset( $cart_item['length'] ) ) {
+		$data[] = array(
+			'name'  => 'Length',
+			'value' => $cart_item['length'] . 'm',
+		);
+	}
+
+	if ( isset( $cart_item['width'] ) ) {
+		$data[] = array(
+			'name'  => 'Width',
+			'value' => $cart_item['width'] . 'm',
+		);
+	}
+
+	if ( isset( $cart_item['center'] ) ) {
+
+		$sku = '';
+
+		if ( class_exists( 'WC_Product' ) ) {
+			$center = new WC_Product( $cart_item['center'] );
+			$sku    = $center->get_sku();
+		}
+
+		$data[] = array(
+			'name'  => 'Center Material',
+			'value' => get_the_title( $cart_item['center'] ) . " ($sku)",
+		);
+	}
+
+	if ( isset( $cart_item['inner'] ) ) {
+
+		$sku = '';
+
+		if ( class_exists( 'WC_Product' ) ) {
+			$center = new WC_Product( $cart_item['inner'] );
+			$sku    = $center->get_sku();
+		}
+
+		$data[] = array(
+			'name'  => 'Inner Border',
+			'value' => get_the_title( $cart_item['inner'] ) . " ($sku)",
+		);
+	}
+
+	if ( isset( $cart_item['piping'] ) ) {
+
+		$sku = '';
+
+		if ( class_exists( 'WC_Product' ) ) {
+			$center = new WC_Product( $cart_item['piping'] );
+			$sku    = $center->get_sku();
+		}
+
+		$data[] = array(
+			'name'  => 'Piping',
+			'value' => get_the_title( $cart_item['piping'] ) . " ($sku)",
+		);
+	}
+
+	if ( isset( $cart_item['outer'] ) ) {
+
+		$sku = '';
+
+		if ( class_exists( 'WC_Product' ) ) {
+			$center = new WC_Product( $cart_item['outer'] );
+			$sku    = $center->get_sku();
+		}
+
+		$data[] = array(
+			'name'  => 'Outer Border',
+			'value' => get_the_title( $cart_item['outer'] ) . " ($sku)",
+		);
+	}
+
+	if ( isset( $cart_item['price'] ) ) {
+		$data[] = array(
+			'name'  => 'Price',
+			'value' => '£' . $cart_item['price'],
+		);
+	}
+
+	return $data;
 }
 
 add_action( 'woocommerce_add_order_item_meta', 'save_item_meta', 10, 3 );
@@ -431,15 +578,15 @@ add_action( 'woocommerce_add_order_item_meta', 'save_item_meta', 10, 3 );
 function save_item_meta( $itemId, $values, $key ) {
 
 	if ( isset( $values['length'] ) ) {
-		wc_add_order_item_meta( $itemId, 'Length', $values['length'] );
+		wc_add_order_item_meta( $itemId, 'Length', $values['length'] . 'm' );
 	}
 
 	if ( isset( $values['width'] ) ) {
-		wc_add_order_item_meta( $itemId, 'Width', $values['width'] );
+		wc_add_order_item_meta( $itemId, 'Width', $values['width'] . 'm' );
 	}
 
-	if ( isset( $values['price'] ) ) {
-		wc_add_order_item_meta( $itemId, 'Price', '£' . $values['price'] );
+	if ( isset( $values['center'] ) ) {
+		wc_add_order_item_meta( $itemId, 'Center Material', get_the_title( $values['center'] ) );
 	}
 
 	if ( isset( $values['inner'] ) ) {
@@ -453,6 +600,115 @@ function save_item_meta( $itemId, $values, $key ) {
 	if ( isset( $values['outer'] ) ) {
 		wc_add_order_item_meta( $itemId, 'Outer Border', get_the_title( $values['outer'] ) );
 	}
+
+	if ( isset( $values['price'] ) ) {
+		wc_add_order_item_meta( $itemId, 'Price', '£' . $values['price'] );
+	}
+}
+
+// Email retailers when a bespoke rug is ordered
+
+add_action( 'woocommerce_checkout_order_processed', 'email_retailer_bespoke_rug', 10, 2 );
+
+function email_retailer_bespoke_rug( $order_id, $order_data ) {
+
+	$order = new WC_Order( $order_id );
+	$items = $order->get_items();
+	$rug   = false;
+
+	foreach ( $items as $item ) {
+		if ( $item['name'] == 'Bespoke Rug' ) {
+			$rug = $item;
+			break;
+		}
+	}
+
+	if ( !$rug ) {
+		return;
+	}
+
+	$mailer = WC()->mailer();
+	$emails = $mailer->get_emails();
+	$email  = false;
+
+	foreach ( $emails as $key => $mail ) {
+		if ( $key == 'WC_Email_New_Order' ) {
+			$email = $mail;
+			break;
+		}
+	}
+
+	if ( !$email ) {
+		return;
+	}
+
+	$args = array(
+		'post_type'      => 'retailer',
+		'posts_per_page' => -1,
+	);
+
+	$query = new WP_Query( $args );
+
+	if ( !$query->have_posts() ) {
+		return;
+	}
+
+	$customer_postcode = array_key_exists( 'shipping_postcode', $order_data ) ? $order_data['shipping_postcode'] : false;
+
+	if ( !$customer_postcode ) {
+		return;
+	}
+
+	$customer_postcode = urlencode( $customer_postcode );
+
+	$url  = "http://maps.google.com/maps/api/geocode/json?address={$customer_postcode}";
+	$json = file_get_contents($url);
+	$resp = json_decode($json, true);
+
+	if ( $resp['status'] != 'OK' ) {
+		return;
+	}
+
+	$customer_lat = $resp['results'][0]['geometry']['location']['lat'];
+	$customer_lng = $resp['results'][0]['geometry']['location']['lng'];
+
+	$retailers = $query->posts;
+	$email_to  = array();
+
+	foreach ( $retailers as $key => $retailer ) {
+
+		$retailer_id  = $retailer->ID;
+		$retailer_lat = get_post_meta( $retailer_id, 'retailer_lat', true );
+		$retailer_lng = get_post_meta( $retailer_id, 'retailer_lng', true );
+		$distance     = distance_between_lat_lng( $retailer_lat, $retailer_lng, $customer_lat, $customer_lng );
+
+		$retailer->distance = $distance;
+
+	}
+
+	function cmp( $a, $b ) {
+		return $a->distance - $b->distance;
+	}
+
+	usort( $retailers, 'cmp' );
+
+	$num_retailers_emailed = (int) get_option( 'number_bespoke_emails' ) > 0 ? (int) get_option( 'number_bespoke_emails' ) : 1;
+	$recipients            = '';
+
+	for ( $i = 0; $i < count($recipients); $i++ ) {
+
+		$recip_email = get_post_meta( $retailers[$i]->ID, 'retailer_email', true );
+
+		if ( !$recip_email || $recip_email == '' ) {
+			continue;
+		}
+
+		$recipients .= $recip_email . ',';
+	}
+
+	$email->recipient = $recipients;
+	$email->trigger( $order_id );
+
 }
 
 // Add user meta and update role for Hospitality Users

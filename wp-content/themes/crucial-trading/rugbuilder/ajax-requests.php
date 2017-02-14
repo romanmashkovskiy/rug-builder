@@ -296,16 +296,19 @@ function log_error( $error_info ) {
 
 function add_rug_to_cart() {
 
+	return WC()->cart->add_to_cart( $_GET['products'], 1 );
+
+/*
 	// From http://dsgnwrks.pro/snippets/woocommerce-allow-adding-multiple-products-to-the-cart-via-the-add-to-cart-query-string/ (slighty modified)
 
-	if ( ! class_exists( 'WC_Form_Handler' ) || empty( $_GET['products'] ) || false === strpos( $_GET['products'], ',' ) ) {
+	if ( ! class_exists( 'WC_Form_Handler' ) || empty( $_GET['products'] ) ) {
 		header($_SERVER['SERVER_PROTOCOL'] . ' 400 Bad Request', true, 400);
 		exit();
 	}
 
 	remove_action( 'wp_loaded', array( 'WC_Form_Handler', 'add_to_cart_action' ), 20 );
 
-	$product_ids = explode( ',', $_GET['products'] );
+	$product_ids = array( $_GET['products'] );
 	$count       = count( $product_ids );
 	$number      = 0;
 
@@ -333,4 +336,5 @@ function add_rug_to_cart() {
 			wc_add_to_cart_message( array( $product_id => $quantity ), true );
 		}
 	}
+*/
 }
