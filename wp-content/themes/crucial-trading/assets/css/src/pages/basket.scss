@@ -148,4 +148,33 @@
 	width: 100%;
 }
 
+.order__name {
+	position: relative;
+}
 
+.basket__image {
+	width: 75px;
+	overflow: hidden;
+	height: 75px;
+	display: inline-block;
+
+	img {
+		height: 150px;
+	}
+}
+
+.basket__item {
+	position: absolute;
+	top: 6px;
+	left: 85px;
+	padding-top: 0;
+}
+
+.basket__sku {
+	color: rgba(30, 30, 30, 0.5);
+	position: absolute;
+	top: 36px;
+	left: 85px;
+	padding-top: 0;
+	font-size: 14px;
+}

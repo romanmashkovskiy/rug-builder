@@ -32,11 +32,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="order-line clearfix">
 					<div class="order__name">
 						<?php
+
+							// Image
+							$src = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0];
+
+							if ( $src && $src != '' ) {
+								echo "<div class='basket__image'>";
+								echo "<img src='$src' alt=''>";
+								echo "</div>";
+							}
+
+							// Title
 							if ( ! $product_permalink ) {
 								echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
 							} else {
-								echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_title() ), $cart_item, $cart_item_key );
+								echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s" class="basket__item">%s</a>', esc_url( $product_permalink ), $_product->get_title() ), $cart_item, $cart_item_key );
 							}
+
+							// SKU
+							$sku = $_product->get_sku();
+							echo "<span class='basket__sku'><b>Code:</b> $sku</span>";
 
 							// Meta data
 							echo WC()->cart->get_item_data( $cart_item );
@@ -45,6 +60,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
 								echo '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>';
 							}
+
 						?>
 					</div>
 				</div>
