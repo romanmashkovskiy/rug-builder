@@ -13,7 +13,7 @@
 
 global $post;
 
-if ( $post->post_name == 'brochure' ) {
+if ( $post->post_name == 'brochure' || $post->post_name == 'bespoke-rug' ) {
 	header( 'Location: ' . site_url() . '/materials' );
 }
 
