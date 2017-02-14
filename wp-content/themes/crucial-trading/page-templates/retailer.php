@@ -96,6 +96,12 @@ if ( is_array( $_GET ) ) {
 							array_push( $uk_retailers, $retailers[$i2] );
 						}
 					}
+
+					function cmp( $a, $b ) {
+						return $a->distance - $b->distance;
+					}
+
+					usort( $uk_retailers, 'cmp' );
 				}
 			}
 		} else {
