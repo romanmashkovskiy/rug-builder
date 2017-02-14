@@ -42,8 +42,9 @@ function material_view_slider( $atts = '' ) {
 		}
 
 		$args = array(
-			'post_type'   => 'product',
-			'tax_query'   => array(
+			'post_type'      => 'product',
+			'posts_per_page' => -1,
+			'tax_query'      => array(
 				array (
 					'taxonomy' => 'product_cat',
 					'field'    => 'slug',
