@@ -27,9 +27,6 @@
 					<span class="main-menu__button__icon"></span>
 				</a>
 				<form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post"> 
-					<div class="order-line header">
-						<p>Order</p>
-					</div>
 					<?php
 
 					foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {

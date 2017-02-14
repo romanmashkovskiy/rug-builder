@@ -114,10 +114,15 @@ a.checkout-button.button,
 	-webkit-transition: all ease-in-out 0.25s;
 	transition: all ease-in-out 0.25s;
 	width: 220px;
-
+	
 	@media screen and (max-width: 446px) {
 		width: 100% !important;
 	}
+}
+
+a.checkout-button.button:hover,
+#place_order:hover  {
+	background: lighten(#383838, 15%) !important;	
 }
 
 button:hover, 
