@@ -379,7 +379,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 		},
 
-		updateCollectionChoice: function(collection) {
+		updateCollectionChoice: function(collection) { 
 
 			// Function for updating the chosenCollection state and getting swatch data.
 			// Get passed to the Collection Button Components as props.
