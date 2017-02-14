@@ -794,7 +794,7 @@ function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 			let indexPlusOne = index + 1;
 			let page         = Math.ceil( indexPlusOne / elemsPerPage );
 
-			return <BtnCollectionComponent key={ index } collection={ collection.name } image={ collection.thumbnail } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } page={ page } pageInView={ _this.state.pageInView } />
+			return <BtnCollectionComponent key={ index } title={ collection.name } collection={ collection.slug } image={ collection.thumbnail } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } page={ page } pageInView={ _this.state.pageInView } />
 		});
 	}
 }
