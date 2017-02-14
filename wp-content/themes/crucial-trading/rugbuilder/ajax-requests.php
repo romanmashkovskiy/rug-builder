@@ -108,7 +108,7 @@ function swatches_data() {
 
 	$args = array(
 		'post_type' => 'product',
-		'posts_per_page' => 100,
+		'posts_per_page' => -1,
 		'tax_query' => array(
 			array(
 				'taxonomy' => 'product_cat',
@@ -170,6 +170,11 @@ function swatches_data() {
 		$arr['stitching']    = $stitching;
 
 		if ( count( $thumb ) > 0 ) {
+
+			if ( array_key_exists( $key, $res ) ) {
+				$key = $key . '~2';
+			}
+
 			$res[$key] = $arr;
 		}
 	}
