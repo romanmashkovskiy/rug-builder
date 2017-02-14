@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
 				?>
 
-				<div class="order-line clearfix">
+				<div class="order-line clearfix"> 
 					<div class="order__name">
 						<?php
 
