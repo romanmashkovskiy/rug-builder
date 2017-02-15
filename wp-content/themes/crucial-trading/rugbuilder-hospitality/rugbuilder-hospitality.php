@@ -17,7 +17,7 @@ $roles   = $user->roles;
 $allowed = false;
 
 foreach ( $roles as $role ) {
-	if ( $role == 'administrator' || $role == 'hospitality' ) {
+	if ( $role == 'administrator' || $role == 'hospitality' || $role == 'editor' ) {
 		$allowed = true;
 		break;
 	}
