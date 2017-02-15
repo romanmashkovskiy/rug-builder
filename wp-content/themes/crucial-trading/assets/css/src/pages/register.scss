@@ -39,9 +39,12 @@
 .page-template-hospitality-register {
 
 	a.login-hosp {
-		margin-left: 13%;
+		margin: 0 13%;
 		position: relative;
 		top: 25px;
+		display: block;
+		padding: 0;
+		text-align: center;
 	}
 
 	.gform_wrapper {
