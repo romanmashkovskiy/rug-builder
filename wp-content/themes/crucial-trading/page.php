@@ -19,8 +19,13 @@ echo do_shortcode( '[header]' );
 echo do_shortcode( '[logo-nav]' );
 
 ?>
+	
+<div class="single-post__container box-shadow">
+			
+	<div class="single-post__content">
+		<?php the_post(); the_content(); ?>
+	</div>
 
-<main>
-</main>
-
+</div>
+	
 <?php get_footer();
