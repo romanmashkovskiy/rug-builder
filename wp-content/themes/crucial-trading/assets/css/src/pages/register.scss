@@ -35,3 +35,30 @@
 
 
 }
+
+.page-template-hospitality-register {
+
+	.gform_wrapper {
+		background: #fff;
+		border: none;
+		border-radius: 0;
+		box-shadow: 0 5px 18px 0 rgba(0,0,0,.08);
+		margin: 50px auto;
+		max-width: 900px;
+		padding: 50px 50px 32px;
+		position: relative;
+		width: 74%;
+
+		label {
+			display: none;
+		}
+
+		input {
+			margin-bottom: 18px;
+
+			&[type="submit"] {
+				width: 100%;
+			}
+		}
+	}
+}

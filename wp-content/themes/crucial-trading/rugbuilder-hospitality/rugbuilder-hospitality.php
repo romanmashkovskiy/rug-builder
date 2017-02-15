@@ -8,10 +8,8 @@
  * @since Hogarths 1.0
  */
 
-global $user;
-
 if ( !is_user_logged_in() ) {
-	header( 'Location: ' . site_url() );
+	header( 'Location: ' . site_url() . '/hospitality-register' );
 }
 
 $user    = wp_get_current_user();
@@ -26,7 +24,7 @@ foreach ( $roles as $role ) {
 }
 
 if ( !$allowed ) {
-	header( 'Location: ' . site_url() );
+	header( 'Location: ' . site_url() . '/hospitality-register' );
 }
 
 ?>

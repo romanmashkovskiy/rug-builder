@@ -14,6 +14,6 @@ echo do_shortcode( '[header size="small"]' );
 
 echo do_shortcode( '[logo-nav]' );
 
-echo do_shortcode( '[profilepress-registration id="3"]' );
+echo do_shortcode( '[gravityform id=4 title=false]' );
 
 get_footer();
