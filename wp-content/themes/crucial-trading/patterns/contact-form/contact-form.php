@@ -28,8 +28,8 @@ function contact_form() {
 	$html .= '<h2 class="press__subtitle">Call Rawlins George</h2>';
 	$html .= '<p>020 7352 5791</p>';
 	$html .= '<h2 class="press__subtitle">Email Rawlins George:</h2>';
-	$html .= '<p><a href="mailto:lucinda@rawlinsgeorge.co.uk" class="press__link">lucinda@rawlinsgeorge.co.uk</a></p>';
-	$html .= '<p><a href="mailto:hugo@rawlinsgeorge.co.uk" class="press__link">hugo@rawlinsgeorge.co.uk</a></p>';
+	$html .= '<p><a href="mailto:'.antispambot('lucinda@rawlinsgeorge.co.uk').'" class="press__link">'.antispambot('lucinda@rawlinsgeorge.co.uk').'</a></p>';
+	$html .= '<p><a href="mailto:'.antispambot('hugo@rawlinsgeorge.co.uk').'" class="press__link">'.antispambot('hugo@rawlinsgeorge.co.uk').'</a></p>';
 	$html .= '</div>';
 	$html .= '<span class="press__or"><span class="press__or--text">or</span></span>';
 	$html .= '<div class="border-right">';
