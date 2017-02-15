@@ -169,7 +169,12 @@
 		text-align: left;
 		
 		@media all and (min-width: 992px) {
-			padding-left: 95px;
+			padding-left: 90px;
+			margin-top: 0px;
+		}
+		
+		@media all and (min-width: 1200px) {
+			padding-left: 120px;
 			margin-top: 0px;
 		}
 		
@@ -192,7 +197,7 @@
 
 		p {
 			color: #FFF;
-			margin-bottom: 75px;
+			margin-bottom: 110px;
 		}
 
 		a {

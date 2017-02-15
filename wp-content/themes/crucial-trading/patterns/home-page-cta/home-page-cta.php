@@ -38,7 +38,7 @@ function home_page_cta( $atts = '' ) {
 		}
 		else if ( $atts['id'] == 2 ) {
 
-			$args = array(
+			/*$args = array(
 				'post_type' => 'product',
 				'title' => 'brochure',
 				'ignore_sticky_posts'    => true, 
@@ -52,17 +52,17 @@ function home_page_cta( $atts = '' ) {
 				$brochure_id = $brochure->ID;
 			} else {
 				return $html;
-			}
+			}*/
 
 			$title  = 'Order Brochure';
-			$text   = 'Filled with inspirational photography and a swatch directory, featuring every colour-way across our extensive portfolio, The Book aims to inspire and delight, opening your eyes to further possibilities whilst aiding your decision making process.';
+			$text   = 'Filled with inspirational photography and a swatch directory. The Book aims to inspire and delight, opening your eyes to further possibilities whilst aiding your decision making process.';
 			$bg_col = '#343233';
 			$src    = get_template_directory_uri() . '/assets/icons/brochure.svg';
 			$link   = site_url() . '/?add-to-cart=1610';
-			$attrs  = 'class="order-brochure no-effect" data-product-name="Our brochure" data-product-id="' . $brochure_id . '"';
+			$attrs  = 'class="order-brochure no-effect"';
 		}
 
-		$html .= '<div class="home-page-cta" style="background-color:' . $bg_col . ';">';
+		$html .= '<div id="cta--'.$atts['id'].'" class="home-page-cta">';
 
 		$html .= '<a href="' . $link . '" ' . $attrs . '>';
 
