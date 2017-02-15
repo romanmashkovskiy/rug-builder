@@ -403,6 +403,12 @@ input.main-menu__search__input:focus {
 	
 }
 
+::placeholder {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color: #878787;
+}
+
 ::-webkit-input-placeholder {
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 600;
