@@ -8,12 +8,25 @@
  * @since Hogarths 1.0
  */
 
-?>
-
-<?php
+global $user;
 
 if ( !is_user_logged_in() ) {
-	echo '<script>window.location = "' . wp_login_url( get_permalink() ) . '"</script>';
+	header( 'Location: ' . site_url() );
+}
+
+$user    = wp_get_current_user();
+$roles   = $user->roles;
+$allowed = false;
+
+foreach ( $roles as $role ) {
+	if ( $role == 'administrator' || $role == 'hospitality' ) {
+		$allowed = true;
+		break;
+	}
+}
+
+if ( !$allowed ) {
+	header( 'Location: ' . site_url() );
 }
 
 ?>
