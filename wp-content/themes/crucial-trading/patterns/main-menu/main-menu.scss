@@ -381,6 +381,7 @@ input.main-menu__search__input:focus {
 	width: 100%;
 	font-size:  16px;
 	color: #FFF;
+	font-weight: 400;
 	font-family: $font-sub-header; 
 	background-color: $main-menu-bg-color !important;
 	margin: 0;
@@ -393,7 +394,6 @@ input.main-menu__search__input:focus {
 	box-sizing: border-box;        
 	border-bottom: 1px solid $main-menu-border-color;
 }
-
 	
 @media all and (min-width: 769px) and (max-height: 780px) {
 	
@@ -404,23 +404,33 @@ input.main-menu__search__input:focus {
 }
 
 ::-webkit-input-placeholder {
-	font-family: $font-sub-header;
-	color: $main-menu-link-color-dark;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color: #878787;
 }
 
 :-moz-placeholder {
-	font-family: $font-sub-header;
-	color: $main-menu-link-color-dark;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color: #878787;
 }
 
 ::-moz-placeholder {
-	font-family: $font-sub-header;
-	color: $main-menu-link-color-dark;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color: #878787;
+}
+
+::-ms-input-placeholder {  
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color: #878787;
 }
 
 :-ms-input-placeholder {  
-	font-family: $font-sub-header;
-	color: $main-menu-link-color-dark;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	color: #878787;
 }
 
 input.main-menu__search__input:focus + span.main-menu__search__icon {
