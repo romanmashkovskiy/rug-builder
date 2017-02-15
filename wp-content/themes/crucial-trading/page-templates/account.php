@@ -12,7 +12,6 @@ if ( is_user_logged_in() ) {
 
 	$user    = wp_get_current_user();
 	$roles   = $user->roles;
-	$allowed = false;
 
 	foreach ( $roles as $role ) {
 		if ( $role == 'hospitality' ) {
