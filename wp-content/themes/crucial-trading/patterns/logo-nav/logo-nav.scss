@@ -12,26 +12,29 @@
 	}
 }
 
-body.page-template-home .top-bar.headroom--not-top.headroom--pinned {
+body.page-template-home .top-bar,
+body.page-template-home .top-bar.headroom--not-top.headroom--pinned,
+body.page-template-home .top-bar.headroom--not-top.headroom--unpinned {
+	background: white;
 
 	span.main-menu__button__icon,
 	span.main-menu__button__icon:before,
 	span.main-menu__button__icon:after {
-		background: white !important;
+		background: black !important;
 	}
 
 	.main-menu__button__text,
 	.main-menu__button__text--close {
-		color: white !important;
+		color: black !important;
 	}
 
 	svg.main-menu__button__basket g {
-		fill: white !important;
+		fill: black !important;
 	}
 
 	#num-items-basket {
-		background: white !important;
-		color: black !important;
+		background: black !important;
+		color: white !important;
 	}
 }
 

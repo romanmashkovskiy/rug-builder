@@ -13,17 +13,3 @@ if ( !Modernizr.es6collections ) {
 	parent.insertBefore(polyfill, thisScript.nextSibling);
 }
 </script>
-
-<script>
-if ( !Modernizr.mutationobserver ) {
-	var scripts       = document.scripts;
-	var scriptsLength = scripts.length;
-	var thisScript    = scripts[scriptsLength - 1];
-	var parent        = thisScript.parentElement;
-
-	var polyfill = document.createElement('script');
-	polyfill.src = '<?php echo get_template_directory_uri(); ?>/assets/js/vendor/MutationObserver.js';
-
-	parent.insertBefore(polyfill, thisScript.nextSibling);
-}
-</script>
