@@ -125,7 +125,7 @@ function crucial_slider_slides() {
 				$image_side_class = 'image-left';
 			}
 
-			$html .= "<li class='slide object-fit-container $opening_class $image_side_class'>";
+			$html .= "<li class='slide $opening_class $image_side_class'>";
 
 			$html .= '<nav class="slides-navigation vertical-align">';
 
@@ -186,7 +186,7 @@ function crucial_slider_slides() {
 
 				$html .= '</div>';
 
-				$html .= '<div class="slide__image">';
+				$html .= '<div class="slide__image object-fit-container">';
 
 				if ( $post_title != 'Opening' ) {
 					$html .= '<img src="' . $src . '" alt="' . $alt . '">';
