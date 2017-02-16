@@ -650,7 +650,7 @@ function email_retailer_bespoke_rug( $order_id, $order_data ) {
 	if ( !$email ) {
 		return;
 	}
-
+/*
 	$args = array(
 		'post_type'      => 'retailer',
 		'posts_per_page' => -1,
@@ -716,6 +716,9 @@ function email_retailer_bespoke_rug( $order_id, $order_data ) {
 	}
 
 	$email->recipient = $recipients;
+*/
+
+	$email->recipient = 'Crucial.Consumer@crucial-trading.com';
 	$email->trigger( $order_id );
 
 }
