@@ -163,7 +163,7 @@ function crucial_slider_slides() {
 					$html .= '<div class="video-play-button"></div>';
 					$html .= '</a>';
 				}
-
+ 
 				$html .= '</div>';
 				
 			} else {
