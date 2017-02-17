@@ -134,6 +134,7 @@ function swatches_data() {
 		$key   = str_replace( ' ', '', $name );
 		$code  = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : '';
 
+		$picture   = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0];
 		$thumb     = rwmb_meta( 'rb_texture', array(), $product_id );
 		$rthumb    = rwmb_meta( 'rb_texture_portrait', array(), $product_id );
 		$bmap      = rwmb_meta( 'rb_bump_map', array(), $product_id );
@@ -158,6 +159,7 @@ function swatches_data() {
 		$arr['cats']         = $cats;
 		$arr['name']         = $name;
 		$arr['code']         = $code;
+		$arr['picture']      = $picture;
 		$arr['thumb']        = $thumb;
 		$arr['rthumb']       = $rthumb;
 		$arr['bmap']         = $bmap;

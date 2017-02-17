@@ -42,7 +42,7 @@ RugBuilder.prototype.btnSwatchComponent = function() {
 			return (
 				<li className={ classes } >
 					<a href="#" onClick={ this.handleClick }>
-						<img src={ src } alt={ this.props.swatch } />
+						<img src={ this.props.picture } alt={ this.props.swatch } />
 						<h3>{ this.props.code }</h3>
 						<i className="icon-crucial-tick-thin"></i>
 					</a>

@@ -820,10 +820,11 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 			return PIPING.map((piping, index) => {
 
-				const id     = piping.ID;
-				const name   = piping.post_title;
-				const thumb  = piping.thumb;
-				const repeat = {
+				const id      = piping.ID;
+				const name    = piping.post_title;
+				const picture = piping.picture;
+				const thumb   = piping.thumb;
+				const repeat  = {
 					x : piping.repeatx,
 					y : piping.repeaty
 				};
@@ -848,7 +849,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 				let page = 1;
 
-				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ page } />
+				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } picture={ picture } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ page } />
 			});
 
 		} else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
@@ -882,10 +883,11 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 			return PIPING.map((piping, index) => {
 
-				const id     = piping.ID;
-				const name   = piping.post_title;
-				const thumb  = piping.thumb;
-				const repeat = {
+				const id      = piping.ID;
+				const name    = piping.post_title;
+				const picture = piping.picture;
+				const thumb   = piping.thumb;
+				const repeat  = {
 					x : piping.repeatx,
 					y : piping.repeaty
 				};
@@ -911,7 +913,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				let indexPlusOne = index + 1;
 				let page         = Math.ceil( indexPlusOne / elemsPerPage );
 
-				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } picture={ picture } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 			});
 
 		}
@@ -943,12 +945,13 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 				const CURRENT_SWATCH = SWATCH[swatch];
 
-				const id     = CURRENT_SWATCH.id;
-				const name   = CURRENT_SWATCH.name;
-				const code   = CURRENT_SWATCH.code;
-				const thumb  = CURRENT_SWATCH.thumb;
-				const stitch = CURRENT_SWATCH.stitching;
-				const repeat = {
+				const id      = CURRENT_SWATCH.id;
+				const name    = CURRENT_SWATCH.name;
+				const code    = CURRENT_SWATCH.code;
+				const picture = CURRENT_SWATCH.picture;
+				const thumb   = CURRENT_SWATCH.thumb;
+				const stitch  = CURRENT_SWATCH.stitching;
+				const repeat  = {
 					x : CURRENT_SWATCH.repeatx,
 					y : CURRENT_SWATCH.repeaty
 				};
@@ -986,7 +989,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 				// Create a BtnSwatchComponent for each swatch in the SWATCH object
 
-				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } picture={ picture } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 			})
 		}
 		else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
@@ -1031,12 +1034,13 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 				const CURRENT_SWATCH = SWATCH[swatch];
 
-				const id     = CURRENT_SWATCH.id;
-				const name   = CURRENT_SWATCH.name;
-				const code   = CURRENT_SWATCH.code;
-				const thumb  = CURRENT_SWATCH.thumb;
-				const stitch = CURRENT_SWATCH.stitching;
-				const repeat = {
+				const id      = CURRENT_SWATCH.id;
+				const name    = CURRENT_SWATCH.name;
+				const code    = CURRENT_SWATCH.code;
+				const picture = CURRENT_SWATCH.picture;
+				const thumb   = CURRENT_SWATCH.thumb;
+				const stitch  = CURRENT_SWATCH.stitching;
+				const repeat  = {
 					x : CURRENT_SWATCH.repeatx,
 					y : CURRENT_SWATCH.repeaty
 				};
@@ -1072,7 +1076,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				let indexPlusOne = index + 1;
 				let page         = Math.ceil( indexPlusOne / elemsPerPage );
 
-				return <BtnSwatchComponent key={ index } swatch={ name } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat }  stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+				return <BtnSwatchComponent key={ index } swatch={ name } picture={ picture } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat }  stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
 			});
 		}
 
