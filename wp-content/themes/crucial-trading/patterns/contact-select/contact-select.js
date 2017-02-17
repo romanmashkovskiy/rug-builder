@@ -67,7 +67,7 @@ function showCorrectForm(value) {
 			$('.contact-form #general').addClass('__hidden');
 
 			$('.page-image img[data-tag="press"]').addClass('__hidden');
-			$('.page-image img[data-tag="general"]').addClass('__hidden');
+			$('.page-image img[data-tag="general"]').addClass('__hidden'); 
 
 			setTimeout(function() {
 				$('.contact-form #press').addClass('__noHeight');
