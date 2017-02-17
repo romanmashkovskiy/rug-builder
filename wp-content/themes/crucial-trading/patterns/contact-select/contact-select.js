@@ -1,12 +1,23 @@
 var $ = jQuery;
 
-if ( window.location.hash ) {
-	setTimeout(function() {
-		window.scrollTo(0, 0);
-	}, 1);
-}
+
 
 $(document).ready(function() {
+
+	if ( $('body').hasClass('page-template-contact') ) {
+
+		var intvl = setInterval(function() {
+			if ( window.location.hash ) {
+				window.scrollTo(0, 0);
+			}
+		}, 1)
+
+		setTimeout(function() {
+			clearInterval(intvl);
+		}, 200)
+	}
+
+		
 
 	$('.contact-select select').change(function() {
 
