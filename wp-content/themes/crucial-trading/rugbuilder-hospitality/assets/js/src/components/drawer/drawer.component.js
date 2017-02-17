@@ -131,7 +131,15 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 // Ref6: Calculate Drawer Max Height
 
 		calcDrawerMaxHeight: function() {
+/*
+			let drawerToUse;
 
+			if ( document.querySelector('.hosp_builder_drawer__content').classList.contains('structures') ) {
+				drawerToUse = document.querySelector('.hosp_builder_structures');
+			} else {
+				drawerToUse = document.querySelector('.hosp_builder_colors');
+			}
+*/
 			const DRAWER = document.querySelector('.hosp_builder_drawer__content');
 			const HEIGHT = window.getComputedStyle(DRAWER).getPropertyValue('height');
 

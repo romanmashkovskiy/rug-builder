@@ -258,8 +258,13 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 			let detailsHTML = () => {
 				return Object.keys(materialObj).map((key, index) => {
+
+					let wc_  = materialObj[key].replace(/ /g, '');
+					let wc   = R.WCswatches[wc_];
+					let code = wc.code;
+
 					return <div className="details__row clearfix" key={ index }>
-						<p>{ materialObj[key] }</p>
+						<p>{ materialObj[key] } ({ code })</p>
 						<p>{ key }</p>
 					</div> 
 				});
