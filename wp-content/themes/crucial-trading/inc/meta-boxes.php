@@ -234,6 +234,16 @@ function meta_boxes($meta_boxes) {
 		'post_types' => 'page',
 		'fields'     => array(
 			array(
+				'name' => 'Subtitle',
+				'id'   => 'insp_sub',
+				'type' => 'text',
+			),
+			array(
+				'name' => 'Title',
+				'id'   => 'insp_title',
+				'type' => 'text',
+			),
+			array(
 				'name' => 'Content',
 				'id'   => 'insp_text',
 				'type' => 'textarea',

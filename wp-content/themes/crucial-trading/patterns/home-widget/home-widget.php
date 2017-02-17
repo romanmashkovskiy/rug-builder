@@ -50,13 +50,15 @@ function home_inspiration_widget( $atts = '' ) {
 		$html .= '</div>';
 	}
 
-	$content = get_post_meta( $post->ID, 'insp_text', true );
+	$subtitle = get_post_meta( $post->ID, 'insp_sub', true );
+	$title    = get_post_meta( $post->ID, 'insp_title', true );
+	$content  = get_post_meta( $post->ID, 'insp_text', true );
 	
 	//$html .= do_shortcode( '[fts_twitter twitter_name=crucialtrading tweets_count=1 show_retweets=no]' );
 
 	$html .= '<div class="widget__text">';
-	$html .= '<h3>Inspirational Journeys</h3>';
-	$html .= '<h2>Be Inspired</h2>';
+	$html .= '<h3>' . $subtitle . '</h3>';
+	$html .= '<h2>' . $title . '</h2>';
 	$html .= '<span></span>';
 	$html .= '<p>' . $content . '</p>';
 	$html .= '<a href="' . site_url() . '/inspiration">Be Inspired</a>';
