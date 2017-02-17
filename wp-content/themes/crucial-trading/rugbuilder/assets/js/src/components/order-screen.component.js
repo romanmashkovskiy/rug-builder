@@ -189,7 +189,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				href = href.substr(0, href.length-1);
 			}
 
-			let url = href + '?products=3786';
+			let url = href + '?products=' + RUG_ID;
 
 			url += '&center=' + this.state.centerID;
 			url += '&length=' + this.state.length;

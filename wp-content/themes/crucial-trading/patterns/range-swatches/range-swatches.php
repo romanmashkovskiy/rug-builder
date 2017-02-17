@@ -48,6 +48,7 @@ function range_swatches( $atts = '' ) {
 				$range_id = $value->term_id;
 
 				$title  = $value->name;
+				$slug   = $value->slug;
 				$src_id = get_woocommerce_term_meta( $range_id, 'thumbnail_id', true );
 				//$src    = wp_get_attachment_url( $src_id );
 				$src   = wp_get_attachment_image_src( $src_id, 'thumbnail' )[0];
@@ -62,13 +63,13 @@ function range_swatches( $atts = '' ) {
 				if ( count( $products->posts ) > 0 ) {
 
 					$site_url  = site_url();
-					$title_enc = str_replace( '+', '-', urlencode( strtolower( $title ) ) );
+					$title_enc = str_replace( '+', '-', urlencode( strtolower( $slug ) ) );
 
 					if ( count( $products->posts ) == 1 ) {
 						$link_id = $products->posts[0]->ID;
 						$link    = get_the_permalink( $link_id );
 					} else {
-						$link     = "$site_url/material/$material/$title_enc";
+						$link     = "$site_url/material/$material/$title_enc/";
 					}
 
 				}

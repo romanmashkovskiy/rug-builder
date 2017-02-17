@@ -20,6 +20,10 @@ function material_swatches( $atts = '' ) {
 		$range_cat = get_term_by( 'slug', $range, 'product_cat' );
 		$range_id  = $range_cat->term_id;
 
+		echo '<pre>';
+		print_r($range_cat);
+		echo '</pre>';
+
 		$range_parent = $range_cat->parent;
 		$parent       = get_term_by( 'id', $range_parent, 'product_cat' );
 		$material     = $parent->slug;	

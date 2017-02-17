@@ -20,7 +20,12 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 						rej(0);
 					}
 
-					R.WCswatches = JSON.parse( this.response );
+					let json = JSON.parse( this.response );
+
+					for ( let prop in json ) {
+						R.WCswatches[prop] = json[prop];
+					}
+
 					res(JSON.parse( this.response ));
 				}
 
