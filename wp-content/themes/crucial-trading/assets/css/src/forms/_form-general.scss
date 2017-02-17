@@ -140,7 +140,8 @@ input[type="submit"]:hover {
 }
 
 
-// Gravity Forms
+
+/********* Forms General *********/
 
 body .gform_body ul {
 	margin: 0;
@@ -165,3 +166,51 @@ body .gform_wrapper .gform_page_footer input.button {
 ul#gform_fields_1.gform_fields.top_label.form_sublabel_below.description_below {
 	margin: 0;
 }
+
+
+/********* Forms - Error Handling *********/
+
+
+body .gform_wrapper .validation_error {
+	border: 1px solid rgba(216,76,76,0.7);
+	color: #d84c4c;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+body .gform_wrapper .gfield_error input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]) {
+	border: 1px solid rgba(216,76,76,0.7);
+}
+
+body .gform_wrapper .gfield_error .validation_message {
+	font-size: 14px;
+	color: #d84c4c;
+	padding-bottom: 20px;
+}
+
+
+/********* Forms - Error Handling *********/
+
+.gform_confirmation_wrapper {
+		background: white;
+		margin-top: 50px;
+		margin-bottom: 50px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 75px;
+		position: relative;
+		width: 74%;
+		z-index: 999;
+		max-width: 1300px;
+}
+
+
+
+
+
+
+
+
+
+
+
