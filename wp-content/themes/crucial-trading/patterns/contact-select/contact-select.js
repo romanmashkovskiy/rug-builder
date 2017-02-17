@@ -27,7 +27,7 @@ $(document).ready(function() {
 			if ( window.location.hash ) {
 				window.scrollTo(0, 0);
 			}
-		}, 1)
+		}, 1) 
 
 		setTimeout(function() {
 			clearInterval(intvl);
