@@ -2,6 +2,8 @@ RugBuilder.prototype.error = function(code, message, display) {
 
 	const R = rugBuilder;
 
+	R.loadingScreens('full', 'close');
+
 	let req = new XMLHttpRequest();
 
 	let urlBase = window.location.href;
