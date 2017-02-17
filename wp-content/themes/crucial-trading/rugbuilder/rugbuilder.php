@@ -53,6 +53,25 @@ if ( array_key_exists( 'err', $_GET ) ) {
 	exit();
 }
 
+$args  = array(
+	'post_type' => 'product',
+	'name'      => 'bespoke-rug'
+);
+
+$query  = new WP_Query( $args );
+$rug_id = 0;
+
+if ( $query->have_posts() ) {
+
+	$rug_post = $query->posts[0];
+
+	if ( $rug_post->post_name == 'bespoke-rug' ) {
+		$rug_id = $rug_post->ID;
+	}
+}
+
+echo '';
+
 ?>
 
 <!doctype html>
@@ -64,6 +83,7 @@ if ( array_key_exists( 'err', $_GET ) ) {
 	<title>Crucial Trading RugBuilder</title>
 	<style>body{margin:0}</style>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/css/dist/style.min.css">
+	<script>var RUG_ID = "<?php echo $rug_id; ?>"</script>
 </head>
 <body>
 

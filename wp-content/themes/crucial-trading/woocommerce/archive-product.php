@@ -29,7 +29,7 @@ if ( $type == 'product_cat' ) {
 	if ( $parent == 0 ) {
 		echo do_shortcode( '[header-material material="' . $slug . '"]' );
 	} else {
-		echo do_shortcode( '[header-range range="' . $name . '"]' );
+		echo do_shortcode( '[header-range range="' . $name . '" slug="' . $slug . '"]' );
 	}
 
 	echo do_shortcode( '[logo-nav]' );
