@@ -23,6 +23,16 @@ $(document).ready(function() {
 
 		var value = $('.contact-select select').val();
 
+		var intvl = setInterval(function() {
+			if ( window.location.hash ) {
+				window.scrollTo(0, 0);
+			}
+		}, 1)
+
+		setTimeout(function() {
+			clearInterval(intvl);
+		}, 200)
+
 		window.location.hash = value;
 		showCorrectForm(value);
 
