@@ -226,6 +226,21 @@ function meta_boxes($meta_boxes) {
 			),
 		),
 	);
+
+	// Home Page Inspiration Text
+
+	$meta_boxes[] = array(
+		'title'      => 'Inspiration Text',
+		'post_types' => 'page',
+		'fields'     => array(
+			array(
+				'name' => 'Content',
+				'id'   => 'insp_text',
+				'type' => 'textarea',
+			),
+		),
+	);
+
 /*
 	// Home Page Call to Actions
 

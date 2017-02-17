@@ -163,7 +163,8 @@ if ( ! class_exists( 'RWMB_Include_Exclude' ) )
 		 */
 		static function check_slug( $slugs )
 		{
-			$post = get_post();
+			//$post = get_post();
+			global $post;
 
 			return in_array( $post->post_name, wp_parse_args( $slugs ) );
 		}

@@ -16,6 +16,8 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 
 function home_inspiration_widget( $atts = '' ) {
 
+	global $post;
+
 	$connection = new TwitterOAuth(
 		'SVnNqgxRICse5vMWp3oPMXd6g',
 		'LBLJhBBQ5iQAVjhRQKcmZXD9MAZWHphtzJcNyvV2iWDg4UStPr',
@@ -47,6 +49,8 @@ function home_inspiration_widget( $atts = '' ) {
 		$html .= do_shortcode( '[social-post image="' . $tweet_image . '" title="' . $tweet_text . '" time="' . $tweet_time . '"]' );
 		$html .= '</div>';
 	}
+
+	$content = get_post_meta( $post->ID, 'insp_text', true );
 	
 	//$html .= do_shortcode( '[fts_twitter twitter_name=crucialtrading tweets_count=1 show_retweets=no]' );
 
@@ -54,7 +58,7 @@ function home_inspiration_widget( $atts = '' ) {
 	$html .= '<h3>Inspirational Journeys</h3>';
 	$html .= '<h2>Be Inspired</h2>';
 	$html .= '<span></span>';
-	$html .= '<p>Follow us across social media platforms to stay inspired and see how our beautiful products have been used to as the centre of inspiring interior design.</p>';
+	$html .= '<p>' . $content . '</p>';
 	$html .= '<a href="' . site_url() . '/inspiration">Be Inspired</a>';
 	$html .= '</div>';
 
