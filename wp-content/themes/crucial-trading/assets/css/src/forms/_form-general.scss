@@ -129,7 +129,8 @@ a.checkout-button.button,
 }
 
 a.checkout-button.button:hover,
-#place_order:hover  {
+#place_order:hover,
+.page-template-account .woocommerce form.login input[type=submit]:hover   {
 	background: lighten(#383838, 15%) !important;	
 }
 
@@ -137,6 +138,7 @@ button:hover,
 input[type="submit"]:hover {
 	background: lighten(#383838, 15%);	
 }
+
 
 // Gravity Forms
 
