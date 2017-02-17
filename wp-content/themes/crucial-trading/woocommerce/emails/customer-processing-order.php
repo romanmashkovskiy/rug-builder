@@ -27,11 +27,11 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <div style="-webkit-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);-moz-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);padding: 25px;text-align:center;">
 
-	<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161209171012/order-processing.svg" alt="Order Received">
+	<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161209171012/order-processing.svg" alt="Request Received">
 
-	<h2 style="text-align:center;font-size:34px;">Order Received</h2>
+	<h2 style="text-align:center;font-size:34px;">Request Received</h2>
 
-<p style="padding-top:30px;"><?php _e( "Your order has been received and is now being processed.<br> Your order details are shown below for your reference:", 'woocommerce' ); ?></p>
+<p style="padding-top:30px;"><?php _e( "Your request has been received and is now being processed.<br> Your request details are shown below for your reference:", 'woocommerce' ); ?></p>
 
 <?php
 

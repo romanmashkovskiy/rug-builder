@@ -69,7 +69,7 @@ function range_swatches( $atts = '' ) {
 						$link_id = $products->posts[0]->ID;
 						$link    = get_the_permalink( $link_id );
 					} else {
-						$link     = "$site_url/material/$material/$title_enc/";
+						$link = "$site_url/material/$material/$title_enc/";
 					}
 
 				}

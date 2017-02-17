@@ -22,7 +22,9 @@ function material_swatches( $atts = '' ) {
 
 		$range_parent = $range_cat->parent;
 		$parent       = get_term_by( 'id', $range_parent, 'product_cat' );
-		$material     = $parent->slug;	
+		$material     = $parent->slug;
+
+		$_SESSION['range_referer'] = $range_cat->slug;
 
 		$args = array(
 			'post_type'   => 'product',

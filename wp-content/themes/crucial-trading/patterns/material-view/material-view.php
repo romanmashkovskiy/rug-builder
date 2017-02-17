@@ -26,13 +26,32 @@ function material_view( $atts = '' ) {
 	}
 
 	$product_terms = get_the_terms( $post_id, 'product_cat' );
-	$range_parent = 0;
 
-	foreach ( $product_terms as $key => $term ) {
-		if ( $term->parent != 0 ) {
-			$range_parent = $term->term_id;
-			break;
+	$range_parent = 0;
+	$referer      = false;
+
+	if ( array_key_exists( 'range_referer', $_SESSION ) ) {
+		$referer = $_SESSION['range_referer'];
+	}
+
+	if ( $referer ) {
+
+		foreach ( $product_terms as $key => $term ) {
+			if ( $term->slug == $referer ) {
+				$range_parent = $term->term_id;
+				break;
+			}
 		}
+
+	} else {
+
+		foreach ( $product_terms as $key => $term ) {
+			if ( $term->parent != 0 ) {
+				$range_parent = $term->term_id;
+				break;
+			}
+		}
+
 	}
 
 	$multiple_in_range = false;

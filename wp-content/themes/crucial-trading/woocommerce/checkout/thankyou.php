@@ -23,12 +23,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $order ) : ?>
 
 	<p class="woocommerce-thankyou-order-received">
-		<?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), $order ); ?>
+		<?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your request has been received.', 'woocommerce' ), $order ); ?>
 	</p>
 
 	<ul class="woocommerce-thankyou-order-details order_details">
 		<li class="order">
-			<?php _e( 'Order Number:', 'woocommerce' ); ?>
+			<?php _e( 'Request Number:', 'woocommerce' ); ?>
 			<strong><?php echo $order->get_order_number(); ?></strong>
 		</li>
 		<li class="date">
@@ -44,7 +44,7 @@ if ( $order ) : ?>
 <?php else : ?>
 
 	<p class="woocommerce-thankyou-order-received">
-		<?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), null ); ?>
+		<?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your request has been received.', 'woocommerce' ), null ); ?>
 	</p>
 
 <?php endif; ?>

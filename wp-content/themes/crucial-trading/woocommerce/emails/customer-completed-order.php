@@ -27,11 +27,11 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <div style="-webkit-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);-moz-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);padding: 25px;text-align:center;">
 
-	<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161209171003/export-complete.svg" alt="Order Complete">
+	<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161209171003/export-complete.svg" alt="Request Complete">
 
-	<h2 style="text-align:center;font-size:34px;">Order Complete</h2>
+	<h2 style="text-align:center;font-size:34px;">Request Complete</h2>
 
-<p style="padding-top:30px;"><?php printf( __( "Your recent order on %s has been completed. <br> Your order details are shown below for your reference:", 'woocommerce' ), get_option( 'blogname' ) ); ?></p>
+<p style="padding-top:30px;"><?php printf( __( "Your recent request on %s has been completed. <br> Your request details are shown below for your reference:", 'woocommerce' ), get_option( 'blogname' ) ); ?></p>
 
 <?php
 

@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 		<div class="order-line header">
-			<p>Order</p>
+			<p>Request</p>
 		</div>
 		<?php
 

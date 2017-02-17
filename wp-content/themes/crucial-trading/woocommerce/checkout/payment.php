@@ -18,6 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! is_ajax() ) {
 	do_action( 'woocommerce_review_order_before_payment' );
 }
+
+$order_button_text = 'Place Request';
+
 ?>
 
 

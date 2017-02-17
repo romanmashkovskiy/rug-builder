@@ -9,6 +9,8 @@
  * @package Crucial_Trading
  */
 
+session_start();
+
 $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'basket-full';
 
 ?>

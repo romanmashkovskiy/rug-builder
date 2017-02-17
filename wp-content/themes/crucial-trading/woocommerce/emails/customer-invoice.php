@@ -28,7 +28,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 <div style="-webkit-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);-moz-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);padding: 25px;text-align:center;">
 
 <?php if ( $order->has_status( 'pending' ) ) : ?>
-	<p><?php printf( __( 'An order has been created for you on %s. To pay for this order please use the following link: %s', 'woocommerce' ), get_bloginfo( 'name', 'display' ), '<a href="' . esc_url( $order->get_checkout_payment_url() ) . '">' . __( 'pay', 'woocommerce' ) . '</a>' ); ?></p>
+	<p><?php printf( __( 'An request has been created for you on %s. To pay for this request please use the following link: %s', 'woocommerce' ), get_bloginfo( 'name', 'display' ), '<a href="' . esc_url( $order->get_checkout_payment_url() ) . '">' . __( 'pay', 'woocommerce' ) . '</a>' ); ?></p>
 <?php endif; ?>
 
 <?php

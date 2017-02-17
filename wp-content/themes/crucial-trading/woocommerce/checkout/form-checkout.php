@@ -35,7 +35,7 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 		<?php do_action( 'woocommerce_checkout_shipping' ); ?>
 	</div>
 
-	<h2 id="order_review_heading"><?php _e( 'Your order', 'woocommerce' ); ?></h2>
+	<h2 id="order_review_heading"><?php _e( 'Your request', 'woocommerce' ); ?></h2>
 
 	<div id="order_review" class="woocommerce-checkout-review-order">
 		<?php do_action( 'woocommerce_checkout_order_review' ); ?>

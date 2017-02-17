@@ -27,7 +27,7 @@
 
  <div style="-webkit-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);-moz-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);padding: 25px;text-align:center;">
 
- <p><?php printf( __( 'You have received an order from %s. The order is as follows:', 'woocommerce' ), $order->get_formatted_billing_full_name() ); ?></p>
+ <p><?php printf( __( 'You have received an request from %s. The request is as follows:', 'woocommerce' ), $order->get_formatted_billing_full_name() ); ?></p>
 
  <?php
 

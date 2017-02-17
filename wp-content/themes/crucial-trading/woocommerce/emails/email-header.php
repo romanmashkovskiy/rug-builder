@@ -68,15 +68,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 															break;
 
 														case 'Your order is complete' :
-															$heading = 'Order Complete';
+															$heading = 'Request Complete';
 															break;
 
 														case 'Thank you for your order' :
-															$heading = 'Order Received';
+															$heading = 'Request Received';
 															break;
 
 														default :
-															$heading = $email_heading;
+															$lower = str_replace( 'order', 'request', $email_heading );
+															$upper = str_replace( 'Order', 'Request', $lower );
+															$heading = $upper;
 															break;
 													}
 

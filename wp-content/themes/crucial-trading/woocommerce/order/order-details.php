@@ -28,7 +28,7 @@ $show_customer_details = is_user_logged_in() && $order->get_user_id() === get_cu
 ?>
 
 <div class="wc-order-details-container box-shadow">
-	<h2><?php _e( 'Order Details', 'woocommerce' ); ?></h2>
+	<h2><?php _e( 'Request Details', 'woocommerce' ); ?></h2>
 	<table class="shop_table order_details">
 		<thead>
 			<tr>
