@@ -87,11 +87,15 @@ if ( is_array( $_GET ) ) {
 						}
 					}
 
+					mail('lewell94@gmail.com','one',serialize($uk_retailers));
+
 					function cmp( $a, $b ) {
 						return $a->distance - $b->distance;
 					}
 
 					usort( $uk_retailers, 'cmp' );
+
+					mail('lewell94@gmail.com','two',serialize($uk_retailers));
 				}
 			}
 		} else {
