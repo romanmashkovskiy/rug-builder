@@ -132,7 +132,9 @@ function swatches_data() {
 
 		$name  = $products[$s]->post_title;
 		$key   = str_replace( ' ', '', $name );
-		$code  = is_array( $product_meta ) && array_key_exists( 'code', $product_meta ) ? $product_meta['code']['value'] : '';
+
+		$product = new WC_Product( $product_id );
+		$code    = $product->get_sku();
 
 		$picture   = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0];
 		$thumb     = rwmb_meta( 'rb_texture', array(), $product_id );

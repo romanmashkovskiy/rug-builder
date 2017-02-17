@@ -131,7 +131,8 @@
 	&.open {
 
 		@media screen and (min-width: 768px) {
-			max-height: 363px;
+			min-height: 453px;
+			max-height: 453px;
 		}
 		
 		transition: 0.65s;
@@ -141,7 +142,8 @@
 	&.opening {
 
 		@media screen and (min-width: 768px) {
-			max-height: 363px;
+			min-height: 453px;
+			max-height: 453px;
 		}
 		
 		transition: 0.65s;
@@ -165,7 +167,7 @@
 	&.open {
 
 		@media screen and (min-width: 768px) {
-			max-height: 133px;
+			max-height: 158px; // 133 25
 		}
 		
 		transition: 0.65s;
@@ -175,7 +177,7 @@
 	&.opening {
 
 		@media screen and (min-width: 768px) {
-			max-height: 133px;
+			max-height: 158px;
 		}
 		
 		transition: 0.65s;
