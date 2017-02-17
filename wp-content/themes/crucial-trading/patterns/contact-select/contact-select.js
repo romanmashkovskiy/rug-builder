@@ -1,5 +1,11 @@
 var $ = jQuery;
 
+if ( window.location.hash ) {
+	setTimeout(function() {
+		window.scrollTo(0, 0);
+	}, 1);
+}
+
 $(document).ready(function() {
 
 	$('.contact-select select').change(function() {
@@ -15,11 +21,7 @@ $(document).ready(function() {
 
 	if ( hash !== '' ) {
 
-		console.log(hash)
-
 		var forms = ['general', 'press', 'trade'];
-
-		console.log(forms.indexOf(hash))
 
 		if ( forms.indexOf(hash) > -1 ) {
 
