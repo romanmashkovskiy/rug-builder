@@ -592,7 +592,7 @@ class RugBuilder {
 
 					}
 
-					BORDER_PRICE = basePrice * ((LENGTH * 2) + (WIDTH * 2));
+					BORDER_PRICE = basePrice * ((LENGTH * 2) + (WIDTH * 2)); 
 
 				}
 
