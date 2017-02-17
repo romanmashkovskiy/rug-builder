@@ -32,7 +32,7 @@ if ( is_array( $_GET ) ) {
 			if ( $response['status'] != 'OK' ) {
 				$error = 1;
 			} else {
-
+ 
 				$search_lat = $response['results'][0]['geometry']['location']['lat'];
 				$search_lng = $response['results'][0]['geometry']['location']['lng'];
 				$uk_center  = $search_lat . ' ' . $search_lng;
