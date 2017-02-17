@@ -29,34 +29,42 @@ body textarea,
 
 input::-webkit-input-placeholder {
 	font-family: $font-copy; 
+	font-weight: normal;
 }
 
 input::-moz-placeholder {
 	font-family: $font-copy;
+	font-weight: normal;
 }
 
 input:-ms-input-placeholder {
 	font-family: $font-copy;
+	font-weight: normal;
 }
 
 input:-moz-placeholder {
 	font-family: $font-copy;
+	font-weight: normal;
 }
 
 textarea::-webkit-input-placeholder {
 	font-family: $font-copy;
+	font-weight: normal;
 }
 
 textarea::-moz-placeholder {
 	font-family: $font-copy;
+	font-weight: normal;
 }
 
 textarea:-ms-input-placeholder {
 	font-family: $font-copy;
+	font-weight: normal;
 }
 
 textarea:-moz-placeholder {
 	font-family: $font-copy;
+	font-weight: normal;
 }
 
 select {
