@@ -283,7 +283,7 @@ class RugBuilder {
 
 	// Zoom in on the rug
 
-	zoomIn(currentView) {
+	zoomIn() {
 
 		const CURRENT_ZOOM = this.camera.zoom;
 		const NEW_ZOOM     = CURRENT_ZOOM + 0.333333;
@@ -300,7 +300,7 @@ class RugBuilder {
 
 	// Zoom out from the rug
 
-	zoomOut(currentView) {
+	zoomOut() {
 
 		const CURRENT_ZOOM = this.camera.zoom;
 		const NEW_ZOOM     = CURRENT_ZOOM - 0.333333;
@@ -596,7 +596,8 @@ class RugBuilder {
 
 				}
 
-				const TOTAL_PRICE = CENTER_PRICE + BORDER_PRICE;
+				const SUBTOTAL    = parseFloat(CENTER_PRICE + BORDER_PRICE);
+				const TOTAL_PRICE = SUBTOTAL.toFixed(2);
 
 				// Publish the newPrice event so the price can be updated
 				PubSub.publish('newPrice', [TOTAL_PRICE, LENGTH, WIDTH]);

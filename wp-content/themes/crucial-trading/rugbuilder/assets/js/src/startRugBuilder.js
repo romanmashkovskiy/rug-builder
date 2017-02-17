@@ -124,8 +124,17 @@ RugBuilder.prototype.start = function() {
 			document.querySelector('#background-div').style.background = 'none';
 			document.querySelector('#background-div').style.zIndex     = '-9';
 
-			if ( window.innerHeight <= 850 && window.innerWidth > 768 ) {
-				R.changeView(0);
+			R.changeView(0);
+
+			if ( window.innerHeight < 950 ) {
+
+				let difference = 950 - window.innerHeight;
+				let zoomLevel  = Math.ceil(difference / 100);
+
+				for ( let i = 0; i < zoomLevel; i++ ) {
+					R.zoomIn();
+				}
+
 			}
 
 			// Add the window resize event listener                                             Line 98
