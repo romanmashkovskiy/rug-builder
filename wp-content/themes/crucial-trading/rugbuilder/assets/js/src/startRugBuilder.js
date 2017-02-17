@@ -115,6 +115,7 @@ RugBuilder.prototype.start = function() {
 				// Render the Three.js scene
 				requestAnimationFrame( render );
 				R.renderer.render( R.scene, R.camera );
+
 			}
 
 			// Call the render function and close the loading screen
@@ -122,6 +123,10 @@ RugBuilder.prototype.start = function() {
 
 			document.querySelector('#background-div').style.background = 'none';
 			document.querySelector('#background-div').style.zIndex     = '-9';
+
+			if ( window.innerHeight <= 850 && window.innerWidth > 768 ) {
+				R.changeView(0);
+			}
 
 			// Add the window resize event listener                                             Line 98
 			window.addEventListener( 'resize', onWindowResize, false );
@@ -205,6 +210,8 @@ RugBuilder.prototype.start = function() {
 						});
 					});
 				}
+
+				render();
 			}
 		}
 	}
