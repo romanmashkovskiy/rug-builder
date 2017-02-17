@@ -1,3 +1,5 @@
+// Old Register
+
 .page-template-register{
 
 	#wppb-register-user {
@@ -47,6 +49,18 @@
 		text-align: center;
 	}
 
+	.gform_footer.top_label {
+		margin-top: 50px;
+		
+		@media all and (max-width: 769px) {
+			width: 50%;
+			display: inline-block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+	}
+	
 	.gform_wrapper {
 		background: #fff;
 		border: none;
