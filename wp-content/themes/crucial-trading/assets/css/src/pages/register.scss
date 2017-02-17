@@ -38,21 +38,28 @@
 
 }
 
+
+/********* Hosptitality Register **********/ 
+
+.page-template-hospitality-register header h3.side-title {
+	display: none;
+}
+
 .page-template-hospitality-register {
 
 	a.login-hosp {
-		margin: 0 13%;
-		position: relative;
-		top: 25px;
+		margin-top: 50px;
 		display: block;
 		padding: 0;
 		text-align: center;
 	}
 
 	.gform_footer.top_label {
-		margin-top: 50px;
+		margin-top: 40px;
+		text-align: center;
+		width: 100% !important;
 		
-		@media all and (max-width: 769px) {
+		@media all and (min-width: 769px) {
 			width: 50%;
 			display: inline-block;
 			margin-left: auto;
@@ -66,7 +73,7 @@
 		border: none;
 		border-radius: 0;
 		box-shadow: 0 5px 18px 0 rgba(0,0,0,.08);
-		margin: 75px auto 50px;
+		margin: 50px auto 50px;
 		max-width: 900px;
 		padding: 50px 50px 32px;
 		position: relative;
@@ -78,10 +85,6 @@
 
 		input {
 			margin-bottom: 18px;
-
-			&[type="submit"] {
-				width: 100%;
-			}
 		}
 	}
 }
