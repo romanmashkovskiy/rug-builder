@@ -29,7 +29,7 @@ echo do_shortcode( '[logo-nav]' );
 
 ?>
 
-<a href="<?php echo site_url(); ?>/my-account" class="login-hosp">Already registered? Login.</a>
+<a href="<?php echo site_url(); ?>/my-account" class="login-hosp">Already registered for our Hospitality Builder? <br />Click here to Login.</a>
 
 <?php
 
