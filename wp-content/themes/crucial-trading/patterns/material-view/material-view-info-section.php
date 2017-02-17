@@ -37,7 +37,7 @@ if ( $under_2 ) {
 	$html .= '<div class="info__section">';
 	$html .= '<p>' . $under_2 . '</p>';
 	$html .= '</div>';
-}
+} 
 
 if ( $under_3 ) {
 	$html .= '<div class="info__section">';
