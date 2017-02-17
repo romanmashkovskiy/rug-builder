@@ -32,9 +32,13 @@ canvas {
 
 .scroll-btns {
 	bottom: 60%;
-	left: 25%;
+	left: 0;
 	position: absolute;
 	right: 0%;
+}
+
+.drawer__content.open.swatchesSelected .scroll-btns {
+	bottom: 66%;
 }
 
 .scroll__left,
@@ -59,11 +63,11 @@ canvas {
 .drawer__content.open.collections {
 
 	.drawer__content__material.open ~ .scroll-btns .scroll__left {
-		left: -36px;
+		left: calc(23% - 20px);
 	}
 
 	.drawer__content__material.open ~ .scroll-btns .scroll__right {
-		right: 78px;
+		left: calc(98% - 80px);
 	}
 }
 
@@ -71,11 +75,11 @@ canvas {
 .drawer__content.open.swatchesSelected {
 
 	.drawer__content__material.open ~ .scroll-btns .scroll__left {
-		left: -36px;
+		left: calc(23% - 20px);
 	}
 
 	.drawer__content__material.open ~ .scroll-btns .scroll__right {
-		right: 28px;
+		left: calc(98% - 30px);
 	}
 }
 
