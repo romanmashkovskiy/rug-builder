@@ -79,7 +79,7 @@ if ( is_array( $_GET ) ) {
 
 						if ( $distance < 10 ) {
 
-							$retailers[$i2]->distance = $distance;
+							$retailers[$i2]->distance = round( $distance );
 
 							$pin_coords .= $retailers[$i2]->lat . ' ' . $retailers[$i2]->lng . ',';
 
@@ -87,15 +87,11 @@ if ( is_array( $_GET ) ) {
 						}
 					}
 
-					mail('lewell94@gmail.com','one',serialize($uk_retailers));
-
 					function cmp( $a, $b ) {
 						return $a->distance - $b->distance;
 					}
 
 					usort( $uk_retailers, 'cmp' );
-
-					mail('lewell94@gmail.com','two',serialize($uk_retailers));
 				}
 			}
 		} else {
