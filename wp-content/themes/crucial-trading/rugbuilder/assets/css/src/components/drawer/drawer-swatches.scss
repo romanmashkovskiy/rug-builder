@@ -42,7 +42,7 @@
 
 	li {
 		float: left;
-		height: 130px;
+		height: 100px;
 		overflow: hidden;
 		list-style: none;
 
@@ -102,13 +102,13 @@
 
 		&.right-of-window {
 			position: absolute;
-			top: -435px;
+			top: -345px;
 			transform: translateX(100vw);
 		}
 
 		&.moving-in-from-right {
 			position: relative;
-			top: -435px;
+			top: -345px;
 			transform: translateX(0);
 			transition: 0.65s;
 			-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
@@ -117,7 +117,7 @@
 
 		&.moving-out-to-right {
 			position: relative;
-			top: -435px;
+			top: -345px;
 			transform: translateX(100vw);
 			transition: 0.65s;
 			-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
@@ -224,15 +224,15 @@
 	ul li {
 
 		&.right-of-window {
-			top: -145px;
+			top: -115px;
 		}
 
 		&.moving-in-from-right {
-			top: -145px;
+			top: -115px;
 		}
 
 		&.moving-out-to-right {
-			top: -145px;
+			top: -115px;
 		}
 	}
 }
