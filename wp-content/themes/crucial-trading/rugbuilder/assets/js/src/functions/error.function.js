@@ -47,4 +47,4 @@ RugBuilder.prototype.error = function(code, message, display) {
 	} else {
 		ERROR_BOX.style.display = 'none';
 	}
-} 
+}

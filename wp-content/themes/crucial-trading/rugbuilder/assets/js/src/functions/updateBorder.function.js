@@ -165,6 +165,10 @@ function _updateScene(R, type) {
 		PubSub.publish('borderUpdate', type);
 
 		R.loadingScreens('full', 'close');
+
+		if ( R.currentStage === 1 ) {
+			document.querySelector('.progress-menu__stage.active').nextSibling.children[0].click();
+		}
 		
 		res();
 	})
