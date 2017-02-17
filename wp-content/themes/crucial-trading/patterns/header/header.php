@@ -209,12 +209,15 @@ function header_range_shortcode($atts = '') {
 		$categories = exclude_rug_borders( $categories );
 		$categories = sort_materials_menu_order( $categories );
 
-		$range = $atts['range'];
+		$range   = $atts['range'];
+		$s_range = array_key_exists( 'slug', $atts ) ? $atts['slug'] : $atts['range'];
 		
 		$range_cat = get_term_by( 'slug', $range, 'product_cat' );
 		$range_id  = $range_cat->term_id;
 		$range_parent = $range_cat->parent;
 		
+		$s_range_cat = get_term_by( 'slug', $s_range, 'product_cat' );
+		$slug_parent = $s_range_cat->parent;
 		
 		$request_uri  = $_SERVER['REQUEST_URI'];
 		$swatches_pos = strpos( $request_uri, 'material/' );
@@ -231,7 +234,7 @@ function header_range_shortcode($atts = '') {
 		$html .= '<div class="material__name">';
 		$html .= '<h3 class="side-title rotate">' . $range . '</h3>';
 		//$html .= '<h3 class="subtitle">' . $material_desc . '</h3>';
-		$html .= '<h3 class="subtitle">' . get_cat_name($range_parent) . '</h3>';
+		$html .= '<h3 class="subtitle">' . get_cat_name($slug_parent) . '</h3>';
 		$html .= '<h1>' . $range . '</h1>';
 		$html .= '</div>';
 
