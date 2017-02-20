@@ -59,7 +59,7 @@ function header_shortcode($atts = '') {
 	endif;
 
 	if ( is_array( $atts ) && array_key_exists( 'search', $atts ) ) {
-		$title = $atts['search'];
+		$title = 'Search: '.$atts['search'].'';
 	}
 		
 	// Show archive title if is set to archive in $atts
