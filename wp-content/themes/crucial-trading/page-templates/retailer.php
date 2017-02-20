@@ -21,9 +21,13 @@ if ( is_array( $_GET ) ) {
 
 	if ( array_key_exists( 'postcode', $_GET ) ) {
 
-		$postcode = $_GET['postcode'];
-		$enccode  = urlencode( $postcode );
-		$url      = "http://maps.google.com/maps/api/geocode/json?address={$enccode}";
+		$postcode        = $_GET['postcode'];
+		$postcode_tags   = strip_tags( $postcode );
+		$postcode_trim   = trim( $postcode_tags );
+		$postcode_filter = filter_var( $postcode_trim, FILTER_SANITIZE_STRING );
+
+		$encoded  = urlencode( $postcode_filter );
+		$url      = "http://maps.google.com/maps/api/geocode/json?address={$encoded}";
 		$json     = file_get_contents( $url );
 		$response = json_decode( $json, true );
 

@@ -59,7 +59,7 @@ function retailer_search_box( $atts = '' ) {
 	$html .= '<h2>Filter Retailers</h2>';
 	$html .= '<span></span>';
 
-	$html .= '<input type="text" placeholder="Post Code" value="' . $loc . '">';
+	$html .= '<input type="text" placeholder="Post Code" value="' . $loc . '" maxlength="12">';
 
 	$html .= '<select>';
 	$html .= '<option selected disabled">Select a Country</option>';
