@@ -30,6 +30,21 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 
 
 
+#301 Redirects
+
+RewriteRule ^wp-content/uploads/(.*)$ https://d105txpzekqrfa.cloudfront.net/uploads/$1 [R=301,L]
+RewriteRule /FloorcoveringDetails.aspx /materials [R=301,NC,L]
+RewriteRule /ProductGallery.aspx /materials [R=301,NC,L]
+RewriteRule /CreateARug.aspx /start-rugbuilder/ [R=301,NC,L]
+
+RewriteRule ^catalog/(.*)$ /materials [R=301,NC,L]
+
+RewriteRule /trade-enquiries /contact-us/#trade [R=301,NC,L]
+
+RewriteRule /find-retailer/overseas-partners /find-retailer [R=301,NC,L]
+
+
+
 # BEGIN iThemes Security - Do not modify or remove this line
 # iThemes Security Config Details: 2
 	# Enable HackRepair.com's blacklist feature - Security > Settings > Banned Users > Default Blacklist
@@ -319,7 +334,7 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 	</IfModule>
 # END iThemes Security - Do not modify or remove this line
 
-#RewriteRule ^wp-content/uploads/(.*)$ https://d105txpzekqrfa.cloudfront.net/uploads/$1 [R=301,L]
+
 
 # Security scan report fixes
 
