@@ -35,6 +35,11 @@
 			float: none;
 		}
 
+		@media screen and (max-width: 768px) {
+			padding-right: 0;
+			width: 100%;
+		}
+
 		img {
 			height: auto;
 			width: 100%;
@@ -47,6 +52,10 @@
 		@media screen and (max-width: 992px) {
 			float: none;
 			width: 100%;
+		}
+
+		@media screen and (max-width: 992px) {
+			padding-left: 0;
 		}
 	}
 
@@ -67,6 +76,11 @@
 		p:first-child {
 			float: left;
 			width: 70%;
+
+			@media screen and (max-width: 768px) {
+				padding-left: 2%;
+				width: 68%;
+			}
 		}
 
 		h3:last-child,
@@ -81,6 +95,18 @@
 
 		a {
 			position: absolute;
+
+			@media screen and (max-width: 768px) {
+				position: static;
+				display: block;
+				width: 100%;
+				transform: none;
+				text-align: center;
+
+				&.link__basket {
+					padding: 20px 0;
+				}
+			}
 		}
 	}
 

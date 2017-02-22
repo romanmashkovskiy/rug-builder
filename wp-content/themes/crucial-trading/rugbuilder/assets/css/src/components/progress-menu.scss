@@ -12,6 +12,11 @@
 	padding: 15px;
 	position: relative;
 
+	img.logo {
+		height: 49px;
+		width: 174px;
+	}
+
 	.progress-menu__restart,
 	.progress-menu__exit {
 		color: transparentize($main-menu-link-color, 0.25);

@@ -38,6 +38,25 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 			}
 		},
 
+		displayIsRetina: function() {
+
+			if ( window.devicePixelRatio > 1 ) {
+				return true;
+			}
+
+			var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\
+				(min--moz-device-pixel-ratio: 1.5),\
+				(-o-min-device-pixel-ratio: 3/2),\
+				(min-resolution: 1.5dppx)";
+			
+			if ( window.matchMedia && window.matchMedia(mediaQuery).matches ) {
+				return true;
+			}
+
+			return false;
+
+		},
+
 		render: function() {
 
 			const STAGES      = this.state.stages;
@@ -45,12 +64,18 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 				return React.createElement(BtnStageComponent, { stage: stage, key: index, index: index });
 			});
 
-			const LOGO = templateDirectoryUri + '/rugbuilder/assets/img/logo.png';
+			let logo;
+
+			if ( this.displayIsRetina() ) {
+				logo = templateDirectoryUri + '/rugbuilder/assets/img/logo@2x.png';
+			} else {
+				logo = templateDirectoryUri + '/rugbuilder/assets/img/logo.png';
+			}
 
 			return (
 				<div className="progress-menu__container">
 					<div className="progress-menu__top">
-						<img src={ LOGO } alt="Crucial Trading Rug Builder" />
+						<img src={ logo } alt="Crucial Trading Rug Builder" className="logo" />
 						<BtnRestartComponent />
 						<BtnExitComponent />
 					</div>
