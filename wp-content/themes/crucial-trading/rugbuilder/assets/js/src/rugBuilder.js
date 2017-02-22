@@ -305,7 +305,7 @@ class RugBuilder {
 		const CURRENT_ZOOM = this.camera.zoom;
 		const NEW_ZOOM     = CURRENT_ZOOM - 0.333333;
 
-		if ( NEW_ZOOM < 0.66 ) {
+		if ( NEW_ZOOM < 1 ) {
 			return;
 		}
 

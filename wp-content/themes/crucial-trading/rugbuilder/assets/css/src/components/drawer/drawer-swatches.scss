@@ -31,6 +31,20 @@
 	}
 }
 
+.drawer__content__swatches {
+
+	@media screen and (max-width: 768px) {
+		max-height: none;
+	}
+}
+
+.drawer__content__swatches--selected {
+
+	@media screen and (max-width: 768px) {
+		max-height: 104px;
+	}
+}
+
 .drawer__swatches__swatches,
 .drawer__swatches--selected__swatches {
 
@@ -74,6 +88,10 @@
 
 		&.hidden {
 			display: none;
+
+			@media screen and (max-width: 768px) {
+				display: block;
+			}
 		}
 
 		&.in-window {
@@ -83,6 +101,11 @@
 		&.left-of-window {
 			position: absolute;
 			transform: translateX(-100vw);
+
+			@media screen and (max-width: 768px) {
+				position: static;
+				transform: translateX(0);
+			}
 		}
 
 		&.moving-out-to-left {
@@ -90,6 +113,10 @@
 			transition: 0.65s;
 			-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 			transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+
+			@media screen and (max-width: 768px) {
+				transform: translateX(0);
+			}
 		}
 
 		&.moving-in-from-left {
@@ -98,12 +125,22 @@
 			transition: 0.65s;
 			-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 			transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+
+			@media screen and (max-width: 768px) {
+				position: static;
+				transform: translateX(0);
+			}
 		}
 
 		&.right-of-window {
 			position: absolute;
 			top: -420px;
 			transform: translateX(100vw);
+
+			@media screen and (max-width: 768px) {
+				position: static;
+				transform: translateX(0);
+			}
 		}
 
 		&.moving-in-from-right {
@@ -113,6 +150,11 @@
 			transition: 0.65s;
 			-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 			transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+
+			@media screen and (max-width: 768px) {
+				position: static;
+				transform: translateX(0);
+			}
 		}
 
 		&.moving-out-to-right {
@@ -122,6 +164,11 @@
 			transition: 0.65s;
 			-webkit-transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
 			transition-timing-function: cubic-bezier(0.55, 0, 0.5, 1);
+
+			@media screen and (max-width: 768px) {
+				position: static;
+				transform: translateX(0);
+			}
 		}
 	}
 
@@ -209,8 +256,7 @@
 	@media screen and (max-width: 768px) {
 
 		ul {
-			margin-top: 35px;
-			padding-left: 50px;
+			padding: 0 20px;
 		}
 
 		li {

@@ -47,7 +47,7 @@
 	}
 
 	@media screen and (max-width: 768px) {
-		overflow-x: scroll;
+		padding: 0 0 20px 0;
 	}
 
 	.progress-menu__stages {
@@ -56,8 +56,8 @@
 		padding: 0;
 
 		@media screen and (max-width: 768px) {
-			display: block;
-			width: 200%;
+			overflow-x: scroll;
+			padding-bottom: 10px;
 		}
 	}
 
@@ -68,9 +68,38 @@
 		flex-grow: 1;
 
 		@media screen and (max-width: 768px) {
-			display: inline-block;
-			text-align: center;
-			width: 23%;
+			flex: 0 0 150px;
+			padding: 0 20px;
+		}
+
+		&::before,
+		&::after {
+			background: transparent;
+			bottom: -5px;
+			content: '';
+			height: 2px;
+			left: 0;
+			position: absolute;
+			-webkit-transition: all 0.3s ease-in-out 0s;
+			transition: all 0.3s ease-in-out 0s;
+			width: 100%;
+			z-index: 5;
+		}
+
+		&::before {
+			opacity: 0.45;
+		}
+
+		&::after {
+			-webkit-transform: scaleX(0);
+			transform: scaleX(0);
+			visibility: hidden;
+		}
+
+		&:hover::after {
+			visibility: visible;
+			-webkit-transform: scaleX(1);
+			transform: scaleX(1);
 		}
 
 		&.active {

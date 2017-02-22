@@ -23,7 +23,7 @@
 
 		@media screen and (max-width: 768px) {
 			display: inline-block;
-			width: 133px;
+			width: 33%;
 		}
 	}
 
@@ -44,6 +44,7 @@
 			width: 100%;
 
 			@media screen and (max-width: 768px) {
+				padding-bottom: 5px;
 				width: 40%;
 			}
 		}
@@ -54,7 +55,9 @@
 			width: calc(100% + 60px);
 
 			@media screen and (max-width: 768px) {
-				display: block
+				display: block;
+				margin-left: 0;
+				width: 100%;
 			}
 		}
 

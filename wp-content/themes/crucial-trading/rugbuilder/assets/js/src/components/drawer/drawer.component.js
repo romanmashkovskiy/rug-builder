@@ -522,6 +522,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 		render: function() {
 
+			// collections html and stuff
+
 			const _this = this;
 
 //			setInterval(function(){console.log(_this.state.pageInView)},1000)
@@ -534,7 +536,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			const SWATCHES_HTML    = function(caller) { return _this.createSwatchesHTML(caller); }
 			const BORDER_HTML      = _this.createBorderHTML();
 			const SIZE_HTML        = _this.createSizeHTML();
-			const PRICE_HTML       = _this.createPriceHTML();		
+			const PRICE_HTML       = _this.createPriceHTML();
+
+			window.abc = COLLECTIONS_HTML
 
 			const OPEN             = _this.state.open ? 'open' : 'closed';
 			const MATERIAL_CLASSES = 'drawer__content__material open stage' + this.state.stage;
@@ -550,9 +554,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			let btnsHTML = '', topCSS = '';
 
 			if ( this.state.content === 'collections' || this.state.content === 'swatches' || this.state.content === 'swatchesSelected' ) {
-
-				// arrows not working because R.numOfPages is incorrect. no idea why. it is set when the user selects a swatch and should 
-				// not (and is not) changed afterwards (until the user moves to a different stage and the entire scrolling is reset)
 
 				let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
 				let rightStyle = this.state.pageInView === R.numOfPages ? { color: '#A8A8A8' } : {};
@@ -582,13 +583,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				if ( typeof collection !== 'undefined' ) {
 
-					let elemsPerPage = 0;
+					let elemsPerPage = 12;
+					let numOfPages;
 
 					if ( window.innerWidth > 768 ) {
-						elemsPerPage = 12;
+						numOfPages = Math.ceil( collection.length / elemsPerPage );
+					} else {
+						numOfPages = 1;
 					}
-
-					numOfPages = Math.ceil( collection.length / elemsPerPage );
 				}
 
 			} else if ( this.state.content === 'swatches' ) {
@@ -619,7 +621,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			}
 
-			let currentPage = this.state.pageInView
+			let currentPage = this.state.pageInView;
 
 			for ( let i = 0; i < numOfPages; i++ ) {
 
@@ -634,6 +636,18 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 
 			let dotsHTML = <div className="dots clearfix">{ dots }</div>;
+
+			if ( window.innerWidth < 768 ) {
+				
+				if ( this.state.content === 'swatchesSelected' ) {
+
+					document.querySelector('#view-controls').classList.add('show');
+
+				} else {
+					document.querySelector('#view-controls').classList.remove('show');
+				}
+
+			}
 
 			return (
 				<div className="react-container drawer__container">
@@ -770,15 +784,20 @@ function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 	const COLLECTIONS = _this.state._collections;
 	const COLLECTION  = COLLECTIONS[ _this.state.chosenMaterial ];
 
-	let elemsPerPage = 0;
-
-	if ( window.innerWidth > 768 ) {
-		elemsPerPage = 12;
-	}
+	let elemsPerPage = 12;
 
 	if ( typeof COLLECTION !== 'undefined' ) {
-		let numOfPages = Math.ceil( COLLECTION.length / elemsPerPage );
-		R.numOfPages = numOfPages;
+
+		let numOfPages;
+
+		if ( window.innerWidth > 768 ) {
+			numOfPages = Math.ceil( COLLECTION.length / elemsPerPage );
+			R.numOfPages = numOfPages;
+		} else {
+			numOfPages = 1;
+			R.numOfPages = numOfPages;
+		}
+
 	} else {
 		return <span></span>;
 	}
@@ -792,7 +811,13 @@ function _createCollectionsHTML(_this, BtnCollectionComponent, R) {
 		return COLLECTION.map((collection, index) => {
 
 			let indexPlusOne = index + 1;
-			let page         = Math.ceil( indexPlusOne / elemsPerPage );
+			let page;
+
+			if ( window.innerWidth > 768 ) {
+				page = Math.ceil( indexPlusOne / elemsPerPage );
+			} else {
+				page = 1;
+			}
 
 			return <BtnCollectionComponent key={ index } title={ collection.name } collection={ collection.slug } image={ collection.thumbnail } updateContent={ _this.updateContentState } onUpdate={ _this.updateCollectionChoice } page={ page } pageInView={ _this.state.pageInView } />
 		});

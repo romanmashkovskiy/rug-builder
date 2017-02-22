@@ -125,6 +125,7 @@ RugBuilder.prototype.start = function() {
 			document.querySelector('#background-div').style.zIndex     = '-9';
 
 			R.changeView(0);
+			R.zoomIn();
 
 			if ( window.innerHeight < 950 ) {
 

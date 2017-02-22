@@ -35,6 +35,10 @@ canvas {
 	left: 0;
 	position: absolute;
 	right: 0%;
+
+	@media screen and (max-width: 768px) {
+		display: none;
+	}
 }
 
 .drawer__content.open.swatchesSelected .scroll-btns {
@@ -87,6 +91,10 @@ canvas {
 	position: absolute;
 	bottom: 15px;
 	right: 15px;
+
+	@media screen and (max-width: 768px) {
+		display: none;
+	}
 
 	.dot {
 		width: 10px;
