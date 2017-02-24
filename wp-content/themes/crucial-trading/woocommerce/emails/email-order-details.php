@@ -48,10 +48,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php
 
 					echo $value['name'];
-
+					
 					$br = 0;
 
-					if ( $value['name'] == 'Bespoke Rug' ) {
+					if ( strpos( $value['name'], 'Bespoke Rug' ) !== false ) {
 
 						echo '<br>';
 						
