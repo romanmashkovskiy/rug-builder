@@ -11,7 +11,7 @@ if ( $fibre ) {
 
 if ( $price ) {
 	$html .= '<div class="info__section">';
-	$html .= '<p>£' . $price . ' sq/m</p>';
+	$html .= '<p>£' . $price . ' m2</p>';
 	$html .= '</div>';
 }
 
