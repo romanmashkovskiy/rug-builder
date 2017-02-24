@@ -62,8 +62,14 @@ function crucial_footer() {
 		$html .= '</ul></div></div>';
 		$html .= '
 		<div class="footer__info">
-			<span class="footer__info--copyright">&copy; '.date("Y").' Crucial Trading Ltd </span>
-			<span class="footer__info--design-agency"><a href="http://kijo.co" title="Designed by KIJO in Birmingham">design by KIJO</a></span>
+			<div class="footer__info__contact-details">
+				<span class="footer__info--phone">01562 743 747</span>
+				<span class="footer__info--address">Gorsey Lane, Coleshill, Birmingham, B46 1JU</span>
+				<span class="footer__info--copyright">&copy; '.date("Y").' Crucial Trading Ltd </span>
+			</div>
+			<div class="footer__info__design">
+				<span class="footer__info--design-agency"><a href="http://kijo.co" title="Designed by KIJO in Birmingham">design by KIJO</a></span>
+			</div>
 		</div>';
 		$html .= '</footer>';
 
