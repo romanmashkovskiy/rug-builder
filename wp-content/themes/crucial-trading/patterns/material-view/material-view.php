@@ -27,32 +27,10 @@ function material_view( $atts = '' ) {
 
 	$product_terms = get_the_terms( $post_id, 'product_cat' );
 
-	$range_parent = 0;
-	$referer      = false;
-
-	if ( array_key_exists( 'range_referer', $_SESSION ) ) {
-		$referer = $_SESSION['range_referer'];
-	}
-
-	if ( $referer ) {
-
-		foreach ( $product_terms as $key => $term ) {
-			if ( $term->slug == $referer ) {
-				$range_parent = $term->term_id;
-				break;
-			}
-		}
-
-	} else {
-
-		foreach ( $product_terms as $key => $term ) {
-			if ( $term->parent != 0 ) {
-				$range_parent = $term->term_id;
-				break;
-			}
-		}
-
-	}
+	// Set variable for back to link 
+	$parent_cat = get_term_by( 'slug', $material, 'product_cat' );
+	$parent_cat_id  = $parent_cat->term_id;
+	
 
 	$multiple_in_range = false;
 
@@ -105,14 +83,11 @@ function material_view( $atts = '' ) {
 	$src_arr   = is_object( $product ) ? array_values( $product->get_gallery_attachment_ids() ) : array();
 	$src_angle = count( $src_arr ) > 0 ? wp_get_attachment_url( $src_arr[0] ) : '';
 
-	$range_link = get_category_link( $range_parent );
-	$range_name = get_cat_name( $range_parent );
-
 	$html .= '<div class="material-view ' . $material . ' box-shadow">';
 	$html .= '<div class="material__header">';
 
 		$html .= '<div class="header__back">';
-		$html .= '<a href="' . $range_link . '"><i class="icon-crucial-left-arrow"></i>&nbsp;&nbsp;Back to ' . $range_name . '</a>';
+		$html .= '<a href="'.get_category_link($parent_cat_id).'"><i class="icon-crucial-left-arrow"></i>&nbsp;&nbsp;Back to '.$material.'</a>';
 		$html .= '</div>';
 
 		$html .= '<div class="header__titles">';

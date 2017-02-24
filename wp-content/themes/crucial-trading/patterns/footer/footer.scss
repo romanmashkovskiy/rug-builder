@@ -188,11 +188,22 @@ footer {
 
 .footer__info__contact-details {
 	width:80%;
+	
+	@media all and (max-width: 767px) {
+		width: 100%;
+	}
+	
 }
 
 .footer__info__design {
 	width:19%;
 	text-align: right;
+	
+	@media all and (max-width: 767px) {
+		width: 100%;
+		text-align: left;
+	}
+	
 }
 
 .footer__info--copyright,
@@ -212,7 +223,6 @@ footer {
 	
 }
 
-
 .footer__info--design-agency {
 	
 	margin-left: 0px;
@@ -221,6 +231,7 @@ footer {
 	
 	@media all and (max-width: 767px) {
 		display: block;
+		width: 100%;
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
