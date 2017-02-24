@@ -112,7 +112,7 @@ function material_view( $atts = '' ) {
 	$html .= '<div class="material__header">';
 
 		$html .= '<div class="header__back">';
-		$html .= '<a href="' . $range_link . '"><i class="icon-crucial-left-arrow"></i>&nbsp;&nbsp;Back to ' . $range_name . '</a>';
+		$html .= '<a href="'.get_category_link($range_parent).'"><i class="icon-crucial-left-arrow"></i>&nbsp;&nbsp;Back to '.get_cat_name($range_parent).'</a>';
 		$html .= '</div>';
 
 		$html .= '<div class="header__titles">';
