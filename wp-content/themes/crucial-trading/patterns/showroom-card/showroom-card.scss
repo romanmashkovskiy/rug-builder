@@ -58,6 +58,12 @@
 		.card__address {
 //			float: left;
 			width: 60%;
+			
+		@media screen and (max-width: 768px) {
+			float: none;
+			width: 100%;
+		}
+			
 		}
 	}	
 
@@ -76,8 +82,11 @@
 		left: 50px;
 		position: absolute;
 		
+		
 		@media screen and (max-width: 768px) {
 			padding-bottom: 0;
+			position: static;
+			padding-top: 20px;
 		}
 	}
 
@@ -91,5 +100,17 @@
 		br {
 			display: none;
 		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	
+	.card__email{
+		padding-top: 20px;
+	}
+	
+	.card__links a::before, 
+	.card__links a::after {
+		display: none;
 	}
 }
