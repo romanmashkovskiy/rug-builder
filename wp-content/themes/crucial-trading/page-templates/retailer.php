@@ -82,11 +82,7 @@ if ( is_array( $_GET ) ) {
 						$distance = distance_between_lat_lng( $search_lat, $search_lng, $retailers[$i2]->lat, $retailers[$i2]->lng );
 
 						if ( $distance < 10 ) {
-
 							$retailers[$i2]->distance = round( $distance );
-
-							$pin_coords .= $retailers[$i2]->lat . ' ' . $retailers[$i2]->lng . ',';
-
 							array_push( $uk_retailers, $retailers[$i2] );
 						}
 					} 
@@ -96,6 +92,10 @@ if ( is_array( $_GET ) ) {
 					}
 
 					usort( $uk_retailers, 'cmp' );
+
+					for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
+						$pin_coords .= $uk_retailers[$i3]->lat . ' ' . $uk_retailers[$i3]->lng . ',';
+					}
 				}
 			}
 		} else {
