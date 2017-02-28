@@ -153,7 +153,7 @@ footer {
 
 /************** Copyright & Design Credit **************/ 
 
-.footer__info, {
+.footer__info {
 	display: block;
 	width: 80%;
 	margin: auto;
@@ -167,18 +167,51 @@ footer {
 	
 }
 
-.footer__info--copyright,
-.footer__info--design-agency a {
+.footer__info,
+.footer__info a {
 	font-size: 14px;
 	text-transform: uppercase;
 	letter-spacing: 3px;
 	color: darken($main-menu-link-color, 25%);
 	font-family: $font-sub-header;
-	padding: 0;
-	
+		
 	@media all and (max-width: 767px) {
 		font-size: 13px;
 	}
+	
+}
+
+.footer__info__contact-details, 
+.footer__info__design {
+	display: inline-block;
+}
+
+.footer__info__contact-details {
+	width:80%;
+	
+	@media all and (max-width: 767px) {
+		width: 100%;
+	}
+	
+}
+
+.footer__info__design {
+	width:19%;
+	text-align: right;
+	
+	@media all and (max-width: 767px) {
+		width: 100%;
+		text-align: left;
+	}
+	
+}
+
+.footer__info--copyright,
+.footer__info--address,
+.footer__info--phone,
+.footer__info--design-agency a {
+	padding: 0;
+	display: block;
 }
 
 .footer__info--copyright {
@@ -190,11 +223,15 @@ footer {
 	
 }
 
-
 .footer__info--design-agency {
+	
+	margin-left: 0px;
+	padding-top: 2%;
+	width: 20%;
 	
 	@media all and (max-width: 767px) {
 		display: block;
+		width: 100%;
 		margin-top: 10px;
 		margin-bottom: 10px;
 	}
@@ -204,3 +241,5 @@ footer {
 .footer__info--design-agency a:hover {
 	color: #FFF;
 }
+
+
