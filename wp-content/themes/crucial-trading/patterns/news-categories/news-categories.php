@@ -18,7 +18,7 @@
 	$categories = wp_list_categories( array(
     'orderby' => 'name',
     'parent'  => 0,
-    'hide_empty' => 0,
+    'hide_empty' => true,
     'title_li' => '',
     'echo' => 0
 	) );

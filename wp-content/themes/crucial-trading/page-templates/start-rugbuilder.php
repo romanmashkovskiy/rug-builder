@@ -5,8 +5,8 @@
  *
  * The start rugbuilder page template
  *
- * @package Hogarths
- * @since Hogarths 1.0
+ * @package Crucial Trading
+ * @since Crucial 1.0
  */
 
 get_header();
