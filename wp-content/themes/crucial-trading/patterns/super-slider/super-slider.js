@@ -26,12 +26,16 @@ $(function(){
     
     var video = $('.wp-video-shortcode')[0];
     
-    video.addEventListener('playing', function(){
-		    $('#super-slider').superslides('stop');
-    })
-     video.addEventListener('pause', function(){
-				$('#super-slider').superslides('playing');
-    })
+    if ( video ) {
+    
+	    video.addEventListener('playing', function(){
+			    $('#super-slider').superslides('stop');
+	    })
+	     video.addEventListener('pause', function(){
+					$('#super-slider').superslides('playing');
+	    })
+    
+    }
     
 })
 
