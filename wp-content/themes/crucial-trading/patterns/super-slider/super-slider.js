@@ -15,10 +15,26 @@ function createSuperslider() {
 		animation: 'fade',
 		animation_speed: 1200
 	});
-
+	
 	clearInterval(superslidesInterval);
 
 }
+
+// Stop Slider when video is started 
+
+$(function(){
+    
+    var video = $('.wp-video-shortcode')[0];
+    
+    video.addEventListener('playing', function(){
+		    $('#super-slider').superslides('stop');
+    })
+     video.addEventListener('pause', function(){
+				$('#super-slider').superslides('playing');
+    })
+    
+})
+
 
 $(document).ready(function() {
 
@@ -40,3 +56,7 @@ $(document).ready(function() {
 		}, 1100); 
 	});
 });
+
+
+
+
