@@ -109,20 +109,25 @@
 		float: left;
 		text-align:center;
 		width: 25%;
-
+		
 		@media screen and (max-width: 768px) {
 			margin-bottom: 50px;
 			width: 50%;
 		}
 
 		a {
+			display: inline-block;
 			
 			@media screen and (max-width: 768px) {
 				font-size: 15px;
 			}
 			
 		}
-
+		
+		a:before {
+			display: none;
+		}
+		
 		a:before, a:after {
 			background: black;
 		}
