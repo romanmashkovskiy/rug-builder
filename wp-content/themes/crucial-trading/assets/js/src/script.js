@@ -174,11 +174,3 @@ $(document).ready(function() {
 		})
 	}
 });
-
-
-$('.slide__image__wrapper').on('mouseenter', function() {
-  $('#super-slider').superslides('stop');
-});
-$('.slide__image__wrapper').on('mouseleave', function() {
-  $('#super-slider').superslides('start');
-});
