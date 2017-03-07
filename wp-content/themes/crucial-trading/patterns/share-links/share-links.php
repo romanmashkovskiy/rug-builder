@@ -110,23 +110,19 @@ function share_links( $atts ) {
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';
-	$html .= '<i class="icon-crucial-twitter link__icon transition-all"></i>';
-	$html .= "<a href='https://twitter.com/intent/tweet?text=$twitter' target='_blank' class='link__text'>Twitter</a>";
+	$html .= "<a href='https://twitter.com/intent/tweet?text=$twitter' target='_blank' class='link__text'><i class='icon-crucial-twitter link__icon transition-all'></i> Twitter</a>";
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';
-	$html .= '<i class="icon-crucial-facebook link__icon transition-all"></i>';
-	$html .= "<a href='https://www.facebook.com/sharer/sharer.php?u=$facebook' title='Share on Facebook' class='link__text' target='_blank'>Facebook</a>";
+	$html .= "<a href='https://www.facebook.com/sharer/sharer.php?u=$facebook' title='Share on Facebook' class='link__text' target='_blank'><i class='icon-crucial-facebook link__icon transition-all'></i> Facebook</a>";
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';
-	$html .= '<i class="icon-crucial-tumblr link__icon transition-all"></i>';
-	$html .= "<a href='http://www.tumblr.com/share/link?url=$tumblr' target='_blank' class='link__text'>Tumblr</a>";
+	$html .= "<a href='http://www.tumblr.com/share/link?url=$tumblr' target='_blank' class='link__text'><i class='icon-crucial-tumblr link__icon transition-all'></i> Tumblr</a>";
 	$html .= '</div>';
 
 	$html .= '<div class="link__container ' . $material . '">';
-	$html .= '<i class="icon-crucial-mail link__icon transition-all"></i>';
-	$html .= "<a href='mailto:?subject=$subject&body=$body' class='link__text'>Email</a>";
+	$html .= "<a href='mailto:?subject=$subject&body=$body' class='link__text'><i class='icon-crucial-mail link__icon transition-all'></i> Email</a>";
 	$html .= '</div>';
 
 	$html .= '</div>';

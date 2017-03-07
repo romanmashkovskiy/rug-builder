@@ -4,8 +4,8 @@
  *
  * The rugbuilder page template
  *
- * @package Hogarths
- * @since Hogarths 1.0
+ * @package Crucial Trading
+ * @since Crucial 1.0
  */
 
 if ( !is_user_logged_in() ) {
@@ -35,7 +35,7 @@ if ( !$allowed ) {
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-	<title>Crucial Trading Hospitality RugBuilder</title>
+	<title>Crucial Trading - Hospitality Builder</title>
 </head>
 <body>
 

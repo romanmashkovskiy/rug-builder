@@ -52,7 +52,10 @@ function header_shortcode($atts = '') {
 	//endif;
 	
 	$html .= '<div class="header__text vertical-align">';
-	$html .= '<h3 class="side-title">' . $title . '</h3>';
+	
+	if (!is_archive()) :
+		$html .= '<h3 class="side-title">' . $title . '</h3>';
+	endif;
 	
 	if (!empty($subtitle)) : 
 		$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';

@@ -4,8 +4,8 @@
  *
  * The rugbuilder page template
  *
- * @package Hogarths
- * @since Hogarths 1.0
+ * @package Crucial
+ * @since Crucial 1.0
  */
 
 include_once('ajax-requests.php');
@@ -80,7 +80,7 @@ echo '';
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-	<title>Crucial Trading RugBuilder</title>
+	<title>Crucial Trading - Rug Builder</title>
 	<style>body{margin:0}</style>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/css/dist/style.min.css">
 	<script>var RUG_ID = "<?php echo $rug_id; ?>"</script>
