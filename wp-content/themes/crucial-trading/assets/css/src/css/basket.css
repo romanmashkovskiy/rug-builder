@@ -1,0 +1,158 @@
+/************************************************************************************************************************
+	Variables
+	
+	Styles any forms used across the website
+	
+	Crucial Trading - SCSS	
+	Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+/* Colors */
+/* Typography */
+/* Main Navigation & Footer */
+.page-template-basket .basket {
+  background: white;
+  margin-bottom: 100px;
+  margin-left: 7%;
+  margin-top: -50px;
+  max-width: 1300px;
+  padding: 75px !important;
+  position: relative;
+  width: 86%;
+  z-index: 999; }
+  @media screen and (max-width: 768px) {
+    .page-template-basket .basket {
+      padding: 25px !important; } }
+  @media screen and (min-width: 1511px) {
+    .page-template-basket .basket {
+      margin-left: auto;
+      margin-right: auto; } }
+
+.basket h2 + span {
+  background: #E6E6E6;
+  display: block;
+  height: 2px;
+  margin-top: 10px;
+  width: 75px; }
+.basket form {
+  margin-top: 30px; }
+.basket dl {
+  margin-top: 15px; }
+.basket dt {
+  color: rgba(37, 37, 37, 0.7);
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  float: left; }
+.basket dd {
+  display: block;
+  left: 7px;
+  margin: 0;
+  position: relative; }
+  .basket dd p {
+    color: rgba(37, 37, 37, 0.7);
+    font-size: 14px; }
+.basket .order-line {
+  border-bottom: 2px solid #E6E6E6;
+  margin-bottom: 20px; }
+  .basket .order-line.header {
+    border-bottom-color: #7C7C7C; }
+.basket .order__name {
+  float: left;
+  width: 80%; }
+  .basket .order__name a {
+    color: #000000;
+    font-family: "Open Sans", sans-serif;
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    text-transform: none; }
+.basket .order__remove {
+  float: left;
+  width: 20%; }
+  .basket .order__remove a {
+    border-radius: 0 !important;
+    color: black !important;
+    font-weight: normal !important;
+    padding: 0;
+    text-align: right;
+    width: 100%; }
+    .basket .order__remove a:hover {
+      color: black !important;
+      background: none; }
+    .basket .order__remove a:before {
+      content: 'REMOVE';
+      color: #000000;
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      left: -12px;
+      letter-spacing: 3px;
+      opacity: 1;
+      position: relative;
+      text-transform: none;
+      top: -3px; }
+      @media screen and (max-width: 768px) {
+        .basket .order__remove a:before {
+          display: none; } }
+.basket .cart_totals h2, .basket .cart_totals table {
+  display: none; }
+.basket .cart_totals a {
+  background: #383838 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: white !important;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 14px !important;
+  height: 45px !important;
+  letter-spacing: 3px !important;
+  text-shadow: none !important;
+  text-transform: uppercase !important;
+  font-weight: normal !important; }
+
+.wc-proceed-to-checkout .checkout-button {
+  width: 100%; }
+
+.order__name {
+  position: relative; }
+
+.basket__image {
+  width: 75px;
+  overflow: hidden;
+  height: 75px;
+  display: inline-block; }
+  .basket__image img {
+    height: 150px; }
+
+.basket__item {
+  position: absolute;
+  top: 6px;
+  left: 85px;
+  padding-top: 0; }
+
+.basket__sku {
+  color: rgba(30, 30, 30, 0.5);
+  position: absolute;
+  top: 36px;
+  left: 85px;
+  padding-top: 0;
+  font-size: 14px; }
+
+.page-template-basket div.order-line.header {
+  border-bottom-color: #e6e6e6 !important;
+  border-bottom: 2px solid #e6e6e6; }
+
+div.order-line.header p {
+  display: none; }
+
+.page-template-basket .cart-collaterals {
+  text-align: right; }
+
+.page-template-basket .wc-proceed-to-checkout {
+  text-align: right;
+  float: right; }
+
+.woocommerce .cart-collaterals .cart_totals,
+.woocommerce-page .cart-collaterals .cart_totals {
+  width: 100%;
+  text-align: right;
+  float: right; }
