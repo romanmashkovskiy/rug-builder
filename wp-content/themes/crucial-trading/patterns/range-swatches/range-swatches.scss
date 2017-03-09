@@ -19,6 +19,7 @@
 	
 	@media all and (max-width: 550px) {
 		width: 100%;
+		margin-bottom: 0px;
 	}
 	
 	.swatch {
@@ -52,6 +53,18 @@
 			width: 50%;
 			word-break: break-word;
 			
+			@media all and (max-width: 550px) {
+				display: block;
+				float: none;
+				padding: 0;
+				width: 100%;
+				top: 0;
+				position: static;
+				transform: none;
+				text-align: center;
+				min-height: 45px;
+			}
+			
 			&.code {
 				color: #BBBBBB;
 			}
@@ -62,11 +75,35 @@
 			height: 90%;
 			width: 50%;
 			overflow: hidden;
+			
+			@media all and (max-width: 550px) {
+				display: block;
+				float: none;
+				padding: 0;
+				width: 80%;
+				top: 0;
+				position: static;
+				transform: none;
+				text-align: center;
+				margin: auto;
+			}
+			
 		}
 
 		img {
 			float: right;
 			max-width: 250%;
+			
+			@media all and (max-width: 550px) {
+				display: block;
+				float: none;
+				padding: 0;
+				width: 100%;
+				top: 0;
+				position: static;
+				transform: none;
+			}
+			
 		}
 
 		@media screen and (min-width: 1300px) {
@@ -95,6 +132,13 @@
 				margin-right: 5.5%;
 			}
 		}
+		
+		@media all and (max-width: 550px) {
+			height: auto;
+			padding: 10px;
+			padding-bottom: 20px;
+		}
+		
 	}
 }
 
