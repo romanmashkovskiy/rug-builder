@@ -11,7 +11,7 @@ RugBuilder.prototype.imageComponent = function(alt, src, jpg) {
 			}
 
 			let error = function(e) {
-				e.target.src = jpg;
+//				e.target.src = jpg;
 			}
 
 			let load = function() {

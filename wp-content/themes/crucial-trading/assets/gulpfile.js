@@ -78,6 +78,7 @@ gulp.task('css', ['build-master-css'], function() {
 		'./css/vendor/bootstrap.min.css',
 		'./css/vendor/animate.min.css',
 		'./css/vendor/flag-icon.min.css',
+		'./css/vendor/jquery.pagepilling.min.css',
 		'./css/dist/build.min.css'
 	])
 		.pipe(concatCSS('master.min.css'))
@@ -91,6 +92,7 @@ gulp.task('js', ['build-master-js'], function() {
 		'./js/vendor/super-slider.min.js',
 		'./js/vendor/bxslider.min.js',
 		'./js/vendor/jquery.elevatezoom.min.js',
+		'./js/vendor/jquery.pagepilling.min.js',
 		'./js/vendor/wow.min.js',
 		'./js/vendor/masonry.pkgd.min.js',
 		'./js/vendor/js.cookie.min.js',
