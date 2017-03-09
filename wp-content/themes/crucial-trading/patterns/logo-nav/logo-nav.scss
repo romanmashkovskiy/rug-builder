@@ -47,16 +47,27 @@ body.page-template-home.show-menu .top-bar.headroom--not-top.headroom--unpinned 
 	}
 
 	@media screen and (max-width: 450px) {
-		background: #2d2d2d;
 
 		span.main-menu__button__icon {
 			background: #2d2d2d !important;
 		}
 
-		span.main-menu__button__icon:before,
-		span.main-menu__button__icon:after {
-			background: white !important;
+		&.apply-dark-background {
+
+			span.main-menu__button__icon:before,
+			span.main-menu__button__icon:after {
+				background: white !important;
+			}
 		}
+	}
+}
+
+body.page-template-home .top-bar.apply-dark-background,
+body.page-template-home .top-bar.headroom--not-top.headroom--pinned.apply-dark-background,
+body.page-template-home .top-bar.headroom--not-top.headroom--unpinned.apply-dark-background {
+
+	@media screen and (max-width: 450px) {
+		background: #2d2d2d;
 	}
 }
 
