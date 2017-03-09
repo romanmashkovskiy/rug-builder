@@ -14,12 +14,11 @@
 	}
 
 	@media all and (max-width: 767px) {
-		padding: 80px 30px;
+		padding: 35px 25px;
 	}
 	
 	@media all and (max-width: 550px) {
 		width: 100%;
-		padding: 50px 30px;
 	}
 	
 	.swatch {
@@ -43,7 +42,7 @@
 		a {
 			display: block;
 			height: 100%;
-			padding: 0 !important;
+			padding: 0 !important;			
 		}
 
 		h3 {
@@ -52,7 +51,7 @@
 			padding-right: 10px;
 			width: 50%;
 			word-break: break-word;
-
+			
 			&.code {
 				color: #BBBBBB;
 			}
@@ -67,10 +66,7 @@
 
 		img {
 			float: right;
-			//height: 100%;
-			//width: 100%;
 			max-width: 250%;
-			//object-fit: cover;
 		}
 
 		@media screen and (min-width: 1300px) {
@@ -93,10 +89,10 @@
 		}
 
 		@media screen and (max-width: 768px) {
-			width: 100%;
+			width: 47%;
 
 			&:not(:nth-child(2n)) {
-				margin-right: 0;
+				margin-right: 5.5%;
 			}
 		}
 	}
