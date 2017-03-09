@@ -17,6 +17,11 @@
 		padding: 80px 30px;
 	}
 	
+	@media all and (max-width: 550px) {
+		width: 100%;
+		padding: 50px 30px;
+	}
+	
 	.swatch {
 		border: 1px solid #ededed;
 		float: left;

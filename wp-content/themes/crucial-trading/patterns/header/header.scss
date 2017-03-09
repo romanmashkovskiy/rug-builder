@@ -303,6 +303,11 @@ header.collection {
 
 .tax-product_cat header.material.large {
 	height: 575px;
+	
+	@media all and (max-width: 550px) {
+		height: 350px;
+	}
+	
 }
 
 

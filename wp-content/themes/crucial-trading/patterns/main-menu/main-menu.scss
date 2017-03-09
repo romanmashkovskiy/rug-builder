@@ -464,6 +464,8 @@ input.main-menu__search__input:focus + span.main-menu__search__icon {
 		width: 75px !important;
 		right: 0 !important;
 		left: auto !important;
+		top: 0px !important;
+		position: fixed !important;
 	}
 }
 
