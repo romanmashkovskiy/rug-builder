@@ -131,15 +131,12 @@
 			color: white !important;
 			font-family: $font-sub-header !important;
 			font-size: 14px !important;
-			height: 36px !important;
+			height: 45px !important;
 			letter-spacing: 3px !important;
-			padding: 11px 0 26px !important;
+			//padding: 11px 0 26px !important;
 			text-shadow: none !important;
 			text-transform: uppercase !important;
-
-			@media screen and (max-width: 550px) {
-				font-size: 11px !important;
-			}
+			font-weight: normal !important;
 		}
 	}
 }
@@ -178,3 +175,31 @@
 	padding-top: 0;
 	font-size: 14px;
 }
+
+
+.page-template-basket div.order-line.header {
+	border-bottom-color: #e6e6e6 !important;
+	border-bottom: 2px solid #e6e6e6;
+}
+
+div.order-line.header p {
+	display: none;
+}
+
+.page-template-basket .cart-collaterals {
+	text-align: right;
+}
+
+.page-template-basket .wc-proceed-to-checkout {
+	text-align: right;
+	float: right;
+}
+
+.woocommerce .cart-collaterals .cart_totals, 
+.woocommerce-page .cart-collaterals .cart_totals {
+	width: 100%;
+	text-align: right;
+	float: right;
+}
+
+

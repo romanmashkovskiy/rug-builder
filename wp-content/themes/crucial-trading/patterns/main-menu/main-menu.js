@@ -25,6 +25,8 @@ var $ = jQuery;
 
 		    }
 
+		    $('.show-menu .main-menu__wrap').css('z-index', '99999');
+
 		    setTimeout(function() {
 
 		    	$('.top-bar').toggleClass('-relative');
@@ -34,6 +36,14 @@ var $ = jQuery;
 		    		$('header').addClass('collapsed');
 
 		    	}
+
+		    	if ( $('.top-bar').hasClass('apply-dark-background') ) {
+		    		$('.top-bar').removeClass('apply-dark-background')
+		    	} else {
+		    		$('.top-bar').addClass('apply-dark-background')
+		    	}
+
+		    	$('.show-menu .main-menu__wrap').css('z-index', '9999');
 
 		    }, 800)
 		    

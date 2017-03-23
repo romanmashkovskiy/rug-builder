@@ -12,6 +12,30 @@ if ( !is_user_logged_in() ) {
 	header( 'Location: ' . site_url() . '/hospitality-register' );
 }
 
+if ( count( $_POST ) > 0 && array_key_exists( 'choices', $_POST ) && array_key_exists( 'from', $_POST ) ) {
+
+	$email = filter_var( $_POST['from'], FILTER_SANITIZE_EMAIL );
+
+	if ( !filter_var( $_POST['from'], FILTER_VALIDATE_EMAIL ) ) {
+		die('invalid email');
+	}
+
+	$choices = json_decode(stripslashes( $_POST['choices'] ));
+	$message = '';
+
+	foreach ( $choices as $key => $choice ) {
+		$message .= "$key: $choice<br>";
+	}
+
+	$message .= "<br><br>";
+	$message .= "Submitted by $email";
+
+	wp_mail( 'crucial.consumer@crucial-trading.com', 'New Hospitality Builder Design', $message, 'Content-Type: text/html; charset=ISO-8859-1' );
+	wp_mail( 'emma.hopkins@crucial-trading.com', 'New Hospitality Builder Design', $message, 'Content-Type: text/html; charset=ISO-8859-1' );
+
+	die('success');
+}
+
 $user    = wp_get_current_user();
 $roles   = $user->roles;
 $allowed = false;
@@ -45,7 +69,7 @@ if ( !$allowed ) {
 	load({
 		key               : 'E9(]8x~QGIZR^-f', 
 		secret            : 's+yflX{Nhev3iCeg@>wgPco5}2CMS6',
-		showSubmitButton  : false,
+		showSubmitButton  : true,
 		showRestartButton : true,
 		showExitButton    : true
 	})

@@ -12,14 +12,14 @@
 		position: relative;
 		z-index: 9;
 
-		&.hosp_builder_structures {
+		&.structures {
 
 			ul.hosp_builder_colors {
 				display: none;
 			}
 		}
 
-		&.hosp_builder_colors {
+		&.colors {
 
 			ul.hosp_builder_structures {
 				display: none;
@@ -37,6 +37,7 @@
 		position: absolute;
 		-webkit-transform: translateX(-50%);
 		transform: translateX(-50%);
+		z-index: 99999;
 	}
 }
 
