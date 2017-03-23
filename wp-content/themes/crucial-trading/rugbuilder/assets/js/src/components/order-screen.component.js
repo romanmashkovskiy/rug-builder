@@ -208,8 +208,6 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				url += '&outer=' + this.state.outerBorderID;
 			}
 
-			console.log(url)
-
 			let req = new XMLHttpRequest();
 
 			req.addEventListener( 'load', loaded );
@@ -261,10 +259,15 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 					let wc_  = materialObj[key].replace(/ /g, '');
 					let wc   = R.WCswatches[wc_];
-					let code = wc.code;
+
+					let code = '';
+
+					if ( typeof wc !== 'undefined' ) {
+						code = '(' + wc.code + ')';
+					}
 
 					return <div className="details__row clearfix" key={ index }>
-						<p>{ materialObj[key] } ({ code })</p>
+						<p>{ materialObj[key] } { code }</p>
 						<p>{ key }</p>
 					</div> 
 				});
