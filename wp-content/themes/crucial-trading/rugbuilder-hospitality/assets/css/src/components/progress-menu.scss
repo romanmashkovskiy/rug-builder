@@ -50,7 +50,11 @@
 	.hosp_builder_progress-menu__submit {
 		color: #CECECE !important;
 		position: absolute !important;
-		right: 280px;
+		right: 310px;
+
+		img {
+			transform: rotate(180deg);
+		}
 	}
 }
 
