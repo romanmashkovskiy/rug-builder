@@ -599,7 +599,7 @@ class RugBuilder {
 				const PRE_SUBTOTAL = parseFloat(CENTER_PRICE + BORDER_PRICE);
 				const SUBTOTAL     = SUBTOTAL.toFixed(2);
 
-				let TOTAL = SUBTOTAL;
+				let TOTAL_PRICE = SUBTOTAL;
 
 				if ( parseInt(LENGTH) > 4 && parseInt(WIDTH) < 2 ) {
 
@@ -607,7 +607,7 @@ class RugBuilder {
 					const QUARTER   = HUNDRETH * 25;
 					const PRE_TOTAL = parseFloat(SUBTOTAL + QUARTER)
 
-					TOTAL = PRE_TOTAL.toFixed(2);
+					TOTAL_PRICE = PRE_TOTAL.toFixed(2);
 
 				}
 
