@@ -5,7 +5,7 @@ Plugin URI: https://www.brontobytes.com/
 Description: Cookie Bar allows you to discreetly inform visitors that your website uses cookies.
 Author: Brontobytes
 Author URI: https://www.brontobytes.com/
-Version: 1.5
+Version: 1.6
 License: GPLv2
 */
 
@@ -65,7 +65,7 @@ function cookie_bar_deactivation() {
 register_deactivation_hook( __FILE__, 'cookie_bar_deactivation' );
 
 function cookie_bar_dependencies() {
-	wp_register_script( 'cookie-bar-js', plugins_url('js/cookie-bar.js', __FILE__), array('jquery'), '', false );
+	wp_register_script( 'cookie-bar-js', plugins_url('js/cookie-bar.js', __FILE__), array('jquery'), time(), false );
 	wp_enqueue_script( 'cookie-bar-js' );
 	wp_register_style( 'cookie-bar-css', plugins_url('css/cookie-bar.css', __FILE__) );
 	wp_enqueue_style( 'cookie-bar-css' );

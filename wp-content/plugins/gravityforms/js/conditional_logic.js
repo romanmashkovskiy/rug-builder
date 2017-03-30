@@ -80,7 +80,8 @@ function gf_is_match( formId, rule ) {
 		inputId         = rule['fieldId'],
 		fieldId         = gformExtractFieldId( inputId ),
 		inputIndex      = gformExtractInputIndex( inputId ),
-		isInputSpecific = inputIndex !== false;
+		isInputSpecific = inputIndex !== false,
+		$inputs;
 
 	if( isInputSpecific ) {
 		$inputs = $( '#input_{0}_{1}_{2}'.format( formId, fieldId, inputIndex ) );
@@ -138,24 +139,22 @@ function gf_is_match_default( $input, rule, formId, fieldId ) {
 	for( var i = 0; i < values.length; i++ ) {
 
 		// fields with pipes in the value will use the label for conditional logic comparison
-		var hasLabel = values[i] ? values[i].indexOf( '|' ) >= 0 : true;
+		var hasLabel   = values[i] ? values[i].indexOf( '|' ) >= 0 : true,
+			fieldValue = gf_get_value( values[i] );
 
-		fieldValue = gf_get_value( values[i] );
-
-		var fieldNumberFormat = gf_get_field_number_format( rule.fieldId, formId );
+		var fieldNumberFormat = gf_get_field_number_format( rule.fieldId, formId, 'value' );
 		if( fieldNumberFormat && ! hasLabel ) {
 			fieldValue = gf_format_number( fieldValue, fieldNumberFormat );
 		}
 
 		var ruleValue = rule.value;
-		if ( fieldNumberFormat ){
-			ruleValue = gf_format_number( ruleValue, fieldNumberFormat );
-		}
+		//if ( fieldNumberFormat ) {
+		//	ruleValue = gf_format_number( ruleValue, fieldNumberFormat );
+		//}
 
 		if( gf_matches_operation( fieldValue, ruleValue, rule.operator ) ) {
 			matchCount++;
 		}
-
 
 	}
 
@@ -163,10 +162,6 @@ function gf_is_match_default( $input, rule, formId, fieldId ) {
 	var isMatch = rule.operator == 'isnot' ? matchCount == values.length : matchCount > 0;
 
 	return isMatch;
-}
-
-function gf_get_field_number_format( fieldId, formId ) {
-	return window['gf_global'] && gf_global.number_formats && gf_global.number_formats[ formId ] && gf_global.number_formats[ formId ][ fieldId ] ? gf_global.number_formats[ formId ][ fieldId ] : false;
 }
 
 function gf_format_number( value, fieldNumberFormat ) {
@@ -283,7 +278,7 @@ function gf_do_field_action(formId, action, fieldId, isInit, callback){
 		//calling callback function on the last dependent field, to make sure it is only called once
 		do_callback = (i+1) == dependent_fields.length ? callback : null;
 
-		gf_do_action(action, targetId, conditional_logic["animation"], defaultValues, isInit, do_callback);
+		gf_do_action(action, targetId, conditional_logic["animation"], defaultValues, isInit, do_callback, formId);
 
 		gform.doAction('gform_post_conditional_logic_field_action', formId, action, targetId, defaultValues, isInit);
 	}
@@ -293,10 +288,10 @@ function gf_do_next_button_action(formId, action, fieldId, isInit){
 	var conditional_logic = window["gf_form_conditional_logic"][formId];
 	var targetId = "#gform_next_button_" + formId + "_" + fieldId;
 
-	gf_do_action(action, targetId, conditional_logic["animation"], null, isInit);
+	gf_do_action(action, targetId, conditional_logic["animation"], null, isInit, null, formId);
 }
 
-function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, callback){
+function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, callback, formId){
 	var $target = jQuery(targetId);
 	if(action == "show"){
 
@@ -334,7 +329,9 @@ function gf_do_action(action, targetId, useAnimation, defaultValues, isInit, cal
 		//if field is not already hidden, reset its values to the default
 		var child = $target.children().first();
 		if (child.length > 0){
-			if(!gformIsHidden(child)){
+			var reset = gform.applyFilters('gform_reset_pre_conditional_logic_field_action', true, formId, targetId, defaultValues, isInit);
+
+			if(reset && !gformIsHidden(child)){
 				gf_reset_to_default(targetId, defaultValues);
 			}
 		}
