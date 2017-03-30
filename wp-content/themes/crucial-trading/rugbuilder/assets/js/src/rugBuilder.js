@@ -597,7 +597,7 @@ class RugBuilder {
 				}
 
 				const PRE_SUBTOTAL = parseFloat(CENTER_PRICE + BORDER_PRICE);
-				const SUBTOTAL     = SUBTOTAL.toFixed(2);
+				const SUBTOTAL     = PRE_SUBTOTAL.toFixed(2);
 
 				let TOTAL_PRICE = SUBTOTAL;
 
