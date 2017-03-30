@@ -26,18 +26,37 @@ function Currency(currency){
     this.currency = currency;
 
     this.toNumber = function(text){
-        if(this.isNumeric(text))
-            return parseFloat(text);
+
+        if(this.isNumeric(text)) {
+			return parseFloat(text);
+		}
 
         return gformCleanNumber(text, this.currency["symbol_right"], this.currency["symbol_left"], this.currency["decimal_separator"]);
     };
 
-    this.toMoney = function(number){
-        if(!this.isNumeric(number))
-            number = this.toNumber(number);
+	/**
+	 * Attempts to clean the specified number and formats it as currency.
+	 *
+	 * @since 2.1.1.16 Allow the overriding of numerical checks.
+	 *
+	 * @param number    int  Number to be formatted. It can be a clean number, or an already formatted number.
+	 * @param isNumeric bool Whether or not the number is guaranteed to be a clean, unformatted number.
+	 *                       When false the function will attempt to clean the number. Defaults to false.
+	 *
+	 * @return string A number formatted as currency.
+	 */
+	this.toMoney = function(number, isNumeric){
 
-        if(number === false)
-            return "";
+		isNumeric = isNumeric || false; //isNumeric is an optional parameter. Defaults to false
+
+		if( ! isNumeric ) {
+			//Cleaning number, removing all formatting
+			number = gformCleanNumber(number, this.currency["symbol_right"], this.currency["symbol_left"], this.currency["decimal_separator"]);
+		}
+
+		if(number === false) {
+			return "";
+		}
 
         number = number + "";
         negative = "";
@@ -45,7 +64,7 @@ function Currency(currency){
 
             number = parseFloat(number.substr(1));
 			negative = '-';
-        }
+		}
 
         money = this.numberFormat(number, this.currency["decimals"], this.currency["decimal_separator"], this.currency["thousand_separator"]);
 
@@ -61,8 +80,23 @@ function Currency(currency){
 		return money;
     };
 
+
+	/**
+	 * Formats a number given the specified parameters.
+	 *
+	 * @since Unknown
+	 *
+	 * @param number        int    Number to be formatted. Must be a clean, unformatted  format.
+	 * @param decimals      int    Number of decimals that the output should contain.
+	 * @param dec_point     string Character to use as the decimal separator. Defaults to ".".
+	 * @param thousands_sep string Character to use as the thousand separator. Defaults to ",".
+	 * @param padded        bool   Pads output with zeroes if the number is exact. For example, 1.200.
+	 *
+	 * @return string The formatted number.
+	 */
     this.numberFormat = function(number, decimals, dec_point, thousands_sep, padded){
-        var padded = typeof padded == 'undefined';
+
+    	var padded = typeof padded == 'undefined';
         number = (number+'').replace(',', '').replace(' ', '');
         var n = !isFinite(+number) ? 0 : +number,
         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
@@ -132,6 +166,21 @@ function Currency(currency){
     };
 }
 
+/**
+ * Gets a formatted number and returns a clean "decimal dot" number.
+ *
+ * Note: Input must be formatted according to the specified parameters (symbol_right, symbol_left, decimal_separator).
+ * @example input -> $1.20, output -> 1.2
+ *
+ * @since 2.1.1.16 Modified to support additional param in Currency.toMoney.
+ *
+ * @param text              string The currency-formatted number.
+ * @param symbol_right      string The symbol used on the right.
+ * @param symbol_left       string The symbol used on the left.
+ * @param decimal_separator string The decimal separator being used.
+ *
+ * @return float The unformatted numerical value.
+ */
 function gformCleanNumber(text, symbol_right, symbol_left, decimal_separator){
     var clean_number = '',
         float_number = '',
@@ -220,7 +269,7 @@ function gformDeleteUploadedFile(formId, fieldId, deleteButton){
     parent.find(".ginput_preview").eq(fileIndex).remove();
 
     //displaying single file upload field
-    parent.find("input[type=\"file\"]").removeClass("gform_hidden");
+    parent.find('input[type="file"],#extensions_message,.validation_message').removeClass("gform_hidden");
 
     //displaying post image label
     parent.find(".ginput_post_image_file").show();
@@ -295,7 +344,7 @@ function gformCalculateTotalPrice(formId){
     if( totalElement.length > 0 ) {
 
         var currentTotal = totalElement.next().val(),
-            formattedTotal = gformFormatMoney(price);
+            formattedTotal = gformFormatMoney(price, true);
 
         if (currentTotal != price) {
             totalElement.next().val(price).change();
@@ -433,7 +482,7 @@ function gformGetProductQuantity(formId, productFieldId) {
             var htmlId = quantityInput.attr('id'),
                 fieldId = gf_get_input_id_by_html_id(htmlId);
 
-            numberFormat = gf_global.number_formats[formId][fieldId];
+            numberFormat = gf_get_field_number_format( fieldId, formId, 'value' );
         }
 
     }
@@ -503,12 +552,12 @@ function gformGetBasePrice(formId, productFieldId){
     return price === false ? 0 : price;
 }
 
-function gformFormatMoney(text){
+function gformFormatMoney(text, isNumeric){
     if(!gf_global.gf_currency_config)
         return text;
 
     var currency = new Currency(gf_global.gf_currency_config);
-    return currency.toMoney(text);
+    return currency.toMoney(text, isNumeric);
 }
 
 function gformFormatPricingField(element){
@@ -528,7 +577,7 @@ function gformGetPriceDifference(currentPrice, newPrice){
 
     //getting price difference
     var diff = parseFloat(newPrice) - parseFloat(currentPrice);
-    price = gformFormatMoney(diff);
+    price = gformFormatMoney(diff, true);
     if(diff > 0)
         price = "+" + price;
 
@@ -703,7 +752,7 @@ function gformAddListItem( addButton, max ) {
 
     // reset all inputs to empty state
     $clone
-        .find( 'input, select' ).attr( 'tabindex', tabindex )
+        .find( 'input, select, textarea' ).attr( 'tabindex', tabindex )
         .not( ':checkbox, :radio' ).val( '' );
     $clone.find( ':checkbox, :radio' ).prop( 'checked', false );
 
@@ -713,6 +762,8 @@ function gformAddListItem( addButton, max ) {
 
     gformToggleIcons( $container, max );
     gformAdjustClasses( $container );
+
+    gform.doAction( 'gform_list_post_item_add', $clone, $container );
 
 }
 
@@ -726,6 +777,8 @@ function gformDeleteListItem( deleteButton, max ) {
 
     gformToggleIcons( $container, max );
     gformAdjustClasses( $container );
+ 
+    gform.doAction( 'gform_list_post_item_delete', $container );
 
 }
 
@@ -913,7 +966,7 @@ var GFCalc = function(formId, formulaFields){
             } catch( e ) { }
         }
 
-        // if result is postive infinity, negative infinity or a NaN, defaults to 0
+        // if result is positive infinity, negative infinity or a NaN, defaults to 0
         if( ! isFinite( result ) )
             result = 0;
 
@@ -930,7 +983,7 @@ var GFCalc = function(formId, formulaFields){
         // allow result to be custom formatted
         var formattedResult = gform.applyFilters( 'gform_calculation_format_result', false, result, formulaField, formId, calcObj );
 
-        var numberFormat = gf_global.number_formats[formId][formulaField.field_id];
+        var numberFormat = gf_get_field_number_format(formulaField.field_id, formId);
 
         //formatting number
         if( formattedResult !== false) {
@@ -938,7 +991,7 @@ var GFCalc = function(formId, formulaFields){
         }
         else if( field.hasClass( 'gfield_price' ) || numberFormat == "currency") {
 
-            result = gformFormatMoney(result ? result : 0);
+            result = gformFormatMoney(result ? result : 0, true);
         }
         else {
 
@@ -1063,9 +1116,9 @@ var GFCalc = function(formId, formulaFields){
 
             }
 
-            var numberFormat = gf_global.number_formats[formId][fieldId];
+            var numberFormat = gf_get_field_number_format( fieldId, formId );
             if( ! numberFormat )
-                numberFormat = gf_global.number_formats[formId][formulaField.field_id];
+                numberFormat = gf_get_field_number_format( formulaField.field_id, formId );
 
             var decimalSeparator = gformGetDecimalSeparator(numberFormat);
 
@@ -1130,6 +1183,24 @@ function getMatchGroups(expr, patt) {
     }
 
     return matches;
+}
+
+function gf_get_field_number_format(fieldId, formId, context) {
+
+    var fieldNumberFormats = rgars(window, 'gf_global/number_formats/{0}/{1}'.format(formId, fieldId)),
+        format = false;
+
+    if (fieldNumberFormats === '') {
+        return format;
+    }
+
+    if (typeof context == 'undefined') {
+        format = fieldNumberFormats.price !== false ? fieldNumberFormats.price : fieldNumberFormats.value;
+    } else {
+        format = fieldNumberFormats[context];
+    }
+
+    return format;
 }
 
 
@@ -1228,17 +1299,62 @@ function renderRecaptcha() {
                 'theme':   $elem.data( 'theme' )
             };
 
+        if( ! $elem.is( ':empty' ) ) {
+            return;
+        }
+
         if( $elem.data( 'stoken' ) ) {
             parameters.stoken = $elem.data( 'stoken' );
         }
 
         grecaptcha.render( this.id, parameters );
 
+        gform.doAction( 'gform_post_recaptcha_render', $elem );
+
     } );
 
 }
 
+//----------------------------------------
+//----- SINGLE FILE UPLOAD FUNCTIONS -----
+//----------------------------------------
 
+function gformValidateFileSize( field, max_file_size ) {
+	
+	// Get validation message element.
+	if ( jQuery( field ).closest( 'div' ).siblings( '.validation_message' ).length > 0 ) {
+		var validation_element = jQuery( field ).closest( 'div' ).siblings( '.validation_message' );
+	} else {
+		var validation_element = jQuery( field ).siblings( '.validation_message' );
+	}
+	
+	
+	// If file API is not supported within browser, return.
+	if ( ! window.FileReader || ! window.File || ! window.FileList || ! window.Blob ) {
+		return;
+	}
+	
+	// Get selected file.
+	var file = field.files[0];
+	
+	// If selected file is larger than maximum file size, set validation message and unset file selection.
+	if ( file.size > max_file_size ) {
+		
+		// Set validation message.
+		validation_element.html( file.name + " - " + gform_gravityforms.strings.file_exceeds_limit );
+		
+		// Unset file selection.
+		var input = jQuery( field );
+		input.replaceWith( input.val( '' ).clone( true ) );
+
+	} else {
+		
+		// Reset validation message.
+		validation_element.html( '' );
+		
+	}
+	
+}
 
 //----------------------------------------
 //------ MULTIFILE UPLOAD FUNCTIONS ------
@@ -1537,29 +1653,34 @@ function renderRecaptcha() {
 //------ GENERAL FUNCTIONS -------
 //----------------------------------------
 
-function gformInitSpinner( formId, spinnerUrl ) {
+function gformInitSpinner(formId, spinnerUrl) {
 
-    if( typeof spinnerUrl == 'undefined' || ! spinnerUrl ) {
-        spinnerUrl = gform.applyFilters( "gform_spinner_url", gf_global.spinnerUrl, formId );
-    }
-
-	jQuery('#gform_' + formId).submit( function () {
-		if ( jQuery('#gform_ajax_spinner_' + formId).length == 0 ) {
-            /**
-             * Filter the element after which the AJAX spinner will be inserted.
-             *
-             * @since 2.0
-             *
-             * @param object $targetElem jQuery object containing all of the elements after which the AJAX spinner will be inserted.
-             * @param int    formId      ID of the current form.
-             */
-            var $spinnerTarget = gform.applyFilters( 'gform_spinner_target_elem', jQuery('#gform_submit_button_' + formId + ', #gform_wrapper_' + formId + ' .gform_next_button, #gform_send_resume_link_button_' + formId ), formId );
-            $spinnerTarget.after( '<img id="gform_ajax_spinner_' + formId + '"  class="gform_ajax_spinner" src="' + spinnerUrl + '" alt="" />' );
-		}
-	} );
+	jQuery('#gform_' + formId).submit(function () {
+		gformAddSpinner(formId, spinnerUrl);
+	});
 
 }
 
+function gformAddSpinner(formId, spinnerUrl) {
+
+	if (typeof spinnerUrl == 'undefined' || !spinnerUrl) {
+		spinnerUrl = gform.applyFilters('gform_spinner_url', gf_global.spinnerUrl, formId);
+	}
+
+	if (jQuery('#gform_ajax_spinner_' + formId).length == 0) {
+		/**
+		 * Filter the element after which the AJAX spinner will be inserted.
+		 *
+		 * @since 2.0
+		 *
+		 * @param object $targetElem jQuery object containing all of the elements after which the AJAX spinner will be inserted.
+		 * @param int    formId      ID of the current form.
+		 */
+		var $spinnerTarget = gform.applyFilters('gform_spinner_target_elem', jQuery('#gform_submit_button_' + formId + ', #gform_wrapper_' + formId + ' .gform_next_button, #gform_send_resume_link_button_' + formId), formId);
+		$spinnerTarget.after('<img id="gform_ajax_spinner_' + formId + '"  class="gform_ajax_spinner" src="' + spinnerUrl + '" alt="" />');
+	}
+
+}
 
 
 //----------------------------------------

@@ -13,24 +13,20 @@ echo do_shortcode( '[logo-nav]' );
 
 ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+<header class="small">
+	<div class="header__text vertical-align">
+		<h3 class="side-title">Error 404</h3>
+		<h1>Oops! That page can&rsquo;t be found</h1>
+	</div>
+</header>
+	
+<div class="single-post__container box-shadow">
+			
+	<div class="page-content ">
+		<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'crucial-trading' ); ?></p>
+		<?php get_search_form(); ?>
+	</div>
 
-			<section class="error-404 not-found">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'crucial-trading' ); ?></h1>
-				</header><!-- .page-header -->
-
-				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'crucial-trading' ); ?></p>
-
-					<?php get_search_form(); ?>
-
-				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
-get_footer();
+</div>
+	
+<?php get_footer();
