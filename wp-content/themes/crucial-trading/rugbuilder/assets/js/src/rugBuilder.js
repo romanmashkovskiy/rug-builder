@@ -596,8 +596,20 @@ class RugBuilder {
 
 				}
 
-				const SUBTOTAL    = parseFloat(CENTER_PRICE + BORDER_PRICE);
-				const TOTAL_PRICE = SUBTOTAL.toFixed(2);
+				const PRE_SUBTOTAL = parseFloat(CENTER_PRICE + BORDER_PRICE);
+				const SUBTOTAL     = SUBTOTAL.toFixed(2);
+
+				let TOTAL = SUBTOTAL;
+
+				if ( parseInt(LENGTH) > 4 && parseInt(WIDTH) < 2 ) {
+
+					const HUNDRETH  = SUBTOTAL / 100;
+					const QUARTER   = HUNDRETH * 25;
+					const PRE_TOTAL = parseFloat(SUBTOTAL + QUARTER)
+
+					TOTAL = PRE_TOTAL.toFixed(2);
+
+				}
 
 				// Publish the newPrice event so the price can be updated
 				PubSub.publish('newPrice', [TOTAL_PRICE, LENGTH, WIDTH]);
