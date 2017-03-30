@@ -59,7 +59,7 @@
 	}
 	
 	/***** General ****/ 
-	
+	/*
 	#general form {
 
 		ul li:not(:last-child) {
@@ -102,7 +102,7 @@
 			margin-top: 0 !important;
 		}
 	}
-	
+	*/
 	
 	/***** Trade Form ****/ 
 	
@@ -156,7 +156,7 @@
 	
 	/***** Press ****/ 
 	
-	#press {
+	#press, #general {
 		position: relative;
 		
 		textarea {
