@@ -87,6 +87,13 @@ canvas {
 	}
 }
 
+.drawer__content.open.swatchesSelected.-piping-selected {
+
+	.drawer__content__material.open ~ .scroll-btns .scroll__left {
+		left: calc(2% - 20px);
+	}
+}
+
 .dots {
 	position: absolute;
 	bottom: 15px;
