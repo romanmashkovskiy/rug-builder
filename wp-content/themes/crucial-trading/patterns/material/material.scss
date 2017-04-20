@@ -39,6 +39,12 @@
 			text-align: center;
 			padding-bottom: 60px;
 		}
+		
+		@media all and (max-width: 769px) {
+			padding: 0px;
+			padding-bottom: 60px;
+		}
+		
 	}
 	
 	.material__right {
@@ -54,6 +60,12 @@
 			width: 100%;
 			padding: 0;
 		}
+		
+		@media all and (max-width: 769px) {
+			padding: 0px;
+			padding-bottom: 60px;
+		}
+		
 	}
 
 	.material__img {
@@ -245,6 +257,11 @@
 		padding-bottom: 60px;
 	}
 	
+	@media all and (max-width: 769px) {
+		padding: 0px;
+		padding-bottom: 60px;
+	}
+	
 }
 
 .material-box:nth-child(even) .material__right {
@@ -254,6 +271,11 @@
 	
 	@media all and (max-width: 992px) {
 		padding: 0;
+	}
+	
+	@media all and (max-width: 769px) {
+		padding: 0px;
+		padding-bottom: 60px;
 	}
 	
 }

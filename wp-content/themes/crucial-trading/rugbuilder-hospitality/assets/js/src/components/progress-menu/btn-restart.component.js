@@ -6,6 +6,10 @@ RugBuilder.prototype.btnRestartComponent = function() {
 
 		restart: function(e) {
 			e.preventDefault();
+
+			ReactDOM.unmountComponentAtNode(document.querySelector('#hosp_builder_submit-screen'));
+			ReactDOM.unmountComponentAtNode(document.querySelector('#hosp_builder_email-form'));
+
 			PubSub.publish( 'restart', true );
 		},
 

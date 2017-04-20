@@ -16,8 +16,20 @@ function contact_form() {
 
 	$html .= '<div class="contact-form box-shadow">';
 
-	$html .= '<div id="general">';
-	$html .= '<div class="border-div">';
+	$html .= '<div id="general" class="clearfix">';
+	$html .= '<div class="border-left">';
+	$html .= '<h2 class="press__title">Contact Details</h2>';
+	$html .= '<h2 class="press__subtitle">Address</h2>';
+	$html .= '<p>Crucial Trading<br>';
+	$html .= 'Gorsey Lane<br>';
+	$html .= 'Coleshill<br>';
+	$html .= 'Birmingham<br>';
+	$html .= 'B46 1JU</p>';
+	$html .= '<h2 class="press__subtitle">Telephone</h2>';
+	$html .= '<p>01562 743 747</p>';
+	$html .= '</div>';
+	$html .= '<span class="press__or"><span class="press__or--text">or</span></span>';
+	$html .= '<div class="border-right">';
 	$html .= do_shortcode( '[gravityform id=1 title=false]' );
 	$html .= '</div>';
 	$html .= '</div>';
