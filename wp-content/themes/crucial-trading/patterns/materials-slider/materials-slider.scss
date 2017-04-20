@@ -15,6 +15,13 @@
 	margin: 0 !important;
 	padding: 0 !important;
 	
+	h2 {
+		font-size: 52px;
+		font-weight: 400;
+		letter-spacing: 2px;
+		margin: 0;
+	}
+	
 	@media all and (max-width: 767px) {
 		padding-bottom: 50px;
 	}
@@ -180,7 +187,7 @@
 			transform: none;
 		}
 
-		h1 {
+		h2 {
 			margin-bottom: 18px;
 		}
 
@@ -190,7 +197,7 @@
 
 		&.coir {
 
-			h1, p {
+			h2, p {
 				color: $color-coir-main;
 			}
 
@@ -214,7 +221,7 @@
 
 		&.jute {
 
-			h1, p {
+			h2, p {
 				color: $color-jute-main;
 			}
 
@@ -238,7 +245,7 @@
 
 		&.seagrass {
 
-			h1, p {
+			h2, p {
 				color: $color-seagrass-main;
 			}
 
@@ -262,7 +269,7 @@
 
 		&.sisal {
 
-			h1, p {
+			h2, p {
 				color: $color-sisal-main;
 			}
 
@@ -286,7 +293,7 @@
 
 		&.sisool {
 
-			h1, p {
+			h2, p {
 				color: $color-sisool-main;
 			}
 
@@ -310,7 +317,7 @@
 
 		&.wool {
 
-			h1, p {
+			h2, p {
 				color: $color-wool-main;
 			}
 

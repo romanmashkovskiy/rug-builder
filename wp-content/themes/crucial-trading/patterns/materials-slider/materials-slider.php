@@ -81,12 +81,19 @@ function materials_slider() {
 			$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
 			$icon     = wp_get_attachment_url( $thumb_id );
 			$alt      = $post->post_title;
-
+			
+			//$id = get_woocommerce_term_meta( $cat->term_id);
+			
+			//var_dump($post);
+			
+			//$subtitle = get_woocommerce_term_meta( $cat->term_id, 'subtitle', true );
+			
 			$post_id = $post->ID;
 
 			$title    = ucwords( $alt );
-			$subtitle = array_key_exists( 'short_desc', $meta ) ? $meta['short_desc'] : $cat->description;
-
+			$short_desc = array_key_exists( 'short_desc', $meta ) ? $meta['short_desc'] : $cat->description;
+			$subtitle = array_key_exists( 'subtitle', $meta ) ? $meta['subtitle'] : $cat->description;
+			
 			$html .= '<li class="material-slide" data-material="' . $alt . '">';
 
 			$html .= '<span class="theline ' . $alt . '"></span>';
@@ -101,9 +108,9 @@ function materials_slider() {
 			$html .= '<img src="' . $icon . '" alt="' . $alt . '">';
 			$html .= '</div>';
 			$html .= '<div class="content__right ' . $alt . '">';
-			$html .= '<h3>True Survivor</h3>';
-			$html .= '<h1>' . $title . '</h1>';
-			$html .= '<p>' . $subtitle . '</p>';
+			$html .= '<h3 class="subtitle">'.$subtitle.'</h3>';
+			$html .= '<h2>' . $title . '</h2>';
+			$html .= '<p>' . $short_desc . '</p>';
 			$html .= '<a href="' . get_site_url() . '/material/' . $alt . '">Read More</a>';
 			$html .= '</div>';
 			$html .= '</div>';

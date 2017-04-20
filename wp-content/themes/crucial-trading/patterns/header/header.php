@@ -139,18 +139,10 @@ function header_material_shortcode($atts = '') {
 		$html .= '<h3 class="rotate">' . $umaterial . '</h3>';
 		$html .= '</div>';
 
-//		$html .= '<div class="material__icon vertical-align">';
-//		if ( $this_cat_thumb ) {
-//			$html .= '<img src="' . $this_cat_thumb . '" alt="' . $material . '">';
-//		}
-//		$html .= '</div>';
-
 		$html .= '<div class="material__info ' . $material . '">';
 		$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';
 		$html .= '<h1>' . $umaterial . '</h1>';
-//		if ( $header_size == 'large' ) {
-//			$html .= '<p>' . $this_cat->description . '</p>';
-//		}
+
 		$html .= '</div>';
 
 //		if ( $header_size == 'large' ) {

@@ -12,6 +12,12 @@ get_header();
 
 echo do_shortcode( '[logo-nav]' );
 
+?>
+
+<h1> Natural Floorcoverings </h1>
+
+<?php 
+
 echo do_shortcode( '[super-slider]' );
 
 echo do_shortcode( '[section-boxes number=0]' );
