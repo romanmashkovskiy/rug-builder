@@ -27,7 +27,7 @@
 			img.background {
 				left: 0 !important;
 				width: 100% !important;
-			}
+			} 
 /*
 			img.opening-slide-logo {
 				margin-bottom: 70px;
@@ -166,9 +166,11 @@
 .slide__center {
 	text-align: center;
 
-	h1 {
+	h2 {
 //		text-shadow: none;
-
+		
+		font-family: $font-crucial;
+		
 		@media screen and (max-width: 992px) {
 			font-size: 46px;
 		}
@@ -291,7 +293,13 @@
 
 		.home-banner-header {
 			text-align: left;
-
+			font-family: $font-crucial;
+			color: #000;
+			font-size: 70px;
+			font-weight: 400;
+			letter-spacing: 4px;
+			text-transform: uppercase;
+	
 			@media screen and (max-width: 1250px) {
 				font-size: 60px;
 			}
@@ -559,7 +567,8 @@
 			.slide__title {
 				top: 40%;
 
-				h1, a {
+				h2, 
+				a {
 					color: white;
 					text-shadow: 1px 0px 30px #aaaaaa;
 				}

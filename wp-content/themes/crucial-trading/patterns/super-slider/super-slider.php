@@ -152,7 +152,7 @@ function crucial_slider_slides() {
 				$html .= '<div class="slide__center vertical-align ' . $opening_class . '">';
 
 				if ( $post_title != 'Opening' ) {
-					$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
+					$html .= '<h2 class="home-banner-header">' . $title . '</h2>';
 					$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
 				}
 				else {
@@ -171,7 +171,7 @@ function crucial_slider_slides() {
 				$html .= '<div class="slide__title">';
 	
 				if ( $post_title != 'Opening' ) {
-					$html .= '<h1 class="home-banner-header">' . $title . '</h1>';
+					$html .= '<h2 class="home-banner-header">' . $title . '</h2>';
 					$html .= '<a href="' . $link_url . '">' . $link_text . '</a>';
 				} else {
 					
