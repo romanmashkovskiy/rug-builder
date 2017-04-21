@@ -29,7 +29,7 @@ svg.main-menu__button__basket {
 	position: absolute;
     top: 27px;
     left: 0;
-    width: 37px;	
+    width: 37px;
     height: 29px;
     transition: all ease-in-out 0.25s;
 
@@ -71,13 +71,13 @@ svg.main-menu__button__basket {
 	@media screen and (max-width: 500px) {
 		min-width: initial;
 	}
-	
+
 	.wc-proceed-to-checkout {
 		width: 100%;
 		display: block;
 		line-height: 14px !important;
 	}
-	
+
 	&.open {
 		opacity: 1;
 		visibility: visible;
@@ -176,7 +176,7 @@ svg.main-menu__button__basket {
 	a.checkout-button.button {
 		display: block;
 		font-weight: 400;
-		line-height: 14px;
+		line-height: 30px; 
 		margin-top: 60px;
 		text-align: center;
 		width: 100% !important;
