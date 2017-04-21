@@ -34,6 +34,13 @@ if ( count( $query->posts ) < 2 ) {
 
 $i = 0;
 
+$num_of_posts = count( $query->posts );
+$posts_class  = '';
+
+if ( $num_of_posts > 6 ) {
+	$posts_class = 'decrease-width';
+}
+
 $html .= '<div class="material__range clearfix">';
 
 foreach ( $query->posts as $key => $material ) {
@@ -52,7 +59,7 @@ foreach ( $query->posts as $key => $material ) {
 		$current_class = 'current';
 	}
 
-	$html .= "<div class='range__material $current_class' data-index='$i'>";
+	$html .= "<div class='range__material $current_class $posts_class' data-index='$i'>";
 	$html .= "<a href='#' class='range__goto'>";
 	$html .= "<img src='$src' alt='$alt'>";
 	$html .= "</a>";

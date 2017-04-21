@@ -144,7 +144,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			const HEIGHT = window.getComputedStyle(drawerToUse).getPropertyValue('height');
 
 			DRAWER.style.maxHeight = HEIGHT;
-			console.log(HEIGHT);
 			document.querySelector('#hosp_builder_drawer').style.maxHeight = HEIGHT;
 		},
 
@@ -363,7 +362,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 		updateStructure: function(code) {
 
-			R.stageVisited = [ true, false, false, false, false, false, false, false, false, false ];
+			R.stageVisited      = [ true, false, false, false, false, false, false, false, false, false ];
+			R.choices.structure = code;
 
 			let numOfColors = 0, key;
 
@@ -387,6 +387,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 // Ref16: Update Color
 
 		updateColor: function(color) {
+
+			R.choices['color' + R.colorStage] = color;
 
 			this.state.chosenColors[R.colorStage - 1] = color;
 

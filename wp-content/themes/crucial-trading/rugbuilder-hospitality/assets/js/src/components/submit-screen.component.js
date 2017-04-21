@@ -19,6 +19,10 @@ RugBuilder.prototype.submitScreenComponent = function() {
 			}
 		},
 
+		email: function() {
+			R.emailForm(this.state);
+		},
+
 		print: function() {
 			window.print();
 		},
@@ -34,7 +38,8 @@ RugBuilder.prototype.submitScreenComponent = function() {
 					str += ': ';
 					str += this.state[key];
 					str += ", ";
-				}	
+				}
+
 			});
 
 			const href = "mailto:abc@123.xyz?subject=New Hospitality Builder Design&body=" + str;
@@ -42,7 +47,7 @@ RugBuilder.prototype.submitScreenComponent = function() {
 			return (
 				<div className="hosp_builder_submit">
 					<h3>Your Rug</h3>
-					<a href={ href } className="hosp_builder_email">Email</a>
+					<a href="#" onClick={ this.email } className="hosp_builder_email">Email</a>
 					<a href="#" onClick={ this.print } className="hosp_builder_print">Print</a>
 				</div>
 			);

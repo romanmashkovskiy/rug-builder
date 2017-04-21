@@ -233,6 +233,7 @@ function piping_data() {
 
 		$product_id = $post->ID;
 
+		$picture = wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0];
 		$thumb   = rwmb_meta( 'rb_texture', array(), $product_id );
 		$rthumb  = rwmb_meta( 'rb_texture_portrait', array(), $product_id );
 		$bmap    = rwmb_meta( 'rb_bump_map', array(), $product_id );
@@ -241,6 +242,9 @@ function piping_data() {
 		$repeatx = rwmb_meta( 'rb_repeat_x', array(), $product_id );
 		$repeaty = rwmb_meta( 'rb_repeat_y', array(), $product_id );
 
+		$product = new WC_Product( $product_id );
+		$code    = $product->get_sku();
+
 		if ( count( $thumb ) == 0 ) {
 			$thumb = array( 1 => array(
 				'full_url' => wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'full' )[0],
@@ -248,6 +252,7 @@ function piping_data() {
 			) );
 		}
 
+		$post->picture = $picture;
 		$post->thumb   = $thumb;
 		$post->rthumb  = $rthumb;
 		$post->bmap    = $bmap;
@@ -255,6 +260,7 @@ function piping_data() {
 		$post->dmap    = $dmap;
 		$post->repeatx = $repeatx;
 		$post->repeaty = $repeaty;
+		$post->code    = $code;
 	}
 
 	return $query->posts;

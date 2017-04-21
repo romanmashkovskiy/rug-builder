@@ -49,6 +49,13 @@
 	}
 }
 
+.about__scroller__subtitle {
+
+	@media screen and (max-height: 900px) {
+		display: none;
+	}
+}
+
 body.show-about-scroller .about__scroller__start {
 	opacity: 1;
 	visibility: visible;

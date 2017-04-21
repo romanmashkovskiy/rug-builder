@@ -20,7 +20,17 @@ RugBuilder.prototype.getPipingData = function() {
 						rej(100);
 					}
 
-					R.WCpiping = JSON.parse(this.response);
+					let json = JSON.parse( this.response );
+
+					R.WCpiping = json;
+
+					for ( let prop in json ) {
+
+						let title = json[prop].post_title.replace(/ /g, '');
+
+						R.WCswatches[title] = json[prop];
+
+					}
 
 					res(true);
 				}

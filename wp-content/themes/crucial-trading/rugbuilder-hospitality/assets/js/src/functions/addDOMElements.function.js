@@ -30,7 +30,8 @@ RugBuilder.prototype.addDOMElements = function(method, url, callback, responseTy
 			NINE      : document.createElement('div')
 		},
 		LITTLE_LOADER : document.createElement('div'),
-		SUBMIT_SCREEN : document.createElement('div')
+		SUBMIT_SCREEN : document.createElement('div'),
+		EMAIL_FORM    : document.createElement('div')
 	}
 
 	DOM_ELEMENTS.PROGRESS_MENU.setAttribute('id', 'hosp_builder_progress-menu');
@@ -59,6 +60,7 @@ RugBuilder.prototype.addDOMElements = function(method, url, callback, responseTy
 	DOM_ELEMENTS.CHOICES.NINE.setAttribute('id', 'hosp_builder_choice-9');
 	DOM_ELEMENTS.LITTLE_LOADER.setAttribute('id', 'hosp_builder_little-loader');
 	DOM_ELEMENTS.SUBMIT_SCREEN.setAttribute('id', 'hosp_builder_submit-screen');
+	DOM_ELEMENTS.EMAIL_FORM.setAttribute('id', 'hosp_builder_email-form');
 
 	DOM_ELEMENTS.IMG_CONTAINER.CONTAINER.appendChild(DOM_ELEMENTS.IMG_CONTAINER.ZERO);
 	DOM_ELEMENTS.IMG_CONTAINER.CONTAINER.appendChild(DOM_ELEMENTS.IMG_CONTAINER.ONE);
@@ -100,6 +102,7 @@ RugBuilder.prototype.addDOMElements = function(method, url, callback, responseTy
 		builder.appendChild(DOM_ELEMENTS.CHOICES.CONTAINER);
 		builder.appendChild(DOM_ELEMENTS.LITTLE_LOADER);
 		builder.appendChild(DOM_ELEMENTS.SUBMIT_SCREEN);
+		builder.appendChild(DOM_ELEMENTS.EMAIL_FORM);
 
 		document.body.appendChild(builder);
 	}
