@@ -55,7 +55,7 @@ RugBuilder.prototype.btnStageComponent = function() {
 			let classes = 'hosp_builder_progress-menu__stage ' + stageClass;
 
 			return (
-				<li className={ classes }>					
+				<li className={ classes }>
 					<a href="#" className="hosp_builder_progress-menu__stage__link" onClick={ this.handleClick }>
 						{ this.props.stage }
 					</a>

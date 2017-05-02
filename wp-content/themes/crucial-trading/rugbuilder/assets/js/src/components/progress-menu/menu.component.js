@@ -2,6 +2,8 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 
 	const R = rugBuilder;
 
+	console.log('Menu Component');
+
 	const MenuComponent = React.createClass({
 
 		getInitialState: function() {
@@ -26,7 +28,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		},
 
 		borderHasChanged: function(border) {
-			
+
 			if ( border === 'single' ) {
 				this.setState({ stages : [ 'Center', 'Border Type', 'Border', 'Rug Size' ] });
 			}
@@ -34,7 +36,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 				this.setState({ stages : [ 'Center', 'Border Type', 'Border', 'Piping', 'Rug Size' ] });
 			}
 			else if ( border === 'double' ) {
-				this.setState({ stages : [ 'Center', 'Border Type', 'Inner Border', 'Outer Border', 'Rug Size' ] });
+				this.setState({ stages : [ 'Centeghfpght', 'Border Type', 'Inner Border', 'Outer Border', 'Rug Size' ] });
 			}
 		},
 
@@ -48,7 +50,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 				(min--moz-device-pixel-ratio: 1.5),\
 				(-o-min-device-pixel-ratio: 3/2),\
 				(min-resolution: 1.5dppx)";
-			
+
 			if ( window.matchMedia && window.matchMedia(mediaQuery).matches ) {
 				return true;
 			}

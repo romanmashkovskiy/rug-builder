@@ -8,6 +8,8 @@
  * @since Crucial 1.0
  */
 
+error_log('rug builder.php reached !');
+
 include_once('ajax-requests.php');
 
 if ( array_key_exists( 'request', $_GET ) ) {
@@ -59,18 +61,26 @@ $args  = array(
 );
 
 $query  = new WP_Query( $args );
+
+error_log('looking at results from query -->');
+error_log(json_encode($query,true));
+
+
 $rug_id = 0;
 
 if ( $query->have_posts() ) {
-
+	error_log('query has posts');
 	$rug_post = $query->posts[0];
 
 	if ( $rug_post->post_name == 'bespoke-rug' ) {
 		$rug_id = $rug_post->ID;
 	}
-}
+} else { error_log('query does not have posts'); }
 
 echo '';
+
+error_log('looking at blog info -->');
+error_log(bloginfo('charset'));
 
 ?>
 
@@ -89,10 +99,10 @@ echo '';
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	
+
 	  ga('create', 'UA-6149929-1', 'auto');
 	  ga('send', 'pageview');
-	
+
 	</script>
 </head>
 <body>
@@ -141,3 +151,5 @@ echo '';
 	</script>
 </body>
 </html>
+
+<?php error_log('do you see me now ?? 123 abc'); ?>

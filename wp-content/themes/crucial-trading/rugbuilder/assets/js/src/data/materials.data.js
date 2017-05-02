@@ -15,7 +15,10 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 				// then save it in R.materials
 
 				function loaded() {
-					
+					console.log('loaded');
+					console.log('response -->');
+					console.log(this.response);
+
 					if ( this.status !== 200 ) {
 						rej(100);
 					}
@@ -32,7 +35,7 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 				}
 
 				function request() {
-
+					console.log('material.data.js request -->');
 					let req = new XMLHttpRequest();
 
 					let urlBase = window.location.href;
@@ -48,8 +51,14 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 						request = 'border'
 					}
 
+					var url = `${urlBase}?request=${request}`;
+					var url = 'http://localhost:3000/materials-data'
+					console.log('url -->');
+					console.log(url);
+
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', urlBase + '?request=' + request );
+					// req.open( 'GET', urlBase + '?request=' + request );
+					req.open( 'GET', url );
 					req.send();
 				}
 

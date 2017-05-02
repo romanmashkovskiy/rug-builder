@@ -1,9 +1,12 @@
+console.log('111');
 class RugBuilder {
 
 	constructor( context ) {
 
 		// Context - Where the RugBuilder is being loaded. Determines how to load the data
 		this.context = context;
+		console.log('context -->');
+		console.log(context);
 
 		// Screen Dimensions
 		this.screenWidth  = window.innerWidth;
@@ -13,6 +16,9 @@ class RugBuilder {
 		this.currentStage = 0;
 		this.stages       = [ 'center', 'borderType', 'innerBorder', 'outerBorder', 'size' ];
 		this.stageVisited = [ true, false, false, false, false ];
+
+		console.log('this current stage -->');
+		console.log(this.currentStage);
 
 		// React Drawer Scrolling - Keep track of the left/right drawer scrolling
 		this.numOfPages = 1;
@@ -128,7 +134,7 @@ class RugBuilder {
 	// Go to the next stage
 
 	nextStage() {
-	
+
 		// Work out the next stage number
 		const NEXT_STAGE = this.currentStage + 1;
 
@@ -276,7 +282,7 @@ class RugBuilder {
 			this.camera.rotation.x = -1.5708;
 			this.camera.rotation.y = 0;
 			this.camera.rotation.z = 0;
- 
+
 			return 0;
 		}
 	};
@@ -592,7 +598,7 @@ class RugBuilder {
 
 					}
 
-					BORDER_PRICE = basePrice * ((LENGTH * 2) + (WIDTH * 2)); 
+					BORDER_PRICE = basePrice * ((LENGTH * 2) + (WIDTH * 2));
 
 				}
 
