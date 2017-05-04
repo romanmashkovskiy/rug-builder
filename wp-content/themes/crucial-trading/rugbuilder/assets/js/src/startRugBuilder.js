@@ -1,5 +1,5 @@
 RugBuilder.prototype.start = function() {
-
+	console.log('START');
 	window.onerror = function(message, source, line, col, error) {
 
 		let err_obj = {
@@ -23,7 +23,7 @@ RugBuilder.prototype.start = function() {
 	const BtnStageComponent   = R.btnStageComponent();
 	R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnStageComponent);
 
-	// Check for WebGL	
+	// Check for WebGL
 
 	if ( !window.WebGLRenderingContext ) {
 		R.showWebGLError(false);
@@ -39,11 +39,14 @@ RugBuilder.prototype.start = function() {
 	}
 
 	// Get WC Data, then either load rest of the app or error
-
+	console.log('R get materials data');
 	R.getMaterialsData()                                                                     // ./data/materials.data.js
-		.then(()     => { return R.getCollectionsData() })                                   // ./data/collections.data.js
-		.then(()     => { return R.getMaterialsData('border') })                             // ./data/materials.data.js
-		.then(()     => { return R.getPipingData() })                                        // ./data/piping.data.js
+		.then(()     =>
+			{ return R.getCollectionsData(); console.log('get collection data'); })                                   // ./data/collections.data.js
+		.then(()     =>
+			{ return R.getMaterialsData('border'); console.log('get materials data'); })                             // ./data/materials.data.js
+		.then(()     =>
+			{ return R.getPipingData(); console.log('get piping data'); })                                        // ./data/piping.data.js
 		.then(()     => { continueLoading() })                                               // Line 16
 		.catch((err) => { error( err ) });                                                   // Line 181
 
@@ -109,7 +112,7 @@ RugBuilder.prototype.start = function() {
 			R.camera.rotation.z = 0;
 			R.camera.rotation.z = 0;
 
-			
+
 			function render() {
 
 				// Render the Three.js scene

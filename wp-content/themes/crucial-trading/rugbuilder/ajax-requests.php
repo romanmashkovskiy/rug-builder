@@ -60,7 +60,7 @@ function collections_data() {
 		}
 
 		$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
-		
+
 		foreach ( $terms as $key => $value ) {
 
 			if ( $value->parent != 0 && array_key_exists( $value->parent, $material_ids ) ) {
@@ -92,7 +92,7 @@ function collections_data() {
 			$src      = wp_get_attachment_url( $src_id );
 
 			$value->thumbnail = $src;
-			
+
 			array_push( $res, $value );
 		}
 	}
@@ -156,7 +156,7 @@ function swatches_data() {
 			) );
 		}
 */
-		
+
 		$arr['id']           = $product_id;
 		$arr['cats']         = $cats;
 		$arr['name']         = $name;
@@ -187,6 +187,7 @@ function swatches_data() {
 }
 
 function border_data() {
+	error_log('border data()');
 
 	$res = array();
 

@@ -10,7 +10,7 @@ RugBuilder.prototype.getPriceData = function(material) {
 			case 'website' :
 
 				function loaded() {
-					
+
 					if ( this.status != 200 ) {
 						rej();
 						return;
@@ -27,7 +27,14 @@ RugBuilder.prototype.getPriceData = function(material) {
 					urlBase = urlBase.substr(0, urlBase.length-1);
 				}
 
-				let url = urlBase + '?request=price&material=' + encodeURIComponent(material);
+
+				// let url = urlBase + '?request=price&material=' + encodeURIComponent(material);
+				let url = 'http://localhost:8888/crucial-trading/wp-json/api/v1/price-data?material=' +
+					encodeURIComponent(material);
+
+				console.log('price data request');
+				console.log('url -->');
+				console.log(url);
 
 				req.addEventListener( 'load', loaded );
 				req.open( 'GET', url );

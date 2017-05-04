@@ -15,9 +15,6 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 				// then save it in R.materials
 
 				function loaded() {
-					console.log('loaded');
-					console.log('response -->');
-					console.log(this.response);
 
 					if ( this.status !== 200 ) {
 						rej(100);
@@ -25,7 +22,6 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 
 					if ( type === 'border' ) {
 						R.WCborderMaterials = JSON.parse(this.response);
-				//		R.loadingScreens('full', 'close');
 					}
 					else {
 						R.WCmaterials = JSON.parse(this.response);
@@ -35,7 +31,7 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 				}
 
 				function request() {
-					console.log('material.data.js request -->');
+
 					let req = new XMLHttpRequest();
 
 					let urlBase = window.location.href;
@@ -44,21 +40,22 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 						urlBase = urlBase.substr(0, urlBase.length-1);
 					}
 
-					let request = 'materials';
+					// let request = 'materials';
+					let request = 'materials-data';
+
 
 					if ( type === 'border' ) {
 						R.loadingScreens('full', 'open');
-						request = 'border'
+						request = 'borders-data';
 					}
 
-					var url = `${urlBase}?request=${request}`;
-					var url = 'http://localhost:3000/materials-data'
-					console.log('url -->');
+					var url = 'http://localhost:8888/crucial-trading/wp-json/api/v1/' + request;
+					console.log('materials url delta D -->');
 					console.log(url);
 
 					req.addEventListener( 'load', loaded );
 					// req.open( 'GET', urlBase + '?request=' + request );
-					req.open( 'GET', url );
+					req.open( 'GET', url);
 					req.send();
 				}
 

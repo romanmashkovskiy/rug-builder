@@ -15,7 +15,7 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 				// and resolve the promise with the data
 
 				function loaded() {
-					
+
 					if ( this.status !== 200 ) {
 						rej(0);
 					}
@@ -30,7 +30,6 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 				}
 
 				function request() {
-
 					let req = new XMLHttpRequest();
 
 					let urlBase = window.location.href;
@@ -40,9 +39,14 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 					}
 
 					let search = collection.toLowerCase();
+					// var url = urlBase + '?request=swatches&collection=' + search;
+					let url = 'http://localhost:8888/crucial-trading/wp-json/api/v1/swatches-data?collection=' + search;
+
+					console.log('swatches request -->');
+					console.log(url);
 
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', urlBase + '?request=swatches&collection=' + search );
+					req.open( 'GET', url );
 					req.send();
 				}
 
