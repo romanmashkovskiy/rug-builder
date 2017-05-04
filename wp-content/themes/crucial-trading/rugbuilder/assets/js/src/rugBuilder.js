@@ -23,7 +23,6 @@ class RugBuilder {
 		this.stages       = [ 'center', 'borderType', 'innerBorder', 'outerBorder', 'size' ];
 		this.stageVisited = [ true, false, false, false, false ];
 
-
 		// React Drawer Scrolling - Keep track of the left/right drawer scrolling
 		this.numOfPages = 1;
 
@@ -96,7 +95,6 @@ class RugBuilder {
 
 		// JSON - Storage for the JSON rug models
 		this.json = this.originalJson;
-
 
 		// User Choices - Store all of the user's choices
 		this.loadedTextures  = {};

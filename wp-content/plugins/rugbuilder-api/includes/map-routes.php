@@ -18,22 +18,18 @@
     }
 
     private function get_routes() {
-      error_log('get routes');
       require_once $this->path . 'includes/routes.php';
 
       return $routes;
     }
 
     private function get_callbacks() {
-      error_log('get callbacks');
       require_once $this->path . 'includes/endpoints.php';
 
       return $endpoints;
     }
 
     private function register_routes() {
-      error_log('mapping routes');
-
       foreach ($this->routes as $route) {
         $args = array();
 

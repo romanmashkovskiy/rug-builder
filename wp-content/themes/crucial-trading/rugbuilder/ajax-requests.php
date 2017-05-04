@@ -187,8 +187,6 @@ function swatches_data() {
 }
 
 function border_data() {
-	error_log('border data()');
-
 	$res = array();
 
 	$parent_term = get_term_by( 'slug', 'rug-borders', 'product_cat' );

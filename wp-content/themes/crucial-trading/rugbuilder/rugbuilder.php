@@ -10,7 +10,6 @@
 
 
 if ( array_key_exists( 'products', $_GET ) ) {
-	error_log('add rug to cart');
 	add_rug_to_cart();
 	exit();
 }
@@ -22,12 +21,9 @@ $args  = array(
 );
 
 $query  = new WP_Query( $args );
-
-
 $rug_id = 0;
 
 if ( $query->have_posts() ) {
-	error_log('query has posts');
 	$rug_post = $query->posts[0];
 
 	if ( $rug_post->post_name == 'bespoke-rug' ) {
@@ -36,8 +32,6 @@ if ( $query->have_posts() ) {
 }
 
 echo '';
-
-
 ?>
 
 <!doctype html>
@@ -48,7 +42,6 @@ echo '';
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<title>Crucial Trading - Rug Builder</title>
 	<style>body{margin:0}</style>
-	<?php error_log(basename('rugbuilder')); ?>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/rugbuilder/assets/css/dist/style.min.css">
 	<script>var RUG_ID = "<?php echo $rug_id; ?>"</script>
 	<script>

@@ -3,8 +3,6 @@
   $endpoints = array(
     'materials-data' => function () {
 
-      error_log('reached materials data endpoint');
-
       $response = array();
 
     	$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
@@ -31,7 +29,6 @@
     		$material_meta = get_option( "category_$material_id" );
 
     		$material->order = array_key_exists( 'menu_order', $material_meta ) ? $material_meta['menu_order'] : 0;
-
     	}
 
     	function cmp( $a, $b ) {
@@ -44,12 +41,9 @@
     },
 
     'collections-data' => function () {
-      error_log('collections-data endpoint()');
       $response = array();
 
       if ( !array_key_exists( 'collection', $_GET ) ) {
-        error_log('did NOT FIND collection param');
-
         $materials    = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
         $material_ids = array();
 
@@ -84,8 +78,6 @@
       } else {
 
         $collection    = $_GET['collection'];
-        error_log('FOUND collection param');
-        error_log($collection);
         $collection_wc = get_term_by( 'slug', $collection, 'product_cat' );
         $collection_id = $collection_wc->term_id;
 
@@ -154,15 +146,6 @@
         $repeaty_i = rwmb_meta( 'rb_repeat_y_inner', array(), $product_id );
         $stitching = rwmb_meta( 'rb_stitching_colour', array(), $product_id );
 
-    /* This adds in the featured image is the texture is missing
-        if ( count( $thumb ) == 0 ) {
-          $thumb = array( 1 => array(
-            'full_url' => wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'full' )[0],
-            'url'      => wp_get_attachment_image_src( get_post_thumbnail_id( $product_id ), 'thumbnail' )[0],
-          ) );
-        }
-    */
-
         $arr['id']           = $product_id;
         $arr['cats']         = $cats;
         $arr['name']         = $name;
@@ -206,8 +189,8 @@
       			array_push( $response, $value );
       		}
       	}
+        
       	foreach ( $response as $key => $value ) {
-
       		$material_id = $value->term_id;
 
       		$thumb_id = get_woocommerce_term_meta( $material_id, 'thumbnail_id', true );
@@ -221,7 +204,6 @@
 
 
     'piping-data' => function () {
-      error_log('piping data endpoint ()');
       $args = array(
         'post_type'      => 'product',
         'posts_per_page' => -1,
