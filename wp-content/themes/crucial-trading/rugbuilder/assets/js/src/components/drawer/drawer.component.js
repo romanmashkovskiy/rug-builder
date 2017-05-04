@@ -846,6 +846,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 			return PIPING.map((piping, index) => {
 
 				const id      = piping.ID;
+				const code = piping.code;
 				const name    = piping.post_title;
 				const picture = piping.picture;
 				const thumb   = piping.thumb;
