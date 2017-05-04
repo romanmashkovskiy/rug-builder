@@ -272,17 +272,17 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 					break;
 
-				case 3 : 
+				case 3 :
 
 					if ( this.state.chosenBorder === 'Single & Piping' ) {
 
-						content = 'swatches';
+						content = 'materials';
 
 						this.setState({
 							chosenMaterial   : undefined,
 							chosenCollection : undefined,
 							chosenSwatch     : undefined
-						});							
+						});
 
 					} else if ( this.state.chosenBorder === 'Double Border' ) {
 
