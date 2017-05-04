@@ -40,15 +40,11 @@ RugBuilder.prototype.getCollectionsData = function(collection) {
 						urlBase = urlBase.substr(0, urlBase.length-1);
 					}
 
-					// let url = urlBase + '?request=collections';
-					let url = 'http://localhost:8888/crucial-trading/wp-json/api/v1/collections-data';
+					let url = R.apiUrl + 'collections-data';
 
 					if (collection) {
 						url += '?collection=' + collection;
 					}
-
-					console.log('request -> collections.data');
-					console.log(url);
 
 					req.addEventListener( 'load', loaded );
 					req.open( 'GET', url );

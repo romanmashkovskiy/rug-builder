@@ -5,7 +5,6 @@ RugBuilder.prototype.btnStageComponent = function() {
 	const BtnStageComponent = React.createClass({
 
 		handleClick: function() {
-			console.log('handle click !!!');
 			// Get the current stage and the stage the user wants to go to
 
 			const CURRENT_STAGE = R.currentStage;
@@ -14,7 +13,6 @@ RugBuilder.prototype.btnStageComponent = function() {
 			// If the user has clicked on the stage they're already reset
 
 			if ( CURRENT_STAGE === STAGE_CLICKED ) {
-				console.log('c a');
 				R.updateStage(STAGE_CLICKED);
 				return;
 			}
@@ -25,7 +23,6 @@ RugBuilder.prototype.btnStageComponent = function() {
 			// which is not used on single border rugs. Then return.
 
 			if ( R.borderType === 'single' && CURRENT_STAGE === 2 && STAGE_CLICKED === 3 ) {
-				console.log('c b');
 				R.updateStage(4);
 				return;
 			}
@@ -33,15 +30,12 @@ RugBuilder.prototype.btnStageComponent = function() {
 			// Otherwise, call relevent stage function based on what user has clicked and their current stage
 
 			if ( CURRENT_STAGE + 1 === STAGE_CLICKED ) {
-				console.log('c c');
 				R.nextStage();
 			}
 			else if ( CURRENT_STAGE - 1 === STAGE_CLICKED ) {
-				console.log('c d');
 				R.prevStage();
 			}
 			else {
-				console.log('c e');
 				R.updateStage(STAGE_CLICKED);
 			}
 

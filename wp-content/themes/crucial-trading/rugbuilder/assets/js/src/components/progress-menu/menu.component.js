@@ -2,8 +2,6 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 
 	const R = rugBuilder;
 
-	console.log('Menu Component');
-
 	const MenuComponent = React.createClass({
 
 		getInitialState: function() {

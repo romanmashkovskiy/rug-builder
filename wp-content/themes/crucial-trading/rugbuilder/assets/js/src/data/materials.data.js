@@ -40,21 +40,16 @@ RugBuilder.prototype.getMaterialsData = function(type) {
 						urlBase = urlBase.substr(0, urlBase.length-1);
 					}
 
-					// let request = 'materials';
 					let request = 'materials-data';
-
 
 					if ( type === 'border' ) {
 						R.loadingScreens('full', 'open');
 						request = 'borders-data';
 					}
 
-					var url = 'http://localhost:8888/crucial-trading/wp-json/api/v1/' + request;
-					console.log('materials url delta D -->');
-					console.log(url);
+					var url = R.apiUrl + request;
 
 					req.addEventListener( 'load', loaded );
-					// req.open( 'GET', urlBase + '?request=' + request );
 					req.open( 'GET', url);
 					req.send();
 				}

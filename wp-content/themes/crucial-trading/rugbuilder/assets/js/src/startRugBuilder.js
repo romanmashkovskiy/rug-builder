@@ -1,5 +1,4 @@
 RugBuilder.prototype.start = function() {
-	console.log('START');
 	window.onerror = function(message, source, line, col, error) {
 
 		let err_obj = {
@@ -9,8 +8,6 @@ RugBuilder.prototype.start = function() {
 			col  : col,
 			err  : error
 		}
-
-		console.log(err_obj)
 
 		R.error(1000, err_obj, true);
 	}
@@ -39,14 +36,13 @@ RugBuilder.prototype.start = function() {
 	}
 
 	// Get WC Data, then either load rest of the app or error
-	console.log('R get materials data');
 	R.getMaterialsData()                                                                     // ./data/materials.data.js
 		.then(()     =>
-			{ return R.getCollectionsData(); console.log('get collection data'); })                                   // ./data/collections.data.js
+			{ return R.getCollectionsData(); })                                   // ./data/collections.data.js
 		.then(()     =>
-			{ return R.getMaterialsData('border'); console.log('get materials data'); })                             // ./data/materials.data.js
+			{ return R.getMaterialsData('border'); })                             // ./data/materials.data.js
 		.then(()     =>
-			{ return R.getPipingData(); console.log('get piping data'); })                                        // ./data/piping.data.js
+			{ return R.getPipingData(); })                                        // ./data/piping.data.js
 		.then(()     => { continueLoading() })                                               // Line 16
 		.catch((err) => { error( err ) });                                                   // Line 181
 

@@ -1,11 +1,18 @@
 class RugBuilder {
 
 	constructor( context ) {
+		this.apiUrl = '';
+
+		if (window.location.hostname === 'localhost') {
+			this.apiUrl = 'http://localhost:8888/crucial-trading/'
+		} else {
+			this.apiUrl = 'http://www.crucial-trading.com/';
+		}
+
+		this.apiUrl += 'wp-json/api/v1/';
 
 		// Context - Where the RugBuilder is being loaded. Determines how to load the data
 		this.context = context;
-		console.log('context -->');
-		console.log(context);
 
 		// Screen Dimensions
 		this.screenWidth  = window.innerWidth;
@@ -16,8 +23,6 @@ class RugBuilder {
 		this.stages       = [ 'center', 'borderType', 'innerBorder', 'outerBorder', 'size' ];
 		this.stageVisited = [ true, false, false, false, false ];
 
-		console.log('this current stage -->');
-		console.log(this.currentStage);
 
 		// React Drawer Scrolling - Keep track of the left/right drawer scrolling
 		this.numOfPages = 1;
@@ -228,9 +233,6 @@ class RugBuilder {
 	// Change the view of the rug
 
 	changeView(currentView) {
-		console.log('change view');
-		console.error('follow');
-
 		this.camera.zoom = 1;
 		this.camera.updateProjectionMatrix();
 
@@ -295,7 +297,6 @@ class RugBuilder {
 	// Zoom in on the rug
 
 	zoomIn() {
-		console.error('zoom in');
 		const CURRENT_ZOOM = this.camera.zoom;
 		const NEW_ZOOM     = CURRENT_ZOOM + 0.333333;
 
@@ -312,7 +313,6 @@ class RugBuilder {
 	// Zoom out from the rug
 
 	zoomOut() {
-		console.log('zoom out');
 		const CURRENT_ZOOM = this.camera.zoom;
 		const NEW_ZOOM     = CURRENT_ZOOM - 0.333333;
 
@@ -329,7 +329,6 @@ class RugBuilder {
 	// Reset everything so user can start again
 
 	startAgain() {
-
 		this.currentStage = 0;
 		this.stageVisited = [ true, false, false, false, false ];
 		this.json =  this.originalJson;
@@ -380,7 +379,6 @@ class RugBuilder {
 	};
 
 	// Calculate price of rug
-
 	calculatePrice(LENGTH, WIDTH) {
 
 		const R = rugBuilder;

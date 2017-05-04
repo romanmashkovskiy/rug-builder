@@ -39,11 +39,7 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 					}
 
 					let search = collection.toLowerCase();
-					// var url = urlBase + '?request=swatches&collection=' + search;
-					let url = 'http://localhost:8888/crucial-trading/wp-json/api/v1/swatches-data?collection=' + search;
-
-					console.log('swatches request -->');
-					console.log(url);
+					let url = R.apiUrl + 'swatches-data?collection=' + search;
 
 					req.addEventListener( 'load', loaded );
 					req.open( 'GET', url );

@@ -45,11 +45,7 @@ RugBuilder.prototype.getPipingData = function() {
 						urlBase = urlBase.substr(0, urlBase.length-1);
 					}
 
-					// let url = urlBase + '?request=piping';
-					let url = 'http://localhost:8888/crucial-trading/wp-json/api/v1/piping-data';
-
-					console.log('piping data request -->');
-					console.log(url);
+					let url = R.apiUrl + 'piping-data';
 
 					req.addEventListener( 'load', loaded );
 					req.open( 'GET', url );
