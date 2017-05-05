@@ -1,6 +1,11 @@
 <?php
 
   $endpoints = array(
+
+    /*
+     * materials-data endpoint
+     * Get's material data
+     */
     'materials-data' => function () {
 
       $response = array();
@@ -40,6 +45,10 @@
       return $response;
     },
 
+    /*
+     * collections-data endpoint
+     * Get's collection data for rugbuilder
+     */
     'collections-data' => function () {
       $response = array();
 
@@ -99,6 +108,10 @@
     },
 
 
+    /*
+     * swatches-data endpoint
+     * Get's data for swatches
+     */
     'swatches-data' => function () {
       $response = array();
 
@@ -175,7 +188,11 @@
       return $response;
     },
 
-
+    /*
+     * border-data Endpoint
+     * Get's border data for rugbuilder
+     *
+     */
     'border-data' => function () {
       	$response = array();
 
@@ -189,7 +206,7 @@
       			array_push( $response, $value );
       		}
       	}
-        
+
       	foreach ( $response as $key => $value ) {
       		$material_id = $value->term_id;
 
@@ -202,7 +219,10 @@
       	return $response;
     },
 
-
+    /*
+     * piping-data Endpoint
+     * Get's piping data for rug
+     */
     'piping-data' => function () {
       $args = array(
         'post_type'      => 'product',
@@ -255,7 +275,10 @@
       return $query->posts;
     },
 
-
+    /*
+     * price-data Endpoint
+     * Gets a price for the rug based on material
+     */
     'price-data' => function () {
       $material = $_GET['material'];
 
@@ -279,7 +302,10 @@
       return $price;
     },
 
-
+    /*
+     * Add-rug-to-cart Endpoint
+     * Adds rug order to cart
+     */
     'add-rug-to-cart' => function () {
       return WC()->cart->add_to_cart( $_GET['products'], 1 );
     }
