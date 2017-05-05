@@ -12,14 +12,14 @@ RugBuilder.prototype.emailForm = function(choices) {
 
 			req.addEventListener('load', callback);
 
-			req.open('POST', 'http://localhost:8888/crucial-trading/hospitality-builder');
+			req.open('POST', `${siteurl}/crucial-trading/hospitality-builder`);
 			req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			req.send("choices=" + JSON.stringify(choices) + "&from=" + EMAIL);
 
 			function callback(response) {
 
 				document.querySelector('#hosp_builder_email-response').innerText = '';
-			
+
 				let res = response.srcElement.responseText;
 				let msg = '';
 

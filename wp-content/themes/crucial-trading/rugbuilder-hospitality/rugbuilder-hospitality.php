@@ -8,10 +8,12 @@
  * @since Crucial 1.0
  */
 
+/* if user is not logged in redirect them */
 if ( !is_user_logged_in() ) {
 	header( 'Location: ' . site_url() . '/hospitality-register' );
 }
 
+/* if post request, handle */
 if ( count( $_POST ) > 0 && array_key_exists( 'choices', $_POST ) && array_key_exists( 'from', $_POST ) ) {
 
 	$email = filter_var( $_POST['from'], FILTER_SANITIZE_EMAIL );
@@ -22,16 +24,23 @@ if ( count( $_POST ) > 0 && array_key_exists( 'choices', $_POST ) && array_key_e
 
 	$choices = json_decode(stripslashes( $_POST['choices'] ));
 	$message = '';
+	$user_message = 'Thanks for creating your hospitality collection. Here are the options you selected:
+		<br /><br />';
+	$client_message = '';
 
 	foreach ( $choices as $key => $choice ) {
-		$message .= "$key: $choice<br>";
+		$user_message .= "$key: $choice<br>";
+		$client_message .= "$key: $choice<br>";
 	}
 
-	$message .= "<br><br>";
-	$message .= "Submitted by $email";
+	$client_message .= "<br><br>";
+	$user_message .= "<br><br>";
 
-	wp_mail( 'crucial.consumer@crucial-trading.com', 'New Hospitality Builder Design', $message, 'Content-Type: text/html; charset=ISO-8859-1' );
-	wp_mail( 'emma.hopkins@crucial-trading.com', 'New Hospitality Builder Design', $message, 'Content-Type: text/html; charset=ISO-8859-1' );
+	$client_message .= "Submitted by $email";
+
+	wp_mail('crucial.consumer@crucial-trading.com', 'New Hospitality Builder Design', $client_message, 'Content-Type: text/html; charset=ISO-8859-1');
+	wp_mail('emma.hopkins@crucial-trading.com', 'New Hospitality Builder Design', $client_message, 'Content-Type: text/html; charset=ISO-8859-1');
+	wp_mail($email, 'New Hospitality Builder Design', $user_message, 'Content-Type: text/html; charset=ISO-8859-1');
 
 	die('success');
 }
@@ -67,7 +76,7 @@ if ( !$allowed ) {
 	<script>
 
 	load({
-		key               : 'E9(]8x~QGIZR^-f', 
+		key               : 'E9(]8x~QGIZR^-f',
 		secret            : 's+yflX{Nhev3iCeg@>wgPco5}2CMS6',
 		showSubmitButton  : true,
 		showRestartButton : true,
