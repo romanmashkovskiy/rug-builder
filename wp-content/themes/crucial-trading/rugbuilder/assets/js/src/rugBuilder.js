@@ -49,7 +49,7 @@ class RugBuilder {
 		this.orbitControls = undefined;
 
 		// JSON - Storage for the JSON rug models
-		this.json = {
+		this.originalJson = {
 			single : {
 				'border-east'  : undefined,
 				'border-north' : undefined,
@@ -83,6 +83,8 @@ class RugBuilder {
 				'trim-west'    : undefined
 			}
 		};
+
+		this.json = this.originalJson;
 
 		// User Choices - Store all of the user's choices
 		this.loadedTextures  = {};
@@ -318,43 +320,10 @@ class RugBuilder {
 	// Reset everything so user can start again
 
 	startAgain() {
-
 		this.currentStage = 0;
 		this.stageVisited = [ true, false, false, false, false ];
-		this.json         = {
-			single : {
-				'border-east'  : undefined,
-				'border-north' : undefined,
-				'border-south' : undefined,
-				'border-west'  : undefined,
-				'center'       : undefined,
-				'stitches'     : undefined
-			},
-			double : {
-				'border-inner-east'  : undefined,
-				'border-inner-north' : undefined,
-				'border-inner-south' : undefined,
-				'border-inner-west'  : undefined,
-				'border-outer-east'  : undefined,
-				'border-outer-north' : undefined,
-				'border-outer-south' : undefined,
-				'border-outer-west'  : undefined,
-				'center'             : undefined,
-				'stitches'           : undefined
-			},
-			piping : {
-				'center'       : undefined,
-				'border-east'  : undefined,
-				'border-north' : undefined,
-				'border-south' : undefined,
-				'border-west'  : undefined,
-				'stitches'     : undefined,
-				'trim-east'    : undefined,
-				'trim-north'   : undefined,
-				'trim-south'   : undefined,
-				'trim-west'    : undefined
-			}
-		};
+		this.json = this.originalJson;
+
 		this.loadedTextures = {};
 		this.borderType      = undefined;
 		this.centerMaterial  = undefined;
@@ -381,15 +350,18 @@ class RugBuilder {
 
 		this.price = 0;
 
-		this.camera.position.x = -40;
-		this.camera.position.y = 170;
-		this.camera.position.z = 0;
 
-		this.camera.rotation.x = -1.5708;
-		this.camera.rotation.y = 0;
-		this.camera.rotation.z = 1.5708;
+		this.changeView(0);
+		this.zoomIn();
 
-		this.camera.zoom = 1;
+		if (window.innerHeight < 950) {
+			let difference = 950 - window.innerHeight;
+			let zoomLevel  = Math.ceil(difference / 100);
+
+			for ( let i = 0; i < zoomLevel; i++ ) {
+				this.zoomIn();
+			}
+		}
 
 		this.camera.updateProjectionMatrix();
 
@@ -597,9 +569,9 @@ class RugBuilder {
 				}
 
 				const PRE_SUBTOTAL = parseFloat(CENTER_PRICE + BORDER_PRICE);
-				const SUBTOTAL     = SUBTOTAL.toFixed(2);
+				const SUBTOTAL     = PRE_SUBTOTAL.toFixed(2);
 
-				let TOTAL = SUBTOTAL;
+				let TOTAL_PRICE = SUBTOTAL;
 
 				if ( parseInt(LENGTH) > 4 && parseInt(WIDTH) < 2 ) {
 
@@ -607,7 +579,7 @@ class RugBuilder {
 					const QUARTER   = HUNDRETH * 25;
 					const PRE_TOTAL = parseFloat(SUBTOTAL + QUARTER)
 
-					TOTAL = PRE_TOTAL.toFixed(2);
+					TOTAL_PRICE = PRE_TOTAL.toFixed(2);
 
 				}
 

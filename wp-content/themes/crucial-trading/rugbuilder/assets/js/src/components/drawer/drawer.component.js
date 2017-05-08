@@ -1,4 +1,4 @@
-RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent, BtnBorderComponent) { 
+RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnMaterialComponent, BtnCollectionComponent, BtnSwatchComponent, SideMenuComponent, BtnBorderComponent) {
 
 	const R = rugBuilder;
 
@@ -86,7 +86,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				document.querySelector('.drawer__content__border').classList.add('open');
 				document.querySelector('.drawer__content__size').classList.add('open');
 			}, 650)
-			
+
 			this.setState({
 				open : true,
 				text : 'Collapse'
@@ -108,7 +108,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			document.querySelector('.drawer__content__swatches--selected').classList.add('closed');
 			document.querySelector('.drawer__content__border').classList.add('closed');
 			document.querySelector('.drawer__content__size').classList.add('closed');
-			
+
 			this.setState({
 				open : false,
 				text : 'Expand'
@@ -228,7 +228,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			switch( stage ) {
 
-				case 0 : 
+				case 0 :
 
 					content = 'materials';
 
@@ -240,13 +240,13 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 					break;
 
-				case 1 : 
+				case 1 :
 
 					content = 'border';
 
 					break;
 
-				case 2 : 
+				case 2 :
 
 					content = 'materials';
 
@@ -272,7 +272,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 					break;
 
-				case 3 : 
+				case 3 :
 
 					if ( this.state.chosenBorder === 'Single & Piping' ) {
 
@@ -282,7 +282,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							chosenMaterial   : undefined,
 							chosenCollection : undefined,
 							chosenSwatch     : undefined
-						});							
+						});
 
 					} else if ( this.state.chosenBorder === 'Double Border' ) {
 
@@ -297,13 +297,13 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 					}
 
-					
+
 
 					break;
 
-				case 4 : 
+				case 4 :
 
-					content = 'size'; 
+					content = 'size';
 
 					break;
 			}
@@ -379,7 +379,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 		},
 
-		updateCollectionChoice: function(collection) { 
+		updateCollectionChoice: function(collection) {
 
 			// Function for updating the chosenCollection state and getting swatch data.
 			// Get passed to the Collection Button Components as props.
@@ -500,8 +500,8 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			R.calculatePrice(this.state.length, this.state.width);
 		},
 
-		// Functions used for creating the dynamic HTML content of the drawer - 
-		// they return what is returned from the functions at the bottom of this file 
+		// Functions used for creating the dynamic HTML content of the drawer -
+		// they return what is returned from the functions at the bottom of this file
 		// (search for "Create dynamic drawer HTML content functions")
 
 		createMaterialHTML    : function() { return _createMaterialHTML(this, BtnMaterialComponent, R) },
@@ -527,7 +527,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			const _this = this;
 
 //			setInterval(function(){console.log(_this.state.pageInView)},1000)
-			
+
 			// Create the dynamic HTML sections of the content
 
 			const MATERIAL_HTML    = _this.createMaterialHTML();
@@ -601,7 +601,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 				if ( typeof swatch !== 'undefined' ) {
 
 					let elemsPerPage = window.innerWidth > 992 ? 18 : 9;
-					let numOfSwatches = Object.keys(swatch).length; 
+					let numOfSwatches = Object.keys(swatch).length;
 
 					numOfPages = Math.ceil( numOfSwatches / elemsPerPage );
 				}
@@ -638,7 +638,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			let dotsHTML = <div className="dots clearfix">{ dots }</div>;
 
 			if ( window.innerWidth < 768 ) {
-				
+
 				if ( this.state.content === 'swatchesSelected' ) {
 
 					document.querySelector('#view-controls').classList.add('show');
@@ -706,7 +706,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 						{ dotsHTML }
 					</div>
 					<BtnExpandCollapseComponent currentlyOpen={ this.state.open } text={ this.state.text } open={ this.open } close={ this.close } />
-				</div>	
+				</div>
 			);
 		}
 	});
@@ -751,7 +751,7 @@ function _createSidebarHTML(_this, SideMenuComponent, caller, R) {
 		return MATERIALS_ARR.map((material, index) => {
 			return <SideMenuComponent key={ index } material={ material.name } thumb={ material.thumb } onUpdate={ _this.updateMaterialChoice } />;
 		});
-	} 
+	}
 	else if ( _this.state.content === 'swatches' && caller === 'swatches' ) {
 
 		// Create a SideMenuComponent for each material in the MATERIALS_ARR array
@@ -769,7 +769,7 @@ function _createSidebarHTML(_this, SideMenuComponent, caller, R) {
 			if ( material.name === _this.state.chosenMaterial ) {
 				return <SideMenuComponent key={ index } material={ _this.state.chosenMaterial } thumb={ material.thumb } updateContent={ _this.updateContentState } onUpdate={ _this.updateMaterialChoice } />;
 			}
-		});		
+		});
 	}
 }
 
@@ -832,9 +832,9 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 		return;
 	}
 
+	/* single & piping */
 	if ( _this.state.chosenBorder === 'Single & Piping' && _this.state.stage === 3 ) {
-
-		// If user is on piping stage 
+		// If user is on piping stage
 
 		const PIPING = _this.state._piping;
 
@@ -846,6 +846,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 			return PIPING.map((piping, index) => {
 
 				const id      = piping.ID;
+				const code = piping.code;
 				const name    = piping.post_title;
 				const picture = piping.picture;
 				const thumb   = piping.thumb;
@@ -853,7 +854,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 					x : piping.repeatx,
 					y : piping.repeaty
 				};
-				
+
 				let rthumb = false;
 
 				if ( Object.keys(piping.rthumb).length > 0 ) {
@@ -874,7 +875,12 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 				let page = 1;
 
-				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } picture={ picture } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ page } />
+				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } picture={ picture }
+					thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } code = {code}
+					updateContent={ _this.updateContentState }
+					onUpdate={ _this.updateSwatchChoice }
+					page={ page } pageInView={ page }
+				/>
 			});
 
 		} else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
@@ -892,7 +898,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 			let selectedPipingIndex;
 
 			PIPING.map((piping, index) => {
-				
+
 				if ( piping.post_title === SELECTED_PIPING ) {
 					selectedPipingIndex = index;
 				}
@@ -910,13 +916,14 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 				const id      = piping.ID;
 				const name    = piping.post_title;
+				const code = piping.code;
 				const picture = piping.picture;
 				const thumb   = piping.thumb;
 				const repeat  = {
 					x : piping.repeatx,
 					y : piping.repeaty
 				};
-				
+
 				let rthumb = false;
 
 				if ( Object.keys(piping.rthumb).length > 0 ) {
@@ -938,7 +945,13 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				let indexPlusOne = index + 1;
 				let page         = Math.ceil( indexPlusOne / elemsPerPage );
 
-				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } picture={ picture } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } picture={ picture }
+					thumb={ thumb } rthumb={ rthumb } repeat={ repeat } maps={ maps } code = {code}
+					updateContent={ _this.updateContentState }
+					onUpdate={ _this.updateSwatchChoice }
+					page={ page }
+					pageInView={ _this.state.pageInView }
+				/>
 			});
 
 		}
@@ -990,7 +1003,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 						y : CURRENT_SWATCH.repeatyinner
 					}
 				}
-				
+
 				let rthumb = false;
 
 				if ( Object.keys(CURRENT_SWATCH.rthumb).length > 0 ) {
@@ -1013,8 +1026,15 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				let page         = Math.ceil( indexPlusOne / elemsPerPage );
 
 				// Create a BtnSwatchComponent for each swatch in the SWATCH object
-
-				return <BtnSwatchComponent key={ index } id={ id } swatch={ name } picture={ picture } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat } stitching={ stitch } code={ code } maps={ maps } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+				return <BtnSwatchComponent
+					key={ index } id={ id } swatch={ name } picture={ picture } thumb={ thumb }
+					rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat } stitching={ stitch }
+					code={ code } maps={ maps }
+					updateContent={ _this.updateContentState }
+					onUpdate={ _this.updateSwatchChoice }
+					page={ page }
+					pageInView={ _this.state.pageInView }
+				/>
 			})
 		}
 		else if ( _this.state.content === 'swatchesSelected' && caller === 'swatches--selected' ) {
@@ -1085,7 +1105,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				if ( typeof CURRENT_SWATCH.rthumb === 'object' ) {
 					rthumb = CURRENT_SWATCH.rthumb;
 				}
-				
+
 				let maps = {};
 
 				if ( CURRENT_SWATCH.bmap !== '' ) {
@@ -1117,7 +1137,7 @@ function _createBorderHTML(_this, BtnBorderComponent, R) {
 	if ( _this.state.content === 'border' ) {
 
 		const BORDER_ARR = _this.state._borders;
-		
+
 		return BORDER_ARR.map((border, index) => {
 			return <BtnBorderComponent key={ index } border={ border } onUpdate={ _this.updateBorderChoice } />
 		});
