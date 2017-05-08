@@ -128,7 +128,7 @@ class RugBuilder {
 	// Go to the next stage
 
 	nextStage() {
-	
+
 		// Work out the next stage number
 		const NEXT_STAGE = this.currentStage + 1;
 
@@ -276,7 +276,7 @@ class RugBuilder {
 			this.camera.rotation.x = -1.5708;
 			this.camera.rotation.y = 0;
 			this.camera.rotation.z = 0;
- 
+
 			return 0;
 		}
 	};
@@ -381,13 +381,13 @@ class RugBuilder {
 
 		this.price = 0;
 
-		this.camera.position.x = 0;
+		this.camera.position.x = -40;
 		this.camera.position.y = 170;
-		this.camera.position.z = -55;
+		this.camera.position.z = 0;
 
 		this.camera.rotation.x = -1.5708;
 		this.camera.rotation.y = 0;
-		this.camera.rotation.z = 0;
+		this.camera.rotation.z = 1.5708;
 
 		this.camera.zoom = 1;
 
@@ -592,7 +592,7 @@ class RugBuilder {
 
 					}
 
-					BORDER_PRICE = basePrice * ((LENGTH * 2) + (WIDTH * 2)); 
+					BORDER_PRICE = basePrice * ((LENGTH * 2) + (WIDTH * 2));
 
 				}
 
