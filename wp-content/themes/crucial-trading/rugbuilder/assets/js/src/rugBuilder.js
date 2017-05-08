@@ -350,7 +350,6 @@ class RugBuilder {
 
 		this.price = 0;
 
-
 		this.changeView(0);
 		this.zoomIn();
 
