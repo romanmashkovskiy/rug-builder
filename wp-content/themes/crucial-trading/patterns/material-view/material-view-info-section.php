@@ -37,7 +37,7 @@ if ( $under_2 ) {
 	$html .= '<div class="info__section">';
 	$html .= '<p>' . $under_2 . '</p>';
 	$html .= '</div>';
-} 
+}
 
 if ( $under_3 ) {
 	$html .= '<div class="info__section">';
@@ -64,6 +64,28 @@ if ( $suit_3 ) {
 	$html .= '<div class="info__section">';
 	$html .= '<p>' . $suit_3 . '</p>';
 	$html .= '</div>';
-}		
+}
+
+if ( $design_1 ) {
+
+	$html .= '<div class="info__section">';
+	$html .= '<p>' . $design_1 . '</p>';
+	$html .= '</div>';
+}
+
+if ( $design_2 ) {
+
+	$html .= '<div class="info__section">';
+	$html .= '<p>' . $design_2 . '</p>';
+	$html .= '</div>';
+}
+
+if ( $moths ) {
+
+	$html .= '<div class="info__section">';
+	$html .= '<p>Moth Resistant: ' . $moths . '</p>';
+	$html .= '</div>';
+}
+
 
 $html .= '</div>';

@@ -2,7 +2,7 @@
 
 /**
  * Template Name: Material View
- * The detailed view of the material on the material page 
+ * The detailed view of the material on the material page
  *
  * Contents:
  *
@@ -27,10 +27,10 @@ function material_view( $atts = '' ) {
 
 	$product_terms = get_the_terms( $post_id, 'product_cat' );
 
-	// Set variable for back to link 
+	// Set variable for back to link
 	$parent_cat = get_term_by( 'slug', $material, 'product_cat' );
 	$parent_cat_id  = $parent_cat->term_id;
-	
+
 
 	$multiple_in_range = false;
 
@@ -39,7 +39,7 @@ function material_view( $atts = '' ) {
 	}
 
 	$html = '';
-	
+
 	$post_title = get_the_title();
 
 	$required_info = array( 'pa_width', 'pa_backing', 'pa_fibre', 'pa_suitability-1', 'pa_suitability-2', 'pa_suitability-3', 'pa_underlay-1', 'pa_underlay-2', 'pa_underlay-3', 'pa_design-1', 'pa_design-2', 'pa_design-3', 'pa_code' );
@@ -63,6 +63,9 @@ function material_view( $atts = '' ) {
 	$under_2_arr  = wc_get_product_terms( $post_id, 'pa_underlay-2', array( 'fields' => 'names' ) );
 	$under_3_arr  = wc_get_product_terms( $post_id, 'pa_underlay-3', array( 'fields' => 'names' ) );
 	$sku_arr      = wc_get_product_terms( $post_id, 'pa_code', array( 'fields' => 'names' ) );
+	$moth_arr      = wc_get_product_terms( $post_id, 'pa_moth-resistant', array( 'fields' => 'names' ) );
+	$design_1_arr      = wc_get_product_terms( $post_id, 'pa_design-1', array( 'fields' => 'names' ) );
+	$design_2_arr      = wc_get_product_terms( $post_id, 'pa_design-2', array( 'fields' => 'names' ) );
 
 	$width    = is_array( $width_arr ) && array_key_exists( 0, $width_arr ) ? $width_arr[0] : false;
 	$backing  = is_array( $backing_arr ) && array_key_exists( 0, $backing_arr ) ? $backing_arr[0] : false;
@@ -74,6 +77,9 @@ function material_view( $atts = '' ) {
 	$under_2  = is_array( $under_2_arr ) && array_key_exists( 0, $under_2_arr ) ? $under_2_arr[0] : false;
 	$under_3  = is_array( $under_3_arr ) && array_key_exists( 0, $under_3_arr ) ? $under_3_arr[0] : false;
 	$sku      = is_array( $sku_arr ) && array_key_exists( 0, $sku_arr ) ? $sku_arr[0] : false;
+	$moths     = is_array( $moth_arr ) && array_key_exists( 0, $moth_arr ) ? $moth_arr[0] : false;
+	$design_1     = is_array( $design_1_arr ) && array_key_exists( 0, $design_1_arr ) ? $design_1_arr[0] : false;
+	$design_2     = is_array( $design_2_arr ) && array_key_exists( 0, $design_2_arr ) ? $design_2_arr[0] : false;
 
 	$_product = wc_get_product( $post_id );
 	$price    = $_product->get_price();
@@ -127,9 +133,12 @@ function material_view( $atts = '' ) {
 			include get_template_directory() . '/patterns/material-view/material-view-others-in-range.php';
 		}
 
-		if ( $width || $backing || $fibre || $suit_1 || $suit_2 || $suit_3 || $under_1 || $under_2 || $under_3 || $design_1 || $design_2 || $design_3 ) {
+		if ( $width || $backing || $fibre || $suit_1 || $suit_2 || $suit_3 || $under_1 || $under_2 || $under_3 || $design_1 || $design_2 || $moths ) {
 			include get_template_directory() . '/patterns/material-view/material-view-info-section.php';
 		}
+
+//var_dump ($post_meta);
+//var_dump ($moths);
 
 	$html .= '</div>';
 	$html .= '</div>';
