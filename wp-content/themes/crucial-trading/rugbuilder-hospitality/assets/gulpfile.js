@@ -9,7 +9,7 @@ const sass          = require('gulp-sass');
 const sassGlob      = require('gulp-sass-glob');
 const sourcemaps    = require('gulp-sourcemaps');
 const uglify        = require('gulp-uglify');
-const util          = require('gulp-util');
+const util          = require('gulp-util'); 
 
 gulp.task('css', function() {
 

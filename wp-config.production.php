@@ -2,10 +2,13 @@
 /**
  * Production environment config settings
  *
- * Enter any WordPress config settings that are specific to this environment 
+ * Enter any WordPress config settings that are specific to this environment
  * in this file.
- * 
+ *
  */
+
+define('WP_HOME','http://www.crucial-trading.com');
+define('WP_SITEURL','http://www.crucial-trading.com');  
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
@@ -29,7 +32,7 @@ define('DB_HOST', $_SERVER["RDS_HOSTNAME"]);
  */
 define('WP_DEBUG', false);
 
-// Hide Errors 
+// Hide Errors
 
 error_reporting(0);
 ini_set('display_errors', 0);
