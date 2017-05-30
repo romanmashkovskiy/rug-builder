@@ -36,7 +36,7 @@ if ( is_array( $_GET ) ) {
 			if ( $response['status'] != 'OK' ) {
 				$error = 1;
 			} else {
- 
+
 				$search_lat = $response['results'][0]['geometry']['location']['lat'];
 				$search_lng = $response['results'][0]['geometry']['location']['lng'];
 				$uk_center  = $search_lat . ' ' . $search_lng;
@@ -85,7 +85,9 @@ if ( is_array( $_GET ) ) {
 							$retailers[$i2]->distance = round( $distance );
 							array_push( $uk_retailers, $retailers[$i2] );
 						}
-					} 
+					}
+
+					// var_dump($a);
 
 					function cmp( $a, $b ) {
 						return $a->distance - $b->distance;
@@ -180,6 +182,7 @@ if ( count( $uk_retailers ) > 0 ) {
 	for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
 
 		$id   = $uk_retailers[$i3]->ID;
+
 		$dist = round( $uk_retailers[$i3]->distance );
 		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
 	}
@@ -187,7 +190,7 @@ if ( count( $uk_retailers ) > 0 ) {
 	echo '</div>';
 }
 
-if ( count( $overseas_retailers ) > 0 ) {
+/*if ( count( $overseas_retailers ) > 0 ) {
 	for ( $i4 = 0; $i4 < count( $overseas_retailers ); $i4++ ) {
 		echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
 	}
@@ -266,6 +269,6 @@ if ( $online_query->have_posts() ) :
 
 	echo '</div>';
 
-endif;
+endif;*/
 
 get_footer();
