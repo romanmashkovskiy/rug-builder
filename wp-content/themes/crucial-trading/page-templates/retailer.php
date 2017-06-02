@@ -190,7 +190,7 @@ if ( count( $uk_retailers ) > 0 ) {
 	echo '</div>';
 }
 
-/*if ( count( $overseas_retailers ) > 0 ) {
+if ( count( $overseas_retailers ) > 0 ) {
 	for ( $i4 = 0; $i4 < count( $overseas_retailers ); $i4++ ) {
 		echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
 	}
@@ -269,6 +269,6 @@ if ( $online_query->have_posts() ) :
 
 	echo '</div>';
 
-endif;*/
+endif;
 
 get_footer();
