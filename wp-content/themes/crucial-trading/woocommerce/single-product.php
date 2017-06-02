@@ -2,7 +2,7 @@
 
 /**
  * The Template for displaying all single products
- * 
+ *
  * Overrides wp-content/plugins/woocoomerce/templates/single-prodct.php
  *
  * Contents:
