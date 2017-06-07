@@ -322,7 +322,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /%{ENV:rwbase}index.php [L]
 </IfModule>
 
-# END WordPress 
+# END WordPress
 
 
 
@@ -343,6 +343,5 @@ RewriteRule /find-retailer/overseas-partners /find-retailer [R=301,NC,L]
 
 <ifModule mod_headers.c>
 Header set X-XSS-Protection "1; mode=block"
-Header always append X-Frame-Options SAMEORIGIN
 Header set X-Content-Type-Options: "nosniff"
 </ifModule>
