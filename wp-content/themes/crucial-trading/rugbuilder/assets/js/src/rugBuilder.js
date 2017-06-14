@@ -93,10 +93,7 @@ class RugBuilder {
 			}
 		};
 
-<<<<<<< HEAD
-=======
 		// JSON - Storage for the JSON rug models
->>>>>>> 321ff72cfc2bc55d3f115a645ce44738da00063a
 		this.json = this.originalJson;
 
 		// User Choices - Store all of the user's choices
@@ -332,11 +329,7 @@ class RugBuilder {
 	startAgain() {
 		this.currentStage = 0;
 		this.stageVisited = [ true, false, false, false, false ];
-<<<<<<< HEAD
-		this.json = this.originalJson;
-=======
 		this.json =  this.originalJson;
->>>>>>> 321ff72cfc2bc55d3f115a645ce44738da00063a
 
 		this.loadedTextures = {};
 		this.borderType      = undefined;

@@ -283,10 +283,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 							chosenCollection : undefined,
 							chosenSwatch     : undefined
 						});
-<<<<<<< HEAD
-=======
-
->>>>>>> 321ff72cfc2bc55d3f115a645ce44738da00063a
 
 					} else if ( this.state.chosenBorder === 'Double Border' ) {
 
@@ -838,10 +834,7 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 	/* single & piping */
 	if ( _this.state.chosenBorder === 'Single & Piping' && _this.state.stage === 3 ) {
-<<<<<<< HEAD
-=======
-
->>>>>>> 321ff72cfc2bc55d3f115a645ce44738da00063a
+		
 		// If user is on piping stage
 
 		const PIPING = _this.state._piping;
