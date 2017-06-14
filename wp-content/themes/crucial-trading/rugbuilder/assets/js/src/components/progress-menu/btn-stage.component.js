@@ -5,7 +5,6 @@ RugBuilder.prototype.btnStageComponent = function() {
 	const BtnStageComponent = React.createClass({
 
 		handleClick: function() {
-
 			// Get the current stage and the stage the user wants to go to
 
 			const CURRENT_STAGE = R.currentStage;
@@ -56,7 +55,7 @@ RugBuilder.prototype.btnStageComponent = function() {
 			let classes = 'progress-menu__stage ' + stageClass;
 
 			return (
-				<li className={ classes }>					
+				<li className={ classes }>
 					<a href="#" className="progress-menu__stage__link" onClick={ this.handleClick }>
 						{ this.props.stage }
 					</a>

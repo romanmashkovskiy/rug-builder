@@ -26,7 +26,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		},
 
 		borderHasChanged: function(border) {
-			
+
 			if ( border === 'single' ) {
 				this.setState({ stages : [ 'Center', 'Border Type', 'Border', 'Rug Size' ] });
 			}
@@ -48,7 +48,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 				(min--moz-device-pixel-ratio: 1.5),\
 				(-o-min-device-pixel-ratio: 3/2),\
 				(min-resolution: 1.5dppx)";
-			
+
 			if ( window.matchMedia && window.matchMedia(mediaQuery).matches ) {
 				return true;
 			}

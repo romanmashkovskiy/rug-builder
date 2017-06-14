@@ -15,7 +15,7 @@ RugBuilder.prototype.getCollectionsData = function(collection) {
 				// then save it in R.collections
 
 				function loaded() {
-					
+
 					if ( this.status !== 200 ) {
 						rej(101);
 					}
@@ -26,7 +26,7 @@ RugBuilder.prototype.getCollectionsData = function(collection) {
 					else {
 						R.WCBorderCollections[collection] = JSON.parse(this.response);
 					}
-					
+
 					res(JSON.parse(this.response));
 				}
 
@@ -40,10 +40,10 @@ RugBuilder.prototype.getCollectionsData = function(collection) {
 						urlBase = urlBase.substr(0, urlBase.length-1);
 					}
 
-					let url = urlBase + '?request=collections';
+					let url = R.apiUrl + 'collections-data';
 
-					if ( collection ) {
-						url += '&collection=' + collection;
+					if (collection) {
+						url += '?collection=' + collection;
 					}
 
 					req.addEventListener( 'load', loaded );
