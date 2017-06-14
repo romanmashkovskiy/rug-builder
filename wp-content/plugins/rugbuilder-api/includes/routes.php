@@ -54,5 +54,13 @@
       'endpoint' => '/add-rug-to-cart',
       'methods' => 'GET',
       'callback' => 'add-rug-to-cart'
+    ),
+
+
+    /* send rug quote email */
+    array(
+      'endpoint' => '/send-rug-quote-email',
+      'methods' => 'POST',
+      'callback' => 'send-rug-quote-email'
     )
   );

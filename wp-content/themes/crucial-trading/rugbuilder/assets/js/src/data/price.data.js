@@ -10,7 +10,7 @@ RugBuilder.prototype.getPriceData = function(material) {
 			case 'website' :
 
 				function loaded() {
-
+					
 					if ( this.status != 200 ) {
 						rej();
 						return;
@@ -27,8 +27,7 @@ RugBuilder.prototype.getPriceData = function(material) {
 					urlBase = urlBase.substr(0, urlBase.length-1);
 				}
 
-				let url = R.apiUrl + 'price-data?material=' +
-					encodeURIComponent(material);
+				let url = urlBase + '?request=price&material=' + encodeURIComponent(material);
 
 				req.addEventListener( 'load', loaded );
 				req.open( 'GET', url );

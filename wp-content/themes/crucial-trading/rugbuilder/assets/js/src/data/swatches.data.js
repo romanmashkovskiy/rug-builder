@@ -15,7 +15,7 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 				// and resolve the promise with the data
 
 				function loaded() {
-
+					
 					if ( this.status !== 200 ) {
 						rej(0);
 					}
@@ -30,6 +30,7 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 				}
 
 				function request() {
+
 					let req = new XMLHttpRequest();
 
 					let urlBase = window.location.href;
@@ -39,10 +40,9 @@ RugBuilder.prototype.getSwatchData = function(collection) {
 					}
 
 					let search = collection.toLowerCase();
-					let url = R.apiUrl + 'swatches-data?collection=' + search;
 
 					req.addEventListener( 'load', loaded );
-					req.open( 'GET', url );
+					req.open( 'GET', urlBase + '?request=swatches&collection=' + search );
 					req.send();
 				}
 
