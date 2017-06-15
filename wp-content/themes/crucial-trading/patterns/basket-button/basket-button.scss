@@ -176,7 +176,7 @@ svg.main-menu__button__basket {
 	a.checkout-button.button {
 		display: block;
 		font-weight: 400;
-		line-height: 30px; 
+		line-height: 30px;
 		margin-top: 60px;
 		text-align: center;
 		width: 100% !important;
@@ -214,4 +214,32 @@ svg.main-menu__button__basket {
 	a {
 		display: none;
 	}
+}
+
+// Variations in basket
+
+dl.variation {
+
+	margin-top: 10px;
+
+	.variation-Price {
+		display: none;
+	}
+
+	dt {
+		font-weight: 600;
+	}
+
+	dt,
+	dd,
+	p {
+		display: block;
+		font-size: 14px;
+	}
+
+	dd {
+		padding: 0px;
+		margin: 0px;
+	}
+
 }
