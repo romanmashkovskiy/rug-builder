@@ -145,7 +145,7 @@ canvas {
 		letter-spacing: 1px;
 		text-transform: none;
 	}
- 
+
 	&.hidden {
 		visibility: hidden;
 		opacity: 0;
@@ -243,6 +243,8 @@ canvas {
 @import 'base/inputs';
 @import 'base/typography';
 
+@import 'print';
+
 @import 'components/*';
 @import 'components/drawer/*';
 
@@ -257,4 +259,4 @@ canvas {
 	.drawer__content__border ul {
 		margin-left: -25%;
 	}
-}
+} 

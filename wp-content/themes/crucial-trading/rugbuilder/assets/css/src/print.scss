@@ -1,0 +1,42 @@
+// Print Stylesheet
+
+@media print {
+
+#drawer,
+canvas,
+body .order__links,
+body .progress-menu__bottom,
+body .progress-menu__restart,
+body .progress-menu__exit,
+body .order__title,
+body .order .order__underline {
+  display: none;
+}
+
+body .progress-menu__top {
+  text-align: center;
+}
+
+body .order {
+  top: 100px;
+
+  .order__image,
+  .order__details {
+    width: 100%;
+    display: block;
+    float: none;
+    clear: both;
+    padding: 0px;
+  }
+
+  .order__details {
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  .details__row.header.sizing {
+    margin-top: 50px;
+  }
+}
+
+}
