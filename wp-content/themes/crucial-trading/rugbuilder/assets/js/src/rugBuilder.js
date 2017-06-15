@@ -1,15 +1,6 @@
 class RugBuilder {
 
 	constructor( context ) {
-		this.apiUrl = '';
-
-		if (window.location.hostname === 'localhost') {
-			this.apiUrl = 'http://localhost:8888/crucial-trading/'
-		} else {
-			this.apiUrl = 'http://www.crucial-trading.com/';
-		}
-
-		this.apiUrl += 'wp-json/api/v1/';
 
 		// Context - Where the RugBuilder is being loaded. Determines how to load the data
 		this.context = context;
@@ -93,7 +84,6 @@ class RugBuilder {
 			}
 		};
 
-		// JSON - Storage for the JSON rug models
 		this.json = this.originalJson;
 
 		// User Choices - Store all of the user's choices
@@ -231,6 +221,7 @@ class RugBuilder {
 	// Change the view of the rug
 
 	changeView(currentView) {
+
 		this.camera.zoom = 1;
 		this.camera.updateProjectionMatrix();
 
@@ -295,6 +286,7 @@ class RugBuilder {
 	// Zoom in on the rug
 
 	zoomIn() {
+
 		const CURRENT_ZOOM = this.camera.zoom;
 		const NEW_ZOOM     = CURRENT_ZOOM + 0.333333;
 
@@ -311,6 +303,7 @@ class RugBuilder {
 	// Zoom out from the rug
 
 	zoomOut() {
+
 		const CURRENT_ZOOM = this.camera.zoom;
 		const NEW_ZOOM     = CURRENT_ZOOM - 0.333333;
 
@@ -329,7 +322,7 @@ class RugBuilder {
 	startAgain() {
 		this.currentStage = 0;
 		this.stageVisited = [ true, false, false, false, false ];
-		this.json =  this.originalJson;
+		this.json = this.originalJson;
 
 		this.loadedTextures = {};
 		this.borderType      = undefined;
@@ -377,6 +370,7 @@ class RugBuilder {
 	};
 
 	// Calculate price of rug
+
 	calculatePrice(LENGTH, WIDTH) {
 
 		const R = rugBuilder;

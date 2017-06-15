@@ -276,7 +276,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 					if ( this.state.chosenBorder === 'Single & Piping' ) {
 
-						content = 'materials';
+						content = 'swatches';
 
 						this.setState({
 							chosenMaterial   : undefined,
@@ -834,7 +834,6 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 
 	/* single & piping */
 	if ( _this.state.chosenBorder === 'Single & Piping' && _this.state.stage === 3 ) {
-		
 		// If user is on piping stage
 
 		const PIPING = _this.state._piping;

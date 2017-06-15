@@ -15,7 +15,7 @@ RugBuilder.prototype.getPipingData = function() {
 				// then save it in R.materials
 
 				function loaded() {
-
+					
 					if ( this.status !== 200 ) {
 						rej(100);
 					}
@@ -45,7 +45,7 @@ RugBuilder.prototype.getPipingData = function() {
 						urlBase = urlBase.substr(0, urlBase.length-1);
 					}
 
-					let url = R.apiUrl + 'piping-data';
+					let url = urlBase + '?request=piping';
 
 					req.addEventListener( 'load', loaded );
 					req.open( 'GET', url );
