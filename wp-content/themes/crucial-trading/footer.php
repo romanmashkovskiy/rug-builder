@@ -95,6 +95,6 @@
 
 		</script>
 		<?php wp_footer(); ?>
-		<pre style="display:none;"><?php var_dump($_SERVER); ?></pre>
+		<pre style="display:none;"><?php var_dump($_SERVER['HTTP_X_FORWARDED_PROTO']); ?></pre>
 	</body>
 </html>
