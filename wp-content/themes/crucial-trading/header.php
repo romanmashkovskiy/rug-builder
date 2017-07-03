@@ -25,6 +25,7 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 		<?php wp_head(); ?>
 		<?php include get_template_directory() . '/header-partials/lt-ie9.php'; ?>
 		<?php include get_template_directory() . '/header-partials/ie9-css.php'; ?>
+
 	</head>
 	<body <?php body_class( $header_class ); ?>>
 		<?php wc_print_notices(); ?>
