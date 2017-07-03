@@ -9,7 +9,7 @@
  * @package Crucial_Trading
  */
 
-?> 
+?>
 
 
 
@@ -26,7 +26,7 @@
 				<a href="" class="close-basket-dropdown">
 					<span class="main-menu__button__icon"></span>
 				</a>
-				<form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post"> 
+				<form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 					<?php
 
 					foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
@@ -81,7 +81,7 @@
 				</div>
 			</div>
 
-		
+
 			</main>
 		</div>
 		<script>
@@ -89,11 +89,12 @@
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-		
+
 		  ga('create', 'UA-6149929-1', 'auto');
 		  ga('send', 'pageview');
-		
+
 		</script>
 		<?php wp_footer(); ?>
+		<pre style="display:none;"><?php var_dump($_SERVER); ?></pre>
 	</body>
 </html>
