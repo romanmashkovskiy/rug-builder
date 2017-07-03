@@ -7,9 +7,6 @@
  *
  */
 
-//define('WP_HOME','//www.crucial-trading.com');
-//define('WP_SITEURL','//www.crucial-trading.com');
-
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define('DB_NAME', $_SERVER["RDS_DB_NAME"]);

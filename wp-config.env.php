@@ -39,11 +39,11 @@ switch ($hostname) {
       define('WP_ENV', 'production');
       break;
 
-    case '//crucialtrading-env-test.eu-west-1.elasticbeanstalk.com':
+    case 'crucialtrading-env-test.eu-west-1.elasticbeanstalk.com':
         define('WP_ENV', 'production');
         break;
 
-    case '//crucialtrading-env-prod.eu-west-1.elasticbeanstalk.com':
+    case 'crucialtrading-env-prod.eu-west-1.elasticbeanstalk.com':
     default:
         define('WP_ENV', 'production');
 }
