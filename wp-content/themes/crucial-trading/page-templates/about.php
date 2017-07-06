@@ -118,6 +118,7 @@ echo do_shortcode( '[logo-nav]' ); ?>
 
 						<div class="section">
 							<a href="#" class="scroller__top">Back</a>
+              <div class="section__container">
 							<div class="section__image">
 								<img src="<?php echo $src; ?>" alt="<?php echo $title; ?>">
 							</div>
@@ -130,6 +131,7 @@ echo do_shortcode( '[logo-nav]' ); ?>
 								<?php } ?>
 
 							</div>
+            </div>
 						</div>
 
 						<?php
