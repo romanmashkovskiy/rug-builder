@@ -7,17 +7,17 @@
  * @package Crucial Trading
  * @since Crucial Trading 1.0
  */
- 
+
 get_header();
 
 echo do_shortcode( '[logo-nav]' ); ?>
 
 <div class="about">
-		
+
 		<h3 class="about__sidetitle side-title rotate">About Crucial Trading</h3>
 		<a href="#" title="Back to Start" class="about__timeline__btn about__timeline__btn--close">Back to Start</a>
 		<a href="#" title="Back to Start" class="about__scroller__btn about__scroller__btn--close">Back to Start</a>
-		
+
 		<div class="about__timeline" id="about-timeline">
 			<div class="about__timeline__bg"></div>
 			<div class="timeline__top-line"><div class="timeline__top-line timeline__top-line--horizontal"></div></div>
@@ -35,10 +35,10 @@ echo do_shortcode( '[logo-nav]' ); ?>
 			</div>
 			<a href="#" class="about__scroller__start">Begin</a>
 		</div>
-		
-				
+
+
 		<div class="about__timeline__content clearfix">
-			
+
 			<div class="timeline__centre-line"></div>
 
 			<?php
@@ -86,9 +86,9 @@ echo do_shortcode( '[logo-nav]' ); ?>
 			?>
 
 		</div>
-		
+
 		<div class="about__scroller__content clearfix">
-			
+
 			<div id="pagepilling">
 
 				<?php
@@ -121,7 +121,7 @@ echo do_shortcode( '[logo-nav]' ); ?>
 							<div class="section__image">
 								<img src="<?php echo $src; ?>" alt="<?php echo $title; ?>">
 							</div>
-							<div class="section__content box-shadow">
+							<div class="section__content box-shadow vertical-align">
 								<h2 class="section__title"><?php echo $title; ?></h2>
 								<p class="section__text"><?php echo $content; ?></p>
 
@@ -146,7 +146,7 @@ echo do_shortcode( '[logo-nav]' ); ?>
 
 		</div>
 
-		
+
 </div>
 
 <?php get_footer();

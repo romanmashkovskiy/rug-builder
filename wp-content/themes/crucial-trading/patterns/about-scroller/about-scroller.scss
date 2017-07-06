@@ -1,6 +1,6 @@
 /**
  * About - Scroller
- * One half of the about page - the section where the entire page scrolls 
+ * One half of the about page - the section where the entire page scrolls
  *
  * Contents:
  *
@@ -13,8 +13,8 @@
 
 
 /****************************************************************************
-*     Scroller Page Layout 
-****************************************************************************/ 
+*     Scroller Page Layout
+****************************************************************************/
 
 
 .about__scroller__content,
@@ -95,12 +95,12 @@ body.show-about-scroller .about__scroller__start {
 
 	.section__content {
 		background: white;
-		height: 56%;
+		//height: 56%;
 		left: 52.5%;
 		padding: 50px;
 		position: absolute;
 		right: 10%;
-		top: 22%;
+		//top: 22%;
 		overflow: hidden;
 
 		@media screen and (max-width: 992px) {
