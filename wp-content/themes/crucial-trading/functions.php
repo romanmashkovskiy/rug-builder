@@ -82,13 +82,9 @@ function crucial_trading_setup() {
 
 
 	/*
-	 * Disable password change reminders  
+	 * Disable password change reminders
 	 */
-	if ( !function_exists( 'wp_password_change_notification' ) ) {
-
-    function wp_password_change_notification() {}
-	}
-
+	add_filter( 'send_email_change_email', '__return_false' );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
