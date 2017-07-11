@@ -339,6 +339,8 @@ RewriteRule /trade-enquiries /contact-us/#trade [R=301,NC,L]
 
 RewriteRule /find-retailer/overseas-partners /find-retailer [R=301,NC,L]
 
+RewriteRule /rug-builder /rugbuilder [R=301,NC,L]
+
 # Security scan report fixes
 
 <ifModule mod_headers.c>
