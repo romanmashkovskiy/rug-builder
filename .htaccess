@@ -324,7 +324,11 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 
 # END WordPress
 
+# Force SSL
 
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}Í
 
 #301 Redirects
 
