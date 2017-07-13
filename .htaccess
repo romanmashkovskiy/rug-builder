@@ -328,7 +328,7 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 
 RewriteEngine on
 RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}Í
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
 #301 Redirects
 
