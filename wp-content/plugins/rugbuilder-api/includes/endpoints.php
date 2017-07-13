@@ -332,6 +332,15 @@
     'send-rug-quote-email' => function (WP_REST_Request $request) {
       $test = $request['test'];
 
+      $user_title = $request['userTitle'];
+      $user_name = $request['userName'];
+      $user_address = $request['userAddress'];
+
+      error_log($user_address);
+
+      $user_postcode = $request['userPostcode'];
+      $user_number = $request['userNumber'];
+
       $user_email = $request['userEmail'];
       $client_email = $request['clientEmail'];
       $user_email = $request['userEmail'];
@@ -349,7 +358,7 @@
       $headers = '';
       $attachments = '';
 
-      $body = sendQuoteEmailTemplate ($material_data, $sizing_data, $price);
+      $body = sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode,  $material_data, $sizing_data, $price);
 
       wp_mail($client_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
       wp_mail($user_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
@@ -363,7 +372,7 @@
   /**
    * Quote email template
    */
-  function sendQuoteEmailTemplate ($materials, $sizing, $price) {
+  function sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode, $materials, $sizing, $price) {
     $template = '';
 
     $template .= '<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
@@ -429,10 +438,28 @@
                     <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
                       font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
                     >
+                      Details
+                    </h2>';
+
+                    $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
+
+                    $template .= '<strong>Name </strong>' . $user_title . ' ' . $user_name;
+                    $template .= '<br />';
+                    $template .= '<strong>Address </strong>' . $user_address;
+                    $template .= '<br />';
+                    $template .= '<strong>Postcode </strong>' . $user_postcode;
+                    $template .= '<br /> <br /> </p>';
+
+                    $template .= '
+                    <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
+                      font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
+                    >
                       Materials
                     </h2>';
 
                       $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
+
+
 
                       foreach ($materials as $key => $val) {
                         $template .= '<strong>' . $key . '</strong> &nbsp; &nbsp;';
