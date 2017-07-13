@@ -326,9 +326,9 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 
 # Force SSL
 
-RewriteEngine on
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+#RewriteEngine on
+#RewriteCond %{HTTPS} off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
 #301 Redirects
 
