@@ -17,7 +17,7 @@ echo do_shortcode( '[logo-nav]' );
 
 <div id="hello">
 	<div class="vertical-align">
-		<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161213142159/rug-builder-white-icon.svg" class="logo" alt="Rug Builder">
+		<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20161213142159/rug-builder-white-icon.svg" class="logo" alt="Rug Builder">
 		<div class="hello__content">
 			<h3>Build Your Own</h3>
 			<h1>Rug Builder</h1>

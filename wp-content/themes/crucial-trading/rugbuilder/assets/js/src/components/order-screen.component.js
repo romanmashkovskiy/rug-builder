@@ -11,7 +11,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			this.innerBorderID  = 0;
 			this.pipingID       = 0;
 			this.outerBorderID  = 0;
-			
+
 			const CENTER_MATERIAL        = R.centerMaterial;
 			const CENTER_ID              = R.centerID;
 			const BORDER_TYPE            = R.borderType;
@@ -117,7 +117,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			req.send();
 
 			function loaded() {
-				
+
 				if ( this.status !== 200 ) {
 					R.error(1000, this, true);
 					return;
@@ -172,7 +172,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 			if ( BORDER_TYPE === 'single' ) {
 				url += '&inner=' + this.state.singleBorderID;
-			} 
+			}
 			else if ( BORDER_TYPE === 'piping' ) {
 				url += '&inner=' + this.state.singleBorderID;
 				url += '&piping=' + this.state.pipingID;
@@ -198,7 +198,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 			if ( BORDER_TYPE === 'single' ) {
 				url += '&inner=' + this.state.singleBorderID;
-			} 
+			}
 			else if ( BORDER_TYPE === 'piping' ) {
 				url += '&inner=' + this.state.singleBorderID;
 				url += '&piping=' + this.state.pipingID;
@@ -215,7 +215,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			req.send();
 
 			function loaded() {
-				
+
 				if ( this.status !== 200 ) {
 					R.error(1000, this, true);
 					return;
@@ -269,7 +269,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 					return <div className="details__row clearfix" key={ index }>
 						<p>{ materialObj[key] } { code }</p>
 						<p>{ key }</p>
-					</div> 
+					</div>
 				});
 			};
 
@@ -304,7 +304,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 					</div>
 					<div className="order__links">
 						<a href="#" className="link__edit" onClick={ this.edit }>
-							<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg" />
+							<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg" />
 							Edit Rug
 						</a>
 						<a href="#" className="link__print" onClick={ this.print }>Print Details</a>

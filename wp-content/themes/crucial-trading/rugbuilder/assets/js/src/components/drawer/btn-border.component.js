@@ -16,11 +16,11 @@ RugBuilder.prototype.btnBorderComponent = function() {
 
 			switch ( this.props.border ) {
 
-				case 'Single Border' : url = 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174349/single-border-icon.svg'; break;
-				case 'Single & Piping' : url = 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174352/single-piping-icon.svg'; break;
-				case 'Double Border' : url = 'http://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174338/double-border-icon.svg'; break;
+				case 'Single Border' : url = 'https://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174349/single-border-icon.svg'; break;
+				case 'Single & Piping' : url = 'https://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174352/single-piping-icon.svg'; break;
+				case 'Double Border' : url = 'https://d105txpzekqrfa.cloudfront.net/uploads/2016/11/11174338/double-border-icon.svg'; break;
 			}
-			
+
 			return (
 				<li>
 					<a href="#" onClick={ this.handleClick }>

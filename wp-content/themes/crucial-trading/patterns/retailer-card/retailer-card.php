@@ -2,7 +2,7 @@
 
 /**
  * Template Name: Retailer Card
- * The cards on the Find a Retailer page 
+ * The cards on the Find a Retailer page
  *
  * Contents:
  *
@@ -36,7 +36,7 @@ function retailer_card( $atts = '' ) {
 		$iterator = $atts['i'] + 1;
 	}
 
-	$post = get_post( $post_id ); 
+	$post = get_post( $post_id );
 
 //	$address = rwmb_meta( 'address', array(), $post_id );
 
@@ -84,11 +84,11 @@ function retailer_card( $atts = '' ) {
 	$lat = get_post_meta( $post_id, 'retailer_lat', true );
 	$lng = get_post_meta( $post_id, 'retailer_lng', true );
 	$url = 'http://maps.google.com/maps?q=' . $lat . ',' . $lng . '&ll=' . $lat . ',' . $lng . '&z=12';
- 
+
 	if ( $distance != 'overseas' ) {
 
 		$html .= '<div class="retailer">';
-		$html .= '<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg" class="retailer__pin">';
+		$html .= '<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg" class="retailer__pin">';
 		$html .= '<span class="retailer__iterator">' . $iterator . '</span>';
 		$html .= '<div class="border-div">';
 		$html .= '<h3 class="retailer__title">' . get_the_title( $post_id ) . '</h3>';
@@ -134,7 +134,7 @@ function retailer_card( $atts = '' ) {
 	return $html;
 }
 
-add_shortcode( 'retailer-card', 'retailer_card' ); 
+add_shortcode( 'retailer-card', 'retailer_card' );
 
 function get_country_code( $country ) {
 
