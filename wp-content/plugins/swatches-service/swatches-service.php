@@ -110,7 +110,8 @@ class SendFiles {
 		$ip_address = '';
 
 		if ( $production ) {
-			$ip_address = '195.102.23.61';
+			//$ip_address = '195.102.23.61';
+			$ip_address = 'edi.headlam.com';
 		} else {
 			$ip_address = '89.187.86.163';
 		}
