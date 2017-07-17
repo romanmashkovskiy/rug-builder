@@ -283,7 +283,7 @@ function activate_swatches_schedule() {
 	$timestamp = wp_next_scheduled( 'schedule_swatches_service' );
 
 	if( $timestamp == false ){
-		wp_schedule_event( time(), 'twicedaily', 'schedule_swatches_service' );
+		wp_schedule_event( time(), 'hourly', 'schedule_swatches_service' );
 	}
 }
 
