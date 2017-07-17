@@ -72,7 +72,9 @@ if ( !$allowed ) {
 </head>
 <body>
 
-	<script src="//d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-loader.min.js"></script>
+	<script src="//d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-loader.js"></script>
+	<!-- <script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/js/dist/hospitality-builder.min.j*s"> </script> -->
+	<!-- <script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/loader/hospitality-loader.js"> </script> -->
 	<script>
 
 	load({

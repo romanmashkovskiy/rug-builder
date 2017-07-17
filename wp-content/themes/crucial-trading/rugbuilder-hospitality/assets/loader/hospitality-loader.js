@@ -16,10 +16,10 @@ function load(options, secret_DEPRECIATED) {
 		restart      = false;
 		exit         = false;
 		translations = false;
-		
+
 		console.warn('Passing in the key and secret to the load function as strings is depreciated and will be removed in future versions. Please pass them in an object, along with the other options, like so:')
 		console.log({
-			key               : 'YOUR_API_KEY_HERE', 
+			key               : 'YOUR_API_KEY_HERE',
 			secret            : 'YOUR_API_SECRET_HERE',
 			showSubmitButton  : true,
 			showRestartButton : true,
@@ -42,10 +42,14 @@ function load(options, secret_DEPRECIATED) {
 		document.write('<script>window.Promise = Promise</script>');
 	}
 
+	console.log('hospitality loader delta !!');
+
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.5.4/pubsub.min.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>');
 	document.write('<script src="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.js"></script>');
+	// document.write('<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/js/dist/hospitality-builder.min.js"></script>');
+
 	document.write('<script>var rugBuilder = new RugBuilder("website", ' + submit + ', ' + restart + ', ' + exit + '); rugBuilder.start();</script>');
 }

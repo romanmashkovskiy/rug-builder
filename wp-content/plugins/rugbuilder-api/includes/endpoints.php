@@ -317,10 +317,8 @@
      * Adds rug order to cart
      */
     'add-rug-to-cart' => function () {
-      error_log('add to cart endpoint !!');
 
       $rug_id = $_GET['products'];
-      error_log($rug_id);
 
 
       return WC()->cart->add_to_cart($rug_id, 1);
@@ -330,8 +328,14 @@
      * Send email to the user and client reqarding rud details and quote
      */
     'send-rug-quote-email' => function (WP_REST_Request $request) {
-      // error_log('sned')
       $test = $request['test'];
+
+      $user_title = $request['userTitle'];
+      $user_name = $request['userName'];
+      $user_address = $request['userAddress'];
+
+      $user_postcode = $request['userPostcode'];
+      $user_number = $request['userNumber'];
 
       $user_email = $request['userEmail'];
       $client_email = $request['clientEmail'];
@@ -350,7 +354,7 @@
       $headers = '';
       $attachments = '';
 
-      $body = sendQuoteEmailTemplate ($material_data, $sizing_data, $price);
+      $body = sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode,  $material_data, $sizing_data, $price);
 
       wp_mail($client_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
       wp_mail($user_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
@@ -364,24 +368,26 @@
   /**
    * Quote email template
    */
-  function sendQuoteEmailTemplate ($materials, $sizing, $price) {
+  function sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode, $materials, $sizing, $price) {
     $template = '';
 
     $template .= '<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
     		<div id="wrapper"
           dir="ltr"
           style="background-color: #383838; border-radius: 3px 3px 0 0 !important; color: #ffffff; border-bottom: 0;
-            font-weight: bold; line-height: 100%; vertical-align: middle; font-family: ; margin: 0; padding: 70px 0 70px 0; -webkit-text-size-adjust: none !important; width: 100%;"
+            font-weight: bold; line-height: 100%; vertical-align: middle; font-family: ;
+            margin: 0; padding: 70px 0 70px 0; -webkit-text-size-adjust: none !important; width: 100%;"
           helvetica=""
           neue=""
           roboto=""
           arial=""
           sans-serif=""
         >
-    			<table border="0" cellpadding="0" cellspacing="0" height="150px" width="100%">
+    			<table border="0" cellpadding="0" cellspacing="0" height="100px" width="100%">
             <tbody>
               <tr>
                 <td align="center" valign="top" style="font-family: Open Sans, sans-serif;">
+
 
     						<table border="0" cellpadding="0" cellspacing="0" width="600">
                   <tbody>
@@ -391,11 +397,11 @@
                     </tr>
 
                     <tr style="background: #383838;">
-                      <td id="header_wrapper" style="font-family: Open Sans, sans-serif; padding: 36px 48px; display: block; height: 150px;">
+                      <td id="header_wrapper" style="font-family: Open Sans, sans-serif; padding: 36px 48px; display: block;">
     										<h1 style="font-size: 52px; text-align: center; color: #ffffff; font-family: Playfair Display,
                           serif; font-weight: 300; line-height: 150%; margin: 0; text-shadow: 0 1px 0 #606060; -webkit-font-smoothing: antialiased;"
                         >
-    										  Bespoke Rug Quote
+    										  Your Bespoke Rug Quote
                         </h1>
     									</td>
     								</tr>
@@ -422,6 +428,22 @@
                       style="width: 100%; font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif;
                         color: #737373; font-size: 14px; line-height: 150%; text-align: left;"
                     >
+                    <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
+                      font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
+                    >
+                      Details
+                    </h2>';
+
+                    $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
+
+                    $template .= '<strong>Name </strong>  &nbsp; &nbsp;' . $user_title . ' ' . $user_name;
+                    $template .= '<br />';
+                    $template .= '<strong>Address </strong>  &nbsp; &nbsp;' . $user_address;
+                    $template .= '<br />';
+                    $template .= '<strong>Postcode </strong>  &nbsp; &nbsp;' . $user_postcode;
+                    $template .= '<br /> <br /> </p>';
+
+                    $template .= '
                     <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
                       font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
                     >
