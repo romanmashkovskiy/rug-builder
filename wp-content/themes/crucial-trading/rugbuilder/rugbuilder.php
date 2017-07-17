@@ -8,6 +8,70 @@
  * @since Crucial 1.0
  */
 
+include_once('ajax-requests.php');
+
+if ( array_key_exists( 'request', $_GET ) ) {
+
+	$request = $_GET['request'];
+
+	switch ( $request ) {
+		case 'materials'   : $res = materials_data(); break;
+		case 'collections' : $res = collections_data(); break;
+		case 'swatches'    : $res = swatches_data(); break;
+		case 'border'      : $res = border_data(); break;
+		case 'piping'      : $res = piping_data(); break;
+		case 'price'       : $res = price_data(); break;
+	}
+
+	echo json_encode( $res );
+	exit();
+}
+
+if ( array_key_exists( 'products', $_GET ) ) {
+	add_rug_to_cart();
+	exit();
+}
+
+if ( array_key_exists( 'err', $_GET ) ) {
+
+	$error_code = (int) $_GET['err'];
+
+	if ( $error_code > 0 ) {
+
+		$user_agent = array_key_exists( 'HTTP_USER_AGENT', $_SERVER ) ? $_SERVER['HTTP_USER_AGENT'] : '';
+		$message    = array_key_exists( 'message', $_GET ) ? filter_var( $_GET['message'], FILTER_SANITIZE_STRING ) : '';
+
+		$error_info = array(
+			'code'    => $error_code,
+			'agent'   => $user_agent,
+			'message' => $message,
+		);
+
+		echo log_error( $error_info );
+	}
+
+	exit();
+}
+
+$args  = array(
+	'post_type' => 'product',
+	'name'      => 'bespoke-rug'
+);
+
+$query  = new WP_Query( $args );
+$rug_id = 0;
+
+if ( $query->have_posts() ) {
+
+	$rug_post = $query->posts[0];
+
+	if ( $rug_post->post_name == 'bespoke-rug' ) {
+		$rug_id = $rug_post->ID;
+	}
+}
+
+echo '';
+
 ?>
 
 <!doctype html>
@@ -18,32 +82,17 @@
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<title>Crucial Trading - Rug Builder</title>
 	<style>body{margin:0}</style>
-	<link rel="stylesheet" href="http://cdn.crucial-trading.com/rb/style.min.css">
-
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.0/es6-promise.min.js"></script>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react-dom.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.5.4/react-dom-server.min.js"></script>
-
-	<script src="http://cdn.crucial-trading.com/rb/three.js"> </script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/85/three.min.js"> </script> -->
-
-	<script src="http://cdn.crucial-trading.com/rb/pubsub.min.js"> </script>
-	<script src="http://cdn.crucial-trading.com/rb/orbitcontrols.min.js"> </script>
-
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/css/dist/style.min.css">
+	<script>var RUG_ID = "<?php echo $rug_id; ?>"</script>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
+	
 	  ga('create', 'UA-6149929-1', 'auto');
 	  ga('send', 'pageview');
+	
 	</script>
 </head>
 <body>
@@ -62,30 +111,31 @@
 		<div id="error-box">
 			<p id="error-msg"></p>
 			<p id="error-code"></p>
-			<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20170110133952/exit.svg" id="close-error">
+			<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20170110133952/exit.svg" id="close-error">
 		</div>
 	</div>
 
-	<script src="http://cdn.crucial-trading.com/rb/rugBuilder.min.js"> </script>
-	<!-- <script src="http://localhost:8888/rugbuilder/assets/js/dist/rugBuilder.min.js"> </script> -->
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/Modernizr/modernizr.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/polyfills/promises.min.js"></script>
 
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/PubSub/pubsub.min.js"></script>
+
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/react/react.min.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/react/react-dom.min.js"></script>
+
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/three.js/build/three.js"></script>
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/vendor/orbitcontrols/orbitcontrols.min.js"></script>
+
+	<script src="<?php echo get_template_directory_uri(); ?>/rugbuilder/assets/js/dist/rugBuilder.min.js"></script>
 
 	<script>
-		var siteUrl = 'http://vps.89hosting.co.uk/~crucialtrading';
-
-		if (!siteUrl) {
-			var pathArray = location.href.split( '/' );
-			var siteUrl = pathArray[0];
-		}
-
-		var exitPath = '/start-rugbuilder';
-		var emailAddress = 'connorlloydmoore@codegood.co';
-		var widget = false;
 
 		if ( !Modernizr.promises ) {
 			window.Promise = ES6Promise;
 		}
 
+		var templateDirectoryUri = '<?php echo get_template_directory_uri(); ?>';
+		var siteUrl = '<?php echo site_url(); ?>';
 		var rugBuilder = new RugBuilder('website');
 		rugBuilder.start();
 	</script>
