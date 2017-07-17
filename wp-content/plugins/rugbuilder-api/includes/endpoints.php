@@ -330,8 +330,16 @@
      * Send email to the user and client reqarding rud details and quote
      */
     'send-rug-quote-email' => function (WP_REST_Request $request) {
-      // error_log('sned')
       $test = $request['test'];
+
+      $user_title = $request['userTitle'];
+      $user_name = $request['userName'];
+      $user_address = $request['userAddress'];
+
+      error_log($user_address);
+
+      $user_postcode = $request['userPostcode'];
+      $user_number = $request['userNumber'];
 
       $user_email = $request['userEmail'];
       $client_email = $request['clientEmail'];
@@ -345,12 +353,12 @@
       $material_data = json_decode($request['materialData']);
       $sizing_data = json_decode($request['sizing']);
 
-      $subject = 'Bespoke Rug Quote';
+      $subject = 'Custom Rug Quote';
       // $message = 'here is your rug quote';
       $headers = '';
       $attachments = '';
 
-      $body = sendQuoteEmailTemplate ($material_data, $sizing_data, $price);
+      $body = sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode,  $material_data, $sizing_data, $price);
 
       wp_mail($client_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
       wp_mail($user_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
@@ -364,24 +372,29 @@
   /**
    * Quote email template
    */
-  function sendQuoteEmailTemplate ($materials, $sizing, $price) {
+  function sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode, $materials, $sizing, $price) {
     $template = '';
 
     $template .= '<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
     		<div id="wrapper"
           dir="ltr"
-          style="background-color: #383838; border-radius: 3px 3px 0 0 !important; color: #ffffff; border-bottom: 0;
-            font-weight: bold; line-height: 100%; vertical-align: middle; font-family: ; margin: 0; padding: 70px 0 70px 0; -webkit-text-size-adjust: none !important; width: 100%;"
+          style="background-color: #383838; border-radius: 3px 3px 0 0 !important; color: #ffffff; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: ; margin: 0; padding: 70px 0 70px 0; -webkit-text-size-adjust: none !important; width: 100%;"
           helvetica=""
           neue=""
           roboto=""
           arial=""
           sans-serif=""
         >
-    			<table border="0" cellpadding="0" cellspacing="0" height="150px" width="100%">
+    			<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
             <tbody>
               <tr>
                 <td align="center" valign="top" style="font-family: Open Sans, sans-serif;">
+    						  <div id="template_header_image" style="font-family: Open Sans, sans-serif;">
+    							  <p style="margin-top: 0; text-align: center; font-family: Open Sans, sans-serif;">
+
+                      Crucial Trading
+                    </p>
+    						   </div>
 
     						<table border="0" cellpadding="0" cellspacing="0" width="600">
                   <tbody>
@@ -391,11 +404,11 @@
                     </tr>
 
                     <tr style="background: #383838;">
-                      <td id="header_wrapper" style="font-family: Open Sans, sans-serif; padding: 36px 48px; display: block; height: 150px;">
+                      <td id="header_wrapper" style="font-family: Open Sans, sans-serif; padding: 36px 48px; display: block;">
     										<h1 style="font-size: 52px; text-align: center; color: #ffffff; font-family: Playfair Display,
                           serif; font-weight: 300; line-height: 150%; margin: 0; text-shadow: 0 1px 0 #606060; -webkit-font-smoothing: antialiased;"
                         >
-    										  Bespoke Rug Quote
+    										  Your Rug Quote
                         </h1>
     									</td>
     								</tr>
@@ -425,10 +438,28 @@
                     <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
                       font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
                     >
+                      Details
+                    </h2>';
+
+                    $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
+
+                    $template .= '<strong>Name </strong>' . $user_title . ' ' . $user_name;
+                    $template .= '<br />';
+                    $template .= '<strong>Address </strong>' . $user_address;
+                    $template .= '<br />';
+                    $template .= '<strong>Postcode </strong>' . $user_postcode;
+                    $template .= '<br /> <br /> </p>';
+
+                    $template .= '
+                    <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
+                      font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
+                    >
                       Materials
                     </h2>';
 
                       $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
+
+
 
                       foreach ($materials as $key => $val) {
                         $template .= '<strong>' . $key . '</strong> &nbsp; &nbsp;';
@@ -477,7 +508,31 @@
     </table>
     <!-- End Body -->
 
-
+    			<!-- Footer -->
+    		<table border="0" cellpadding="10" cellspacing="0" id="template_footer" style="width: 100%;">
+          <tbody>
+            <tr>
+          <td valign="top"
+            style="font-family: Open Sans, sans-serif; padding: 0; -webkit-border-radius: 6px;">
+    				<table border="0" cellpadding="10" cellspacing="0" width="100%">
+              <tbody>
+                <tr>
+                  <td colspan="2"
+                    valign="middle"
+                    id="credit"
+                    style="font-family: Arial; padding: 0 48px 48px 48px; -webkit-border-radius: 6px;
+                      border: 0; color: #888888; font-size: 12px; line-height: 125%; text-align: center;"
+                  >
+    							  <p style="font-family: Open Sans, sans-serif;">Copyright Crucial Trading Ltd</p>
+    							</td>
+    						</tr>
+              </tbody>
+            </table>
+          </td>
+    		</tr>
+      </tbody>
+    </table>
+    <!-- End Footer -->
     </body>';
 
     return $template;
