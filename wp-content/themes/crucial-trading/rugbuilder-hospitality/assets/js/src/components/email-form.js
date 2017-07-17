@@ -5,7 +5,6 @@ RugBuilder.prototype.emailForm = function(choices) {
 	const EmailForm = React.createClass({
 
 		submit: function() {
-			console.log('local !! -> S3 !!');
 
 			const EMAIL = document.querySelector('#hosp_builder_email-submit').value;
 
@@ -15,8 +14,6 @@ RugBuilder.prototype.emailForm = function(choices) {
 
 			const postUrl = window.location.href;
 
-			console.log('post url -->');
-			console.log(postUrl);
 
 			req.open('POST', `${postUrl}`);
 			req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

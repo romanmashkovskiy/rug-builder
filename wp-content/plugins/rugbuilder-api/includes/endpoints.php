@@ -317,10 +317,8 @@
      * Adds rug order to cart
      */
     'add-rug-to-cart' => function () {
-      error_log('add to cart endpoint !!');
 
       $rug_id = $_GET['products'];
-      error_log($rug_id);
 
 
       return WC()->cart->add_to_cart($rug_id, 1);
@@ -335,8 +333,6 @@
       $user_title = $request['userTitle'];
       $user_name = $request['userName'];
       $user_address = $request['userAddress'];
-
-      error_log($user_address);
 
       $user_postcode = $request['userPostcode'];
       $user_number = $request['userNumber'];
@@ -353,18 +349,12 @@
       $material_data = json_decode($request['materialData']);
       $sizing_data = json_decode($request['sizing']);
 
-      $subject = 'Custom Rug Quote';
+      $subject = 'Bespoke Rug Quote';
       // $message = 'here is your rug quote';
       $headers = '';
       $attachments = '';
 
       $body = sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode,  $material_data, $sizing_data, $price);
-
-      error_log('user email -->');
-      error_log($user_email);
-
-      error_log('cient email -->');
-      error_log($client_email);
 
       wp_mail($client_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
       wp_mail($user_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
