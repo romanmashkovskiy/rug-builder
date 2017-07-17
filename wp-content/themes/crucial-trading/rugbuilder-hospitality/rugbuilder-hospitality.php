@@ -72,7 +72,7 @@ if ( !$allowed ) {
 </head>
 <body>
 
-	<script src="//d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-loader.min.js"></script>
+	<script src="//d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-loader.js"></script>
 	<script>
 
 	load({
