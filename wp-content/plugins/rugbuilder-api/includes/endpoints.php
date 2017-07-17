@@ -401,7 +401,7 @@
     										<h1 style="font-size: 52px; text-align: center; color: #ffffff; font-family: Playfair Display,
                           serif; font-weight: 300; line-height: 150%; margin: 0; text-shadow: 0 1px 0 #606060; -webkit-font-smoothing: antialiased;"
                         >
-    										  Your Rug Quote
+    										  Your Bespoke Rug Quote
                         </h1>
     									</td>
     								</tr>
@@ -499,7 +499,7 @@
     </table>
     <!-- End Body -->
 
-    
+
     </body>';
 
     return $template;
