@@ -5,7 +5,12 @@
  * @package Crucial_Trading
  */
 
+/** Remove old swatches hook */ 
 
+add_action('init', 'remove_old_send_file_hook');
+function remove_old_send_file_hook() {
+	wp_clear_scheduled_hook( 'send_file_hook' );
+}
 
 
 /**
