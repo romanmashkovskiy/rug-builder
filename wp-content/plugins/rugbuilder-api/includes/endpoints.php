@@ -360,6 +360,12 @@
 
       $body = sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode,  $material_data, $sizing_data, $price);
 
+      error_log('user email -->');
+      error_log($user_email);
+
+      error_log('cient email -->');
+      error_log($client_email);
+
       wp_mail($client_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
       wp_mail($user_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
 
@@ -378,23 +384,20 @@
     $template .= '<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
     		<div id="wrapper"
           dir="ltr"
-          style="background-color: #383838; border-radius: 3px 3px 0 0 !important; color: #ffffff; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: ; margin: 0; padding: 70px 0 70px 0; -webkit-text-size-adjust: none !important; width: 100%;"
+          style="background-color: #383838; border-radius: 3px 3px 0 0 !important; color: #ffffff; border-bottom: 0;
+            font-weight: bold; line-height: 100%; vertical-align: middle; font-family: ;
+            margin: 0; padding: 70px 0 70px 0; -webkit-text-size-adjust: none !important; width: 100%;"
           helvetica=""
           neue=""
           roboto=""
           arial=""
           sans-serif=""
         >
-    			<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+    			<table border="0" cellpadding="0" cellspacing="0" height="150px" width="100%">
             <tbody>
               <tr>
                 <td align="center" valign="top" style="font-family: Open Sans, sans-serif;">
-    						  <div id="template_header_image" style="font-family: Open Sans, sans-serif;">
-    							  <p style="margin-top: 0; text-align: center; font-family: Open Sans, sans-serif;">
 
-                      Crucial Trading
-                    </p>
-    						   </div>
 
     						<table border="0" cellpadding="0" cellspacing="0" width="600">
                   <tbody>
@@ -443,11 +446,11 @@
 
                     $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
 
-                    $template .= '<strong>Name </strong>' . $user_title . ' ' . $user_name;
+                    $template .= '<strong>Name </strong>  &nbsp; &nbsp;' . $user_title . ' ' . $user_name;
                     $template .= '<br />';
-                    $template .= '<strong>Address </strong>' . $user_address;
+                    $template .= '<strong>Address </strong>  &nbsp; &nbsp;' . $user_address;
                     $template .= '<br />';
-                    $template .= '<strong>Postcode </strong>' . $user_postcode;
+                    $template .= '<strong>Postcode </strong>  &nbsp; &nbsp;' . $user_postcode;
                     $template .= '<br /> <br /> </p>';
 
                     $template .= '
@@ -458,8 +461,6 @@
                     </h2>';
 
                       $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
-
-
 
                       foreach ($materials as $key => $val) {
                         $template .= '<strong>' . $key . '</strong> &nbsp; &nbsp;';
