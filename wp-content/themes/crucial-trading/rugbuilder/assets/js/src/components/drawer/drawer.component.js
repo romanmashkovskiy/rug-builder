@@ -38,7 +38,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 				_resize : 0,
 
-				drawerSlide : false
+				drawerSlide : false,
+
+				inputSizeErrorMessage: '',
 			}
 		},
 
@@ -470,12 +472,21 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		},
 
 		handleSizeInputChange: function(event) {
-
+			console.log('handle');
 			// Update the length/width state when a value is inputted to the inputs
 
-			if ( event.target.value === undefined ) {
+			if (event.target.value < 0 || event.target.value === undefined) {
+				console.log('less then 0');
+				this.setState({ inputSizeErrorMessage: 'Please enter a valid number'});
 				return;
 			}
+
+			if (event.target.value > 5 && event.target.name === 'width') {
+				this.setState({inputSizeErrorMessage: 'maximum width is 5m' });
+				return;
+			}
+
+			this.setState({ inputSizeErrorMessage: ''});
 
 			if ( event.target.name === 'length' ) {
 				this.setState({ length: event.target.value });
@@ -1154,8 +1165,9 @@ function _createSizeHTML(_this, R) {
 
 		<span>
 			<p className="length">Length (m)</p><p className="width">Width (m)</p>
-			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.length } name="length" className="input-length" placeholder="Enter Length (m)" />
-			<input type="text" onChange={ _this.handleSizeInputChange } value={ _this.state.width } name="width" className="input-width" placeholder="Enter Width (m)" />
+			<input type="number" onChange={ _this.handleSizeInputChange } value={ _this.state.length } name="length" className="input-length" placeholder="Enter Length (m)" />
+			<input type="number" onChange={ _this.handleSizeInputChange } value={ _this.state.width } name="width" className="input-width" placeholder="Enter Width (m)" />
+			{ _this.state.inputSizeErrorMessage && <span className="sizeInputErrorMessage"> {_this.state.inputSizeErrorMessage} </span> }
 			<button type="button" onClick={ _this.fireCalculatePrice } className="calc-price-btn">Calculate Price</button>
 		</span>
 	);

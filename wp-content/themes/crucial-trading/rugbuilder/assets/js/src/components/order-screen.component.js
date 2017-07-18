@@ -85,7 +85,6 @@ RugBuilder.prototype.orderScreenComponent = function() {
 		},
 
 		order: function() {
-
 			const RUG_PRODUCT_ID = 160;
 			const BORDER_TYPE = this.state.borderType;
 
@@ -140,6 +139,7 @@ RugBuilder.prototype.orderScreenComponent = function() {
 		},
 
 		basket: function() {
+			this.order();
 
 			const RUG_PRODUCT_ID = 160;
 			const BORDER_TYPE = this.state.borderType;
@@ -307,9 +307,18 @@ RugBuilder.prototype.orderScreenComponent = function() {
 							<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg" />
 							Edit Rug
 						</a>
+
 						<a href="#" className="link__print" onClick={ this.print }>Print Details</a>
-						<a href="#" className="link__order" onClick={ this.order }>Order Samples</a>
-						<a href="#" className="link__basket" onClick={ this.basket }>Submit Quote</a>
+
+						<div className="submit-rug-button-container">
+							<div>
+								<a href="#" className="link__basket v2" onClick={ this.basket }>Submit Rug Quote</a>
+							</div>
+							<div>
+								<span>Note: Adds rug and samples to basket</span>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			);
