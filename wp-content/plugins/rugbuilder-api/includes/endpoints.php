@@ -328,19 +328,28 @@
      * Send email to the user and client reqarding rud details and quote
      */
     'send-rug-quote-email' => function (WP_REST_Request $request) {
-      $test = $request['test'];
+      $user_details = new \stdClass;
+      $user_details->title = $request['userTitle'];
+      $user_details->name = $request['userName'];
+      $user_details->email = $request['userEmail'];
+      $user_details->address = $request['userAddress'];
+      $user_details->postcode = $request['userPostcode'];
+      $user_details->number = $request['userNumber'];
+      $user_details->price = $request['price'];
 
-      $user_title = $request['userTitle'];
-      $user_name = $request['userName'];
-      $user_address = $request['userAddress'];
+      // $user_title = $request['userTitle'];
+      // $user_name = $request['userName'];
 
-      $user_postcode = $request['userPostcode'];
-      $user_number = $request['userNumber'];
+      // $user_address = $request['userAddress'];
+      //
+      // $user_postcode = $request['userPostcode'];
+      // $user_number = $request['userNumber'];
 
       $user_email = $request['userEmail'];
       $client_email = $request['clientEmail'];
       $user_email = $request['userEmail'];
-      $price = $request['price'];
+
+      // $price = $request['price'];
 
       $message = '';
 
@@ -354,13 +363,17 @@
       $headers = '';
       $attachments = '';
 
-      $body = sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode,  $material_data, $sizing_data, $price);
-
-      wp_mail($client_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      $is_client = false;
+      $body = sendQuoteEmailTemplate ($is_client, $user_details,  $material_data, $sizing_data, $price);
       wp_mail($user_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
 
+      $is_client = true;
+      $body = sendQuoteEmailTemplate ($is_client, $user_details,  $material_data, $sizing_data, $price);
+      wp_mail($client_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
+
+
       // return $test;
-      return 'picked up email request';
+      return 'sent email';
     }
   );
 
@@ -368,7 +381,7 @@
   /**
    * Quote email template
    */
-  function sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode, $materials, $sizing, $price) {
+  function sendQuoteEmailTemplate ($is_client, $user_details, $materials, $sizing, $price) {
     $template = '';
 
     $template .= '<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
@@ -427,21 +440,31 @@
     								<div id="body_content_inner"
                       style="width: 100%; font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif;
                         color: #737373; font-size: 14px; line-height: 150%; text-align: left;"
-                    >
-                    <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
-                      font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
-                    >
-                      Details
-                    </h2>';
+                    >';
 
-                    $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
+                    /* is client -> add user details */
+                    if ($is_client) {
+                      $template .= '
+                      <h2
+                        style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
+                        font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
+                      >
+                        Details
+                      </h2>';
 
-                    $template .= '<strong>Name </strong>  &nbsp; &nbsp;' . $user_title . ' ' . $user_name;
-                    $template .= '<br />';
-                    $template .= '<strong>Address </strong>  &nbsp; &nbsp;' . $user_address;
-                    $template .= '<br />';
-                    $template .= '<strong>Postcode </strong>  &nbsp; &nbsp;' . $user_postcode;
-                    $template .= '<br /> <br /> </p>';
+                      $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
+
+                      $template .= '<strong>Name </strong>  &nbsp; &nbsp;' . $user_details->title . ' ' . $user_details->name;
+                      $template .= '<br />';
+                      $template .= '<strong>Email </strong> &nbsp &nbsp;' . $user_details->email;
+                      $template .= '<br />';
+                      $template .= '<strong>Address </strong>  &nbsp; &nbsp;' . $user_details->address;
+                      $template .= '<br />';
+                      $template .= '<strong>Postcode </strong>  &nbsp; &nbsp;' . $user_details->postcode;
+                      $template .= '<br />';
+                      $template .= '<strong>Number </strong> &nbsp; &nbsp;' . $user_details->number;
+                      $template .= '<br /> <br /> </p>';
+                    }
 
                     $template .= '
                     <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
@@ -484,7 +507,7 @@
                         </h2>
 
                         <p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
-                          $template .= '£ ' . $price;
+                          $template .= '£ ' . $user_details->price;
                           $template .= '
                         </p>
     								</div>
@@ -498,7 +521,6 @@
       </tbody>
     </table>
     <!-- End Body -->
-
 
     </body>';
 
