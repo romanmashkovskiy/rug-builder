@@ -406,6 +406,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		},
 
 		updateSwatchChoice: function(swatch, thumb, id, maps, stitching, repeat, innerRepeat, rthumb) {
+			console.log('update swatch choice');
+			console.log('swatch -->');
+			console.log(swatch);
 
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
@@ -480,7 +483,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 			}
 
 			if (event.target.value > 5 && event.target.name === 'width') {
-				this.setState({inputSizeErrorMessage: 'maximum width is 5m' });
+				this.setState({inputSizeErrorMessage: 'Maximum width is 5m' });
 				return;
 			}
 

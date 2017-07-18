@@ -79,6 +79,8 @@ echo '';
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
+	
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<title>Crucial Trading - Rug Builder</title>
 	<style>body{margin:0}</style>
@@ -89,10 +91,10 @@ echo '';
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	
+
 	  ga('create', 'UA-6149929-1', 'auto');
 	  ga('send', 'pageview');
-	
+
 	</script>
 </head>
 <body>

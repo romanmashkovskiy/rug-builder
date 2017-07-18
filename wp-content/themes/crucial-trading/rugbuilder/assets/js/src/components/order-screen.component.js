@@ -85,6 +85,8 @@ RugBuilder.prototype.orderScreenComponent = function() {
 		},
 
 		order: function() {
+			console.log('order !!');
+
 			const RUG_PRODUCT_ID = 160;
 			const BORDER_TYPE = this.state.borderType;
 
@@ -110,13 +112,47 @@ RugBuilder.prototype.orderScreenComponent = function() {
 			}
 
 			let req = new XMLHttpRequest();
+			//
+			// req.addEventListener( 'load', loaded);
+			// req.open( 'GET', url );
+			// req.send();
 
-			req.addEventListener( 'load', loaded );
-			req.open( 'GET', url );
-			req.send();
+			console.log('url -->');
+			console.log(url);
 
-			function loaded() {
+			axios.get(url)
+				.then((response) => {
+					console.log(response);
+					console.log('axios get request');
+					console.log('loaded !!');
+					// if ( this.status !== 200 ) {
+					// 	R.error(1000, this, true);
+					// 	return;
+					// }
 
+					const CONTAINER = document.createElement('div');
+					const MESSAGE   = document.createElement('p');
+
+					CONTAINER.classList.add('basket-confirm');
+
+					MESSAGE.innerHTML = 'Samples added to your <a href="' + siteUrl + '/basket">basket</a>.';
+
+					CONTAINER.appendChild(MESSAGE);
+					document.body.appendChild(CONTAINER);
+
+					this.basket();
+
+					setTimeout(function() {
+						CONTAINER.classList.add('hidden');
+					}, 7000)
+				})
+					.catch((response) => {
+						console.log(response);
+					})
+
+
+			function loaded () {
+				console.log('loaded !!');
 				if ( this.status !== 200 ) {
 					R.error(1000, this, true);
 					return;
@@ -132,14 +168,17 @@ RugBuilder.prototype.orderScreenComponent = function() {
 				CONTAINER.appendChild(MESSAGE);
 				document.body.appendChild(CONTAINER);
 
+				this.basket();
+
 				setTimeout(function() {
 					CONTAINER.classList.add('hidden');
 				}, 7000)
 			}
+
 		},
 
 		basket: function() {
-			this.order();
+			// this.order();
 
 			const RUG_PRODUCT_ID = 160;
 			const BORDER_TYPE = this.state.borderType;
@@ -310,9 +349,11 @@ RugBuilder.prototype.orderScreenComponent = function() {
 
 						<a href="#" className="link__print" onClick={ this.print }>Print Details</a>
 
+
+
 						<div className="submit-rug-button-container">
 							<div>
-								<a href="#" className="link__basket v2" onClick={ this.basket }>Submit Rug Quote</a>
+								<a href="#" className="link__basket v2" onClick={ this.order }>Submit Rug Quote</a>
 							</div>
 							<div>
 								<span>Note: Adds rug and samples to basket</span>
