@@ -472,11 +472,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		},
 
 		handleSizeInputChange: function(event) {
-			console.log('handle');
 			// Update the length/width state when a value is inputted to the inputs
 
 			if (event.target.value < 0 || event.target.value === undefined) {
-				console.log('less then 0');
 				this.setState({ inputSizeErrorMessage: 'Please enter a valid number'});
 				return;
 			}
