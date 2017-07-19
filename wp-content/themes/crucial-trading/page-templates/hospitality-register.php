@@ -14,7 +14,7 @@ if ( is_user_logged_in() ) {
 	$roles   = $user->roles;
 
 	foreach ( $roles as $role ) {
-		if ( $role == 'hospitality' ) {
+		if ( $role == 'hospitality' || $role = 'administrator') {
 			header( 'Location: ' . site_url() . '/hospitality-builder' );
 			break;
 		}
