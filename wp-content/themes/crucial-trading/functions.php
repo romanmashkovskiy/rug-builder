@@ -18,7 +18,6 @@ function remove_old_send_file_hook() {
 
 //add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
 
-
 /**
  * Load Custom Post Types
  */

@@ -329,7 +329,7 @@ RewriteRule . /%{ENV:rwbase}index.php [L]
 #RewriteCond %{HTTPS} off
 #RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
-#301 Redirects
+# 301 Redirects
 
 RewriteRule ^wp-content/uploads/(.*)$ https://d105txpzekqrfa.cloudfront.net/uploads/$1 [R=301,L]
 RewriteRule /FloorcoveringDetails.aspx /materials [R=301,NC,L]
