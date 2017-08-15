@@ -26,7 +26,7 @@
 	// The Query
 	$news_posts = new WP_Query( array(
 	 'post_type' => 'post',
-	 'posts_per_page' => 10,
+	 'posts_per_page' => 6,
 	 'paged' => $paged,
 	 'ignore_sticky_posts'    => true,
 	 'category_name' => $category,
