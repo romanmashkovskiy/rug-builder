@@ -69,14 +69,41 @@ if ( !$allowed ) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.5.4/pubsub.min.js"></script>
 
 	<title>Crucial Trading - Hospitality Builder</title>
 </head>
 <body>
 
-	<script src="//d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-loader.js"></script>
-	<!-- <script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/js/dist/hospitality-builder.min.j*s"> </script> -->
-	<!-- <script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/loader/hospitality-loader.js"> </script> -->
+	<link rel="stylesheet" href="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/native-promise-only/0.8.1/npo.js"></script>
+	<script>window.Promise = Promise</script>
+
+	<?php
+		$current_dir = dirname(__FILE__);
+		$rh_path = '/wp-content/themes/crucial-trading/rugbuilder-hospitality';
+	?>
+
+
+	<script src="<?php echo site_url() . $rh_path; ?>/assets/loader/hospitality-loader.js"> </script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+
+	<?php
+	$env = 'dev';
+
+	if ($env === 'dev') {
+	?>
+		<script src="<?php echo site_url() . $rh_path; ?>/assets/loader/hospitality-loader.js"> </script>
+		<script src="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.js"></script>
+	<?php } ?>
+
+
+
+	<!-- <script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/js/dist/hospitality-builder.min.js"> </script> -->
 	<script>
 
 	load({
