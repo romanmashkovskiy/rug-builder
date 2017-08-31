@@ -3,7 +3,7 @@ RugBuilder.prototype.btnSubmitComponent = function() {
 	const R = rugBuilder;
 
 	const SubmitBtnComponent = React.createClass({
-		
+
 		submit: function(e) {
 
 			e.preventDefault();
@@ -24,7 +24,7 @@ RugBuilder.prototype.btnSubmitComponent = function() {
 				const SRC = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg';
 
 				return (
-					<a href="#" className="hosp_builder_progress-menu__submit" onClick={ this.submit }>
+					<a href="#" className="hosp_builder_progress-menu__submit nav-upper-link" onClick={ this.submit }>
 						<img src={ SRC } />
 						Submit
 					</a>

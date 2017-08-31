@@ -403,20 +403,6 @@
       }
 
       $choices = json_decode(stripslashes( $_POST['choices'] ));
-      // $message = '';
-      // $user_message = 'Thanks for creating your hospitality collection. Here are the options you selected:
-      //   <br /><br />';
-      // $client_message = '';
-      //
-      // foreach ( $choices as $key => $choice ) {
-      //   $user_message .= "$key: $choice<br>";
-      //   $client_message .= "$key: $choice<br>";
-      // }
-      //
-      // $client_message .= "<br><br>";
-      // $user_message .= "<br><br>";
-      //
-      // $client_message .= "Submitted by $email";
 
 
       $body = hospitalityRugTemplate('user', $email, $choices);
@@ -424,9 +410,9 @@
 
       $body = hospitalityRugTemplate('client', $email, $choices);
 
-      wp_mail('crucial.consumer@crucial-trading.com', 'New Hospitality Builder Design', $body, 'Content-Type: text/html; charset=ISO-8859-1');
-      wp_mail('emma.hopkins@crucial-trading.com', 'New Hospitality Builder Design', $body, 'Content-Type: text/html; charset=ISO-8859-1');
-      wp_mail('connor@kijo.co', 'New Hospitality Builder Design', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      wp_mail('crucial.consumer@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      wp_mail('emma.hopkins@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      wp_mail('connor@kijo.co', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
 
       die('success');
       // return 'email delivered successfully';
@@ -613,7 +599,7 @@
                           serif; font-weight: 300; line-height: 150%; margin: 0; text-shadow: 0 1px 0 #606060; -webkit-font-smoothing: antialiased;"
                         >';
 
-                          if ($user === 'user') { $template .= 'Your ';} $template .= 'Bespoke Rug Choices';
+                          if ($user === 'user') { $template .= 'Your ';} $template .= 'New Bespoke Hospitality Creation';
 
                         $template .= '
                         </h1>
