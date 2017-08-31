@@ -46,9 +46,12 @@ function load(options, secret_DEPRECIATED) {
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>');
 
-	if (window.location.hostname === 'localhost') {
-		document.write('<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/js/dist/hospitality-builder.min.js"></script>');
-		document.write('<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/css/dist/hospitality-builder.min.css">');
+	var devMode = false;
+
+	if (window.location.hostname === 'localhost' && devMode) {
+		console.log('DEV MODE');
+		document.write('<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.js"></script>');
+		document.write('<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.css">');
 	}
 
 	else {

@@ -9,7 +9,7 @@ const sass          = require('gulp-sass');
 const sassGlob      = require('gulp-sass-glob');
 const sourcemaps    = require('gulp-sourcemaps');
 const uglify        = require('gulp-uglify');
-const util          = require('gulp-util'); 
+const util          = require('gulp-util');
 
 gulp.task('css', function() {
 
@@ -26,7 +26,7 @@ gulp.task('css', function() {
 			zindex: false
 		}))
 		.pipe(sourcemaps.write('maps'))
-		.pipe(gulp.dest('./css/dist'));
+		.pipe(gulp.dest('../dist'));
 });
 
 gulp.task('css-prod', function() {
@@ -42,7 +42,7 @@ gulp.task('css-prod', function() {
 		.pipe(cssnano({
 			zindex: false
 		}))
-		.pipe(gulp.dest('./css/dist'));
+		.pipe(gulp.dest('../dist'));
 });
 
 
@@ -68,7 +68,7 @@ gulp.task('js', function() {
 		}))
 		.pipe(uglify().on('error', util.log))
 		.pipe(sourcemaps.write('maps'))
-		.pipe(gulp.dest('./js/dist'));
+		.pipe(gulp.dest('../dist'));
 });
 
 gulp.task('js-prod', function() {
