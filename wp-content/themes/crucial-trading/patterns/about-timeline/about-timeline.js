@@ -1,55 +1,55 @@
 /**
  * about-timeline.js
- * 
+ *
  * jQuery for animating and creating the About page
  */
 
 jQuery( document ).ready(function() {
 
 var $ = jQuery;
-	
+
 	// Add classes for timeline
-	$(function() {                     
-	  $(".about__timeline__btn").click(function() { 
+	$(function() {
+	  $(".about__timeline__btn").click(function() {
 	    $(this).toggleClass("is-active");
-	    $('body').toggleClass("show-about-timeline");    
-	    
+	    $('body').toggleClass("show-about-timeline");
+
 		    $(".is-active").click(function() {
 				  $('body').toggleClass("hide-about-timeline");
 			  });
-	     
+
 				/*var s = skrollr.init({
 				render: function(data) {
 					//Debugging - Log the current scroll position.
 					console.log(data.curTop);
 					}
 				});*/
-	     
+
 	  });
 	});
-	
+
 	// Add classes for scroller
-	$(function() {                     
-	  $(".about__scroller__btn").click(function() { 
+	$(function() {
+	  $(".about__scroller__btn").click(function() {
 	    $(this).toggleClass("is-active");
-	    $('body').toggleClass("show-about-scroller");     
-	    
+	    $('body').toggleClass("show-about-scroller");
+
 	    $(".is-active").click(function() {
 			  $('body').toggleClass("hide-about-scroller");
 		  });
-	    
+
 	  });
 	});
 
 	// Add pagePilling for Our Processess
 	$('.about__scroller__btn:not(.about__scroller__btn--close)').on('click', function() {
 
-		$('body').append('<link id="pillingcss" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.4/jquery.pagepiling.min.css">');
-		$('body').append('<script id="pillingjs" src="https://cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.4/jquery.pagepiling.min.js"></script>');
+		//$('body').prepend('<link id="pillingcss" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.4/jquery.pagepiling.min.css">');
+		//$('body').prepend('<script id="pillingjs" src="https://cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.4/jquery.pagepiling.min.js"></script>');
 
-		setTimeout(function() {
-			$('#pagepilling').pagepiling();
-		}, 100)
+		//setTimeout(function() {
+		$('#pagepilling').pagepiling();
+		//}, 100)
 
 	});
 

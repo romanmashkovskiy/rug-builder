@@ -52,23 +52,28 @@ class RWMB_Taxonomy_Advanced_Field extends RWMB_Taxonomy_Field {
 	 * @param array $field   The field parameters.
 	 */
 	public static function save( $new, $old, $post_id, $field ) {
+		$storage = $field['storage'];
+
 		if ( $new ) {
-			update_post_meta( $post_id, $field['id'], $new );
+			$storage->update( $post_id, $field['id'], $new );
 		} else {
-			delete_post_meta( $post_id, $field['id'] );
+			$storage->delete( $post_id, $field['id'] );
 		}
 	}
 
 	/**
 	 * Get raw meta value.
 	 *
-	 * @param int   $post_id The post ID.
-	 * @param array $field   The field parameters.
+	 * @param int   $object_id Object ID.
+	 * @param array $field     Field parameters.
+	 * @param array $args      Arguments of {@see rwmb_meta()} helper.
 	 *
 	 * @return mixed
 	 */
-	public static function raw_meta( $post_id, $field ) {
-		$meta = get_post_meta( $post_id, $field['id'], true );
+	public static function raw_meta( $object_id, $field, $args = array() ) {
+		$args['single'] = true;
+		$meta = RWMB_Field::raw_meta( $object_id, $field, $args );
+
 		if ( empty( $meta ) ) {
 			return $field['multiple'] ? array() : '';
 		}

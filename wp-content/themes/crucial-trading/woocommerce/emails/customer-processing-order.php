@@ -27,7 +27,7 @@ do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <div style="-webkit-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);-moz-box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);padding: 25px;text-align:center;">
 
-	<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20161209171012/order-processing.svg" alt="Request Received">
+	<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20161209171012/order-processing.svg" alt="Request Received">
 
 	<h2 style="text-align:center;font-size:34px;">Request Received</h2>
 

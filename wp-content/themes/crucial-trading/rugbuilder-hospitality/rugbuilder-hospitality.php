@@ -68,11 +68,15 @@ if ( !$allowed ) {
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
+
 	<title>Crucial Trading - Hospitality Builder</title>
 </head>
 <body>
 
-	<script src="http://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-loader.min.js"></script>
+	<script src="//d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-loader.js"></script>
+	<!-- <script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/js/dist/hospitality-builder.min.j*s"> </script> -->
+	<!-- <script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/loader/hospitality-loader.js"> </script> -->
 	<script>
 
 	load({

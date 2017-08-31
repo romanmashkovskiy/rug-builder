@@ -23,8 +23,12 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 		<link rel="profile" href="http://gmpg.org/xfn/11">
 		<?php include get_template_directory() . '/header-partials/modernizr.php'; ?>
 		<?php wp_head(); ?>
-		<?php include get_template_directory() . '/header-partials/lt-ie9.php'; ?>
-		<?php include get_template_directory() . '/header-partials/ie9-css.php'; ?>
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+		<![endif]-->
+		<link href="<?php echo get_template_directory_uri(); ?>/assets/css/dist/ie9.min.css" rel="stylesheet" type="text/css" media="all">
 	</head>
 	<body <?php body_class( $header_class ); ?>>
 		<?php wc_print_notices(); ?>

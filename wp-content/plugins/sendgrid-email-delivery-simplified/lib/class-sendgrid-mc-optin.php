@@ -43,12 +43,12 @@ class Sendgrid_OptIn_API_Endpoint{
       exit;
     }
   }
-  
-  /** 
+
+  /**
    * Handle Requests
    * This is where compute the email from the token and subscribe the user_error()
    *
-   * @return void 
+   * @return void
    */
   protected function handle_request() {
     global $wp;
@@ -59,7 +59,7 @@ class Sendgrid_OptIn_API_Endpoint{
       wp_redirect( 'sg-subscription-missing-token' );
       exit();
     }
-    
+
     $transient = Sendgrid_Tools::get_transient_sendgrid( $token );
 
     if ( ! $transient or
@@ -104,26 +104,26 @@ class Sendgrid_OptIn_API_Endpoint{
     }
   }
 
-  /** 
+  /**
    * Send OptIn email
-   *  
+   *
    * @param  string $email      Email of subscribed user
    * @param  string $first_name First Name of subscribed user
    * @param  string $last_name  Last Name of subscribed user
    * @return bool
    */
   public static function send_confirmation_email( $email, $first_name = '', $last_name = '', $from_settings = false ) {
-    $subject = Sendgrid_Tools::get_mc_signup_email_subject();
-    $content = Sendgrid_Tools::get_mc_signup_email_content();
-    $content_text = Sendgrid_Tools::get_mc_signup_email_content_text();
+    $subject = htmlspecialchars_decode( Sendgrid_Tools::get_mc_signup_email_subject() );
+    $content = htmlspecialchars_decode( Sendgrid_Tools::get_mc_signup_email_content() );
+    $content_text = htmlspecialchars_decode( Sendgrid_Tools::get_mc_signup_email_content_text() );
 
     if ( false == $subject or false == $content or false == $content_text ) {
       return false;
     }
 
-    $subject = stripslashes( $subject );
-    $content = stripslashes( $content );
-    $content_text = stripslashes( $content_text );
+    $subject = htmlspecialchars_decode( $subject );
+    $content = htmlspecialchars_decode( $content );
+    $content_text = htmlspecialchars_decode( $content_text );
     $to = array( $email );
 
     $token = Sendgrid_OptIn_API_Endpoint::generate_email_token( $email, $first_name, $last_name );
@@ -149,7 +149,7 @@ class Sendgrid_OptIn_API_Endpoint{
             ->addCategory( 'wp_sendgrid_subscription_widget' );
 
     add_filter( 'sendgrid_mail_text', function() use ( &$content_text ) { return $content_text; } );
-        
+
     $result = wp_mail( $to, $subject, $content, $headers );
 
     return $result;

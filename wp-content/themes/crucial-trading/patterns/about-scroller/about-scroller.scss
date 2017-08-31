@@ -1,6 +1,6 @@
 /**
  * About - Scroller
- * One half of the about page - the section where the entire page scrolls 
+ * One half of the about page - the section where the entire page scrolls
  *
  * Contents:
  *
@@ -13,8 +13,8 @@
 
 
 /****************************************************************************
-*     Scroller Page Layout 
-****************************************************************************/ 
+*     Scroller Page Layout
+****************************************************************************/
 
 
 .about__scroller__content,
@@ -65,9 +65,24 @@ body.show-about-scroller .about__scroller__start {
 	height: 100vh;
 }
 
+.pp-tableCell {
+	height: 100vh !important;
+}
+
 .pp-section {
 	background-color: white;
 	height: 100vh !important;
+
+	.section__container {
+		@media all and (max-width: 992px) {
+			position: relative;
+			top: 50%;
+			-webkit-transform: translateY(-50%);
+			transform: translateY(-50%);
+			-webkit-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+	}
 
 	.section__image {
 		height: 60%;
@@ -77,42 +92,65 @@ body.show-about-scroller .about__scroller__start {
 		width: 60%;
 
 		@media screen and (max-width: 992px) {
-			height: 46%;
-			top: 12%;
 			width: 80%;
+			position: static;
+			top: 0%;
+			left:0%;
+			height: 40%;
+			max-height: 250px;
+			overflow: hidden;
+		}
+
+		@media screen and (max-width: 769px) and (max-height: 1024px) { // iPad Landscape
+			max-height: 400px;
 		}
 
 		@media screen and (max-width: 550px) {
-			height: 40%;
+			width: 85%;
+			margin: auto;
+			max-height: 190px;
 		}
 
 		img {
 			height: 100%;
 			object-fit: cover;
+			object-position: 50% 50%;
 			width: 100%;
+
+			@media screen and (max-width: 992px) {
+				//height: 50%;
+			}
 		}
 	}
 
 	.section__content {
 		background: white;
-		height: 56%;
 		left: 52.5%;
 		padding: 50px;
 		position: absolute;
 		right: 10%;
-		top: 22%;
 		overflow: hidden;
 
 		@media screen and (max-width: 992px) {
-			height: 43%;
-			left: 10%;
-			padding: 25px;
-			top: 52%;
+			width: 80%;
+			position: static;
+			top: 0%;
+			left:0%;
+			margin: auto;
+			transform: none;
+			overflow: hidden;
+			padding: 30px;
 		}
 
 		@media screen and (max-width: 550px) {
-			height: 45%;
-			top: 52%;
+			padding: 20px;
+			width: 85%;
+			//position: absolute;
+			//bottom: 20px;
+			//top: auto;
+			margin: auto;
+			left: 0;
+			right: 0;
 		}
 
 		h2 {
@@ -169,14 +207,21 @@ body.show-about-scroller .about__scroller__start {
 .scroller__top {
 	bottom: 25px;
 	cursor: pointer;
-	left: 50%;
+	left: 12%;
 	position: absolute;
 	transform: translateX(-50%);
 
 	@media screen and (max-width: 550px) {
-		left: 78%;
+		//left: 78%;
 		z-index: 99;
-		display: none;
+		bottom: 10px;
+		font-size: 13px;
+		padding: 0px;
+		//display: none;
+
+		&:before {
+			display: none;
+		}
 	}
 }
 

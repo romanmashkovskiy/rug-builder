@@ -317,10 +317,8 @@
      * Adds rug order to cart
      */
     'add-rug-to-cart' => function () {
-      error_log('add to cart endpoint !!');
 
       $rug_id = $_GET['products'];
-      error_log($rug_id);
 
 
       return WC()->cart->add_to_cart($rug_id, 1);
@@ -330,7 +328,22 @@
      * Send email to the user and client reqarding rud details and quote
      */
     'send-rug-quote-email' => function (WP_REST_Request $request) {
-      $test = $request['test'];
+      $user_details = new \stdClass;
+      $user_details->title = $request['userTitle'];
+      $user_details->name = $request['userName'];
+      $user_details->email = $request['userEmail'];
+      $user_details->address = $request['userAddress'];
+      $user_details->postcode = $request['userPostcode'];
+      $user_details->number = $request['userNumber'];
+      $user_details->price = $request['price'];
+
+      // $user_title = $request['userTitle'];
+      // $user_name = $request['userName'];
+
+      // $user_address = $request['userAddress'];
+      //
+      // $user_postcode = $request['userPostcode'];
+      // $user_number = $request['userNumber'];
 
       $user_title = $request['userTitle'];
       $user_name = $request['userName'];
@@ -344,7 +357,8 @@
       $user_email = $request['userEmail'];
       $client_email = $request['clientEmail'];
       $user_email = $request['userEmail'];
-      $price = $request['price'];
+
+      // $price = $request['price'];
 
       $message = '';
 
@@ -353,18 +367,22 @@
       $material_data = json_decode($request['materialData']);
       $sizing_data = json_decode($request['sizing']);
 
-      $subject = 'Custom Rug Quote';
+      $subject = 'Bespoke Rug Quote';
       // $message = 'here is your rug quote';
       $headers = '';
       $attachments = '';
 
-      $body = sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode,  $material_data, $sizing_data, $price);
-
-      wp_mail($client_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      $is_client = false;
+      $body = sendQuoteEmailTemplate ($is_client, $user_details,  $material_data, $sizing_data, $price);
       wp_mail($user_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
 
+      $is_client = true;
+      $body = sendQuoteEmailTemplate ($is_client, $user_details,  $material_data, $sizing_data, $price);
+      wp_mail($client_email, $subject, $body, 'Content-Type: text/html; charset=ISO-8859-1');
+
+
       // return $test;
-      return 'picked up email request';
+      return 'sent email';
     }
   );
 
@@ -372,29 +390,26 @@
   /**
    * Quote email template
    */
-  function sendQuoteEmailTemplate ($user_title, $user_name, $user_address, $user_postcode, $materials, $sizing, $price) {
+  function sendQuoteEmailTemplate ($is_client, $user_details, $materials, $sizing, $price) {
     $template = '';
 
     $template .= '<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
     		<div id="wrapper"
           dir="ltr"
-          style="background-color: #383838; border-radius: 3px 3px 0 0 !important; color: #ffffff; border-bottom: 0; font-weight: bold; line-height: 100%; vertical-align: middle; font-family: ; margin: 0; padding: 70px 0 70px 0; -webkit-text-size-adjust: none !important; width: 100%;"
+          style="background-color: #383838; border-radius: 3px 3px 0 0 !important; color: #ffffff; border-bottom: 0;
+            font-weight: bold; line-height: 100%; vertical-align: middle; font-family: ;
+            margin: 0; padding: 70px 0 70px 0; -webkit-text-size-adjust: none !important; width: 100%;"
           helvetica=""
           neue=""
           roboto=""
           arial=""
           sans-serif=""
         >
-    			<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+    			<table border="0" cellpadding="0" cellspacing="0" height="100px" width="100%">
             <tbody>
               <tr>
                 <td align="center" valign="top" style="font-family: Open Sans, sans-serif;">
-    						  <div id="template_header_image" style="font-family: Open Sans, sans-serif;">
-    							  <p style="margin-top: 0; text-align: center; font-family: Open Sans, sans-serif;">
 
-                      Crucial Trading
-                    </p>
-    						   </div>
 
     						<table border="0" cellpadding="0" cellspacing="0" width="600">
                   <tbody>
@@ -408,7 +423,7 @@
     										<h1 style="font-size: 52px; text-align: center; color: #ffffff; font-family: Playfair Display,
                           serif; font-weight: 300; line-height: 150%; margin: 0; text-shadow: 0 1px 0 #606060; -webkit-font-smoothing: antialiased;"
                         >
-    										  Your Rug Quote
+    										  Your Bespoke Rug Quote
                         </h1>
     									</td>
     								</tr>
@@ -434,7 +449,33 @@
     								<div id="body_content_inner"
                       style="width: 100%; font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif;
                         color: #737373; font-size: 14px; line-height: 150%; text-align: left;"
-                    >
+                    >';
+
+                    /* is client -> add user details */
+                    if ($is_client) {
+                      $template .= '
+                      <h2
+                        style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
+                        font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
+                      >
+                        Details
+                      </h2>';
+
+                      $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
+
+                      $template .= '<strong>Name </strong>  &nbsp; &nbsp;' . $user_details->title . ' ' . $user_details->name;
+                      $template .= '<br />';
+                      $template .= '<strong>Email </strong> &nbsp &nbsp;' . $user_details->email;
+                      $template .= '<br />';
+                      $template .= '<strong>Address </strong>  &nbsp; &nbsp;' . $user_details->address;
+                      $template .= '<br />';
+                      $template .= '<strong>Postcode </strong>  &nbsp; &nbsp;' . $user_details->postcode;
+                      $template .= '<br />';
+                      $template .= '<strong>Number </strong> &nbsp; &nbsp;' . $user_details->number;
+                      $template .= '<br /> <br /> </p>';
+                    }
+
+                    $template .= '
                     <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
                       font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
                     >
@@ -493,7 +534,7 @@
                         </h2>
 
                         <p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
-                          $template .= '£ ' . $price;
+                          $template .= '£ ' . $user_details->price;
                           $template .= '
                         </p>
     								</div>
@@ -508,31 +549,6 @@
     </table>
     <!-- End Body -->
 
-    			<!-- Footer -->
-    		<table border="0" cellpadding="10" cellspacing="0" id="template_footer" style="width: 100%;">
-          <tbody>
-            <tr>
-          <td valign="top"
-            style="font-family: Open Sans, sans-serif; padding: 0; -webkit-border-radius: 6px;">
-    				<table border="0" cellpadding="10" cellspacing="0" width="100%">
-              <tbody>
-                <tr>
-                  <td colspan="2"
-                    valign="middle"
-                    id="credit"
-                    style="font-family: Arial; padding: 0 48px 48px 48px; -webkit-border-radius: 6px;
-                      border: 0; color: #888888; font-size: 12px; line-height: 125%; text-align: center;"
-                  >
-    							  <p style="font-family: Open Sans, sans-serif;">Copyright Crucial Trading Ltd</p>
-    							</td>
-    						</tr>
-              </tbody>
-            </table>
-          </td>
-    		</tr>
-      </tbody>
-    </table>
-    <!-- End Footer -->
     </body>';
 
     return $template;

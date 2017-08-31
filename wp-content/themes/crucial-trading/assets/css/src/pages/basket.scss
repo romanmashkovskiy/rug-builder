@@ -61,6 +61,8 @@
 
 	.order-line {
 		border-bottom: 2px solid #E6E6E6;
+		padding-top: 20px;
+		padding-bottom: 20px;
 		margin-bottom: 20px;
 
 		&.header {
@@ -156,7 +158,7 @@
 	display: inline-block;
 
 	img {
-		height: 150px;
+		//height: 150px;
 	}
 }
 
@@ -174,6 +176,10 @@
 	left: 85px;
 	padding-top: 0;
 	font-size: 14px;
+
+	b {
+		font-weight: 600;
+	}
 }
 
 
@@ -195,11 +201,9 @@ div.order-line.header p {
 	float: right;
 }
 
-.woocommerce .cart-collaterals .cart_totals, 
+.woocommerce .cart-collaterals .cart_totals,
 .woocommerce-page .cart-collaterals .cart_totals {
 	width: 100%;
 	text-align: right;
 	float: right;
 }
-
-

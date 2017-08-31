@@ -12,7 +12,10 @@ RugBuilder.prototype.emailForm = function(choices) {
 
 			req.addEventListener('load', callback);
 
-			req.open('POST', `${siteurl}/crucial-trading/hospitality-builder`);
+			const postUrl = window.location.href;
+
+
+			req.open('POST', `${postUrl}`);
 			req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			req.send("choices=" + JSON.stringify(choices) + "&from=" + EMAIL);
 

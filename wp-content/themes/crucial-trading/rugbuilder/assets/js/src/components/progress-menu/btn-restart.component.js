@@ -13,7 +13,7 @@ RugBuilder.prototype.btnRestartComponent = function() {
 
 		render: function() {
 
-			const SRC = 'http://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg';
+			const SRC = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg';
 
 			return (
 				<a href="#" className="progress-menu__restart" onClick={ this.restart }>

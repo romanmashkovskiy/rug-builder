@@ -23,26 +23,26 @@ define( 'DISALLOW_FILE_EDIT', true ); // Disable File Editor - Security > Settin
 
 /**
  * WordPress Multi-Environment Config
- * 
+ *
  * Loads config file based on current environment, environment can be set
- * in either the environment variable 'WP_ENV' or can be set based on the 
+ * in either the environment variable 'WP_ENV' or can be set based on the
  * server hostname.
- * 
- * This also overrides the option_home and option_siteurl settings in the 
+ *
+ * This also overrides the option_home and option_siteurl settings in the
  * WordPress database to ensure site URLs are correct between environments.
- * 
+ *
  * Common environment names are as follows, though you can use what you wish:
- * 
+ *
  *   production
  *   staging
  *   development
- * 
+ *
  * For each environment a config file must exist named wp-config.{environment}.php
- * with any settings specific to that environment. For example a development 
+ * with any settings specific to that environment. For example a development
  * environment would use the config file: wp-config.development.php
- * 
+ *
  * Default settings that are common to all environments can exist in wp-config.default.php
- * 
+ *
  * @package    Studio 24 WordPress Multi-Environment Config
  * @version    1.0.1
  * @author     Studio 24 Ltd  <info@studio24.net>
@@ -84,7 +84,8 @@ if (!defined('WP_ENV')) {
 
 // Are we in SSL mode?
 if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ||
-    (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')) {
+    (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ||
+    (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) ) {
     $protocol = 'https://';
 } else {
     $protocol = 'http://';

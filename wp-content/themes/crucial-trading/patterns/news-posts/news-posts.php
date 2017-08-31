@@ -8,44 +8,44 @@
  * @package Crucial Trading
  * @since Crucial Trading 1.0
  */
- 
+
  function news_posts( $atts = '' ) {
 
 	// Get category attachments
 	if ( !empty($atts['category']) ) :
 		$category = $atts['category'];
-	else : 
+	else :
 		$category = ''; // Leave blank so that any new categories added can appear in News & Events loops
 	endif;
 
 	$html = '';
-	
+
 	// Tell wp what pages its on for pagination links
 	$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-	
+
 	// The Query
 	$news_posts = new WP_Query( array(
 	 'post_type' => 'post',
-	 'posts_per_page' => 5,
+	 'posts_per_page' => 6,
 	 'paged' => $paged,
 	 'ignore_sticky_posts'    => true,
 	 'category_name' => $category,
 	 'ignore_sticky_posts'    => true,
 		'no_found_rows'        => true
 	 ) );
-	
+
 	$html .= '<div class="news-posts">';
-		 
-		// The Loop 
+
+		// The Loop
 		while ( $news_posts->have_posts() ) : $news_posts->the_post();
-			
+
 			// Get post data
 			$news_title = get_the_title();
 			$news_date = get_the_date();
-			$news_cat = get_the_category();	
+			$news_cat = get_the_category();
 			$news_excerpt = wp_trim_words( get_the_content(), 30, '...' );
 			$news_image = get_the_post_thumbnail( '', 'large');
-			
+
 			// Build article card
 			$html .= '<article class="news__item" id="'.get_the_ID().'">
 					<div class="news__item__category">'.$news_cat[0]->name.'</div>
@@ -70,9 +70,9 @@
 		endwhile;
 
 	$html .= '</div>';
-	
+
 	wp_reset_postdata();
-	
+
 	return $html;
 }
 

@@ -5,15 +5,18 @@
  * @package Crucial_Trading
  */
 
+/** Remove old swatches hook */
 
-
+/*add_action('init', 'remove_old_send_file_hook');
+function remove_old_send_file_hook() {
+	wp_clear_scheduled_hook( 'send_file_hook' );
+}*/
 
 /**
  * Turn Off WooCommerce Styles
  */
 
 //add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
-
 
 /**
  * Load Custom Post Types
@@ -73,7 +76,7 @@ function crucial_trading_setup() {
 
 
 	/*
-	 * Add new role for hospitality people 
+	 * Add new role for hospitality people
 	 *
 	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 	 */
@@ -81,6 +84,14 @@ function crucial_trading_setup() {
 	add_role( 'hospitality', 'Hospitality');
 
 
+	/*
+	 * Disable password change reminders
+	 */
+	add_filter( 'send_email_change_email', '__return_false' );
+
+	if ( !function_exists( 'wp_password_change_notification' ) ) {
+    function wp_password_change_notification() {}
+	}
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -153,20 +164,31 @@ add_action( 'widgets_init', 'crucial_trading_widgets_init' );
  * Enqueue scripts and styles.
  */
 function crucial_trading_scripts() {
-	wp_enqueue_style( 'crucial-trading-style', get_stylesheet_uri() );
+	//wp_enqueue_style( 'crucial-trading-style', get_stylesheet_uri() );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/css/dist/master.min.css', false );
+	wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/css/dist/master.min.css', true );
 
-	wp_enqueue_script( 'gmap', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC2TBY8zzbNJ9o0DeoLZGZM6oDCDOruKdE', false );
-	wp_enqueue_script( 'master', get_template_directory_uri() . '/assets/js/dist/master.min.js', false );
+	wp_enqueue_script( 'master', get_template_directory_uri() . '/assets/js/dist/master.min.js', '', '', true );
 
 	// https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap
 }
 add_action( 'wp_enqueue_scripts', 'crucial_trading_scripts' );
+
+
+/**
+ * Load Google Maps on retailer page only
+ */
+
+ function ct_enqueue_gmaps() {
+   if ( is_page( 'find-retailer' ) ) {
+     wp_enqueue_script( 'gmap', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC2TBY8zzbNJ9o0DeoLZGZM6oDCDOruKdE', '', '', true );
+   }
+ }
+ add_action( 'wp_enqueue_scripts', 'ct_enqueue_gmaps' );
 
 
 /**
@@ -300,10 +322,10 @@ function exclude_rug_borders( $materials ) {
 function cf_search_join( $join ) {
     global $wpdb;
 
-    if ( is_search() ) {    
+    if ( is_search() ) {
         $join .=' LEFT JOIN '.$wpdb->postmeta. ' ON '. $wpdb->posts . '.ID = ' . $wpdb->postmeta . '.post_id ';
     }
-    
+
     return $join;
 }
 add_filter('posts_join', 'cf_search_join' );
@@ -315,7 +337,7 @@ add_filter('posts_join', 'cf_search_join' );
  */
 function cf_search_where( $where ) {
     global $pagenow, $wpdb;
-   
+
     if ( is_search() ) {
         $where = preg_replace(
             "/\(\s*".$wpdb->posts.".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
@@ -364,15 +386,15 @@ add_filter( 'post_date_column_time' , 'woo_custom_post_date_column_time' );
  * woo_custom_post_date_column_time
  *
  * @access      public
- * @since       1.0 
+ * @since       1.0
  * @return      void
 */
 function woo_custom_post_date_column_time( $post ) {
-	
+
 	$h_time = get_post_time( __( 'd/m/Y', 'woocommerce' ), $post );
-	
+
 	return $h_time;
-	
+
 }
 
 /**
@@ -398,9 +420,9 @@ function distance_between_lat_lng( $lat1, $lon1, $lat2, $lon2 ) {
 
 add_action( 'admin_init', 'register_email_setting' );
 
-function register_email_setting() {  
-    add_settings_section(  
-        'my_settings_section', // Section ID 
+function register_email_setting() {
+    add_settings_section(
+        'my_settings_section', // Section ID
         '', // Section Title
         'my_section_options_callback', // Callback
         'general' // What Page?  This makes the section show up on the General Settings Page
@@ -414,8 +436,8 @@ function register_email_setting() {
         'my_settings_section', // Name of our section
         array( // The $args
             'number_bespoke_emails' // Should match Option ID
-        )  
-    ); 
+        )
+    );
 
     register_setting('general', 'number_bespoke_emails', 'esc_attr');
 }
@@ -466,7 +488,7 @@ function restore_cart_item_data( $cartItemData, $cartItemSessionData, $cartItemK
 
 	if ( isset( $cartItemSessionData['length'] ) ) {
 		$cartItemData['length'] = $cartItemSessionData['length'];
-	} 
+	}
 
 	if ( isset( $cartItemSessionData['width'] ) ) {
 		$cartItemData['width'] = $cartItemSessionData['width'];
@@ -474,7 +496,7 @@ function restore_cart_item_data( $cartItemData, $cartItemSessionData, $cartItemK
 
 	if ( isset( $cartItemSessionData['center'] ) ) {
 		$cartItemData['center'] = $cartItemSessionData['center'];
-	} 
+	}
 
 	if ( isset( $cartItemSessionData['inner'] ) ) {
 		$cartItemData['inner'] = $cartItemSessionData['inner'];
@@ -719,7 +741,7 @@ function email_retailer_bespoke_rug( $order_id, $order_data ) {
 	$email->recipient = $recipients;
 */
 
-	$email->recipient = 'Crucial.Consumer@crucial-trading.com'; 
+	$email->recipient = 'Crucial.Consumer@crucial-trading.com';
 	$email->trigger( $order_id );
 
 }

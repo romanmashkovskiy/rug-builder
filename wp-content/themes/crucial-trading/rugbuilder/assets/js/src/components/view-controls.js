@@ -14,10 +14,10 @@ RugBuilder.prototype.viewControls = function() {
 		},
 
 		iconURLS: [
-			'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102546/above-horizontal.svg',
-			'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102558/angled.svg',
-			'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102555/angled-horizontal.svg',
-			'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102554/above-vertical.svg'
+			'https://d105txpzekqrfa.cloudfront.net/uploads/20170131102546/above-horizontal.svg',
+			'https://d105txpzekqrfa.cloudfront.net/uploads/20170131102558/angled.svg',
+			'https://d105txpzekqrfa.cloudfront.net/uploads/20170131102555/angled-horizontal.svg',
+			'https://d105txpzekqrfa.cloudfront.net/uploads/20170131102554/above-vertical.svg'
 		],
 
 		changeView: function() {
@@ -31,13 +31,13 @@ RugBuilder.prototype.viewControls = function() {
 
 		zoomOut: function() {
 			R.zoomOut(this.state.view);
-		},	
+		},
 
 		render: function() {
 
 			const ICON_URL = this.iconURLS[this.state.view];
-			const ZOOM_IN  = 'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102559/zoom-in.svg';
-			const ZOOM_OUT = 'http://d105txpzekqrfa.cloudfront.net/uploads/20170131102601/zoom-out.svg';
+			const ZOOM_IN  = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170131102559/zoom-in.svg';
+			const ZOOM_OUT = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170131102601/zoom-out.svg'; 
 			const CLASS    = 'view' + this.state.view;
 
 			return (

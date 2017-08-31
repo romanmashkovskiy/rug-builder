@@ -15,6 +15,8 @@ class Sendgrid_Settings {
   const DEFAULT_LAST_NAME_LABEL = 'Last Name';
   const DEFAULT_SUBSCRIBE_LABEL = 'SUBSCRIBE';
 
+  const NONCE_ERROR = '<br/><br/> Invalid nonce. Refresh the page and try again.';
+
   public static $plugin_directory;
 
   /**
@@ -209,13 +211,28 @@ class Sendgrid_Settings {
       $checked_req_fname_lname = 'checked';
     }
 
-    $contact_lists = Sendgrid_NLVX::get_all_lists();
     $contact_list_id_is_valid = false;
+    $contact_lists = Sendgrid_NLVX::get_all_lists();
+
+    // If the response to get all contact lists did not fail
     if ( false != $contact_lists ) {
-      foreach ( $contact_lists as $key => $list ) {
-        if ( $mc_list_id == $list['id'] ) {
+      // If there's no list ID in the DB
+      if ( empty( $mc_list_id ) ) {
+        // The MC API key was just set but no contact list ID is set
+        //  even though the select shows the first one as selected by default.
+        // We set the first list ID in the database in order to enable the contact upload test.
+        if ( isset( $contact_lists[0] ) and isset( $contact_lists[0]['id'] ) ) {
+          $mc_list_id = $contact_lists[0]['id'];
+          Sendgrid_Tools::set_mc_list_id( $mc_list_id );
           $contact_list_id_is_valid = true;
-          break;
+        }
+      } else {
+        // Check the validity of the list ID set in the database
+        foreach ( $contact_lists as $key => $list ) {
+          if ( $mc_list_id == $list['id'] ) {
+            $contact_list_id_is_valid = true;
+            break;
+          }
         }
       }
     }
@@ -236,11 +253,7 @@ class Sendgrid_Settings {
       }
     }
 
-    if ( $is_mc_api_key_valid ) {
-      Sendgrid_Tools::set_mc_auth_valid( 'true' );
-    } else {
-      Sendgrid_Tools::set_mc_auth_valid( 'false' );
-    }
+    $is_api_key_valid = false;
 
     if ( ! $error_from_update ) {
       if ( ! in_array( strtoupper( $send_method ), $allowed_send_methods ) ) {
@@ -257,6 +270,7 @@ class Sendgrid_Settings {
           $status  = 'error';
         } elseif ( 'error' != $status ) {
           $status  = 'valid_auth';
+          $is_api_key_valid = true;
         }
       }
 
@@ -357,6 +371,15 @@ class Sendgrid_Settings {
       $warning_status  = 'notice notice-warning';
     }
 
+    if ( $is_mc_api_key_valid and ! $is_api_key_valid ) {
+      $warning_message = 'You need to configure an API Key for sending subscription emails on the General tab.';
+      $warning_status  = 'notice notice-warning';
+      $warning_exclude_tab = 'general';
+      Sendgrid_Tools::set_mc_auth_valid( 'false' );
+    } else if ( $is_mc_api_key_valid and $is_api_key_valid ) {
+      Sendgrid_Tools::set_mc_auth_valid( 'true' );
+    }
+
     require_once dirname( __FILE__ ) . '/../view/sendgrid_settings.php';
   }
 
@@ -368,6 +391,15 @@ class Sendgrid_Settings {
    * @return mixed              response array from the save or send functions
    */
   private static function do_post( $params ) {
+
+    if ( ! isset( $params['sgnonce'] ) ) {
+      die( self::NONCE_ERROR );
+    }
+
+    if ( ! wp_verify_nonce( $params['sgnonce'], 'sgnonce' ) ) {
+      die( self::NONCE_ERROR );
+    }
+
     if ( isset( $params['mc_settings'] ) and $params['mc_settings'] ) {
       return self::save_mc_settings( $params );
     }
@@ -415,6 +447,11 @@ class Sendgrid_Settings {
         update_blog_option( $site->blog_id, 'sendgrid_can_manage_subsite', 0 );
       }
     }
+
+    return array(
+      'message' => 'Options are saved.',
+      'status' => 'updated'
+    );
   }
 
   /**
@@ -525,9 +562,8 @@ class Sendgrid_Settings {
           'status' => 'error'
         );
       } else {
-        // Textarea values are automatically escaping HTML characters.
-        // The user needs to be able to enter any content.
-        Sendgrid_Tools::set_mc_signup_email_content( $params['sendgrid_mc_email_content'] );
+        $html_content = htmlspecialchars( $params['sendgrid_mc_email_content'], ENT_QUOTES, 'UTF-8' );
+        Sendgrid_Tools::set_mc_signup_email_content( $html_content );
       }
     }
 
@@ -538,9 +574,8 @@ class Sendgrid_Settings {
           'status' => 'error'
         );
       } else {
-        // Textarea values are automatically escaping HTML characters.
-        // The user needs to be able to enter any content.
-        Sendgrid_Tools::set_mc_signup_email_content_text( $params['sendgrid_mc_email_content_text'] );
+        $plaintext_content = htmlspecialchars( $params['sendgrid_mc_email_content_text'], ENT_QUOTES, 'UTF-8' );
+        Sendgrid_Tools::set_mc_signup_email_content_text( $plaintext_content );
       }
     }
 

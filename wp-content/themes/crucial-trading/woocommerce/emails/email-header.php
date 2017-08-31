@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<tr>
 					<td align="center" valign="top">
 						<div id="template_header_image">
-							<p style="margin-top:0;text-align:center;"><img src="http://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174004/logo.svg" alt="Crucial Trading"/></p>
+							<p style="margin-top:0;text-align:center;"><img src="https://d105txpzekqrfa.cloudfront.net/uploads/2016/10/26174004/logo.svg" alt="Crucial Trading"/></p>
 						</div>
 						<table border="0" cellpadding="0" cellspacing="0" width="600">
 							<tr>
@@ -82,7 +82,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 															break;
 													}
 
-													echo $heading; 
+													echo $heading;
 													?>
 												</h1>
 											</td>
