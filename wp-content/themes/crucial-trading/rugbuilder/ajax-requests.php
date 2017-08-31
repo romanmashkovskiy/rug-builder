@@ -1,5 +1,7 @@
 <?php
 
+error_log('ajax requests !!!!');
+
 function materials_data() {
 
 	$res = array();
@@ -40,8 +42,9 @@ function materials_data() {
 	return $res;
 }
 
-function collections_data() {
 
+function collections_data() {
+error_log('');
 	$res = array();
 
 	if ( !array_key_exists( 'collection', $_GET ) ) {
@@ -60,7 +63,7 @@ function collections_data() {
 		}
 
 		$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
-		
+
 		foreach ( $terms as $key => $value ) {
 
 			if ( $value->parent != 0 && array_key_exists( $value->parent, $material_ids ) ) {
@@ -92,13 +95,14 @@ function collections_data() {
 			$src      = wp_get_attachment_url( $src_id );
 
 			$value->thumbnail = $src;
-			
+
 			array_push( $res, $value );
 		}
 	}
 
 	return $res;
 }
+
 
 function swatches_data() {
 
@@ -148,6 +152,17 @@ function swatches_data() {
 		$repeaty_i = rwmb_meta( 'rb_repeat_y_inner', array(), $product_id );
 		$stitching = rwmb_meta( 'rb_stitching_colour', array(), $product_id );
 
+
+		/* get max width allowed for rug for this material */
+		$width_attribute = $product->get_attribute('pa_width');
+
+		$strip_width = preg_replace("/[^0-9]/", "", $width_attribute);
+		$values = str_split($strip_width);
+
+		$max_width = sizeof($values) === 1 ? $values : max($values);
+
+
+
 /* This adds in the featured image is the texture is missing
 		if ( count( $thumb ) == 0 ) {
 			$thumb = array( 1 => array(
@@ -156,7 +171,7 @@ function swatches_data() {
 			) );
 		}
 */
-		
+
 		$arr['id']           = $product_id;
 		$arr['cats']         = $cats;
 		$arr['name']         = $name;
@@ -172,6 +187,7 @@ function swatches_data() {
 		$arr['repeatxinner'] = $repeatx_i;
 		$arr['repeatyinner'] = $repeaty_i;
 		$arr['stitching']    = $stitching;
+		$arr['maxwidth'] = $max_width;
 
 		if ( count( $thumb ) > 0 ) {
 

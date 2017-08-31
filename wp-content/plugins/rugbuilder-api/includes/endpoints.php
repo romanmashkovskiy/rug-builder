@@ -42,6 +42,9 @@
 
     	usort($response, 'cmp');
 
+      error_log('materials response -->');
+      error_log($response);
+
       return $response;
     },
 
@@ -113,7 +116,6 @@
      * Get's data for swatches
      */
     'swatches-data' => function () {
-
       	$res = array();
 
       	$collection = $_GET['collection'];
@@ -320,7 +322,6 @@
 
       $rug_id = $_GET['products'];
 
-
       return WC()->cart->add_to_cart($rug_id, 1);
     },
 
@@ -374,6 +375,56 @@
 
       // return $test;
       return 'sent email';
+    },
+
+    /**
+     * email select rug choice to user and client
+     */
+    'email-hospitality-rug-choices' => function () {
+      error_log('email rug choices endpoint !!');
+
+      if ( !is_user_logged_in() ) {
+        // header( 'Location: ' . site_url() . '/hospitality-register' );
+      }
+
+      $email = filter_var( $_POST['from'], FILTER_SANITIZE_EMAIL );
+
+      if ( !filter_var( $_POST['from'], FILTER_VALIDATE_EMAIL ) ) {
+        die('invalid email');
+      }
+
+      $choices = json_decode(stripslashes( $_POST['choices'] ));
+      // $message = '';
+      // $user_message = 'Thanks for creating your hospitality collection. Here are the options you selected:
+      //   <br /><br />';
+      // $client_message = '';
+      //
+      // foreach ( $choices as $key => $choice ) {
+      //   $user_message .= "$key: $choice<br>";
+      //   $client_message .= "$key: $choice<br>";
+      // }
+      //
+      // $client_message .= "<br><br>";
+      // $user_message .= "<br><br>";
+      //
+      // $client_message .= "Submitted by $email";
+
+      error_log('user detials --->');
+      error_log($email);
+      error_log(json_encode($choices,true));
+      error_log('<-----');
+
+      $body = hospitalityRugTemplate('user', $email, $choices);
+      wp_mail($email, 'New Hospitality Builder Design', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+
+      $body = hospitalityRugTemplate('client', $email, $choices);
+
+      wp_mail('crucial.consumer@crucial-trading.com', 'New Hospitality Builder Design', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      wp_mail('emma.hopkins@crucial-trading.com', 'New Hospitality Builder Design', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      wp_mail('connor@kijo.co', 'New Hospitality Builder Design', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+
+      die('success');
+      // return 'email delivered successfully';
     }
   );
 
@@ -518,6 +569,116 @@
             <!-- End Content -->
           </td>
     		</tr>
+      </tbody>
+    </table>
+    <!-- End Body -->
+
+    </body>';
+
+    return $template;
+  }
+
+  /**
+   * hospitality Rug Email Template
+   */
+  function hospitalityRugTemplate ($user, $email, $choices) {
+    $template = '';
+
+    $template .= '<body leftmargin="0" marginwidth="0" topmargin="0" margin; height="0" offset="0">
+        <div id="wrapper"
+          dir="ltr"
+          style="background-color: #383838; border-radius: 3px 3px 0 0 !important; color: #ffffff; border-bottom: 0;
+            font-weight: bold; line-height: 100%; vertical-align: middle; font-family: ;
+            margin: 0; padding: 70px 0 70px 0; -webkit-text-size-adjust: none !important; width: 100%;"
+          helvetica=""
+          neue=""
+          roboto=""
+          arial=""
+          sans-serif=""
+        >
+          <table border="0" cellpadding="0" cellspacing="0" height="100px" width="100%">
+            <tbody>
+              <tr>
+                <td align="center" valign="top" style="font-family: Open Sans, sans-serif;">
+
+
+                <table border="0" cellpadding="0" cellspacing="0" width="600">
+                  <tbody>
+                    <tr>
+                      <td align="center" valign="top" style="font-family: Open Sans, sans-serif;">
+                      </td>
+                    </tr>
+
+                    <tr style="background: #383838;">
+                      <td id="header_wrapper" style="font-family: Open Sans, sans-serif; padding: 36px 48px; display: block;">
+                        <h1 style="font-size: 52px; text-align: center; color: #ffffff; font-family: Playfair Display,
+                          serif; font-weight: 300; line-height: 150%; margin: 0; text-shadow: 0 1px 0 #606060; -webkit-font-smoothing: antialiased;"
+                        >';
+
+                          if ($user === 'user') { $template .= 'Your ';} $template .= 'Bespoke Rug Choices';
+
+                        $template .= '
+                        </h1>
+                      </td>
+                    </tr>
+                <!-- End Header -->
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Body -->
+      <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_body" style="width: 100%;">
+        <tbody>
+          <tr style="width: 100%;">
+            <td valign="top" id="body_content" style="width: 100%; font-family: Open Sans, sans-serif; background-color: #fdfdfd;">
+          <!-- Content -->
+          <table border="0" cellpadding="20" cellspacing="0" width="100%" style="width: 100%;">
+            <tbody>
+              <tr style="width: 100%;">
+                <td valign="top" style="width: 100%; font-family: Open Sans, sans-serif; padding: 48px;">
+                  <div id="body_content_inner"
+                    style="width: 100%; font-family: &quot;Helvetica Neue&quot;, Helvetica, Roboto, Arial, sans-serif;
+                      color: #737373; font-size: 14px; line-height: 150%; text-align: left;"
+                  >';
+
+                  if ($user === 'user') {
+                    $template .= '
+                    <h2
+                      style="color: #383838; display: block; font-family: Open Sans, sans-serif; font-size: 18px;
+                      font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left;"
+                    >
+                      Thanks for creating your hospitality collection. Here are the options you selected:
+                    </h2>';
+                    $template .= '<br /><br />';
+                  }
+
+                  $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 19px;">';
+
+                    foreach ( $choices as $key => $choice ) {
+                      $template .= '<span style="font-weight:bold">' . $key . '</span>:  ' . $choice . "<br>";
+                    }
+
+                    $template .= '<br><br>';
+
+                    if ($user === 'client') {
+                      $template .= "Submitted by $email";
+                    }
+
+                  $template .= '</p>';
+
+                  $template .= '
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- End Content -->
+          </td>
+        </tr>
       </tbody>
     </table>
     <!-- End Body -->

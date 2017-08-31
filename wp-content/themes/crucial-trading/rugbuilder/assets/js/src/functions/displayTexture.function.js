@@ -1,6 +1,6 @@
 /*
  * Display Texture
- * 
+ *
  * Takes the user selected texture and displays it on the rug
  *
  * @param (String) swatch      The name of the swatch selected
@@ -107,7 +107,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			}
 
 			break;
-			
+
 	}
 
 //	if ( R.loadedTextures[swatch] === undefined ) {
@@ -140,7 +140,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			}
 
 			for ( let i = 0; i < R.scene.children.length; i++ ) {
-				
+
 				if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 					R.scene.children[i].material = R.loadedTextures[swatch];
 					_loadMaps(R.scene.children[i].material, maps, repeat, stageCode);
@@ -148,7 +148,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 			}
 
 			if ( stageCode === 2 ) {
-				_setStitchingColor(stitching)
+				// _setStitchingColor(stitching)
 			}
 
 			R.loadingScreens('full', 'close');
@@ -167,7 +167,7 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 		}
 
 		for ( let i = 0; i < R.scene.children.length; i++ ) {
-			
+
 			if ( sceneChildren.indexOf(R.scene.children[i].name) > -1 ) {
 				R.scene.children[i].material = R.loadedTextures[swatch];
 				_loadMaps(R.scene.children[i].material, maps, repeat, stageCode);
@@ -177,14 +177,14 @@ RugBuilder.prototype.displayTexture = function(swatch, thumbObj, stageCode, maps
 		if ( stageCode === 2 ) {
 			_setStitchingColor(stitching)
 		}
-		
+
 		R.loadingScreens('full', 'close');
 	}*/
 }
 
 /*
  * Load Maps
- * 
+ *
  * Load the bump, normal, and displacement maps and save them to the material displayed on the rug
  *
  * @param (Object) material   The Three.js material object displayed on the rug that the maps are added to
@@ -252,7 +252,7 @@ function _loadMaps(material, maps, repeat, stage) {
 
 /*
  * Set Repeat
- * 
+ *
  * Sets repeat of the texture
  *
  * @param (Object) repeat    The repeat values
@@ -301,7 +301,7 @@ function _setRepeat(repeat, texture, stage) {
 
 /*
  * Set Stitching Colors
- * 
+ *
  * Sets the color of the stitches on the rug
  *
  * @param (String) stitching   The hex code of the color to set the stitches to

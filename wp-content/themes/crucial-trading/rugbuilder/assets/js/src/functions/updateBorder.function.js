@@ -10,7 +10,7 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 			case 'Single Border' :
 
-				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches'];
+				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center'];
 
 				R.borderType = 'single';
 
@@ -26,7 +26,7 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 			case 'Single & Piping' :
 
-				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
+				files = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 
 				R.borderType = 'piping';
 
@@ -41,7 +41,7 @@ RugBuilder.prototype.updateBorder = function(border) {
 
 			case 'Double Border' :
 
-				files = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west', 'border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west', 'center', 'stitches'];
+				files = ['border-inner-east', 'border-inner-north', 'border-inner-south', 'border-inner-west', 'border-outer-east', 'border-outer-north', 'border-outer-south', 'border-outer-west', 'center'];
 
 				R.borderType = 'double';
 
@@ -110,7 +110,7 @@ function _loadFiles(files, R, folder, type) {
 			else {
 				objects.push(R.json[type][files[i]]);
 			}
-				
+
 		}
 
 		let counter = 0;
@@ -142,7 +142,7 @@ function _updateScene(R, type) {
 		let firstMesh;
 
 		for ( let i = 0; i < CHILDREN_LENGTH; i++ ) {
-			
+
 			if ( R.scene.children[i].type === 'Mesh' ) {
 				firstMesh = i;
 				break;
@@ -169,7 +169,7 @@ function _updateScene(R, type) {
 		if ( R.currentStage === 1 ) {
 			document.querySelector('.progress-menu__stage.active').nextSibling.children[0].click();
 		}
-		
+
 		res();
 	})
 }

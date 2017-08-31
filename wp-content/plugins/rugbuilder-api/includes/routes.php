@@ -62,5 +62,12 @@
       'endpoint' => '/send-rug-quote-email',
       'methods' => 'POST',
       'callback' => 'send-rug-quote-email'
+    ),
+
+    /* send hospitality rug choices */
+    array(
+      'endpoint' => '/email-hospitality-rug-choices',
+      'methods' => 'POST',
+      'callback' => 'email-hospitality-rug-choices'
     )
   );

@@ -406,9 +406,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 		},
 
 		updateSwatchChoice: function(swatch, thumb, id, maps, stitching, repeat, innerRepeat, rthumb) {
-			console.log('update swatch choice');
-			console.log('swatch -->');
-			console.log(swatch);
 
 			// Function for updating the chosenSwatch state.
 			// Get passed to the Swatch Button Components as props.
@@ -421,6 +418,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			if ( CURRENT_STAGE === 0 ) {
 				R.centerID = id;
+
 			} else {
 
 				switch ( this.state.chosenBorder ) {
@@ -452,7 +450,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 						}
 
 						break;
-
 				}
 
 			}
@@ -1133,7 +1130,13 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				let indexPlusOne = index + 1;
 				let page         = Math.ceil( indexPlusOne / elemsPerPage );
 
-				return <BtnSwatchComponent key={ index } swatch={ name } picture={ picture } thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat }  stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch } updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice } page={ page } pageInView={ _this.state.pageInView } />
+				console.log('storm');
+				return <BtnSwatchComponent key={ index } swatch={ name } picture={ picture }
+					thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat }
+					stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch }
+					 updateContent={ _this.updateContentState } onUpdate={ _this.updateSwatchChoice }
+					 page={ page } pageInView={ _this.state.pageInView }
+					/>
 			});
 		}
 

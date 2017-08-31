@@ -5,22 +5,37 @@ RugBuilder.prototype.emailForm = function(choices) {
 	const EmailForm = React.createClass({
 
 		submit: function() {
-
+			console.log('email form !!!');
 			const EMAIL = document.querySelector('#hosp_builder_email-submit').value;
 
 			let req = new XMLHttpRequest();
 
 			req.addEventListener('load', callback);
 
-			const postUrl = window.location.href;
+			console.log('send email request');
 
+			// const postUrl = window.location.href;
+			let apiUrl = '';
 
-			req.open('POST', `${postUrl}`);
+			if (window.location.hostname === 'localhost') {
+				apiUrl = 'http://localhost:8888/crucial-trading/';
+			} else if (window.location.hostname == 'vps.89hosting.co.uk') {
+				apiUrl = 'http://vps.89hosting.co.uk/~crucialtrading/';
+			} else {
+				apiUrl = 'http://www.crucial-trading.com/';
+			}
+
+			apiUrl += 'wp-json/api/v1/';
+			const postUrl = `${apiUrl}email-hospitality-rug-choices`;
+
+			console.log('post url --->');
+			console.log(postUrl);
+
+			req.open('POST', postUrl);
 			req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 			req.send("choices=" + JSON.stringify(choices) + "&from=" + EMAIL);
 
 			function callback(response) {
-
 				document.querySelector('#hosp_builder_email-response').innerText = '';
 
 				let res = response.srcElement.responseText;

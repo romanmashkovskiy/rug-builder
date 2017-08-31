@@ -15,7 +15,6 @@ RugBuilder.prototype.getCollectionsData = function(collection) {
 				// then save it in R.collections
 
 				function loaded() {
-					
 					if ( this.status !== 200 ) {
 						rej(101);
 					}
