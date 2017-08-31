@@ -404,9 +404,8 @@
 
       $choices = json_decode(stripslashes( $_POST['choices'] ));
 
-
       $body = hospitalityRugTemplate('user', $email, $choices);
-      wp_mail($email, 'New Hospitality Builder Design', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      wp_mail($email, 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
 
       $body = hospitalityRugTemplate('client', $email, $choices);
 
@@ -585,7 +584,6 @@
               <tr>
                 <td align="center" valign="top" style="font-family: Open Sans, sans-serif;">
 
-
                 <table border="0" cellpadding="0" cellspacing="0" width="600">
                   <tbody>
                     <tr>
@@ -631,28 +629,36 @@
 
                   if ($user === 'user') {
                     $template .= '
-                    <h2
-                      style="color: #383838; display: block; font-family: Open Sans, sans-serif; font-size: 18px;
-                      font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left;"
+                    <p
+                      style="color: #383838; display: block; font-family: Open Sans, sans-serif; font-size: 21px; font-weight: 100;
+                      line-height: 30px; margin: 16px 0 8px; text-align: left; width: 70%"
                     >
                       Thanks for creating your hospitality collection. Here are the options you selected:
-                    </h2>';
+                    </p>';
                     $template .= '<br /><br />';
                   }
 
-                  $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 19px;">';
 
                     foreach ( $choices as $key => $choice ) {
-                      $template .= '<span style="font-weight:bold">' . $key . '</span>:  ' . $choice . "<br>";
+                      $template .= '<p style="font-family: Open Sans, sans-serif; color: #383838; margin: 0 0 22px;
+                        font-weight: 200; font-size: 21px; text-transform: capitalize">';
+                        $template .= $key . ': &nbsp <span style="font-weight:bold">' . $choice . "</span><br>";
+                      $template .= '</p>';
+
+                      if ($key === 'structure') {
+                        $template .= '<hr />';
+                        $template .= '<br />';
+                      }
                     }
 
-                    $template .= '<br><br>';
+                    $template .= '<br/><br/>';
 
                     if ($user === 'client') {
-                      $template .= "Submitted by $email";
+                      $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 22px; font-weight: 300; font-size: 22px;">';
+                        $template .= "Submitted by $email";
+                      $template .= '</p>';
                     }
 
-                  $template .= '</p>';
 
                   $template .= '
                     </div>
