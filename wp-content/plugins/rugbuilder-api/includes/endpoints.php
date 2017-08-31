@@ -346,6 +346,15 @@
       // $user_postcode = $request['userPostcode'];
       // $user_number = $request['userNumber'];
 
+      $user_title = $request['userTitle'];
+      $user_name = $request['userName'];
+      $user_address = $request['userAddress'];
+
+      error_log($user_address);
+
+      $user_postcode = $request['userPostcode'];
+      $user_number = $request['userNumber'];
+
       $user_email = $request['userEmail'];
       $client_email = $request['clientEmail'];
       $user_email = $request['userEmail'];
@@ -409,10 +418,6 @@
       //
       // $client_message .= "Submitted by $email";
 
-      error_log('user detials --->');
-      error_log($email);
-      error_log(json_encode($choices,true));
-      error_log('<-----');
 
       $body = hospitalityRugTemplate('user', $email, $choices);
       wp_mail($email, 'New Hospitality Builder Design', $body, 'Content-Type: text/html; charset=ISO-8859-1');
@@ -516,13 +521,6 @@
                       $template .= '<strong>Number </strong> &nbsp; &nbsp;' . $user_details->number;
                       $template .= '<br /> <br /> </p>';
                     }
-
-                    $template .= '
-                    <h2 style="color: #383838; display: block; font-family: Playfair Display, serif; font-size: 18px; border-bottom: 1px solid grey;
-                      font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left; width: 50%;"
-                    >
-                      Materials
-                    </h2>';
 
                       $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 16px;">';
 
