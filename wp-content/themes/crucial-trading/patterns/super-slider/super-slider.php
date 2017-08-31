@@ -189,7 +189,7 @@ function crucial_slider_slides() {
 				$html .= '<div class="slide__image object-fit-container">';
 
 				if ( $post_title != 'Opening' ) {
-					$html .= '<img src="' . $src . '" alt="' . $alt . '">';
+					$html .= '<img src="' . $src . '" srcset="'.$srcset.'" alt="' . $alt . '">';
 				}
 
 				if ( $post_title == 'Opening' ) {
