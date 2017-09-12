@@ -5,6 +5,14 @@
  * @package Crucial_Trading
  */
 
+ add_filter('gettext', 'translate_reply');
+ add_filter('ngettext', 'translate_reply');
+
+ function translate_reply($translated) {
+	$translated = str_ireplace('Shipping', 'Delivery', $translated);
+	return $translated;
+ }
+
 /** Remove old swatches hook */
 
 /*add_action('init', 'remove_old_send_file_hook');
@@ -200,6 +208,33 @@ $scan               = array_values(array_diff(scandir($patterns_directory), arra
 for ( $i = 0; $i < count($scan); $i++ ) {
 	include_once(get_template_directory() . '/patterns/' . $scan[$i] . '/' . $scan[$i] . '.php');
 }
+
+
+/*********************************************************
+ * Password Strength
+ *********************************************************/
+
+/**
+ *Reduce the strength requirement on the woocommerce password.
+ *
+ * Strength Settings
+ * 3 = Strong (default)
+ * 2 = Medium
+ * 1 = Weak
+ * 0 = Very Weak / Anything
+ */
+function reduce_woocommerce_min_strength_requirement( $strength ) {
+    return 2;
+}
+add_filter( 'woocommerce_min_password_strength', 'reduce_woocommerce_min_strength_requirement' );
+
+// Remove it entirely
+/*function wc_ninja_remove_password_strength() {
+	if ( wp_script_is( 'wc-password-strength-meter', 'enqueued' ) ) {
+		wp_dequeue_script( 'wc-password-strength-meter' );
+	}
+}
+add_action( 'wp_print_scripts', 'wc_ninja_remove_password_strength', 100 );*/
 
 
 /**

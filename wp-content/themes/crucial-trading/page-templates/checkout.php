@@ -7,7 +7,7 @@
  * @package Crucial Trading
  * @since Crucial Trading 1.0
  */
- 
+
 get_header();
 
 echo do_shortcode( '[header size="small"]' );

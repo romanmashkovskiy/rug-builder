@@ -73,4 +73,41 @@
 	.place-order {
 		text-align: center;
 	}
+
+	.shipping-address-errors p {
+		color: #a00;
+		font-size: 17px;
+	}
+
+	h2:first-child {
+		display: none;
+	}
+
+	#order_review_heading {
+
+	}
+
+	.woocommerce-shipping-fields,
+	#order_review_heading,
+	.woocommerce-checkout-review-order {
+		max-width: 750px;
+		margin: auto;
+	}
+
+	.form-row.place-order {
+		margin-bottom: 0px !important;
+		padding-top: 20px;
+	}
+
+	#place_order {
+		font-size: 14px;
+		height: 45px;
+		letter-spacing: 3px;
+		font-weight: normal;
+		width: auto;
+		font-size: 16px !important;
+		padding: 15px 25px 15px 25px !important;
+		height: 65px;
+	}
+
 }
