@@ -57,7 +57,7 @@ svg.main-menu__button__basket {
 .basket-dropdown {
 	background: white;
 	box-shadow: 0px 5px 18px 0px rgba(0,0,0,0.08);
-	opacity: 0;
+	opacity: 1;
 	min-width: 350px;
 	padding: 25px;
 	position: absolute;
@@ -65,7 +65,7 @@ svg.main-menu__button__basket {
 	top: 90px;
 	transition: all ease-in-out 0.25s;
 	-webkit-transition: all ease-in-out 0.25s;
-	visibility: hidden;
+	visibility: visible;
 	z-index: 999;
 
 	@media screen and (max-width: 500px) {
@@ -121,6 +121,13 @@ svg.main-menu__button__basket {
 		&:after {
 			transform: rotate(-45deg);
 		}
+
+	}
+
+	// Hide cross sells
+
+	.cross-sells {
+		display: none;
 	}
 
 	a.close-basket-dropdown {
