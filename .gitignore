@@ -30,10 +30,12 @@ config.codekit
 /readme.html
 /sitemap.xml
 /sitemap.xml.gz
+license.txt
+readme.html
 
 *.zip
 
 /.sass-cache/*
-node_modules 
+node_modules
 
 *.map
