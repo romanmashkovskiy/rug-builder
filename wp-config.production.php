@@ -13,8 +13,8 @@ define('FORCE_SSL_ADMIN', true);
 // so check for https existence
 if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) $_SERVER['HTTPS']='on';
 
-//define('WP_HOME','https://www.crucial-trading.com');
-//define('WP_SITEURL','https://www.crucial-trading.com');
+define('WP_HOME','https://www.crucial-trading.com');
+define('WP_SITEURL','https://www.crucial-trading.com');
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
