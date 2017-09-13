@@ -25,7 +25,7 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 
 <form name="checkout" method="post" class="checkout woocommerce-checkout box-shadow" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
-	<h2>Delivery Address</h2>
+	<!--<h2>Delivery Address</h2>-->
 
 	<div class="shipping">
 		<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>

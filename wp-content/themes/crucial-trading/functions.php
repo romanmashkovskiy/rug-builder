@@ -5,14 +5,6 @@
  * @package Crucial_Trading
  */
 
- add_filter('gettext', 'translate_reply');
- add_filter('ngettext', 'translate_reply');
-
- function translate_reply($translated) {
-	$translated = str_ireplace('Shipping', 'Delivery', $translated);
-	return $translated;
- }
-
 /** Remove old swatches hook */
 
 /*add_action('init', 'remove_old_send_file_hook');
