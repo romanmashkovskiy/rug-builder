@@ -124,7 +124,7 @@ echo '';
 		<div id="error-box">
 			<p id="error-msg"></p>
 			<p id="error-code"></p>
-			<img src="http://d105txpzekqrfa.cloudfront.net/uploads/20170110133952/exit.svg" id="close-error">
+			<img src="https://cdn.crucial-trading.com/uploads/20170110133952/exit.svg" id="close-error">
 		</div>
 	</div>
 
