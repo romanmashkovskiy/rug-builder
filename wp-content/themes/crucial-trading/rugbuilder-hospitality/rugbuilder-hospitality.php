@@ -9,7 +9,6 @@
  */
 
 
-
 /* if user is not logged in redirect them */
 if ( !is_user_logged_in() ) {
 	header( 'Location: ' . site_url() . '/hospitality-register' );
@@ -56,7 +55,7 @@ if ( !$allowed ) {
 		/* dev */
 		if ($domain === 'localhost') {
 			error_log('DEV');
-			$loader_script_url = site_url() . $rh_path . '/assets/loader/';
+			$loader_script_url = site_url() . $rh_path . '/dist/';
 		}
 
 		/* production */
@@ -66,21 +65,17 @@ if ( !$allowed ) {
 
 	?>
 
-		<script src="<?php echo $loader_script_url ?>hospitality-loader.js"></script>
+	<script src="<?php echo $loader_script_url ?>hospitality-loader.js"></script>
 
-
-
-	<!-- <script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/js/dist/hospitality-builder.min.j*s"> </script> -->
-	<!-- <script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/assets/loader/hospitality-loader.js"> </script> -->
 	<script>
 
-	load({
-		key               : 'E9(]8x~QGIZR^-f',
-		secret            : 's+yflX{Nhev3iCeg@>wgPco5}2CMS6',
-		showSubmitButton  : true,
-		showRestartButton : true,
-		showExitButton    : true
-	})
+		load({
+			key               : 'E9(]8x~QGIZR^-f',
+			secret            : 's+yflX{Nhev3iCeg@>wgPco5}2CMS6',
+			showSubmitButton  : true,
+			showRestartButton : true,
+			showExitButton    : true
+		})
 
 	</script>
 

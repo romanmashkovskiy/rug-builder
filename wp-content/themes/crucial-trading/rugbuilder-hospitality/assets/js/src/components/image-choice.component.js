@@ -9,7 +9,7 @@ RugBuilder.prototype.imageChoiceComponent = function(alt, src) {
 			let text;
 
 			if ( R.colorStage === 0 ) {
-				text = 'Pattern: ' + alt;
+				text = 'Structure: ' + alt;
 			} else {
 				text = 'Colour ' + R.colorStage + ': ' + alt;
 			}
