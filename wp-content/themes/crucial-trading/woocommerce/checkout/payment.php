@@ -2,7 +2,7 @@
 
 /**
  * The Template for the payment button on the checkout form
- * 
+ *
  * Overrides wp-content/plugins/woocoomerce/templates/checkout/payment.php
  *
  * Contents:
@@ -19,7 +19,7 @@ if ( ! is_ajax() ) {
 	do_action( 'woocommerce_review_order_before_payment' );
 }
 
-$order_button_text = 'Place Request';
+$order_button_text = 'Complete Checkout';
 
 ?>
 

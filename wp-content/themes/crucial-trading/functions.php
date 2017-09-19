@@ -202,6 +202,33 @@ for ( $i = 0; $i < count($scan); $i++ ) {
 }
 
 
+/*********************************************************
+ * Password Strength
+ *********************************************************/
+
+/**
+ *Reduce the strength requirement on the woocommerce password.
+ *
+ * Strength Settings
+ * 3 = Strong (default)
+ * 2 = Medium
+ * 1 = Weak
+ * 0 = Very Weak / Anything
+ */
+function reduce_woocommerce_min_strength_requirement( $strength ) {
+    return 2;
+}
+add_filter( 'woocommerce_min_password_strength', 'reduce_woocommerce_min_strength_requirement' );
+
+// Remove it entirely
+/*function wc_ninja_remove_password_strength() {
+	if ( wp_script_is( 'wc-password-strength-meter', 'enqueued' ) ) {
+		wp_dequeue_script( 'wc-password-strength-meter' );
+	}
+}
+add_action( 'wp_print_scripts', 'wc_ninja_remove_password_strength', 100 );*/
+
+
 /**
  * Allow SVG upload.
  */

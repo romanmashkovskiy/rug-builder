@@ -121,6 +121,13 @@ svg.main-menu__button__basket {
 		&:after {
 			transform: rotate(-45deg);
 		}
+
+	}
+
+	// Hide cross sells
+
+	.cross-sells {
+		display: none;
 	}
 
 	a.close-basket-dropdown {

@@ -2,7 +2,7 @@
 
 /**
  * The Template for the shipping address form
- * 
+ *
  * Overrides wp-content/plugins/woocoomerce/templates/checkout/form-shipping.php
  *
  * Contents:
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="create-account">
 
 				<br>
-				<p><?php _e( 'Please create an account by entering the information below. If you already have an account, please login first.', 'woocommerce' ); ?></p>
+				<p>Please create an account by entering the information below. If you already have an account, <a href="<?php echo wp_login_url( get_permalink() ); ?>">click here to login</a></p>
 
 				<input id="createaccount" type="hidden" name="createaccount" value="1">
 
@@ -52,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div class="clear"></div>
 
 			</div>
-		
+
 		<?php else : ?>
 
 			<input type="hidden" name="billing_email" value="<?php echo wp_get_current_user()->data->user_email; ?>">
