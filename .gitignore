@@ -39,3 +39,6 @@ readme.html
 node_modules
 
 *.map
+
+gulpfile.js
+package.json

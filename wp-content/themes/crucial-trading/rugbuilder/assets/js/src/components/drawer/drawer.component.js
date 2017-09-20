@@ -646,18 +646,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnM
 
 			let dotsHTML = <div className="dots clearfix">{ dots }</div>;
 
-			if ( window.innerWidth < 768 ) {
-
-				if ( this.state.content === 'swatchesSelected' ) {
-
-					document.querySelector('#view-controls').classList.add('show');
-
-				} else {
-					document.querySelector('#view-controls').classList.remove('show');
-				}
-
-			}
-
+			
 			return (
 				<div className="react-container drawer__container">
 					<div className={ DRAWER_CLASSES }>
