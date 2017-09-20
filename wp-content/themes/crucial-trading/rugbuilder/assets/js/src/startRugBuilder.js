@@ -23,7 +23,7 @@ RugBuilder.prototype.start = function() {
 	const BtnStageComponent   = R.btnStageComponent();
 	R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnStageComponent);
 
-	// Check for WebGL	
+	// Check for WebGL
 
 	if ( !window.WebGLRenderingContext ) {
 		R.showWebGLError(false);
@@ -85,8 +85,9 @@ RugBuilder.prototype.start = function() {
 //			R.initHelpers();                                                                 // .init/helpers.init.js
 
 			// Set the Three.js standard camera X and Y axis position
-			R.camera.position.x = 0;
-			R.camera.position.y = 170;
+			R.camera.position.x = -40;
+			R.camera.position.y = 0;
+
 
 			// Get the height of the window and set the camera Z axis position based on the height
 			const WINDOW_HEIGHT = window.innerHeight;
@@ -104,12 +105,13 @@ RugBuilder.prototype.start = function() {
 				R.camera.position.z = -90;
 			}
 
+
 			// Set the standard camera rotation
 			R.camera.rotation.x = -1.5708;
 			R.camera.rotation.z = 0;
 			R.camera.rotation.z = 0;
 
-			
+
 			function render() {
 
 				// Render the Three.js scene
@@ -127,22 +129,10 @@ RugBuilder.prototype.start = function() {
 			R.changeView(0);
 			R.zoomIn();
 
-			if ( window.innerHeight < 950 ) {
-
-				let difference = 950 - window.innerHeight;
-				let zoomLevel  = Math.ceil(difference / 100);
-
-				for ( let i = 0; i < zoomLevel; i++ ) {
-					R.zoomIn();
-				}
-
-			}
-
 			// Add the window resize event listener                                             Line 98
 			window.addEventListener( 'resize', onWindowResize, false );
 
 			function onWindowResize(){
-
 				// Window resize event listener
 
 				// Get the new screen width and height
@@ -160,9 +150,7 @@ RugBuilder.prototype.start = function() {
 				R.renderer.setSize( R.screenWidth, R.screenHeight );
 
 				// Based on the new screen height, adjust the camera Z axis position and scale the rug JSON so it fits in the screen
-				if ( R.screenHeight > 1000 ) {
-					R.camera.position.z = -55;
-
+				if ( R.screenHeight >= 1000 ) {
 					Object.keys(R.json).forEach((borderType) => {
 
 						Object.keys(R.json[borderType]).forEach((mesh) => {
@@ -175,13 +163,12 @@ RugBuilder.prototype.start = function() {
 						});
 					});
 				}
+
 				else if ( R.screenHeight < 1000 && R.screenHeight > 850 ) {
 					R.camera.position.z = -62;
 
 					Object.keys(R.json).forEach((borderType) => {
-
 						Object.keys(R.json[borderType]).forEach((mesh) => {
-
 							if ( R.json[borderType][mesh] !== undefined ) {
 								R.json[borderType][mesh].scale.x = 0.8;
 								R.json[borderType][mesh].scale.y = 0.8;
@@ -190,13 +177,12 @@ RugBuilder.prototype.start = function() {
 						});
 					});
 				}
+
 				else if ( R.screenHeight < 850 && R.screenHeight > 700 ) {
 					R.camera.position.z = -70;
 
 					Object.keys(R.json).forEach((borderType) => {
-
 						Object.keys(R.json[borderType]).forEach((mesh) => {
-
 							if ( R.json[borderType][mesh] !== undefined ) {
 								R.json[borderType][mesh].scale.x = 0.65;
 								R.json[borderType][mesh].scale.y = 0.65;
@@ -205,11 +191,11 @@ RugBuilder.prototype.start = function() {
 						});
 					});
 				}
+
 				else if ( R.screenHeight < 700 ) {
 					R.camera.position.z = -90;
 
 					Object.keys(R.json).forEach((borderType) => {
-
 						Object.keys(R.json[borderType]).forEach((mesh) => {
 
 							if ( R.json[borderType][mesh] !== undefined ) {

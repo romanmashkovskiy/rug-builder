@@ -5,10 +5,7 @@ RugBuilder.prototype.btnRestartComponent = function() {
 	const BtnRestartComponent = React.createClass({
 
 		restart: function() {
-			R.updateStage(0);
-			R.startAgain();
-			R.updateBorder('Single Border');
-			ReactDOM.unmountComponentAtNode(document.querySelector('#order-screen'));
+			location.reload();
 		},
 
 		render: function() {

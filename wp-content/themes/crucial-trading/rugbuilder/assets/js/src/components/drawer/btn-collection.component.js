@@ -3,8 +3,6 @@ RugBuilder.prototype.btnCollectionComponent = function() {
 	const BtnCollectionComponent = React.createClass({
 
 		handleClick: function() {
-			console.log('clicked on button !!');
-			
 			// On click, update state of drawer component to:
 			// { content: 'swatches', chosenCollection: the collection clicked on }
 			this.props.updateContent('swatches');

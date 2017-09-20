@@ -1130,7 +1130,6 @@ function _createSwatchesHTML(_this, BtnSwatchComponent, caller, R) {
 				let indexPlusOne = index + 1;
 				let page         = Math.ceil( indexPlusOne / elemsPerPage );
 
-				console.log('storm');
 				return <BtnSwatchComponent key={ index } swatch={ name } picture={ picture }
 					thumb={ thumb } rthumb={ rthumb } repeat={ repeat } innerRepeat={ innerRepeat }
 					stitching={ stitch } code={ code } maps={ maps } selected={ _this.state.chosenSwatch }

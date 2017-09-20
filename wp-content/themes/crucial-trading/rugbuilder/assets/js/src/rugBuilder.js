@@ -1,7 +1,6 @@
 class RugBuilder {
 
 	constructor( context ) {
-
 		// Context - Where the RugBuilder is being loaded. Determines how to load the data
 		this.context = context;
 
@@ -55,8 +54,8 @@ class RugBuilder {
 				'border-north' : undefined,
 				'border-south' : undefined,
 				'border-west'  : undefined,
-				'center'       : undefined,
-				'stitches'     : undefined
+				'center'       : undefined
+
 			},
 			double : {
 				'border-inner-east'  : undefined,
@@ -67,8 +66,8 @@ class RugBuilder {
 				'border-outer-north' : undefined,
 				'border-outer-south' : undefined,
 				'border-outer-west'  : undefined,
-				'center'             : undefined,
-				'stitches'           : undefined
+				'center'             : undefined
+
 			},
 			piping : {
 				'center'       : undefined,
@@ -76,7 +75,7 @@ class RugBuilder {
 				'border-north' : undefined,
 				'border-south' : undefined,
 				'border-west'  : undefined,
-				'stitches'     : undefined,
+
 				'trim-east'    : undefined,
 				'trim-north'   : undefined,
 				'trim-south'   : undefined,
@@ -221,14 +220,11 @@ class RugBuilder {
 	// Change the view of the rug
 
 	changeView(currentView) {
-
-		this.camera.zoom = 1;
+		// this.camera.zoom = 1;
 		this.camera.updateProjectionMatrix();
 
+		// Change to above horizontal
 		if ( currentView === 0 ) {
-
-			// Change to above horizontal
-
 			this.camera.position.x = -40;
 			this.camera.position.y = 170;
 			this.camera.position.z = 0;
@@ -239,10 +235,9 @@ class RugBuilder {
 
 			return 1;
 		}
+
+		/* Change to angled view */
 		else if ( currentView === 1 ) {
-
-			// Change to angled view
-
 			this.camera.position.x = 70;
 			this.camera.position.y = 97.86732004062627;
 			this.camera.position.z = 108.5265830159921;
@@ -253,10 +248,9 @@ class RugBuilder {
 
 			return 2;
 		}
+
+		/* Change to angled-horizontal */
 		else if ( currentView === 2 ) {
-
-			// Change to angled-horizontal
-
 			this.camera.position.x = -65;
 			this.camera.position.y = 146.97868270469004;
 			this.camera.position.z = 0.00630814379798243;
@@ -267,10 +261,9 @@ class RugBuilder {
 
 			return 3;
 		}
+
+		/* Change to above vertical */
 		else if ( currentView === 3 ) {
-
-			// Change to above vertical
-
 			this.camera.position.x = 0;
 			this.camera.position.y = 170;
 			this.camera.position.z = -55;
@@ -286,15 +279,20 @@ class RugBuilder {
 	// Zoom in on the rug
 
 	zoomIn() {
+		// return;
+		let zoomStrength = 0.35;
+		if (window.innerHeight < 850) { zoomStrength = 0.4; }
+		if (window.innerHeight < 750) { zoomStrength = 0.7; }
+		if (window.innerHeight < 650) { zoomStrength = 0.7; }
+		if (window.innerHeight < 550) { zoomStrength = 0.9; }
+		if (window.innerHeight < 450) { zoomStrength = 0.11; }
 
-		const CURRENT_ZOOM = this.camera.zoom;
-		const NEW_ZOOM     = CURRENT_ZOOM + 0.333333;
+		const maxZoom = zoomStrength * 11;
+		let newZoom = this.camera.zoom + zoomStrength;
 
-		if ( NEW_ZOOM > 3.33 ) {
-			return;
-		}
+		if (newZoom > maxZoom) { newZoom = maxZoom; }
 
-		this.camera.zoom = NEW_ZOOM;
+		this.camera.zoom = newZoom;
 		this.camera.updateProjectionMatrix();
 
 		return true;
@@ -303,9 +301,15 @@ class RugBuilder {
 	// Zoom out from the rug
 
 	zoomOut() {
+		let zoomStrength = 0.35;
+		if (window.innerHeight < 850) { zoomStrength = 0.4; }
+		if (window.innerHeight < 750) { zoomStrength = 0.7; }
+		if (window.innerHeight < 650) { zoomStrength = 0.7; }
+		if (window.innerHeight < 550) { zoomStrength = 0.9; }
+		if (window.innerHeight < 450) { zoomStrength = 0.11; }
 
 		const CURRENT_ZOOM = this.camera.zoom;
-		const NEW_ZOOM     = CURRENT_ZOOM - 0.333333;
+		const NEW_ZOOM     = CURRENT_ZOOM - zoomStrength;
 
 		if ( NEW_ZOOM < 1.33 ) {
 			return;
