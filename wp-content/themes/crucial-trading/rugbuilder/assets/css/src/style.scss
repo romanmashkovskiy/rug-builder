@@ -177,13 +177,13 @@ canvas {
 
 #full-loading {
 	background: white;
-	bottom: calc(50% - 105px);
 	box-shadow: -5px 5px 18px 0 rgba(0,0,0,.08);
-	left: calc(50% - 105px);
 	padding-top: 20px;
 	position: absolute;
-	right: calc(50% - 105px);
-	top: calc(50% - 105px);
+  left: 50vw;
+  top: 50vh;
+  padding: 25px;
+  transform: translate(-50%,-50%);
 	z-index: 99999;
 
 	h1 {
@@ -259,4 +259,4 @@ canvas {
 	.drawer__content__border ul {
 		margin-left: -25%;
 	}
-} 
+}
