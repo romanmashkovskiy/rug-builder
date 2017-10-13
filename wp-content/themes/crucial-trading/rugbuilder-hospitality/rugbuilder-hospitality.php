@@ -40,6 +40,7 @@ if ( !$allowed ) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
+	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
 
 	<title>Crucial Trading - Hospitality Builder</title>
 </head>
