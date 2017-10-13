@@ -42,9 +42,6 @@
 
     	usort($response, 'cmp');
 
-      error_log('materials response -->');
-      error_log($response);
-
       return $response;
     },
 
