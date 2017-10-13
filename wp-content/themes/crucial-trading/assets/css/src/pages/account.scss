@@ -103,6 +103,10 @@ background-color: $light-grey-bg;
 			margin-right: auto;
 		}
 
+		.order-total {
+			display: none;
+		}
+
 		p {
 
 			strong {
@@ -248,25 +252,3 @@ background-color: $light-grey-bg;
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
