@@ -2,8 +2,8 @@
 Contributors: nimonogi
 Tags: cookie bar, consent, cookie, cookies, cookie compliance, cookie law, cookies, eu cookie, notice, notification, notify, privacy, privacy directive, brontobytes
 Requires at least: 3.8
-Tested up to: 4.7.2
-Stable tag: 1.6
+Tested up to: 4.8.2
+Stable tag: 1.8
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,3 +37,7 @@ That's all!
 1. Color Picker added
 = Version 1.6 =
 1. Attempt to resolve possible caching issue with cookie
+= Version 1.7 =
+1. Added i18n internationalization support
+= Version 1.8 =
+1. Fix compatibility issue

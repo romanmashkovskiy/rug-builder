@@ -5,7 +5,7 @@ Plugin URI: https://www.brontobytes.com/
 Description: Cookie Bar allows you to discreetly inform visitors that your website uses cookies.
 Author: Brontobytes
 Author URI: https://www.brontobytes.com/
-Version: 1.6
+Version: 1.8
 License: GPLv2
 */
 
@@ -24,22 +24,22 @@ jQuery(document).ready(function($){
 });
 </script>
 <div class="wrap">
-<h2>Cookie Bar Settings</h2>
-<p>Cookie Bar allows you to discreetly inform visitors that your website uses cookies.</p>
+<h2><?php _e('Cookie Bar Settings', 'cookie-bar'); ?></h2>
+<p><?php _e('Cookie Bar allows you to discreetly inform visitors that your website uses cookies.', 'cookie-bar'); ?></p>
 <form method="post" action="options.php">
     <?php settings_fields( 'cookie-bar-settings' ); ?>
     <?php do_settings_sections( 'cookie-bar-settings' ); ?>
     <table class="form-table">
         <tr valign="top">
-        <th scope="row">Cookie Bar Message</th>
+        <th scope="row"><?php _e('Cookie Bar Message', 'cookie-bar'); ?></th>
         <td><input type="text" size="100" name="cookie_bar_message" value="<?php echo esc_html( get_option('cookie_bar_message') ); ?>" /> <small>HTML allowed - Ex.<xmp>By continuing to browse the site you are agreeing to our <a href='http://www.aboutcookies.org/' target='_blank' rel='nofollow'>use of cookies</a>.</xmp></small></td>
         </tr>
         <tr valign="top">
-        <th scope="row">Button Text</th>
+        <th scope="row"><?php _e('Button Text', 'cookie-bar'); ?></th>
         <td><input type="text" size="20" name="cookie_bar_button" value="<?php echo esc_attr( get_option('cookie_bar_button') ); ?>" /> <small>Ex. I Understand</small></td>
         </tr>
         <tr valign="top">
-        <th scope="row">Button Colour</th>
+        <th scope="row"><?php _e('Button Colour', 'cookie-bar'); ?></th>
         <td><input type="text" name="cookie_bar_btn_bg_colour" value="<?php echo esc_attr( get_option('cookie_bar_btn_bg_colour') ); ?>" class="cookie_bar_btn_bg_colour" data-default-color="#45AE52" /></td>
         </tr>
     </table>
@@ -71,6 +71,13 @@ function cookie_bar_dependencies() {
 	wp_enqueue_style( 'cookie-bar-css' );
 }
 add_action( 'wp_enqueue_scripts', 'cookie_bar_dependencies' );
+
+class cookie_bar_languages {
+    public static function loadTextDomain() {
+        load_plugin_textdomain('cookie-bar', false, dirname(plugin_basename(__FILE__ )) . '/languages/');
+    }
+}
+add_action('plugins_loaded', array('cookie_bar_languages', 'loadTextDomain'));
 
 function cookie_bar_color_picker( $hook_suffix ) {
     // first check that $hook_suffix is appropriate for your admin page
