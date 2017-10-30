@@ -78,6 +78,7 @@ gulp.task('css', ['build-master-css'], function() {
 	return gulp.src([
 		'./css/vendor/bootstrap.min.css',
 		'./css/vendor/animate.min.css',
+		'./css/vendor/jquery-ui.css',
 		'./css/vendor/flag-icon.min.css',
 		'./css/vendor/jquery.pagepilling.min.css',
 		'./css/dist/build.min.css'

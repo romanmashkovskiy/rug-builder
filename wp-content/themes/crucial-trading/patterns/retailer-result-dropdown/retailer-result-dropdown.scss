@@ -1,5 +1,9 @@
 @import '../../assets/css/src/_variables.scss';
 
+
+/* Width Query */
+$mobile-breakpoint: 414px;
+
 .retailer-result-dropdown {
   max-width: 1330px;
   margin: auto;
@@ -21,12 +25,6 @@
 
 }
 
-.retailer-result-dropdown_menu__right {
-  display: flex;
-  justify-content: space-between;
-  width: 60%;
-}
-
 .retailer-result-dropdown_menu__right__miles span {
   color: rgba(56,56,56, .75);
   text-transform: uppercase;
@@ -42,8 +40,21 @@
   align-items: center;
   padding: 0 62px 0 62px;
   background: $white;
-  height: 96.63px;
-  // color: rgba(0,0,0, .75);
+  min-height: 96.63px;
+
+  @media all and (max-width: $mobile-breakpoint) {
+    flex-direction: column;
+    padding: 0 23px 0 23px;
+  }
+}
+
+.retailer-result-dropdown_menu__right, .retailer-result-dropdown_menu__left {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  @media all and (max-width: $mobile-breakpoint) {
+    width: 100%
+  }
 }
 
 .retailer-result-dropdown_menu__left__title {
@@ -53,6 +64,11 @@
   font-size: 18px;
   text-transform: uppercase;
   font-family: 'Montserrat';
+  @media all and (max-width: $mobile-breakpoint) {
+    font-size: 14px;
+    letter-spacing: 2px;
+    line-height: 19px;
+  }
 
 }
 
@@ -70,4 +86,26 @@
     padding-left: 10px;
     padding-right: 33px;
   }
+
+  @media all and (max-width: $mobile-breakpoint) {
+    span:last-child {
+      display: none;
+    }
+  }
+}
+
+.retailer-result-dropdown__dropdown {
+  min-height: 301px;
+  //display: none;
+}
+
+.retailer-result-dropdown__dropdown__text-logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 74px 0 74px;
+}
+
+.retailer-result-dropdown__dropdown__text-logo__text {
+  max-width: 447px;
 }
