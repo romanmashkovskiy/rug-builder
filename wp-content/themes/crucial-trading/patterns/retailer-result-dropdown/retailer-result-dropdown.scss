@@ -1,0 +1,73 @@
+@import '../../assets/css/src/_variables.scss';
+
+.retailer-result-dropdown {
+  max-width: 1330px;
+  margin: auto;
+}
+
+.retailer-result-dropdown__header {
+  background: $page-header-background;
+  color: $white;
+  height: 88px;
+  display: flex;
+  align-items: center;
+  padding-left: 62px;
+}
+
+.retailer-result-dropdown__header h2 {
+  color: $white;
+  font-size: 22px;
+  letter-spacing: 1px;
+
+}
+
+.retailer-result-dropdown_menu__right {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+}
+
+.retailer-result-dropdown_menu__right__miles span {
+  color: rgba(56,56,56, .75);
+  text-transform: uppercase;
+  font-family: 'Montserrat';
+  font-size: 14px;
+  letter-spacing: 3px;
+  line-height: 19px;
+}
+
+.retailer-result-dropdown_menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 62px 0 62px;
+  background: $white;
+  height: 96.63px;
+  // color: rgba(0,0,0, .75);
+}
+
+.retailer-result-dropdown_menu__left__title {
+  color: rgba(0,0,0, .75);
+  line-height: 24px;
+  letter-spacing: 4px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-family: 'Montserrat';
+
+}
+
+.retailer-result-dropdown_menu__right__retailer-action {
+
+  .retailer-type {
+    color: rgba(0,0,0, .5);
+    font-size: 16px;
+    letter-spacing: 2px;
+    line-height: 22px;
+    text-transform: uppercase;
+  }
+
+  span .fa-check {
+    padding-left: 10px;
+    padding-right: 33px;
+  }
+}
