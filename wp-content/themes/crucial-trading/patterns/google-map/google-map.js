@@ -80,7 +80,7 @@ function createMap( latLng, zoom, $map ) {
 	map.setOptions({ styles: styles });
 
 	var image = {
-		scaledSize : new google.maps.Size(22, 30),
+		scaledSize : new google.maps.Size(38, 38),
 		origin : new google.maps.Point(0, 0),
 		anchor : new google.maps.Point(11, 30),
 		url    : 'https://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg'
