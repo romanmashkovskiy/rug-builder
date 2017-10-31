@@ -105,6 +105,8 @@ gulp.task('js', ['build-master-js'], function() {
 		'./js/vendor/jQuery.headroom.min.js',
 		'./js/dist/build.min.js',
 		'./js/venfor/bootstrap3.min.js',
+		'./js/vendor/infobubble.js',
+
 	])
 		.pipe(concat('master.min.js'))
 		.pipe(uglify().on('error', console.log))

@@ -89,6 +89,7 @@ function createMap( latLng, zoom, $map ) {
 	if ( pinCoordsArr.length > 0 ) {
 		var markers = [];
 		var infowindows = [];
+		var infoBubbles = [];
 
 		for ( var i = 0; i < pinCoordsArr.length; i++ ) {
 
@@ -110,17 +111,55 @@ function createMap( latLng, zoom, $map ) {
 					title		: "Hello mayne: " + i2
 				});
 
+
+
 				google.maps.event.addListener(markers[i2], 'click', function(e) {
 					var retailerId = "#retailer_" + this.label;
-					var text = $(retailerId + " .retailer__title").text();
-					console.log(text);
+					var title = $(retailerId + " .retailer__title").text();
+					console.log(title);
 
-
+					var contentString = (
+						"<div class='g-infowindow'>Hello World</div>"
+					)
 					infowindows[this.label] = new google.maps.InfoWindow({
-	            content: text
+	            content: contentString
 	        });
 
-					 infowindows[this.label].open(map, markers[this.label]);
+					var contantString = "<div id='close' class='g-infobubble'>" +
+																"<div class='g-infobubble__container'>" +
+																	"<div class='g-infobubble__container__body'>" +
+																		"<h4>" + title + "</h4>" +
+																		"<p>ddddddd</p>" +
+																	"</div>" +
+																	"<div class='g-infobubble__container__footer'>" +
+																		"<a>Visit Website</a>" +
+																		"<a>2 miles</a>" +
+																	"</div>" +
+																"</div>"
+															'<div>';
+
+					infoBubbles[this.label] = new InfoBubble({
+			      map: map,
+			      content: contantString,
+			      shadowStyle: 1,
+			      padding: 0,
+			      backgroundColor: '#ffffff',
+			      borderRadius: 0,
+			      arrowSize: 15,
+			      //borderWidth: 1,
+			      //borderColor: '#2c2c2c',
+			      disableAutoPan: true,
+			      hideCloseButton: true,
+			      arrowPosition: 30,
+			      backgroundClassName: 'transparent',
+			      arrowStyle: 2,
+						maxHeight: 154,
+						maxWidth: 395,
+						closeSrc: 'https://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif'
+					});
+
+
+					 infoBubbles[this.label].open(map, markers[this.label]);
 				 });
 			}
 		}

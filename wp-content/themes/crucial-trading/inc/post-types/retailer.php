@@ -111,16 +111,29 @@ function retailer_meta_boxes( $meta_boxes ) {
 				'name'      => 'Website',
 				'id'        => 'retailer_website',
 				'type'      => 'url',
+				'desc' => esc_html__( 'Format: http(s)://www.<url>', 'your-prefix' ),
 			),
 			array(
 				'name'      => 'Country',
 				'id'        => 'retailer_country',
 				'type'      => 'text',
 			),
+      array(
+        'name'      => 'Company Logo',
+        'id'        => 'retailer_company_logo',
+        'type'      => 'file_advanced',
+        'max_file_uploads' => 1,
+        'desc' => esc_html__( 'Company logo. Must be an image', 'your-prefix' ),
+      ),
 			array(
 				'name'      => 'Logo Slogan',
 				'id'        => 'retailer_logo_slogan',
 				'type'      => 'text',
+			),
+			array(
+				'name'      => 'Company Description',
+				'id'        => 'retailer_company_decription',
+				'type'      => 'textarea',
 			),
 		),
 	);
