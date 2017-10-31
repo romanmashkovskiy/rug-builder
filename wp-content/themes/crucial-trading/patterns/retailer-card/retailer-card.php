@@ -87,7 +87,7 @@ function retailer_card( $atts = '' ) {
 
 	if ( $distance != 'overseas' ) {
 
-		$html .= '<div class="retailer">';
+		$html .= "<div id='retailer_$iterator' class='retailer'>";
 		$html .= '<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg" class="retailer__pin">';
 		$html .= '<span class="retailer__iterator">' . $iterator . '</span>';
 		$html .= '<div class="border-div">';

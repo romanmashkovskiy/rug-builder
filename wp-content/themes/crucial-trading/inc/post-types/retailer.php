@@ -30,7 +30,7 @@ function regiser_retailer_post_type() {
 		'view_item'          => __( 'View Retailer' ),
 		'search_items'       => __( 'Search Retailer' ),
 		'not_found'          => __( 'No retailer found' ),
-		'not_found_in_trash' => __( 'No retailer found in Trash' ), 
+		'not_found_in_trash' => __( 'No retailer found in Trash' ),
 		'menu_name'          => 'Retailers'
 	);
 
@@ -41,18 +41,18 @@ function regiser_retailer_post_type() {
 		'query_var'           => "retailer", // This goes to the WP_Query schema
 		'publicly_queryable'  => false,
 		'exclude_from_search' => true,
-		'show_ui'             => true, 
-		'show_in_menu'        => true, 
+		'show_ui'             => true,
+		'show_in_menu'        => true,
 		'query_var'           => true,
 		'rewrite'             => true,
 		'capability_type'     => 'post',
 		'map_meta_cap'        => true, // Make individual post rights work e.g. edit_post
-		'has_archive'         => false, 
+		'has_archive'         => false,
 		'hierarchical'        => false,
 		'menu_position'       => 5,
 		'menu_icon'           => 'dashicons-images-alt2',
 		'supports'            => array( 'title', 'page-attributes', 'custom-fields' ),
-	); 
+	);
 
 	register_post_type( 'retailer', $args );
 }
@@ -117,6 +117,11 @@ function retailer_meta_boxes( $meta_boxes ) {
 				'id'        => 'retailer_country',
 				'type'      => 'text',
 			),
+			array(
+				'name'      => 'Logo Slogan',
+				'id'        => 'retailer_logo_slogan',
+				'type'      => 'text',
+			),
 		),
 	);
 
@@ -153,7 +158,7 @@ function register_retailer_taxnomies() {
 	$showroom_exists = term_exists( 'Showroom', 'retailer_type' );
 
 	if ( !$showroom_exists ) {
-		
+
 		$abc = wp_insert_term(
 			'Showroom',
 			'retailer_type',
@@ -166,7 +171,7 @@ function register_retailer_taxnomies() {
 	$retailer_exists = term_exists( 'Retailer', 'retailer_type' );
 
 	if ( !$retailer_exists ) {
-		
+
 		$abc = wp_insert_term(
 			'Retailer',
 			'retailer_type',
@@ -179,7 +184,7 @@ function register_retailer_taxnomies() {
 	$online_exists = term_exists( 'Online', 'retailer_type' );
 
 	if ( !$online_exists ) {
-		
+
 		$abc = wp_insert_term(
 			'Online',
 			'retailer_type',
@@ -192,7 +197,7 @@ function register_retailer_taxnomies() {
 	$overseas_exists = term_exists( 'Overseas', 'retailer_type' );
 
 	if ( !$overseas_exists ) {
-		
+
 		$abc = wp_insert_term(
 			'Overseas',
 			'retailer_type',

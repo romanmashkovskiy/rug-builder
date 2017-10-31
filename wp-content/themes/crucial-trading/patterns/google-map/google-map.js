@@ -87,6 +87,8 @@ function createMap( latLng, zoom, $map ) {
 	}
 
 	if ( pinCoordsArr.length > 0 ) {
+		var markers = [];
+		var infowindows = [];
 
 		for ( var i = 0; i < pinCoordsArr.length; i++ ) {
 
@@ -96,14 +98,30 @@ function createMap( latLng, zoom, $map ) {
 				var lat       = parseFloat(coordsArr[0]);
 				var lng       = parseFloat(coordsArr[1]);
 
+				// Marker value ie number
 				var i2 = ukOrOverseas === 'uk' ? (i+1).toString() : '';
 
-				var marker = new google.maps.Marker({
+
+				markers[i2] = new google.maps.Marker({
 					position : { lat: lat, lng: lng },
 					map      : map,
 					icon     : image,
-					label    : i2
+					label    : i2,
+					title		: "Hello mayne: " + i2
 				});
+
+				google.maps.event.addListener(markers[i2], 'click', function(e) {
+					var retailerId = "#retailer_" + this.label;
+					var text = $(retailerId + " .retailer__title").text();
+					console.log(text);
+
+
+					infowindows[this.label] = new google.maps.InfoWindow({
+	            content: text
+	        });
+
+					 infowindows[this.label].open(map, markers[this.label]);
+				 });
 			}
 		}
 	}
