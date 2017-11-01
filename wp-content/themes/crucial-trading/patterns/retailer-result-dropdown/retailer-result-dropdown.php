@@ -60,6 +60,9 @@ HTML;
    $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : 'http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png';
 
    $combines_address_or_description = $description;
+   $footer_a_list = "<a href='$website'>visit website</a>";
+
+   /* When true, this is called for the search results in retailer.php around line 191 */
    if ($retailer_loop) {
     $address_1 = rwmb_meta( 'retailer_address_1', array(), $post_id );
    	$address_2 = rwmb_meta( 'retailer_address_2', array(), $post_id );
@@ -69,6 +72,7 @@ HTML;
    	$address_6 = rwmb_meta( 'retailer_town', array(), $post_id );
    	$address_7 = rwmb_meta( 'retailer_county', array(), $post_id );
    	$address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
+    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id);
 
   	if ( $address_1 != '' ) {
   		$combines_address_or_description .= $address_1;
@@ -94,6 +98,13 @@ HTML;
   	if ( $address_8 != '' ) {
   		$combines_address_or_description .= "<br>" . $address_8;
   	}
+
+    $lat = get_post_meta( $post_id, 'retailer_lat', true );
+  	$lng = get_post_meta( $post_id, 'retailer_lng', true );
+  	$url = 'http://maps.google.com/maps?q=' . $lat . ',' . $lng . '&ll=' . $lat . ',' . $lng . '&z=12';
+
+    // Footer <a> list
+    $footer_a_list = "<a href='$url'>Get Directions</a>";
    }
    return <<<HTML
 
@@ -121,7 +132,7 @@ HTML;
        <div class="retailer-result-dropdown__dropdown__text-logo__text">
          <p>$combines_address_or_description</p>
          <div class="retailer-result-dropdown__dropdown__text-logo__footer">
-           <a href='$website'>visit website</a>
+           $footer_a_list
            <a href='tel:$phone_number'>$phone_number</a>
            <a href='mailto:$email'>send email</a>
          </div>
