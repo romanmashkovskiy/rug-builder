@@ -29,6 +29,8 @@
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
        $dist = round( $show_post->distance );
+       $iterator_ = $show_post->i;
+       //$iterator =   ( (int)$iterator_ );
 
        $loop .= retailer_loop($title, $post_id, $dist, '', $online);
      }
@@ -48,7 +50,7 @@
 HTML;
  }
 
- function retailer_loop($title = '', $post_id ='', $dist = '', $retailer_loop = false, $online) {
+ function retailer_loop($title = '', $post_id ='', $dist = '', $retailer_loop = false, $online, $iterator = 0) {
    $slogan = rwmb_meta('retailer_logo_slogan', array(), $post_id) ? rwmb_meta('retailer_logo_slogan', array(), $post_id) : '';
    $website = rwmb_meta('retailer_website', array(), $post_id);
    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id);
@@ -58,6 +60,9 @@ HTML;
    $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : '';
    $retailer_logo_meta = get_post_meta($post_id, 'retailer_company_logo');
    $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : '';
+
+   // Add 1 to the iterator
+   $new_iterator = $iterator + 1;
 
    $logo_html = '';
    if (! empty($logo_url)) {
@@ -80,6 +85,8 @@ HTML;
 
     // Distance
     $distance = "$dist Miles";
+
+
     $combines_address_or_description = '';
 
   	if ( $address_1 != '' ) {
@@ -107,7 +114,7 @@ HTML;
   		$combines_address_or_description .= "<br>" . $address_8;
   	}
     // Footer <a> list
-    $footer_a_list = "<a href='$website'>visit website</a>";
+    $footer_a_list = "<a class='r_website' href='$website'>visit website</a>";
 
   } else {
 
@@ -119,17 +126,18 @@ HTML;
     $distance = "";
     $combines_address_or_description = $description;
   }
+
    return <<<HTML
 
-   <div class="retailer-result-dropdown_menu">
+   <div id='retailer_$new_iterator' class="retailer-result-dropdown_menu">
      <div class="retailer-result-dropdown_menu__left">
-       <div class="retailer-result-dropdown_menu__left__title">
+       <div class="retailer-result-dropdown_menu__left__title r_title">
          $title
        </div>
      </div>
      <div class="retailer-result-dropdown_menu__right">
        <div class="retailer-result-dropdown_menu__right__miles">
-         <span>$distance</span>
+         <span class='r_distance'>$distance</span>
        </div>
        <div class="retailer-result-dropdown_menu__right__retailer-action">
          <span class="retailer-type">$retailer_type</span>
@@ -139,7 +147,7 @@ HTML;
      </div>
    </div>
 
-   <div id="$post_id" class="retailer-result-dropdown__dropdown panel-collapse collapse">
+   <div id="$post_id" class="retailer-result-dropdown__dropdown panel-collapse collapse retailer_$new_iterator">
      <div class="retailer-result-dropdown__dropdown__text-logo">
 
        <div class="retailer-result-dropdown__dropdown__text-logo__text">

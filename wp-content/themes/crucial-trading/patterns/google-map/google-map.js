@@ -115,8 +115,12 @@ function createMap( latLng, zoom, $map ) {
 
 				google.maps.event.addListener(markers[i2], 'click', function(e) {
 					var retailerId = "#retailer_" + this.label;
-					var title = $(retailerId + " .retailer__title").text();
-					console.log(title);
+					// Used to locate values in the collapse div
+					var retailerClass = ".retailer_" + this.label;
+					var title = $(retailerId + " .r_title").text();
+					var distance = $(retailerId + " .r_distance").text();
+					var website = $(retailerClass + " .r_website").attr('href');
+					console.log(website);
 
 					var contentString = (
 						"<div class='g-infowindow'>Hello World</div>"
@@ -132,8 +136,8 @@ function createMap( latLng, zoom, $map ) {
 																		"<p>ddddddd</p>" +
 																	"</div>" +
 																	"<div class='g-infobubble__container__footer'>" +
-																		"<a>Visit Website</a>" +
-																		"<a>2 miles</a>" +
+																		"<a href='" + website + "'" + ">Visit Website</a>" +
+																		"<a>" + distance + "</a>" +
 																	"</div>" +
 																"</div>"
 															'<div>';
