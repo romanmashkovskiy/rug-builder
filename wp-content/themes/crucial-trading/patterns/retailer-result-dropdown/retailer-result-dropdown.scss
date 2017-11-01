@@ -148,12 +148,13 @@ $tablet-breakpoint: 918px;
 .retailer-result-dropdown__dropdown__text-logo__logo {
   margin-top: 27px;
   height: 223px;
-  border: 1px solid rgba(0,0,0, .05);
+
   img {
     object-fit: contain;
     max-width: 357px;
     height: 196px;
     margin-bottom: 35px;
+    border: 1px solid rgba(0,0,0, .05);
   }
 
   p {

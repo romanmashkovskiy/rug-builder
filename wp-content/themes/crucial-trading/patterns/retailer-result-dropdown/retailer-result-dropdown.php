@@ -8,7 +8,7 @@
  * @since Crucial Trading 1.0
  */
 
- function retailer_result_dropdown($main_header = '', $dist = '') {
+ function show_room_retailers($main_header = '', $dist = '') {
    $showroom_args = array(
    	'post_type' => 'retailer',
    	'orderby'   => 'menu_order',
@@ -30,13 +30,8 @@
      foreach ($showroom_query->posts as $show_post) {
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
-       $website = rwmb_meta('retailer_website', array(), $show_post->ID);
-       $phone_number = rwmb_meta('retailer_telephone_1', array(), $show_post->ID);
-       $email = rwmb_meta('retailer_email', array(), $show_post->ID);
-       $description = rwmb_meta('retailer_company_decription', array(), $show_post->ID);
-       $retailer_logo_meta = get_post_meta($show_post->ID, 'retailer_company_logo');
-       $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : 'http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png';
-       $loop .= retailer_loop($title, $description, $post_id, $email, $phone_number, $logo_url, $website);
+
+       $loop .= retailer_loop($title, $post_id);
      }
 
    endif;
@@ -54,13 +49,24 @@
 HTML;
  }
 
- function retailer_loop($title = '', $description = '', $post_id ='', $email ='', $phone_number = '', $logo_url = '', $website = '', $dist = '', $retailer_loop = false) {
-
+ function retailer_loop($title = '', $post_id ='', $dist = '', $retailer_loop = false) {
+   $slogan = rwmb_meta('retailer_logo_slogan', array(), $post_id) ? rwmb_meta('retailer_logo_slogan', array(), $post_id) : '';
+   $website = rwmb_meta('retailer_website', array(), $post_id);
+   $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id);
+   $email = rwmb_meta('retailer_email', array(), $post_id);
+   $description = rwmb_meta('retailer_company_decription', array(), $post_id);
    $retailer_logo_meta = get_post_meta($post_id, 'retailer_company_logo');
-   $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : 'http://cumbrianrun.co.uk/wp-content/uploads/2014/02/default-placeholder-300x300.png';
+   $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : '';
+   $retailer_logo_meta = get_post_meta($post_id, 'retailer_company_logo');
+   $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : '';
 
    $combines_address_or_description = $description;
    $footer_a_list = "<a href='$website'>visit website</a>";
+
+   $logo_html = '';
+   if (! empty($logo_url)) {
+     $logo_html = "<img src='$logo_url' />";
+   }
 
    /* When true, this is called for the search results in retailer.php around line 191 */
    if ($retailer_loop) {
@@ -72,7 +78,7 @@ HTML;
    	$address_6 = rwmb_meta( 'retailer_town', array(), $post_id );
    	$address_7 = rwmb_meta( 'retailer_county', array(), $post_id );
    	$address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
-    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id);
+    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id) ? rwmb_meta('retailer_telephone_1', array(), $post_id) : 'No Number';
 
   	if ( $address_1 != '' ) {
   		$combines_address_or_description .= $address_1;
@@ -119,7 +125,7 @@ HTML;
          <span>$dist miles</span>
        </div>
        <div class="retailer-result-dropdown_menu__right__retailer-action">
-         <span class="retailer-type">online retailer</span>
+         <span class="retailer-type">local retailer</span>
          <span><i class="fa fa-check" aria-hidden="true"></i></span>
          <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" class="myelement"><i class="fa fa-plus" aria-hidden="true"></i></a>
        </div>
@@ -139,8 +145,8 @@ HTML;
        </div>
 
        <div class="retailer-result-dropdown__dropdown__text-logo__logo">
-         <img src="$logo_url" />
-         <p>worked with ct since: 1993</p>
+         $logo_html
+         <p>$slogan</p>
        </div>
 
      </div>
