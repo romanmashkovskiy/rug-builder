@@ -8,7 +8,7 @@
  * @since Crucial Trading 1.0
  */
 
- function show_room_retailers($main_header = '', $dist = '') {
+ function show_room_retailers($main_header = '', $dist = '', $terms = 'showroom', $online = false ) {
    $showroom_args = array(
    	'post_type' => 'retailer',
    	'orderby'   => 'menu_order',
@@ -17,7 +17,7 @@
    		array(
    			'taxonomy' => 'retailer_type',
    			'field'    => 'slug',
-   			'terms'    => 'showroom',
+   			'terms'    => $terms,
    		),
    	),
    );
@@ -31,7 +31,7 @@
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
 
-       $loop .= retailer_loop($title, $post_id);
+       $loop .= retailer_loop($title, $post_id, '', '', $online);
      }
 
    endif;
@@ -49,7 +49,7 @@
 HTML;
  }
 
- function retailer_loop($title = '', $post_id ='', $dist = '', $retailer_loop = false) {
+ function retailer_loop($title = '', $post_id ='', $dist = '', $retailer_loop = false, $online) {
    $slogan = rwmb_meta('retailer_logo_slogan', array(), $post_id) ? rwmb_meta('retailer_logo_slogan', array(), $post_id) : '';
    $website = rwmb_meta('retailer_website', array(), $post_id);
    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id);
@@ -68,6 +68,13 @@ HTML;
      $logo_html = "<img src='$logo_url' />";
    }
 
+   // Check retailer type: online or local
+   if ($online) {
+     $retailer_type = "Online Retailer";
+   } else {
+      $retailer_type = "Local Retailer";
+   }
+
    /* When true, this is called for the search results in retailer.php around line 191 */
    if ($retailer_loop) {
     $address_1 = rwmb_meta( 'retailer_address_1', array(), $post_id );
@@ -78,7 +85,7 @@ HTML;
    	$address_6 = rwmb_meta( 'retailer_town', array(), $post_id );
    	$address_7 = rwmb_meta( 'retailer_county', array(), $post_id );
    	$address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
-    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id) ? rwmb_meta('retailer_telephone_1', array(), $post_id) : 'No Number';
+    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id) ? rwmb_meta('retailer_telephone_1', array(), $post_id) : '';
 
   	if ( $address_1 != '' ) {
   		$combines_address_or_description .= $address_1;
@@ -125,7 +132,7 @@ HTML;
          <span>$dist miles</span>
        </div>
        <div class="retailer-result-dropdown_menu__right__retailer-action">
-         <span class="retailer-type">local retailer</span>
+         <span class="retailer-type">$retailer_type</span>
          <span><i class="fa fa-check" aria-hidden="true"></i></span>
          <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" class="myelement"><i class="fa fa-plus" aria-hidden="true"></i></a>
        </div>
