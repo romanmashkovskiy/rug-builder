@@ -22,16 +22,15 @@
    	),
    );
 
-   //echo retailer_result_dropdown();
-
    $showroom_query = new WP_Query( $showroom_args );
    $loop = '';
    if ( $showroom_query->have_posts() ) :
      foreach ($showroom_query->posts as $show_post) {
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
+       $dist = round( $show_post->distance );
 
-       $loop .= retailer_loop($title, $post_id, '', '', $online);
+       $loop .= retailer_loop($title, $post_id, $dist, '', $online);
      }
 
    endif;
@@ -60,23 +59,13 @@ HTML;
    $retailer_logo_meta = get_post_meta($post_id, 'retailer_company_logo');
    $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : '';
 
-   $combines_address_or_description = $description;
-   $footer_a_list = "<a href='$website'>visit website</a>";
-
    $logo_html = '';
    if (! empty($logo_url)) {
      $logo_html = "<img src='$logo_url' />";
    }
 
-   // Check retailer type: online or local
-   if ($online) {
-     $retailer_type = "Online Retailer";
-   } else {
-      $retailer_type = "Local Retailer";
-   }
-
    /* When true, this is called for the search results in retailer.php around line 191 */
-   if ($retailer_loop) {
+   if (!$online) {
     $address_1 = rwmb_meta( 'retailer_address_1', array(), $post_id );
    	$address_2 = rwmb_meta( 'retailer_address_2', array(), $post_id );
    	$address_3 = rwmb_meta( 'retailer_address_3', array(), $post_id );
@@ -86,6 +75,12 @@ HTML;
    	$address_7 = rwmb_meta( 'retailer_county', array(), $post_id );
    	$address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
     $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id) ? rwmb_meta('retailer_telephone_1', array(), $post_id) : '';
+
+    $retailer_type = "Local Retailer";
+
+    // Distance
+    $distance = "$dist Miles";
+    $combines_address_or_description = '';
 
   	if ( $address_1 != '' ) {
   		$combines_address_or_description .= $address_1;
@@ -111,14 +106,19 @@ HTML;
   	if ( $address_8 != '' ) {
   		$combines_address_or_description .= "<br>" . $address_8;
   	}
+    // Footer <a> list
+    $footer_a_list = "<a href='$website'>visit website</a>";
+
+  } else {
 
     $lat = get_post_meta( $post_id, 'retailer_lat', true );
   	$lng = get_post_meta( $post_id, 'retailer_lng', true );
   	$url = 'http://maps.google.com/maps?q=' . $lat . ',' . $lng . '&ll=' . $lat . ',' . $lng . '&z=12';
-
-    // Footer <a> list
+    $retailer_type = "Online Retailer";
     $footer_a_list = "<a href='$url'>Get Directions</a>";
-   }
+    $distance = "";
+    $combines_address_or_description = $description;
+  }
    return <<<HTML
 
    <div class="retailer-result-dropdown_menu">
@@ -129,7 +129,7 @@ HTML;
      </div>
      <div class="retailer-result-dropdown_menu__right">
        <div class="retailer-result-dropdown_menu__right__miles">
-         <span>$dist miles</span>
+         <span>$distance</span>
        </div>
        <div class="retailer-result-dropdown_menu__right__retailer-action">
          <span class="retailer-type">$retailer_type</span>

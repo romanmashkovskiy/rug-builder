@@ -113,7 +113,9 @@ $tablet-breakpoint: 918px;
 }
 
 .retailer-result-dropdown__dropdown__text-logo__text {
-  width: 447px;
+  p {
+    max-width: 447px;
+  }
   padding-top: 40px;
 }
 
@@ -138,6 +140,7 @@ $tablet-breakpoint: 918px;
   line-height: 22px;
   text-transform: uppercase;
   padding-bottom: 7px;
+  margin-right: 80px;
 
   &:first-child {
     border-bottom: 1px solid rgba(0,0,0, .21);
