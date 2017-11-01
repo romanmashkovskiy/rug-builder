@@ -131,7 +131,7 @@ HTML;
 
    return <<<HTML
 
-   <div id='retailer_$new_iterator' class="retailer-result-dropdown_menu">
+   <div id='retailer_$new_iterator' class="retailer-result-dropdown_menu r_accordion">
      <div class="retailer-result-dropdown_menu__left">
        <div class="retailer-result-dropdown_menu__left__title r_title">
          $title

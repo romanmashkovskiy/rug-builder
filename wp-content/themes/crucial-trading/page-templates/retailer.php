@@ -243,51 +243,56 @@ $showroom_args = array(
 echo switch_views();
 echo show_room_retailers('Online Retailers', '', 'online', true);
 echo show_room_retailers('Showrooms');
-// echo showroom_result_dropdown('Our Showrooms');
 
-// $showroom_query = new WP_Query( $showroom_args );
-//
-// if ( $showroom_query->have_posts() ) :
-//
-// 	echo '<h2 class="page-subtitle">Our Showrooms</h2>';
-// 	echo '<span></span>';
-// 	echo '<div class="clearfix">';
-//
-// 	for ( $i2 = 0; $i2 < $showroom_query->post_count; $i2++ ) {
-// 		//echo do_shortcode( '[showroom-card type="showroom" id="' . $showroom_query->posts[$i2]->ID . '"]' );
-// 	}
-//
-// 	echo '</div>';
-//
-// endif;
-//
-// $online_args = array(
-// 	'post_type' => 'retailer',
-// 	'orderby'   => 'menu_order',
-// 	'order'     => 'ASC',
-// 	'tax_query' => array(
-// 		array(
-// 			'taxonomy' => 'retailer_type',
-// 			'field'    => 'slug',
-// 			'terms'    => 'online',
-// 		),
-// 	),
-// );
-//
-// $online_query = new WP_Query( $online_args );
-//
-// if ( $online_query->have_posts() ) :
-//
-// 	echo '<h2 class="page-subtitle">Online Retailers</h2>';
-// 	echo '<span></span>';
-// 	echo '<div class="clearfix">';
-//
-// 	for ( $i3 = 0; $i3 < $online_query->post_count; $i3++ ) {
-// 		//echo do_shortcode( '[showroom-card type="online" id="' . $online_query->posts[$i3]->ID . '"]' );
-// 	}
-//
-// 	echo '</div>';
-//
-// endif;
+$showroom_query = new WP_Query( $showroom_args );
+
+if ( $showroom_query->have_posts() ) :
+
+	echo (
+		"<div class='r_card clearfix'>
+			<h2 class='page-subtitle'>Showrooms</h2>
+			<span></span>
+			<div class='clearfix'>"
+	);
+
+	for ( $i2 = 0; $i2 < $showroom_query->post_count; $i2++ ) {
+		echo do_shortcode( '[showroom-card type="showroom" id="' . $showroom_query->posts[$i2]->ID . '"]' );
+	}
+
+	echo '</div></div>';
+
+endif;
+
+$online_args = array(
+	'post_type' => 'retailer',
+	'orderby'   => 'menu_order',
+	'order'     => 'ASC',
+	'tax_query' => array(
+		array(
+			'taxonomy' => 'retailer_type',
+			'field'    => 'slug',
+			'terms'    => 'online',
+		),
+	),
+);
+
+$online_query = new WP_Query( $online_args );
+
+if ( $online_query->have_posts() ) :
+
+	echo (
+		"<div class='r_card clearfix'>
+			<h2 class='page-subtitle'>Online Retailers</h2>
+			<span></span>
+			<div class='clearfix'>"
+	);
+
+	for ( $i3 = 0; $i3 < $online_query->post_count; $i3++ ) {
+		echo do_shortcode( '[showroom-card type="online" id="' . $online_query->posts[$i3]->ID . '"]' );
+	}
+
+	echo '</div></div>';
+
+endif;
 
 get_footer();
