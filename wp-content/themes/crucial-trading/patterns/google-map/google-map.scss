@@ -13,11 +13,11 @@
 
 .g-infobubble {
 	width: 395px;
-	height: 154px;
+	min-height: 154px;
 
 	@media all and (max-width: 416px) {
 		width: 287px;
-		height: 148px;
+		//height: 148px;
 	}
 }
 

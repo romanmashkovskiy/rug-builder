@@ -50,7 +50,7 @@
 HTML;
  }
 
- function retailer_loop($title = '', $post_id ='', $dist = '', $retailer_loop = false, $online, $iterator = 0) {
+ function retailer_loop($title = '', $post_id ='', $dist = '', $retailer_loop = false, $online, $iterator = 0, $search = false) {
    $slogan = rwmb_meta('retailer_logo_slogan', array(), $post_id) ? rwmb_meta('retailer_logo_slogan', array(), $post_id) : '';
    $website = rwmb_meta('retailer_website', array(), $post_id);
    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id);
@@ -61,8 +61,10 @@ HTML;
    $retailer_logo_meta = get_post_meta($post_id, 'retailer_company_logo');
    $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : '';
 
-   // Add 1 to the iterator
-   $new_iterator = $iterator + 1;
+   $new_iterator = '';
+   if ($search) {
+     $new_iterator = $iterator + 1;
+   }
 
    $logo_html = '';
    if (! empty($logo_url)) {
@@ -81,7 +83,7 @@ HTML;
    	$address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
     $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id) ? rwmb_meta('retailer_telephone_1', array(), $post_id) : '';
 
-    $retailer_type = "Local Retailer";
+    $retailer_type = "Showroom";
 
     // Distance
     $distance = "$dist Miles";
@@ -114,15 +116,15 @@ HTML;
   		$combines_address_or_description .= "<br>" . $address_8;
   	}
     // Footer <a> list
-    $footer_a_list = "<a class='r_website' href='$website'>visit website</a>";
-
-  } else {
-
     $lat = get_post_meta( $post_id, 'retailer_lat', true );
   	$lng = get_post_meta( $post_id, 'retailer_lng', true );
   	$url = 'http://maps.google.com/maps?q=' . $lat . ',' . $lng . '&ll=' . $lat . ',' . $lng . '&z=12';
-    $retailer_type = "Online Retailer";
     $footer_a_list = "<a href='$url'>Get Directions</a>";
+
+  } else {
+
+    $retailer_type = "Online Retailer";
+    $footer_a_list = "<a class='r_website' href='$website'>visit website</a>";
     $distance = "";
     $combines_address_or_description = $description;
   }

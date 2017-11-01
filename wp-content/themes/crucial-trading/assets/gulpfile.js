@@ -175,10 +175,10 @@ gulp.task('watch', ['sync', 'css', 'js'], function() {
 	gulp.watch('./css/src/pages/*.scss', ['css']);
 	gulp.watch('../patterns/*/*.scss', ['css']);
 
-	gulp.watch('../patterns/*/*.js', ['build-master-js']);
-	gulp.watch('./js/src/script.js', ['build-master-js']);
+	gulp.watch('../patterns/*/*.js', ['js']);
+	gulp.watch('./js/src/script.js', ['js']);
 
-	gulp.watch('./js/src/vendor/*.js', ['build-master-js']);
+	gulp.watch('./js/src/vendor/*.js', ['js']);
 
 	// SCSS
 	gulp.watch('../patterns/*/*.scss').on('change', sync.reload);

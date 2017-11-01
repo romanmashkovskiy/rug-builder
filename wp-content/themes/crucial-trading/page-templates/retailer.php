@@ -193,7 +193,7 @@ if ( count( $uk_retailers ) > 0 ) {
 		$post_type = $uk_retailers[$i3]->post_type;
 		$_post_id = $uk_retailers[$i3]->ID;
 		$title = $post_id = $uk_retailers[$i3]->post_title;
-		$html .= retailer_loop($title, $_post_id,  $dist, true, false, $iterator = $i3);
+		$html .= retailer_loop($title, $_post_id,  $dist, true, false, $iterator = $i3, true);
 		//echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
 	}
 
@@ -240,8 +240,9 @@ $showroom_args = array(
 	),
 );
 // var_dump(222);
+echo switch_views();
 echo show_room_retailers('Online Retailers', '', 'online', true);
-echo show_room_retailers('Local Retailers');
+echo show_room_retailers('Showrooms');
 // echo showroom_result_dropdown('Our Showrooms');
 
 // $showroom_query = new WP_Query( $showroom_args );

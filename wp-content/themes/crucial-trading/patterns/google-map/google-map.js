@@ -1,7 +1,7 @@
 var $ = jQuery;
 
 $(document).ready(function() {
-
+console.log(222)
 	if ( $('body').hasClass('page-template-retailer') ) {
 
 		var latLng = {};
@@ -137,7 +137,7 @@ function createMap( latLng, zoom, $map ) {
 																	"</div>" +
 																	"<div class='g-infobubble__container__footer'>" +
 																		"<a href='" + website + "'" + ">Visit Website</a>" +
-																		"<a>" + distance + "</a>" +
+																		"<a id='close'>" + distance + "</a>" +
 																	"</div>" +
 																"</div>"
 															'<div>';
@@ -157,13 +157,15 @@ function createMap( latLng, zoom, $map ) {
 			      arrowPosition: 30,
 			      backgroundClassName: 'transparent',
 			      arrowStyle: 2,
-						maxHeight: 154,
+						minHeight: 154,
 						maxWidth: 395,
 						closeSrc: 'https://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif'
 					});
 
 
-					 infoBubbles[this.label].open(map, markers[this.label]);
+
+					 var aa = infoBubbles[this.label].open(map, markers[this.label]);
+					 aa.close();
 				 });
 			}
 		}
