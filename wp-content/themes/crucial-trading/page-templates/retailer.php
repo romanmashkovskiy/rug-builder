@@ -175,19 +175,34 @@ echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="
 
 if ( count( $uk_retailers ) > 0 ) {
 
-	echo '<h2 class="page-subtitle">Search Results</h2>';
-	echo '<span></span>';
-	echo '<div class="clearfix" style="display: flex; flex-flow: row wrap">';
+	// echo '<h2 class="page-subtitle">Search Results</h2>';
+	// echo '<span></span>';
+	// echo '<div class="clearfix" style="display: flex; flex-flow: row wrap">';
+	$html = (
+		"<div id='accordion' class='retailer-result-dropdown panel-group'>
+      <div class='retailer-result-dropdown__header'>
+				<h2>Local Retailers</h2>
+			</div>"
+	);
 
 	for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
 
 		$id   = $uk_retailers[$i3]->ID;
 
 		$dist = round( $uk_retailers[$i3]->distance );
-		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
+		$post_type = $uk_retailers[$i3]->post_type;
+		$_post_id = $uk_retailers[$i3]->ID;
+		$title = $post_id = $uk_retailers[$i3]->post_title;
+		//var_dump($uk_retailers[$i3]);
+		$html .= retailer_loop($title, '', $_post_id,  $email ='', $phone_number = '', $logo_url = '', $website = '', $dist = $dist, $retailer_loop = true);
+		//echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
 	}
 
-	echo '</div>';
+	$html .= (
+		"</div>"
+	);
+
+	echo $html;
 }
 
 if ( count( $overseas_retailers ) > 0 ) {
@@ -225,50 +240,53 @@ $showroom_args = array(
 		),
 	),
 );
+// var_dump(222);
+echo retailer_result_dropdown('Online Retailers');
+// echo showroom_result_dropdown('Our Showrooms');
 
-$showroom_query = new WP_Query( $showroom_args );
-
-if ( $showroom_query->have_posts() ) :
-
-	echo '<h2 class="page-subtitle">Our Showrooms</h2>';
-	echo '<span></span>';
-	echo '<div class="clearfix">';
-
-	for ( $i2 = 0; $i2 < $showroom_query->post_count; $i2++ ) {
-		echo do_shortcode( '[showroom-card type="showroom" id="' . $showroom_query->posts[$i2]->ID . '"]' );
-	}
-
-	echo '</div>';
-
-endif;
-
-$online_args = array(
-	'post_type' => 'retailer',
-	'orderby'   => 'menu_order',
-	'order'     => 'ASC',
-	'tax_query' => array(
-		array(
-			'taxonomy' => 'retailer_type',
-			'field'    => 'slug',
-			'terms'    => 'online',
-		),
-	),
-);
-
-$online_query = new WP_Query( $online_args );
-
-if ( $online_query->have_posts() ) :
-
-	echo '<h2 class="page-subtitle">Online Retailers</h2>';
-	echo '<span></span>';
-	echo '<div class="clearfix">';
-
-	for ( $i3 = 0; $i3 < $online_query->post_count; $i3++ ) {
-		echo do_shortcode( '[showroom-card type="online" id="' . $online_query->posts[$i3]->ID . '"]' );
-	}
-
-	echo '</div>';
-
-endif;
+// $showroom_query = new WP_Query( $showroom_args );
+//
+// if ( $showroom_query->have_posts() ) :
+//
+// 	echo '<h2 class="page-subtitle">Our Showrooms</h2>';
+// 	echo '<span></span>';
+// 	echo '<div class="clearfix">';
+//
+// 	for ( $i2 = 0; $i2 < $showroom_query->post_count; $i2++ ) {
+// 		//echo do_shortcode( '[showroom-card type="showroom" id="' . $showroom_query->posts[$i2]->ID . '"]' );
+// 	}
+//
+// 	echo '</div>';
+//
+// endif;
+//
+// $online_args = array(
+// 	'post_type' => 'retailer',
+// 	'orderby'   => 'menu_order',
+// 	'order'     => 'ASC',
+// 	'tax_query' => array(
+// 		array(
+// 			'taxonomy' => 'retailer_type',
+// 			'field'    => 'slug',
+// 			'terms'    => 'online',
+// 		),
+// 	),
+// );
+//
+// $online_query = new WP_Query( $online_args );
+//
+// if ( $online_query->have_posts() ) :
+//
+// 	echo '<h2 class="page-subtitle">Online Retailers</h2>';
+// 	echo '<span></span>';
+// 	echo '<div class="clearfix">';
+//
+// 	for ( $i3 = 0; $i3 < $online_query->post_count; $i3++ ) {
+// 		//echo do_shortcode( '[showroom-card type="online" id="' . $online_query->posts[$i3]->ID . '"]' );
+// 	}
+//
+// 	echo '</div>';
+//
+// endif;
 
 get_footer();

@@ -9,6 +9,7 @@ const sass         = require('gulp-sass');
 const sassGlob     = require('gulp-sass-glob');
 const sourcemaps   = require('gulp-sourcemaps');
 const uglify       = require('gulp-uglify');
+const sync      	 = require('browser-sync').create();
 
 gulp.task('build-master-css', function() {
 
@@ -77,13 +78,17 @@ gulp.task('css', ['build-master-css'], function() {
 	return gulp.src([
 		'./css/vendor/bootstrap.min.css',
 		'./css/vendor/animate.min.css',
+		'./css/vendor/jquery-ui.css',
 		'./css/vendor/flag-icon.min.css',
 		'./css/vendor/jquery.pagepilling.min.css',
 		'./css/dist/build.min.css'
 	])
 		.pipe(concatCSS('master.min.css'))
 		.pipe(cleanCSS())
-		.pipe(gulp.dest('./css/dist'));
+		.pipe(gulp.dest('./css/dist'))
+		.pipe(sync.reload({
+			stream: true
+		}));
 });
 
 gulp.task('js', ['build-master-js'], function() {
@@ -99,13 +104,17 @@ gulp.task('js', ['build-master-js'], function() {
 		'./js/vendor/headroom.min.js',
 		'./js/vendor/jQuery.headroom.min.js',
 		'./js/dist/build.min.js',
+		'./js/venfor/bootstrap3.min.js',
+		'./js/vendor/infobubble.js',
+
 	])
 		.pipe(concat('master.min.js'))
 		.pipe(uglify().on('error', console.log))
-		.pipe(gulp.dest('./js/dist'));
+		.pipe(gulp.dest('./js/dist'))
+		.pipe(sync.stream());
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['sync', 'js', 'css'], function() {
 
 	gulp.watch('./css/src/*.scss', ['css']);
 	gulp.watch('./css/src/*/*.scss', ['css']);
@@ -115,7 +124,27 @@ gulp.task('watch', function() {
 	gulp.watch('../patterns/*/*.js', ['js']);
 	gulp.watch('./js/src/script.js', ['js']);
 
+	// SCSS
+	gulp.watch('../patterns/*/*.scss').on('change', sync.reload);
+
+	// JS
+	gulp.watch('../patterns/*/*.js').on('change', sync.reload);
+
+	// PHP
+	gulp.watch('../patterns/*/*.php').on('change', sync.reload);
+
 });
+
+// Default 'gulp' task
+gulp.task('default',['watch']);
+
+// Create BrowserSync
+gulp.task('sync', function() {
+  sync.init({
+		proxy: "http://localhost:8888/crucial",
+		reloadOnRestart: true,
+  })
+})
 
 gulp.task('ie9', function() {
 

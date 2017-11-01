@@ -1,9 +1,9 @@
 /************************************************************************************************************************
 	Variables
-	
+
 	Styles any forms used across the website
-	
-	Crucial Trading - SCSS	
+
+	Crucial Trading - SCSS
 	Created by: KIJO Creative <hello@kijo.co>
 
 *************************************************************************************************************************/
@@ -16,7 +16,7 @@
   margin-top: -100px;
   padding: 30px 40px 10px;
   position: absolute;
-  width: 300px;
+  width: 432px;
   z-index: 99; }
   @media screen and (max-width: 550px) {
     .retailer-search {
