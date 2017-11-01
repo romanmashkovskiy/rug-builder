@@ -61,6 +61,10 @@ HTML;
    $retailer_logo_meta = get_post_meta($post_id, 'retailer_company_logo');
    $logo_url = count($retailer_logo_meta) > 0 ? wp_get_attachment_url($retailer_logo_meta[0], 'size') : '';
 
+   // Images
+   $plus_icon = get_template_directory_uri() . '/assets/icons/plus.svg';
+   $tick_icon = get_template_directory_uri() . '/assets/icons/tick.svg';
+
    $new_iterator = '';
    if ($search) {
      $new_iterator = $iterator + 1;
@@ -142,9 +146,9 @@ HTML;
          <span class='r_distance'>$distance</span>
        </div>
        <div class="retailer-result-dropdown_menu__right__retailer-action">
-         <span class="retailer-type">$retailer_type</span>
-         <span><i class="fa fa-check" aria-hidden="true"></i></span>
-         <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" class="myelement"><i class="fa fa-plus" aria-hidden="true"></i></a>
+         <!-- <span class="retailer-type">$retailer_type</span> -->
+         <!-- <span><img src='$tick_icon' /></span> -->
+         <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" class="myelement"><img src='$plus_icon' /></a>
        </div>
      </div>
    </div>
