@@ -2,8 +2,21 @@ var $ = jQuery;
 
 $(document).ready(function() {
 
+	document.getElementById('search-form').onkeydown = function(event) {
+
+    if (event.keyCode == 13) {
+			event.preventDefault();
+      return queryPostCode();
+    }
+}
+
 	$('.retailer-search button').on('click', function() {
 
+			return queryPostCode();
+
+	});
+
+	function queryPostCode() {
 		if ( $('.overseas-partners').length === 1 ) {
 
 			// Submitting a UK postcode
@@ -28,7 +41,7 @@ $(document).ready(function() {
 
 			window.location.href = url;
 		}
-	});
+	}
 
 	var $overseasPartners = document.querySelector('.overseas-partners');
 

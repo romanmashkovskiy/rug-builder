@@ -2,7 +2,7 @@
 
 /**
  * Template Name: Retailer Search Box
- * The search box on the Find a Retailer page 
+ * The search box on the Find a Retailer page
  *
  * Contents:
  *
@@ -55,14 +55,15 @@ function retailer_search_box( $atts = '' ) {
 	$countries = array_unique( $countries );
 	$countries = array_values( $countries );
 
-	$html .= '<div class="retailer-search box-shadow">';
-	$html .= '<h2>Filter Retailers</h2>';
-	$html .= '<span></span>';
-
-	$html .= '<input type="text" placeholder="Post Code" value="' . $loc . '" maxlength="12">';
-
-	$html .= '<select>';
-	$html .= '<option selected disabled">Select a Country</option>';
+	$html .= (
+		"<div class='retailer-search box-shadow'>
+			<h2>Filter Retailers</h2>
+			<span></span>
+				<form id='search-form'>
+					<input type='text' placeholder='Post Code' value='$loc' maxlength='12'>
+					<select>
+						<option selected disabled>Select a Country</option>"
+	);
 
 	for ( $i2 = 0; $i2 < count( $countries ); $i2++ ) {
 
@@ -76,7 +77,8 @@ function retailer_search_box( $atts = '' ) {
 
 	$html .= '</select>';
 
-	$html .= '<button type="button">Search</button>';
+	$html .= '<button id="search-form-buttom" type="button">Search</button>';
+	$html .= '</form>';
 	$html .= '<p class="overseas-partners">Overseas Partners</p>';
 	$html .= '</div>';
 
