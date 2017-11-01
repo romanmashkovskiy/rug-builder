@@ -1,9 +1,7 @@
 $(document).ready(function() {
-console.log("dave")
-// //$('.retailer-result-dropdown__dropdown').slideToggle();
-//   $( ".myelement" ).click(function() {
-//     console.log('clickung')
-//     $('.retailer-result-dropdown__dropdown').slideToggle();
-//
-//   });
+  $('.open-acc').click(function() {
+    $(this).toggleClass("rotate-icon");
+    console.log( $(this))
+    //transform: rotate(45deg);
+  })
 })

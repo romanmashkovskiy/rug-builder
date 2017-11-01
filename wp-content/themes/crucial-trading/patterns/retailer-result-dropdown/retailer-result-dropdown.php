@@ -148,7 +148,7 @@ HTML;
        <div class="retailer-result-dropdown_menu__right__retailer-action">
          <!-- <span class="retailer-type">$retailer_type</span> -->
          <!-- <span><img src='$tick_icon' /></span> -->
-         <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" class="myelement"><img src='$plus_icon' /></a>
+         <a data-toggle="collapse" data-parent="#accordion" href="#$post_id"><img class="open-acc" src='$plus_icon' /></a>
        </div>
      </div>
    </div>

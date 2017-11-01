@@ -5,6 +5,14 @@
 $mobile-breakpoint: 414px;
 $tablet-breakpoint: 918px;
 
+img.open-acc {
+  transition: all ease-in-out .25s;
+}
+
+.rotate-icon {
+  transform: rotate(45deg);
+}
+
 .retailer-result-dropdown {
   max-width: 1330px;
   margin: auto;
