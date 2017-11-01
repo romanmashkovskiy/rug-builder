@@ -5,12 +5,13 @@
 $mobile-breakpoint: 414px;
 $tablet-breakpoint: 918px;
 
-img.open-acc {
+img {
   transition: all ease-in-out .25s;
 }
 
 .rotate-icon {
   transform: rotate(45deg);
+  box-shadow: none !important;
 }
 
 .retailer-result-dropdown {

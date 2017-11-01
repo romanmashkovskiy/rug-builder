@@ -135,7 +135,7 @@ HTML;
 
    return <<<HTML
 
-   <div id='retailer_$new_iterator' class="retailer-result-dropdown_menu r_accordion">
+   <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" id='retailer_$new_iterator' class="open-acc retailer-result-dropdown_menu r_accordion">
      <div class="retailer-result-dropdown_menu__left">
        <div class="retailer-result-dropdown_menu__left__title r_title">
          $title
@@ -148,10 +148,10 @@ HTML;
        <div class="retailer-result-dropdown_menu__right__retailer-action">
          <!-- <span class="retailer-type">$retailer_type</span> -->
          <!-- <span><img src='$tick_icon' /></span> -->
-         <a data-toggle="collapse" data-parent="#accordion" href="#$post_id"><img class="open-acc" src='$plus_icon' /></a>
+         <img class="" src='$plus_icon' />
        </div>
      </div>
-   </div>
+   </a>
 
    <div id="$post_id" class="retailer-result-dropdown__dropdown panel-collapse collapse retailer_$new_iterator">
      <div class="retailer-result-dropdown__dropdown__text-logo">
