@@ -2,6 +2,11 @@
 	height: 600px;
 	margin: auto;
 	width: 100%;
+	margin-top: -50px;
+	@media all and (max-width: 450px) {
+		margin: 0;
+		height: 400px;
+	}
 }
 
 #google-map > div > div > div > div:nth-child(1) > div:nth-child(4) > div > div > div > div {
@@ -13,11 +18,11 @@
 
 .g-infobubble {
 	width: 395px;
-	height: 154px;
+	min-height: 154px;
 
 	@media all and (max-width: 416px) {
 		width: 287px;
-		height: 148px;
+		//height: 148px;
 	}
 }
 

@@ -1,8 +1,12 @@
 const fs           = require('fs');
 const gulp         = require('gulp');
 const autoprefixer = require('gulp-autoprefixer');
+const polyfill   = require('gulp-autopolyfiller');
+const merge      = require('event-stream').merge;
+const order      = require('gulp-order');
 const cleanCSS     = require('gulp-clean-css');
 const concat       = require('gulp-concat');
+const babel      = require('gulp-babel');
 const concatCSS    = require('gulp-concat-css');
 const rename       = require('gulp-rename');
 const sass         = require('gulp-sass');
@@ -94,6 +98,7 @@ gulp.task('css', ['build-master-css'], function() {
 gulp.task('js', ['build-master-js'], function() {
 
 	return gulp.src([
+		'./js/vendor/jquery321.min.js',
 		'./js/vendor/super-slider.min.js',
 		'./js/vendor/bxslider.min.js',
 		'./js/vendor/jquery.elevatezoom.min.js',
@@ -101,10 +106,10 @@ gulp.task('js', ['build-master-js'], function() {
 		'./js/vendor/wow.min.js',
 		'./js/vendor/masonry.pkgd.min.js',
 		'./js/vendor/js.cookie.min.js',
-		'./js/vendor/headroom.min.js',
 		'./js/vendor/jQuery.headroom.min.js',
+		'./js/vendor/headroom.min.js',
 		'./js/dist/build.min.js',
-		'./js/venfor/bootstrap3.min.js',
+		'./js/vendor/bootstrap3.min.js',
 		'./js/vendor/infobubble.js',
 
 	])
@@ -114,7 +119,56 @@ gulp.task('js', ['build-master-js'], function() {
 		.pipe(sync.stream());
 });
 
-gulp.task('watch', ['sync', 'js', 'css'], function() {
+
+
+
+// gulp.task('build-master-js', function() {
+//
+//     var all = gulp.src([
+//
+// 			'./js/vendor/*.min.js',
+// 			'./js/vendor/*.js',
+//       './js/src/*.js',
+//       './js/src/**/*.js',
+//       '../patterns/*/*.js',
+//       '../patterns/**/*.js',
+//   ])
+//     .pipe(concat('all.js'))
+//
+//     .pipe(babel({
+//         presets: [ 'es2015' ]
+//     }))
+//     .pipe(sourcemaps.init())
+//
+//     // Generate polyfills for all files
+//     var polyfills = all
+//     .pipe(polyfill('polyfills.js'));
+//
+//     // Merge polyfills and all normal JS
+//     return merge(polyfills, all)
+//         .pipe(order([
+//             'polyfills.js',
+//             'all.js'
+//     ]))
+//     // Build into single file
+//      .pipe(concat('master.min.js'))
+//
+//     // Uglify and catch errors
+//     .pipe(uglify().on('error', function(e){
+//             console.log(e);
+//      }))
+//     .pipe(sourcemaps.write('maps'))
+//     .pipe(gulp.dest('./js/dist'))
+//     .pipe(sync.stream());
+//
+// });
+
+
+
+
+
+
+gulp.task('watch', ['sync', 'css', 'js'], function() {
 
 	gulp.watch('./css/src/*.scss', ['css']);
 	gulp.watch('./css/src/*/*.scss', ['css']);
@@ -123,6 +177,8 @@ gulp.task('watch', ['sync', 'js', 'css'], function() {
 
 	gulp.watch('../patterns/*/*.js', ['js']);
 	gulp.watch('./js/src/script.js', ['js']);
+
+	gulp.watch('./js/src/vendor/*.js', ['js']);
 
 	// SCSS
 	gulp.watch('../patterns/*/*.scss').on('change', sync.reload);

@@ -87,11 +87,11 @@ function retailer_card( $atts = '' ) {
 
 	if ( $distance != 'overseas' ) {
 
-		$html .= "<div id='retailer_$iterator' class='retailer'>";
+		$html .= "<div id='retailer**_$iterator' class='retailer r_card'>";
 		$html .= '<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg" class="retailer__pin">';
 		$html .= '<span class="retailer__iterator">' . $iterator . '</span>';
 		$html .= '<div class="border-div">';
-		$html .= '<h3 class="retailer__title">' . get_the_title( $post_id ) . '</h3>';
+		$html .= '<h3 class="retailer__title r_title">' . get_the_title( $post_id ) . '</h3>';
 		$html .= '<p class="retailer__address">' . nl2br( $address ) . '</p>';
 		if ( $phone != '' ) {
 			$html .= '<p class="retailer__phone">' . $phone . '</p>';
@@ -99,9 +99,9 @@ function retailer_card( $atts = '' ) {
 		if ( $email != '' ) {
 			$html .= '<a class="retailer__email" href="mailto:' . $email . '"><p>Send Email</p></a>';
 		}
-		$html .= '<a class="retailer_directions" target="_blank" href="' . $url . '">Get Directions</a>';
+		$html .= '<a class="retailer_directions r_website" target="_blank" href="' . $url . '">Get Directions</a>';
 		if ( $distance ) {
-			$html .= '<h3 class="retailer_distance">' . $distance . ' Miles</h3>';
+			$html .= '<h3 class="retailer_distance r_distance">' . $distance . ' Miles</h3>';
 		}
 		$html .= '</div>';
 		$html .= '</div>';
@@ -110,7 +110,7 @@ function retailer_card( $atts = '' ) {
 
 		$country_code = get_country_code( $country );
 
-		$html .= '<div class="retailer overseas">';
+		$html .= '<div class="retailer overseas r_card">';
 		$html .= '<div class="border-div clearfix">';
 		$html .= '<span class="flag-icon flag-icon-' . $country_code . '"></span>';
 		$html .= '<h3 class="retailer__title">' . get_the_title( $post_id ) . '</h3>';

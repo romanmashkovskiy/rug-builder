@@ -2,8 +2,17 @@
 
 
 /* Width Query */
-$mobile-breakpoint: 414px;
+$mobile-breakpoint: 450px;
 $tablet-breakpoint: 918px;
+
+img {
+  transition: all ease-in-out .25s;
+}
+
+.rotate-icon {
+  transform: rotate(45deg);
+  box-shadow: none !important;
+}
 
 .retailer-result-dropdown {
   max-width: 1330px;
@@ -17,6 +26,24 @@ $tablet-breakpoint: 918px;
   display: flex;
   align-items: center;
   padding-left: 62px;
+  @media all and (max-width: $mobile-breakpoint) {
+    height: 49px;
+    padding-left: 25px;
+  }
+}
+
+.retailer-result-dropdown_menu__left__title--mobile {
+  display: none;
+  width: 20px;
+  @media all and (max-width: $mobile-breakpoint) {
+    display: block;
+  }
+}
+
+.retailer-result-dropdown_menu__right__retailer-action--desktop {
+  @media all and (max-width: $mobile-breakpoint) {
+    display: none;
+  }
 }
 
 .retailer-result-dropdown__header h2 {
@@ -24,6 +51,9 @@ $tablet-breakpoint: 918px;
   font-size: 22px;
   letter-spacing: 1px;
 
+  @media all and (max-width: $mobile-breakpoint) {
+    font-size: 16px;
+  }
 }
 
 .retailer-result-dropdown_menu__right__miles span {
@@ -48,6 +78,11 @@ $tablet-breakpoint: 918px;
   @media all and (max-width: $tablet-breakpoint) {
     flex-direction: column;
     padding: 0 23px 0 23px;
+  }
+
+  @media all and (max-width: $mobile-breakpoint) {
+    flex-direction: column;
+    padding: 22px 23px 22px 23px;
   }
 }
 
@@ -109,11 +144,14 @@ $tablet-breakpoint: 918px;
   padding: 0 74px 0 74px;
   @media all and (max-width: $tablet-breakpoint) {
     flex-direction: column-reverse;
+    padding: 22px 23px 22px 23px;
   }
 }
 
 .retailer-result-dropdown__dropdown__text-logo__text {
-  width: 447px;
+  p {
+    max-width: 447px;
+  }
   padding-top: 40px;
 }
 
@@ -138,6 +176,7 @@ $tablet-breakpoint: 918px;
   line-height: 22px;
   text-transform: uppercase;
   padding-bottom: 7px;
+  margin-right: 80px;
 
   &:first-child {
     border-bottom: 1px solid rgba(0,0,0, .21);
@@ -148,12 +187,13 @@ $tablet-breakpoint: 918px;
 .retailer-result-dropdown__dropdown__text-logo__logo {
   margin-top: 27px;
   height: 223px;
-  border: 1px solid rgba(0,0,0, .05);
+
   img {
     object-fit: contain;
     max-width: 357px;
     height: 196px;
     margin-bottom: 35px;
+    border: 1px solid rgba(0,0,0, .05);
   }
 
   p {
