@@ -2,20 +2,6 @@ var $ = jQuery;
 
 $(document).ready(function() {
 
-	document.getElementById('search-form').onkeydown = function(event) {
-
-    if (event.keyCode == 13) {
-			event.preventDefault();
-      return queryPostCode();
-    }
-}
-
-	$('.retailer-search button').on('click', function() {
-
-			return queryPostCode();
-
-	});
-
 	function queryPostCode() {
 		if ( $('.overseas-partners').length === 1 ) {
 
@@ -82,4 +68,22 @@ $(document).ready(function() {
 			$overseasPartners.addEventListener('click', overseasPartners);
 		}
 	}
+
+	var formEl = document.getElementById('search-form');
+	if (formEl) {
+		document.getElementById('search-form').onkeydown = function(event) {
+
+			if (event.keyCode == 13) {
+				event.preventDefault();
+				return queryPostCode();
+			}
+		}
+	}
+
+	$('.retailer-search button').on('click', function() {
+
+			return queryPostCode();
+
+	});
+
 });
