@@ -90,6 +90,10 @@ function createMap( latLng, zoom, $map ) {
 		url    : 'https://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg'
 	}
 
+	$('.switch_views').click(function() {
+		$(".js-info-bubble-close").click();
+	})
+
 	if ( pinCoordsArr.length > 0 ) {
 		var markers = [];
 		var infowindows = [];
@@ -115,8 +119,6 @@ function createMap( latLng, zoom, $map ) {
 					title		: "Hello mayne: " + i2
 				});
 
-
-
 				google.maps.event.addListener(markers[i2], 'click', function(e) {
 
 					var retailerId = "#retailer_" + this.label;
@@ -141,7 +143,7 @@ function createMap( latLng, zoom, $map ) {
 																		"<p>ddddddd</p>" +
 																	"</div>" +
 																	"<div class='g-infobubble__container__footer'>" +
-																		"<a href='" + website + "'" + ">Visit Website</a>" +
+																		"<a href='" + website + "'" + ">Get Direction</a>" +
 																		"<a id='close'>" + distance + "</a>" +
 																	"</div>" +
 																"</div>"
@@ -149,7 +151,7 @@ function createMap( latLng, zoom, $map ) {
 
 					// Close all other open windows, if open, on each click
 					$(".js-info-bubble-close").click();
-					
+
 					infoBubbles[this.label] = new InfoBubble({
 			      map: map,
 			      content: contantString,
@@ -161,19 +163,18 @@ function createMap( latLng, zoom, $map ) {
 			      //borderWidth: 1,
 			      //borderColor: '#2c2c2c',
 			      disableAutoPan: true,
-			      hideCloseButton: false,
+			      hideCloseButton: true,
 			      arrowPosition: 30,
 			      backgroundClassName: 'transparent',
 			      arrowStyle: 2,
-						minHeight: 154,
-						maxWidth: 395,
-						closeSrc: 'https://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif'
+						//minHeight: 154,
+						//maxWidth: 395,
+						//closeSrc: 'https://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif'
+						//closeSrc: templateDirectoryUri + "/assets/icons/plus.svg"
 					});
 
-
-
 					 var aa = infoBubbles[this.label].open(map, markers[this.label]);
-					 aa.close();
+
 				 });
 			}
 		}

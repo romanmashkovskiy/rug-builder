@@ -127,7 +127,7 @@ HTML;
   	$lng = get_post_meta( $post_id, 'retailer_lng', true );
     // crucial: http://maps.google.com/maps?saddr=52.50883313,-2.07817228&daddr=ws1 3qu
   	$url = 'http://maps.google.com/maps?saddr=' . $lat . ',' . $lng . '&daddr=' . $queried_postcode;
-    $footer_a_list = "<a href='$url'>Get Directions</a>";
+    $footer_a_list = "<a class='r_website' href='$url'>Get Directions</a>";
 
   } else {
 

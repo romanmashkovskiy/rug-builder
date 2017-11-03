@@ -32,6 +32,7 @@
 }
 
 .g-infobubble__container__footer {
+	height: 65px;
 	padding: 0 36px 0 36px;
 	display: flex;
 	justify-content: space-between;
@@ -51,7 +52,7 @@
 .g-infobubble__container__body p {
 	margin: 0;
 	margin-top: 8px;
-	margin-bottom: 15px;
+	//margin-bottom: 15px;
 	line-height: 22px;
 	letter-spacing: 1px;
 	text-transform: capitalize;
