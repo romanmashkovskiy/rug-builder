@@ -118,6 +118,7 @@ function createMap( latLng, zoom, $map ) {
 
 
 				google.maps.event.addListener(markers[i2], 'click', function(e) {
+
 					var retailerId = "#retailer_" + this.label;
 					// Used to locate values in the collapse div
 					var retailerClass = ".retailer_" + this.label;
@@ -129,9 +130,9 @@ function createMap( latLng, zoom, $map ) {
 					var contentString = (
 						"<div class='g-infowindow'>Hello World</div>"
 					)
-					infowindows[this.label] = new google.maps.InfoWindow({
-	            content: contentString
-	        });
+					// infowindows[this.label] = new google.maps.InfoWindow({
+	        //     content: contentString
+	        // });
 
 					var contantString = "<div id='close' class='g-infobubble'>" +
 																"<div class='g-infobubble__container'>" +
@@ -146,6 +147,9 @@ function createMap( latLng, zoom, $map ) {
 																"</div>"
 															'<div>';
 
+					// Close all other open windows, if open, on each click
+					$(".js-info-bubble-close").click();
+					
 					infoBubbles[this.label] = new InfoBubble({
 			      map: map,
 			      content: contantString,
@@ -157,7 +161,7 @@ function createMap( latLng, zoom, $map ) {
 			      //borderWidth: 1,
 			      //borderColor: '#2c2c2c',
 			      disableAutoPan: true,
-			      hideCloseButton: true,
+			      hideCloseButton: false,
 			      arrowPosition: 30,
 			      backgroundClassName: 'transparent',
 			      arrowStyle: 2,
