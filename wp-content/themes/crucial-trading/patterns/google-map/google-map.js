@@ -2,6 +2,10 @@ var $ = jQuery;
 
 $(document).ready(function() {
 console.log(222)
+
+// crucial: http://maps.google.com/maps?saddr=52.50883313,-2.07817228&daddr=ws1 3qu
+
+// movit: http://maps.google.com/maps?saddr=52.508,-1.69351&daddr=52.4826594,-1.8335196
 	if ( $('body').hasClass('page-template-retailer') ) {
 
 		var latLng = {};

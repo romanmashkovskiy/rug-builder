@@ -119,10 +119,14 @@ HTML;
   	if ( $address_8 != '' ) {
   		$combines_address_or_description .= "<br>" . $address_8;
   	}
+
+    $queried_postcode = $_GET['postcode'];
+
     // Footer <a> list
     $lat = get_post_meta( $post_id, 'retailer_lat', true );
   	$lng = get_post_meta( $post_id, 'retailer_lng', true );
-  	$url = 'http://maps.google.com/maps?q=' . $lat . ',' . $lng . '&ll=' . $lat . ',' . $lng . '&z=12';
+    // crucial: http://maps.google.com/maps?saddr=52.50883313,-2.07817228&daddr=ws1 3qu
+  	$url = 'http://maps.google.com/maps?saddr=' . $lat . ',' . $lng . '&daddr=' . $queried_postcode;
     $footer_a_list = "<a href='$url'>Get Directions</a>";
 
   } else {
