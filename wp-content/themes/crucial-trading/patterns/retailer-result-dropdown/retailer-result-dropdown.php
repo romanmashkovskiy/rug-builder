@@ -120,7 +120,12 @@ HTML;
   		$combines_address_or_description .= "<br>" . $address_8;
   	}
 
-    $queried_postcode = $_GET['postcode'];
+    $queried_postcode = '';
+    if  (array_key_exists('postcode', $_GET)) {
+      $queried_postcode = $_GET['postcode'];
+    }
+
+
 
     // Footer <a> list
     $lat = get_post_meta( $post_id, 'retailer_lat', true );
