@@ -6,8 +6,9 @@ $(document).ready(function() {
 		if ( $('.overseas-partners').length === 1 ) {
 
 			// Submitting a UK postcode
-
-			var postCode = $('.retailer-search input').val();
+			var postCodeStr = $('.retailer-search input').val();
+			// Remove spaces from postcode
+			var postCode = postCodeStr.replace(/\s/g, '');
 
 			if ( postCode === '' ) {
 				alert('Please enter a post code');
