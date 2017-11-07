@@ -144,6 +144,7 @@ img {
   display: flex;
   justify-content: space-between;
   padding: 0 74px 0 74px;
+  border-bottom: 1px solid rgba(0,0,0, .05);
   @media all and (max-width: $tablet-breakpoint) {
     flex-direction: column-reverse;
     padding: 0 62px 0 62px;;
@@ -177,6 +178,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 15px;
 
   @media all and (max-width: $mobile-breakpoint) {
     flex-direction: column;
