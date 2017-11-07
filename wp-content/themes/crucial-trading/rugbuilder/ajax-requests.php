@@ -1,9 +1,6 @@
-<?php
-
-error_log('ajax requests !!!!');
+<?
 
 function materials_data() {
-
 	$res = array();
 
 	$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
@@ -30,7 +27,6 @@ function materials_data() {
 		$material_meta = get_option( "category_$material_id" );
 
 		$material->order = array_key_exists( 'menu_order', $material_meta ) ? $material_meta['menu_order'] : 0;
-
 	}
 
 	function cmp( $a, $b ) {
@@ -44,7 +40,6 @@ function materials_data() {
 
 
 function collections_data() {
-error_log('');
 	$res = array();
 
 	if ( !array_key_exists( 'collection', $_GET ) ) {
@@ -105,7 +100,6 @@ error_log('');
 
 
 function swatches_data() {
-
 	$res = array();
 
 	$collection = $_GET['collection'];
