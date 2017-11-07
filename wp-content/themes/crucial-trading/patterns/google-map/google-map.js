@@ -1,7 +1,6 @@
 var $ = jQuery;
 
 $(document).ready(function() {
-console.log(222)
 
 // crucial: http://maps.google.com/maps?saddr=52.50883313,-2.07817228&daddr=ws1 3qu
 
@@ -118,7 +117,9 @@ function createMap( latLng, zoom, $map ) {
 					label    : i2,
 					// title		: "Hello mayne: " + i2
 				});
-
+				// google.maps.event.addListener(infoBubbles[i2], 'click', function(e) {
+				// 	console.log("clicked")
+				// })
 
 				google.maps.event.addListener(markers[i2], 'click', function(e) {
 
@@ -164,13 +165,13 @@ function createMap( latLng, zoom, $map ) {
 			      //borderWidth: 1,
 			      //borderColor: '#2c2c2c',
 			      disableAutoPan: true,
-			      hideCloseButton: true,
+			      hideCloseButton: false,
 			      arrowPosition: 30,
 			      backgroundClassName: 'transparent',
 			      arrowStyle: 2,
 						//minHeight: 154,
 						//maxWidth: 395,
-						//closeSrc: 'https://maps.gstatic.com/intl/en_us/mapfiles/iw_close.gif'
+						closeSrc: 'http://www.freeiconspng.com/uploads/close-button-png-27.png'
 						//closeSrc: templateDirectoryUri + "/assets/icons/plus.svg"
 					});
 
