@@ -1,7 +1,5 @@
 class RugBuilder {
-
 	constructor( context, showSubmit, showRestart, showExit ) {
-
 		// Coloured Stucture Images
 		this.coloredStructureImages = false;
 
@@ -56,7 +54,7 @@ class RugBuilder {
 			'H4380',
 			'H4390',
 			'H4400',
-			'H5050' 
+			'H5050'
 		];
 		this.colorCodes = ['A10000', 'A40000', 'B10000', 'B10001', 'B40000', 'B70000', 'B70001', 'C40000', 'C40001', 'D10000', 'D40000', 'D70000', 'D70001', 'D70002', 'E40000', 'E40001', 'E70000', 'E70001', 'F40000', 'F70000', 'F70001', 'G40000', 'G70000', 'G70001', 'H10000', 'H40000', 'H70000', 'H70001', 'J40000', 'J70000', 'H70002', 'H70003', 'J70001', 'J70002', 'J70003'];
 		this.structureColorCodes = {
@@ -118,6 +116,7 @@ class RugBuilder {
 			'H2510' : 1,
 			'H2600' : 1,
 			'H3750' : 1,
+			'H2400' : 1,
 
 			'H3150' : 2,
 			'H3200' : 2,
@@ -140,7 +139,7 @@ class RugBuilder {
 			'H4200' : 3,
 			'H4300' : 3,
 			'H4400' : 3,
-			
+
 			'H4210' : 4,
 			'H4220' : 4,
 

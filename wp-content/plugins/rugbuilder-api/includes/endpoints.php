@@ -347,7 +347,6 @@
       $user_name = $request['userName'];
       $user_address = $request['userAddress'];
 
-      error_log($user_address);
 
       $user_postcode = $request['userPostcode'];
       $user_number = $request['userNumber'];
@@ -387,7 +386,6 @@
      * email select rug choice to user and client
      */
     'email-hospitality-rug-choices' => function () {
-      error_log('email rug choices endpoint !!');
 
       if ( !is_user_logged_in() ) {
         // header( 'Location: ' . site_url() . '/hospitality-register' );
