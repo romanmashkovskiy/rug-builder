@@ -48,8 +48,8 @@ function load(options, secret_DEPRECIATED) {
 
 	var devMode = true;
 
-	if (window.location.hostname === 'localhost' && devMode) {
-		console.log('DEV MODE');
+	if ((window.location.hostname === 'localhost' || window.location.hostname) && devMode) {
+		console.log('DEV MODE V');
 		document.write('<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.js"></script>');
 		document.write('<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.css">');
 	}

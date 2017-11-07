@@ -53,12 +53,8 @@ if ( !$allowed ) {
 		$loader_script_url = '';
 		$css_url = '';
 
-		echo 'domain ----->';
-		echo $domain;
-
 		/* DEV */
-		if ($domain === 'localhost') {
-			error_log('DEV');
+		if ($domain === 'localhost' || $domain === 'vps.89hosting.co.uk') {
 			$loader_script_url = site_url() . $rh_path . '/dist/';
 		}
 
