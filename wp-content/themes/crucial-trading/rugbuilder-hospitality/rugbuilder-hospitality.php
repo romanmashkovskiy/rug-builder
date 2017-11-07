@@ -53,9 +53,6 @@ if ( !$allowed ) {
 		$loader_script_url = '';
 		$css_url = '';
 
-		error_log('domian --->');
-		error_log($domain);
-
 		/* DEV */
 		if ($domain === 'localhost') {
 			error_log('DEV');

@@ -46,6 +46,8 @@ function load(options, secret_DEPRECIATED) {
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>');
 
+
+
 	var devMode = true;
 
 	if (window.location.hostname === 'localhost' && devMode) {
