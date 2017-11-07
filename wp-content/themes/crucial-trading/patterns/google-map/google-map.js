@@ -116,8 +116,9 @@ function createMap( latLng, zoom, $map ) {
 					map      : map,
 					icon     : image,
 					label    : i2,
-					title		: "Hello mayne: " + i2
+					// title		: "Hello mayne: " + i2
 				});
+
 
 				google.maps.event.addListener(markers[i2], 'click', function(e) {
 
@@ -140,7 +141,7 @@ function createMap( latLng, zoom, $map ) {
 																"<div class='g-infobubble__container'>" +
 																	"<div class='g-infobubble__container__body'>" +
 																		"<h4>" + title + "</h4>" +
-																		"<p>ddddddd</p>" +
+																		"<p>Local Retailer</p>" +
 																	"</div>" +
 																	"<div class='g-infobubble__container__footer'>" +
 																		"<a href='" + website + "'" + ">Get Direction</a>" +
