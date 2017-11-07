@@ -135,7 +135,7 @@ img {
 }
 
 .retailer-result-dropdown__dropdown {
-  min-height: 301px;
+  //height: 301px;
   background: $white;
   //display: none;
 }
@@ -206,6 +206,7 @@ img {
 .retailer-result-dropdown__dropdown__text-logo__logo {
   margin-top: 27px;
   height: 223px;
+  text-align: center;
 
   img {
     object-fit: contain;

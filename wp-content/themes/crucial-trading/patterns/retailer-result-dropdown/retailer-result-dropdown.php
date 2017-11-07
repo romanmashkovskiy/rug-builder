@@ -39,7 +39,7 @@
 
    return <<<HTML
 
-   <div id="accordion" class="retailer-result-dropdown panel-group">
+   <div class="retailer-result-dropdown panel-group">
      <div class="retailer-result-dropdown__header">
        <h2>$main_header</h2>
      </div>

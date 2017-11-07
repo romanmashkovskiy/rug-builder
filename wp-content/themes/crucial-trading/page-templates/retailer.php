@@ -181,7 +181,7 @@ if ( count( $uk_retailers ) > 0 ) {
 	// echo '<span></span>';
 	// echo '<div class="clearfix" style="display: flex; flex-flow: row wrap">';
 	$html = (
-		"<div id='accordion' class='retailer-result-dropdown panel-group'>
+		"<div class='retailer-result-dropdown panel-group'>
       <div class='retailer-result-dropdown__header'>
 				<h2>Local Retailers</h2>
 			</div>"
@@ -243,9 +243,14 @@ $showroom_args = array(
 );
 // var_dump(222);
 
+?>
+<div id="accordion">
+<?php
 echo show_room_retailers('Online Retailers', '', 'online', true);
 echo show_room_retailers('Showrooms');
-
+?>
+</div>
+<?php
 $showroom_query = new WP_Query( $showroom_args );
 
 if ( $showroom_query->have_posts() ) :
