@@ -339,7 +339,7 @@ final class ITSEC_Lockout {
 
 				$user_count = $wpdb->get_var(
 					$wpdb->prepare(
-						"SELECT COUNT(*) FROM `" . $wpdb->base_prefix . "itsec_temp` WHERE `temp_date_gmt` > '%s' AND `temp_username`='%s' OR `temp_user`=%s;",
+						"SELECT COUNT(*) FROM `" . $wpdb->base_prefix . "itsec_temp` WHERE `temp_date_gmt` > '%s' AND (`temp_username`='%s' OR `temp_user`=%s);",
 						date( 'Y-m-d H:i:s', $itsec_globals['current_time_gmt'] - ( $options['period'] * 60 ) ),
 						sanitize_text_field( $username ),
 						intval( $user_id )
