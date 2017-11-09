@@ -575,15 +575,14 @@ class RugBuilder {
 				const SUBTOTAL     = PRE_SUBTOTAL.toFixed(2);
 				let TOTAL_PRICE = SUBTOTAL;
 
-				console.log('build me >>>>');
-				
 				console.log('total price before ---->');
 				console.log(TOTAL_PRICE);
 
 				/* add an additional quarter in price for rugs
 					with width > 4 and length < 2 */
-				if ( parseInt(LENGTH) > 4 && parseInt(WIDTH) < 2 ) {
-					TOTAL_PRICE = parseInt(TOTAL_PRICE);
+				if ( parseFloat(LENGTH) > 4 && parseFloat(WIDTH) < 2 ) {
+					console.log('run logic ---->');
+					TOTAL_PRICE = parseFloat(TOTAL_PRICE);
 					TOTAL_PRICE = TOTAL_PRICE + (TOTAL_PRICE / 4);
 					TOTAL_PRICE = TOTAL_PRICE.toFixed(2);
 				}
