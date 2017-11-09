@@ -575,7 +575,7 @@ class RugBuilder {
 				const SUBTOTAL     = PRE_SUBTOTAL.toFixed(2);
 				let TOTAL_PRICE = SUBTOTAL;
 
-				/* add an additional quater in price for rugs
+				/* add an additional quarter in price for rugs
 					with width > 4 and length < 2 */
 				if ( parseInt(LENGTH) > 4 && parseInt(WIDTH) < 2 ) {
 					TOTAL_PRICE = parseInt(TOTAL_PRICE);
