@@ -575,6 +575,8 @@ class RugBuilder {
 				const SUBTOTAL     = PRE_SUBTOTAL.toFixed(2);
 				let TOTAL_PRICE = SUBTOTAL;
 
+				console.log('build me >>>>');
+				
 				console.log('total price before ---->');
 				console.log(TOTAL_PRICE);
 
