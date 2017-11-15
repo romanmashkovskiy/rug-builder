@@ -89,6 +89,12 @@ HTML;
 
     $retailer_type = "Showroom";
 
+    // Distance
+    $distance = "$dist Miles";
+
+    // Never show zero miles
+    $distance = $distance == 0 ? '' : $distance;
+
 
     $combines_address_or_description = '';
 
@@ -120,12 +126,6 @@ HTML;
     $queried_postcode = '';
     if  (array_key_exists('postcode', $_GET)) {
       $queried_postcode = $_GET['postcode'];
-
-      // Distance
-      $distance = "$dist Miles";
-
-      // Never show zero miles
-      $distance = $distance == 0 ? '' : $distance;
     }
 
 
