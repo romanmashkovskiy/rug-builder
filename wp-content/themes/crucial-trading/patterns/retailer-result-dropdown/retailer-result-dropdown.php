@@ -90,10 +90,7 @@ HTML;
     $retailer_type = "Showroom";
 
     // Distance
-    $distance = "$dist Miles";
-
-    // Never show zero miles
-    $distance = $distance == 0 ? '' : $distance;
+    $distance = $dist == 0 ? '' : "$dist Miles";
 
 
     $combines_address_or_description = '';
