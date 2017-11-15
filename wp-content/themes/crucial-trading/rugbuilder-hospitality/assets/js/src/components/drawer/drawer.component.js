@@ -80,8 +80,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			this.restart     = PubSub.subscribe( 'restart', this.restart );
 			this.submit      = PubSub.subscribe( 'submit', this.submit );
 
-			this.calcDrawerMaxHeight();
-
 			let _t = this;
 
 			const HAMMER_S = new Hammer(document.querySelector('ul.hosp_builder_structures'));
@@ -113,75 +111,57 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			PubSub.unsubscribe( this.restart );
 			PubSub.unsubscribe( this.submit );
 		},
- 
+
 // Ref5: Window Resize
 
 		windowResize: function() {
-
 			this.STRUCTURE_ELEMS_PER_PAGE = undefined;
 			this.COLOR_ELEMS_PER_PAGE     = undefined;
-
-			this.calcDrawerMaxHeight();
 
 			this.setState((prevState) => {
 				return { _resize: prevState._resize + 1 };
 			});
 		},
 
-// Ref6: Calculate Drawer Max Height
 
-		calcDrawerMaxHeight: function() {
-
-			let drawerToUse;
-
-			if ( document.querySelector('.hosp_builder_drawer__content').classList.contains('structures') ) {
-				drawerToUse = document.querySelector('.hosp_builder_structures');
-			} else {
-				drawerToUse = document.querySelector('.hosp_builder_colors');
-			}
-
-			const DRAWER = document.querySelector('.hosp_builder_drawer__content');
-			const HEIGHT = window.getComputedStyle(drawerToUse).getPropertyValue('height');
-
-			DRAWER.style.maxHeight = HEIGHT;
-			document.querySelector('#hosp_builder_drawer').style.maxHeight = HEIGHT;
-		},
-
-// Ref7: Open
-
+		/**
+		 * add class to open drawer component
+		 */
 		open: function() {
-
 			document.querySelector('ul.hosp_builder_structures').classList.remove('hosp_builder_closed');
 			document.querySelector('ul.hosp_builder_colors').classList.remove('hosp_builder_closed');
 
 			document.querySelector('ul.hosp_builder_structures').classList.add('hosp_builder_opening');
 			document.querySelector('ul.hosp_builder_colors').classList.add('hosp_builder_opening');
 
+			/**
+			 * delay opening to add class class for css effect
+			 */
 			setTimeout(function() {
-
 				document.querySelector('ul.hosp_builder_structures').classList.remove('hosp_builder_opening');
 				document.querySelector('ul.hosp_builder_colors').classList.remove('hosp_builder_opening');
 
 				document.querySelector('ul.hosp_builder_structures').classList.add('hosp_builder_open');
 				document.querySelector('ul.hosp_builder_colors').classList.add('hosp_builder_open');
 			}, 650)
-			
+
 			this.setState({
 				open : true,
 				text : 'Collapse'
 			})
 		},
 
-// Ref8: Close
 
+		/**
+		 * add class to close drawer component
+		 */
 		close: function() {
-
 			document.querySelector('ul.hosp_builder_structures').classList.remove('hosp_builder_open');
 			document.querySelector('ul.hosp_builder_colors').classList.remove('hosp_builder_open');
-			
+
 			document.querySelector('ul.hosp_builder_structures').classList.add('hosp_builder_closed');
 			document.querySelector('ul.hosp_builder_colors').classList.add('hosp_builder_closed');
-			
+
 			this.setState({
 				open : false,
 				text : 'Expand'
@@ -380,7 +360,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				chosenColors    : [],
 				drawerSize      : 1
 			});
-			
+
 			PubSub.publish( 'newStructure', code );
 		},
 
@@ -402,11 +382,11 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 		scrollToPage: function(page) {
 
 			return;
-			
+
 //			if ( this.state.pageInView === page ) {
 //				return;
 //			}
-			
+
 //			if ( page < this.state.pageInView ) {
 //				this.slideRight();
 //			}
@@ -431,7 +411,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 
 					const WINDOW_HEIGHT = window.innerHeight;
 					const AVAIL_SPACE   = WINDOW_HEIGHT - document.querySelector('.hosp_builder_progress-menu__container').offsetHeight - 100;
-					
+
 					const STRUCTURE_ELEM_HEIGHT   = 157;
 					const NUM_OF_STRUCTURE_ROWS   = Math.floor( AVAIL_SPACE / STRUCTURE_ELEM_HEIGHT ) - 1;
 					const STRUCTURE_ELEMS_PER_ROW = window.innerWidth > 992 ? 4 : 3;
@@ -468,6 +448,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 								<img src={ leftUrl } alt="Scroll Left" className="scroller_btn" />
 							</a>
 						</div>
+
 						<div className="hosp_builder_scroll__right">
 							<a href="#" onClick={ this.slideLeft } style={ rightStyle }>
 								<img src={ rightUrl } alt="Scroll Right" className="scroller_btn" />
@@ -476,6 +457,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 					</div>
 				);
 			}
+
 			else if ( this.state.stage === 'colors' ) {
 
 				if ( this.COLOR_ELEMS_PER_PAGE === undefined ){
@@ -571,17 +553,26 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 							<ul className="clearfix hosp_builder_structures hosp_builder_open">
 								{ structuresHTML }
 							</ul>
+
 							<ul className="clearfix hosp_builder_colors hosp_builder_open">
 								{ colorsHTML }
 							</ul>
 						</div>
+
 						{ btnsHTML }
 						{ dotsHTML }
 					</div>
-					<BtnExpandCollapseComponent currentlyOpen={ this.state.open } text={ this.state.text } open={ this.open } close={ this.close } />
+
+					<BtnExpandCollapseComponent
+						currentlyOpen={ this.state.open }
+						text={ this.state.text }
+						open={ this.open }
+						close={ this.close }
+					/>
+
 					{ structureStyleHTML }
 					{ colorStyleHTML }
-				</div>	
+				</div>
 			);
 		}
 	});

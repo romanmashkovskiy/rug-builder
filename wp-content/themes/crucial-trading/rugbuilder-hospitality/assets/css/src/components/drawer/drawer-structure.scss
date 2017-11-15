@@ -1,6 +1,9 @@
 .hosp_builder_drawer__content ul.hosp_builder_structures {
 	margin: 0;
 
+	display: flex;
+	flex-wrap: wrap;
+
 	&.hosp_builder_open {
 		max-height: 2000px;
 		overflow: initial;
@@ -83,7 +86,6 @@
 	li {
 		border: 1px solid #EDEDED;
 		box-sizing: border-box;
-		float: left;
 		height: 132px;
 		list-style: none;
 		margin-bottom: 25px;
@@ -108,7 +110,7 @@
 			box-shadow: -0 2px 18px 0px rgba(0,0,0,0.08);
 		}
 	}
-	
+
 	@media screen and (max-width: 992px) {
 
 		li {

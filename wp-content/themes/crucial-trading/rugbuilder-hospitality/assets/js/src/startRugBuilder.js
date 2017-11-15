@@ -31,6 +31,6 @@ RugBuilder.prototype.start = function() {
 
 		R.calculateContainerHeight();
 
-//		R.hideLittleLoader();
+		//  R.hideLittleLoader();
 	}
 }

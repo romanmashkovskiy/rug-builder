@@ -31,7 +31,7 @@ if ( !$allowed ) {
 
 ?>
 
-<script> console.log('V3'); </script>
+<script> console.log('V4'); </script>
 
 <!doctype html>
 <html>
@@ -46,20 +46,19 @@ if ( !$allowed ) {
 </head>
 
 <body>
-	<?php
+	<?
 
 		$domain = $_SERVER['SERVER_NAME'];
 		$rh_path = '/wp-content/themes/crucial-trading/rugbuilder-hospitality';
 		$loader_script_url = '';
 		$css_url = '';
 
-		/* dev */
-		if ($domain === 'localhost') {
-			error_log('DEV');
+		/* DEV */
+		if ($domain === 'localhost' || $domain === 'vps.89hosting.co.uk') {
 			$loader_script_url = site_url() . $rh_path . '/dist/';
 		}
 
-		/* production */
+		/* PRODUCTION */
 		else {
 			$loader_script_url = 'https://d105txpzekqrfa.cloudfront.net/hospitality/dist/';
 		}

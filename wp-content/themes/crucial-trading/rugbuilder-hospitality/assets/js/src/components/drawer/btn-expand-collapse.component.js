@@ -1,9 +1,6 @@
 RugBuilder.prototype.btnExpandCollapseComponent = function() {
-
 	const BtnExpandCollapseComponent = React.createClass({
-
 		handleClick: function(e) {
-			
 			e.preventDefault();
 
 			if ( this.props.currentlyOpen ) {
