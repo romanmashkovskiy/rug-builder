@@ -247,7 +247,7 @@ $showroom_args = array(
 <div id="accordion">
 <?php
 echo show_room_retailers('Online Retailers', '', 'online', true);
-echo show_room_retailers('Showrooms');
+echo show_room_retailers('Our Showrooms');
 ?>
 </div>
 <?php
