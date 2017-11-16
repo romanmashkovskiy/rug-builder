@@ -74,11 +74,10 @@ HTML;
        $title = $show_post->post_title;
        $dist = round( $show_post->distance );
        $iterator_ = $show_post->i;
-       //$iterator =   ( (int)$iterator_ );
-       $dist = $uk_retailers[$row]->distance;
 
-       $loop .= retailer_loop($title, $post_id, $dist, true, $online);
-       ++$row;
+       // $title, $_post_id,  $dist, true, false, $iterator = $i3, true
+       $loop .= retailer_loop($title, $post_id, $dist, true, false, $row, true);
+       $row++;
      }
 
    endif;
