@@ -76,8 +76,8 @@ HTML;
        $iterator_ = $show_post->i;
        //$iterator =   ( (int)$iterator_ );
        $dist = $uk_retailers[$row]->distance;
-    
-       $loop .= retailer_loop($title, $post_id, $dist, '', $online);
+
+       $loop .= retailer_loop($title, $post_id, $dist, true, $online);
        ++$row;
      }
 
@@ -169,6 +169,9 @@ HTML;
     $queried_postcode = '';
     if  (array_key_exists('postcode', $_GET)) {
       $queried_postcode = $_GET['postcode'];
+
+      // We can show 0 miles on search
+      $distance = $dist == 0 ? "$dist Miles" : "$dist Miles";
     }
 
 
