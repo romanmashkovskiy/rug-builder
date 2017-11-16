@@ -191,7 +191,9 @@ if ( count( $uk_retailers ) > 0 ) {
 
 		$id   = $uk_retailers[$i3]->ID;
 
+
 		$dist = round( $uk_retailers[$i3]->distance );
+		//var_dump($uk_retailers[$i3]->distance);
 		$post_type = $uk_retailers[$i3]->post_type;
 		$_post_id = $uk_retailers[$i3]->ID;
 		$title = $post_id = $uk_retailers[$i3]->post_title;

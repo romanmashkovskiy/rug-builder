@@ -72,13 +72,14 @@ HTML;
      foreach ($showroom_query->posts as $show_post) {
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
-       $dist = round( $show_post->distance );
+       //$dist = round( $show_post->distance );
        $iterator_ = $show_post->i;
        //$iterator =   ( (int)$iterator_ );
-       $dist = $uk_retailers[$row]->distance;
-    
-       $loop .= retailer_loop($title, $post_id, $dist, '', $online);
-       ++$row;
+       $dist = round ( $uk_retailers[$row]->distance );
+       //var_dump($dist);
+       // $title, $_post_id,  $dist, true, false, $iterator = $i3, true
+       $loop .= retailer_loop($title, $post_id, $dist, true, false, $row, true);
+       $row++;
      }
 
    endif;
@@ -136,7 +137,7 @@ HTML;
     $retailer_type = "Showroom";
 
     // Distance
-    $distance = $dist == 0 ? '' : "$dist Miles";
+    $distance = $dist == 0 ? '' : "";
 
 
     $combines_address_or_description = '';
@@ -169,6 +170,9 @@ HTML;
     $queried_postcode = '';
     if  (array_key_exists('postcode', $_GET)) {
       $queried_postcode = $_GET['postcode'];
+
+      // We can show 0 miles on search
+      $distance = $dist == 0 ? " " : " ";
     }
 
 
