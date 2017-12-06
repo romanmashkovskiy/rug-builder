@@ -8,7 +8,7 @@
  * @since Crucial Trading 1.0
  */
 
- function show_room_retailers($main_header = '', $dist = '', $terms = 'showroom', $online = false ) {
+ function retailers($main_header = '', $dist = '', $terms = 'showroom', $online = false ) {
    $showroom_args = array(
    	'post_type' => 'retailer',
    	'orderby'   => 'menu_order',
@@ -33,6 +33,53 @@
        //$iterator =   ( (int)$iterator_ );
 
        $loop .= retailer_loop($title, $post_id, $dist, '', $online);
+     }
+
+   endif;
+
+   return <<<HTML
+
+   <div class="retailer-result-dropdown panel-group">
+     <div class="retailer-result-dropdown__header">
+       <h2>$main_header</h2>
+     </div>
+     $loop
+   </div>
+
+
+HTML;
+ }
+
+ // TODO: Refactor later as this duplication is wrong!!
+ function studio_retailers($main_header = '', $dist = '', $terms = 'studio', $online = false, $uk_retailers ) {
+   $showroom_args = array(
+     'post_type' => 'retailer',
+     'orderby'   => 'menu_order',
+     'order'     => 'ASC',
+     'tax_query' => array(
+       array(
+         'taxonomy' => 'retailer_type',
+         'field'    => 'slug',
+         'terms'    => $terms,
+       ),
+     ),
+   );
+
+   $showroom_query = new WP_Query( $showroom_args );
+   $loop = '';
+   if ( $showroom_query->have_posts() ) :
+     $row = 0;
+     foreach ($showroom_query->posts as $show_post) {
+       $post_id = $show_post->ID;
+       $title = $show_post->post_title;
+       //$dist = round( $show_post->distance );
+       $iterator_ = $show_post->i;
+       //$iterator =   ( (int)$iterator_ );
+       $dist = round ( $uk_retailers[$row]->distance );
+       //var_dump($dist);
+       // $title, $_post_id,  $dist, true, false, $iterator = $i3, true
+       $loop .= retailer_loop($title, $post_id, $dist, true, false, $row, true);
+       $row++;
      }
 
    endif;
@@ -90,7 +137,7 @@ HTML;
     $retailer_type = "Showroom";
 
     // Distance
-    $distance = "$dist Miles";
+    $distance = $dist == 0 ? '' : "";
 
 
     $combines_address_or_description = '';
@@ -123,6 +170,9 @@ HTML;
     $queried_postcode = '';
     if  (array_key_exists('postcode', $_GET)) {
       $queried_postcode = $_GET['postcode'];
+
+      // We can show 0 miles on search
+      $distance = $dist == 0 ? " " : " ";
     }
 
 

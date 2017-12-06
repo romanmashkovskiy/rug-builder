@@ -180,7 +180,7 @@ if ( count( $uk_retailers ) > 0 ) {
 	// echo '<h2 class="page-subtitle">Search Results</h2>';
 	// echo '<span></span>';
 	// echo '<div class="clearfix" style="display: flex; flex-flow: row wrap">';
-	$html = (
+	$local_html = (
 		"<div class='retailer-result-dropdown panel-group'>
       <div class='retailer-result-dropdown__header'>
 				<h2>Local Retailers</h2>
@@ -191,19 +191,21 @@ if ( count( $uk_retailers ) > 0 ) {
 
 		$id   = $uk_retailers[$i3]->ID;
 
+
 		$dist = round( $uk_retailers[$i3]->distance );
+		//var_dump($uk_retailers[$i3]->distance);
 		$post_type = $uk_retailers[$i3]->post_type;
 		$_post_id = $uk_retailers[$i3]->ID;
 		$title = $post_id = $uk_retailers[$i3]->post_title;
-		$html .= retailer_loop($title, $_post_id,  $dist, true, false, $iterator = $i3, true);
+		$local_html .= retailer_loop($title, $_post_id,  $dist, true, false, $iterator = $i3, true);
 		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
 	}
 
-	$html .= (
+	$local_html .= (
 		"</div>"
 	);
 
-	echo $html;
+	echo $local_html;
 }
 
 if ( count( $overseas_retailers ) > 0 ) {
@@ -246,8 +248,15 @@ $showroom_args = array(
 ?>
 <div id="accordion">
 <?php
-echo show_room_retailers('Online Retailers', '', 'online', true);
-echo show_room_retailers('Showrooms');
+// Show only on search page.
+// We could test if key postcode on the array $_GET
+// WE also show this functon if no error as we'll get an index error of no results for the $dist query ie $uk_retailers[<number>]
+if  (array_key_exists('postcode', $_GET) && !$error) {
+	echo studio_retailers('Studio Retailers', '', 'studio', false, $uk_retailers);
+}
+echo retailers('Online Retailers', '', 'online', true);
+echo retailers('Showrooms');
+
 ?>
 </div>
 <?php
