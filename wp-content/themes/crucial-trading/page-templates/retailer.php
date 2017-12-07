@@ -21,6 +21,7 @@ if ( is_array( $_GET ) ) {
 
 	if ( array_key_exists( 'postcode', $_GET ) ) {
 
+
 		$postcode        = $_GET['postcode'];
 		$postcode_tags   = strip_tags( $postcode );
 		$postcode_trim   = trim( $postcode_tags );
@@ -175,6 +176,8 @@ echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="
 
 echo switch_views();
 
+
+
 if ( count( $uk_retailers ) > 0 ) {
 
 	// echo '<h2 class="page-subtitle">Search Results</h2>';
@@ -193,7 +196,7 @@ if ( count( $uk_retailers ) > 0 ) {
 
 
 		$dist = round( $uk_retailers[$i3]->distance );
-		//var_dump($uk_retailers[$i3]->distance);
+		//var_dump($dist);
 		$post_type = $uk_retailers[$i3]->post_type;
 		$_post_id = $uk_retailers[$i3]->ID;
 		$title = $post_id = $uk_retailers[$i3]->post_title;
@@ -252,7 +255,7 @@ $showroom_args = array(
 // We could test if key postcode on the array $_GET
 // WE also show this functon if no error as we'll get an index error of no results for the $dist query ie $uk_retailers[<number>]
 if  (array_key_exists('postcode', $_GET) && !$error) {
-	echo studio_retailers('Studio Retailers', '', 'studio', false, $uk_retailers);
+	echo studio_retailers('Studio Retailers', $dist, 'studio', false, $uk_retailers);
 }
 echo retailers('Online Retailers', '', 'online', true);
 echo retailers('Showrooms');
