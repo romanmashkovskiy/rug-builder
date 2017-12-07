@@ -1,3 +1,7 @@
+body {
+  background: rgb(240,240,240);
+}
+
 .clearfix:before,
 .clearfix:after {
   display: table;
@@ -67,6 +71,7 @@
 }
 
 #hosp_builder_img-container {
+  background: #FFF;
 	border-radius: 5px;
 	-webkit-box-shadow: 5px 0px 20px 0 rgba(0, 0, 0, .45);
 	-moz-box-shadow: 5px 0px 20px 0 rgba(0, 0, 0, .45);

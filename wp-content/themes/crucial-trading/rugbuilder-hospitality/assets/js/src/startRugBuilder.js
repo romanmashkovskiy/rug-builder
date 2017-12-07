@@ -4,33 +4,25 @@ RugBuilder.prototype.start = function() {
 
 	R.addDOMElements();
 
-//	R.showLittleLoader();
-
-	// Data
-
 	R.getStructuresData()
-		.then(() => { continueLoading() });
+		.then(() => { initializeComponents() });
 
-	function continueLoading() {
-
-		// React Components
-
-		// Progress Menu
+	function initializeComponents() {
 		const BtnExitComponent    = R.btnExitComponent();
 		const BtnRestartComponent = R.btnRestartComponent();
 		const BtnSubmitComponent  = R.btnSubmitComponent();
 		const BtnStageComponent   = R.btnStageComponent();
 		R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent);
 
-		// Drawer
+		// const BtnExpandCollapseComponent = R.btnExpandCollapseComponent();
+		// const BtnStructureComponent      = R.btnStructureComponent();
+		// const BtnColorComponent          = R.btnColorComponent();
+		// R.drawerComponent(BtnExpandCollapseComponent, BtnStructureComponent, BtnColorComponent);
 
-		const BtnExpandCollapseComponent = R.btnExpandCollapseComponent();
-		const BtnStructureComponent      = R.btnStructureComponent();
-		const BtnColorComponent          = R.btnColorComponent();
-		R.drawerComponent(BtnExpandCollapseComponent, BtnStructureComponent, BtnColorComponent);
+		/* Drawer Component */
+    R.drawerV2Component();
 
-		R.calculateContainerHeight();
-
+		// R.calculateContainerHeight();
 		//  R.hideLittleLoader();
 	}
 }

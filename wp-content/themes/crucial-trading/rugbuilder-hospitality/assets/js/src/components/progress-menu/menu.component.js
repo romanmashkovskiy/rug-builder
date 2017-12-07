@@ -1,11 +1,8 @@
 RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent) {
-
 	const R = rugBuilder;
 
 	const MenuComponent = React.createClass({
-
 		getInitialState: function() {
-
 			return {
 				stages     : [ 'Structure' ],
 				showSubmit : false
@@ -25,7 +22,6 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		},
 
 		structureHasChanged: function(sub, code) {
-
 			let colors = R.numStructureColors[code],
 			    stages = [ 'Structure' ];
 
@@ -41,7 +37,6 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		},
 
 		colorHasChanged: function() {
-
 			if ( R.colorStage > 0 && ( R.colorStage === this.state.stages.length - 1 ) ) {
 				this.setState({ showSubmit : true });
 			} else if ( R.stageVisited[this.state.stages.length - 1] ) {
@@ -52,24 +47,23 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		},
 
 		stageHasChanged: function(abc, stage) {
+			console.log('Menu Component -> stage has changed');
 
 			if ( stage === 0 ) {
-
 				this.setState({
 					stages     : [ 'Structure' ],
 					showSubmit : false
 				}, () => { this.forceUpdate() });
 
-			} else {
+				return;
+			}
 
 				this.forceUpdate();
-
-			}
 		},
 
 		render: function() {
-
 			const STAGES      = this.state.stages;
+
 			const STAGES_HTML = STAGES.map((stage, index) => {
 				return React.createElement(BtnStageComponent, { stage: stage, key: index, index: index });
 			});
@@ -102,5 +96,8 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		}
 	});
 
-	ReactDOM.render( <MenuComponent />, document.querySelector( '#hosp_builder_progress-menu' ) );
+	ReactDOM.render(
+		<MenuComponent />,
+		document.querySelector( '#hosp_builder_progress-menu')
+	);
 }

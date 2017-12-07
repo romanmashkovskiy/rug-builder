@@ -35,7 +35,7 @@ RugBuilder.prototype.addDOMElements = function(method, url, callback, responseTy
 	}
 
 	DOM_ELEMENTS.PROGRESS_MENU.setAttribute('id', 'hosp_builder_progress-menu');
-	DOM_ELEMENTS.DRAWER.setAttribute('id', 'hosp_builder_drawer');
+	DOM_ELEMENTS.DRAWER.setAttribute('id', 'hospBuilderDrawer');
 	DOM_ELEMENTS.IMG_CONTAINER.CONTAINER.setAttribute('id', 'hosp_builder_img-container');
 	DOM_ELEMENTS.IMG_CONTAINER.ZERO.setAttribute('id', 'hosp_builder_color-0');
 	DOM_ELEMENTS.IMG_CONTAINER.ONE.setAttribute('id', 'hosp_builder_color-1');
@@ -107,5 +107,5 @@ RugBuilder.prototype.addDOMElements = function(method, url, callback, responseTy
 		document.body.appendChild(builder);
 	}
 
-		
+
 }

@@ -1,11 +1,9 @@
 RugBuilder.prototype.btnStageComponent = function() {
-
 	const R = rugBuilder;
 
 	const BtnStageComponent = React.createClass({
 
 		handleClick: function(e) {
-
 			e.preventDefault();
 
 			const CURRENT_STAGE = R.colorStage;
@@ -18,7 +16,6 @@ RugBuilder.prototype.btnStageComponent = function() {
 				R.colorStage = R.colorStage - 1;
 			}
 			else {
-
 				let stageValid = false;
 
 				if ( R.stageVisited[STAGE_CLICKED] ) {

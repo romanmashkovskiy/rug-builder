@@ -51,18 +51,19 @@ function load(options, secret_DEPRECIATED) {
 	var devMode = true;
 
 	if (window.location.hostname === 'localhost' && devMode) {
-		console.log('dev');
+		console.log('DEV MODE !!');
 		document.write('<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.js"></script>');
 		document.write('<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.css">');
 	}
 
-	if (window.location.hostname === 'vps.89hosting.co.uk' && devMode) {
-		console.log('staging');
+	else if (window.location.hostname === 'vps.89hosting.co.uk' && devMode) {
+		console.log('STAGING');
 		document.write('<script src="http://vps.89hosting.co.uk/~crucialtrading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.js"></script>');
 		document.write('<link rel="stylesheet" href="http://vps.89hosting.co.uk/~crucialtrading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.css">');
 	}
 
 	else {
+		console.log('PRODUCTION');
 		document.write('<link rel="stylesheet" href="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.css">');
 		document.write('<script src="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.js"></script>');
 	}
