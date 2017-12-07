@@ -20,7 +20,7 @@
 
      $miles = ($non_num / 1.609344); // equals miles
 
-     return $non_num; // Convert Km to m
+     return round($miles) . ' miles'; // Convert Km to m
    }
    return '';
  }
