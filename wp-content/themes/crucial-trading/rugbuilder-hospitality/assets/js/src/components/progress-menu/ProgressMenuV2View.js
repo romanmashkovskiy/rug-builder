@@ -10,32 +10,33 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
   /**
    *
    */
-  const Stages = () => {
-    if (!this.state.stages) { return null; }
+  const Stages = ({props}) => {
+    if (!props.stages) { return null; }
 
     return (
-      this.state.stages.map((stage, index) => {
-        return <BtnStageComponent
-          stage={stage}
-          key={index}
-          index={index} />
-      })
-    )
-  }
+      <ul className="progress-menu__stages">
+        {
+          props.stages.map((stage, index) => {
+          return <BtnStageComponent
+            stage={stage}
+            key={index}
+            index={index}
+            currentStage={props.currentStage}
+            handleCurrentStage={props.handleCurrentStage} />
+          })
+        }
+      </ul>
+  )}
+
 
   /**
    *
    */
-  const ProgressMenuView = () => {
+  const ProgressMenuView = (props) => {
     return (
-      <div className="hosp_builder_progress-menu__container">
-        <div className="hosp_builder_progress-menu__top">
-          <img
-            src="https://d105txpzekqrfa.cloudfront.net/uploads/20170110114837/logo-1.png"
-            alt="Crucial Trading Rug Builder"
-          />
-
-          {this.state.showSubmit &&
+      <div className="hosp_builder_progress-menu__container progress-menu">
+        <div className="hosp_builder_progress-menu__top progress-menu__top">
+          { props.showSubmit &&
             <BtnSubmitComponent />
           }
 
@@ -43,13 +44,11 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
           <BtnExitComponent />
         </div>
 
-        <div className="hosp_builder_progress-menu__bottom">
-          <ul className="hosp_builder_progress-menu__stages">
-            <Stages />
-          </ul>
+        <div className="hosp_builder_progress-menu__bottom progress-menu__lower">
+          <Stages props={props} />
         </div>
       </div>
-    )
-  }
+  )}
 
+  return ProgressMenuView;
 }

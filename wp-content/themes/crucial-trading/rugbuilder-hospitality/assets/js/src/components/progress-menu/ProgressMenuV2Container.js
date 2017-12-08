@@ -1,28 +1,37 @@
-RugBuilder.prototype.progressMenuV2 = function () {
+RugBuilder.prototype.progressMenuV2Component = function () {
   const R = rugBuilder;
+  const ProgressMenuV2View = R.progressMenuViewComponent();
+  // const ProgressMenuV2View = progressMenuViewComponent(R);
 
   class ProgressMenuV2 extends React.Component {
     constructor() {
       super();
 
-      this.setState({
+      this.state = {
         stages : ['Structure'],
-        showSubmit: false
-      });
+        showSubmit: false,
+        currentStage: 0
+      }
     }
 
     componentDidMount() {
       /* register subscribers to publishers */
       PubSub.subscribe('newStructure', this.structureMutated);
 			PubSub.subscribe('newColor', this.colorMutated);
-			PubSub.subscribe('newStage', this.stageHasChanged);
+    }
+
+    /**
+     * handlers
+     */
+    handleCurrentStage = (stage) => {
+      this.setState({currentStage: stage})
     }
 
     /**
      * when structure has changed rebuild stages array with
-     * 'structure' and all colors found in 'numStructureColors'
+     * 'structure' and all colors available to that structure
      */
-    structureMutated = () => {
+    structureMutated = (sub, code) => {
       const colors = R.numStructureColors[code];
       const stages = [ 'Structure' ];
 
@@ -53,22 +62,19 @@ RugBuilder.prototype.progressMenuV2 = function () {
       this.setState({ showSubmit : false });
     }
 
-    /**
-     * if stage has changed to 0 set stages back to default state
-     */
-    stageChanged = (x, stage) => {
-      if (stage === 0) {
-        this.setState({
-					stages     : [ 'Structure' ],
-					showSubmit : false
-				}, () => { this.forceUpdate() });
-      }
-
-      this.forceUpdate();
-    }
-
     render() {
-
-    }
+      return (
+        <ProgressMenuV2View
+          stages={this.state.stages}
+          currentStage={this.state.currentStage}
+          handleCurrentStage={this.handleCurrentStage}
+        />
+    )};
   }
+
+  ReactDOM.render(
+    <ProgressMenuV2 />, document.querySelector('#hosp_builder_progress-menu')
+  );
+
+  // return ProgressMenuV2;
 }

@@ -1,5 +1,4 @@
 RugBuilder.prototype.start = function() {
-
 	const R = rugBuilder;
 
 	R.addDOMElements();
@@ -8,19 +7,23 @@ RugBuilder.prototype.start = function() {
 		.then(() => { initializeComponents() });
 
 	function initializeComponents() {
-		const BtnExitComponent    = R.btnExitComponent();
-		const BtnRestartComponent = R.btnRestartComponent();
-		const BtnSubmitComponent  = R.btnSubmitComponent();
-		const BtnStageComponent   = R.btnStageComponent();
-		R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent);
+		// const BtnExitComponent    = R.btnExitComponent();
+		// const BtnRestartComponent = R.btnRestartComponent();
+		// const BtnSubmitComponent  = R.btnSubmitComponent();
+		// const BtnStageComponent   = R.btnStageComponent();
+		//
+		// R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent);
+
+		console.log('ini components !!');
+		R.drawerV2Component();
+		R.progressMenuV2Component();
+
 
 		// const BtnExpandCollapseComponent = R.btnExpandCollapseComponent();
 		// const BtnStructureComponent      = R.btnStructureComponent();
 		// const BtnColorComponent          = R.btnColorComponent();
 		// R.drawerComponent(BtnExpandCollapseComponent, BtnStructureComponent, BtnColorComponent);
 
-		/* Drawer Component */
-    R.drawerV2Component();
 
 		// R.calculateContainerHeight();
 		//  R.hideLittleLoader();

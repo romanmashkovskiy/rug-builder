@@ -20,7 +20,7 @@ RugBuilder.prototype.btnStructureComponent = function() {
 
 		render() {
 			return (
-				<li class="structure-item">
+				<li className="structure-item">
 					<a href="#" onClick={this.handleClick}>
 						<h3>{this.props.code}</h3>
 						<img src={this.props.img} alt={this.props.code} />

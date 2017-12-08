@@ -74,6 +74,18 @@ RugBuilder.prototype.drawerV2ViewComponent = function () {
         className="drawerv2-container"
         key={props.timestamp}
       >
+        <div className="drawerv2__header">
+          <div className="drawerv2__logo">
+            <img src="https://d105txpzekqrfa.cloudfront.net/uploads/20170110114837/logo-1.png" />
+          </div>
+
+          <div className="drawerv2__structure-header">
+            <h3>CHOOSE A STRUCTURE</h3>
+            <div className="spacer"></div>
+            <div className="grey-line"> </div>
+          </div>
+        </div>
+
         <StructurePaletteJsx props={props} />
         <ColorPaletteJsx props={props} />
       </div>

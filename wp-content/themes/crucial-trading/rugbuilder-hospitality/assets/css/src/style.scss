@@ -1,5 +1,16 @@
 body {
   background: rgb(240,240,240);
+  margin: 0;
+}
+
+#mainContainer {
+  width: 100%;
+  // border: 1px solid pink;
+}
+
+
+#canvas {
+  display: flex;
 }
 
 .clearfix:before,
@@ -15,7 +26,9 @@ body {
 #hospitality-builder {
 	overflow: hidden;
 	padding-bottom: 13px;
-	position: relative;
+  display: flex;
+	// position: relative;
+
 }
 
 .hosp_builder_drawer__content.hosp_builder_closed .hosp_builder_scroll-btns {
@@ -133,8 +146,8 @@ body {
 }
 
 #hosp_builder_choices {
-	margin: auto;
-	width: 1200px;
+	// margin: auto;
+	// width: 1200px;
 
 	@media screen and (max-width: 1250px) {
 		width: 720px;
@@ -148,13 +161,13 @@ body {
 		width: 240px;
 	}
 
-	div {
-		float: left;
-		position: relative;
-		text-align: center;
-		width: 120px;
-		z-index: 4;
-	}
+	// div {
+	// 	float: left;
+	// 	position: relative;
+	// 	text-align: center;
+	// 	width: 120px;
+	// 	z-index: 4;
+	// }
 
 	p {
 		font-size: 13px;
@@ -267,7 +280,7 @@ body {
 }
 
 #hosp_builder_progress-menu a {
-  font-size: 14px !important;
+  font-size: 14px;
 }
 
 

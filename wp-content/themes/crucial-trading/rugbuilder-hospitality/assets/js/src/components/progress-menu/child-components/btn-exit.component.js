@@ -1,8 +1,13 @@
 RugBuilder.prototype.btnExitComponent = function() {
 	const R = rugBuilder;
 
-	const BtnExitComponent = React.createClass({
-		render: function() {
+	class BtnExitComponent extends React.Component {
+		constructor() {
+			super();
+			console.log('watch me @@ !!');
+		}
+
+		render() {
 			if ( !R.showExit ) { return null; }
 
 			const SRC = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110133952/exit.svg';
@@ -10,12 +15,12 @@ RugBuilder.prototype.btnExitComponent = function() {
 
 			return (
 				<a href={ URL } className="hosp_builder_progress-menu__exit nav-upper-link">
-					<img src={ SRC } />
+					<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20170110133952/exit.svg" />
 					Exit
 				</a>
 			);
 		}
-	});
+	}
 
 	return BtnExitComponent;
 }

@@ -40,16 +40,27 @@ if ( !$allowed ) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/cjs/react.development.js"></script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/cjs/react.development.js"></script> -->
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>
 	<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 	<title>Crucial Trading - Hospitality Builder</title>
 </head>
 
 <body>
-	<?
+	<div id="root"> </div>
 
+	<?
 		$domain = $_SERVER['SERVER_NAME'];
 		$rh_path = '/wp-content/themes/crucial-trading/rugbuilder-hospitality';
 		$loader_script_url = '';
@@ -64,7 +75,6 @@ if ( !$allowed ) {
 		else {
 			$loader_script_url = 'https://d105txpzekqrfa.cloudfront.net/hospitality/dist/';
 		}
-
 	?>
 
 	<script src="<?php echo $loader_script_url ?>hospitality-loader.js"></script>

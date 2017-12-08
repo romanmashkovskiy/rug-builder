@@ -65,7 +65,6 @@ RugBuilder.prototype.drawerV2Component = function() {
       return 0;
 
       number = 0;
-      console.log('lets go');
       for ( key in structures ) {
 				if ( structures.hasOwnProperty(key) ) {
 					number++;

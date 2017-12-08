@@ -1,8 +1,11 @@
 RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent) {
+
 	const R = rugBuilder;
 
 	const MenuComponent = React.createClass({
+
 		getInitialState: function() {
+
 			return {
 				stages     : [ 'Structure' ],
 				showSubmit : false
@@ -22,6 +25,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		},
 
 		structureHasChanged: function(sub, code) {
+
 			let colors = R.numStructureColors[code],
 			    stages = [ 'Structure' ];
 
@@ -37,6 +41,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		},
 
 		colorHasChanged: function() {
+
 			if ( R.colorStage > 0 && ( R.colorStage === this.state.stages.length - 1 ) ) {
 				this.setState({ showSubmit : true });
 			} else if ( R.stageVisited[this.state.stages.length - 1] ) {
@@ -47,23 +52,24 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		},
 
 		stageHasChanged: function(abc, stage) {
-			console.log('Menu Component -> stage has changed');
 
 			if ( stage === 0 ) {
+
 				this.setState({
 					stages     : [ 'Structure' ],
 					showSubmit : false
 				}, () => { this.forceUpdate() });
 
-				return;
-			}
+			} else {
 
 				this.forceUpdate();
+
+			}
 		},
 
 		render: function() {
-			const STAGES      = this.state.stages;
 
+			const STAGES      = this.state.stages;
 			const STAGES_HTML = STAGES.map((stage, index) => {
 				return React.createElement(BtnStageComponent, { stage: stage, key: index, index: index });
 			});
@@ -76,7 +82,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 				submitBtn = '';
 			}
 
-			const LOGO = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110114837/logo-1.png';
+			const LOGO = '';
 
 			return (
 				<div className="hosp_builder_progress-menu__container">
@@ -86,6 +92,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 						<BtnRestartComponent />
 						<BtnExitComponent />
 					</div>
+
 					<div className="hosp_builder_progress-menu__bottom">
 						<ul className="hosp_builder_progress-menu__stages">
 							{ STAGES_HTML }
@@ -96,8 +103,5 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		}
 	});
 
-	ReactDOM.render(
-		<MenuComponent />,
-		document.querySelector( '#hosp_builder_progress-menu')
-	);
+	// ReactDOM.render( <MenuComponent />, document.querySelector( '#hosp_builder_progress-menu' ) );
 }

@@ -30,6 +30,10 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
 		<![endif]-->
 
+    <script type="text/javascript">
+      var templateUrl = '<?= get_bloginfo("template_url"); ?>';
+    </script>
+
 		<link href="<?php echo get_template_directory_uri(); ?>/assets/css/dist/ie9.min.css" rel="stylesheet" type="text/css" media="all">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	</head>

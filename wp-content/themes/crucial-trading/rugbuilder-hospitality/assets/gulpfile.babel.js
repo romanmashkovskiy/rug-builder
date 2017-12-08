@@ -60,7 +60,8 @@ gulp.task('js', function() {
 		'./js/src/components/*.js',
 		'./js/src/components/drawer/*.js',
 		'./js/src/components/drawer/child-components/*.js',
-		'./js/src/components/progress-menu/*.js'
+		'./js/src/components/progress-menu/*.js',
+		'./js/src/components/progress-menu/child-components/*.js'
 	])
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
@@ -140,7 +141,9 @@ gulp.task('watch', function() {
 	gulp.watch('./js/src/functions/*.js',                ['js']);
 	gulp.watch('./js/src/components/*.js',               ['js']);
 	gulp.watch('./js/src/components/drawer/*.js',        ['js']);
+	gulp.watch('./js/src/components/drawer/child-components/*.js', ['js']);
 	gulp.watch('./js/src/components/progress-menu/*.js', ['js']);
+	gulp.watch('./js/src/components/progress-menu/child-components/*.js', ['js']);
 })
 
 gulp.task('watch-prod', function() {

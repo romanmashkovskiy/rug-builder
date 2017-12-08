@@ -5,7 +5,6 @@ RugBuilder.prototype.imageChoiceComponent = function(alt, src) {
 	const ImageChoiceComponent = React.createClass({
 
 		render: function() {
-
 			let text;
 
 			if ( R.colorStage === 0 ) {
@@ -15,10 +14,15 @@ RugBuilder.prototype.imageChoiceComponent = function(alt, src) {
 			}
 
 			return (
-				<span>
-					<p>{ text }</p>
-					<img src={ src } alt={ alt } />
-				</span>
+				<div className="choice-item">
+					<div className="choice-item__left-side">
+						<img src={ src } alt={ alt } />
+					</div>
+
+					<div className="choice-item__right-side">
+						<p>{ text }</p>
+					</div>
+				</div>
 			);
 		}
 	});
