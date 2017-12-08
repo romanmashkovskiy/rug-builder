@@ -112,7 +112,11 @@ HTML;
    // Images
    $plus_icon = get_template_directory_uri() . '/assets/icons/plus.svg';
    $tick_icon = get_template_directory_uri() . '/assets/icons/tick.svg';
-   $km = calc_distance($retailer_postcode);
+   
+   $km = null;
+   if  (array_key_exists('postcode', $_GET)) {
+     $km = calc_distance($retailer_postcode);
+   }
 
    $new_iterator = '';
    if ($search) {
