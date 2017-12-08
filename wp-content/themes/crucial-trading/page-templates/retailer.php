@@ -194,14 +194,12 @@ if ( count( $uk_retailers ) > 0 ) {
 
 		$id   = $uk_retailers[$i3]->ID;
 
-
-		$dist = round( $uk_retailers[$i3]->distance );
-		//var_dump($dist);
 		$post_type = $uk_retailers[$i3]->post_type;
 		$_post_id = $uk_retailers[$i3]->ID;
 		$title = $post_id = $uk_retailers[$i3]->post_title;
-		$local_html .= retailer_loop($title, $_post_id,  $dist, true, false, $iterator = $i3, true);
-		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
+		$retailer_postcode = get_post_meta($_post_id, "retailer_address_postcode", true);
+		$local_html .= retailer_loop($title, $_post_id, true, false, $iterator = $i3, true, $retailer_postcode);
+		echo do_shortcode( '[retailer-card id="' . $id . '" miles="' . $retailer_postcode . '" i="' . $i3 . '"]' );
 	}
 
 	$local_html .= (
@@ -255,7 +253,7 @@ $showroom_args = array(
 // We could test if key postcode on the array $_GET
 // WE also show this functon if no error as we'll get an index error of no results for the $dist query ie $uk_retailers[<number>]
 if  (array_key_exists('postcode', $_GET) && !$error) {
-	echo studio_retailers('Studio Retailers', $dist, 'studio', false, $uk_retailers);
+	echo studio_retailers('Studio Retailers', 'studio', false, $uk_retailers);
 }
 echo retailers('Online Retailers', '', 'online', true);
 echo retailers('Showrooms');

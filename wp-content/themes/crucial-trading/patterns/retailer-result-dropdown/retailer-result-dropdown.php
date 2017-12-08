@@ -32,9 +32,9 @@
        $dist = round( $show_post->distance );
        $tt = round( $show_post->distance );
        $iterator_ = $show_post->i;
-       //$iterator =   ( (int)$iterator_ );
+       $retailer_postcode = get_post_meta($show_post->ID, "retailer_address_postcode", true);
 
-       $loop .= retailer_loop($title, $post_id, $dist, '', $online);
+       $loop .= retailer_loop($title, $post_id, '', $online, $retailer_postcode);
      }
 
    endif;
@@ -53,7 +53,7 @@ HTML;
  }
 
  // TODO: Refactor later as this duplication is wrong!!
- function studio_retailers($main_header = '', $dist = '', $terms = 'studio', $online = false, $uk_retailers ) {
+ function studio_retailers($main_header = '', $terms = 'studio', $online = false, $uk_retailers ) {
    $showroom_args = array(
      'post_type' => 'retailer',
      'orderby'   => 'menu_order',
@@ -76,10 +76,9 @@ HTML;
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
        $retailer_postcode = get_post_meta($show_post->ID, "retailer_address_postcode", true);
-       $iterator_ = $show_post->i;
        //var_dump($dist);
        // $title, $_post_id,  $dist, true, false, $iterator = $i3, true
-       $loop .= retailer_loop($title, $post_id, $dist, true, false, $row, true, $retailer_postcode);
+       $loop .= retailer_loop($title, $post_id, true, false, $row, true, $retailer_postcode);
        $row++;
      }
 
@@ -98,7 +97,7 @@ HTML;
 HTML;
  }
 
- function retailer_loop($title = '', $post_id ='', $dist = '', $retailer_loop = false, $online, $iterator = 0, $search = false, $retailer_postcode = '') {
+ function retailer_loop($title = '', $post_id ='', $retailer_loop = false, $online, $iterator = 0, $search = false, $retailer_postcode = '') {
    $slogan = rwmb_meta('retailer_logo_slogan', array(), $post_id) ? rwmb_meta('retailer_logo_slogan', array(), $post_id) : '';
    $website = rwmb_meta('retailer_website', array(), $post_id);
    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id);
@@ -112,7 +111,7 @@ HTML;
    // Images
    $plus_icon = get_template_directory_uri() . '/assets/icons/plus.svg';
    $tick_icon = get_template_directory_uri() . '/assets/icons/tick.svg';
-   
+
    $km = null;
    if  (array_key_exists('postcode', $_GET)) {
      $km = calc_distance($retailer_postcode);
@@ -141,9 +140,6 @@ HTML;
     $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id) ? rwmb_meta('retailer_telephone_1', array(), $post_id) : '';
 
     $retailer_type = "Showroom";
-
-    // Distance
-    $distance = $dist == 0 ? '' : $dist;
 
 
     $combines_address_or_description = '';
@@ -176,9 +172,6 @@ HTML;
     $queried_postcode = '';
     if  (array_key_exists('postcode', $_GET)) {
       $queried_postcode = $_GET['postcode'];
-
-      // We can show 0 miles on search
-      $distance = $dist;
     }
 
 
@@ -194,7 +187,6 @@ HTML;
 
     $retailer_type = "Online Retailer";
     $footer_a_list = "<a class='r_website' href='$website'>visit website</a>";
-    $distance = "";
     $combines_address_or_description = $description;
   }
 
