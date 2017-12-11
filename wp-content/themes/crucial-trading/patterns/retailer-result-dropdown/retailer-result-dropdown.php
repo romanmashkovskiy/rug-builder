@@ -32,7 +32,7 @@
        $dist = round( $show_post->distance );
        $tt = round( $show_post->distance );
        $iterator_ = $show_post->i;
-       $retailer_postcode = get_post_meta($show_post->ID, "retailer_address_postcode", true);
+       $retailer_postcode = get_post_meta($show_post->ID, "retailer_postcode", true);
 
        $loop .= retailer_loop($title, $post_id, '', $online, $retailer_postcode);
      }
@@ -75,7 +75,7 @@ HTML;
      foreach ($showroom_query->posts as $show_post) {
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
-       $retailer_postcode = get_post_meta($show_post->ID, "retailer_address_postcode", true);
+       $retailer_postcode = get_post_meta($show_post->ID, "retailer_postcode", true);
        //var_dump($dist);
        // $title, $_post_id,  $dist, true, false, $iterator = $i3, true
        $loop .= retailer_loop($title, $post_id, true, false, $row, true, $retailer_postcode);

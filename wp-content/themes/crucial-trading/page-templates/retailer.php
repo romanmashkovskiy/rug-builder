@@ -197,7 +197,7 @@ if ( count( $uk_retailers ) > 0 ) {
 		$post_type = $uk_retailers[$i3]->post_type;
 		$_post_id = $uk_retailers[$i3]->ID;
 		$title = $post_id = $uk_retailers[$i3]->post_title;
-		$retailer_postcode = get_post_meta($_post_id, "retailer_address_postcode", true);
+		$retailer_postcode = get_post_meta($_post_id, "retailer_postcode", true);
 		$local_html .= retailer_loop($title, $_post_id, true, false, $iterator = $i3, true, $retailer_postcode);
 		echo do_shortcode( '[retailer-card id="' . $id . '" miles="' . $retailer_postcode . '" i="' . $i3 . '"]' );
 	}
