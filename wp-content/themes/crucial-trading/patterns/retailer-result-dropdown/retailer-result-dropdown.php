@@ -181,27 +181,27 @@ HTML;
   	$lng = get_post_meta( $post_id, 'retailer_lng', true );
     // crucial: http://maps.google.com/maps?saddr=52.50883313,-2.07817228&daddr=ws1 3qu
   	$url = 'http://maps.google.com/maps?saddr=' . $lat . ',' . $lng . '&daddr=' . $queried_postcode;
-    $footer_a_list = "<a class='r_website' href='$url'>Get Directions</a>";
+    $footer_a_list = "<a id='website_$new_iterator' class='r_website' href='$url'>Get Directions</a>";
 
   } else {
 
     $retailer_type = "Online Retailer";
-    $footer_a_list = "<a class='r_website' href='$website'>visit website</a>";
+    $footer_a_list = "<a id='website_$new_iterator' class='r_website' href='$website'>visit website</a>";
     $combines_address_or_description = $description;
   }
 
    return <<<HTML
 
-   <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" id='retailer_$new_iterator' class="open-acc retailer-result-dropdown_menu r_accordion">
+   <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" class="open-acc retailer-result-dropdown_menu r_accordion">
      <div class="retailer-result-dropdown_menu__left">
-       <div class="retailer-result-dropdown_menu__left__title r_title">
+       <div id=title_$new_iterator class="retailer-result-dropdown_menu__left__title r_title">
          $title
        </div>
        <img class="retailer-result-dropdown_menu__left__title--mobile" src='$plus_icon' />
      </div>
      <div class="retailer-result-dropdown_menu__right">
        <div class="retailer-result-dropdown_menu__right__miles">
-         <span class='r_distance'>$km</span>
+         <span id="distance_$new_iterator" class='r_distance'>$km</span>
        </div>
        <div class="retailer-result-dropdown_menu__right__retailer-action">
          <!-- <span class="retailer-type">$retailer_type</span> -->
