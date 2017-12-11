@@ -1,5 +1,5 @@
 #hosp_builder_choices {
-  border: 1px solid blue;
+  // border: 1px solid blue;
   width: 300px;
   padding: 0;
   display: flex;
@@ -15,8 +15,20 @@
 //   }
 
   .choice-item {
-    border: 4px solid green;
+    margin-bottom: 30px;
     display: flex;
     align-items: center;
+
+    .choice-item__right-side {
+      margin-left: 30px;
+
+      p {
+        margin: 0;
+        font-size: 13px;
+        letter-spacing: 3px;
+        line-height: 17px;
+        color: #000000;
+      }
+    }
   }
 }

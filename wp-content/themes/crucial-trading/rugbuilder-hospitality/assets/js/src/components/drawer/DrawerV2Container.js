@@ -147,6 +147,11 @@ RugBuilder.prototype.drawerV2Component = function() {
       PubSub.publish( 'newColor', true );
     }
 
+    selectNewImage = () => {
+      console.log('selecting new image');
+      console.log('DRAWER V2');
+    }
+
     render() {
       return (
         <DrawerV2View
@@ -162,11 +167,14 @@ RugBuilder.prototype.drawerV2Component = function() {
           updateStructure={this.updateStructure}
           updateColor={this.updateColor}
           chosenStructure={this.state.chosenStructure}
+          selectNewImage={this.props.selectNewImage}
         />
     )};
   }
 
-  ReactDOM.render(
-    <DrawerV2 />, document.querySelector('#hospBuilderDrawer')
-  );
+  // ReactDOM.render(
+  //   <DrawerV2 />, document.querySelector('#hospBuilderDrawer')
+  // );
+
+  return DrawerV2;
 }

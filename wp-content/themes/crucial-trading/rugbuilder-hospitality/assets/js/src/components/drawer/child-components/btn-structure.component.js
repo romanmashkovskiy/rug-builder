@@ -1,7 +1,7 @@
-RugBuilder.prototype.btnStructureComponent = function() {
+RugBuilder.prototype.structureItemComponent = function() {
 	const R = rugBuilder;
 
-	class BtnStructureComponent extends React.Component {
+	class StructureItem extends React.Component {
 		constructor(props) {
 		  super();
 		}
@@ -12,9 +12,16 @@ RugBuilder.prototype.btnStructureComponent = function() {
 		handleClick = (e) => {
 			e.preventDefault();
 
-			R.imageComponent(this.props.code, this.props.jpg);
-			R.imageChoiceComponent(this.props.code, this.props.img);
+			// R.imageChoiceComponent(this.props.code, this.props.img);
 
+			const newImage = {
+				src: this.props.jpg,
+				img: this.props.img,
+				jpg: '',
+				alt: this.props.code
+			};
+
+			this.props.selectNewImage(newImage);
 			this.props.updateStructure(this.props.code);
 		}
 
@@ -26,9 +33,8 @@ RugBuilder.prototype.btnStructureComponent = function() {
 						<img src={this.props.img} alt={this.props.code} />
 					</a>
 				</li>
-			);
-		}
+			)}
 	}
 
-	return BtnStructureComponent;
+	return StructureItem;
 }

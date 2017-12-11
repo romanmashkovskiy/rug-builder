@@ -24,8 +24,18 @@ RugBuilder.prototype.btnColorComponent = function() {
 				this.props.structure + '/' + this.props.color + '/colour-' +
 				R.colorStage + '.jpg';
 
-			R.imageComponent(this.props.color, url, jpg);
-			R.imageChoiceComponent(this.props.color, col);
+			// R.imageComponent(this.props.color, url, jpg);
+			// R.imageChoiceComponent(this.props.color, col);
+
+			console.log('prop color --->');
+			console.log(this.props.color);
+
+			this.props.selectNewImage({
+				alt: this.props.color,
+				src: url,
+				jpg: jpg,
+				img: col
+			});
 
 			this.props.onClick(this.props.color);
 		}

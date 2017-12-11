@@ -9,7 +9,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
 
       this.state = {
         stages : ['Structure'],
-        showSubmit: false,
+        showSubmit: true,
         currentStage: 0
       }
     }
@@ -25,6 +25,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
      */
     handleCurrentStage = (stage) => {
       this.setState({currentStage: stage})
+      this.props.changeStage(stage);
     }
 
     /**
@@ -67,14 +68,18 @@ RugBuilder.prototype.progressMenuV2Component = function () {
         <ProgressMenuV2View
           stages={this.state.stages}
           currentStage={this.state.currentStage}
+          showSubmit={this.state.showSubmit}
           handleCurrentStage={this.handleCurrentStage}
+          selectedCanvasImages={this.props.selectedCanvasImages}
+          highlightCanvasImageOnHover={this.props.highlightCanvasImageOnHover}
+          removeHighlightOnCanvasImage={this.props.removeHighlightOnCanvasImage}
         />
     )};
   }
 
-  ReactDOM.render(
-    <ProgressMenuV2 />, document.querySelector('#hosp_builder_progress-menu')
-  );
+  // ReactDOM.render(
+  //   <ProgressMenuV2 />, document.querySelector('#hosp_builder_progress-menu')
+  // );
 
-  // return ProgressMenuV2;
+  return ProgressMenuV2;
 }

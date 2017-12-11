@@ -1,7 +1,7 @@
 RugBuilder.prototype.start = function() {
 	const R = rugBuilder;
 
-	R.addDOMElements();
+	// R.addDOMElements();
 
 	R.getStructuresData()
 		.then(() => { initializeComponents() });
@@ -15,15 +15,15 @@ RugBuilder.prototype.start = function() {
 		// R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent);
 
 		console.log('ini components !!');
-		R.drawerV2Component();
-		R.progressMenuV2Component();
+		// R.drawerV2Component();
+		// R.progressMenuV2Component();
 
+		R.AppComponent();
 
 		// const BtnExpandCollapseComponent = R.btnExpandCollapseComponent();
 		// const BtnStructureComponent      = R.btnStructureComponent();
 		// const BtnColorComponent          = R.btnColorComponent();
 		// R.drawerComponent(BtnExpandCollapseComponent, BtnStructureComponent, BtnColorComponent);
-
 
 		// R.calculateContainerHeight();
 		//  R.hideLittleLoader();

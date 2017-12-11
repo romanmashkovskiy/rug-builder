@@ -22,7 +22,10 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
             key={index}
             index={index}
             currentStage={props.currentStage}
-            handleCurrentStage={props.handleCurrentStage} />
+            handleCurrentStage={props.handleCurrentStage}
+            selectedCanvasImages={props.selectedCanvasImages}
+            highlightCanvasImageOnHover={props.highlightCanvasImageOnHover}
+            removeHighlightOnCanvasImage={props.removeHighlightOnCanvasImage} />
           })
         }
       </ul>

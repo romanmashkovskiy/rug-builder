@@ -1,8 +1,13 @@
 RugBuilder.prototype.drawerV2ViewComponent = function () {
   const R = rugBuilder;
 
-  const BtnStructureComponent = R.btnStructureComponent();
+  const BtnStructureComponent = R.structureItemComponent();
   const BtnColorComponent = R.btnColorComponent();
+
+  const selectNewImage = (image) => {
+    console.log('selected new image !!');
+    console.log(image);
+  }
 
 
   /**
@@ -30,7 +35,8 @@ RugBuilder.prototype.drawerV2ViewComponent = function () {
               jpg={jpg}
               page={page}
               pageInView={props.pageInView}
-              updateStructure={props.updateStructure} />
+              updateStructure={props.updateStructure}
+              selectNewImage={props.selectNewImage} />
           })
         }
       </ul>
@@ -57,7 +63,8 @@ RugBuilder.prototype.drawerV2ViewComponent = function () {
               structure={ props.chosenStructure }
               page={ page }
               pageInView={ props.pageInView }
-              onClick={ props.updateColor } />
+              onClick={ props.updateColor }
+              selectNewImage={props.selectNewImage} />
   				})
         }
       </ul>

@@ -1,5 +1,5 @@
 RugBuilder.prototype.submitScreenComponent = function() {
-	
+
 	const R = rugBuilder;
 
 	const SubmitScreenComponent = React.createClass({
@@ -32,27 +32,32 @@ RugBuilder.prototype.submitScreenComponent = function() {
 			let str = '';
 
 			Object.keys(this.state).map((key) => {
-
 				if ( this.state[key] !== undefined ) {
 					str += key;
 					str += ': ';
 					str += this.state[key];
 					str += ", ";
 				}
-
 			});
 
 			const href = "mailto:abc@123.xyz?subject=New Hospitality Builder Design&body=" + str;
 
 			return (
 				<div className="hosp_builder_submit">
-					<h3>Your Rug</h3>
-					<a href="#" onClick={ this.email } className="hosp_builder_email">Email</a>
-					<a href="#" onClick={ this.print } className="hosp_builder_print">Print</a>
+					<div className="submit_form">
+						<h3>Your Rug</h3>
+						<a href="#" onClick={ this.email } className="hosp_builder_email">
+							Email
+						</a>
+
+						<a href="#" onClick={ this.print } className="hosp_builder_print">
+							Print
+						</a>
 				</div>
 			);
 		}
 	});
 
-	ReactDOM.render( <SubmitScreenComponent />, document.querySelector( '#hosp_builder_submit-screen' ) );
+	// ReactDOM.render( <SubmitScreenComponent />, document.querySelector( '#hosp_builder_submit-screen' ) );
+	return SubmitScreenComponent;
 }

@@ -1,33 +1,29 @@
-RugBuilder.prototype.imageChoiceComponent = function(alt, src) {
-
+RugBuilder.prototype.imageChoiceComponent = function() {
 	const R = rugBuilder;
 
-	const ImageChoiceComponent = React.createClass({
-
-		render: function() {
-			let text;
-
-			if ( R.colorStage === 0 ) {
-				text = 'Structure: ' + alt;
-			} else {
-				text = 'Colour ' + R.colorStage + ': ' + alt;
-			}
+	class ImageChoiceComponent extends React.Component {
+		render() {
+			const stage = this.props.stage === 0 ?
+				'STRUCTURE:' : `COLOUR: ${this.props.stage}`;
 
 			return (
 				<div className="choice-item">
 					<div className="choice-item__left-side">
-						<img src={ src } alt={ alt } />
+						<img src={ this.props.src } alt={ this.props.alt } />
 					</div>
 
 					<div className="choice-item__right-side">
-						<p>{ text }</p>
+						<p>{ stage }</p>
+						<p>{ this.props.alt }</p>
 					</div>
 				</div>
 			);
 		}
-	});
+	}
 
-	let selector = '#hosp_builder_choice-' + R.colorStage;
+	// let selector = '#hosp_builder_choice-' + R.colorStage;
 
-	ReactDOM.render( <ImageChoiceComponent />, document.querySelector(selector) );
+	return ImageChoiceComponent;
+
+	// ReactDOM.render( <ImageChoiceComponent />, document.querySelector(selector) );
 }

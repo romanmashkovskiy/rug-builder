@@ -133,6 +133,7 @@ gulp.task('hosp-loader', function() {
 gulp.task('watch', function() {
 	gulp.watch('./css/src/style.scss',               ['css']);
 	gulp.watch('./css/src/base/*.scss',              ['css']);
+	gulp.watch('./css/src/canvas.scss', ['css']);
 	gulp.watch('./css/src/components/*.scss',        ['css']);
 	gulp.watch('./css/src/components/drawer/*.scss', ['css']);
 

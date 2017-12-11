@@ -11,6 +11,13 @@ body {
 
 #canvas {
   display: flex;
+  margin-top: 100px;
+}
+
+.canvas.fade-images {
+  img.out-focus {
+    opacity: 0.2;
+  }
 }
 
 .clearfix:before,
@@ -323,3 +330,4 @@ body {
 
 @import 'components/*';
 @import 'components/drawer/*';
+@import '/*';
