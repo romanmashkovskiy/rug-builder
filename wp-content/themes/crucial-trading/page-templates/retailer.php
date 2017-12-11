@@ -88,10 +88,14 @@ if ( is_array( $_GET ) ) {
 						}
 					}
 
-					// var_dump($a);
-
+					/**
+					 * Sort Array by Google API distance
+					 */
 					function cmp( $a, $b ) {
-						return $a->distance - $b->distance;
+						$pc = get_post_meta($a->ID, "retailer_postcode", true);
+						$bpc = get_post_meta($b->ID, "retailer_postcode", true);
+						return calc_distance_number($pc) - calc_distance_number($bpc);
+						//return $a->distance - $b->distance;
 					}
 
 					usort( $uk_retailers, 'cmp' );
@@ -193,7 +197,6 @@ if ( count( $uk_retailers ) > 0 ) {
 	for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
 
 		$id   = $uk_retailers[$i3]->ID;
-
 		$post_type = $uk_retailers[$i3]->post_type;
 		$_post_id = $uk_retailers[$i3]->ID;
 		$title = $post_id = $uk_retailers[$i3]->post_title;

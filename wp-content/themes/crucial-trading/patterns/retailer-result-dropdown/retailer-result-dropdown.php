@@ -8,6 +8,13 @@
  * @since Crucial Trading 1.0
  */
 
+ function cmp_( $a, $b ) {
+   $pc = get_post_meta($a->ID, "retailer_postcode", true);
+   $bpc = get_post_meta($b->ID, "retailer_postcode", true);
+   return calc_distance_number($pc) - calc_distance_number($bpc);
+   //return $a->distance - $b->distance;
+ }
+
  function retailers($main_header = '', $dist = '', $terms = 'showroom', $online = false ) {
    $showroom_args = array(
    	'post_type' => 'retailer',
@@ -30,7 +37,6 @@
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
        $dist = round( $show_post->distance );
-       $tt = round( $show_post->distance );
        $iterator_ = $show_post->i;
        $retailer_postcode = get_post_meta($show_post->ID, "retailer_postcode", true);
 
@@ -52,6 +58,7 @@
 HTML;
  }
 
+
  // TODO: Refactor later as this duplication is wrong!!
  function studio_retailers($main_header = '', $terms = 'studio', $online = false, $uk_retailers ) {
    $showroom_args = array(
@@ -69,12 +76,16 @@ HTML;
    );
 
    $showroom_query = new WP_Query( $showroom_args );
+   usort( $showroom_query->posts, 'cmp_' );
+
    $loop = '';
    if ( $showroom_query->have_posts() ) :
      $row = 0;
      foreach ($showroom_query->posts as $show_post) {
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
+       //$lat = get_post_meta( $show_post->ID, 'retailer_lat', true );
+       //var_dump($lat);
        $retailer_postcode = get_post_meta($show_post->ID, "retailer_postcode", true);
        //var_dump($dist);
        // $title, $_post_id,  $dist, true, false, $iterator = $i3, true
