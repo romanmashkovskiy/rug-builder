@@ -8,11 +8,19 @@
  * @since Crucial Trading 1.0
  */
 
+ function cmp_( $a, $b ) {
+   $pc = get_post_meta($a->ID, "retailer_postcode", true);
+   $bpc = get_post_meta($b->ID, "retailer_postcode", true);
+   return calc_distance_number($pc) - calc_distance_number($bpc);
+   //return $a->distance - $b->distance;
+ }
+
  function retailers($main_header = '', $dist = '', $terms = 'showroom', $online = false ) {
    $showroom_args = array(
    	'post_type' => 'retailer',
    	'orderby'   => 'menu_order',
    	'order'     => 'ASC',
+    'posts_per_page' => -1,
    	'tax_query' => array(
    		array(
    			'taxonomy' => 'retailer_type',
@@ -30,9 +38,9 @@
        $title = $show_post->post_title;
        $dist = round( $show_post->distance );
        $iterator_ = $show_post->i;
-       //$iterator =   ( (int)$iterator_ );
+       $retailer_postcode = get_post_meta($show_post->ID, "retailer_postcode", true);
 
-       $loop .= retailer_loop($title, $post_id, $dist, '', $online);
+       $loop .= retailer_loop($title, $post_id, '', $online, $retailer_postcode);
      }
 
    endif;
@@ -50,12 +58,14 @@
 HTML;
  }
 
+
  // TODO: Refactor later as this duplication is wrong!!
- function studio_retailers($main_header = '', $dist = '', $terms = 'studio', $online = false, $uk_retailers ) {
+ function studio_retailers($main_header = '', $terms = 'studio', $online = false, $uk_retailers ) {
    $showroom_args = array(
      'post_type' => 'retailer',
      'orderby'   => 'menu_order',
      'order'     => 'ASC',
+     'posts_per_page' => -1,
      'tax_query' => array(
        array(
          'taxonomy' => 'retailer_type',
@@ -66,19 +76,20 @@ HTML;
    );
 
    $showroom_query = new WP_Query( $showroom_args );
+   usort( $showroom_query->posts, 'cmp_' );
+
    $loop = '';
    if ( $showroom_query->have_posts() ) :
      $row = 0;
      foreach ($showroom_query->posts as $show_post) {
        $post_id = $show_post->ID;
        $title = $show_post->post_title;
-       //$dist = round( $show_post->distance );
-       $iterator_ = $show_post->i;
-       //$iterator =   ( (int)$iterator_ );
-       $dist = round ( $uk_retailers[$row]->distance );
+       //$lat = get_post_meta( $show_post->ID, 'retailer_lat', true );
+       //var_dump($lat);
+       $retailer_postcode = get_post_meta($show_post->ID, "retailer_postcode", true);
        //var_dump($dist);
        // $title, $_post_id,  $dist, true, false, $iterator = $i3, true
-       $loop .= retailer_loop($title, $post_id, $dist, true, false, $row, true);
+       $loop .= retailer_loop($title, $post_id, true, false, $row, true, $retailer_postcode);
        $row++;
      }
 
@@ -97,7 +108,7 @@ HTML;
 HTML;
  }
 
- function retailer_loop($title = '', $post_id ='', $dist = '', $retailer_loop = false, $online, $iterator = 0, $search = false) {
+ function retailer_loop($title = '', $post_id ='', $retailer_loop = false, $online, $iterator = 0, $search = false, $retailer_postcode = '') {
    $slogan = rwmb_meta('retailer_logo_slogan', array(), $post_id) ? rwmb_meta('retailer_logo_slogan', array(), $post_id) : '';
    $website = rwmb_meta('retailer_website', array(), $post_id);
    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id);
@@ -111,6 +122,11 @@ HTML;
    // Images
    $plus_icon = get_template_directory_uri() . '/assets/icons/plus.svg';
    $tick_icon = get_template_directory_uri() . '/assets/icons/tick.svg';
+
+   $km = null;
+   if  (array_key_exists('postcode', $_GET)) {
+     $km = calc_distance($retailer_postcode);
+   }
 
    $new_iterator = '';
    if ($search) {
@@ -135,9 +151,6 @@ HTML;
     $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id) ? rwmb_meta('retailer_telephone_1', array(), $post_id) : '';
 
     $retailer_type = "Showroom";
-
-    // Distance
-    $distance = $dist == 0 ? '' : "";
 
 
     $combines_address_or_description = '';
@@ -170,9 +183,6 @@ HTML;
     $queried_postcode = '';
     if  (array_key_exists('postcode', $_GET)) {
       $queried_postcode = $_GET['postcode'];
-
-      // We can show 0 miles on search
-      $distance = $dist == 0 ? " " : " ";
     }
 
 
@@ -182,28 +192,27 @@ HTML;
   	$lng = get_post_meta( $post_id, 'retailer_lng', true );
     // crucial: http://maps.google.com/maps?saddr=52.50883313,-2.07817228&daddr=ws1 3qu
   	$url = 'http://maps.google.com/maps?saddr=' . $lat . ',' . $lng . '&daddr=' . $queried_postcode;
-    $footer_a_list = "<a class='r_website' href='$url'>Get Directions</a>";
+    $footer_a_list = "<a id='website_$new_iterator' class='r_website' href='$url'>Get Directions</a>";
 
   } else {
 
     $retailer_type = "Online Retailer";
-    $footer_a_list = "<a class='r_website' href='$website'>visit website</a>";
-    $distance = "";
+    $footer_a_list = "<a id='website_$new_iterator' class='r_website' href='$website'>visit website</a>";
     $combines_address_or_description = $description;
   }
 
    return <<<HTML
 
-   <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" id='retailer_$new_iterator' class="open-acc retailer-result-dropdown_menu r_accordion">
+   <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" class="open-acc retailer-result-dropdown_menu r_accordion">
      <div class="retailer-result-dropdown_menu__left">
-       <div class="retailer-result-dropdown_menu__left__title r_title">
+       <div id=title_$new_iterator class="retailer-result-dropdown_menu__left__title r_title">
          $title
        </div>
        <img class="retailer-result-dropdown_menu__left__title--mobile" src='$plus_icon' />
      </div>
      <div class="retailer-result-dropdown_menu__right">
        <div class="retailer-result-dropdown_menu__right__miles">
-         <span class='r_distance'>$distance</span>
+         <span id="distance_$new_iterator" class='r_distance'>$km</span>
        </div>
        <div class="retailer-result-dropdown_menu__right__retailer-action">
          <!-- <span class="retailer-type">$retailer_type</span> -->

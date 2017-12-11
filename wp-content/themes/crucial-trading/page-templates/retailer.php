@@ -21,6 +21,7 @@ if ( is_array( $_GET ) ) {
 
 	if ( array_key_exists( 'postcode', $_GET ) ) {
 
+
 		$postcode        = $_GET['postcode'];
 		$postcode_tags   = strip_tags( $postcode );
 		$postcode_trim   = trim( $postcode_tags );
@@ -87,10 +88,14 @@ if ( is_array( $_GET ) ) {
 						}
 					}
 
-					// var_dump($a);
-
+					/**
+					 * Sort Array by Google API distance
+					 */
 					function cmp( $a, $b ) {
-						return $a->distance - $b->distance;
+						$pc = get_post_meta($a->ID, "retailer_postcode", true);
+						$bpc = get_post_meta($b->ID, "retailer_postcode", true);
+						return calc_distance_number($pc) - calc_distance_number($bpc);
+						//return $a->distance - $b->distance;
 					}
 
 					usort( $uk_retailers, 'cmp' );
@@ -175,6 +180,8 @@ echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="
 
 echo switch_views();
 
+
+
 if ( count( $uk_retailers ) > 0 ) {
 
 	// echo '<h2 class="page-subtitle">Search Results</h2>';
@@ -190,15 +197,12 @@ if ( count( $uk_retailers ) > 0 ) {
 	for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
 
 		$id   = $uk_retailers[$i3]->ID;
-
-
-		$dist = round( $uk_retailers[$i3]->distance );
-		//var_dump($uk_retailers[$i3]->distance);
 		$post_type = $uk_retailers[$i3]->post_type;
 		$_post_id = $uk_retailers[$i3]->ID;
 		$title = $post_id = $uk_retailers[$i3]->post_title;
-		$local_html .= retailer_loop($title, $_post_id,  $dist, true, false, $iterator = $i3, true);
-		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
+		$retailer_postcode = get_post_meta($_post_id, "retailer_postcode", true);
+		$local_html .= retailer_loop($title, $_post_id, true, false, $iterator = $i3, true, $retailer_postcode);
+		echo do_shortcode( '[retailer-card id="' . $id . '" miles="' . $retailer_postcode . '" i="' . $i3 . '"]' );
 	}
 
 	$local_html .= (
@@ -252,7 +256,7 @@ $showroom_args = array(
 // We could test if key postcode on the array $_GET
 // WE also show this functon if no error as we'll get an index error of no results for the $dist query ie $uk_retailers[<number>]
 if  (array_key_exists('postcode', $_GET) && !$error) {
-	echo studio_retailers('Studio Retailers', '', 'studio', false, $uk_retailers);
+	echo studio_retailers('Studio Retailers', 'studio', false, $uk_retailers);
 }
 echo retailers('Online Retailers', '', 'online', true);
 echo retailers('Showrooms');
