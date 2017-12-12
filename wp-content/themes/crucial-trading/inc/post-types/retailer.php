@@ -94,7 +94,7 @@ function retailer_meta_boxes( $meta_boxes ) {
 			),
 			array(
 				'name'      => 'Postcode',
-				'id'        => 'retailer_address_postcode',
+				'id'        => 'retailer_postcode', // originally: retailer_address_postcode
 				'type'      => 'text',
 			),
 			array(

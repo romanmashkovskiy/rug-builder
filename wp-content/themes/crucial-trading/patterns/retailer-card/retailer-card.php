@@ -48,6 +48,7 @@ function retailer_card( $atts = '' ) {
 	$address_6 = rwmb_meta( 'retailer_town', array(), $post_id );
 	$address_7 = rwmb_meta( 'retailer_county', array(), $post_id );
 	$address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
+	$miles = calc_distance($atts["miles"]);
 
 	$address = '';
 
@@ -87,7 +88,7 @@ function retailer_card( $atts = '' ) {
 
 	if ( $distance != 'overseas' ) {
 
-		$html .= "<div id='retailer**_$iterator' class='retailer r_card'>";
+		$html .= "<div id='retailer_$iterator' class='retailer r_card'>";
 		$html .= '<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg" class="retailer__pin">';
 		$html .= '<span class="retailer__iterator">' . $iterator . '</span>';
 		$html .= '<div class="border-div">';
@@ -100,8 +101,8 @@ function retailer_card( $atts = '' ) {
 			$html .= '<a class="retailer__email" href="mailto:' . $email . '"><p>Send Email</p></a>';
 		}
 		$html .= '<a class="retailer_directions r_website" target="_blank" href="' . $url . '">Get Directions</a>';
-		if ( $distance ) {
-			$html .= '<h3 class="retailer_distance r_distance">' . $distance . ' Miles</h3>';
+		if ( $miles ) {
+			$html .= '<h3 class="retailer_distance r_distance">' . $miles . '</h3>';
 		}
 		$html .= '</div>';
 		$html .= '</div>';

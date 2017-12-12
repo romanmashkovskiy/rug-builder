@@ -123,21 +123,18 @@ function createMap( latLng, zoom, $map ) {
 
 				google.maps.event.addListener(markers[i2], 'click', function(e) {
 
-					var retailerId = "#retailer_" + this.label;
-					// Used to locate values in the collapse div
-					var retailerClass = ".retailer_" + this.label;
-					var title = $(retailerId + " .r_title").text();
-					var distance = $(retailerId + " .r_distance").text();
-					var website = $(retailerClass + " .r_website").attr('href');
-					console.log(website);
+					// IDs are found in retailer-result-dropdown.php
+					var distance_ = "#distance_" + this.label;
+					var title_ = "#title_" + this.label;
+					var website_ = "#website_" + this.label;
+					var title = $(title_).text();
+					var distance = $(distance_).text();
+					var website = $(website_).attr('href');
+
 
 					var contentString = (
 						"<div class='g-infowindow'>Hello World</div>"
-					)
-					// infowindows[this.label] = new google.maps.InfoWindow({
-	        //     content: contentString
-	        // });
-
+					);
 					var contantString = "<div id='close' class='g-infobubble'>" +
 																"<div class='g-infobubble__container'>" +
 																	"<div class='g-infobubble__container__body'>" +
