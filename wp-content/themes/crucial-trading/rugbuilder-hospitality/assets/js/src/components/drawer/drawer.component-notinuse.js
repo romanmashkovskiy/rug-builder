@@ -1,9 +1,7 @@
 RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnStructureComponent, BtnColorComponent) {
-
 	const R = rugBuilder;
 
 	const DrawerComponent = React.createClass({
-
 		/* CONTENTS
 		 * ========
 		 *
@@ -29,7 +27,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 // Ref1: Get Initial State
 
 		getInitialState: function() {
-
 			let structures = R.structureImages;
 			let time       = new Date();
 
@@ -171,7 +168,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 // Ref9: Restart
 
 		restart: function() {
-
 //			document.querySelector('#hosp_builder_img-container').classList.add('hosp_builder_hidden');
 
 			for ( let i = 0; i < 10; i++ ) {
@@ -201,12 +197,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			R.choices.color9    = undefined;
 
 			let time = new Date();
-
-//			let timeNow = time.getNow();
-
-//			if ( timeNow > timeLastSaved ) {
-//				this.save();
-//			}
 
 			this.STRUCTURE_ELEMS_PER_PAGE = undefined;
 			this.STRUCTURE_NUM_OF_PAGES   = undefined;
@@ -252,10 +242,10 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 // Ref11: Slide Left
 
 		slideLeft: function(e) {
-
 			e.preventDefault();
 
-			let numOfPages = this.state.stage === 'structures' ? this.STRUCTURE_NUM_OF_PAGES : this.COLOR_NUM_OF_PAGES;
+			let numOfPages =
+				this.state.stage === 'structures' ? this.STRUCTURE_NUM_OF_PAGES : this.COLOR_NUM_OF_PAGES;
 
 			if ( this.state.pageInView === numOfPages ) {
 				return;
@@ -379,35 +369,14 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			PubSub.publish( 'newColor', true );
 		},
 
-		scrollToPage: function(page) {
-
-			return;
-
-//			if ( this.state.pageInView === page ) {
-//				return;
-//			}
-
-//			if ( page < this.state.pageInView ) {
-//				this.slideRight();
-//			}
-//			else {
-//				this.slideLeft();
-//			}
-
-//			let _t = this;
-
-//			setTimeout(() => { _t.scrollToPage(page) }, 650)
-		},
 
 // Ref17: Render
 
 		render: function() {
-
 			let structuresHTML, structureStyleHTML, colorsHTML, colorStyleHTML, btnsHTML;
 
 			if ( this.state.stage === 'structures' ) {
-
-				if ( this.STRUCTURE_ELEMS_PER_PAGE === undefined ){
+				if ( this.STRUCTURE_ELEMS_PER_PAGE === undefined ) {
 
 					const WINDOW_HEIGHT = window.innerHeight;
 					const AVAIL_SPACE   = WINDOW_HEIGHT - document.querySelector('.hosp_builder_progress-menu__container').offsetHeight - 100;
@@ -459,9 +428,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			}
 
 			else if ( this.state.stage === 'colors' ) {
-
-				if ( this.COLOR_ELEMS_PER_PAGE === undefined ){
-
+				if ( this.COLOR_ELEMS_PER_PAGE === undefined ) {
 					const WINDOW_WIDTH        = window.innerWidth
 					const COLOR_ELEMS_PER_ROW = WINDOW_WIDTH > 768 ? 10 : 5;
 					const COLOR_ELEM_HEIGHT   = ( ( WINDOW_WIDTH - 50 ) / COLOR_ELEMS_PER_ROW );
@@ -472,10 +439,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 				}
 
 				colorsHTML = this.state._colors.map((color, index) => {
-
 					let page = 1;
-
-			//		if ( window.innerHeight < 1000 ) {
 						if ( window.innerWidth > 768 ) {
 							if ( index < 20 ) {
 								page = 1;
@@ -493,12 +457,9 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 								page = 4;
 							}
 						}
-			//		}
 
 					return <BtnColorComponent key={ index } color={ color } structure={ this.state.chosenStructure } page={ page } pageInView={ this.state.pageInView } onClick={ this.updateColor } />
 				});
-
-			//	if ( window.innerHeight < 1000 ) {
 
 					let styleStr = '.hosp_builder_drawer__content ul.hosp_builder_colors li.hosp_builder_right-of-window, .hosp_builder_drawer__content ul.hosp_builder_colors li.hosp_builder_moving-out-to-right { top: -' + this.COLOR_TOP_CSS_AMOUNT + 'px }';
 					colorStyleHTML = <style>{ styleStr }</style>
@@ -506,7 +467,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 					let leftStyle  = this.state.pageInView === 1 ? { color: '#A8A8A8' } : {};
 					let rightStyle = this.state.pageInView === this.COLOR_NUM_OF_PAGES ? { color: '#A8A8A8' } : {};
 
-					let leftUrl  = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110134436/arrow-left.svg';
+					let leftUrl = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110134436/arrow-left.svg';
 					let rightUrl = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110134433/arrow-right.svg';
 
 					btnsHTML = (
@@ -533,7 +494,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 			let dots = [];
 
 			for ( let i = 0; i < numOfPages; i++ ) {
-
 				let index = i + 1;
 				let className = 'hosp_builder_dot';
 

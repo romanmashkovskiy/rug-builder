@@ -1,36 +1,36 @@
 RugBuilder.prototype.start = function() {
-
 	const R = rugBuilder;
 
-	R.addDOMElements();
-
-//	R.showLittleLoader();
-
-	// Data
+	// R.addDOMElements();
 
 	R.getStructuresData()
-		.then(() => { continueLoading() });
+		.then(() => { initializeComponents() });
 
-	function continueLoading() {
+	function initializeComponents() {
+		console.log('ini components !!');
+		R.AppComponent();
 
-		// React Components
 
-		// Progress Menu
-		const BtnExitComponent    = R.btnExitComponent();
-		const BtnRestartComponent = R.btnRestartComponent();
-		const BtnSubmitComponent  = R.btnSubmitComponent();
-		const BtnStageComponent   = R.btnStageComponent();
-		R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent);
+		// const BtnExitComponent    = R.btnExitComponent();
+		// const BtnRestartComponent = R.btnRestartComponent();
+		// const BtnSubmitComponent  = R.btnSubmitComponent();
+		// const BtnStageComponent   = R.btnStageComponent();
+		//
+		// R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent);
 
-		// Drawer
+		// R.drawerV2Component();
+		// R.progressMenuV2Component();
 
-		const BtnExpandCollapseComponent = R.btnExpandCollapseComponent();
-		const BtnStructureComponent      = R.btnStructureComponent();
-		const BtnColorComponent          = R.btnColorComponent();
-		R.drawerComponent(BtnExpandCollapseComponent, BtnStructureComponent, BtnColorComponent);
+		// R.AppComponent();
 
-		R.calculateContainerHeight();
+		// R.HospitalityBuilderComponent();
 
+		// const BtnExpandCollapseComponent = R.btnExpandCollapseComponent();
+		// const BtnStructureComponent      = R.btnStructureComponent();
+		// const BtnColorComponent          = R.btnColorComponent();
+		// R.drawerComponent(BtnExpandCollapseComponent, BtnStructureComponent, BtnColorComponent);
+
+		// R.calculateContainerHeight();
 		//  R.hideLittleLoader();
 	}
 }

@@ -10,9 +10,9 @@ const sassGlob      = require('gulp-sass-glob');
 const sourcemaps    = require('gulp-sourcemaps');
 const uglify        = require('gulp-uglify');
 const util          = require('gulp-util');
+var plumber = require('gulp-plumber');
 
 gulp.task('css', function() {
-
 	return gulp.src('./css/src/style.scss')
 		.pipe(sourcemaps.init())
 		.pipe(sassGlob())
@@ -30,7 +30,6 @@ gulp.task('css', function() {
 });
 
 gulp.task('css-prod', function() {
-
 	return gulp.src('./css/src/style.scss')
 		.pipe(sassGlob())
 		.pipe(sass({
@@ -47,10 +46,16 @@ gulp.task('css-prod', function() {
 
 
 gulp.task('js', function() {
+	console.log('watch js');
 
 	gulp.src([
 		'./js/src/rugBuilder.js',
 		'./js/src/startRugbuilder.js',
+		'./js/src/App.js',
+		'./js/src/store/index.js',
+		'./js/src/store/*.js',
+		'./js/src/store/*/*.js',
+		'./js/src/*.js',
 		'./js/src/init.js',
 		'./js/src/data/structures.data.js',
 		'./js/src/functions/ajax.function.js',
@@ -59,20 +64,22 @@ gulp.task('js', function() {
 		'./js/src/functions/loadingScreens.function.js',
 		'./js/src/components/*.js',
 		'./js/src/components/drawer/*.js',
-		'./js/src/components/progress-menu/*.js'
+		'./js/src/components/drawer/child-components/*.js',
+		'./js/src/components/progress-menu/*.js',
+		'./js/src/components/progress-menu/child-components/*.js'
 	])
+		.pipe(plumber())
 		.pipe(sourcemaps.init())
+		.pipe(babel({ presets: ['es2015', 'es2016', 'react', 'stage-0'] }))
 		.pipe(concat('hospitality-builder.min.js'))
-		.pipe(babel({
-			presets: [ 'es2015', 'react' ]
-		}))
-		.pipe(uglify().on('error', util.log))
+		// .pipe(babel({ presets: [ 'es2015', 'react' ] }))
+		.pipe(uglify())
 		.pipe(sourcemaps.write('maps'))
 		.pipe(gulp.dest('../dist'));
 });
 
-gulp.task('js-prod', function() {
 
+gulp.task('js-prod', function() {
 	gulp.src([
 		'./js/src/rugBuilder.js',
 		'./js/src/startRugbuilder.js',
@@ -98,7 +105,6 @@ gulp.task('js-prod', function() {
 // AJAX
 
 gulp.task('js-loader', function() {
-
 	gulp.src([
 		'./loader/rugbuilder-loader.js',
 	])
@@ -113,7 +119,6 @@ gulp.task('js-loader', function() {
 // Obs
 
 gulp.task('hosp-loader', function() {
-
 	gulp.src([
 		'./loader/hospitality-loader.js',
 	])
@@ -124,18 +129,22 @@ gulp.task('hosp-loader', function() {
 });
 
 gulp.task('watch', function() {
-
 	gulp.watch('./css/src/style.scss',               ['css']);
 	gulp.watch('./css/src/base/*.scss',              ['css']);
+	gulp.watch('./css/src/canvas.scss', ['css']);
 	gulp.watch('./css/src/components/*.scss',        ['css']);
 	gulp.watch('./css/src/components/drawer/*.scss', ['css']);
 
 	gulp.watch('./js/src/*.js',                          ['js']);
+	gulp.watch('./js/src/store/*.js', ['js']);
+	gulp.watch('./js/src/store/*/*.js', ['js']);
 	gulp.watch('./js/src/data/*.js',                     ['js']);
 	gulp.watch('./js/src/functions/*.js',                ['js']);
 	gulp.watch('./js/src/components/*.js',               ['js']);
 	gulp.watch('./js/src/components/drawer/*.js',        ['js']);
+	gulp.watch('./js/src/components/drawer/child-components/*.js', ['js']);
 	gulp.watch('./js/src/components/progress-menu/*.js', ['js']);
+	gulp.watch('./js/src/components/progress-menu/child-components/*.js', ['js']);
 })
 
 gulp.task('watch-prod', function() {

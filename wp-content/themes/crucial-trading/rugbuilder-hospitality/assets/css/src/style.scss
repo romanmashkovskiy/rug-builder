@@ -1,3 +1,25 @@
+body {
+  background: rgb(240,240,240);
+  margin: 0;
+}
+
+#mainContainer {
+  width: 100%;
+  // border: 1px solid pink;
+}
+
+
+#canvas {
+  display: flex;
+  margin-top: 100px;
+}
+
+.canvas.fade-images {
+  img.out-focus {
+    opacity: 0.2;
+  }
+}
+
 .clearfix:before,
 .clearfix:after {
   display: table;
@@ -11,7 +33,9 @@
 #hospitality-builder {
 	overflow: hidden;
 	padding-bottom: 13px;
-	position: relative;
+  display: flex;
+	// position: relative;
+
 }
 
 .hosp_builder_drawer__content.hosp_builder_closed .hosp_builder_scroll-btns {
@@ -67,6 +91,7 @@
 }
 
 #hosp_builder_img-container {
+  background: #FFF;
 	border-radius: 5px;
 	-webkit-box-shadow: 5px 0px 20px 0 rgba(0, 0, 0, .45);
 	-moz-box-shadow: 5px 0px 20px 0 rgba(0, 0, 0, .45);
@@ -128,8 +153,8 @@
 }
 
 #hosp_builder_choices {
-	margin: auto;
-	width: 1200px;
+	// margin: auto;
+	// width: 1200px;
 
 	@media screen and (max-width: 1250px) {
 		width: 720px;
@@ -143,13 +168,15 @@
 		width: 240px;
 	}
 
-	div {
-		float: left;
-		position: relative;
-		text-align: center;
-		width: 120px;
-		z-index: 3;
-	}
+
+	// div {
+	// 	float: left;
+	// 	position: relative;
+	// 	text-align: center;
+	// 	width: 120px;
+	// 	z-index: 4;
+	// }
+
 
 	p {
 		font-size: 13px;
@@ -262,7 +289,7 @@
 }
 
 #hosp_builder_progress-menu a {
-  font-size: 14px !important;
+  font-size: 14px;
 }
 
 
@@ -305,3 +332,4 @@
 
 @import 'components/*';
 @import 'components/drawer/*';
+@import '/*';
