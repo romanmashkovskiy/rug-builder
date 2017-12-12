@@ -2,46 +2,37 @@
  * handle update canvas images in the Redux Store
  */
 RugBuilder.prototype.updateCanvasImageService = function(newImage) {
-  console.log('service !!!!!');
-
   const RS = ReduxStore;
   const store = RS.store;
 
+  const updateCanvasImage = (newImage) => {
+    var newImages = store.getState().canvasImages;
 
-  var newImages = store.getState().canvasImages;
+    const x = newImages[0] ? newImages.findIndex((image) => {
+        return image.stageIndex === newImage.stageIndex
+      })
+      :
+      -1;
 
-  console.log(newImages);
-
-  console.log('0');
-
-  const x = newImages[0] ? newImages.findIndex((image) => {
-      return image.stageIndex === newImage.stageIndex
-    })
-    :
-    -1;
-
-  console.log('1');
-
-  /* update previous stage canvas image in
-    the array if stage already added  */
-  if (x !== -1) {
-    if (this.currentStage === 0) {
+    if (newImage.stageIndex === 0) {
       newImages = [];
       newImages.push(newImage);
-    } else {
+      RS.dispatchUpdateCanvasImagesAction(newImages);
+      return;
+    }
+
+    /* update previous stage canvas image in
+      the array -> if stage already added  */
+    if (x !== -1) {
       newImages.splice(x, 1, newImage);
+      RS.dispatchUpdateCanvasImagesAction(newImages);
+      return;
     }
-  }
 
-  /* add new canvas image to array for that stage */
-  else {
-    if (this.currentStage === 0) {
-      newImages = [];
-      newImages.push(newImage);
-    }
+    /* add new canvas image to array for that stage */
     newImages.push(newImage);
+    RS.dispatchUpdateCanvasImagesAction(newImages);
   }
 
-  console.log('dispatch action from service !!');
-  RS.dispatchUpdateCanvasImagesAction(newImages);
+  updateCanvasImage(newImage);
 }
