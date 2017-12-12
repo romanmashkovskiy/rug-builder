@@ -38,6 +38,14 @@ RugBuilder.prototype.btnColorComponent = function() {
 			});
 
 			this.props.onClick(this.props.color);
+
+			R.updateCanvasImageService({
+				stageIndex: R.colorStage,
+				alt: this.props.color,
+				src: url,
+				jpg: jpg,
+				img: col,
+			});
 		}
 
 		render() {

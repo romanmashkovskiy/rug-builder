@@ -1,11 +1,11 @@
 RugBuilder.prototype.submitScreenComponent = function() {
-
 	const R = rugBuilder;
 
-	const SubmitScreenComponent = React.createClass({
+	class SubmitScreen extends React.Component {
+		constructor() {
+			super();
 
-		getInitialState: function() {
-			return {
+			this.state = {
 				structure : R.choices.structure,
 				colour1   : R.choices.color1,
 				colour2   : R.choices.color2,
@@ -17,18 +17,17 @@ RugBuilder.prototype.submitScreenComponent = function() {
 				colour8   : R.choices.color8,
 				colour9   : R.choices.color9
 			}
-		},
+		}
 
-		email: function() {
+		email = () => {
 			R.emailForm(this.state);
-		},
+		}
 
-		print: function() {
+		print = () => {
 			window.print();
-		},
+		}
 
-		render: function() {
-
+		render() {
 			let str = '';
 
 			Object.keys(this.state).map((key) => {
@@ -53,11 +52,10 @@ RugBuilder.prototype.submitScreenComponent = function() {
 						<a href="#" onClick={ this.print } className="hosp_builder_print">
 							Print
 						</a>
+					</div>
 				</div>
-			);
-		}
-	});
+		)}
+	}
 
-	// ReactDOM.render( <SubmitScreenComponent />, document.querySelector( '#hosp_builder_submit-screen' ) );
-	return SubmitScreenComponent;
+	return SubmitScreen;
 }

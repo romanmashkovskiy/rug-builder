@@ -3,10 +3,7 @@ RugBuilder.prototype.btnSubmitComponent = function() {
 	const R = rugBuilder;
 
 	const SubmitBtnComponent = React.createClass({
-
 		submit: function(e) {
-			console.log('submit clicked !!')
-			
 			e.preventDefault();
 
 			document.querySelector('#hosp_builder_img-container').style.zIndex = 11;
@@ -17,7 +14,6 @@ RugBuilder.prototype.btnSubmitComponent = function() {
 		},
 
 		render: function() {
-
 			if ( !R.showSubmit ) {
 				return <span></span>;
 			} else {

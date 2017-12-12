@@ -7,6 +7,10 @@ RugBuilder.prototype.start = function() {
 		.then(() => { initializeComponents() });
 
 	function initializeComponents() {
+		console.log('ini components !!');
+		R.AppComponent();
+
+
 		// const BtnExitComponent    = R.btnExitComponent();
 		// const BtnRestartComponent = R.btnRestartComponent();
 		// const BtnSubmitComponent  = R.btnSubmitComponent();
@@ -14,11 +18,12 @@ RugBuilder.prototype.start = function() {
 		//
 		// R.menuComponent(BtnExitComponent, BtnRestartComponent, BtnSubmitComponent, BtnStageComponent);
 
-		console.log('ini components !!');
 		// R.drawerV2Component();
 		// R.progressMenuV2Component();
 
-		R.AppComponent();
+		// R.AppComponent();
+
+		// R.HospitalityBuilderComponent();
 
 		// const BtnExpandCollapseComponent = R.btnExpandCollapseComponent();
 		// const BtnStructureComponent      = R.btnStructureComponent();

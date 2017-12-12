@@ -1,22 +1,48 @@
-RugBuilder.prototype.AppComponent = function () {
+RugBuilder.prototype.HospitalityBuilderComponent = function () {
+  const Connect = window.ReactRedux.connect;
+
   const R = rugBuilder;
+  const store = ReduxStore.store;
+
   const DrawerV2 = R.drawerV2Component();
   const ProgressMenuV2 = R.progressMenuV2Component();
   const ImageChoice = R.imageChoiceComponent();
   const SubmitScreen = R.submitScreenComponent();
 
-  class App extends React.Component {
+
+  class HospitalityBuilder extends React.Component {
     constructor() {
       super();
 
       this.state = {
         canvasImages: [],
         fadeOtherCanvasImages: false,
-        submitted: true,
-        stageInFocus: 0
+        submitted: false,
+        stageInFocus: 0,
+        selectedStructure: {},
+        storeCanvasImages: []
       }
 
       this.currentStage = 0;
+      store.subscribe(this.handleReduxStoreChange)
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+      console.log('component did update');
+      console.log(this.state);
+    }
+
+    /**
+     * listen to changes in the redux store and update state to changes in store
+     */
+    handleReduxStoreChange = () => {
+      console.log('store changed !!!')
+      console.log(store.getState());
+
+      this.setState({
+        storeCanvasImages: store.getState().canvasImages,
+        selectedStructure: store.getState().selectedStructure[0]
+      })
     }
 
     /**
@@ -24,12 +50,13 @@ RugBuilder.prototype.AppComponent = function () {
      */
     changeStage = (stage) => {
       this.currentStage = stage;
+
     }
 
     /**
      * select new Image that will be displayed in the Canvas which makes up the
      * custom material built.
-     * If already selected stage then update array -> else push
+     * If already selected stage then update array-> else push
      */
     selectNewImage = (newImage) => {
       newImage.stageIndex = this.currentStage;
@@ -69,9 +96,8 @@ RugBuilder.prototype.AppComponent = function () {
     }
 
     removeHighlightOnCanvasImage = () => {
-        this.setState({fadeOtherCanvasImages: false})
+      this.setState({fadeOtherCanvasImages: false})
     }
-
 
 
     render() {
@@ -134,5 +160,12 @@ RugBuilder.prototype.AppComponent = function () {
     )}
   }
 
-  ReactDOM.render(<App />, document.querySelector('#root'));
+  //
+  // const mapStateToProps = (state) => ({
+  //   selectedStructure: RS.store.getState().selectedStructure
+  // });
+  //
+  // HospitalityBuilder = Connect(mapStateToProps)(HospitalityBuilder);
+
+  return HospitalityBuilder;
 }

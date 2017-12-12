@@ -1,5 +1,8 @@
 RugBuilder.prototype.structureItemComponent = function() {
 	const R = rugBuilder;
+	const RS = ReduxStore;
+	const storeActions = ReduxStore.actions;
+	// const storeService = R.storeServices;
 
 	class StructureItem extends React.Component {
 		constructor(props) {
@@ -15,6 +18,7 @@ RugBuilder.prototype.structureItemComponent = function() {
 			// R.imageChoiceComponent(this.props.code, this.props.img);
 
 			const newImage = {
+				stageIndex: 0,
 				src: this.props.jpg,
 				img: this.props.img,
 				jpg: '',
@@ -23,6 +27,16 @@ RugBuilder.prototype.structureItemComponent = function() {
 
 			this.props.selectNewImage(newImage);
 			this.props.updateStructure(this.props.code);
+
+			// const RS = new ReduxStore();
+
+			// RS.store.dispatch(
+			// 	RS.getMutateSelectedStructureAction(newImage)
+			// );
+
+			R.updateCanvasImageService(newImage);
+			// RS.dispatchAction(newImage);
+			// console.log(RS.getState());
 		}
 
 		render() {
@@ -33,7 +47,7 @@ RugBuilder.prototype.structureItemComponent = function() {
 						<img src={this.props.img} alt={this.props.code} />
 					</a>
 				</li>
-			)}
+		)}
 	}
 
 	return StructureItem;

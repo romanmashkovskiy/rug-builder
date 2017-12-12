@@ -1,6 +1,7 @@
 RugBuilder.prototype.drawerV2Component = function() {
   const R = rugBuilder;
   const DrawerV2View = R.drawerV2ViewComponent();
+  const store = ReduxStore.store;
 
 
   class DrawerV2 extends React.Component {
@@ -42,6 +43,35 @@ RugBuilder.prototype.drawerV2Component = function() {
 
       window.addEventListener('resize', this.windowResize);
     };
+
+    /**
+     * handle update canvas images in the Redux Store
+     */
+    // handleCanvasImages = (newCanvasImage) => {
+    //   var newImages = store.getState().canvasImages
+    //
+    //   const x = newImages.findIndex((image) => {
+    //     return image.stageIndex === this.currentStage
+    //   })
+    //
+    //   /* update previous stage canvas image */
+    //   if (x !== -1) {
+    //     if (this.currentStage === 0) {
+    //       newImages = [];
+    //       newImages.push(newImage);
+    //     } else {
+    //       newImages.splice(x, 1, newImage);
+    //     }
+    //   }
+    //
+    //   /* add new canvas image */
+    //   else {
+    //     newImages.push(newImage);
+    //   }
+    //
+    //
+    //
+    // }
 
     /**
      * When window is resized set structor and color elements to undefined

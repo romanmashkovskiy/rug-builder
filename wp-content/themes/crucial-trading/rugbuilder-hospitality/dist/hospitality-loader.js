@@ -70,4 +70,7 @@ function load(options, secret_DEPRECIATED) {
 
 
 	document.write('<script>var rugBuilder = new RugBuilder("website", ' + submit + ', ' + restart + ', ' + exit + '); rugBuilder.start();</script>');
+	document.write('<script> var ReduxStore = new ReduxStore(); </script>');
+
+	// var ReduxStore = new ReduxStore();
 }

@@ -51,6 +51,11 @@ gulp.task('js', function() {
 	gulp.src([
 		'./js/src/rugBuilder.js',
 		'./js/src/startRugbuilder.js',
+		'./js/src/App.js',
+		'./js/src/store/index.js',
+		'./js/src/store/*.js',
+		'./js/src/store/*/*.js',
+		'./js/src/*.js',
 		'./js/src/init.js',
 		'./js/src/data/structures.data.js',
 		'./js/src/functions/ajax.function.js',
@@ -73,13 +78,6 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('../dist'));
 });
 
-function swallowError(error) {
-	console.log('swallow ?????')
-	console.log(error.toString())
-	util.log
-
-	this.emit('end')
-}
 
 gulp.task('js-prod', function() {
 	gulp.src([
@@ -138,6 +136,8 @@ gulp.task('watch', function() {
 	gulp.watch('./css/src/components/drawer/*.scss', ['css']);
 
 	gulp.watch('./js/src/*.js',                          ['js']);
+	gulp.watch('./js/src/store/*.js', ['js']);
+	gulp.watch('./js/src/store/*/*.js', ['js']);
 	gulp.watch('./js/src/data/*.js',                     ['js']);
 	gulp.watch('./js/src/functions/*.js',                ['js']);
 	gulp.watch('./js/src/components/*.js',               ['js']);
