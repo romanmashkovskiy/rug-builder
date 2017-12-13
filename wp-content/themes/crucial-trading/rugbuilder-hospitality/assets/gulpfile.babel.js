@@ -12,6 +12,9 @@ const uglify        = require('gulp-uglify');
 const util          = require('gulp-util');
 var plumber = require('gulp-plumber');
 
+/**
+ *
+ */
 gulp.task('css', function() {
 	return gulp.src('./css/src/style.scss')
 		.pipe(sourcemaps.init())
@@ -44,7 +47,9 @@ gulp.task('css-prod', function() {
 		.pipe(gulp.dest('../dist'));
 });
 
-
+/**
+ *
+ */
 gulp.task('js', function() {
 	console.log('watch js');
 
@@ -56,6 +61,7 @@ gulp.task('js', function() {
 		'./js/src/store/*.js',
 		'./js/src/store/*/*.js',
 		'./js/src/*.js',
+		'./js/src/*/*.js',
 		'./js/src/init.js',
 		'./js/src/data/structures.data.js',
 		'./js/src/functions/ajax.function.js',
@@ -63,10 +69,12 @@ gulp.task('js', function() {
 		'./js/src/functions/calculateContainerHeight.function.js',
 		'./js/src/functions/loadingScreens.function.js',
 		'./js/src/components/*.js',
+		'./js/src/components/*/*.js',
 		'./js/src/components/drawer/*.js',
 		'./js/src/components/drawer/child-components/*.js',
 		'./js/src/components/progress-menu/*.js',
-		'./js/src/components/progress-menu/child-components/*.js'
+		'./js/src/components/progress-menu/child-components/*.js',
+		'./js/src/components/summary/*.js',
 	])
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
@@ -130,6 +138,8 @@ gulp.task('hosp-loader', function() {
 
 gulp.task('watch', function() {
 	gulp.watch('./css/src/style.scss',               ['css']);
+	gulp.watch('./css/src/*.scss', ['css']);
+	
 	gulp.watch('./css/src/base/*.scss',              ['css']);
 	gulp.watch('./css/src/canvas.scss', ['css']);
 	gulp.watch('./css/src/components/*.scss',        ['css']);
@@ -141,10 +151,12 @@ gulp.task('watch', function() {
 	gulp.watch('./js/src/data/*.js',                     ['js']);
 	gulp.watch('./js/src/functions/*.js',                ['js']);
 	gulp.watch('./js/src/components/*.js',               ['js']);
+	gulp.watch('./js/src/components/*/*.js', ['js']);
 	gulp.watch('./js/src/components/drawer/*.js',        ['js']);
 	gulp.watch('./js/src/components/drawer/child-components/*.js', ['js']);
 	gulp.watch('./js/src/components/progress-menu/*.js', ['js']);
 	gulp.watch('./js/src/components/progress-menu/child-components/*.js', ['js']);
+	gulp.watch('./js/src/components/summary/*.js', ['js']);
 })
 
 gulp.task('watch-prod', function() {

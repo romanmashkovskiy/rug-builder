@@ -1,7 +1,44 @@
 body {
   background: rgb(240,240,240);
   margin: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
+
+body.summary-view {
+  background: white;
+}
+
+button.default {
+  background-color: #383838;
+  color: white;
+  padding-top: 19px;
+  padding-bottom: 19px;
+  font-size: 17px;
+  font-weight: normal;
+  font-family: Montserrat;
+  letter-spacing: 3px;
+
+  @media screen and (max-width: 1200px) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 12px;
+  }
+}
+
+button.default.fixed-width-195 {
+  width: 195px;
+}
+
+button.default.fixed-width {
+  width: 195px;
+
+  @media screen and (max-width: 1200px) {
+    width: 150px;
+  }
+}
+
+
 
 #mainContainer {
   width: 100%;
@@ -11,7 +48,7 @@ body {
 
 #canvas {
   display: flex;
-  margin-top: 100px;
+  // margin-top: 100px;
 }
 
 .canvas.fade-images {
@@ -33,7 +70,7 @@ body {
 #hospitality-builder {
 	overflow: hidden;
 	padding-bottom: 13px;
-  display: flex;
+  // display: flex;
 	// position: relative;
 
 }
@@ -90,7 +127,7 @@ body {
 	}
 }
 
-#hosp_builder_img-container {
+.canvas {
   background: #FFF;
 	border-radius: 5px;
 	-webkit-box-shadow: 5px 0px 20px 0 rgba(0, 0, 0, .45);

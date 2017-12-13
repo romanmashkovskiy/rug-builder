@@ -45,35 +45,6 @@ RugBuilder.prototype.drawerV2Component = function() {
     };
 
     /**
-     * handle update canvas images in the Redux Store
-     */
-    // handleCanvasImages = (newCanvasImage) => {
-    //   var newImages = store.getState().canvasImages
-    //
-    //   const x = newImages.findIndex((image) => {
-    //     return image.stageIndex === this.currentStage
-    //   })
-    //
-    //   /* update previous stage canvas image */
-    //   if (x !== -1) {
-    //     if (this.currentStage === 0) {
-    //       newImages = [];
-    //       newImages.push(newImage);
-    //     } else {
-    //       newImages.splice(x, 1, newImage);
-    //     }
-    //   }
-    //
-    //   /* add new canvas image */
-    //   else {
-    //     newImages.push(newImage);
-    //   }
-    //
-    //
-    //
-    // }
-
-    /**
      * When window is resized set structor and color elements to undefined
      * update resize state (not sure why at this moment)
      */
@@ -177,10 +148,6 @@ RugBuilder.prototype.drawerV2Component = function() {
       PubSub.publish( 'newColor', true );
     }
 
-    selectNewImage = () => {
-      console.log('selecting new image');
-      console.log('DRAWER V2');
-    }
 
     render() {
       return (
@@ -201,10 +168,6 @@ RugBuilder.prototype.drawerV2Component = function() {
         />
     )};
   }
-
-  // ReactDOM.render(
-  //   <DrawerV2 />, document.querySelector('#hospBuilderDrawer')
-  // );
 
   return DrawerV2;
 }

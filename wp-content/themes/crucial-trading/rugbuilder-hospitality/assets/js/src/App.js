@@ -6,16 +6,26 @@ RugBuilder.prototype.AppComponent = function () {
 
   const R = rugBuilder;
   const RS = ReduxStore;
+  const store = RS.store;
 
   const hospitalityBuilder = R.HospitalityBuilderComponent();
-  const store = RS.store;
+  const summary = R.summaryComponent();
 
 
   const App = () => (
     <Router>
       <div>
         <Switch>
-          <Route path="/" component={hospitalityBuilder} />
+          <Route
+
+            path="/crucial-trading/hospitality-builder/"
+            component={hospitalityBuilder}
+          />
+
+          <Route
+            path="/crucial-trading/hospitality-builder/summary"
+            component={summary}
+          />
         </Switch>
       </div>
     </Router>
