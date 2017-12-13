@@ -1,7 +1,10 @@
 RugBuilder.prototype.progressMenuV2Component = function () {
+  const Router = window.ReactRouterDOM.BrowserRouter;
+  const store = ReduxStore.store;
+
   const R = rugBuilder;
   const ProgressMenuV2View = R.progressMenuViewComponent();
-  // const ProgressMenuV2View = progressMenuViewComponent(R);
+
 
   class ProgressMenuV2 extends React.Component {
     constructor() {
@@ -10,14 +13,40 @@ RugBuilder.prototype.progressMenuV2Component = function () {
       this.state = {
         stages : ['Structure'],
         showSubmit: true,
-        currentStage: 0
+        currentStage: 0,
+        storeCanvasImages: []
       }
+
+      store.subscribe(this.handleReduxStoreChange)
+      // Router.listen(() => { console.log('url change'); })
     }
 
     componentDidMount() {
       /* register subscribers to publishers */
-      PubSub.subscribe('newStructure', this.structureMutated);
+      // PubSub.subscribe('newStructure', this.structureMutated);
 			PubSub.subscribe('newColor', this.colorMutated);
+
+      const structureCode = store.getState().canvasImages[0] ?
+        store.getState().canvasImages[0][0].alt : null;
+
+      if (structureCode) {
+        console.log('is structure code !!');
+        this.structureMutated(structureCode);
+      }
+    }
+
+    /**
+     * listen to changes in the redux store and update state to changes in store
+     */
+    handleReduxStoreChange = () => {
+      this.setState({
+        storeCanvasImages: store.getState().canvasImages[0]
+      })
+
+      this.structureMutated(store.getState().canvasImages[0][0].alt);
+
+      console.log('alt change');
+      console.log(store.getState().canvasImages[0]);
     }
 
     /**
@@ -32,7 +61,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
      * when structure has changed rebuild stages array with
      * 'structure' and all colors available to that structure
      */
-    structureMutated = (sub, code) => {
+    structureMutated = (code) => {
       const colors = R.numStructureColors[code];
       const stages = [ 'Structure' ];
 
@@ -70,9 +99,10 @@ RugBuilder.prototype.progressMenuV2Component = function () {
           currentStage={this.state.currentStage}
           showSubmit={this.state.showSubmit}
           handleCurrentStage={this.handleCurrentStage}
-          selectedCanvasImages={this.props.selectedCanvasImages}
+          selectedCanvasImages={this.state.storeCanvasImages}
           highlightCanvasImageOnHover={this.props.highlightCanvasImageOnHover}
           removeHighlightOnCanvasImage={this.props.removeHighlightOnCanvasImage}
+          headerText={this.props.headerText}
         />
     )};
   }

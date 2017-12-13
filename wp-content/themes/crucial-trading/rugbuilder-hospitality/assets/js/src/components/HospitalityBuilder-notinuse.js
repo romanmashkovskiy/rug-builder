@@ -1,5 +1,6 @@
-RugBuilder.prototype.HospitalityBuilderComponent = function () {
+RugBuilder.prototype.HospitalityBuilderComponentNotInUse = function () {
   const Connect = window.ReactRedux.connect;
+  const Router = window.ReactRouterDOM.BrowserRouter;
 
   const R = rugBuilder;
   const store = ReduxStore.store;
@@ -7,7 +8,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
   const DrawerV2 = R.drawerV2Component();
   const ProgressMenuV2 = R.progressMenuV2Component();
   const ImageChoice = R.imageChoiceComponent();
-  const SubmitScreen = R.submitScreenComponent();
 
 
   class HospitalityBuilder extends React.Component {
@@ -20,28 +20,46 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
         submitted: false,
         stageInFocus: 0,
         selectedStructure: {},
-        storeCanvasImages: []
+        storeCanvasImages: [],
+        summaryViewMode: true
       }
 
       this.currentStage = 0;
       store.subscribe(this.handleReduxStoreChange)
+      // Router.listen(() => { console.log('url change'); })
     }
 
     componentDidUpdate(prevProps, prevState) {
-      console.log('component did update');
+      console.log('HB --> component did update <--');
       console.log(this.state);
+
+      if (this.props.location !== prevProps.location) {
+        this.urlChanged();
+      }
+
+      
     }
+
+    /**
+     * detected change in the url
+     */
+    urlChanged = () => {
+      if (
+        this.props.location.pathname ===
+        "/crucial-trading/hospitality-builder/summary"
+      ) {
+        console.log('SUMMARY VIEW MODE !!!');
+        this.setState({'summaryViewMode': true});
+      }
+    }
+
 
     /**
      * listen to changes in the redux store and update state to changes in store
      */
     handleReduxStoreChange = () => {
-      console.log('store changed !!!')
-      console.log(store.getState());
-
       this.setState({
-        storeCanvasImages: store.getState().canvasImages,
-        selectedStructure: store.getState().selectedStructure[0]
+        storeCanvasImages: store.getState().canvasImages[0],
       })
     }
 
@@ -50,7 +68,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      */
     changeStage = (stage) => {
       this.currentStage = stage;
-
     }
 
     /**
@@ -103,9 +120,11 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
     render() {
       return (
         <div id="hospitality-builder">
-          <DrawerV2
-            selectNewImage={this.selectNewImage}
-          />
+          {!this.state.summaryViewMode &&
+            <DrawerV2
+              selectNewImage={this.selectNewImage}
+            />
+          }
 
           <div id="mainContainer">
             <ProgressMenuV2
@@ -125,7 +144,7 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
                 }
               >
                 {
-                  this.state.canvasImages.map((image, index) => {
+                  this.state.storeCanvasImages.map((image, index) => {
                     return <img
                       alt={ image.alt }
                       src={ image.src }
@@ -139,33 +158,26 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
               </div>
 
               {/* Structure/Color choices (thumbnails) */}
-              <div id="hosp_builder_choices">
-                {
-                  this.state.canvasImages.map((canvasImage, index) => {
-                    return <ImageChoice
-                      src={canvasImage.img}
-                      alt={canvasImage.alt}
-                      stage={canvasImage.stageIndex}
-                      key={index} />
-                  })
-                }
-              </div>
+
+              {!this.state.summaryViewMode &&
+                <div id="hosp_builder_choices">
+                  {
+                    this.state.canvasImages.map((canvasImage, index) => {
+                      return <ImageChoice
+                        src={canvasImage.img}
+                        alt={canvasImage.alt}
+                        stage={canvasImage.stageIndex}
+                        key={index} />
+                    })
+                  }
+                </div>
+              }
+
             </div>
           </div>
-
-          {this.state.submitted &&
-            <SubmitScreen />
-          }
         </div>
     )}
   }
-
-  //
-  // const mapStateToProps = (state) => ({
-  //   selectedStructure: RS.store.getState().selectedStructure
-  // });
-  //
-  // HospitalityBuilder = Connect(mapStateToProps)(HospitalityBuilder);
 
   return HospitalityBuilder;
 }

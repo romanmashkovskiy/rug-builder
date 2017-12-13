@@ -3,12 +3,19 @@ class ReduxStore {
     /**
      * actions
      */
-     this.updateCanvasImages = updatedCanvasImages => {
+    this.updateCanvasImages = updatedCanvasImages => {
       return {
         type: 'MUTATE_SELECTED_STRUCTURE',
         updatedCanvasImages: updatedCanvasImages
       }
     }
+
+    // this.updateStages = updatedCanvasImages => {
+    //   return {
+    //     type: 'MUTATE_SELECTED_STRUCTURE',
+    //     updatedCanvasImages: updatedCanvasImages
+    //   }
+    // }
 
     this.mutateSelectedStructureAction = newSelectedStructure => {
       return {
@@ -23,6 +30,7 @@ class ReduxStore {
         newSelectedColors: newSelectedColors
       }
     };
+
 
     /**
      * reducers
@@ -73,6 +81,8 @@ class ReduxStore {
     this.store = Redux.createStore(this.reducers,
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
+
+    this.test()
   };
 
 
@@ -85,5 +95,31 @@ class ReduxStore {
   dispatchUpdateCanvasImagesAction(updatedCanvasImages) {
     console.log('dispatch update canvas image');
     this.store.dispatch(this.updateCanvasImages(updatedCanvasImages));
+  }
+
+  test() {
+
+    /**
+     * FOR TESTING ONLY
+     */
+     
+    const defaultCanvasImages = [
+      {
+        stageIndex: 0,
+        src: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H1200/base.jpg",
+        img: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H1200/base-colour.jpg",
+        jpg: "",
+        alt: "H1200"
+      },
+      {
+        stageIndex: 1,
+        alt: "C40000",
+        src: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H1200/C40000/colour-1.png",
+        jpg: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H1200/C40000/colour-1.jpg",
+        img: "https://d105txpzekqrfa.cloudfront.net/hospitality/colours/C40000.jpg"
+      }
+    ];
+
+    this.dispatchUpdateCanvasImagesAction(defaultCanvasImages);
   }
 }

@@ -8,15 +8,12 @@ RugBuilder.prototype.btnStageComponent = function() {
 			this.state = {
 				currentStage: R.colorStage
 			}
-
-			console.log('btn stage component !!');
 		}
 
 		/**
 		 *
 		 */
 		mouseEnter = () => {
-			console.log('on mouse enter !!');
 			this.props.highlightCanvasImageOnHover(this.props.index);
 		}
 
@@ -24,10 +21,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 		 *
 		 */
 		mouseLeave = () => {
-			console.log('on mouse leave !!');
 			this.props.removeHighlightOnCanvasImage();
 		}
-
 
 		/**
 		 *
