@@ -26,8 +26,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
 
       this.currentStage = 0;
       store.subscribe(this.handleReduxStoreChange)
-
-      console.log('loaded');
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -41,8 +39,8 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      */
     urlChanged = () => {
       if (
-        this.props.location.pathname ===
-        "/crucial-trading/hospitality-builder/summary"
+      (this.props.location.pathname === "/crucial-trading/hospitality-builder/summary") ||
+        (this.props.location.pathname === "/~crucial-trading/hospitality-builder/summary")
       ) {
         this.setState({'summaryViewMode': true});
       }
@@ -119,6 +117,7 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
 
 
       if (!this.state.summaryViewMode) {
+
         return (
           <HospBuilderView
             changeStage={this.changeStage}
