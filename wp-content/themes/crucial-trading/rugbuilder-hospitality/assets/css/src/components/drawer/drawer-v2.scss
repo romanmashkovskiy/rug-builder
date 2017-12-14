@@ -2,6 +2,10 @@
   width: 348px;
   float: left;
 
+  @media screen and (max-width: 1200px) {
+    width: 190px;
+  }
+
 
   ul.palette-container {
     display: flex;
@@ -13,7 +17,7 @@
     background: #fff;
     box-shadow: -5px 5px 18px 0 rgba(0,0,0,.08);
     overflow-y: scroll;
-    height: 800px;
+    height: calc(100vh - 172px);
 
     li {
       width: 50%;
@@ -21,9 +25,18 @@
       list-style: none;
       margin-bottom: 20px;
 
+      @media screen and (max-width: 1200px) {
+        width: 100%;
+      }
+
       img {
         width: 127px;
         height: 127px;
+
+        @media screen and (max-width: 1200px) {
+          width: 100px;
+          height: 100px;
+        }
       }
     }
   }

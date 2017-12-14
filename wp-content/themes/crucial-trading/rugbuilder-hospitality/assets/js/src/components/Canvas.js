@@ -16,18 +16,12 @@ RugBuilder.prototype.canvasComponent = function () {
      * listen to changes in the redux store and update state to changes in store
      */
     handleReduxStoreChange = () => {
-      console.log('Canvas --> store changed !!!')
-      console.log(store.getState());
-
       this.setState({
         storeCanvasImages: store.getState().canvasImages[0]
       })
     }
 
     render() {
-      console.log('Canvas ---> store canvas images');
-      console.log(this.state.storeCanvasImages);
-
       return (
         <div
           id="hosp_builder_img-container"

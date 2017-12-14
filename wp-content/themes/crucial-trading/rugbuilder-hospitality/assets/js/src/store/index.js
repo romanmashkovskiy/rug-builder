@@ -82,7 +82,7 @@ class ReduxStore {
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
 
-    this.test()
+    // this.test()
   };
 
 
@@ -102,7 +102,7 @@ class ReduxStore {
     /**
      * FOR TESTING ONLY
      */
-     
+
     const defaultCanvasImages = [
       {
         stageIndex: 0,
