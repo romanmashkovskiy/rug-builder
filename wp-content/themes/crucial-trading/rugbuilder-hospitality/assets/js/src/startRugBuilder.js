@@ -7,7 +7,7 @@ RugBuilder.prototype.start = function() {
 		.then(() => { initializeComponents() });
 
 	function initializeComponents() {
-		console.log('ini components !!');
+		console.log('start hospitality builder');
 		R.AppComponent();
 
 
