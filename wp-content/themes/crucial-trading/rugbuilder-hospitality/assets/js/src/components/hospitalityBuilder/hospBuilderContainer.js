@@ -42,6 +42,7 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       (this.props.location.pathname === "/crucial-trading/hospitality-builder/summary") ||
         (this.props.location.pathname === "/~crucial-trading/hospitality-builder/summary")
       ) {
+        console.log('go to summary');
         this.setState({'summaryViewMode': true});
       }
     }
