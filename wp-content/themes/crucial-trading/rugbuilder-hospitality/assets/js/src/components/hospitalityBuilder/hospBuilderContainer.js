@@ -38,6 +38,8 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * detected change in the url
      */
     urlChanged = () => {
+      console.log('url change');
+
       if (
       (this.props.location.pathname === "/crucial-trading/hospitality-builder/summary") ||
         (this.props.location.pathname === "/~crucial-trading/hospitality-builder/summary")
