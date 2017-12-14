@@ -35,16 +35,17 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
                 }
               >
                 {
-                  props.storeCanvasImages.map((image, index) => {
-                    return <img
-                      alt={ image.alt }
-                      src={ image.src }
-                      key={index}
-                      className={
-                        image.stageIndex === props.stageInFocus ?
-                          'in-focus' : 'out-focus'
-                      } />
-                  })
+                  props.storeCanvasImages &&
+                    props.storeCanvasImages.map((image, index) => {
+                      return <img
+                        alt={ image.alt }
+                        src={ image.src }
+                        key={index}
+                        className={
+                          image.stageIndex === props.stageInFocus ?
+                            'in-focus' : 'out-focus'
+                        } />
+                    })
                 }
               </div>
 
