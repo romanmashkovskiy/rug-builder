@@ -15,14 +15,18 @@
      $data = @file_get_contents($url);
 
      $result = json_decode($data, true);
-     $distance = $result['rows'][0]['elements'][0]['distance']['text'];
 
-     // Remove all non-numeric in string
-     $non_num = preg_replace("/[^0-9,.]/", "", $distance); // from 20.4 Km to 20.4
+     // Data returned from Google can sometimes be null or empty
+     if ($result['rows']) {
+       $distance = $result['rows'][0]['elements'][0]['distance']['text'];
 
-     $miles = ($non_num / 1.609344); // equals miles
+       // Remove all non-numeric in string
+       $non_num = preg_replace("/[^0-9,.]/", "", $distance); // from 20.4 Km to 20.4
 
-     return round($miles) . ' miles'; // Convert Km to m
+       $miles = ($non_num / 1.609344); // equals miles
+
+       return round($miles) . ' miles'; // Convert Km to m
+     }
    }
    return '';
  }
@@ -36,14 +40,22 @@
      $data = @file_get_contents($url);
 
      $result = json_decode($data, true);
-     $distance = $result['rows'][0]['elements'][0]['distance']['text'];
 
-     // Remove all non-numeric in string
-     $non_num = preg_replace("/[^0-9,.]/", "", $distance); // from 20.4 Km to 20.4
+     // Data returned from Google can sometimes be null or empty
+     if ($result['rows']) {
 
-     $miles = ($non_num / 1.609344); // equals miles
+      $distance = $result['rows'][0]['elements'][0]['distance']['text'];
 
-     return round($miles); // Convert Km to m
+      // Remove all non-numeric in string
+      $non_num = preg_replace("/[^0-9,.]/", "", $distance); // from 20.4 Km to 20.4
+
+      $miles = ($non_num / 1.609344); // equals miles
+
+      return round($miles); // Convert Km to m
+
+     }
+
+
    }
-   return '';
+   return 0;
  }
