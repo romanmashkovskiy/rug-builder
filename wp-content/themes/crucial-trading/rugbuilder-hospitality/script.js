@@ -66,10 +66,6 @@ directionalLight.position.set( 0, 0, 1 );
 scene.add( camera );
 scene.add( spotLight );
 scene.add( spotLight2 );
-//	scene.add( ambientLight );
-//	scene.add( directionalLight );
-
-// Load single JSON files (default view)
 
 var singleFiles   = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
 var singleObjects = [];
@@ -178,7 +174,7 @@ function loaded() {
 					scene.children[t].material = mesh;
 
 					cotton = mesh;
-				}						
+				}
 			}
 		}
 	);
@@ -188,7 +184,7 @@ function loaded() {
 	loadSingle = function() {
 
 		var length = scene.children.length;
-		
+
 		for ( var r = 3; r < length; r++ ) {
 			scene.remove( scene.children[3] );
 		}
@@ -224,7 +220,7 @@ function loaded() {
 				object.name = name;
 
 				obj.push(object)
-			}				
+			}
 		}
 
 		var singleLowFiles   = ['border-east', 'border-north', 'border-south', 'border-west', 'center', 'stitches', 'trim-east', 'trim-north', 'trim-south', 'trim-west'];
@@ -279,7 +275,7 @@ function loaded() {
 				loadSingleLow = function() {
 
 					var length = scene.children.length;
-					
+
 					for ( var r = 3; r < length; r++ ) {
 						scene.remove( scene.children[3] );
 					}
@@ -302,7 +298,7 @@ function loaded() {
 				loadDouble = function() {
 
 					var length = scene.children.length;
-					
+
 					for ( var r = 3; r < length; r++ ) {
 						scene.remove( scene.children[3] );
 					}
@@ -325,7 +321,7 @@ function loaded() {
 				loadDoubleLow = function() {
 
 					var length = scene.children.length;
-					
+
 					for ( var r = 3; r < length; r++ ) {
 						scene.remove( scene.children[3] );
 					}

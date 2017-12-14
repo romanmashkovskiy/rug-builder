@@ -42,8 +42,8 @@ function load(options, secret_DEPRECIATED) {
 	}
 
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.5.4/pubsub.min.js"></script>');
-	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>');
-	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>');
+	// document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>');
+	// document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>');
 
 
@@ -51,22 +51,26 @@ function load(options, secret_DEPRECIATED) {
 	var devMode = true;
 
 	if (window.location.hostname === 'localhost' && devMode) {
-		console.log('dev');
+		console.log('DEV MODE !!');
 		document.write('<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.js"></script>');
 		document.write('<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.css">');
 	}
 
-	if (window.location.hostname === 'vps.89hosting.co.uk' && devMode) {
-		console.log('staging');
+	else if (window.location.hostname === 'vps.89hosting.co.uk' && devMode) {
+		console.log('STAGING');
 		document.write('<script src="http://vps.89hosting.co.uk/~crucialtrading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.js"></script>');
 		document.write('<link rel="stylesheet" href="http://vps.89hosting.co.uk/~crucialtrading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.css">');
 	}
 
 	else {
+		console.log('PRODUCTION');
 		document.write('<link rel="stylesheet" href="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.css">');
 		document.write('<script src="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.js"></script>');
 	}
 
 
 	document.write('<script>var rugBuilder = new RugBuilder("website", ' + submit + ', ' + restart + ', ' + exit + '); rugBuilder.start();</script>');
+	document.write('<script> var ReduxStore = new ReduxStore(); </script>');
+
+	// var ReduxStore = new ReduxStore();
 }

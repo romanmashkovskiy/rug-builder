@@ -1,8 +1,9 @@
 RugBuilder.prototype.addDOMElements = function(method, url, callback, responseType) {
 
 	const DOM_ELEMENTS = {
-		PROGRESS_MENU : document.createElement('div'),
 		DRAWER        : document.createElement('div'),
+		PROGRESS_MENU : document.createElement('div'),
+
 		IMG_CONTAINER : {
 			CONTAINER : document.createElement('div'),
 			ZERO      : document.createElement('div'),
@@ -34,8 +35,9 @@ RugBuilder.prototype.addDOMElements = function(method, url, callback, responseTy
 		EMAIL_FORM    : document.createElement('div')
 	}
 
+	DOM_ELEMENTS.DRAWER.setAttribute('id', 'hospBuilderDrawer');
 	DOM_ELEMENTS.PROGRESS_MENU.setAttribute('id', 'hosp_builder_progress-menu');
-	DOM_ELEMENTS.DRAWER.setAttribute('id', 'hosp_builder_drawer');
+
 	DOM_ELEMENTS.IMG_CONTAINER.CONTAINER.setAttribute('id', 'hosp_builder_img-container');
 	DOM_ELEMENTS.IMG_CONTAINER.ZERO.setAttribute('id', 'hosp_builder_color-0');
 	DOM_ELEMENTS.IMG_CONTAINER.ONE.setAttribute('id', 'hosp_builder_color-1');
@@ -85,27 +87,41 @@ RugBuilder.prototype.addDOMElements = function(method, url, callback, responseTy
 	DOM_ELEMENTS.CHOICES.CONTAINER.appendChild(DOM_ELEMENTS.CHOICES.NINE);
 
 	if ( document.getElementById('hospitality-builder') !== null ) {
-		document.getElementById('hospitality-builder').appendChild(DOM_ELEMENTS.PROGRESS_MENU);
 		document.getElementById('hospitality-builder').appendChild(DOM_ELEMENTS.DRAWER);
+		document.getElementById('hospitality-builder').appendChild(DOM_ELEMENTS.PROGRESS_MENU);
+
 		document.getElementById('hospitality-builder').appendChild(DOM_ELEMENTS.IMG_CONTAINER.CONTAINER);
 		document.getElementById('hospitality-builder').appendChild(DOM_ELEMENTS.CHOICES.CONTAINER);
 		document.getElementById('hospitality-builder').appendChild(DOM_ELEMENTS.LITTLE_LOADER);
 		document.getElementById('hospitality-builder').appendChild(DOM_ELEMENTS.SUBMIT_SCREEN);
-	} else {
+		return;
+	}
 
 		const builder = document.createElement('div');
 		builder.setAttribute('id', 'hospitality-builder');
 
-		builder.appendChild(DOM_ELEMENTS.PROGRESS_MENU);
 		builder.appendChild(DOM_ELEMENTS.DRAWER);
-		builder.appendChild(DOM_ELEMENTS.IMG_CONTAINER.CONTAINER);
-		builder.appendChild(DOM_ELEMENTS.CHOICES.CONTAINER);
+
+		const mainContainer = document.createElement('div');
+		mainContainer.setAttribute('id', 'mainContainer');
+		mainContainer.appendChild(DOM_ELEMENTS.PROGRESS_MENU);
+		builder.appendChild(mainContainer);
+
+		// builder.appendChild(DOM_ELEMENTS.PROGRESS_MENU);
+		// builder.appendChild(DOM_ELEMENTS.IMG_CONTAINER.CONTAINER);
+		builder.appendChild(mainContainer);
+
+		const canvas = document.createElement('div');
+		canvas.setAttribute('id', 'canvas');
+		canvas.appendChild(DOM_ELEMENTS.IMG_CONTAINER.CONTAINER);
+		canvas.appendChild(DOM_ELEMENTS.CHOICES.CONTAINER);
+		mainContainer.appendChild(canvas);
+
+
+
 		builder.appendChild(DOM_ELEMENTS.LITTLE_LOADER);
 		builder.appendChild(DOM_ELEMENTS.SUBMIT_SCREEN);
 		builder.appendChild(DOM_ELEMENTS.EMAIL_FORM);
 
 		document.body.appendChild(builder);
-	}
-
-		
 }

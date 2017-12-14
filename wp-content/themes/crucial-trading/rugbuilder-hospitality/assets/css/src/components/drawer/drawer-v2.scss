@@ -1,0 +1,58 @@
+.drawerv2-container {
+  width: 348px;
+  float: left;
+
+  @media screen and (max-width: 1200px) {
+    width: 190px;
+  }
+
+
+  ul.palette-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+    background: #fff;
+    box-shadow: -5px 5px 18px 0 rgba(0,0,0,.08);
+    overflow-y: scroll;
+    height: calc(100vh - 172px);
+
+    li {
+      width: 50%;
+      text-align: center;
+      list-style: none;
+      margin-bottom: 20px;
+
+      @media screen and (max-width: 1200px) {
+        width: 100%;
+      }
+
+      img {
+        width: 127px;
+        height: 127px;
+
+        @media screen and (max-width: 1200px) {
+          width: 100px;
+          height: 100px;
+        }
+      }
+    }
+  }
+
+  ul.palette-container::-webkit-scrollbar {
+      width: 0.5em;
+  }
+
+  ul.palette-container::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+    background-clip: content-box;
+  }
+
+  ul.palette-container::-webkit-scrollbar-thumb {
+  	border-radius: 10px;
+    height: 5px;
+  	background-color: rgba(0,0,0,0.7);
+  }
+}

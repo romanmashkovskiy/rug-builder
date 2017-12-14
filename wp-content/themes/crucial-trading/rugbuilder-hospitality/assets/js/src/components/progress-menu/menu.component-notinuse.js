@@ -82,7 +82,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 				submitBtn = '';
 			}
 
-			const LOGO = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110114837/logo-1.png';
+			const LOGO = '';
 
 			return (
 				<div className="hosp_builder_progress-menu__container">
@@ -92,6 +92,7 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 						<BtnRestartComponent />
 						<BtnExitComponent />
 					</div>
+
 					<div className="hosp_builder_progress-menu__bottom">
 						<ul className="hosp_builder_progress-menu__stages">
 							{ STAGES_HTML }
@@ -102,5 +103,5 @@ RugBuilder.prototype.menuComponent = function(BtnExitComponent, BtnRestartCompon
 		}
 	});
 
-	ReactDOM.render( <MenuComponent />, document.querySelector( '#hosp_builder_progress-menu' ) );
+	// ReactDOM.render( <MenuComponent />, document.querySelector( '#hosp_builder_progress-menu' ) );
 }

@@ -1,5 +1,5 @@
 class RugBuilder {
-	constructor( context, showSubmit, showRestart, showExit ) {
+	constructor( context, showSubmit, showRestart, showExit, urlPath ) {
 		// Coloured Stucture Images
 		this.coloredStructureImages = false;
 
@@ -8,6 +8,8 @@ class RugBuilder {
 		this.showSubmit  = showSubmit;
 		this.showRestart = showRestart;
 		this.showExit    = showExit;
+
+		// this.imgUrl = templateUrl;
 
 		// Site
 		this.imageContainer = document.querySelector('#hosp_builder_img-container');
