@@ -7,13 +7,15 @@
  * @return String
  */
  function calc_distance($from) {
+   $from = str_replace(' ', '', $from);
    $to = $_GET['postcode'];
 
    if ($from && $to) {
-     $base_url = 'https://maps.googleapis.com/maps/api/directions/xml?&key=AIzaSyCHgDqWhs3PQTM-qzsZwLQO99UhFgVi5Tk&sensor=false';
-     $xml = simplexml_load_file("$base_url&origin=$from&destination=$to");
-     $distance = (string)$xml->route->leg->distance->text;
-     $duration = (string)$xml->route->leg->duration->text;
+     $url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=$from&destinations=$to&mode=driving&language=en-EN&sensor=false";
+     $data = @file_get_contents($url);
+
+     $result = json_decode($data, true);
+     $distance = $result['rows'][0]['elements'][0]['distance']['text'];
 
      // Remove all non-numeric in string
      $non_num = preg_replace("/[^0-9,.]/", "", $distance); // from 20.4 Km to 20.4
@@ -26,13 +28,16 @@
  }
 
  function calc_distance_number($from) {
+   return 0;
    $to = $_GET['postcode'];
+   $from = str_replace(' ', '', $from);
 
    if ($from && $to) {
-     $base_url = 'https://maps.googleapis.com/maps/api/directions/xml?&key=AIzaSyCHgDqWhs3PQTM-qzsZwLQO99UhFgVi5Tk&sensor=false';
-     $xml = simplexml_load_file("$base_url&origin=$from&destination=$to");
-     $distance = (string)$xml->route->leg->distance->text;
-     $duration = (string)$xml->route->leg->duration->text;
+     $url = "http://maps.googleapis.com/maps/api/distancematrix/json?origins=$from&destinations=$to&mode=driving&language=en-EN&sensor=false";
+     $data = @file_get_contents($url);
+
+     $result = json_decode($data, true);
+     $distance = $result['rows'][0]['elements'][0]['distance']['text'];
 
      // Remove all non-numeric in string
      $non_num = preg_replace("/[^0-9,.]/", "", $distance); // from 20.4 Km to 20.4
