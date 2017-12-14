@@ -31,7 +31,7 @@ if ( !$allowed ) {
 
 ?>
 
-<script> console.log('V4'); </script>
+<script> console.log('V5'); </script>
 
 <!doctype html>
 <html>
@@ -65,6 +65,7 @@ if ( !$allowed ) {
 
 <body>
 	<div id="root"> </div>
+
 
 	<?
 		$domain = $_SERVER['SERVER_NAME'];

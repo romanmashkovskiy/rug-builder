@@ -8,7 +8,7 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
   const HospBuilderView = R.hospBuilderViewComponent();
   const HosBuilderSummaryView = R.hospBuilderSummaryViewComponent();
 
-
+  console.log('hospitality  builder component');
 
   class HospitalityBuilder extends React.Component {
     constructor() {
@@ -26,6 +26,8 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
 
       this.currentStage = 0;
       store.subscribe(this.handleReduxStoreChange)
+
+      console.log('loaded');
     }
 
     componentDidUpdate(prevProps, prevState) {
