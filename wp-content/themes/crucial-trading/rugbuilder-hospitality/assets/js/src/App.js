@@ -19,13 +19,23 @@ RugBuilder.prototype.AppComponent = function () {
       <div>
         <Switch>
           <Route
-
             path="/crucial-trading/hospitality-builder/"
             component={hospitalityBuilder}
           />
 
           <Route
             path="/crucial-trading/hospitality-builder/summary"
+            component={summary}
+          />
+
+
+          <Route
+            path="/~crucialtrading/hospitality-builder/"
+            component={hospitalityBuilder}
+          />
+
+          <Route
+            path="/~crucialtrading/hospitality-builder/"
             component={summary}
           />
         </Switch>
