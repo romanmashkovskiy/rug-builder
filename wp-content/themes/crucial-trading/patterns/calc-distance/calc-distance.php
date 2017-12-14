@@ -28,7 +28,6 @@
  }
 
  function calc_distance_number($from) {
-   return 0;
    $to = $_GET['postcode'];
    $from = str_replace(' ', '', $from);
 
