@@ -33,6 +33,8 @@ config.codekit
 license.txt
 readme.html
 
+.htaccess
+
 *.zip
 
 /.sass-cache/*
