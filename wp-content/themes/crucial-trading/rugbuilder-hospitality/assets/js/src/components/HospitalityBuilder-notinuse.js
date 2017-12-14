@@ -37,7 +37,6 @@ RugBuilder.prototype.HospitalityBuilderComponentNotInUse = function () {
         this.urlChanged();
       }
 
-      
     }
 
     /**

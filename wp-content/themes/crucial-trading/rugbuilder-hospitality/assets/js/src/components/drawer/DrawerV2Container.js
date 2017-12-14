@@ -102,9 +102,51 @@ RugBuilder.prototype.drawerV2Component = function() {
     };
 
     /**
+     * loop through colors for structure code and add basic colors
+     */
+    updateDefaultColorsForStructure = (structure, index) => {
+      console.log('update default color for structure');
+
+      const col = 'https://d105txpzekqrfa.cloudfront.net/hospitality/colours/' +
+ 			  'B10000.jpg';
+
+      const url = 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/' +
+				structure + '/B10000/colour-' +
+				index + '.png';
+
+ 			const jpg = 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/' +
+ 				structure + '/B10000/colour-' +
+ 				index + '.jpg';
+
+        R.updateCanvasImageService({
+          stageIndex: index ,
+          alt: 'B10000',
+          src: url,
+          jpg: jpg,
+          img: col,
+        });
+     }
+
+    /**
      * update structure menu
      */
     updateStructure = (code) => {
+      console.log('UPDATE STRUCTURE');
+      console.log(code);
+      console.log('<-------');
+
+      const colors = R.numStructureColors[code];
+
+      let x;
+      for (x = 0; x < colors; x++) {
+        console.log('LOOP');
+        console.log('color -->');
+        console.log(x + 1);
+
+        this.updateDefaultColorsForStructure(code, x + 1);
+      }
+
+
       /* directly changing another components properties, should just call a
         function in rugbuider this will handle all its on changes and its properties
         should be private */

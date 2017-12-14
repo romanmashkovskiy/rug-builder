@@ -4,13 +4,11 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
   const ProgressMenuV2 = R.progressMenuV2Component();
   const ImageChoice = R.imageChoiceComponent();
 
-  console.log('builder view');
 
   /**
    *
    */
   const BuilderView = (props) => {
-    console.log('builder view here !!');
 
     return (
       <div id="hospitality-builder">

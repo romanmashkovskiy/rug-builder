@@ -11,8 +11,6 @@ RugBuilder.prototype.AppComponent = function () {
   const hospitalityBuilder = R.HospitalityBuilderComponent();
   const summary = R.summaryComponent();
 
-  console.log('app component');
-
 
   const App = () => (
     <Router>
@@ -27,7 +25,6 @@ RugBuilder.prototype.AppComponent = function () {
             path="/crucial-trading/hospitality-builder/summary"
             component={summary}
           />
-
 
           <Route
             path="/~crucialtrading/hospitality-builder/"
@@ -49,6 +46,4 @@ RugBuilder.prototype.AppComponent = function () {
     </Provider>,
     document.getElementById('root')
   );
-
-  console.log('rendered at root');
 }

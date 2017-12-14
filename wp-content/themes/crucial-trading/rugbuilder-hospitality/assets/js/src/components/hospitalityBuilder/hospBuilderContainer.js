@@ -8,8 +8,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
   const HospBuilderView = R.hospBuilderViewComponent();
   const HosBuilderSummaryView = R.hospBuilderSummaryViewComponent();
 
-  console.log('hospitality  builder component');
-
   class HospitalityBuilder extends React.Component {
     constructor() {
       super();
@@ -38,13 +36,10 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * detected change in the url
      */
     urlChanged = () => {
-      console.log('url change');
-
       if (
       (this.props.location.pathname === "/crucial-trading/hospitality-builder/summary") ||
         (this.props.location.pathname === "/~crucialtrading/hospitality-builder/summary")
       ) {
-        console.log('go to summary');
         this.setState({'summaryViewMode': true});
       }
     }
@@ -114,11 +109,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
 
 
     render() {
-
-      console.log('fade other canvas images --->');
-      console.log(this.state.fadeOtherCanvasImages);
-
-
       if (!this.state.summaryViewMode) {
 
         return (

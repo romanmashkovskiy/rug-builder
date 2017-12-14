@@ -9,7 +9,7 @@ RugBuilder.prototype.updateCanvasImageService = function(newImage) {
    * update canvas images in Redux Store
    */
   const updateCanvasImage = (newImage) => {
-    console.log('update canvas image');
+    console.log('<-- update canvas image -->');
 
     var newImages = store.getState().canvasImages[0];
 

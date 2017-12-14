@@ -4,7 +4,6 @@ RugBuilder.prototype.btnExitComponent = function() {
 	class BtnExitComponent extends React.Component {
 		constructor() {
 			super();
-			console.log('watch me @@ !!');
 		}
 
 		render() {
