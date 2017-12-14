@@ -28,7 +28,6 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
           />
 
           <div id="canvas" className="canvas-container">
-
               {/* Canvas */}
               <div
                 id="hosp_builder_img-container"

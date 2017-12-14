@@ -72,7 +72,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
 
       this.setState({
         stages     : stages,
-        showSubmit : false
+      
       });
     }
 
