@@ -1,5 +1,5 @@
 #canvas {
-  display: block;
+  // display: block;
 }
 
 
@@ -52,6 +52,7 @@
       .canvas.summary {
         margin: 0;
         margin-top: 42px;
+        display: block;
 
         @media screen and (max-width: 1200px) {
           width: 327px;

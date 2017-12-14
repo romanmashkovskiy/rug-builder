@@ -21,44 +21,51 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
 
         <div id="mainContainer">
           <DrawerV2
-          selectNewImage={props.selectNewImage}
+            selectNewImage={props.selectNewImage}
           />
 
-          <div id="canvas">
-            {/* Canvas */}
-            <div
-              id="hosp_builder_img-container"
-              className={
-                "canvas " +
-                (props.fadeOtherCanvasImages ? 'fade-images' : '')
-              }
-            >
-              {
-                props.storeCanvasImages.map((image, index) => {
-                  return <img
-                    alt={ image.alt }
-                    src={ image.src }
-                    key={index}
-                    className={
-                      image.stageIndex === props.stageInFocus ?
-                        'in-focus' : 'out-focus'
-                    } />
-                })
-              }
-            </div>
+          <div id="canvas" className="canvas-container">
 
-            {/* Structure/Color choices (thumbnails) */}
-            <div id="hosp_builder_choices">
-              {
-                props.canvasImages.map((canvasImage, index) => {
-                  return <ImageChoice
-                    src={canvasImage.img}
-                    alt={canvasImage.alt}
-                    stage={canvasImage.stageIndex}
-                    key={index} />
-                })
-              }
-            </div>
+              {/* Canvas */}
+              <div
+                id="hosp_builder_img-container"
+                className={
+                  "canvas " +
+                  (props.fadeOtherCanvasImages ? 'fade-images' : '')
+                }
+              >
+                {
+                  props.storeCanvasImages.map((image, index) => {
+                    return <img
+                      alt={ image.alt }
+                      src={ image.src }
+                      key={index}
+                      className={
+                        image.stageIndex === props.stageInFocus ?
+                          'in-focus' : 'out-focus'
+                      } />
+                  })
+                }
+              </div>
+
+              <div className="spacer"></div>
+
+              {/* Structure/Color choices (thumbnails) */}
+              <div
+                id="hosp_builder_choices"
+                className="choice-thumbnail-container"
+              >
+                {
+                  props.canvasImages.map((canvasImage, index) => {
+                    return <ImageChoice
+                      src={canvasImage.img}
+                      alt={canvasImage.alt}
+                      stage={canvasImage.stageIndex}
+                      key={index} />
+                  })
+                }
+              </div>
+
           </div>
         </div>
       </div>

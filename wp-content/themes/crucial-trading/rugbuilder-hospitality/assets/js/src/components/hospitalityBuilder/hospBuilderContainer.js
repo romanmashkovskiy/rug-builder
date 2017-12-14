@@ -21,7 +21,7 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
         stageInFocus: 0,
         selectedStructure: {},
         storeCanvasImages: store.getState().canvasImages[0],
-        summaryViewMode: true
+        summaryViewMode: false
       }
 
       this.currentStage = 0;
@@ -111,6 +111,11 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
 
 
     render() {
+
+      console.log('fade other canvas images --->');
+      console.log(this.state.fadeOtherCanvasImages);
+
+
       if (!this.state.summaryViewMode) {
         return (
           <HospBuilderView
@@ -121,7 +126,7 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
             fadeOtherCanvasImages={this.state.fadeOtherCanvasImages}
             storeCanvasImages={this.state.storeCanvasImages}
             selectNewImage={this.selectNewImage}
-            stageInFocus={this.state.storeCanvasImages}
+            stageInFocus={this.state.stageInFocus}
           />
         )
       }
