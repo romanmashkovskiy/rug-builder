@@ -85,7 +85,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
         return;
       }
 
-      this.setState({ showSubmit : false });
+      // this.setState({ showSubmit : false });
     }
 
     render() {

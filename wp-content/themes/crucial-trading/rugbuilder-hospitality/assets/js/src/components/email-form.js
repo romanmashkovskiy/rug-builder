@@ -17,6 +17,9 @@ RugBuilder.prototype.emailForm = function(choices) {
 			// const postUrl = window.location.href;
 			let apiUrl = '';
 
+			/**
+			 * LOGIC NEEDS TO BE IN A GLOBAL FILE
+			 */
 			if (window.location.hostname === 'localhost') {
 				apiUrl = 'http://localhost:8888/crucial-trading/';
 			} else if (window.location.hostname == 'vps.89hosting.co.uk') {
@@ -27,9 +30,6 @@ RugBuilder.prototype.emailForm = function(choices) {
 
 			apiUrl += 'wp-json/api/v1/';
 			const postUrl = `${apiUrl}email-hospitality-rug-choices`;
-
-			console.log('post url --->');
-			console.log(postUrl);
 
 			req.open('POST', postUrl);
 			req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -42,24 +42,22 @@ RugBuilder.prototype.emailForm = function(choices) {
 				let msg = '';
 
 				switch ( res ) {
-
 					case 'invalid email' :
-						msg = 'Sorry, your email is invalid. Please ensure you have typed it correctly and try again.';
+						msg = 'Sorry, your email is invalid. Please ensure you have typed ' +
+							'it correctly and try again.';
 						break;
 
 					case 'success' :
-						msg = 'Thank you, an email detailing your selections has been received. You will hear from us shortly.';
+						msg = 'Thank you, an email detailing your selections has been received. ' +
+							'You will hear from us shortly.';
 						break;
 
 					default :
 						msg = 'Sorry, an error has occured. Please try again.';
-
 				}
 
 				document.querySelector('#hosp_builder_email-response').innerText = msg;
-
 			}
-
 		},
 
 		render: function() {

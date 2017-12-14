@@ -19,7 +19,8 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
         stageInFocus: 0,
         selectedStructure: {},
         storeCanvasImages: store.getState().canvasImages[0],
-        summaryViewMode: false
+        summaryViewMode: false,
+        showEmailModal: false
       }
 
       this.currentStage = 0;
@@ -107,6 +108,15 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       this.setState({fadeOtherCanvasImages: false})
     }
 
+    /**
+     *
+     */
+    toggleEmailVisible = () => {
+      console.log('toggle email visible');
+
+      this.setState({showEmailModal: !this.state.showEmailModal});
+    }
+
 
     render() {
       if (!this.state.summaryViewMode) {
@@ -129,6 +139,8 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
         <HosBuilderSummaryView
           fadeOtherCanvasImages={false}
           storeCanvasImages={this.state.storeCanvasImages}
+          toggleEmailVisible={this.toggleEmailVisible}
+          showEmailModal={this.state.showEmailModal}
         />
       )
     }
