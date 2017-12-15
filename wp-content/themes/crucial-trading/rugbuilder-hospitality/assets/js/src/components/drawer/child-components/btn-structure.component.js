@@ -26,6 +26,8 @@ RugBuilder.prototype.structureItemComponent = function() {
 			};
 
 			this.props.selectNewImage(newImage);
+
+			R.updateCanvasImageService(newImage);
 			this.props.updateStructure(this.props.code);
 
 			// const RS = new ReduxStore();
@@ -34,7 +36,6 @@ RugBuilder.prototype.structureItemComponent = function() {
 			// 	RS.getMutateSelectedStructureAction(newImage)
 			// );
 
-			R.updateCanvasImageService(newImage);
 			// RS.dispatchAction(newImage);
 			// console.log(RS.getState());
 		}

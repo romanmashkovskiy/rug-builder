@@ -30,7 +30,6 @@ RugBuilder.prototype.progressMenuV2Component = function () {
         store.getState().canvasImages[0][0].alt : null;
 
       if (structureCode) {
-        console.log('is structure code !!');
         this.structureMutated(structureCode);
       }
     }
@@ -44,9 +43,6 @@ RugBuilder.prototype.progressMenuV2Component = function () {
       })
 
       this.structureMutated(store.getState().canvasImages[0][0].alt);
-
-      console.log('alt change');
-      console.log(store.getState().canvasImages[0]);
     }
 
     /**
@@ -72,7 +68,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
 
       this.setState({
         stages     : stages,
-      
+
       });
     }
 
@@ -89,7 +85,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
         return;
       }
 
-      this.setState({ showSubmit : false });
+      // this.setState({ showSubmit : false });
     }
 
     render() {

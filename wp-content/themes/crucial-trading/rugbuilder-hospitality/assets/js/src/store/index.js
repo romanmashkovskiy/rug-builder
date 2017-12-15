@@ -87,13 +87,10 @@ class ReduxStore {
 
 
   dispatchAction(newImage) {
-    console.log('dispatch action');
-    console.log(newImage);
     this.store.dispatch(this.mutateSelectedStructureAction(newImage));
   }
 
   dispatchUpdateCanvasImagesAction(updatedCanvasImages) {
-    console.log('dispatch update canvas image');
     this.store.dispatch(this.updateCanvasImages(updatedCanvasImages));
   }
 

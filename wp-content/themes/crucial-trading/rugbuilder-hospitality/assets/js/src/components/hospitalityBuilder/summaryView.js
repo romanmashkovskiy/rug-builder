@@ -1,6 +1,8 @@
 RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
   const R = rugBuilder;
   const ProgressMenuV2 = R.progressMenuV2Component();
+  const EmailModal = R.EmailModalComponent();
+
 
 
   /**
@@ -90,7 +92,10 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
 
           <div className="spacer"></div>
 
-          <button className="default fixed-width-195">
+          <button
+            className="default fixed-width-195"
+            onClick={(e) => props.toggleEmailVisible(e)}
+          >
             EMAIL
           </button>
         </div>
@@ -105,24 +110,30 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
     x.className = 'summary-view';
 
     return (
-      <div id="hospitality-builder" className="hospitality-builder summary-view">
-        <ProgressMenuV2
-          changeStage={props.changeStage}
-          selectedCanvasImages={props.canvasImages}
-          highlightCanvasImageOnHover={props.highlightCanvasImageOnHover}
-          removeHighlightOnCanvasImage={props.removeHighlightOnCanvasImage}
-          headerText="YOUR PREVIEW"
-        />
+      <div>
+        <div id="hospitality-builder" className="hospitality-builder summary-view">
+          <ProgressMenuV2
+            changeStage={props.changeStage}
+            selectedCanvasImages={props.canvasImages}
+            highlightCanvasImageOnHover={props.highlightCanvasImageOnHover}
+            removeHighlightOnCanvasImage={props.removeHighlightOnCanvasImage}
+            headerText="YOUR PREVIEW"
+          />
 
-          <div id="mainContainer" className="summary-view">
-            {/* Canvas - Left Side */}
-            <Canvas props={props} />
+            <div id="mainContainer" className="summary-view">
+              {/* Canvas - Left Side */}
+              <Canvas props={props} />
 
-            <div className="summary__spacer"></div>
+              <div className="summary__spacer"></div>
 
-            {/* Table - Right Side */}
-            <ChoicesTable props={props} />
+              {/* Table - Right Side */}
+              <ChoicesTable props={props} />
+            </div>
           </div>
+
+          {props.showEmailModal &&
+            <EmailModal />
+          }
         </div>
   )}
 

@@ -2,6 +2,7 @@ RugBuilder.prototype.summaryViewComponent = function() {
   const R = rugBuilder;
   const ProgressMenuV2 = R.progressMenuV2Component();
   const Canvas = R.canvasComponent();
+  const EmailModal = R.EmailModalComponent();
 
   /**
    *
@@ -19,6 +20,9 @@ RugBuilder.prototype.summaryViewComponent = function() {
         <Canvas
           fadeOtherCanvasImages={false}
         />
+
+        email modal ??????
+        <EmailModal />
       </div>
   )}
 
