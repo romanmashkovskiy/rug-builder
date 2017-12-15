@@ -107,7 +107,8 @@ function createMap( latLng, zoom, $map ) {
 				var lng       = parseFloat(coordsArr[1]);
 
 				// Marker value ie number
-				var i2 = ukOrOverseas === 'uk' ? (i+1).toString() : '';
+				//var i2 = ukOrOverseas === 'uk' ? (i+1).toString() : '';
+				var i2 = ukOrOverseas === 'uk' ? (i).toString() : '';
 
 
 				markers[i2] = new google.maps.Marker({
@@ -130,8 +131,6 @@ function createMap( latLng, zoom, $map ) {
 					var title = $(title_).text();
 					var distance = $(distance_).text();
 					var website = $(website_).attr('href');
-
-
 					var contentString = (
 						"<div class='g-infowindow'>Hello World</div>"
 					);
