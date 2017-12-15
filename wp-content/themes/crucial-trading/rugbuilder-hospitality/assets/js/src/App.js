@@ -11,6 +11,7 @@ RugBuilder.prototype.AppComponent = function () {
   const hospitalityBuilder = R.HospitalityBuilderComponent();
   const summary = R.summaryComponent();
 
+  console.log('staging update ??');
 
   const App = () => (
     <Router>
