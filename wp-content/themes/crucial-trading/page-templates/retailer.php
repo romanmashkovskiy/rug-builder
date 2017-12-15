@@ -136,46 +136,10 @@ if ( is_array( $_GET ) ) {
  * calculations. However, they use the retailer_loop() which has the mile logic
  * but are not shown to the user.
  */
- if ( !array_key_exists( 'postcode', $_GET ) ) {
-	 echo fixed_retailers('Local Retailers', 'retailer');
- }
 echo fixed_retailers('Online', 'online');
 echo fixed_retailers('Showrooms', 'showroom');
 /******************************************************************************/
 
-
-
-
-
-// if ( count( $uk_retailers ) > 0 ) {
-//
-// 	// echo '<h2 class="page-subtitle">Search Results</h2>';
-// 	// echo '<span></span>';
-// 	// echo '<div class="clearfix" style="display: flex; flex-flow: row wrap">';
-// 	$local_html = (
-// 		"<div class='retailer-result-dropdown panel-group'>
-//       <div class='retailer-result-dropdown__header'>
-// 				<h2>Local Retailers</h2>
-// 			</div>"
-// 	);
-//
-// 	for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
-//
-// 		$id   = $uk_retailers[$i3]->ID;
-// 		$post_type = $uk_retailers[$i3]->post_type;
-// 		$_post_id = $uk_retailers[$i3]->ID;
-// 		$title = $post_id = $uk_retailers[$i3]->post_title;
-// 		$retailer_postcode = get_post_meta($_post_id, "retailer_postcode", true);
-// 		$local_html .= retailer_loop($title, $_post_id, true, false, $iterator = $i3, true, $retailer_postcode);
-// 		echo do_shortcode( '[retailer-card id="' . $id . '" miles="' . $retailer_postcode . '" i="' . $i3 . '"]' );
-// 	}
-//
-// 	$local_html .= (
-// 		"</div>"
-// 	);
-//
-// 	echo $local_html;
-// }
 
 
 
@@ -184,58 +148,6 @@ if ( count( $overseas_retailers ) > 0 ) {
 		echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
 	}
 }
-
-// if ( count( $uk_retailers ) == 0 && count( $overseas_retailers ) == 0 ) {
-// 	$error = 2;
-// }
-//
-// if ( $error && is_array( $_GET ) && ( array_key_exists( 'postcode', $_GET ) || array_key_exists( 'country', $_GET ) ) ) {
-//
-// 	$msg = '';
-//
-// 	switch ( $error ) {
-// 		case 1  : $msg = 'Sorry, we could not find that post code.'; break;
-// 		case 2  : $msg = 'Sorry, there are no retailers in your area.'; break;
-// 		case 10 : $msg = 'Sorry, an error has occured.'; break;
-// 	}
-//
-// 	echo '<h2 class="page-subtitle">' . $msg . '</h2>';
-// }
-
-// $retailer_args = array(
-// 	'post_type' => 'retailer',
-// 	'orderby'   => 'menu_order',
-// 	'order'     => 'ASC',
-// 	'tax_query' => array(
-// 		array(
-// 			'taxonomy' => 'retailer_type',
-// 			'field'    => 'slug',
-// 			'terms'    => 'retailer',
-// 		),
-// 	),
-// );
-//
-//
-// $retailer_query = new WP_Query( $retailer_args );
-//
-// if ( $retailer_query->have_posts() ) :
-//
-// 	echo (
-// 		"<div class='r_card clearfix'>
-// 			<h2 class='page-subtitle'>Local Retailers</h2>
-// 			<span></span>
-// 			<div class='clearfix'>"
-// 	);
-//
-// 	for ( $i3 = 0; $i3 < $retailer_query->post_count; $i3++ ) {
-// 		$id   = $retailer_query->posts[$i3]->ID;
-// 		$dist = 0;
-// 		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
-// 	}
-//
-// 	echo '</div></div>';
-//
-// endif;
 
 
 $showroom_args = array(
