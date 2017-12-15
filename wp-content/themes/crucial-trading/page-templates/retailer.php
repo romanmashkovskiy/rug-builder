@@ -118,7 +118,7 @@ echo do_shortcode( '[logo-nav]' );
 
 echo do_shortcode( '[retailer-search-box]' );
 
-echo render_google_map();
+echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="' . $overseas_center . '" pin-coords="' . $pin_coords . '"]' );
 
 echo switch_views();
 
