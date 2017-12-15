@@ -21,7 +21,7 @@ function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '') {
   		$postcode_filter = filter_var( $postcode_trim, FILTER_SANITIZE_STRING );
 
   		$encoded  = urlencode( $postcode_filter );
-  		$url      = "http://maps.google.com/maps/api/geocode/json?address={$encoded}";
+  		$url      = "https://maps.google.com/maps/api/geocode/json?&key=AIzaSyCHgDqWhs3PQTM-qzsZwLQO99UhFgVi5Tk&address={$encoded}";
   		$json     = file_get_contents( $url );
   		$response = json_decode( $json, true );
 
@@ -128,13 +128,6 @@ function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '') {
     $local_html .= (
       "</div>"
     );
-
-    if ($retailer_type == "Local Retailers") {
-      // Show map and switch views for local retailers
-      // echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="' . $overseas_center . '" pin-coords="' . $pin_coords . '"]' );
-      //
-      // echo switch_views();
-    }
 
     echo $local_html;
   }

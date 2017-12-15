@@ -30,15 +30,14 @@ if ( is_array( $_GET ) ) {
 
 
 		$postcode        = $_GET['postcode'];
-		// $postcode_tags   = strip_tags( $postcode );
-		// $postcode_trim   = trim( $postcode_tags );
-		// $postcode_filter = filter_var( $postcode_trim, FILTER_SANITIZE_STRING );
-		$postcode_str = str_replace(' ', '', $postcode);
-		// $encoded  = urlencode( $postcode_filter );
-		$url      = "http://maps.google.com/maps/api/geocode/json?address={$postcode_str}";
+		$postcode_tags   = strip_tags( $postcode );
+		$postcode_trim   = trim( $postcode_tags );
+		$postcode_filter = filter_var( $postcode_trim, FILTER_SANITIZE_STRING );
+
+		$encoded  = urlencode( $postcode_filter );
+		$url      = "https://maps.google.com/maps/api/geocode/json?&key=AIzaSyCHgDqWhs3PQTM-qzsZwLQO99UhFgVi5Tk&address={$encoded}";
 		$json     = file_get_contents( $url );
 		$response = json_decode( $json, true );
-
 		if ( is_array( $response ) && array_key_exists( 'status', $response ) ) {
 
 			if ( $response['status'] != 'OK' ) {
@@ -52,7 +51,7 @@ if ( is_array( $_GET ) ) {
 				$args = array(
 					'post_type' => 'retailer',
 
-					'posts_per_page' => 10,
+					'posts_per_page' => -1,
 					'tax_query' => array(
 						array(
 							'taxonomy' => 'retailer_type',
@@ -122,11 +121,11 @@ echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="
 
 echo switch_views();
 
+echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
+
 if ( is_array( $_GET ) ) {
 
 	if ( array_key_exists( 'postcode', $_GET ) ) {
-
-		echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
 		echo retailer_acc('Studio Retailers', 'studio');
 	}
 }
@@ -137,6 +136,9 @@ if ( is_array( $_GET ) ) {
  * calculations. However, they use the retailer_loop() which has the mile logic
  * but are not shown to the user.
  */
+ if ( !array_key_exists( 'postcode', $_GET ) ) {
+	 echo fixed_retailers('Local Retailers', 'retailer');
+ }
 echo fixed_retailers('Online', 'online');
 echo fixed_retailers('Showrooms', 'showroom');
 /******************************************************************************/
@@ -200,6 +202,42 @@ if ( count( $overseas_retailers ) > 0 ) {
 // 	echo '<h2 class="page-subtitle">' . $msg . '</h2>';
 // }
 
+// $retailer_args = array(
+// 	'post_type' => 'retailer',
+// 	'orderby'   => 'menu_order',
+// 	'order'     => 'ASC',
+// 	'tax_query' => array(
+// 		array(
+// 			'taxonomy' => 'retailer_type',
+// 			'field'    => 'slug',
+// 			'terms'    => 'retailer',
+// 		),
+// 	),
+// );
+//
+//
+// $retailer_query = new WP_Query( $retailer_args );
+//
+// if ( $retailer_query->have_posts() ) :
+//
+// 	echo (
+// 		"<div class='r_card clearfix'>
+// 			<h2 class='page-subtitle'>Local Retailers</h2>
+// 			<span></span>
+// 			<div class='clearfix'>"
+// 	);
+//
+// 	for ( $i3 = 0; $i3 < $retailer_query->post_count; $i3++ ) {
+// 		$id   = $retailer_query->posts[$i3]->ID;
+// 		$dist = 0;
+// 		echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
+// 	}
+//
+// 	echo '</div></div>';
+//
+// endif;
+
+
 $showroom_args = array(
 	'post_type' => 'retailer',
 	'orderby'   => 'menu_order',
@@ -212,11 +250,8 @@ $showroom_args = array(
 		),
 	),
 );
-// var_dump(222);
 
-?>
 
-<?php
 $showroom_query = new WP_Query( $showroom_args );
 
 if ( $showroom_query->have_posts() ) :

@@ -5,7 +5,7 @@
    	'post_type' => 'retailer',
    	'orderby'   => 'menu_order',
    	'order'     => 'ASC',
-    'posts_per_page' => 5,
+    'posts_per_page' => 3,
    	'tax_query' => array(
    		array(
    			'taxonomy' => 'retailer_type',
