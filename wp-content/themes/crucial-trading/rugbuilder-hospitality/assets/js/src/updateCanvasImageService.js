@@ -9,8 +9,6 @@ RugBuilder.prototype.updateCanvasImageService = function(newImage) {
    * update canvas images in Redux Store
    */
   const updateCanvasImage = (newImage) => {
-    console.log('<-- update canvas image -->');
-
     var newImages = store.getState().canvasImages[0];
 
     if (newImage.stageIndex === 0) {
@@ -23,20 +21,14 @@ RugBuilder.prototype.updateCanvasImageService = function(newImage) {
     const x = checkIfImageExistsForStage(newImages, newImage)
 
     if (x !== -1) {
-      console.log('image exists --> splice !!');
-
       newImages.splice(x, 1, newImage);
       RS.dispatchUpdateCanvasImagesAction(newImages);
       return;
     }
 
-    console.log('new image !!');
-
     /* add new canvas image to array for that stage */
     newImages.push(newImage);
 
-    console.log('new images ---->');
-    console.log(newImages);
     RS.dispatchUpdateCanvasImagesAction(newImages);
   }
 
@@ -46,8 +38,6 @@ RugBuilder.prototype.updateCanvasImageService = function(newImage) {
    * will be reset when a new structure is selected
    */
   const updateStructureInCanvasImages = (newImage) => {
-    console.log('update structures in canvas TT');
-
     const newImages = [newImage];
     // newImages.push(newImage);
     RS.dispatchUpdateCanvasImagesAction(newImages);

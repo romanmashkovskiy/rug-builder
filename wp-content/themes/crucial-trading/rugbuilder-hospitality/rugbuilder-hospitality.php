@@ -59,6 +59,8 @@ if ( !$allowed ) {
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+
 
 	<title>Crucial Trading - Hospitality Builder</title>
 </head>

@@ -14,11 +14,10 @@ RugBuilder.prototype.progressMenuV2Component = function () {
         stages : ['Structure'],
         showSubmit: true,
         currentStage: 0,
-        storeCanvasImages: []
+        storeCanvasImages: store.getState().canvasImages[0]
       }
 
       store.subscribe(this.handleReduxStoreChange)
-      // Router.listen(() => { console.log('url change'); })
     }
 
     componentDidMount() {
@@ -99,6 +98,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
           highlightCanvasImageOnHover={this.props.highlightCanvasImageOnHover}
           removeHighlightOnCanvasImage={this.props.removeHighlightOnCanvasImage}
           headerText={this.props.headerText}
+          disableLinkHover={this.props.disableLinkHover}
         />
     )};
   }

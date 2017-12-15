@@ -24,7 +24,7 @@
 		color: transparentize($main-menu-link-color, 0.25);
 		font-size: 12px;
 		padding: 0;
-		position: absolute;
+		// position: absolute;
 
 		img {
 			position: relative;
@@ -39,20 +39,14 @@
 
 	.hosp_builder_progress-menu__restart {
 		color: #CECECE !important;
-		position: absolute !important;
-		right: 115px;
 	}
 
 	.hosp_builder_progress-menu__exit {
 		color: #CECECE !important;
-		position: absolute !important;
-		right: 15px;
 	}
 
 	.hosp_builder_progress-menu__submit {
 		color: #CECECE !important;
-		position: absolute !important;
-		right: 310px;
 
 		img {
 			transform: rotate(180deg);
@@ -144,7 +138,7 @@
  * V2
  */
 .progress-menu {
-	height: 172px;
+	// height: 172px;
 	background: white;
 	border-left: 1px solid rgb(224,224,224);
 	width: 100%;
@@ -153,10 +147,12 @@
 	box-shadow: 0 2px 20px 0 rgba(0,0,0,0.07);
 
 	.progress-menu__left-side{
-		flex-basis: 440px;
+		flex-basis: auto;
+		width: 348px;
 
 		@media screen and (max-width: 1200px) {
-			flex-basis: 220px;
+			flex-basis: auto;
+			width: 190px;
 		}
 
 		.progress-menu__left-side__logo {
@@ -210,17 +206,35 @@
 	.progress-menu__right-side {
 		display: flex;
 		flex-direction: column;
-		width: 100%;
+		flex-grow: 1;
 		border-left: 1px solid rgb(224,224,224);
 
 		.progress-menu__top {
-			height: 50%;
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-end;
+			// height: 40%;
 			padding: 0;
 			margin: 0;
+
+			ul {
+				display: inline;
+				// border: 1px solid blue;
+
+				li {
+					margin-right: 40px;
+					display: inline;
+					cursor: pointer;
+					font-size: 12px !important;
+
+					a {
+						font-size: 12px !important;
+					}
+				}
+			}
 		}
 
 		.progress-menu__lower {
-			height: 50%;
 			padding: 0;
 			padding-left: 70px;
 			padding-right: 70px;
@@ -229,23 +243,42 @@
 
 			ul.progress-menu__stages {
 				width: 100%;
-				border-bottom: 1px solid #A1A1A1;
+				// border-bottom: 1px solid #A1A1A1;
 				display: flex;
 				justify-content: flex-start;
-				padding-bottom: 25px;
+				flex-wrap: wrap;
+				max-width: 1200px;
+				// border: 1px solid blue;
+				margin: 0;
+				padding: 0;
 
 				li.progress-menu__item {
 					list-style: none;
 					font-size: 5px;
 					letter-spacing: 3px;
-					margin-right: 30px;
-					text-align: center;
 					color: #383838;
 					position: relative;
+					border-bottom: 1px solid #A1A1A1;
+					padding-bottom: 25px;
+					padding-top: 23px;
+					padding-left: 15px;
+					padding-right: 15px;
+					text-align: left;
 
 					a.progress-menu__item__link {
 						color: #383838 !important;
 						font-size: 12px !important;
+
+						opacity: 0.5;
+						color: #383838;
+
+						white-space: nowrap;
+					}
+
+					a.progress-menu__item__link.selected {
+						opacity: 1.0;
+						color: blue
+
 					}
 
 					.fa-check {
@@ -262,9 +295,9 @@
 						background-color: #383838;
 
 						position: absolute;
-						bottom: -36px;
-						left: 50%;
-						transform:translate(-50%, 0);
+						bottom: 0;
+						left: 50px;
+						transform:translate(0, 50%);
 
 						display: flex;
 						align-items: center;
@@ -278,6 +311,24 @@
 					.selected {
 						margin-bottom: 20px;
 					}
+				}
+
+				li.progress-menu__item.selected {
+					margin-top: -15px;
+				}
+
+				li.progress-menu__item:last-child {
+					flex-grow: 1;
+
+					a {
+						// color: red !important;
+					}
+				}
+			}
+
+			@supports(flex-wrap: wrap) {
+				ul.progress-menu__stages {
+					// border: 2px solid green;
 				}
 			}
 		}

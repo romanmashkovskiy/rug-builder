@@ -8,17 +8,14 @@
     background: white;
     opacity: 0.8;
     z-index: 100;
-    // border: 2px solid purple;
   }
 
   .email-modal__email-form {
-    // height: 637px;
     width: 652px;
     background: white;
     box-shadow: 0 2px 20px 0 rgba(0,0,0,0.07);
     z-index: 200;
     opacity: 1.0;
-    // border: 1px solid red;
     position: absolute;
     right: 10%;
     bottom: 10%;
@@ -26,16 +23,26 @@
     padding-top: 53px;
     padding-bottom: 31px;
 
+    @media screen and (max-width: 1200px) {
+      right: 50%;
+      bottom: 50%;
+      transform: translate(50%, 50%);
+    }
+
+    p.error {
+      color: red;
+    }
+
     .close {
       position: absolute;
       top: 31px;
       right: 31px;
-      // border: 1px solid red;
       opacity: 0.25;
       color: #000000;
       font-family: Montserrat;
       font-size: 12px;
       letter-spacing: 3px;
+      cursor: pointer;
     }
 
     .header-text {
@@ -61,7 +68,6 @@
     .row {
       display: flex;
       width: 100%;
-      // border: 1px solid red;
       margin-bottom: 25px;
 
       .col {
@@ -84,8 +90,6 @@
 
     button.default {
       width: 195px;
-      // padding-bottom: 17px;
-      // padding-top: 17px;
       font-size: 17px;
     }
 

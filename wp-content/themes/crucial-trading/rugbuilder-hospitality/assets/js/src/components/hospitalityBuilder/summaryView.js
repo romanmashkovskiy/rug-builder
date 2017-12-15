@@ -2,50 +2,38 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
   const R = rugBuilder;
   const ProgressMenuV2 = R.progressMenuV2Component();
   const EmailModal = R.EmailModalComponent();
-
+  const Canvas = R.canvasComponent();
 
 
   /**
    * Canvas JSX - Left Side
    */
-  const Canvas = ({props}) => {
+  const CanvasContainer = ({props}) => {
     return (
       <div id="canvas" className="canvas-summary summary__left-side">
         <p className="header"> Your Chosen Design </p>
 
         <div className="grey-line"></div>
 
-        {/* Canvas */}
-        <div
-          id="hosp_builder_img-container"
-          className={
-            "canvas " +
-            (props.fadeOtherCanvasImages ? 'fade-images' : '') +
-            " summary"
-          }
-        >
-          {
-            props.storeCanvasImages.map((image, index) => {
-              return <img
-                alt={ image.alt }
-                src={ image.src }
-                key={index}
-                className={
-                  image.stageIndex === props.stageInFocus ?
-                    'in-focus' : 'out-focus'
-                } />
-            })
-          }
-        </div>
+        <Canvas
+          fadeOtherCanvasImages={props.fadeOtherCanvasImages}
+          stageInFocus={props.stageInFocus}
+        />
 
         <div className="summary__left-side__button-container">
-          <button className="default fixed-width">
+          <button
+            className="default fixed-width"
+            onClick={(e) =>props.print()}
+          >
             PRINT
           </button>
 
           <div className="spacer"></div>
 
-          <button className="default fixed-width">
+          <button
+            className="default fixed-width"
+            onClick={(e) => props.toggleEmailVisible(e)}
+          >
             EMAIL
           </button>
         </div>
@@ -74,10 +62,11 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
           {
             props.storeCanvasImages.map((image, index) => {
               if (index === 0) { return null; }
+              if (!image.selected) { return null; }
 
               return (
                 <div className="summary-table__colors-line-item" key={index}>
-                  <p>Color {image.stageIndex}</p>
+                  <p>Colour {image.stageIndex}</p>
                   <p> {image.alt} <img src={image.src} /> </p>
                 </div>
               )
@@ -86,7 +75,10 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
         </div>
 
         <div className="summary__right-side__button-container">
-          <button className="default fixed-width-195">
+          <button
+            className="default fixed-width-195"
+            onClick={(e) =>props.print()}
+          >
             PRINT
           </button>
 
@@ -118,11 +110,12 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
             highlightCanvasImageOnHover={props.highlightCanvasImageOnHover}
             removeHighlightOnCanvasImage={props.removeHighlightOnCanvasImage}
             headerText="YOUR PREVIEW"
+            disableLinkHover={true}
           />
 
             <div id="mainContainer" className="summary-view">
               {/* Canvas - Left Side */}
-              <Canvas props={props} />
+              <CanvasContainer props={props} />
 
               <div className="summary__spacer"></div>
 
@@ -132,7 +125,9 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
           </div>
 
           {props.showEmailModal &&
-            <EmailModal />
+            <EmailModal
+              toggleEmailVisible={props.toggleEmailVisible}
+            />
           }
         </div>
   )}

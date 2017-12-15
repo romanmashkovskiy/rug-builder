@@ -27,6 +27,7 @@
 
     .summary__left-side {
       display: block;
+      // border: 1px solid blue;
 
       @media screen and (max-width: 1200px) {
         padding-left: 30px;
@@ -46,10 +47,10 @@
         height: 2px;
         background: #979797;
         margin-top: 37px;
-        opacity: 0.7;
+        opacity: 0.5;
       }
 
-      .canvas.summary {
+      .canvas  {
         margin: 0;
         margin-top: 42px;
         display: block;
@@ -125,7 +126,14 @@
 
           p {
             margin: 0;
+            font-size: 14px;
+            color: #000000 !important;
+
+            @media screen and (max-width: 1200px) {
+              font-size: 12px;
+            }
           }
+
 
           img {
             width: 30px;
@@ -139,9 +147,10 @@
         width: 100%;
         display: flex;
         justify-content: flex-end;
-        position: absolute;
-        bottom: 0;
-        right: 0;
+        // position: absolute;
+        // bottom: 0;
+        // right: 0;
+        margin-top: 50px;
 
         @media screen and (max-width: 1200px) {
           display: none;

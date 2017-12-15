@@ -117,6 +117,14 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       this.setState({showEmailModal: !this.state.showEmailModal});
     }
 
+    /**
+     * print screen
+     */
+    print = () => {
+      console.log('print screen');
+      window.print();
+    }
+
 
     render() {
       if (!this.state.summaryViewMode) {
@@ -141,6 +149,9 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
           storeCanvasImages={this.state.storeCanvasImages}
           toggleEmailVisible={this.toggleEmailVisible}
           showEmailModal={this.state.showEmailModal}
+          stageInFocus={false}
+          fadeOtherCanvasImages={false}
+          print={this.print}
         />
       )
     }
