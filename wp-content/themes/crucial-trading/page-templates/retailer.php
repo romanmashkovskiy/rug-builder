@@ -52,7 +52,7 @@ if ( is_array( $_GET ) ) {
 				$args = array(
 					'post_type' => 'retailer',
 
-					'posts_per_page' => -1,
+					'posts_per_page' => 10,
 					'tax_query' => array(
 						array(
 							'taxonomy' => 'retailer_type',
