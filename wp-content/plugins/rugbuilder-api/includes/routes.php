@@ -67,7 +67,7 @@
     /* send hospitality rug choices */
     array(
       'endpoint' => '/email-hospitality-rug-choices',
-      'methods' => 'POST',
+      'methods' => 'GET',
       'callback' => 'email-hospitality-rug-choices'
     )
   );

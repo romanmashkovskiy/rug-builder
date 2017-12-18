@@ -1,13 +1,17 @@
 <?php
 
-  $endpoints = array(
+  // error_log('require vendor autoload');
+  // require_once('../vendor/autoload.php');
 
+  use Dompdf\Dompdf;
+  use Dompdf\Options;
+
+  $endpoints = array(
     /*
      * materials-data endpoint
      * Get's material data
      */
     'materials-data' => function () {
-
       $response = array();
 
     	$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
@@ -17,8 +21,8 @@
     			array_push( $response, $value );
     		}
     	}
-    	foreach ( $response as $key => $value ) {
 
+    	foreach ( $response as $key => $value ) {
     		$material_id = $value->term_id;
 
     		$thumb_id = get_woocommerce_term_meta( $material_id, 'thumbnail_id', true );
@@ -28,7 +32,6 @@
     	}
 
     	for ( $o = 0; $o < count($response); $o++ ) {
-
     		$material      = $response[$o];
     		$material_id   = $material->term_id;
     		$material_meta = get_option( "category_$material_id" );
@@ -69,9 +72,7 @@
         $terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false ) );
 
         foreach ( $terms as $key => $value ) {
-
           if ( $value->parent != 0 && array_key_exists( $value->parent, $material_ids ) ) {
-
             $parent_id = $value->parent;
             $parent    = $material_ids[$parent_id]->name;
 
@@ -85,7 +86,6 @@
           }
         }
       } else {
-
         $collection    = $_GET['collection'];
         $collection_wc = get_term_by( 'slug', $collection, 'product_cat' );
         $collection_id = $collection_wc->term_id;
@@ -93,7 +93,6 @@
         $terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => $collection_id ) );
 
         foreach ( $terms as $key => $value ) {
-
           $range_id = $value->term_id;
           $src_id   = get_woocommerce_term_meta( $range_id, 'thumbnail_id', true );
           $src      = wp_get_attachment_url( $src_id );
@@ -386,32 +385,141 @@
      * email select rug choice to user and client
      */
     'email-hospitality-rug-choices' => function () {
+      error_log('email hospitality rug choices !!');
 
-      if ( !is_user_logged_in() ) {
-        // header( 'Location: ' . site_url() . '/hospitality-register' );
-      }
 
-      $email = filter_var( $_POST['from'], FILTER_SANITIZE_EMAIL );
+      $structure = 'H4390';
+      $colors = [
+        'colour1' => 'A10000',
+        'colour2' => 'A40000',
+        'colour3' => 'B40000'
+      ];
 
-      if ( !filter_var( $_POST['from'], FILTER_VALIDATE_EMAIL ) ) {
-        die('invalid email');
-      }
+      /**  <!--- build pdf ----> **/
+      $dompdf = new Dompdf();
+      $options = new Options();
+      $options->set('isRemoteEnabled', true);
+      $dompdf = new Dompdf($options);
 
-      $choices = json_decode(stripslashes( $_POST['choices'] ));
+      $dompdf->loadHtml(hospitality_choice_collection_view($structure, $colors));
+      $dompdf->setPaper('A4', 'landscape');
+      $dompdf->render();
 
-      $body = hospitalityRugTemplate('user', $email, $choices);
-      wp_mail($email, 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      $plugin_path = plugin_dir_path(dirname( __FILE__ ));
+      $tmp = ini_get('upload_tmp_dir');
+      $output = $dompdf->output();
 
-      $body = hospitalityRugTemplate('client', $email, $choices);
+      // return $output;
 
-      wp_mail('crucial.consumer@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
-      wp_mail('emma.hopkins@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
-      wp_mail('connor@kijo.co', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      $file = $tmp . '/tmp.pdf';
+      file_put_contents($file, $output);
 
-      die('success');
+      $attachments = array($file);
+
+      // return $output;
+
+      return $dompdf->stream("test.pdf", array("Attachment" => false));
+
+      // return;
+
+      // $tmp_name = 'dummy';
+      // $path_info($tmp_name);
+      // $new_file = $path_info['dirname'] . '/application.' . $extension;
+      //
+      // rename($tmp_name, $new_file);
+
+
+
+      // $email = filter_var( $_POST['from'], FILTER_SANITIZE_EMAIL );
+      //
+      // if ( !filter_var( $_POST['from'], FILTER_VALIDATE_EMAIL ) ) {
+      //   die('invalid email');
+      // }
+
+      // $choices = json_decode(stripslashes( $_POST['choices'] ));
+      //
+      // $body = hospitalityRugTemplate('user', $email, $choices);
+      // wp_mail($email, 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      //
+      // $body = hospitalityRugTemplate('client', $email, $choices);
+      //
+      // wp_mail('crucial.consumer@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+      // wp_mail('emma.hopkins@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
+
+
+
+      // wp_mail(
+      //   'connor@kijo.co',
+      //   'New Bespoke Hospitality Creation',
+      //   'test pdf',
+      //   'Content-Type: text/html; charset=ISO-8859-1',
+      //   $attachments
+      // );
+      //
+      // return 'DONE';
+
+
+
+      // die('success');
       // return 'email delivered successfully';
     }
   );
+
+  /**
+   *
+   */
+  function hospitality_choice_collection_view ($structure, $colors) {
+    $template = '';
+
+    $template .=
+      '<html>
+        <head>
+          <style type="text/css">
+            .canvas-container {
+              position: relative;
+            }
+
+            .canvas-container img {
+              width: 274px;
+              height: 274px;
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
+          </style>
+        </head>
+
+        <body>
+          <h1>Hospitality Choices</h1>
+          <br /> <br />
+          <h3>Structure: ' . $structure . '</h3>
+          <br /> <br />';
+
+          foreach ($colors as $key => $color) {
+            $template .= '<h3>' . $key . ' :' . $color . '</h3>';
+          }
+
+          $template .=
+            '<div class=\'canvas-container\'>
+              <img src=\'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/' . $structure . '/base.jpg\'>';
+
+          $index = 1;
+          foreach ($colors as $key => $color) {
+            $template .= '<img src=\'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/' .
+              $structure . '/' . $color . '/colour-' . $index . '.png\'>';
+              $index ++;
+          }
+
+          $template .=
+          '</div>;
+        </body>
+      </html>';
+
+      error_log('template --->');
+      error_log($template);
+
+    return $template;
+  }
 
 
   /**
