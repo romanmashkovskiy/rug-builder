@@ -53,6 +53,9 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       this.setState({
         storeCanvasImages: store.getState().canvasImages[0],
       })
+
+      console.log('store canvas images ---->')
+      console.log(store.getState().canvasImages[0])
     }
 
     /**

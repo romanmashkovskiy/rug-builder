@@ -384,16 +384,21 @@
     /**
      * email select rug choice to user and client
      */
-    'email-hospitality-rug-choices' => function () {
-      error_log('email hospitality rug choices !!');
+    'email-hospitality-rug-choices' => function (WP_REST_Request $request) {
+      ini_set('max_execution_time', 300);
 
+      $email = filter_var( $request['email'], FILTER_SANITIZE_EMAIL );
 
-      $structure = 'H4390';
-      $colors = [
-        'colour1' => 'A10000',
-        'colour2' => 'A40000',
-        'colour3' => 'B40000'
-      ];
+      if ( !filter_var($email, FILTER_VALIDATE_EMAIL ) ) {
+        return new WP_Error('400', 'not a valid email address');
+      }
+
+      $name = $request['name'];
+      $company = $request['company'];
+      $address = $request['address'];
+      $town = $request['town'];
+      $postcode = $request['postcode'];
+      $canvasImages = json_decode($request['selectedCanvasImages']);
 
       /**  <!--- build pdf ----> **/
       $dompdf = new Dompdf();
@@ -401,44 +406,35 @@
       $options->set('isRemoteEnabled', true);
       $dompdf = new Dompdf($options);
 
-      $dompdf->loadHtml(hospitality_choice_collection_view($structure, $colors));
-      $dompdf->setPaper('A4', 'landscape');
+      $loader = new Twig_Loader_Filesystem(plugin_dir_path(dirname(__FILE__)) . './templates');
+      $twig = new Twig_Environment($loader);
+
+      $dompdf->load_html(
+        $twig->render('test.html',
+          array(
+            'canvasImages' => $canvasImages
+          )
+      ));
+
+      $custom_paper = array(0,0,1270,900);
+      $dompdf->setPaper($custom_paper);
       $dompdf->render();
 
       $plugin_path = plugin_dir_path(dirname( __FILE__ ));
       $tmp = ini_get('upload_tmp_dir');
       $output = $dompdf->output();
 
-      // return $output;
-
       $file = $tmp . '/tmp.pdf';
       file_put_contents($file, $output);
 
       $attachments = array($file);
-
-      // return $output;
-
-      return $dompdf->stream("test.pdf", array("Attachment" => false));
-
-      // return;
-
-      // $tmp_name = 'dummy';
-      // $path_info($tmp_name);
-      // $new_file = $path_info['dirname'] . '/application.' . $extension;
-      //
-      // rename($tmp_name, $new_file);
+      /* <!--- -----> */
 
 
+      $body = hospitalityRugTemplate(
+        'user', $canvasImages, $email, $name, $company, $address, $town, $postcode
+      );
 
-      // $email = filter_var( $_POST['from'], FILTER_SANITIZE_EMAIL );
-      //
-      // if ( !filter_var( $_POST['from'], FILTER_VALIDATE_EMAIL ) ) {
-      //   die('invalid email');
-      // }
-
-      // $choices = json_decode(stripslashes( $_POST['choices'] ));
-      //
-      // $body = hospitalityRugTemplate('user', $email, $choices);
       // wp_mail($email, 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
       //
       // $body = hospitalityRugTemplate('client', $email, $choices);
@@ -447,28 +443,22 @@
       // wp_mail('emma.hopkins@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
 
 
+      wp_mail(
+        'connor@kijo.co',
+        'New Bespoke Hospitality Creation',
+        $body,
+        'Content-Type: text/html; charset=ISO-8859-1',
+        $attachments
+      );
 
-      // wp_mail(
-      //   'connor@kijo.co',
-      //   'New Bespoke Hospitality Creation',
-      //   'test pdf',
-      //   'Content-Type: text/html; charset=ISO-8859-1',
-      //   $attachments
-      // );
-      //
-      // return 'DONE';
-
-
-
-      // die('success');
-      // return 'email delivered successfully';
+      die('success');
     }
   );
 
   /**
    *
    */
-  function hospitality_choice_collection_view ($structure, $colors) {
+  function hospitality_choice_collection_view ($structure, $colors, $canvas_images) {
     $template = '';
 
     $template .=
@@ -510,8 +500,16 @@
               $index ++;
           }
 
+          $template .= '</div>';
+
+          $template .= '<div class=\'color-pallette\'>';
+
+          foreach ($canvas_images as $img) {
+            $template .= '<img src=\'' . $img->img . '\'>';
+          }
+
           $template .=
-          '</div>;
+          '</div>
         </body>
       </html>';
 
@@ -667,7 +665,9 @@
   /**
    * hospitality Rug Email Template
    */
-  function hospitalityRugTemplate ($user, $email, $choices) {
+  function hospitalityRugTemplate (
+      $user, $choices, $email, $name, $company, $address, $town, $postcode
+  ) {
     $template = '';
 
     $template .= '<body leftmargin="0" marginwidth="0" topmargin="0" margin; height="0" offset="0">
@@ -741,18 +741,27 @@
                     $template .= '<br /><br />';
                   }
 
-
                     foreach ( $choices as $key => $choice ) {
                       $template .= '<p style="font-family: Open Sans, sans-serif; color: #383838; margin: 0 0 22px;
                         font-weight: 200; font-size: 21px; text-transform: capitalize">';
                         $template .= $key . ': &nbsp <span style="font-weight:bold">' . $choice . "</span><br>";
-                      $template .= '</p>';
+                        $template .= '</p>';
 
                       if ($key === 'structure') {
                         $template .= '<hr />';
                         $template .= '<br />';
                       }
                     }
+
+                    $template .= '<hr />';
+                    $template .= '<br />';
+
+                    $template .= 'Name: <span style="font-weight:bold">' . $name;
+                    $template .= 'Email: <span style="font-weight:bold">' . $email;
+                    $template .= 'Company: <span style="font-weight:bold">' . $company;
+                    $template .= 'Address: <span style="font-weight:bold">' . $address;
+                    $template .= 'Town: <span style="font-weight:bold">' . $town;
+                    $template .= 'Postcode: <span style="font-weight:bold">' . $postcode;
 
                     $template .= '<br/><br/>';
 

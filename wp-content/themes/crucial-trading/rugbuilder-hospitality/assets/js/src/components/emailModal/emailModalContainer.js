@@ -1,5 +1,8 @@
 RugBuilder.prototype.EmailModalComponent = function (choices) {
+  const axios = window.axios;
+
   const R = rugBuilder;
+  const store = ReduxStore.store;
 
   class EmailModal extends React.Component {
     constructor() {
@@ -27,7 +30,9 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
 
         emailSent: false,
         emailResponded: false,
-        validationMessage: ''
+        validationMessage: '',
+
+        storeCanvasImages: store.getState().canvasImages[0]
       }
     }
 
@@ -72,46 +77,34 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
 
       this.setState({emailSent: true});
 
-      let req = new XMLHttpRequest();
-      req.addEventListener('load', this.emailCallback);
+      const selectedCanvasImages =
+        this.state.storeCanvasImages.filter(function (x) {
+          return x.selected;
+        });
 
-      req.open('POST', this.getPostUrl());
-      req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-      const emailBody = this.getEmailBody
-
-      req.send("choices=" + JSON.stringify(this.getEmailBody()) + "&from=" + this.state.email);
-    }
-
-    /**
-     * email body sent to the api
-     */
-    getEmailBody = () => {
-      return {
-        structure : this.state.structure,
-        colour1 : this.state.colour1,
-        colour2 : this.state.colour2,
-        colour3 : this.state.colour3,
-        colour4 : this.state.colour4,
-        colour5 : this.state.colour5,
-        colour6 : this.state.colour6,
-        colour7 : this.state.colour7,
-        colour8 : this.state.colour8,
-        colour9 : this.state.colour9,
-
+      axios.post(this.getPostUrl(), {
+        selectedCanvasImages: JSON.stringify(selectedCanvasImages),
+        email: this.state.email,
         name: this.state.name,
         company: this.state.company,
         address: this.state.address,
         town: this.state.town,
-        postcode: this.state.postcode,
-      }
+        postcode: this.state.postcode
+      })
+      .then(res => {
+        console.log('email axios res ---->')
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     }
 
     /**
      *
      */
     emailCallback = (response) => {
-      let res = response.srcElement.responseText;
+      let res = response.srcElement.responseText
       let msg = ''
 
       switch ( res ) {
@@ -132,9 +125,6 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
         emailResponded: true,
         emailResponse: msg
       });
-
-      console.log('response txt --->');
-      console.log(this.emailResponse);
     }
 
     /**
@@ -196,8 +186,6 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
       apiUrl += 'wp-json/api/v1/';
 			return `${apiUrl}email-hospitality-rug-choices`;
     }
-
-
 
     /**
      *
