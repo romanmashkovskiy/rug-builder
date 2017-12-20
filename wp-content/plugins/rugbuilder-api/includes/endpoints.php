@@ -492,6 +492,22 @@
         $attachments
       );
 
+      wp_mail(
+        'hello@kijo.co',
+        'New Bespoke Hospitality Creation',
+        $body,
+        'Content-Type: text/html; charset=ISO-8859-1',
+        $attachments
+      );
+
+      wp_mail(
+        $email,
+        'New Bespoke Hospitality Creation',
+        $body,
+        'Content-Type: text/html; charset=ISO-8859-1',
+        $attachments
+      );
+
       error_log('email sent !!');
 
 
