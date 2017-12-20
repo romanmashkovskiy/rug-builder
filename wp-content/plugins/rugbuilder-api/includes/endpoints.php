@@ -422,12 +422,21 @@
       ));
 
       error_log('twig rendered template');
+      error_log(json_encode($body));
+
+      error_log(gettype($body));
+      // error_log(json_encode($body->output));
+
+
 
       /**  <!--- build pdf ----> **/
       $dompdf = new Dompdf();
       $options = new Options();
       $options->set('isRemoteEnabled', true);
       $dompdf = new Dompdf($options);
+
+      error_log('choices --->');
+      error_log(json_encode($canvasImages));
 
       $dompdf->load_html(
         $twig->render('test.html',
@@ -444,11 +453,12 @@
       $tmp = ini_get('upload_tmp_dir');
       $output = $dompdf->output();
 
-      $file = $tmp . '/tmp.pdf';
+      $file = $tmp . '/hospitality-choices.pdf';
       file_put_contents($file, $output);
 
       $attachments = array($file);
       /* <!--- -----> */
+
 
       error_log('dom pdf done !!');
 
@@ -464,6 +474,7 @@
       // wp_mail('crucial.consumer@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
       // wp_mail('emma.hopkins@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
 
+      // $body = 'KMT';
 
       wp_mail(
         'connor@kijo.co',
@@ -472,6 +483,18 @@
         'Content-Type: text/html; charset=ISO-8859-1',
         $attachments
       );
+
+      wp_mail(
+        'connor@codegood.co',
+        'New Bespoke Hospitality Creation',
+        $body,
+        'Content-Type: text/html; charset=ISO-8859-1',
+        $attachments
+      );
+
+      error_log('email sent !!');
+
+
 
       die('success');
     }

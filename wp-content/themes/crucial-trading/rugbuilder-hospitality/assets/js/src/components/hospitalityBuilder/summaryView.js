@@ -1,4 +1,6 @@
 RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
+  const Link = window.ReactRouterDOM.Link;
+
   const R = rugBuilder;
   const ProgressMenuV2 = R.progressMenuV2Component();
   const EmailModal = R.EmailModalComponent();
@@ -19,6 +21,14 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
           fadeOtherCanvasImages={props.fadeOtherCanvasImages}
           stageInFocus={props.stageInFocus}
         />
+
+        <Link to={``}
+        >
+          <p className="edit">
+            <i className="fa fa-chevron-left" aria-hidden="true"></i>
+            EDIT
+          </p>
+        </Link>
 
         <div className="summary__left-side__button-container">
           <button

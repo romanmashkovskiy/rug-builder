@@ -158,9 +158,9 @@
                     {% endif %}
 
                     <!-- Loop Through Choices / Canvas Images -->
-                    {% for key, choice in choices %}
+                    {% for key,choice in choices %}
                       <p class="choice">
-                        {{ key }}: <strong> {{ choice }} </strong> </span>
+                        Choice {{ key }} : <strong> {{ choice.alt }} </strong>
                         <br />
                       </p>
 

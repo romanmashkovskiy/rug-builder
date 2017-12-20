@@ -50,26 +50,13 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
   )}
 
   const goRight = () => {
-    console.log('go right')
-
     var pos = $('#progessMenuStages').scrollLeft() + 300;
-
-      // $('#progessMenuStages').scrollLeft(pos);
-
     $('#progessMenuStages').animate({scrollLeft: pos}, 400);
-
-    console.log('pos --->')
-    console.log(pos)
   }
 
   const goLeft = () => {
-    console.log('go left')
-
     var pos = $('#progessMenuStages').scrollLeft() - 300;
     $('#progessMenuStages').animate({scrollLeft: pos}, 400);
-
-    console.log('pos --->')
-    console.log(pos)
   }
 
   /**

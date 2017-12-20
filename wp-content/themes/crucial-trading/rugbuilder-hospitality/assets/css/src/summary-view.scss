@@ -29,10 +29,13 @@ $mobile-width: 650px;
 
     .summary__left-side {
       display: block;
-      // border: 1px solid blue;
 
       @media screen and (max-width: 1200px) {
         padding-left: 30px;
+      }
+
+      @media screen and (max-width: 400px){
+        padding-left: 15px;
       }
 
       p.header {
@@ -55,6 +58,23 @@ $mobile-width: 650px;
         background: #979797;
         margin-top: 37px;
         opacity: 0.5;
+      }
+
+      p.edit {
+        color: #000000;
+        font-family: Montserrat;
+        font-size: 16px;
+        letter-spacing: 2px;
+        opacity: 0.25;
+        margin-top: 41px;
+
+        @media screen and (max-width: $mobile-width) {
+          font-size: 12px;
+        }
+
+        .fa {
+            margin-right: 15px;
+        }
       }
 
       .canvas  {
@@ -185,6 +205,10 @@ $mobile-width: 650px;
 
           .colors-line-item__right-side {
             margin-left: 20px;
+
+            @media screen and (max-width: $mobile-width) {
+              margin-left: 10px;
+            }
           }
         }
 

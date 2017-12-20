@@ -6,7 +6,14 @@ RugBuilder.prototype.btnRestartComponent = function() {
 
 		restart: function(e) {
 			e.preventDefault();
+
+
 			location.reload();
+
+			let url = window.location.href
+			url = url.replace("summary", "")
+
+			window.location.href = url
 		},
 
 		render: function() {

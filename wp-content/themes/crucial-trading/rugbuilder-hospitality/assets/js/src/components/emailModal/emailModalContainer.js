@@ -94,9 +94,20 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
       .then(res => {
         console.log('email axios res ---->')
         console.log(res)
+
+        this.setState({
+          emailResponded: true,
+          emailResponse: 'YOUR EMAIL WAS SENT SUCCESSFULLY'
+        });
+
       })
       .catch(err => {
         console.log(err)
+
+        this.setState({
+          emailResponded: true,
+          emailResponse: 'Sorry, an error has occured. Please try again.'
+        });
       })
     }
 
@@ -327,7 +338,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
               className="close"
               onClick={(event) => this.props.toggleEmailVisible(event)}
             >
-              close x
+              CLOSE x
             </div>
 
             {!this.state.emailResponded &&
