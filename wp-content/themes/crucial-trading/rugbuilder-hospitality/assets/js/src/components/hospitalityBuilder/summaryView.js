@@ -66,9 +66,18 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
 
               if (index === 0) {
                 return (
-                  <div className="summary-table__colors-line-item structure" key={index}>
-                    <p>Structure {image.stageIndex}</p>
-                    <p> {image.alt} <img src={image.src} /> </p>
+                  <div key={index}>
+
+                    <div className="summary-table__colors-line-item mobile structure">
+                      <div className="colors-line-item__left-side">
+                        <p> <img src={image.src} /> </p>
+                      </div>
+
+                      <div className="colors-line-item__right-side">
+                        <p>STRUCTURE</p>
+                        <p> {image.alt} </p>
+                      </div>
+                    </div>
                   </div>
                 )
               }
@@ -117,6 +126,30 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
   )}
 
   /**
+   * mobile buttons container
+   */
+  const MobileButtons = ({props}) => {
+    return (
+      <div className="summary-view__mobile-buttons-container">
+        <button
+          className="default fixed-width"
+          onClick={(e) =>props.print()}
+        >
+          PRINT
+        </button>
+
+
+
+        <button
+          className="default fixed-width"
+          onClick={(e) => props.toggleEmailVisible(e)}
+        >
+          EMAIL
+        </button>
+      </div>
+  )}
+
+  /**
    *
    */
   const SummaryView = (props) => {
@@ -145,6 +178,8 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
               <ChoicesTable props={props} />
             </div>
           </div>
+
+          <MobileButtons props={props} />
 
           {props.showEmailModal &&
             <EmailModal

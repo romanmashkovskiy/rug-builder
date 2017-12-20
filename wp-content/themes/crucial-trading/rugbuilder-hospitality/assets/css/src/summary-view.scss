@@ -8,6 +8,10 @@ $mobile-width: 650px;
     width: 100%;
     justify-content: center;
 
+    @media screen and (max-width: $mobile-width) {
+      margin-top: 20px;
+    }
+
     @media screen and (max-width: 1200px) {
       // border: 1px solid red;
     }
@@ -77,31 +81,35 @@ $mobile-width: 650px;
           display: flex;
         }
 
-        @media screen and (max-width: 700px) {
-          flex-direction: column;
+        @media screen and (max-width: $mobile-width) {
+          // flex-direction: column;
+          display: none;
         }
 
         .spacer {
           width: 8px;
         }
       }
-
     }
 
     .summary__right-side {
       flex-basis: 450px;
       position: relative;
-      border: 1px solid red;
+      // border: 1px solid red;
 
       @media screen and (max-width: 1200px) {
         flex-basis: 350px;
         padding-right: 30px;
       }
 
+      @media screen and (max-width: $mobile-width) {
+        padding-right: 0;
+      }
+
       .summary-table__structure {
         display: flex;
         justify-content: space-between;
-        border: 1px solid blue;
+        // border: 1px solid blue;
 
         @media screen and (max-width: $mobile-width) {
           display: none;
@@ -121,6 +129,10 @@ $mobile-width: 650px;
       .summary-table__colors {
         margin-top: 36px;
 
+        @media screen and (max-width: $mobile-width) {
+          margin-top: 0;
+        }
+
         .summary-table__colors-header {
           border-bottom: 2px solid rgb(200,200,200);
           padding-bottom: 20px;
@@ -136,6 +148,13 @@ $mobile-width: 650px;
           border-bottom: 2px solid rgb(220,220,220);
           display: flex;
           justify-content: space-between;
+
+          @media screen and (max-width: $mobile-width) {
+            display: none;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-bottom: none;
+          }
 
           p {
             margin: 0;
@@ -156,7 +175,7 @@ $mobile-width: 650px;
 
         .summary-table__colors-line-item.mobile {
           display: none;
-          border: 1px solid purple;
+          // border: 1px solid purple;
           justify-content: center;
           align-items: center;
 
@@ -196,5 +215,24 @@ $mobile-width: 650px;
         }
       }
     }
+  }
+}
+
+.summary-view__mobile-buttons-container {
+  display: none;
+  // border: 2px solid green;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 20px;
+
+  button {
+      width: 170px !important;
+  }
+
+  // padding-left: 15px;
+  // padding-right: 15px;
+
+  @media screen and (max-width: $mobile-width) {
+    display: flex;
   }
 }

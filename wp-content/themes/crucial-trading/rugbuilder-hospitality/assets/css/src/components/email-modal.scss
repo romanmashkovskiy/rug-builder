@@ -1,3 +1,5 @@
+$mobile-width: 750px;
+
 .email-modal {
   .email-modal__background {
     position: absolute;
@@ -27,6 +29,18 @@
       right: 50%;
       bottom: 50%;
       transform: translate(50%, 50%);
+    }
+
+    @media screen and (max-width: $mobile-width) {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(0,0);
+      right: 0;
+      bottom: 0;
+
+
     }
 
     p.error {
@@ -70,10 +84,19 @@
       width: 100%;
       margin-bottom: 25px;
 
+      @media screen and (max-width: $mobile-width) {
+        flex-direction: column;
+      }
+
       .col {
         width: 50%;
         padding-left: 35px;
         padding-right: 35px;
+
+        @media screen and (max-width: $mobile-width) {
+          width: 100%;
+          // margin-bottom: 25px;
+        }
 
         input {
           width: 100%;
@@ -84,6 +107,12 @@
           font-size: 14px;
           line-height: 19px;
           padding-left: 24px;
+        }
+      }
+
+      .col:first-child {
+        @media screen and (max-width: $mobile-width) {
+          margin-bottom: 25px;
         }
       }
     }

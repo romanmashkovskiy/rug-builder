@@ -33,7 +33,7 @@ RugBuilder.prototype.btnStageComponent = function() {
 		 */
 		handleClick = (e) => {
 			e.preventDefault();
-			
+
 			if (this.props.disableLinkHover) { return; }
 
 			R.stageVisited[this.props.index] = true;
@@ -45,10 +45,14 @@ RugBuilder.prototype.btnStageComponent = function() {
 
 		render() {
 			/* stage selected if current stage found in selected canvas images */
-			const stageSelected = this.props.selectedCanvasImages[this.props.index] ?
-					this.props.selectedCanvasImages[this.props.index].selected
-					:
-					false;
+			var stageSelected = false
+
+			if (this.props.selectedCanvasImages) {
+				stageSelected = this.props.selectedCanvasImages[this.props.index] ?
+						this.props.selectedCanvasImages[this.props.index].selected
+						:
+						false;
+			}
 
 			return (
 				<li
