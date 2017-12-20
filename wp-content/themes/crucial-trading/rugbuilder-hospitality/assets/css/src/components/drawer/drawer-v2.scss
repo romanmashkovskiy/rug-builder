@@ -6,6 +6,13 @@
     width: 190px;
   }
 
+  /**
+   * mobile
+   */
+  @media screen and (max-width: 550px) {
+    width: 110px
+  }
+
 
   ul.palette-container {
     display: flex;
@@ -36,6 +43,14 @@
         @media screen and (max-width: 1200px) {
           width: 100px;
           height: 100px;
+        }
+
+        /**
+         * mobile
+         */
+        @media screen and (max-width: 550px) {
+          width: 77px;
+          height: 77px;
         }
       }
     }

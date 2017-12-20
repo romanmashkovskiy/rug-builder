@@ -77,6 +77,10 @@
       width: 70%
     }
 
+    .user-details {
+      margin-top: 20px;
+    }
+
     p.choice {
       font-family: Open Sans, sans-serif;
       color: #383838;
@@ -86,7 +90,14 @@
       text-transform: capitalize;
     }
 
-    </style>
+    p.submitted-by {
+      font-family: Open Sans, sans-serif;
+      margin: 0 0 22px;
+      font-weight: 300;
+      font-size: 22px;
+      margin-top: 20px;
+    }
+  </style>
 
     <meta charset="utf-8">
     <title></title>
@@ -102,11 +113,10 @@
               <table border="0" cellpadding="0" cellspacing="0" width="600">
                 <tbody>
                   <tr>
-                    <td align="center" valign="top">
-                    </td>
+                    <td align="center" valign="top"> </td>
                   </tr>
 
-                  <tr style="background: #383838;">
+                  <tr>
                     <td id="header_wrapper" class="header-wrapper">
                       <h1>
                       {% if user == 'user' %}
@@ -148,12 +158,11 @@
                     {% endif %}
 
                     <!-- Loop Through Choices / Canvas Images -->
-                    {% for key, choice in $choices %}
+                    {% for key, choice in choices %}
                       <p class="choice">
-                        {{ key }}: <strong> {{ $choice }} </strong> </span>
+                        {{ key }}: <strong> {{ choice }} </strong> </span>
                         <br />
                       </p>
-                        $template .= '</p>';
 
                       {% if key == 'struture' %}
                         <hr />
@@ -163,24 +172,20 @@
                     <!-- -->
 
                     <hr />
-                    <br />
 
                     <!-- User Details -->
-                    <p> Name: <span style="font-weight:bold">' {{ name }} </p>
-                    <p> Email: <span style="font-weight:bold">' {{ email }} </p>
-                    <p> Company: <span style="font-weight:bold">' {{ company }} </p>
-                    <p> Address: <span style="font-weight:bold">' {{ address }} </p>
-                    <p> Town: <span style="font-weight:bold">' {{ town }} </p>
-                    <p> Postcode: <span style="font-weight:bold">' {{ postcode }} </p>
+                    <div class="user-details">
+                      <p> Name: <strong>{{ name }}</strong> </p>
+                      <p> Email: <strong>{{ email }}</strong> </p>
+                      <p> Company: <strong>{{ company }}</strong> </p>
+                      <p> Address: <strong>{{ address }}</strong> </p>
+                      <p> Town: <strong>{{ town }}</strong> </p>
+                      <p> Postcode: <strong>{{ postcode }}</strong> </p>
+                    </div>
 
-                    <br /> <br />
-
-                    if ($user === 'client') {
-                      $template .= '<p style="font-family: Open Sans, sans-serif; margin: 0 0 22px; font-weight: 300; font-size: 22px;">';
-                        $template .= "Submitted by $email";
-                      $template .= '</p>';
-                    }
-
+                    {% if user == 'client' %}
+                      <p class="submitted-by-font">Submitted by {{ email }} </p>
+                    {% endif %}
                     </div>
                   </td>
                 </tr>

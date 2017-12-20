@@ -15,7 +15,7 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
     if (!props.stages) { return null; }
 
     return (
-      <ul className="progress-menu__stages">
+      <ul className="progress-menu__stages" id="progessMenuStages">
         {
           props.stages.map((stage, index) => {
           return <BtnStageComponent
@@ -49,6 +49,29 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
       </Link>
   )}
 
+  const goRight = () => {
+    console.log('go right')
+
+    var pos = $('#progessMenuStages').scrollLeft() + 300;
+
+      // $('#progessMenuStages').scrollLeft(pos);
+
+    $('#progessMenuStages').animate({scrollLeft: pos}, 400);
+
+    console.log('pos --->')
+    console.log(pos)
+  }
+
+  const goLeft = () => {
+    console.log('go left')
+
+    var pos = $('#progessMenuStages').scrollLeft() - 300;
+    $('#progessMenuStages').animate({scrollLeft: pos}, 400);
+
+    console.log('pos --->')
+    console.log(pos)
+  }
+
   /**
    * Progress Menu JSX
    */
@@ -69,6 +92,8 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
 
         <div className="progress-menu__right-side">
           <div className="hosp_builder_progress-menu__top progress-menu__top">
+            <img src="https://d105txpzekqrfa.cloudfront.net/uploads/hosp-builder-logo.png" className="logo" />
+
             <ul>
               <li><SubmitLink props={props} /></li>
               <li><BtnRestartComponent /></li>
@@ -76,7 +101,23 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
             </ul>
           </div>
 
-          <div className="hosp_builder_progress-menu__bottom progress-menu__lower">
+          <div
+            className="hosp_builder_progress-menu__bottom progress-menu__lower"
+            id="progressMenuLower"
+          >
+            <i
+              className="fa fa-chevron-left left-paddle"
+              aria-hidden="true"
+              onClick={(e) => goLeft(e)}
+            >
+            </i>
+
+            <i
+              className="fa fa-chevron-right right-paddle"
+              aria-hidden="true"
+              onClick={(e) => goRight(e)}
+            >
+            </i>
             <Stages props={props} />
           </div>
         </div>

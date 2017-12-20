@@ -61,13 +61,35 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
 
           {
             props.storeCanvasImages.map((image, index) => {
-              if (index === 0) { return null; }
+              // if (index === 0) { return null; }
               if (!image.selected) { return null; }
 
+              if (index === 0) {
+                return (
+                  <div className="summary-table__colors-line-item structure" key={index}>
+                    <p>Structure {image.stageIndex}</p>
+                    <p> {image.alt} <img src={image.src} /> </p>
+                  </div>
+                )
+              }
+
               return (
-                <div className="summary-table__colors-line-item" key={index}>
-                  <p>Colour {image.stageIndex}</p>
-                  <p> {image.alt} <img src={image.src} /> </p>
+                <div key={index}>
+                  <div className="summary-table__colors-line-item">
+                    <p>Colour {image.stageIndex} </p>
+                    <p> {image.alt} <img src={image.src} /> </p>
+                  </div>
+
+                  <div className="summary-table__colors-line-item mobile">
+                    <div className="colors-line-item__left-side">
+                      <p> <img src={image.src} /> </p>
+                    </div>
+
+                    <div className="colors-line-item__right-side">
+                      <p>COLOUR {image.stageIndex}</p>
+                      <p> {image.alt} </p>
+                    </div>
+                  </div>
                 </div>
               )
             })

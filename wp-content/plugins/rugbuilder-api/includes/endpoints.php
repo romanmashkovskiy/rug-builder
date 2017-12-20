@@ -385,11 +385,16 @@
      * email select rug choice to user and client
      */
     'email-hospitality-rug-choices' => function (WP_REST_Request $request) {
+      error_log('email hosp rug choices !!');
+
       ini_set('max_execution_time', 300);
+      $loader = new Twig_Loader_Filesystem(plugin_dir_path(dirname(__FILE__)) . './templates');
+      $twig = new Twig_Environment($loader);
 
       $email = filter_var( $request['email'], FILTER_SANITIZE_EMAIL );
 
       if ( !filter_var($email, FILTER_VALIDATE_EMAIL ) ) {
+        error_log('invalid email');
         return new WP_Error('400', 'not a valid email address');
       }
 
@@ -400,14 +405,29 @@
       $postcode = $request['postcode'];
       $canvasImages = json_decode($request['selectedCanvasImages']);
 
+      error_log('got details');
+      error_log(gettype($canvasImages));
+
+
+      $body = $twig->render('hospitalityEmail.html',
+        array(
+          'user' => 'user',
+          'choices' => $canvasImages,
+          'email' => $email,
+          'name' => $name,
+          'company' => $company,
+          'address' => $address,
+          'town' => $town,
+          'postcode' => $postcode
+      ));
+
+      error_log('twig rendered template');
+
       /**  <!--- build pdf ----> **/
       $dompdf = new Dompdf();
       $options = new Options();
       $options->set('isRemoteEnabled', true);
       $dompdf = new Dompdf($options);
-
-      $loader = new Twig_Loader_Filesystem(plugin_dir_path(dirname(__FILE__)) . './templates');
-      $twig = new Twig_Environment($loader);
 
       $dompdf->load_html(
         $twig->render('test.html',
@@ -430,10 +450,12 @@
       $attachments = array($file);
       /* <!--- -----> */
 
+      error_log('dom pdf done !!');
 
-      $body = hospitalityRugTemplate(
-        'user', $canvasImages, $email, $name, $company, $address, $town, $postcode
-      );
+      // $body = hospitalityRugTemplate(
+      //   'user', $canvasImages, $email, $name, $company, $address, $town, $postcode
+      // );
+
 
       // wp_mail($email, 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
       //
@@ -454,6 +476,16 @@
       die('success');
     }
   );
+
+
+
+  function send_hosp_build_to_client () {
+
+  }
+
+  function send_hosp_build_to_user () {
+
+  }
 
   /**
    *

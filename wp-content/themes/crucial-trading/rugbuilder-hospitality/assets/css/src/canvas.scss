@@ -7,30 +7,6 @@
     flex-direction:  column;
   }
 
-  // .canvas-inner {
-  //   border: 1px solid red;
-  //   display: flex;
-  //   margin: 0 auto;
-  //   // margin-right: -150px;
-  //   transform: translateX(150px);
-  //
-  //   @media screen and (max-width: 1350px) {
-  //     transform: translateX(100px);
-  //   }
-  //
-  //   @media screen and (max-width: 1200px) {
-  //     margin-top: 0;
-  //     flex-direction:  column;
-  //   }
-  //
-  //   .spacer {
-  //     width: 120px;
-  //
-  //     @media screen and (max-width: 1350px) {
-  //       width: 70px;
-  //     }
-  //   }
-  // }
 
   .canvas {
     margin: 0 auto;
@@ -44,6 +20,8 @@
     @media screen and (max-width: 1200px) {
       margin: 0 auto;
       margin-top: 40px;
+      width: 550px;
+      height: 550px;
     }
 
     @media screen and (max-width: 770px) {
@@ -55,6 +33,14 @@
       width: 300px;
       height: 300px;
     }
+
+    /**
+     * mobile
+     */
+    @media screen and (max-width: 550px) {
+      width: 230px;
+      height: 230px;
+    }
   }
 
   .choice-thumbnail-container {
@@ -63,17 +49,21 @@
     top: 0;
     right: 0;
     width: 300px !important;
+    // border: 1px solid red;
 
     @media screen and (max-width: 1500px) {
       width: 200px !important;
     }
 
     @media screen and (max-width: 1200px) {
-      width: 450px !important;
+      width: 550px !important;
       margin: 0 auto;
       margin-top: 50px;
       padding: 0;
       position: relative;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
     }
 
     @media screen and (max-width: 770px) {
@@ -83,27 +73,41 @@
 
     @media screen and (max-width: 630px) {
       width: 300px !important;
-      height: 300px !important;
+      // height: 300px !important;
     }
   }
 
   .choice-item {
+    // border: 1px solid green;
+
+    @media screen and (max-width: 1200px) {
+      width: 33%;
+    }
+
+    @media screen and (max-width: 750px) {
+      width: 50%;
+    }
+
     .choice-item__left-side {
       img {
-
         width: 50px !important;
         height: 50px !important;
 
         @media screen and (max-width: 1200px) {
-          width: 50px !important;
-          height: 50px !important;
+          width: 35px !important;
+          height: 35px !important;
         }
       }
     }
 
     .choice-item__right-side {
-      p {
+      margin-left: 30px;
 
+      @media screen and (max-width: 1200px) {
+        margin-left: 15px;
+      }
+
+      p {
         @media screen and (max-width: 1200px) {
           font-size: 10px !important;
         }

@@ -1,13 +1,4 @@
 #hosp_builder_progress-menu {
-	// background: white;
-	// -webkit-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
-	// -moz-box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
-	// box-shadow: -5px 5px 18px 0px rgba(0,0,0,0.08);
-	// height: 172px;
-	// position: relative;
-	// z-index: 10;
-	// border-left: 1px solid rgb(224,224,224);
-
 	@media screen and (max-width: 992px) {
 		max-height: initial;
 	}
@@ -33,7 +24,7 @@
 		}
 
 		@media screen and (max-width: 550px) {
-			display: none;
+			// display: none;
 		}
 	}
 
@@ -82,7 +73,6 @@
 		}
 
 		&.hosp_builder_active {
-
 			.hosp_builder_progress-menu__stage__link {
 				color: $main-body-text-color;
 				margin: auto;
@@ -133,6 +123,8 @@
 	}
 }
 
+$mobile-width: 750px;
+
 
 /**
  * V2
@@ -153,6 +145,13 @@
 		@media screen and (max-width: 1200px) {
 			flex-basis: auto;
 			width: 190px;
+		}
+
+		/**
+		 * mobile mode
+		 */
+		@media screen and (max-width: $mobile-width) {
+			display: none;
 		}
 
 		.progress-menu__left-side__logo {
@@ -209,6 +208,10 @@
 		flex-grow: 1;
 		border-left: 1px solid rgb(224,224,224);
 
+		@media screen and (max-width: 750px) {
+			width: 100%;
+		}
+
 		.progress-menu__top {
 			display: flex;
 			flex-direction: row;
@@ -217,9 +220,12 @@
 			padding: 0;
 			margin: 0;
 
+			@media screen and (max-width: $mobile-width) {
+				border-bottom: 1px solid rgb(224,224,224);
+			}
+
 			ul {
 				display: inline;
-				// border: 1px solid blue;
 
 				li {
 					margin-right: 40px;
@@ -227,9 +233,36 @@
 					cursor: pointer;
 					font-size: 12px !important;
 
+					@media screen and (max-width: $mobile-width) {
+						margin-right: 10px;
+					}
+
 					a {
 						font-size: 12px !important;
+
+						@media screen and (max-width: $mobile-width) {
+							font-size: 8px !important;
+
+							img {
+								display: none;
+							}
+						}
 					}
+				}
+			}
+
+			img.logo {
+				display: none;
+				width: 90px;
+				height: 6px;
+
+				@media screen and (max-width: $mobile-width) {
+					display: block;
+					width: 100px;
+					height: 17px;
+					position: absolute;
+					top: 17px;
+					left: 17px;
 				}
 			}
 		}
@@ -240,17 +273,64 @@
 			padding-right: 70px;
 			margin: 0;
 			padding-bottom: 37px;
+			position: relative;
+			// border: 2px solid green;
+
+			@media screen and (max-width: 750px) {
+				width: 100%;
+				padding-left: 0;
+				padding-right: 0;
+				padding-bottom: 10px;
+				padding-top: 10px;
+			}
+
+			.left-paddle {
+				position: absolute;
+				top: 30%;
+				left: 5%;
+				transform: translateY(-50%);
+				display: none;
+
+				@media screen and (max-width: $mobile-width) {
+					display: block;
+				}
+			}
+
+			.right-paddle {
+				display: none;
+				position: absolute;
+				top: 30%;
+				right: 5%;
+				transform: translateY(-50%);
+
+
+				@media screen and (max-width: $mobile-width) {
+					display: block;
+				}
+			}
 
 			ul.progress-menu__stages {
 				width: 100%;
-				// border-bottom: 1px solid #A1A1A1;
 				display: flex;
 				justify-content: flex-start;
 				flex-wrap: wrap;
 				max-width: 1200px;
-				// border: 1px solid blue;
 				margin: 0;
 				padding: 0;
+
+				/**
+				 * mobile mode
+				 */
+				@media screen and (max-width: $mobile-width) {
+					flex-wrap: nowrap;
+					overflow-x: scroll;
+					overflow-y: hidden;
+					-webkit-overflow-scrolling: touch;
+ 					-ms-overflow-style: -ms-autohiding-scrollbar;
+					width: 80vw;
+					margin: 0 auto;
+				}
+
 
 				li.progress-menu__item {
 					list-style: none;
@@ -264,6 +344,13 @@
 					padding-left: 15px;
 					padding-right: 15px;
 					text-align: left;
+
+					/**
+					 * mobile mode
+					 */
+					@media screen and (max-width: $mobile-width) {
+						border-bottom: none;
+					}
 
 					a.progress-menu__item__link {
 						color: #383838 !important;
@@ -297,7 +384,14 @@
 						position: absolute;
 						bottom: 0;
 						left: 50px;
-						transform:translate(0, 50%);
+						transform: translate(0, 50%);
+
+						/**
+						 * mobile
+						 */
+						@media screen and (max-width: 750px) {
+							transform: translate(0, 0);
+						}
 
 						display: flex;
 						align-items: center;

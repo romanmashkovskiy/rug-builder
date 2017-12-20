@@ -52,7 +52,6 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
                     })
                 }
               </div>
-
           </div>
         </div>
       </div>
