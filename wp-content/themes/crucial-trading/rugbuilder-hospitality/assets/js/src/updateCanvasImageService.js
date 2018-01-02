@@ -48,11 +48,22 @@ RugBuilder.prototype.updateCanvasImageService = function(newImage) {
    * use findIndex to check if an image already exists for this stage
    */
   const checkIfImageExistsForStage = (newImages, newImage) => {
-    const x = newImages[0] ? newImages.findIndex((image) => {
-        return image.stageIndex === newImage.stageIndex
-      })
-      :
-      -1;
+
+    let x = -1;
+
+    if (newImages[0]) {
+      for (let i = 0; i < newImages.length; i ++) {
+        if (newImages[i].stageIndex == newImage.stageIndex) {
+          x = i
+        }
+      }
+    }
+
+    // const x = newImages[0] ? newImages.findIndex((image) => {
+    //     return image.stageIndex === newImage.stageIndex
+    //   })
+    //   :
+    //   -1;
 
     return x;
   }

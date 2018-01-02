@@ -37,9 +37,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * detected change in the url
      */
     urlChanged = () => {
-      console.log('url change')
-      console.log(this.props.location.pathname)
-
       if (this.props.location.pathname === "/summary") {
         this.setState({'summaryViewMode': true});
       }
@@ -57,9 +54,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       this.setState({
         storeCanvasImages: store.getState().canvasImages[0],
       })
-
-      console.log('store canvas images ---->')
-      console.log(store.getState().canvasImages[0])
     }
 
     /**
@@ -78,9 +72,22 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       newImage.stageIndex = this.currentStage;
       var newImages = this.state.canvasImages;
 
-      const x = newImages.findIndex((image) => {
-        return image.stageIndex === this.currentStage
-      })
+      // const x = newImages.findIndex((image) => {
+      //   return image.stageIndex === this.currentStage
+      // })
+
+      // const x = _.findIndex(newImages, (image) => {
+      //   return image.stageIndex === this.currentStage
+      // })
+
+      let x = -1
+      for (let i = 0; i < newImages.length; ++i) {
+        if (newImages[i].stageIndex === this.currentStage) {
+          x = i
+          break
+        }
+      }
+
 
       /* update previous stage canvas image */
       if (x !== -1) {

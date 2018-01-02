@@ -9,7 +9,7 @@ RugBuilder.prototype.AppComponent = function () {
   const store = RS.store;
 
   const hospitalityBuilder = R.HospitalityBuilderComponent();
-  const summary = R.summaryComponent();
+  // const summary = R.summaryComponent();
 
   let baseName = '';
 
@@ -30,10 +30,6 @@ RugBuilder.prototype.AppComponent = function () {
             component={hospitalityBuilder}
           />
 
-          <Route
-            path="/summary"
-            component={summary}
-          />
         </Switch>
       </div>
     </Router>

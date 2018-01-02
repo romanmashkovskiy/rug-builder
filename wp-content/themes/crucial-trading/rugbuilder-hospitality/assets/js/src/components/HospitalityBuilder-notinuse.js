@@ -78,9 +78,9 @@ RugBuilder.prototype.HospitalityBuilderComponentNotInUse = function () {
       newImage.stageIndex = this.currentStage;
       var newImages = this.state.canvasImages;
 
-      const x = newImages.findIndex((image) => {
-        return image.stageIndex === this.currentStage
-      })
+      // const x = newImages.findIndex((image) => {
+      //   return image.stageIndex === this.currentStage
+      // })
 
       /* update previous stage canvas image */
       if (x !== -1) {
