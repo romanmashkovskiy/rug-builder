@@ -70,7 +70,6 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
      *
      */
     sendEmail = () => {
-      console.log('send email !!');
       if (!this.validateInputs()) {
         return
       }
@@ -92,9 +91,6 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
         postcode: this.state.postcode
       })
       .then(res => {
-        console.log('email axios res ---->')
-        console.log(res)
-
         this.setState({
           emailResponded: true,
           emailResponse: 'YOUR EMAIL WAS SENT SUCCESSFULLY'
@@ -102,8 +98,6 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
 
       })
       .catch(err => {
-        console.log(err)
-
         this.setState({
           emailResponded: true,
           emailResponse: 'Sorry, an error has occured. Please try again.'
@@ -125,7 +119,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
           break;
 
         case 'success' :
-          msg  = 'YOUR EMAIL WAS SENT SUCCESSFULLY';
+          msg  = 'Your email was sent successfully. Thank you.';
           break;
 
         default :
@@ -142,8 +136,6 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
      * validation
      */
     validateInputs = () => {
-      console.log('validate inputs')
-
       this.setState({validationMessage: ''})
 
       if (!this.state.name) {
@@ -177,7 +169,19 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
         return false
       }
 
+      if (!this.validateEmail(this.state.email)) {
+        this.setState({validationMessage: 'Please enter a valid email address'});
+        return false;
+      }
+
       return true
+    }
+
+    /**
+     * validate email to ensure valid email using a regex expression
+     */
+    validateEmail = (email) => {
+      return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     }
 
     /**

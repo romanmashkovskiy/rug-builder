@@ -1,5 +1,4 @@
 .choice-thumbnail-container {
-  // border: 1px solid blue;
   width: 300px;
   padding: 0;
   display: flex;
@@ -10,18 +9,12 @@
     height: 50px;
   }
 
-//   div {
-//     border: 1px solid red;
-//   }
-
   .choice-item {
     margin-bottom: 30px;
     display: flex;
     align-items: center;
 
     .choice-item__right-side {
-      // margin-left: 30px;
-
       p {
         margin: 0;
         font-size: 13px !important;

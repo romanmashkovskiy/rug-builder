@@ -385,16 +385,13 @@
      * email select rug choice to user and client
      */
     'email-hospitality-rug-choices' => function (WP_REST_Request $request) {
-      error_log('email hosp rug choices !!');
-
       ini_set('max_execution_time', 300);
       $loader = new Twig_Loader_Filesystem(plugin_dir_path(dirname(__FILE__)) . './templates');
       $twig = new Twig_Environment($loader);
 
       $email = filter_var( $request['email'], FILTER_SANITIZE_EMAIL );
 
-      if ( !filter_var($email, FILTER_VALIDATE_EMAIL ) ) {
-        error_log('invalid email');
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return new WP_Error('400', 'not a valid email address');
       }
 
@@ -404,10 +401,6 @@
       $town = $request['town'];
       $postcode = $request['postcode'];
       $canvasImages = json_decode($request['selectedCanvasImages']);
-
-      error_log('got details');
-      error_log(gettype($canvasImages));
-
 
       $body = $twig->render('hospitalityEmail.html',
         array(
@@ -421,97 +414,62 @@
           'postcode' => $postcode
       ));
 
-      error_log('twig rendered template');
-      error_log(json_encode($body));
+      $attachments = build_hops_pdf($twig, $canvasImages);
 
-      error_log(gettype($body));
-
-      /**  <!--- build pdf ----> **/
-      $dompdf = new Dompdf();
-      $options = new Options();
-      $options->set('isRemoteEnabled', true);
-      $dompdf = new Dompdf($options);
-
-      error_log('choices --->');
-      error_log(json_encode($canvasImages));
-
-      $dompdf->load_html(
-        $twig->render('test.html',
-          array(
-            'canvasImages' => $canvasImages
-          )
-      ));
-
-      $custom_paper = array(0,0,1270,900);
-      $dompdf->setPaper($custom_paper);
-      $dompdf->render();
-
-      $plugin_path = plugin_dir_path(dirname( __FILE__ ));
-      $tmp = ini_get('upload_tmp_dir');
-      $output = $dompdf->output();
-
-      $file = $tmp . '/hospitality-choices.pdf';
-      file_put_contents($file, $output);
-
-      $attachments = array($file);
-      /* <!--- -----> */
-
-
-      error_log('dom pdf done !!');
-
-      // $body = hospitalityRugTemplate(
-      //   'user', $canvasImages, $email, $name, $company, $address, $town, $postcode
-      // );
-
-
-      // wp_mail($email, 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
-      //
-      // $body = hospitalityRugTemplate('client', $email, $choices);
-      //
-      // wp_mail('crucial.consumer@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
-      // wp_mail('emma.hopkins@crucial-trading.com', 'New Bespoke Hospitality Creation', $body, 'Content-Type: text/html; charset=ISO-8859-1');
-
-      // $body = 'KMT';
-
-      wp_mail(
-        'connor@kijo.co',
-        'New Bespoke Hospitality Creation',
-        $body,
-        'Content-Type: text/html; charset=ISO-8859-1',
-        $attachments
-      );
-
-      wp_mail(
-        'connor@codegood.co',
-        'New Bespoke Hospitality Creation',
-        $body,
-        'Content-Type: text/html; charset=ISO-8859-1',
-        $attachments
-      );
-
-      wp_mail(
-        'hello@kijo.co',
-        'New Bespoke Hospitality Creation',
-        $body,
-        'Content-Type: text/html; charset=ISO-8859-1',
-        $attachments
-      );
-
-      wp_mail(
-        $email,
-        'New Bespoke Hospitality Creation',
-        $body,
-        'Content-Type: text/html; charset=ISO-8859-1',
-        $attachments
-      );
-
-      error_log('email sent !!');
-
-
+      send_hosp_email('connor@kijo.co', $body, $attachments);
+      send_hosp_email('connor@codegood.co', $body, $attachments);
+      send_hosp_email('hello@kijo.co', $body, $attachments);
+      send_hosp_email($email, $body, $attachments);
 
       die('success');
     }
   );
+
+  /**
+   *
+   */
+  function build_hops_pdf($twig, $canvas_images) {
+    $dompdf = new Dompdf();
+    $options = new Options();
+    $options->set('isRemoteEnabled', true);
+    $dompdf = new Dompdf($options);
+
+    $dompdf->load_html(
+      $twig->render('test.html',
+        array(
+          'canvasImages' => $canvas_images
+        )
+    ));
+
+    $custom_paper = array(0,0,1270,900);
+    $dompdf->setPaper($custom_paper);
+    $dompdf->render();
+
+    $plugin_path = plugin_dir_path(dirname( __FILE__ ));
+    $tmp = ini_get('upload_tmp_dir');
+    $output = $dompdf->output();
+
+    $file = $tmp . '/hospitality-choices.pdf';
+    file_put_contents($file, $output);
+
+    return array($file);
+  }
+
+  /**
+   *
+   */
+  function send_hosp_email($email, $body, $attachments) {
+    error_log('send email');
+    error_log($email);
+    
+    wp_mail(
+      $email,
+      'New Bespoke Hospitality Creation',
+      $body,
+      'Content-Type: text/html; charset=ISO-8859-1',
+      $attachments
+    );
+  }
 
 
 
@@ -580,9 +538,6 @@
           '</div>
         </body>
       </html>';
-
-      error_log('template --->');
-      error_log($template);
 
     return $template;
   }

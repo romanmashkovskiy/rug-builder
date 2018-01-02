@@ -152,24 +152,32 @@
                     <p>
                       Thanks for creating your hospitality collection. Here are the
                       options you selected:
-                    </p>';
+                    </p>
 
                     <br /> <br />
                     {% endif %}
 
                     <!-- Loop Through Choices / Canvas Images -->
                     {% for key,choice in choices %}
-                      <p class="choice">
-                        Choice {{ key }} : <strong> {{ choice.alt }} </strong>
-                        <br />
-                      </p>
+                      {% if choice.stageIndex == 0 %}
+                        <p class="choice">
+                          Structure: {{ choice.alt }}
+                        </p>
+                      {% endif %}
+
+
+                      {% if not choice.stageIndex == 0 %}
+                        <p class="choice">
+                          Color {{ choice.stageIndex }} : <strong> {{ choice.alt }} </strong>
+                          <br />
+                        </p>
+                      {% endif %}
 
                       {% if key == 'struture' %}
                         <hr />
                         <br />
                       {% endif %}
                     {% endfor %}
-                    <!-- -->
 
                     <hr />
 

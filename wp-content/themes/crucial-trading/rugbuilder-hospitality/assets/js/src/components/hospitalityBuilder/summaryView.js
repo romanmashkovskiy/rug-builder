@@ -71,7 +71,6 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
 
           {
             props.storeCanvasImages.map((image, index) => {
-              // if (index === 0) { return null; }
               if (!image.selected) { return null; }
 
               if (index === 0) {

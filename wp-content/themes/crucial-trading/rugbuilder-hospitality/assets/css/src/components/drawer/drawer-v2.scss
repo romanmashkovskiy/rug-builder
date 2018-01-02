@@ -40,6 +40,12 @@
         width: 127px;
         height: 127px;
 
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+
         @media screen and (max-width: 1200px) {
           width: 100px;
           height: 100px;

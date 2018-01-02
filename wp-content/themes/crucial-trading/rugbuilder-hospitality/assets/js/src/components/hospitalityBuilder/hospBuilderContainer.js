@@ -72,14 +72,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       newImage.stageIndex = this.currentStage;
       var newImages = this.state.canvasImages;
 
-      // const x = newImages.findIndex((image) => {
-      //   return image.stageIndex === this.currentStage
-      // })
-
-      // const x = _.findIndex(newImages, (image) => {
-      //   return image.stageIndex === this.currentStage
-      // })
-
       let x = -1
       for (let i = 0; i < newImages.length; ++i) {
         if (newImages[i].stageIndex === this.currentStage) {
@@ -87,7 +79,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
           break
         }
       }
-
 
       /* update previous stage canvas image */
       if (x !== -1) {
@@ -118,6 +109,9 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       })
     }
 
+    /**
+     *
+     */
     removeHighlightOnCanvasImage = () => {
       this.setState({fadeOtherCanvasImages: false})
     }
@@ -126,8 +120,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      *
      */
     toggleEmailVisible = () => {
-      console.log('toggle email visible');
-
       this.setState({showEmailModal: !this.state.showEmailModal});
     }
 
@@ -135,7 +127,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * print screen
      */
     print = () => {
-      console.log('print screen');
       window.print();
     }
 
