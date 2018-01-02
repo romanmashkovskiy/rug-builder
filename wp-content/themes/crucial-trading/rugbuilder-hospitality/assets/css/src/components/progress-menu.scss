@@ -427,3 +427,9 @@ $mobile-width: 750px;
 		}
 	}
 }
+
+@media print {
+	.progress-menu {
+		display: none;
+	}
+}

@@ -425,9 +425,6 @@
       error_log(json_encode($body));
 
       error_log(gettype($body));
-      // error_log(json_encode($body->output));
-
-
 
       /**  <!--- build pdf ----> **/
       $dompdf = new Dompdf();

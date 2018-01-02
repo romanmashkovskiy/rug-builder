@@ -50,6 +50,9 @@ $mobile-width: 650px;
           font-size: 20px;
         }
 
+        @media print {
+          display: none;
+        }
       }
 
       .grey-line {
@@ -70,6 +73,10 @@ $mobile-width: 650px;
 
         @media screen and (max-width: $mobile-width) {
           font-size: 12px;
+        }
+
+        @media print {
+          display: none;
         }
 
         .fa {
@@ -115,7 +122,6 @@ $mobile-width: 650px;
     .summary__right-side {
       flex-basis: 450px;
       position: relative;
-      // border: 1px solid red;
 
       @media screen and (max-width: 1200px) {
         flex-basis: 350px;
@@ -225,12 +231,13 @@ $mobile-width: 650px;
         width: 100%;
         display: flex;
         justify-content: flex-end;
-        // position: absolute;
-        // bottom: 0;
-        // right: 0;
         margin-top: 50px;
 
         @media screen and (max-width: 1200px) {
+          display: none;
+        }
+
+        @media print {
           display: none;
         }
 
