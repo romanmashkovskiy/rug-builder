@@ -14,7 +14,7 @@ class ReduxStore {
     //   return {
     //     type: 'MUTATE_SELECTED_STRUCTURE',
     //     updatedCanvasImages: updatedCanvasImages
-    //   }
+    ///   }
     // }
 
     this.mutateSelectedStructureAction = newSelectedStructure => {
