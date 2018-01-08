@@ -44,13 +44,11 @@ button.default.fixed-width {
 
 #mainContainer {
   width: 100%;
-  // border: 1px solid pink;
 }
 
 
 #canvas {
   display: flex;
-  // margin-top: 100px;
 }
 
 .canvas.fade-images {
@@ -72,9 +70,6 @@ button.default.fixed-width {
 #hospitality-builder {
 	overflow: hidden;
 	padding-bottom: 13px;
-  // display: flex;
-	// position: relative;
-
 }
 
 .hosp_builder_drawer__content.hosp_builder_closed .hosp_builder_scroll-btns {
@@ -150,6 +145,9 @@ button.default.fixed-width {
 
   @media print {
     margin: auto;
+    width: 400px;
+    height: 400px;
+    margin-top: 20px;
   }
 
 	@media screen and (max-width: 550px) {
@@ -192,9 +190,6 @@ button.default.fixed-width {
 }
 
 #hosp_builder_choices {
-	// margin: auto;
-	// width: 1200px;
-
 	@media screen and (max-width: 1250px) {
 		width: 720px;
 	}
@@ -206,16 +201,6 @@ button.default.fixed-width {
 	@media screen and (max-width: 500px) {
 		width: 240px;
 	}
-
-
-	// div {
-	// 	float: left;
-	// 	position: relative;
-	// 	text-align: center;
-	// 	width: 120px;
-	// 	z-index: 4;
-	// }
-
 
 	p {
 		font-size: 13px;

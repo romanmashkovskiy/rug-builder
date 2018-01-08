@@ -31,8 +31,6 @@ if ( !$allowed ) {
 
 ?>
 
-<script> console.log('V5'); </script>
-
 <!doctype html>
 <html>
 <head>

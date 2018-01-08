@@ -41,6 +41,11 @@
       width: 230px;
       height: 230px;
     }
+
+    @media print {
+      width: 300px !important;
+      height: 300px !important;
+    }
   }
 
   .choice-thumbnail-container {
