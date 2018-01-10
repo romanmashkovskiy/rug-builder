@@ -145,10 +145,13 @@ img {
   justify-content: space-between;
   padding: 0 74px 0 74px;
   border-bottom: 1px solid rgba(0,0,0, .05);
+
   @media all and (max-width: $tablet-breakpoint) {
-    flex-direction: column-reverse;
+    //flex-direction: column-reverse;
     padding: 0 62px 0 62px;;
+    display: block;
   }
+
   @media all and (max-width: $mobile-breakpoint) {
     padding: 0 23px 0 23px;
   }
@@ -171,33 +174,28 @@ img {
   min-height: 160px;
   font-size: 18px;
   line-height: 40px;
-  margin-bottom: 47px;
+  margin-bottom: 20px;
 }
 
 .retailer-result-dropdown__dropdown__text-logo__footer {
-  display: flex;
+  /*display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center;*/
   padding-bottom: 15px;
+  display: inline-block;
 
-  @media all and (max-width: $mobile-breakpoint) {
+  /*@media all and (max-width: $mobile-breakpoint) {
     flex-direction: column;
     align-items: flex-start;
-  }
+  }*/
 }
 
 .retailer-result-dropdown__dropdown__text-logo__footer a {
   color: #000000;
   font-size: 14px;
   letter-spacing: 3px;
-  line-height: 22px;
-  text-transform: uppercase;
-  padding-bottom: 7px;
-  //margin-right: 80px;
-
-  &:first-child {
-    border-bottom: 1px solid rgba(0,0,0, .21);
-  }
+  display: block;
+  padding-bottom: 10px;
 
   @media all and (max-width: $mobile-breakpoint) {
     margin-right: 0;
@@ -206,9 +204,14 @@ img {
 }
 
 .retailer-result-dropdown__dropdown__text-logo__logo {
-  margin-top: 27px;
-  height: 223px;
+  margin-top: 40px;
   text-align: center;
+  width: 50%;
+
+  @media all and (max-width: $tablet-breakpoint) {
+    width: 100%;
+    text-align: left;
+  }
 
   img {
     object-fit: contain;
@@ -218,12 +221,19 @@ img {
     border: 1px solid rgba(0,0,0, .05);
   }
 
-  p {
+  p.retailer-result-dropdown__slogan {
     margin: 0;
     color: $page-header-background;
     text-transform: uppercase;
     font-size: 14px;
     letter-spacing: 3px;
     line-height: 19px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  p.retailer-result-dropdown__desc {
+    padding-bottom: 40px;
+    font-size: 16px;
   }
 }

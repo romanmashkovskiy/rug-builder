@@ -20,15 +20,16 @@ const uglify     = require('gulp-uglify');
 gulp.task('watch', ['sync', 'css-dev', 'js-dev'], function(){
 
 	// CSS
-	gulp.watch('./assets/css/src/*.scss', ['build-master-css']);
-	gulp.watch('./assets/css/src/*/*.scss', ['build-master-css']);
-	gulp.watch('./assets/css/src/pages/*.scss', ['build-master-css']);
-	gulp.watch('./patterns/*/*.scss', ['build-master-css']);
+	gulp.watch('./assets/css/src/*.scss', ['css-dev']);
+	gulp.watch('./assets/css/src/*/*.scss', ['css-dev']);
+	gulp.watch('./assets/css/src/pages/*.scss', ['css-dev']);
+	gulp.watch('./patterns/*/*.scss', ['css-dev']);
 
 	// JS
 	gulp.watch('./patterns/*/*.js', ['js-dev']);
-	gulp.watch('./assets/*/*.js', ['js-dev']);
-
+	gulp.watch('./assets/js/src/script.js', ['js-dev']);
+	gulp.watch('./assets/js/src/vendor/*.js', ['js-dev']);
+	gulp.watch('./assets/js/src/pages/*.js', ['js-dev']);
 
   // PHP
 	gulp.watch('./*.php').on('change', sync.reload);
@@ -45,7 +46,7 @@ gulp.task('default',['watch']);
 
 
 // Build Final
-gulp.task('build', ['css-prod']);
+gulp.task('build', ['css-prod', 'js-prod']);
 
 
 // Create BrowserSync
@@ -59,7 +60,7 @@ gulp.task('sync', function() {
 
 // Build CSS (Dev)
 gulp.task('css-dev', function(){
-  return gulp.src('./assets/css/src/master.scss')
+  return gulp.src('./assets/css/src/global.scss')
 		.pipe(sourcemaps.init())
 		.pipe(glob())
 		.pipe(sass({
@@ -79,7 +80,7 @@ gulp.task('css-dev', function(){
 // Build CSS (Production)
 gulp.task('css-prod', function() {
 
-	return gulp.src('./assets/css/src/master.scss')
+	return gulp.src('./assets/css/src/global.scss')
 		.pipe(glob())
 		.pipe(sass({
 			outputStyle: 'compressed'
