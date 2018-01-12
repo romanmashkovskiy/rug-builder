@@ -100,7 +100,7 @@ function retailer_meta_boxes( $meta_boxes ) {
 			array(
 				'name'      => 'Phone Number',
 				'id'        => 'retailer_telephone_1',
-				'type'      => 'number',
+				'type'      => 'text',
 			),
 			array(
 				'name'      => 'Email Address',
