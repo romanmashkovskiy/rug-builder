@@ -63,9 +63,9 @@ function load(options, secret_DEPRECIATED) {
 	}
 
 	else {
-		console.log('PRODUCTION');
-		document.write('<link rel="stylesheet" href="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.css">');
-		document.write('<script src="https://d105txpzekqrfa.cloudfront.net/hospitality/dist/hospitality-builder.min.js"></script>');
+		console.log('PRODUCTIONN');
+		document.write('<link rel="stylesheet" href="https://d105txpzekqrfa.cloudfront.net/hospitality/v2/dist/hospitality-builder.min.css">');
+		document.write('<script src="https://d105txpzekqrfa.cloudfront.net/hospitality/v2/dist/hospitality-builder.min.js"></script>');
 	}
 
 

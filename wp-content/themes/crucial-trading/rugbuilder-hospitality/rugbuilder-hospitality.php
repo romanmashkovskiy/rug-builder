@@ -81,14 +81,14 @@ if ( !$allowed ) {
 		$css_url = '';
 
 		/* DEV */
-		if ($domain === 'localhost' || $domain === 'vps.89hosting.co.uk') {
+		// if ($domain === 'localhost' || $domain === 'vps.89hosting.co.uk') {
 			$loader_script_url = site_url() . $rh_path . '/dist/';
-		}
+		// }
 
 		/* PRODUCTION */
-		else {
-			$loader_script_url = 'https://d105txpzekqrfa.cloudfront.net/hospitality/dist/';
-		}
+		// else {
+			// $loader_script_url = 'https://d105txpzekqrfa.cloudfront.net/hospitality/v2/';
+		// }
 	?>
 
 	<script src="<?php echo $loader_script_url ?>hospitality-loader.js"></script>
