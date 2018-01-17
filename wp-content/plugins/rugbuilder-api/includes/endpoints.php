@@ -446,10 +446,10 @@
     $dompdf->render();
 
     $plugin_path = plugin_dir_path(dirname( __FILE__ ));
-    $tmp = ini_get('upload_tmp_dir');
     $output = $dompdf->output();
 
-    $file = $tmp . '/hospitality-choices.pdf';
+    $file = __DIR__ . '/tmp/' . time() . '-hospitality-choices.pdf';
+
     file_put_contents($file, $output);
 
     return array($file);
@@ -461,7 +461,7 @@
   function send_hosp_email($email, $body, $attachments) {
     error_log('send email');
     error_log($email);
-    
+
     wp_mail(
       $email,
       'New Bespoke Hospitality Creation',
