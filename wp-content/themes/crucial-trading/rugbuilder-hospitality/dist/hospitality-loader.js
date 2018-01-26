@@ -37,15 +37,27 @@ function load(options, secret_DEPRECIATED) {
 
 
 	if ( !window.Promise ) {
-		// document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/native-promise-only/0.8.1/npo.js"></script>');
 		document.write('<script>window.Promise = Promise</script>');
 	}
 
+	document.write('<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>');
+	document.write('<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.js"></script>');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.js"></script>');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/4.2.0/react-router.js"></script>');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/4.2.2/react-router-dom.js"></script>');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js"></script>');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.6/react-redux.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.5.4/pubsub.min.js"></script>');
-	// document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react.min.js"></script>');
-	// document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.2/react-dom.min.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>');
+	document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>');
+	document.write('<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>');
 
+	document.write('<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">');
+	document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">');
+	document.write('<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">');
 
 
 	var devMode = true;
@@ -63,7 +75,6 @@ function load(options, secret_DEPRECIATED) {
 	}
 
 	else {
-		console.log('PRODUCTIONN');
 		document.write('<link rel="stylesheet" href="https://d105txpzekqrfa.cloudfront.net/hospitality/v2/dist/hospitality-builder.min.css">');
 		document.write('<script src="https://d105txpzekqrfa.cloudfront.net/hospitality/v2/dist/hospitality-builder.min.js"></script>');
 	}
@@ -71,6 +82,4 @@ function load(options, secret_DEPRECIATED) {
 
 	document.write('<script>var rugBuilder = new RugBuilder("website", ' + submit + ', ' + restart + ', ' + exit + '); rugBuilder.start();</script>');
 	document.write('<script> var ReduxStore = new ReduxStore(); </script>');
-
-	// var ReduxStore = new ReduxStore();
 }
