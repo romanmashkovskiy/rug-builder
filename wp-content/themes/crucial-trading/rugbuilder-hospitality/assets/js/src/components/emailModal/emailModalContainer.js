@@ -70,9 +70,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
      *
      */
     sendEmail = () => {
-      if (!this.validateInputs()) {
-        return
-      }
+      if (!this.validateInputs()) { return }
 
       this.setState({emailSent: true});
 
@@ -102,6 +100,8 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
           emailResponded: true,
           emailResponse: 'Sorry, an error has occured. Please try again.'
         });
+
+        throw new Error(err)
       })
     }
 
@@ -195,7 +195,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
 			} else if (window.location.hostname == 'vps.89hosting.co.uk') {
 				apiUrl = 'http://vps.89hosting.co.uk/~crucialtrading/';
 			} else {
-				apiUrl = 'http://www.crucial-trading.com/';
+				apiUrl = 'https://www.crucial-trading.com/';
 			}
 
       apiUrl += 'wp-json/api/v1/';

@@ -15,10 +15,10 @@ RugBuilder.prototype.AppComponent = function () {
 
   if (window.location.hostname === 'localhost') {
     baseName = '/crucial-trading/hospitality-builder/'
-  } else if (window.location.hostname == 'vps.89hosting.co.uk') {
+  } else if (window.location.hostname === 'vps.89hosting.co.uk') {
     baseName = '/~crucialtrading/hospitality-builder/'
   } else {
-    baseName = '/crucial-trading/hospitality-builder/'
+    baseName = '/hospitality-builder/'
   }
 
   const App = () => (
