@@ -105,8 +105,6 @@ RugBuilder.prototype.drawerV2Component = function() {
      * loop through colors for structure code and add basic colors
      */
     updateDefaultColorsForStructure = (structure, index) => {
-      console.log('update default color for structure');
-
       const col = 'https://d105txpzekqrfa.cloudfront.net/hospitality/colours/' +
  			  'B10000.jpg';
 
@@ -124,6 +122,7 @@ RugBuilder.prototype.drawerV2Component = function() {
           src: url,
           jpg: jpg,
           img: col,
+          selected: false
         });
      }
 
@@ -131,18 +130,10 @@ RugBuilder.prototype.drawerV2Component = function() {
      * update structure menu
      */
     updateStructure = (code) => {
-      console.log('UPDATE STRUCTURE');
-      console.log(code);
-      console.log('<-------');
-
       const colors = R.numStructureColors[code];
 
       let x;
       for (x = 0; x < colors; x++) {
-        console.log('LOOP');
-        console.log('color -->');
-        console.log(x + 1);
-
         this.updateDefaultColorsForStructure(code, x + 1);
       }
 

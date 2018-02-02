@@ -37,11 +37,12 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * detected change in the url
      */
     urlChanged = () => {
-      if (
-      (this.props.location.pathname === "/crucial-trading/hospitality-builder/summary") ||
-        (this.props.location.pathname === "/~crucialtrading/hospitality-builder/summary")
-      ) {
+      if (this.props.location.pathname === "/summary") {
         this.setState({'summaryViewMode': true});
+      }
+
+      if (this.props.location.pathname === "/") {
+        this.setState({'summaryViewMode': false});
       }
     }
 
@@ -71,9 +72,13 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       newImage.stageIndex = this.currentStage;
       var newImages = this.state.canvasImages;
 
-      const x = newImages.findIndex((image) => {
-        return image.stageIndex === this.currentStage
-      })
+      let x = -1
+      for (let i = 0; i < newImages.length; ++i) {
+        if (newImages[i].stageIndex === this.currentStage) {
+          x = i
+          break
+        }
+      }
 
       /* update previous stage canvas image */
       if (x !== -1) {
@@ -104,6 +109,9 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       })
     }
 
+    /**
+     *
+     */
     removeHighlightOnCanvasImage = () => {
       this.setState({fadeOtherCanvasImages: false})
     }
@@ -112,9 +120,14 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      *
      */
     toggleEmailVisible = () => {
-      console.log('toggle email visible');
-
       this.setState({showEmailModal: !this.state.showEmailModal});
+    }
+
+    /**
+     * print screen
+     */
+    print = () => {
+      window.print();
     }
 
 
@@ -141,6 +154,9 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
           storeCanvasImages={this.state.storeCanvasImages}
           toggleEmailVisible={this.toggleEmailVisible}
           showEmailModal={this.state.showEmailModal}
+          stageInFocus={false}
+          fadeOtherCanvasImages={false}
+          print={this.print}
         />
       )
     }

@@ -1,4 +1,6 @@
 <?php
+// require '../vendor/autoload.php';
+// use Dompdf\Dompdf;
 
   class Rugbuilder_API {
     protected $plugin_name;
@@ -15,6 +17,10 @@
     }
 
     private function load_dependencies() {
+      error_log('require vendor autoload from place 2');
+
+      require_once $this->path . 'vendor/autoload.php';
+
       require_once $this->path . 'includes/map-routes.php';
       $this->routes = new Rugbuilder_MapRoutes();
     }
