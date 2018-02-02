@@ -126,7 +126,7 @@ echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
 if ( is_array( $_GET ) ) {
 
 	if ( array_key_exists( 'postcode', $_GET ) ) {
-		echo retailer_acc('Studio Retailers', 'studio');
+		echo studio_acc('Studio Retailers', 'studio');
 	}
 }
 
