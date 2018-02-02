@@ -110,18 +110,19 @@ function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '') {
 
     for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
       $dist = round( $uk_retailers[$i3]->distance );
+      $iterator = 1 + $i3;
 
       $post_type = $uk_retailers[$i3]->post_type;
       $id = $uk_retailers[$i3]->ID;
       $title = $post_id = $uk_retailers[$i3]->post_title;
-      $local_html .= retailer_loop($dist, $id, $title, $i3);
+      $local_html .= retailer_loop($dist, $id, $title, $iterator);
 
       /**
        * Cards for original layout
        * Only show once
        */
       if ($retailer_type == "Local Retailers") {
-        echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $i3 . '"]' );
+        echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $iterator . '"]' );
       }
     }
 

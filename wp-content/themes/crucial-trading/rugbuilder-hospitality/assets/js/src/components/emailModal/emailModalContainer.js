@@ -1,5 +1,8 @@
 RugBuilder.prototype.EmailModalComponent = function (choices) {
+  const axios = window.axios;
+
   const R = rugBuilder;
+  const store = ReduxStore.store;
 
   class EmailModal extends React.Component {
     constructor() {
@@ -20,11 +23,16 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
         name: '',
         company: '',
         address: '',
+        town: '',
+        postcode: '',
         email: '',
         emailResponse: '',
 
         emailSent: false,
         emailResponded: false,
+        validationMessage: '',
+
+        storeCanvasImages: store.getState().canvasImages[0]
       }
     }
 
@@ -43,6 +51,14 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
       this.setState({address: event.target.value});
     }
 
+    handleTownChange = (event) => {
+      this.setState({town: event.target.value});
+    }
+
+    handlePostcodeChange = (event) => {
+      this.setState({postcode: event.target.value});
+    }
+
     handleEmailChange = (event) => {
       console.log('handle email change');
 
@@ -54,22 +70,46 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
      *
      */
     sendEmail = () => {
-      console.log('send email !!');
+      if (!this.validateInputs()) {
+        return
+      }
+
       this.setState({emailSent: true});
 
-      let req = new XMLHttpRequest();
-      req.addEventListener('load', this.emailCallback);
+      const selectedCanvasImages =
+        this.state.storeCanvasImages.filter(function (x) {
+          return x.selected;
+        });
 
-      req.open('POST', this.getPostUrl());
-      req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      req.send("choices=" + JSON.stringify(this.state) + "&from=" + this.state.email);
+      axios.post(this.getPostUrl(), {
+        selectedCanvasImages: JSON.stringify(selectedCanvasImages),
+        email: this.state.email,
+        name: this.state.name,
+        company: this.state.company,
+        address: this.state.address,
+        town: this.state.town,
+        postcode: this.state.postcode
+      })
+      .then(res => {
+        this.setState({
+          emailResponded: true,
+          emailResponse: 'YOUR EMAIL WAS SENT SUCCESSFULLY'
+        });
+
+      })
+      .catch(err => {
+        this.setState({
+          emailResponded: true,
+          emailResponse: 'Sorry, an error has occured. Please try again.'
+        });
+      })
     }
 
     /**
      *
      */
     emailCallback = (response) => {
-      let res = response.srcElement.responseText;
+      let res = response.srcElement.responseText
       let msg = ''
 
       switch ( res ) {
@@ -79,7 +119,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
           break;
 
         case 'success' :
-          msg  = 'YOUR EMAIL WAS SENT SUCCESSFULLY';
+          msg  = 'Your email was sent successfully. Thank you.';
           break;
 
         default :
@@ -90,9 +130,58 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
         emailResponded: true,
         emailResponse: msg
       });
+    }
 
-      console.log('response txt --->');
-      console.log(this.emailResponse);
+    /**
+     * validation
+     */
+    validateInputs = () => {
+      this.setState({validationMessage: ''})
+
+      if (!this.state.name) {
+        this.setState({validationMessage: 'Please enter your name'});
+        console.log('no name');
+        return false
+      }
+
+      if (!this.state.company) {
+        this.setState({validationMessage: 'Please enter your company'})
+        return false
+      }
+
+      if (!this.state.address) {
+        this.setState({validationMessage: 'Please enter your address'});
+        return false
+      }
+
+      if (!this.state.town) {
+        this.setState({validationMessage: 'Please enter your town'});
+        return false
+      }
+
+      if (!this.state.postcode) {
+        this.setState({validationMessage: 'Please enter your postcode'});
+        return false
+      }
+
+      if (!this.state.email) {
+        this.setState({validationMessage: 'Please enter your email address'});
+        return false
+      }
+
+      if (!this.validateEmail(this.state.email)) {
+        this.setState({validationMessage: 'Please enter a valid email address'});
+        return false;
+      }
+
+      return true
+    }
+
+    /**
+     * validate email to ensure valid email using a regex expression
+     */
+    validateEmail = (email) => {
+      return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
     }
 
     /**
@@ -113,8 +202,6 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
 			return `${apiUrl}email-hospitality-rug-choices`;
     }
 
-
-
     /**
      *
      */
@@ -129,7 +216,12 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
 
           <div className="grey-line"></div>
 
-          <button className="default">RETURN TO SUMMARY</button>
+          <button
+            className="default"
+            onClick={(event) => this.props.toggleEmailVisible(event)}
+          >
+            RETURN TO SUMMARY
+          </button>
         </div>
     )}
 
@@ -186,6 +278,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
               type="text"
               className="form-control"
               placeholder="Town*"
+              onChange={this.handleTownChange}
             />
           </div>
 
@@ -194,6 +287,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
               type="text"
               className="form-control"
               placeholder="Postcode*"
+              onChange={this.handlePostcodeChange}
             />
           </div>
         </div>
@@ -235,8 +329,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
           </div>
         </div>
         </div>
-      )
-    }
+    )}
 
 
     render() {
@@ -245,7 +338,12 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
           <div className="email-modal__background"></div>
 
           <div className="email-modal__email-form">
-            <div className="close">close x</div>
+            <div
+              className="close"
+              onClick={(event) => this.props.toggleEmailVisible(event)}
+            >
+              CLOSE x
+            </div>
 
             {!this.state.emailResponded &&
               <p className="header-text">EMAIL YOUR DESIGN</p>
@@ -266,6 +364,8 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
                 SEND EMAIL
               </button>
             }
+
+            <p className="error">{ this.state.validationMessage }</p>
 
           </div>
         </div>

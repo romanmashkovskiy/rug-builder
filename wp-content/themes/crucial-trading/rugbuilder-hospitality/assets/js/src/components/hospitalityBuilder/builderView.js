@@ -3,6 +3,7 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
   const DrawerV2 = R.drawerV2Component();
   const ProgressMenuV2 = R.progressMenuV2Component();
   const ImageChoice = R.imageChoiceComponent();
+  const Canvas = R.canvasComponent();
 
 
   /**
@@ -26,30 +27,12 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
           />
 
           <div id="canvas" className="canvas-container">
-              {/* Canvas */}
-              <div
-                id="hosp_builder_img-container"
-                className={
-                  "canvas " +
-                  (props.fadeOtherCanvasImages ? 'fade-images' : '')
-                }
-              >
-                {
-                  props.storeCanvasImages &&
-                    props.storeCanvasImages.map((image, index) => {
-                      return <img
-                        alt={ image.alt }
-                        src={ image.src }
-                        key={index}
-                        className={
-                          image.stageIndex === props.stageInFocus ?
-                            'in-focus' : 'out-focus'
-                        } />
-                    })
-                }
-              </div>
+            <Canvas
+              fadeOtherCanvasImages={props.fadeOtherCanvasImages}
+              stageInFocus={props.stageInFocus}
+            />
 
-              <div className="spacer"></div>
+            <div className="spacer"></div>
 
               {/* Structure/Color choices (thumbnails) */}
               <div
@@ -57,16 +40,18 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
                 className="choice-thumbnail-container"
               >
                 {
-                  props.canvasImages.map((canvasImage, index) => {
-                    return <ImageChoice
-                      src={canvasImage.img}
-                      alt={canvasImage.alt}
-                      stage={canvasImage.stageIndex}
-                      key={index} />
-                  })
+                  props.storeCanvasImages &&
+                    props.storeCanvasImages.map((canvasImage, index) => {
+                      if (!canvasImage.selected) { return null; }
+
+                      return <ImageChoice
+                        src={canvasImage.img}
+                        alt={canvasImage.alt}
+                        stage={canvasImage.stageIndex}
+                        key={index} />
+                    })
                 }
               </div>
-
           </div>
         </div>
       </div>

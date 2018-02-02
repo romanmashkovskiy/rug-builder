@@ -13,8 +13,6 @@ RugBuilder.prototype.btnColorComponent = function() {
 			e.preventDefault();
 			R.showLittleLoader();
 
-			console.log(`color code --> ${this.props.color}`);
-
 			const col = 'https://d105txpzekqrfa.cloudfront.net/hospitality/colours/' +
 				this.props.color + '.jpg';
 
@@ -44,6 +42,7 @@ RugBuilder.prototype.btnColorComponent = function() {
 				src: url,
 				jpg: jpg,
 				img: col,
+				selected: true
 			});
 		}
 

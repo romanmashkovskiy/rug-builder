@@ -434,13 +434,15 @@ function woo_custom_post_date_column_time( $post ) {
 
 /**
  * Calculate distance between two lat/lng co-ords
- *
+ * 
  */
 
 function distance_between_lat_lng( $lat1, $lon1, $lat2, $lon2 ) {
 
-	$theta = $lon1 - $lon2;
-	$dist  = sin( deg2rad( $lat1 ) ) * sin( deg2rad( $lat2 ) ) +  cos( deg2rad( $lat1 ) ) * cos( deg2rad( $lat2 ) ) * cos( deg2rad( $theta ) );
+	$theta = floatval($lon1) - floatval($lon2);
+	$float_lat1 = floatval($lat1);
+	$float_lat2 = floatval($lat2);
+	$dist  = sin( deg2rad( $float_lat1 ) ) * sin( deg2rad( $float_lat2 ) ) +  cos( deg2rad( $float_lat1 ) ) * cos( deg2rad( $float_lat2 ) ) * cos( deg2rad( $theta ) );
 	$dist  = acos( $dist );
 	$dist  = rad2deg( $dist );
 

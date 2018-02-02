@@ -1,9 +1,17 @@
 .drawerv2-container {
   width: 348px;
   float: left;
+  height: calc(100vh - 185px);
 
   @media screen and (max-width: 1200px) {
     width: 190px;
+  }
+
+  /**
+   * mobile
+   */
+  @media screen and (max-width: 550px) {
+    width: 110px
   }
 
 
@@ -17,7 +25,7 @@
     background: #fff;
     box-shadow: -5px 5px 18px 0 rgba(0,0,0,.08);
     overflow-y: scroll;
-    height: calc(100vh - 172px);
+    height: calc(100vh - 185px);
 
     li {
       width: 50%;
@@ -33,9 +41,23 @@
         width: 127px;
         height: 127px;
 
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+
         @media screen and (max-width: 1200px) {
           width: 100px;
           height: 100px;
+        }
+
+        /**
+         * mobile
+         */
+        @media screen and (max-width: 550px) {
+          width: 77px;
+          height: 77px;
         }
       }
     }
