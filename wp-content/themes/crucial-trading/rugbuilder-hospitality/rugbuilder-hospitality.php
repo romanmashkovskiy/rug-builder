@@ -8,44 +8,23 @@
  * @since Crucial 1.0
  */
 
-
-/* if user is not logged in redirect them */
-if ( !is_user_logged_in() ) {
-	header( 'Location: ' . site_url() . '/hospitality-register' );
-}
-
-$user    = wp_get_current_user();
-$roles   = $user->roles;
-$allowed = false;
-
-foreach ( $roles as $role ) {
-	if ( $role == 'administrator' || $role == 'hospitality' || $role == 'editor' ) {
-		$allowed = true;
-		break;
-	}
-}
-
-if ( !$allowed ) {
-	header( 'Location: ' . site_url() . '/hospitality-register' );
-}
+ if ( ! is_user_logged_in() && ! current_user_can( 'administrator' ) && ! current_user_can( 'editor' ) && ! current_user_can( 'hospitality' ) ) {
+ 	//header( 'Location: ' . site_url() . '/hospitality-register' );
+	wp_redirect( ''.site_url().'/hospitality-register' );
+ }
 
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
-
-
 	<title>Crucial Trading - Hospitality Builder</title>
 </head>
-
 <body>
 	<div id="root"> </div>
-
-
 	<?
 		$domain = $_SERVER['SERVER_NAME'];
 		$rh_path = '/wp-content/themes/crucial-trading/rugbuilder-hospitality';
@@ -64,7 +43,6 @@ if ( !$allowed ) {
 	?>
 
 	<script src="<?php echo $loader_script_url ?>hospitality-loader.js"></script>
-
 	<script>
 
 		load({
@@ -76,6 +54,5 @@ if ( !$allowed ) {
 		})
 
 	</script>
-
 </body>
 </html>

@@ -59,15 +59,15 @@ background-color: $light-grey-bg;
 						}
 					}
 				}
-				
+
 				a:hover {
 					color: #000;
 				}
-				
+
 				a:after {
 					background-color: #000;
 				}
-				
+
 				&.is-active a {
 					color: #000;
 				}
@@ -250,5 +250,18 @@ background-color: $light-grey-bg;
 				}
 			}
 		}
+	}
+
+	.woocommerce {
+	}
+
+	.woocommerce-error {
+		background: white;
+		box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.08);
+		margin: 20px auto !important;
+		max-width: 900px;
+		padding: 50px 50px 32px;
+		position: relative;
+		width: 74%
 	}
 }
