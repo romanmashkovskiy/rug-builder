@@ -20,7 +20,8 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
         selectedStructure: {},
         storeCanvasImages: store.getState().canvasImages[0],
         summaryViewMode: false,
-        showEmailModal: false
+        showEmailModal: false,
+        progressMenuHeader: 'CHOOSE A STRUCTURE'
       }
 
       this.currentStage = 0;
@@ -60,7 +61,17 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * when user select a new stage update 'current stage' used for canvas images
      */
     changeStage = (stage) => {
+      console.log('HOSP BUILDER -> CHANGE STAGE')
+      console.log(stage)
+
       this.currentStage = stage;
+
+      if (stage === 0) {
+        this.setState({progressMenuHeader: 'CHOOSE A STRUCTURE'})
+        return
+      }
+
+      this.setState({progressMenuHeader: 'CHOOSE A COLOUR'})
     }
 
     /**
@@ -133,7 +144,6 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
 
     render() {
       if (!this.state.summaryViewMode) {
-
         return (
           <HospBuilderView
             changeStage={this.changeStage}
@@ -144,6 +154,7 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
             storeCanvasImages={this.state.storeCanvasImages}
             selectNewImage={this.selectNewImage}
             stageInFocus={this.state.stageInFocus}
+            progressMenuHeader={this.state.progressMenuHeader}
           />
         )
       }

@@ -52,6 +52,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
      * handlers
      */
     handleCurrentStage = (stage) => {
+      console.log('PROGRESS MENU ->handle current stage !!');
       this.setState({currentStage: stage})
       this.props.changeStage(stage);
     }
@@ -125,7 +126,6 @@ RugBuilder.prototype.progressMenuV2Component = function () {
           removeHighlightOnCanvasImage={this.props.removeHighlightOnCanvasImage}
           headerText={this.props.headerText}
           disableLinkHover={this.props.disableLinkHover}
-
           canScrollLeft={this.state.canScrollLeft}
           canScrollRight={this.state.canScrollRight}
         />

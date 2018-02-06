@@ -18,7 +18,7 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
           selectedCanvasImages={props.canvasImages}
           highlightCanvasImageOnHover={props.highlightCanvasImageOnHover}
           removeHighlightOnCanvasImage={props.removeHighlightOnCanvasImage}
-          headerText="CHOOSE A STRUCTURE"
+          headerText={props.progressMenuHeader}
         />
 
         <div id="mainContainer">
