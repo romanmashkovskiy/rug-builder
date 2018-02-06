@@ -62,7 +62,7 @@ if ( !$allowed ) {
 
 		/* PRODUCTION & WIDGET */
 		else {
-			$loader_script_url = 'https://d105txpzekqrfa.cloudfront.net/hospitality/v2/';
+			$loader_script_url = 'https://d105txpzekqrfa.cloudfront.net/hospitality/v2/dist/';
 		}
 	?>
 
