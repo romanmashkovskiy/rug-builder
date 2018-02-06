@@ -92,12 +92,12 @@ function createMap( latLng, zoom, $map ) {
 	$('.switch_views').click(function() {
 		$(".js-info-bubble-close").click();
 	})
+	console.log(pinCoordsArr);
 
 	if ( pinCoordsArr.length > 0 ) {
 		var markers = [];
 		var infowindows = [];
 		var infoBubbles = [];
-
 		for ( var i = 0; i < pinCoordsArr.length; i++ ) {
 
 			if ( pinCoordsArr[i] !== '' ) {
@@ -106,9 +106,8 @@ function createMap( latLng, zoom, $map ) {
 				var lat       = parseFloat(coordsArr[0]);
 				var lng       = parseFloat(coordsArr[1]);
 
-				// Marker value ie number
-				//var i2 = ukOrOverseas === 'uk' ? (i+1).toString() : '';
-				var i2 = ukOrOverseas === 'uk' ? (i).toString() : '';
+				// Marker value ie number to start from 1
+				var i2 = ukOrOverseas === 'uk' ? (1 + i).toString() : '';
 
 
 				markers[i2] = new google.maps.Marker({
@@ -131,9 +130,6 @@ function createMap( latLng, zoom, $map ) {
 					var title = $(title_).text();
 					var distance = $(distance_).text();
 					var website = $(website_).attr('href');
-					var contentString = (
-						"<div class='g-infowindow'>Hello World</div>"
-					);
 					var contantString = "<div id='close' class='g-infobubble'>" +
 																"<div class='g-infobubble__container'>" +
 																	"<div class='g-infobubble__container__body'>" +
@@ -141,7 +137,7 @@ function createMap( latLng, zoom, $map ) {
 																		"<p>Local Retailer</p>" +
 																	"</div>" +
 																	"<div class='g-infobubble__container__footer'>" +
-																		"<a href='" + website + "'" + ">Get Direction</a>" +
+																		"<a href='" + website + "'" + ">Get Directions</a>" +
 																		"<a id='close'>" + distance + "</a>" +
 																	"</div>" +
 																"</div>"
