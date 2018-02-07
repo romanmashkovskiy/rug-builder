@@ -53,9 +53,9 @@ if ( !$allowed ) {
 		$css_url = '';
 
 		/* DEV */
-		if ($domain === 'localhost' ||
-			$domain === 'vps.89hosting.co.uk' ||
-			$domain === 'https://www.crucial-trading.com'
+		if (
+			$domain === 'localhost' ||
+			$domain === 'vps.89hosting.co.uk'
 		) {
 			$loader_script_url = site_url() . $rh_path . '/dist/';
 		}
