@@ -197,7 +197,7 @@ gulp.task('default',['watch']);
 // Create BrowserSync
 gulp.task('sync', function() {
   sync.init({
-		proxy: "http://localhost:8888/crucial",
+		proxy: "http://localhost/crucial",
 		reloadOnRestart: true,
   })
 })
