@@ -14,7 +14,7 @@
 body {
 	margin: 0;
 	-webkit-backface-visibility: hidden;
-	-webkit-transform-style: preserve-3d;
+	// -webkit-transform-style: preserve-3d; <--- Causes fixed divs to scroll
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
 	position: relative;
