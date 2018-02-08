@@ -26,6 +26,15 @@ function crucial_main_menu() {
 
 	$html .= '<div class="main-menu">
 	<div class="main-menu__wrap">
+	<div class="main-menu__search">
+		<form role="search" method="get" class="main-menu__search__form" action="/">
+			<label>
+			<span class="screen-reader-text"></span>
+			<input type="text" class="main-menu__search__input" placeholder="Search..." value="" name="s" title="Search for:" />
+			<span class="main-menu__search__icon"><i class="icon-crucial-search" aria-hidden="true"></i></span>
+			</label>
+		</form>
+	</div>
 		<nav>
 			<div class="main-menu__top icon-list">
 				<div class="main-menu__top__lg">';
@@ -61,15 +70,8 @@ function crucial_main_menu() {
 						<a href="'.$crucial_social_link_insta.'" title="Instagram" target="_blank"><i class="icon-crucial-instagram"></i>instagram</a>
 					</div>
 				</div>
-				<div class="main-menu__search">
-					<form role="search" method="get" class="main-menu__search__form" action="/">
-						<label>
-						<span class="screen-reader-text"></span>
-						<input type="text" class="main-menu__search__input" placeholder="Search..." value="" name="s" title="Search for:" />
-						<span class="main-menu__search__icon"><i class="icon-crucial-search" aria-hidden="true"></i></span>
-						</label>
-					</form>
-				</div>
+				<!-- form search removed -->
+				
 			</div>
 		</nav>
 	</div>
