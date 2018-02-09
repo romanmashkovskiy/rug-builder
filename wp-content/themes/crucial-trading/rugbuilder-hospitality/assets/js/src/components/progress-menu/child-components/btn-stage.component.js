@@ -32,6 +32,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 		 *
 		 */
 		handleClick = (e) => {
+			console.log('handle click -> stage');
+			
 			e.preventDefault();
 
 			if (this.props.disableLinkHover) { return; }
@@ -60,6 +62,7 @@ RugBuilder.prototype.btnStageComponent = function() {
 						"progress-menu__item " +
 						(stageSelected ? 'selected' : '')
 					}
+
 					onMouseEnter={this.mouseEnter}
 					onMouseLeave={this.mouseLeave}
 				>

@@ -30,6 +30,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
 
         emailSent: false,
         emailResponded: false,
+        emailSentSuccess: false,
         validationMessage: '',
 
         storeCanvasImages: store.getState().canvasImages[0]
@@ -72,7 +73,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
     sendEmail = () => {
       if (!this.validateInputs()) { return }
 
-      this.setState({emailSent: true});
+      this.setState({emailSent: true, emailSentSuccess: false});
 
       const selectedCanvasImages =
         this.state.storeCanvasImages.filter(function (x) {
@@ -91,7 +92,8 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
       .then(res => {
         this.setState({
           emailResponded: true,
-          emailResponse: 'YOUR EMAIL WAS SENT SUCCESSFULLY'
+          emailResponse: 'YOUR EMAIL WAS SENT SUCCESSFULLY',
+          emailSentSuccess: true
         });
 
       })
@@ -210,6 +212,12 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
 
       return (
         <div className="email-response-container">
+          {this.state.emailSentSuccess &&
+            <p className="email-response-header">
+              Thank You.
+            </p>
+          }
+
           <p className="email-response">
             {this.state.emailResponse}
           </p>
@@ -226,7 +234,7 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
     )}
 
     /**
-     *
+     * Form JSX
      */
     formJsx = () => {
       if (this.state.emailResponded) { return null; }

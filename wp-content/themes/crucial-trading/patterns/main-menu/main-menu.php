@@ -37,7 +37,7 @@ function crucial_main_menu() {
 	</div>
 		<nav>
 			<div class="main-menu__top icon-list">
-				<div class="main-menu__top__lg">LGGGG';
+				<div class="main-menu__top__lg">';
 
 				if (!empty($get_menu_top)) :
 					// Get Menu Top Items and Build Link

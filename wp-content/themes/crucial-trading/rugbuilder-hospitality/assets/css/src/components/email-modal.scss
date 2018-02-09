@@ -126,6 +126,11 @@ $mobile-width: 750px;
       padding-top: 90px;
       padding-bottom: 90px;
 
+      p.email-response-header {
+        font-size: 52px;
+        font-family: "Playfair Display";
+      }
+
       .email-response {
       	color: #000000;
         font-family: Montserrat;
@@ -135,7 +140,6 @@ $mobile-width: 750px;
         text-align: center;
         padding-left: 150px;
         padding-right: 150px;
-        // width: 100px;
       }
 
         button.default {

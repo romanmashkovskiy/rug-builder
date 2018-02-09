@@ -119,6 +119,7 @@ function crucial_trading_setup() {
 endif;
 add_action( 'after_setup_theme', 'crucial_trading_setup' );
 
+
 /**
  * Add WooCommerce theme support
  *
@@ -434,7 +435,7 @@ function woo_custom_post_date_column_time( $post ) {
 
 /**
  * Calculate distance between two lat/lng co-ords
- * 
+ *
  */
 
 function distance_between_lat_lng( $lat1, $lon1, $lat2, $lon2 ) {
