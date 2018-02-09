@@ -17,7 +17,7 @@ const uglify     = require('gulp-uglify');
 
 
 // Watch Command
-gulp.task('watch', ['sync', 'css-dev', 'js-dev', 'css-prod'], function(){
+gulp.task('watch', ['sync', 'css-dev', 'js-dev'], function(){
 
 	// CSS
 	gulp.watch('./assets/css/src/*.scss', ['css-dev']);
@@ -140,7 +140,6 @@ gulp.task('js-dev', function() {
 gulp.task('js-prod', function() {
 
     var all = gulp.src([
-			'./assets/js/vendor/jquery-3.min.js',
       './assets/js/src/*.js',
       './assets/js/src/**/*.js',
       './patterns/*/*.js',
