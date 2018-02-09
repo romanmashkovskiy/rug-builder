@@ -14,7 +14,7 @@ echo do_shortcode( '[logo-nav]' );
 
 ?>
 
-<h1 style="position: absolute"> Natural Floorcoverings </h1>
+<h1 style="position: absolute; right: 200%;"> Natural Floorcoverings </h1>
 
 <?php
 
