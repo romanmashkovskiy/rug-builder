@@ -371,10 +371,10 @@ body {
 
 }
 
-/*** Menu Bottom - Search ***/
+/*** Menu Top - Search ***/
 
 .main-menu__search {
-
+	border-bottom: 1px solid #3e3e3e;
 	@media all and (max-width: 550px) {
 		border-bottom: 1px solid $main-menu-border-color;
 		border-top: 1px solid $main-menu-border-color;
