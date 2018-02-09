@@ -653,6 +653,32 @@ span.main-menu__button__icon::after {
   background: none;
 }
 
+@media all and (max-width: 450px) {
+	.main-menu__wrap[style] {
+		z-index: 9999 !important;
+	}
+
+	input.main-menu__search__input, input.main-menu__search__input:focus {
+		padding: 10px !important;
+		padding-left: 49px !important;
+	}
+	.main-menu__search {
+		margin-top: 56px;
+	}
+
+	.apply-dark-background {
+		background: transparent !important
+	}
+
+	.main-menu__search label span.main-menu__search__icon {
+		top: 4%;
+	}
+
+	.main-menu__top__lg {
+		padding-top: 5px;
+	}
+}
+
 .main-menu__button.is-active span.main-menu__button__icon::before {
   top: 0;
   -webkit-transform: rotate(45deg);
