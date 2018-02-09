@@ -661,7 +661,9 @@ span.main-menu__button__icon::after {
 	body.page-template-home .top-bar,
 	body.page-template-home .top-bar.headroom--not-top.headroom--pinned,
 	body.page-template-home .top-bar.headroom--not-top.headroom--unpinned {
-		background: transparent
+		background: transparent;
+		//position: fixed;
+		//animation-name: slideDown !important;
 	}
 
 	input.main-menu__search__input, input.main-menu__search__input:focus {
