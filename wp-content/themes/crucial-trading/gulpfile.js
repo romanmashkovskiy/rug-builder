@@ -17,7 +17,7 @@ const uglify     = require('gulp-uglify');
 
 
 // Watch Command
-gulp.task('watch', ['sync', 'css-dev', 'js-dev'], function(){
+gulp.task('watch', ['sync', 'css-dev', 'js-dev', 'js-prod', 'css-prod'], function(){
 
 	// CSS
 	gulp.watch('./assets/css/src/*.scss', ['css-dev']);
