@@ -39,6 +39,6 @@ readme.html
 node_modules
 
 *.map
-.htaccess
+# .htaccess
 # gulpfile.js
 # package.json

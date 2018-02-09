@@ -36,7 +36,7 @@ body {
 	top: 0px;
 	right: 0px;
 	background: $main-menu-bg-color;
-	padding-top: 50px;
+	padding-top: 0px;
 	-webkit-transform: translate3d(370px,0,0);
 	transform: translate3d(370px,0,0);
 	-webkit-transition: -webkit-transform 0.75s;
@@ -217,6 +217,7 @@ body {
 .main-menu__top__lg {
 	border-bottom: 1px solid $main-menu-border-color;
 	padding-bottom: 25px;
+	padding-top: 25px;
 
 	@media all and (max-width: 769px) {
 		padding-bottom: 15px;
@@ -371,10 +372,10 @@ body {
 
 }
 
-/*** Menu Bottom - Search ***/
+/*** Menu Top - Search ***/
 
 .main-menu__search {
-
+	border-bottom: 1px solid #3e3e3e;
 	@media all and (max-width: 550px) {
 		border-bottom: 1px solid $main-menu-border-color;
 		border-top: 1px solid $main-menu-border-color;

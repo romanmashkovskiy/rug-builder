@@ -4,9 +4,12 @@
 	max-height: 100vh !important;
 	min-height: 100vh !important;
 
+	ul.slides-container, li.slide {
+		height: 100vh;
+	}
 	.slide {
 		list-style-type: none;
-	
+
 		img.background {
 			height: 100% !important;
 			object-fit: cover;
@@ -27,21 +30,21 @@
 			img.background {
 				left: 0 !important;
 				width: 100% !important;
-			} 
+			}
 /*
 			img.opening-slide-logo {
 				margin-bottom: 70px;
 				position: static !important;
 				width: 500px !important;
 				z-index: 99 !important;
-				
+
 				@media all and (max-width: 767px) {
 					width: 80% !important;
 					margin-left: auto;
 					margin-right: auto;
 					height: auto
 				}
-				
+
 				@media screen and (max-height: 640px) {
 					display: none;
 				}
@@ -73,7 +76,7 @@
 				}
 			}
 		}
-	}	
+	}
 }
 
 .slides-navigation {
@@ -168,9 +171,9 @@
 
 	h2 {
 //		text-shadow: none;
-		
+
 		font-family: $font-crucial;
-		
+
 		@media screen and (max-width: 992px) {
 			font-size: 46px;
 		}
@@ -202,12 +205,12 @@
 		p {
 			padding: 0 28%;
 			font-size: 22px;
-			
+
 			@media all and (max-width: 767px) {
 				padding: 3%;
 				font-size: 18px;
 			}
-		
+
 			@media all and (max-height: 500px) {
 				font-size: 18px;
 			}
@@ -237,12 +240,12 @@
 				top: 35px;
 			}
 		}
-		
+
 		a:hover {
 			background-color: darken(#FFF, 20%);
 			color: black;
 		}
-		
+
 	}
 }
 
@@ -299,7 +302,7 @@
 			font-weight: 400;
 			letter-spacing: 4px;
 			text-transform: uppercase;
-	
+
 			@media screen and (max-width: 1250px) {
 				font-size: 60px;
 			}
@@ -325,7 +328,7 @@
 	// Opening Video Slide
 
 	&.opening {
-		
+
 		.wp-video {
 			/*bottom: 0;
 			left: 0;
@@ -344,7 +347,7 @@
 					bottom: auto;
 					top: 50%;
 				}*/
-			
+
 			}
 
 			.mejs-controls {
@@ -356,13 +359,13 @@
 		}
 
 		/*.slide__image {
-			
+
 			@media screen and (max-width: 768px) {
 				width: 100%;
 			}
 		}		*/
 
-		
+
 		img:not(.opening-slide-logo) {
 			height: 100% !important;
 			object-fit: contain;
@@ -384,9 +387,9 @@
 			}
 		}
 	}
-	
-	
-	
+
+
+
 	&.image-right {
 
 		.home-banner-header {
@@ -567,7 +570,7 @@
 			.slide__title {
 				top: 40%;
 
-				h2, 
+				h2,
 				a {
 					color: white;
 					text-shadow: 1px 0px 30px #aaaaaa;
@@ -582,7 +585,7 @@
 			img.opening-slide-logo, p {
 				display: none;
 			}
-		}			
+		}
 	}
 }
 
@@ -641,7 +644,7 @@
 
 
 @media all and (max-width: 992px) {
-	
+
 	#super-slider .slide.image-right.opening .slide__image,
 	#super-slider .slide.image-right.opening .slide__title {
 		display: block;
@@ -649,12 +652,12 @@
 		width: 75%;
 		margin: auto;
 	}
-	
+
 	#super-slider .slide.image-right.opening .slide__image {
 		height: 60%;
 		margin-top: 120px;
 	}
-	
+
 	#super-slider .slide.image-right.opening .slide__title {
 		position: absolute;
 		height: 25%;
@@ -662,63 +665,63 @@
 		right: 0;
 		top: 75%;
 	}
-	
+
 	#super-slider .slide.image-right.opening .slide__title p {
 		display: block;
 	}
-	
+
 	#super-slider .slide.image-right.opening .box__one {
 		left: 23%;
 	}
-	
+
 }
 
 
 @media all and (max-width: 600px) {
-	
+
 	#super-slider .slide.image-right.opening .slide__image,
 	#super-slider .slide.image-right.opening .slide__title {
 		width: 95%;
 	}
-	
+
 	#super-slider .slide.image-right.opening .slide__image {
 		margin-top: 80px;
 	}
-	
+
 	#super-slider .slide.image-right.opening .slide__title {
 		top: 65%;
 	}
-	
+
 	#super-slider .slide.image-right.opening .box__one {
 		top: 30%;
 		left: 38%;
 	}
-	
+
 }
 
 
 @media all and (max-width: 450px) {
-	
+
 	#super-slider .slide.image-right.opening .slide__image,
 	#super-slider .slide.image-right.opening .slide__title {
 		//border: 1px red solid;
 		width: 100%;
 	}
-	
+
 	#super-slider .slide.image-right.opening .slide__title {
 		height: 30%;
 	}
-	
+
 	#super-slider .slide.image-right.opening .slide__title p {
 		padding: 20px;
 		text-align: left;
 	}
-	
+
 	#super-slider .slide.image-right.opening .box__one {
 		top: 24%;
 		left: 24%;
 	}
-	
+
 }
 
 
@@ -726,20 +729,13 @@
 
 
 @media all and (max-width: 736px) and (max-height: 414px) {
-	
+
 	#super-slider .slide.image-right.opening .slide__title {
 		display: none;
 	}
-	
+
 	#super-slider .slide.image-right.opening .box__one {
 		height: 57%;
 	}
-	
+
 }
-
-
-
-
-
-
-
