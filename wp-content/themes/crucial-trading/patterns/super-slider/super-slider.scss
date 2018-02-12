@@ -741,7 +741,12 @@
 }
 
 #super-slider .slides-control ul li:first-child {
-  animation-delay: 3s;
+  animation-delay: 2s;
+}
+
+#super-slider {
+	height: 100vh !important;
+	width: 100% !important
 }
 
 /* Keyframes for the fade-in */
@@ -752,7 +757,7 @@
 #super-slider .slides-control ul li:first-child {
   opacity: 0;
   opacity: 1 \9; /*just in case ie*/
-  animation:fadeIn ease-in 5s;
-  animation-fill-mode:forwards;
-  animation-duration: 5s;
+  animation:fadeIn ease-in 1s;
+  animation-fill-mode: forwards;
+  animation-duration: 1s;
 }
