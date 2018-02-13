@@ -32,7 +32,7 @@ function crucial_slider_slides() {
 
 	if ( $query->have_posts() ) :
 
-		$html .= '<div id="super-slider" class="animated fadeIn">';
+		$html .= '<div id="super-slider" class="">';
 		$html .= '<ul class="slides-container">';
 
 		while ( $query->have_posts() ) : $query->the_post();
