@@ -89,8 +89,10 @@ function crucial_trading_setup() {
 	 */
 	add_filter( 'send_email_change_email', '__return_false' );
 
-	if ( !function_exists( 'wp_password_change_notification' ) ) {
-    function wp_password_change_notification() {}
+	if ( ! function_exists( 'wp_password_change_notification' ) ) {
+	    function wp_password_change_notification( $user ) {
+	        return;
+	    }
 	}
 
 	// This theme uses wp_nav_menu() in one location.
