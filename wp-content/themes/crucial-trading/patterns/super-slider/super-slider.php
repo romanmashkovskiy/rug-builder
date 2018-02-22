@@ -32,7 +32,7 @@ function crucial_slider_slides() {
 
 	if ( $query->have_posts() ) :
 
-		$html .= '<div id="super-slider" class="animated fadeIn">';
+		$html .= '<div id="super-slider" class="">';
 		$html .= '<ul class="slides-container">';
 
 		while ( $query->have_posts() ) : $query->the_post();
@@ -204,7 +204,7 @@ function crucial_slider_slides() {
 					//if (is_first_time() == true) :
 						//$html .= do_shortcode( '[video src="' . $video . '" poster="' . $poster .'" autoplay="on"]' );
 					//else:
-						$html .= do_shortcode( '[video src="' . $video . '" poster="' . $poster .'"]' );
+						$html .= do_shortcode( '[video src="' . $video . '" preload="none" poster="' . $poster .'"]' );
 					//endif;
 
 //					$html .= '<video controls preload="auto" poster="' . $poster . '" >';

@@ -1,5 +1,5 @@
 /**
- * SASS File - Main Menu 
+ * SASS File - Main Menu
  * Sliding drawer menu which slides out from the right
  *
  * Contents:
@@ -9,10 +9,10 @@
  */
 /************************************************************************************************************************
 	Variables
-	
+
 	Styles any forms used across the website
-	
-	Crucial Trading - SCSS	
+
+	Crucial Trading - SCSS
 	Created by: KIJO Creative <hello@kijo.co>
 
 *************************************************************************************************************************/
@@ -74,7 +74,7 @@ body {
 
 /************** Main Menu **************/
 .main-menu {
-  z-index: 9999; }
+  z-index: 99999 !important; }
 
 .main-menu__wrap {
   font-family: "Montserrat", sans-serif;

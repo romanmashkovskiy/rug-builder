@@ -17,13 +17,14 @@ const uglify     = require('gulp-uglify');
 
 
 // Watch Command
-gulp.task('watch', ['sync', 'css-dev', 'js-dev'], function(){
+gulp.task('watch', ['sync', 'css-dev', 'js-dev', 'css-prod'], function(){
 
 	// CSS
 	gulp.watch('./assets/css/src/*.scss', ['css-dev']);
 	gulp.watch('./assets/css/src/*/*.scss', ['css-dev']);
 	gulp.watch('./assets/css/src/pages/*.scss', ['css-dev']);
 	gulp.watch('./patterns/*/*.scss', ['css-dev']);
+	gulp.watch('./patterns/*/*.css', ['css-dev']);
 
 	// JS
 	gulp.watch('./patterns/*/*.js', ['js-dev']);
@@ -52,7 +53,7 @@ gulp.task('build', ['css-prod', 'js-prod']);
 // Create BrowserSync
 gulp.task('sync', function() {
   sync.init({
-		proxy: "http://localhost/crucial",
+		proxy: "http://localhost:8888/crucial",
 		reloadOnRestart: true,
   })
 })
@@ -123,7 +124,7 @@ gulp.task('js-dev', function() {
             'all.js'
     ]))
     // Build into single file
-     .pipe(concat('build.min.js'))
+     .pipe(concat('master.min.js'))
 
     // Uglify and catch errors
     .pipe(uglify().on('error', function(e){

@@ -14,7 +14,7 @@
 body {
 	margin: 0;
 	-webkit-backface-visibility: hidden;
-	-webkit-transform-style: preserve-3d;
+	// -webkit-transform-style: preserve-3d; <--- Causes fixed divs to scroll
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
 	position: relative;
@@ -36,7 +36,7 @@ body {
 	top: 0px;
 	right: 0px;
 	background: $main-menu-bg-color;
-	padding-top: 50px;
+	padding-top: 0px;
 	-webkit-transform: translate3d(370px,0,0);
 	transform: translate3d(370px,0,0);
 	-webkit-transition: -webkit-transform 0.75s;
@@ -217,6 +217,7 @@ body {
 .main-menu__top__lg {
 	border-bottom: 1px solid $main-menu-border-color;
 	padding-bottom: 25px;
+	padding-top: 25px;
 
 	@media all and (max-width: 769px) {
 		padding-bottom: 15px;
@@ -371,10 +372,10 @@ body {
 
 }
 
-/*** Menu Bottom - Search ***/
+/*** Menu Top - Search ***/
 
 .main-menu__search {
-
+	border-bottom: 1px solid #3e3e3e;
 	@media all and (max-width: 550px) {
 		border-bottom: 1px solid $main-menu-border-color;
 		border-top: 1px solid $main-menu-border-color;
@@ -650,6 +651,40 @@ span.main-menu__button__icon::after {
 
 .main-menu__button.is-active span.main-menu__button__icon {
   background: none;
+}
+
+@media all and (max-width: 450px) {
+	.main-menu__wrap[style] {
+		z-index: 9999 !important;
+	}
+
+	body.page-template-home .top-bar,
+	body.page-template-home .top-bar.headroom--not-top.headroom--pinned,
+	body.page-template-home .top-bar.headroom--not-top.headroom--unpinned {
+		background: transparent;
+		//position: fixed;
+		//animation-name: slideDown !important;
+	}
+
+	input.main-menu__search__input, input.main-menu__search__input:focus {
+		padding: 10px !important;
+		padding-left: 49px !important;
+	}
+	.main-menu__search {
+		margin-top: 56px;
+	}
+
+	.apply-dark-background {
+		background: transparent !important
+	}
+
+	.main-menu__search label span.main-menu__search__icon {
+		top: 4%;
+	}
+
+	.main-menu__top__lg {
+		padding-top: 5px;
+	}
 }
 
 .main-menu__button.is-active span.main-menu__button__icon::before {

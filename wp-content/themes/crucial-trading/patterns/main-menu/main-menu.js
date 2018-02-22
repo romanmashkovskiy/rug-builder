@@ -1,15 +1,15 @@
 /**
  * main-menu.js
- * 
- * jQuery for the main slide out menu 
+ *
+ * jQuery for the main slide out menu
  */
 
 jQuery( document ).ready(function() {
 
 var $ = jQuery;
-	
-	// Add classes - active tag to button and show menu to body	
-	$(function() {                     
+
+	// Add classes - active tag to button and show menu to body
+	$(function() {
 
 	  	$('.main-menu__button').on('click', function(e) {
 
@@ -43,10 +43,10 @@ var $ = jQuery;
 		    		$('.top-bar').addClass('apply-dark-background')
 		    	}
 
-		    	$('.show-menu .main-menu__wrap').css('z-index', '9999');
+		    	$('.show-menu .main-menu__wrap').css('z-index', '99999');
 
 		    }, 800)
-		    
+
 
 		    if ( window.innerWidth < 993 ) {
 
@@ -61,14 +61,14 @@ var $ = jQuery;
 		    }
 	  	});
 	});
-		
-	// Remove classes and close menu when page is clicked 	
+
+	// Remove classes and close menu when page is clicked
 	$("html").click(function() {
 		$('body').removeClass("show-menu");
 		$('.main-menu__button').removeClass("is-active");
 	});
-	
-	// Ignore above for menu and menu button 
+
+	// Ignore above for menu and menu button
 	$('.main-menu, .main-menu__button').click(function(event){
 	    event.stopPropagation();
 	});
@@ -87,4 +87,3 @@ $(window).resize(function() {
 	}
 
 })
-
