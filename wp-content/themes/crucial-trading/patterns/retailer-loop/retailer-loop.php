@@ -90,6 +90,13 @@ function retailer_loop($dist, $post_id, $title='', $iterator = '', $online = '',
    $phone_html = '';
  endif;
 
+ // Show/Hide Miles HTML based on param
+ if  (array_key_exists('country', $_GET)) {
+   $miles_span = "<span id='distance_$iterator' class='r_distance $view'></span>";
+ } else {
+   $miles_span = "<span id='distance_$iterator' class='r_distance $view'>$dist miles</span>";
+ }
+
   return <<<HTML
 
   <a data-toggle="collapse" data-parent="#accordion" href="#$post_id" class="open-acc retailer-result-dropdown_menu r_accordion">
@@ -100,8 +107,9 @@ function retailer_loop($dist, $post_id, $title='', $iterator = '', $online = '',
       <img class="retailer-result-dropdown_menu__left__title--mobile" src='$plus_icon' />
     </div>
     <div class="retailer-result-dropdown_menu__right">
+
       <div class="retailer-result-dropdown_menu__right__miles">
-        <span id="distance_$iterator" class='r_distance $view'>$dist miles</span>
+        $miles_span
       </div>
       <div class="retailer-result-dropdown_menu__right__retailer-action">
         <img class="retailer-result-dropdown_menu__right__retailer-action--desktop" src='$plus_icon' />

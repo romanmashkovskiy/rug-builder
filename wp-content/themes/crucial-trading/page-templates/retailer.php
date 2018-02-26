@@ -121,6 +121,8 @@ echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="
 
 echo switch_views();
 
+echo retailer_acc('Overseas Retailers', 'overseas', $overseas_retailers, 'country');
+
 echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
 
 if ( is_array( $_GET ) ) {
@@ -139,15 +141,6 @@ if ( is_array( $_GET ) ) {
 echo fixed_retailers('Online', 'online');
 echo fixed_retailers('Showrooms', 'showroom');
 /******************************************************************************/
-
-
-
-
-if ( count( $overseas_retailers ) > 0 ) {
-	for ( $i4 = 0; $i4 < count( $overseas_retailers ); $i4++ ) {
-		echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
-	}
-}
 
 
 $showroom_args = array(
