@@ -90,7 +90,7 @@ function retailer_card( $atts = '' ) {
 
 		$html .= "<div id='retailer_$iterator' class='retailer r_card'>";
 		$html .= '<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20161215113733/Combined-Shape-Copy.svg" class="retailer__pin">';
-		$html .= '<span class="retailer__iterator">' . $iterator . '</span>';
+		$html .= '<span class="retailer__iterator">' . ($iterator - 1 ) . '</span>';
 		$html .= '<div class="border-div">';
 		$html .= '<h3 class="retailer__title r_title">' . get_the_title( $post_id ) . '</h3>';
 		$html .= '<p class="retailer__address">' . nl2br( $address ) . '</p>';
@@ -114,7 +114,7 @@ function retailer_card( $atts = '' ) {
 		$html .= '<div class="retailer overseas r_card">';
 		$html .= '<div class="border-div clearfix">';
 		$html .= '<span class="flag-icon flag-icon-' . $country_code . '"></span>';
-		$html .= '<h3 class="retailer__title">' . get_the_title( $post_id ) . '</h3>';
+		$html .= '<h3 id=title_' . $iterator . ' class="retailer__title">' . get_the_title( $post_id ) . '</h3>';
 		$html .= '<p class="retailer__address">' . nl2br( $address ) . '</p>';
 		$html .= '<div class="retailer__contact">';
 		if ( $website != '' ) {
@@ -127,7 +127,7 @@ function retailer_card( $atts = '' ) {
 			$html .= '<a class="retailer__email" href="mailto:' . $email . '"><p>Send Email</p></a>';
 		}
 		$html .= '</div>';
-		$html .= '<a class="retailer_directions" href="' . $url . '">Get Directions</a>';
+		$html .= '<a id=website_' .$iterator . ' class="retailer_directions" href="' . $url . '">Get Directions</a>';
 		$html .= '</div>';
 		$html .= '</div>';
 	}

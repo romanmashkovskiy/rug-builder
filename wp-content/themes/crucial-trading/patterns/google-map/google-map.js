@@ -1,11 +1,12 @@
-var $ = jQuery;
-
 $(document).ready(function() {
 
 // crucial: http://maps.google.com/maps?saddr=52.50883313,-2.07817228&daddr=ws1 3qu
 
 // movit: http://maps.google.com/maps?saddr=52.508,-1.69351&daddr=52.4826594,-1.8335196
 	if ( $('body').hasClass('page-template-retailer') ) {
+
+		// Detect if on overseas page
+		const countryParam = window.location.search.substr(1).split('=')[0]
 
 		var latLng = {};
 		var zoom   = 14
@@ -46,11 +47,11 @@ $(document).ready(function() {
 			zoom = 14;
 		}
 
-		createMap( latLng, zoom, $map );
+		createMap( latLng, zoom, $map, countryParam );
 	};
 });
 
-function createMap( latLng, zoom, $map ) {
+function createMap( latLng, zoom, $map, countryParam ) {
 
 	var ukOrOverseas = $($map).data('ukcenter') !== '' ? 'uk' : 'overseas';
 
@@ -92,7 +93,6 @@ function createMap( latLng, zoom, $map ) {
 	$('.switch_views').click(function() {
 		$(".js-info-bubble-close").click();
 	})
-	console.log(pinCoordsArr);
 
 	if ( pinCoordsArr.length > 0 ) {
 		var markers = [];
@@ -107,7 +107,8 @@ function createMap( latLng, zoom, $map ) {
 				var lng       = parseFloat(coordsArr[1]);
 
 				// Marker value ie number to start from 1
-				var i2 = ukOrOverseas === 'uk' ? (1 + i).toString() : '';
+				//var i2 = ukOrOverseas === 'uk' ? (1 + i).toString() : '';
+				const i2 = (1 + i).toString();
 
 
 				markers[i2] = new google.maps.Marker({
@@ -122,33 +123,12 @@ function createMap( latLng, zoom, $map ) {
 				// })
 
 				google.maps.event.addListener(markers[i2], 'click', function(e) {
-
-					// IDs are found in retailer-result-dropdown.php
-					var distance_ = "#distance_" + this.label;
-					var title_ = "#title_" + this.label;
-					var website_ = "#website_" + this.label;
-					var title = $(title_).text();
-					var distance = $(distance_).text();
-					var website = $(website_).attr('href');
-					var contantString = "<div id='close' class='g-infobubble'>" +
-																"<div class='g-infobubble__container'>" +
-																	"<div class='g-infobubble__container__body'>" +
-																		"<h4>" + title + "</h4>" +
-																		"<p>Local Retailer</p>" +
-																	"</div>" +
-																	"<div class='g-infobubble__container__footer'>" +
-																		"<a href='" + website + "'" + ">Get Directions</a>" +
-																		"<a id='close'>" + distance + "</a>" +
-																	"</div>" +
-																"</div>"
-															'<div>';
-
 					// Close all other open windows, if open, on each click
 					$(".js-info-bubble-close").click();
 
 					infoBubbles[this.label] = new InfoBubble({
 			      map: map,
-			      content: contantString,
+			      content: countryParam == 'country' ? bubbleView(this, 'Overseas Retailer') : bubbleView(this, 'Local Retailer'),
 			      shadowStyle: 1,
 			      padding: 0,
 			      backgroundColor: '#ffffff',
@@ -167,10 +147,31 @@ function createMap( latLng, zoom, $map ) {
 						//closeSrc: templateDirectoryUri + "/assets/icons/plus.svg"
 					});
 
-					 var aa = infoBubbles[this.label].open(map, markers[this.label]);
+					infoBubbles[this.label].open(map, markers[this.label]);
 
 				 });
 			}
 		}
+	}
+
+	function bubbleView(this_, pTag) {
+		const distance_ = "#distance_" + this_.label;
+		const title_ = "#title_" + this_.label;
+		const website_ = "#website_" + this_.label;
+		const title = $(title_).text();
+		const distance = $(distance_).text();
+		const website = $(website_).attr('href');
+		return contantString = "<div id='close' class='g-infobubble'>" +
+													"<div class='g-infobubble__container'>" +
+														"<div class='g-infobubble__container__body'>" +
+															"<h4>" + title + "</h4>" +
+															"<p>" + pTag +"</p>" +
+														"</div>" +
+														"<div class='g-infobubble__container__footer'>" +
+															"<a href='" + website + "'" + ">Get Directions</a>" +
+															"<a id='close'>" + distance + "</a>" +
+														"</div>" +
+													"</div>"
+												'<div>';
 	}
 }

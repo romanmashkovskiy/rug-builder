@@ -69,7 +69,7 @@ function overseas_retailers() {
     		</div>"
     	);
       for ( $i4 = 0; $i4 < count( $overseas_retailers ); $i4++ ) {
-        echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
+        echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas" i="' . $i4 . '"]' );
       }
 
     }

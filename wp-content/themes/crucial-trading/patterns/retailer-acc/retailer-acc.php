@@ -127,6 +127,13 @@ function loop_render($retailer, $retailer_type) {
         </div>"
     );
 
+    echo (
+  		"<div class='r_card clearfix'>
+  			<h2 class='page-subtitle'>Local Retailers</h2>
+  			<span></span>
+  			<div class='clearfix'></div></div>"
+  	);
+
     for ( $i3 = 0; $i3 < count( $retailer ); $i3++ ) {
       $dist = round( $retailer[$i3]->distance );
       $iterator = 1 + $i3;
