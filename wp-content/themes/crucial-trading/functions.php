@@ -170,7 +170,7 @@ function crucial_trading_scripts() {
 		wp_enqueue_script( 'master-js', get_template_directory_uri() . '/assets/js/dist/master.min.js', '', '', true );
 
   elseif ( constant('WP_ENV') == 'production' ) :
-
+		wp_enqueue_script( 'vendor-js', get_template_directory_uri() . '/assets/js/dist/vendor.min.js', '', '', true );
 		wp_enqueue_style( 'master-css', get_template_directory_uri() . '/assets/css/dist/master.min.css', true );
 		wp_enqueue_script( 'master-js', get_template_directory_uri() . '/assets/js/dist/master.min.js', '', '', true );
 
