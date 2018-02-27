@@ -47,6 +47,8 @@
   padding-bottom: 0;
 }
 
+/** Hidden by default; should be shown when searching for overseas partners **/
+/* JS is used to override the default behaviour on overseas page */
 .r_card {
   display: none
 }

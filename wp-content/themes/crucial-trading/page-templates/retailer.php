@@ -199,6 +199,11 @@ echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
 
 if ( is_array( $_GET ) ) {
 
+  // Detect when to display .r_card when displays the oversease cards
+  if ( array_key_exists( 'country', $_GET ) ) {
+    echo "<input id='get_country' type='hidden' value='true' />";
+  }
+
 	if ( array_key_exists( 'postcode', $_GET ) ) {
 		echo studio_acc('Studio Retailers', 'studio');
 	}
@@ -215,7 +220,7 @@ echo fixed_retailers('Showrooms', 'showroom');
 /******************************************************************************/
 if ( count( $overseas_retailers ) > 0 ) {
 	for ( $i4 = 0; $i4 < count( $overseas_retailers ); $i4++ ) {
-		echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
+		//echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
 	}
 }
 
