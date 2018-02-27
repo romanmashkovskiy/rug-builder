@@ -193,36 +193,36 @@ echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="
 
 echo switch_views();
 
-echo overseas_retailers();
-
-echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
-
+// Only show overseas cards when searched for overseas
 if ( is_array( $_GET ) ) {
-
+//var_dump("SHOWWWW");
   // Detect when to display .r_card when displays the oversease cards
   if ( array_key_exists( 'country', $_GET ) ) {
     echo "<input id='get_country' type='hidden' value='true' />";
+    echo overseas_retailers();
   }
 
 	if ( array_key_exists( 'postcode', $_GET ) ) {
+    echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
 		echo studio_acc('Studio Retailers', 'studio');
+    echo fixed_retailers('Online', 'online');
+    echo fixed_retailers('Showrooms', 'showroom');
 	}
+
 }
 
-/**
- * These accordions have no funtionality in Google API, Miles
- * miles nor postcode. These are only meant to show raw data without any miles
- * calculations. However, they use the retailer_loop() which has the mile logic
- * but are not shown to the user.
- */
-echo fixed_retailers('Online', 'online');
-echo fixed_retailers('Showrooms', 'showroom');
-/******************************************************************************/
-if ( count( $overseas_retailers ) > 0 ) {
-	for ( $i4 = 0; $i4 < count( $overseas_retailers ); $i4++ ) {
-		//echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
-	}
+if ( !$_GET  ) {
+  /**
+   * These accordions have no funtionality in Google API, Miles
+   * miles nor postcode. These are only meant to show raw data without any miles
+   * calculations. However, they use the retailer_loop() which has the mile logic
+   * but are not shown to the user.
+   */
+  echo fixed_retailers('Online', 'online');
+  echo fixed_retailers('Showrooms', 'showroom');
 }
+
+
 
 $showroom_args = array(
 	'post_type' => 'retailer',
@@ -240,7 +240,7 @@ $showroom_args = array(
 
 $showroom_query = new WP_Query( $showroom_args );
 
-if ( $showroom_query->have_posts() ) :
+if ( $showroom_query->have_posts() && !array_key_exists( 'country', $_GET ) ) :
 
 	echo (
 		"<div class='r_card clearfix'>
@@ -272,7 +272,7 @@ $online_args = array(
 
 $online_query = new WP_Query( $online_args );
 
-if ( $online_query->have_posts() ) :
+if ( $online_query->have_posts() && !array_key_exists( 'country', $_GET )) :
 
 	echo (
 		"<div class='r_card clearfix'>

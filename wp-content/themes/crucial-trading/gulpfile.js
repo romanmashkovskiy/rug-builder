@@ -82,7 +82,6 @@ gulp.task('build-vendor-js', function() {
 
     var all = gulp.src([
 			'./assets/js/vendor/jquery-3.min.js',
-			'./assets/js/vendor/super-slider.min.js',
 			'./assets/js/vendor/bootstrap3.min.js',
 			'./assets/js/vendor/bxslider.min.js',
 			'./assets/js/vendor/jquery.elevatezoom.min.js',
@@ -92,6 +91,10 @@ gulp.task('build-vendor-js', function() {
 			'./assets/js/vendor/js.cookie.min.js',
 			'./assets/js/vendor/jQuery.headroom.min.js',
 			'./assets/js/vendor/headroom.min.js',
+			'./assets/js/vendor/super-slider.min.js',
+			'./assets/js/vendor/WeakMap.min.js',
+			'./assets/js/vendor/masonry.pkgd.min.js',
+			//'./assets/js/vendor/markerwithlabel.min.js',
 			//'./assets/js/dist/build.min.js',
 
 			'./assets/js/vendor/infobubble.min.js',
