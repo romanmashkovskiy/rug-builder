@@ -93,7 +93,7 @@ gulp.task('build-vendor-js', function() {
 			'./assets/js/vendor/headroom.min.js',
 			//'./assets/js/dist/build.min.js',
 			'./assets/js/vendor/bootstrap3.min.js',
-			'./assets/js/vendor/infobubble.js',
+			'./assets/js/vendor/infobubble.min.js',
 		])
     .pipe(concat('all.js'))
 
