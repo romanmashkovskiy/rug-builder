@@ -56,7 +56,7 @@ function studio_acc($uk_retailers_ = '') {
           if ($api_obj->status) {
             $distance = distance_between_lat_lng( $api_obj->search_lat, $api_obj->search_lng, $retailers[$i2]->lat, $retailers[$i2]->lng );
           } else {
-            $distance = distance_between_lat_lng( 0, 0, $retailers[$i2]->lat, $retailers[$i2]->lng );
+            $distance = distance_between_lat_lng( 0.0, 0.0, $retailers[$i2]->lat, $retailers[$i2]->lng );
           }
 
           $retailers[$i2]->distance = round( $distance );

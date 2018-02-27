@@ -7,16 +7,16 @@
  * @package Crucial Trading
  * @since Crucial Trading 1.0
  */
- 
+
 get_header();
 
 echo do_shortcode( '[logo-nav]' );
 
 ?>
 
-<h1> Natural Floorcoverings </h1>
+<h1 style="position: absolute; right: 200%;"> Natural Floorcoverings </h1>
 
-<?php 
+<?php
 
 echo do_shortcode( '[super-slider]' );
 
@@ -40,4 +40,4 @@ echo do_shortcode( '[home-page-cta id=2]' );
 
 ?> </div> <?php
 
-get_footer(); 
+get_footer();

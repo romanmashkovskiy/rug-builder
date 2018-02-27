@@ -21,7 +21,35 @@ RugBuilder.prototype.canvasComponent = function () {
       })
     }
 
+    /**
+     * All canvas images JSX
+     */
+    CanvasImagesJsx = () => {
+      if (!this.state.storeCanvasImages) { return null }
+
+      return (
+        this.state.storeCanvasImages.map((image, index) => {
+          if (!image.selected && (
+              !this.props.fadeOtherCanvasImages ||
+              image.stageIndex !== this.props.stageInFocus
+          )) {
+            return null
+          }
+
+          return <img
+            alt={image.alt}
+            src={image.src}
+            key={index}
+            className={
+              image.stageIndex === this.props.stageInFocus ?
+                'in-focus' : 'out-focus'
+            } />
+        })
+    )}
+
     render() {
+      // if (!this.state.storeCanvasImages) { return null; }
+
       return (
         <div
           id="hosp_builder_img-container"
@@ -30,18 +58,7 @@ RugBuilder.prototype.canvasComponent = function () {
             (this.props.fadeOtherCanvasImages ? 'fade-images' : '')
           }
         >
-          {
-            this.state.storeCanvasImages.map((image, index) => {
-              return <img
-                alt={ image.alt }
-                src={ image.src }
-                key={index}
-                className={
-                  image.stageIndex === this.state.stageInFocus ?
-                    'in-focus' : 'out-focus'
-                } />
-            })
-          }
+          {this.CanvasImagesJsx()}
         </div>
     )}
   }

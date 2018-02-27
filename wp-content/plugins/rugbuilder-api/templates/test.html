@@ -1,0 +1,240 @@
+<html>
+<head>
+<style type="text/css">
+  body {
+    font-family: Open Sans,sans-serif;
+  }
+
+  /**
+   * Choices Table
+   */
+  table.choices-table {
+    width: 1300px;
+    margin: 0 auto;
+    /*border: 1px solid red;*/
+  }
+
+  th {
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #000000;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+
+  th.structure {
+    width: 320px;
+  }
+
+  th.structure span.code-space {
+    margin-left: 100px;
+  }
+
+  th.colors {
+    border-bottom: 2px solid #979797;
+  }
+
+  td {
+    vertical-align: top;
+    color: #000000;
+    font-size: 14px;
+  }
+
+  td.structure {
+    width: 320px;
+    height: 300px;
+    position: relative;
+  }
+
+  td.structure img {
+    width: 274px;
+    height: 274px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  td.img-choice {
+    padding: 15px;
+  }
+
+  td.img-choice img {
+    width: 50px;
+    height: 50px;
+    margin-top: 20px;
+  }
+
+  .align-left {
+    float: left;
+    margin-right: 25px;
+  }
+
+  .align-right {
+    text-align: left;
+  }
+
+  .align-right p {
+    padding-left: 30px;
+  }
+
+  /**
+   * Seprator Table
+   */
+  table.seperator {
+    background: #979797;
+    opacity: 0.7;
+    height: 1px;
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    /*border: 1px solid green;*/
+  }
+
+  /**
+   * Image Structure Table
+   */
+  table.image-structures {
+    width: 1300px;
+    margin: 0 auto;
+    /* border: 1px solid blue; */
+  }
+
+  td.img-struct {
+    width: 280px;
+    height: 320px;
+    padding: 10px;
+  }
+
+  td.img-struct span.code-space {
+    margin-left: 130px;
+  }
+
+  td.img-struct .img-struct__canvas-container {
+    position: relative;
+  }
+
+  td.img-struct img {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    height: 260px;
+    width: 260px;
+    opacity: 0.2;
+  }
+
+  td.img-struct img.in-focus {
+    opacity: 1.0;
+  }
+
+  tr.image-structures__lower-row td {
+    padding-top: 20px;
+  }
+</style>
+</head>
+
+<body>
+  <!-- Choices Table -->
+  <table class="choices-table">
+    <tr>
+      <th class="structure"> STRUCTURE: <span class="code-space">{{ canvasImages[0].alt }}</span> </th>
+      <th class="colors" colspan="4"> COLOURS </th>
+    </tr>
+
+    <tr>
+      <!-- Canvas Image -->
+      <td class="structure" rowspan="2">
+        {% for key,img in canvasImages %}
+          <img src='{{ img.src }}' />
+        {% endfor %}
+      </td>
+
+      <!-- All Colour Choices --> <!-- Need too split into 2 rows -->
+      {% for key,img in canvasImages if not key == 0 and key <= 4 %}
+        <td class="img-choice">
+          <div class="align-left">
+            <img src='{{ img.img }}' />
+          </div>
+
+          <div class="align-right">
+            <p> Color {{ img.stageIndex }} </p>
+            <p> {{ img.alt }} </p>
+          </div>
+        </td>
+      {% endfor %}
+    </tr>
+
+    <tr>
+      <!-- All Colour Choices --> <!-- Need too split into 2 rows -->
+      {% for key,img in canvasImages if key > 4 %}
+        <td class="img-choice">
+          <div class="align-left">
+            <img src='{{ img.img }}' />
+          </div>
+
+          <div class="align-right">
+            <p> Color {{ img.stageIndex }} </p>
+            <p> {{ img.alt }} </p>
+          </div>
+        </td>
+      {% endfor %}
+    </tr>
+  </table>
+
+  <!-- Seperator Table -->
+  <table class="seperator">
+    <tr> </tr>
+  </table>
+
+  <!-- Structured Image Table -->
+  <table class="image-structures">
+    <tr>
+      {% for key,img in canvasImages if not key == 0 and key <= 4 %}
+        <td class="img-struct">
+          <div>
+            <p>
+              <strong>COLOUR {{ img.stageIndex }}:</strong>
+              <span class="code-space">{{ img.alt }}</span>
+            </p>
+
+            <div class="img-struct__canvas-container">
+              {% for key,img2 in canvasImages %}
+                {% if img.stageIndex == img2.stageIndex %}
+                  <img src='{{ img2.src }}' class="in-focus">
+
+                {% else %}
+                  <img src='{{ img2.src }}'>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </td>
+      {% endfor %}
+    </tr>
+
+    <tr class="image-structures__lower-row">
+      {% for key,img in canvasImages if key > 4 %}
+        <td class="img-struct">
+          <div>
+            <p>
+              <strong>COLOUR {{ img.stageIndex }}:</strong>
+              <span class="code-space">{{ img.alt }}</span>
+            </p>
+
+            <div class="img-struct__canvas-container">
+              {% for key,img2 in canvasImages %}
+                {% if img.stageIndex == img2.stageIndex %}
+                  <img src='{{ img2.src }}' class="in-focus">
+
+                {% else %}
+                  <img src='{{ img2.src }}'>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </td>
+      {% endfor %}
+    </tr>
+  </table>
+</body>
+</html>

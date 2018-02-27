@@ -63,6 +63,15 @@ if ( is_array( $_GET ) ) {
 
 				$query = new WP_Query( $args );
 
+        /**
+         * Sort Array by Google API distance
+         */
+        usort( $uk_retailers, 'cmp' );
+
+        for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
+          $pin_coords .= $uk_retailers[$i3]->lat . ' ' . $uk_retailers[$i3]->lng . ',';
+        }
+
 				if ( !$query->have_posts() ) {
 					$error = 10;
 				} else {
@@ -81,6 +90,13 @@ if ( is_array( $_GET ) ) {
 						$post->lng = $lng;
 
 						array_push( $retailers, $post );
+
+            // Check for ovverseas
+            if ( $postcode == 'country' ) {
+
+              $pin_coords .= $lat . ' ' . $lng . ',';
+              array_push( $overseas_retailers, $post );
+            }
 					}
 
 					for ( $i2 = 0; $i2 < count( $retailers ); $i2++ ) {
@@ -93,7 +109,7 @@ if ( is_array( $_GET ) ) {
 						}
 					}
 
-					/**
+          /**
 					 * Sort Array by Google API distance
 					 */
 					usort( $uk_retailers, 'cmp' );
@@ -106,7 +122,63 @@ if ( is_array( $_GET ) ) {
 		} else {
 			$error = 1;
 		}
- }
+ } else if ( array_key_exists( 'country', $_GET ) ) {
+
+		$country = $_GET['country'];
+		$enccoun = urlencode( $country );
+
+		$url      = "https://maps.google.com/maps/api/geocode/json?&key=AIzaSyCHgDqWhs3PQTM-qzsZwLQO99UhFgVi5Tk&address={$enccoun}";
+		$json     = file_get_contents( $url );
+		$response = json_decode( $json, true );
+
+		if ( is_array( $response ) && array_key_exists( 'status', $response ) ) {
+
+			if ( $response['status'] == 'OK' ) {
+				$overseas_center  = $response['results'][0]['geometry']['location']['lat'] . ' ' . $response['results'][0]['geometry']['location']['lng'];
+			} else {
+				$error = 10;
+			}
+		} else {
+			$error = 10;
+		}
+
+		$args = array(
+			'post_type' => 'retailer',
+			'orderby'   => 'menu_order',
+			'order'     => 'ASC',
+			'posts_per_page' => -1,
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'retailer_type',
+					'field'    => 'slug',
+					'terms'    => 'overseas',
+				),
+			),
+		);
+
+		$query = new WP_Query( $args );
+
+		if ( !$query->have_posts() ) {
+			$error = 10;
+		} else {
+
+			for ( $i = 0; $i < $query->post_count; $i++ ) {
+
+				$post         = $query->posts[$i];
+				$post_id      = $post->ID;
+				$post_country = strtolower( rwmb_meta( 'retailer_country', array(), $post_id ) );
+
+				if ( $country == $post_country ) {
+
+					$lat = get_post_meta( $post_id, 'retailer_lat', true );
+					$lng = get_post_meta( $post_id, 'retailer_lng', true );
+
+					$pin_coords .= $lat . ' ' . $lng . ',';
+					array_push( $overseas_retailers, $post );
+				}
+			}
+		}
+	}
 }
 
 get_header();
@@ -120,6 +192,8 @@ echo do_shortcode( '[retailer-search-box]' );
 echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="' . $overseas_center . '" pin-coords="' . $pin_coords . '"]' );
 
 echo switch_views();
+
+echo overseas_retailers();
 
 echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
 
@@ -139,16 +213,11 @@ if ( is_array( $_GET ) ) {
 echo fixed_retailers('Online', 'online');
 echo fixed_retailers('Showrooms', 'showroom');
 /******************************************************************************/
-
-
-
-
 if ( count( $overseas_retailers ) > 0 ) {
 	for ( $i4 = 0; $i4 < count( $overseas_retailers ); $i4++ ) {
 		echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
 	}
 }
-
 
 $showroom_args = array(
 	'post_type' => 'retailer',

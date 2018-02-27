@@ -15,7 +15,7 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
     if (!props.stages) { return null; }
 
     return (
-      <ul className="progress-menu__stages">
+      <ul className="progress-menu__stages" id="progessMenuStages">
         {
           props.stages.map((stage, index) => {
           return <BtnStageComponent
@@ -26,7 +26,8 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
             handleCurrentStage={props.handleCurrentStage}
             selectedCanvasImages={props.selectedCanvasImages}
             highlightCanvasImageOnHover={props.highlightCanvasImageOnHover}
-            removeHighlightOnCanvasImage={props.removeHighlightOnCanvasImage} />
+            removeHighlightOnCanvasImage={props.removeHighlightOnCanvasImage}
+            disableLinkHover={props.disableLinkHover} />
           })
         }
       </ul>
@@ -48,6 +49,16 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
       </Link>
   )}
 
+  const goRight = () => {
+    var pos = $('#progessMenuStages').scrollLeft() + 300;
+    $('#progessMenuStages').animate({scrollLeft: pos}, 400);
+  }
+
+  const goLeft = () => {
+    var pos = $('#progessMenuStages').scrollLeft() - 300;
+    $('#progessMenuStages').animate({scrollLeft: pos}, 400);
+  }
+
   /**
    * Progress Menu JSX
    */
@@ -56,7 +67,7 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
       <div className="hosp_builder_progress-menu__container progress-menu">
         <div className="progress-menu__left-side">
           <div className="progress-menu__left-side__logo">
-            <img src="https://d105txpzekqrfa.cloudfront.net/uploads/20170110114837/logo-1.png" />
+            <img src="https://d105txpzekqrfa.cloudfront.net/uploads/hosp-builder-logo.png" />
           </div>
 
           <div className="progress-menu__left-side__structure-header">
@@ -68,12 +79,32 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
 
         <div className="progress-menu__right-side">
           <div className="hosp_builder_progress-menu__top progress-menu__top">
-            <SubmitLink props={props} />
-            <BtnRestartComponent />
-            <BtnExitComponent />
+            <img src="https://d105txpzekqrfa.cloudfront.net/uploads/hosp-builder-logo.png" className="logo" />
+
+            <ul>
+              <li><SubmitLink props={props} /></li>
+              <li><BtnRestartComponent /></li>
+              <li><BtnExitComponent /></li>
+            </ul>
           </div>
 
-          <div className="hosp_builder_progress-menu__bottom progress-menu__lower">
+          <div
+            className="hosp_builder_progress-menu__bottom progress-menu__lower"
+            id="progressMenuLower"
+          >
+            <i
+              className="fa fa-chevron-left left-paddle"
+              aria-hidden="true"
+              onClick={(e) => goLeft(e)}
+            >
+            </i>
+
+            <i
+              className="fa fa-chevron-right right-paddle"
+              aria-hidden="true"
+              onClick={(e) => goRight(e)}
+            >
+            </i>
             <Stages props={props} />
           </div>
         </div>

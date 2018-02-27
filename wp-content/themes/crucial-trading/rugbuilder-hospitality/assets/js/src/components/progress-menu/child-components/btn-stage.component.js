@@ -14,6 +14,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 		 *
 		 */
 		mouseEnter = () => {
+			if (this.props.disableLinkHover) { return; }
+
 			this.props.highlightCanvasImageOnHover(this.props.index);
 		}
 
@@ -21,6 +23,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 		 *
 		 */
 		mouseLeave = () => {
+			if (this.props.disableLinkHover) { return; }
+
 			this.props.removeHighlightOnCanvasImage();
 		}
 
@@ -28,7 +32,11 @@ RugBuilder.prototype.btnStageComponent = function() {
 		 *
 		 */
 		handleClick = (e) => {
+			console.log('handle click -> stage');
+			
 			e.preventDefault();
+
+			if (this.props.disableLinkHover) { return; }
 
 			R.stageVisited[this.props.index] = true;
 			R.colorStage = this.props.index;
@@ -39,14 +47,22 @@ RugBuilder.prototype.btnStageComponent = function() {
 
 		render() {
 			/* stage selected if current stage found in selected canvas images */
-			const stageSelected = this.props.selectedCanvasImages.findIndex((x) => {
-				return x.stageIndex === this.props.index
-			}) > -1 ? true : false;
+			var stageSelected = false
 
+			if (this.props.selectedCanvasImages) {
+				stageSelected = this.props.selectedCanvasImages[this.props.index] ?
+						this.props.selectedCanvasImages[this.props.index].selected
+						:
+						false;
+			}
 
 			return (
 				<li
-					className="progress-menu__item"
+					className={
+						"progress-menu__item " +
+						(stageSelected ? 'selected' : '')
+					}
+
 					onMouseEnter={this.mouseEnter}
 					onMouseLeave={this.mouseLeave}
 				>
@@ -63,6 +79,7 @@ RugBuilder.prototype.btnStageComponent = function() {
 					</a>
 
 					{this.props.index === this.props.currentStage &&
+					!this.props.disableLinkHover &&
 						<div className="stage-selected w3-circle">
 							<i className="fa fa-chevron-up" aria-hidden="true"></i>
 						</div>

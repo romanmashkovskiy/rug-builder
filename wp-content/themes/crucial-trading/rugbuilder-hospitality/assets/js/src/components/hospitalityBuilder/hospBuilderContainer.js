@@ -20,7 +20,8 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
         selectedStructure: {},
         storeCanvasImages: store.getState().canvasImages[0],
         summaryViewMode: false,
-        showEmailModal: false
+        showEmailModal: false,
+        progressMenuHeader: 'CHOOSE A STRUCTURE'
       }
 
       this.currentStage = 0;
@@ -37,11 +38,12 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * detected change in the url
      */
     urlChanged = () => {
-      if (
-      (this.props.location.pathname === "/crucial-trading/hospitality-builder/summary") ||
-        (this.props.location.pathname === "/~crucialtrading/hospitality-builder/summary")
-      ) {
+      if (this.props.location.pathname === "/summary") {
         this.setState({'summaryViewMode': true});
+      }
+
+      if (this.props.location.pathname === "/") {
+        this.setState({'summaryViewMode': false});
       }
     }
 
@@ -59,7 +61,17 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * when user select a new stage update 'current stage' used for canvas images
      */
     changeStage = (stage) => {
+      console.log('HOSP BUILDER -> CHANGE STAGE')
+      console.log(stage)
+
       this.currentStage = stage;
+
+      if (stage === 0) {
+        this.setState({progressMenuHeader: 'CHOOSE A STRUCTURE'})
+        return
+      }
+
+      this.setState({progressMenuHeader: 'CHOOSE A COLOUR'})
     }
 
     /**
@@ -71,9 +83,13 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       newImage.stageIndex = this.currentStage;
       var newImages = this.state.canvasImages;
 
-      const x = newImages.findIndex((image) => {
-        return image.stageIndex === this.currentStage
-      })
+      let x = -1
+      for (let i = 0; i < newImages.length; ++i) {
+        if (newImages[i].stageIndex === this.currentStage) {
+          x = i
+          break
+        }
+      }
 
       /* update previous stage canvas image */
       if (x !== -1) {
@@ -104,6 +120,9 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       })
     }
 
+    /**
+     *
+     */
     removeHighlightOnCanvasImage = () => {
       this.setState({fadeOtherCanvasImages: false})
     }
@@ -112,15 +131,19 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      *
      */
     toggleEmailVisible = () => {
-      console.log('toggle email visible');
-
       this.setState({showEmailModal: !this.state.showEmailModal});
+    }
+
+    /**
+     * print screen
+     */
+    print = () => {
+      window.print();
     }
 
 
     render() {
       if (!this.state.summaryViewMode) {
-
         return (
           <HospBuilderView
             changeStage={this.changeStage}
@@ -131,6 +154,7 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
             storeCanvasImages={this.state.storeCanvasImages}
             selectNewImage={this.selectNewImage}
             stageInFocus={this.state.stageInFocus}
+            progressMenuHeader={this.state.progressMenuHeader}
           />
         )
       }
@@ -141,6 +165,9 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
           storeCanvasImages={this.state.storeCanvasImages}
           toggleEmailVisible={this.toggleEmailVisible}
           showEmailModal={this.state.showEmailModal}
+          stageInFocus={false}
+          fadeOtherCanvasImages={false}
+          print={this.print}
         />
       )
     }

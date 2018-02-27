@@ -84,15 +84,6 @@ function crucial_trading_setup() {
 	add_role( 'hospitality', 'Hospitality');
 
 
-	/*
-	 * Disable password change reminders
-	 */
-	add_filter( 'send_email_change_email', '__return_false' );
-
-	if ( !function_exists( 'wp_password_change_notification' ) ) {
-    function wp_password_change_notification() {}
-	}
-
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
 		'primary' => esc_html__( 'Primary', 'crucial-trading' ),
@@ -118,6 +109,7 @@ function crucial_trading_setup() {
 }
 endif;
 add_action( 'after_setup_theme', 'crucial_trading_setup' );
+
 
 /**
  * Add WooCommerce theme support
@@ -164,17 +156,26 @@ add_action( 'widgets_init', 'crucial_trading_widgets_init' );
  * Enqueue scripts and styles.
  */
 function crucial_trading_scripts() {
-	//wp_enqueue_style( 'crucial-trading-style', get_stylesheet_uri() );
+
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 
-	wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/css/dist/master.min.css', true );
+	if ( constant('WP_ENV') == 'local' || constant('WP_ENV') == 'development' || constant('WP_ENV') == 'staging'  ) :
 
-	wp_enqueue_script( 'master', get_template_directory_uri() . '/assets/js/dist/master.min.js', '', '', true );
+		wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/dev/css/build.min.css', true );
+		//wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/dev/css/build.min.js', true );
+		wp_enqueue_script( 'vendor-js', get_template_directory_uri() . '/assets/js/dist/vendor.min.js', '', '', true );
+		wp_enqueue_script( 'master-js', get_template_directory_uri() . '/assets/js/dist/master.min.js', '', '', true );
 
-	// https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap
+  elseif ( constant('WP_ENV') == 'production' ) :
+
+		wp_enqueue_style( 'master-css', get_template_directory_uri() . '/assets/css/dist/master.min.css', true );
+		wp_enqueue_script( 'master-js', get_template_directory_uri() . '/assets/js/dist/master.min.js', '', '', true );
+
+	endif;
+
 }
 add_action( 'wp_enqueue_scripts', 'crucial_trading_scripts' );
 
@@ -431,8 +432,10 @@ function woo_custom_post_date_column_time( $post ) {
 
 function distance_between_lat_lng( $lat1, $lon1, $lat2, $lon2 ) {
 
-	$theta = $lon1 - $lon2;
-	$dist  = sin( deg2rad( $lat1 ) ) * sin( deg2rad( $lat2 ) ) +  cos( deg2rad( $lat1 ) ) * cos( deg2rad( $lat2 ) ) * cos( deg2rad( $theta ) );
+	$theta = floatval($lon1) - floatval($lon2);
+	$float_lat1 = floatval($lat1);
+	$float_lat2 = floatval($lat2);
+	$dist  = sin( deg2rad( $float_lat1 ) ) * sin( deg2rad( $float_lat2 ) ) +  cos( deg2rad( $float_lat1 ) ) * cos( deg2rad( $float_lat2 ) ) * cos( deg2rad( $theta ) );
 	$dist  = acos( $dist );
 	$dist  = rad2deg( $dist );
 

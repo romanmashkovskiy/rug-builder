@@ -13,7 +13,7 @@ RugBuilder.prototype.imageChoiceComponent = function() {
 					</div>
 
 					<div className="choice-item__right-side">
-						<p>{ stage }</p>
+						<p className="stage">{ stage }</p>
 						<p>{ this.props.alt }</p>
 					</div>
 				</div>
@@ -21,9 +21,5 @@ RugBuilder.prototype.imageChoiceComponent = function() {
 		}
 	}
 
-	// let selector = '#hosp_builder_choice-' + R.colorStage;
-
 	return ImageChoiceComponent;
-
-	// ReactDOM.render( <ImageChoiceComponent />, document.querySelector(selector) );
 }

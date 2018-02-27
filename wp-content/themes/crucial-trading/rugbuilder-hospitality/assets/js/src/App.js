@@ -9,32 +9,27 @@ RugBuilder.prototype.AppComponent = function () {
   const store = RS.store;
 
   const hospitalityBuilder = R.HospitalityBuilderComponent();
-  const summary = R.summaryComponent();
+  // const summary = R.summaryComponent();
 
+  let baseName = '';
+
+  if (window.location.hostname === 'localhost') {
+    baseName = '/crucial-trading/hospitality-builder/'
+  } else if (window.location.hostname === 'vps.89hosting.co.uk') {
+    baseName = '/~crucialtrading/hospitality-builder/'
+  } else {
+    baseName = '/hospitality-builder/'
+  }
 
   const App = () => (
-    <Router>
+    <Router basename={baseName}>
       <div>
         <Switch>
           <Route
-            path="/crucial-trading/hospitality-builder/"
+            path="/"
             component={hospitalityBuilder}
           />
 
-          <Route
-            path="/crucial-trading/hospitality-builder/summary"
-            component={summary}
-          />
-
-          <Route
-            path="/~crucialtrading/hospitality-builder/"
-            component={hospitalityBuilder}
-          />
-
-          <Route
-            path="/~crucialtrading/hospitality-builder/"
-            component={summary}
-          />
         </Switch>
       </div>
     </Router>

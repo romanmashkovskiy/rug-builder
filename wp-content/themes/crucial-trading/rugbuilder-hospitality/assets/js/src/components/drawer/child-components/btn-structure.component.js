@@ -22,7 +22,8 @@ RugBuilder.prototype.structureItemComponent = function() {
 				src: this.props.jpg,
 				img: this.props.img,
 				jpg: '',
-				alt: this.props.code
+				alt: this.props.code,
+				selected: true
 			};
 
 			this.props.selectNewImage(newImage);
@@ -37,7 +38,6 @@ RugBuilder.prototype.structureItemComponent = function() {
 			// );
 
 			// RS.dispatchAction(newImage);
-			// console.log(RS.getState());
 		}
 
 		render() {

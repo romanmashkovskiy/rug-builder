@@ -14,7 +14,7 @@ class ReduxStore {
     //   return {
     //     type: 'MUTATE_SELECTED_STRUCTURE',
     //     updatedCanvasImages: updatedCanvasImages
-    //   }
+    ///   }
     // }
 
     this.mutateSelectedStructureAction = newSelectedStructure => {
@@ -106,14 +106,16 @@ class ReduxStore {
         src: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H1200/base.jpg",
         img: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H1200/base-colour.jpg",
         jpg: "",
-        alt: "H1200"
+        alt: "H4370",
+        selected: true
       },
       {
         stageIndex: 1,
         alt: "C40000",
         src: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H1200/C40000/colour-1.png",
         jpg: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H1200/C40000/colour-1.jpg",
-        img: "https://d105txpzekqrfa.cloudfront.net/hospitality/colours/C40000.jpg"
+        img: "https://d105txpzekqrfa.cloudfront.net/hospitality/colours/C40000.jpg",
+        selected: true
       }
     ];
 

@@ -14,12 +14,15 @@ RugBuilder.prototype.progressMenuV2Component = function () {
         stages : ['Structure'],
         showSubmit: true,
         currentStage: 0,
-        storeCanvasImages: []
+        storeCanvasImages: store.getState().canvasImages[0],
+
+        canScrollRight:  true,
+        canScrollLeft: true
       }
 
       store.subscribe(this.handleReduxStoreChange)
-      // Router.listen(() => { console.log('url change'); })
     }
+
 
     componentDidMount() {
       /* register subscribers to publishers */
@@ -49,6 +52,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
      * handlers
      */
     handleCurrentStage = (stage) => {
+      console.log('PROGRESS MENU ->handle current stage !!');
       this.setState({currentStage: stage})
       this.props.changeStage(stage);
     }
@@ -88,6 +92,28 @@ RugBuilder.prototype.progressMenuV2Component = function () {
       // this.setState({ showSubmit : false });
     }
 
+    /**
+     *
+     */
+    determineOverflowOfStagesMenu = (content, container) => {
+      var containerMetrics = container.getBoundingClientRect();
+      var containerMetricsRight = Math.floor(containerMetrics.right);
+      var containerMetricsLeft = Math.floor(containerMetrics.left);
+      var contentMetrics = content.getBoundingClientRect();
+      var contentMetricsRight = Math.floor(contentMetrics.right);
+      var contentMetricsLeft = Math.floor(contentMetrics.left);
+
+      if (containerMetricsLeft > contentMetricsLeft && containerMetricsRight < contentMetricsRight) {
+         return "both";
+      } else if (contentMetricsLeft < containerMetricsLeft) {
+         return "left";
+      } else if (contentMetricsRight > containerMetricsRight) {
+         return "right";
+      }
+
+      return "none";
+    }
+
     render() {
       return (
         <ProgressMenuV2View
@@ -99,13 +125,13 @@ RugBuilder.prototype.progressMenuV2Component = function () {
           highlightCanvasImageOnHover={this.props.highlightCanvasImageOnHover}
           removeHighlightOnCanvasImage={this.props.removeHighlightOnCanvasImage}
           headerText={this.props.headerText}
+          disableLinkHover={this.props.disableLinkHover}
+          canScrollLeft={this.state.canScrollLeft}
+          canScrollRight={this.state.canScrollRight}
         />
     )};
   }
 
-  // ReactDOM.render(
-  //   <ProgressMenuV2 />, document.querySelector('#hosp_builder_progress-menu')
-  // );
 
   return ProgressMenuV2;
 }

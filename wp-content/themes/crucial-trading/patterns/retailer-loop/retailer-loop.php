@@ -25,6 +25,9 @@ function retailer_loop($dist, $post_id, $title='', $iterator = '', $online = '',
     $logo_html = "<img src='$logo_url' />";
   }
 
+  $retailer_description = get_post_meta( $post_id, 'retailer_company_decription', true );
+  //var_dump( get_post_meta( $post_id, 'retailer_company_decription' ) );
+
   /* When true, this is called for the search results in retailer.php around line 191 */
   if (!$online) {
    $address_1 = rwmb_meta( 'retailer_address_1', array(), $post_id );
@@ -36,9 +39,6 @@ function retailer_loop($dist, $post_id, $title='', $iterator = '', $online = '',
    $address_7 = rwmb_meta( 'retailer_county', array(), $post_id );
    $address_8 = rwmb_meta( 'retailer_postcode', array(), $post_id );
    $phone_number = rwmb_meta('retailer_telephone_1', array(), $post_id) ? rwmb_meta('retailer_telephone_1', array(), $post_id) : '';
-
-
-
 
    $combines_address_or_description = '';
 
@@ -72,8 +72,6 @@ function retailer_loop($dist, $post_id, $title='', $iterator = '', $online = '',
      $queried_postcode = $_GET['postcode'];
    }
 
-
-
    // Footer <a> list
    $lat = get_post_meta( $post_id, 'retailer_lat', true );
    $lng = get_post_meta( $post_id, 'retailer_lng', true );
@@ -82,10 +80,21 @@ function retailer_loop($dist, $post_id, $title='', $iterator = '', $online = '',
    $footer_a_list = "<a id='website_$iterator' class='r_website' href='$url'>Get Directions</a>";
 
  } else {
-
-
    $footer_a_list = "<a id='website_$iterator' class='r_website' href='$website'>visit website</a>";
    $combines_address_or_description = $description;
+ }
+
+ if ( !empty( $phone_number ) ) :
+   $phone_html = '<a href="tel:'.$phone_number.'">'.$phone_number.'</a>';
+ else:
+   $phone_html = '';
+ endif;
+
+ // Show/Hide Miles HTML based on param
+ if  (array_key_exists('country', $_GET)) {
+   $miles_span = "<span id='distance_$iterator' class='r_distance $view'></span>";
+ } else {
+   $miles_span = "<span id='distance_$iterator' class='r_distance $view'>$dist miles</span>";
  }
 
   return <<<HTML
@@ -98,8 +107,9 @@ function retailer_loop($dist, $post_id, $title='', $iterator = '', $online = '',
       <img class="retailer-result-dropdown_menu__left__title--mobile" src='$plus_icon' />
     </div>
     <div class="retailer-result-dropdown_menu__right">
+
       <div class="retailer-result-dropdown_menu__right__miles">
-        <span id="distance_$iterator" class='r_distance $view'>$dist miles</span>
+        $miles_span
       </div>
       <div class="retailer-result-dropdown_menu__right__retailer-action">
         <img class="retailer-result-dropdown_menu__right__retailer-action--desktop" src='$plus_icon' />
@@ -113,15 +123,16 @@ function retailer_loop($dist, $post_id, $title='', $iterator = '', $online = '',
       <div class="retailer-result-dropdown__dropdown__text-logo__text">
         <p>$combines_address_or_description</p>
         <div class="retailer-result-dropdown__dropdown__text-logo__footer">
-          $footer_a_list
-          <a href='tel:$phone_number'>$phone_number</a>
           <a href='mailto:$email'>send email</a>
+          $phone_html
+          $footer_a_list
         </div>
       </div>
 
       <div class="retailer-result-dropdown__dropdown__text-logo__logo">
         $logo_html
-        <p>$slogan</p>
+        <p class="retailer-result-dropdown__slogan">$slogan</p>
+        <p class="retailer-result-dropdown__desc">$retailer_description<p>
       </div>
 
     </div>
