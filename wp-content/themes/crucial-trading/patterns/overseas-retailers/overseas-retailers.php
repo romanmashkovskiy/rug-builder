@@ -60,9 +60,18 @@ function overseas_retailers() {
   	 }
      // Show Overseas View
     if ( count( $overseas_retailers ) > 0 ) {
+      $query = ucwords( $_GET['country'] );
+      echo (
+    		"<div class='r_card clearfix'>
+    			<h2 class='page-subtitle'>Overseas Partners</h2>
+    			<span></span>
+          <!-- <p class=''>You've selected: $query</p> -->
+    		</div>"
+    	);
       for ( $i4 = 0; $i4 < count( $overseas_retailers ); $i4++ ) {
         echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
       }
+
     }
   }
 }
