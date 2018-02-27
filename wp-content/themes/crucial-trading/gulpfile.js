@@ -29,7 +29,7 @@ gulp.task('watch', ['sync', 'css-dev', 'js-dev', 'css-prod'], function(){
 	// JS
 	gulp.watch('./patterns/*/*.js', ['js-dev']);
 	gulp.watch('./assets/js/src/script.js', ['js-dev']);
-	gulp.watch('./assets/js/src/vendor/*.js', ['js-dev']);
+	gulp.watch('./assets/js/vendor/*.min.js', ['js-dev']);
 	gulp.watch('./assets/js/src/pages/*.js', ['js-dev']);
 
   // PHP
@@ -43,7 +43,7 @@ gulp.task('watch', ['sync', 'css-dev', 'js-dev', 'css-prod'], function(){
 
 
 // Default 'gulp' task
-gulp.task('default',['watch']);
+gulp.task('default',['watch', 'build-vendor-js']);
 
 
 // Build Final
@@ -75,6 +75,48 @@ gulp.task('css-dev', function(){
 		.pipe(sync.reload({
 			stream: true
 		}))
+});
+
+// Build vendor js files
+gulp.task('build-vendor-js', function() {
+
+    var all = gulp.src([
+			'./assets/js/vendor/jquery-3.min.js',
+			'./assets/js/vendor/super-slider.min.js',
+			'./assets/js/vendor/bxslider.min.js',
+			'./assets/js/vendor/jquery.elevatezoom.min.js',
+			'./assets/js/vendor/jquery.pagepilling.min.js',
+			'./assets/js/vendor/wow.min.js',
+			'./assets/js/vendor/masonry.pkgd.min.js',
+			'./assets/js/vendor/js.cookie.min.js',
+			'./assets/js/vendor/jQuery.headroom.min.js',
+			'./assets/js/vendor/headroom.min.js',
+			//'./assets/js/dist/build.min.js',
+			'./assets/js/vendor/bootstrap3.min.js',
+			'./assets/js/vendor/infobubble.js',
+		])
+    .pipe(concat('all.js'))
+
+    // Generate polyfills for all files
+    var polyfills = all
+             .pipe(polyfill('polyfills.js'));
+
+    // Merge polyfills and all normal JS
+    return merge(polyfills, all)
+        .pipe(order([
+            'polyfills.js',
+            'all.js'
+    ]))
+    // Build into single file
+     .pipe(concat('vendor.min.js'))
+
+    // Uglify and catch errors
+    .pipe(uglify().on('error', function(e){
+            console.log(e);
+     }))
+    .pipe(gulp.dest('./assets/js/dist'))
+    .pipe(sync.stream());
+
 });
 
 
@@ -131,7 +173,7 @@ gulp.task('js-dev', function() {
             console.log(e);
      }))
     .pipe(sourcemaps.write('maps'))
-    .pipe(gulp.dest('./assets/dev/js'))
+    .pipe(gulp.dest('./assets/js/dist'))
     .pipe(sync.stream());
 
 });
