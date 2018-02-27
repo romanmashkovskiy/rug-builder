@@ -83,6 +83,7 @@ gulp.task('build-vendor-js', function() {
     var all = gulp.src([
 			'./assets/js/vendor/jquery-3.min.js',
 			'./assets/js/vendor/super-slider.min.js',
+			'./assets/js/vendor/bootstrap3.min.js',
 			'./assets/js/vendor/bxslider.min.js',
 			'./assets/js/vendor/jquery.elevatezoom.min.js',
 			'./assets/js/vendor/jquery.pagepilling.min.js',
@@ -92,8 +93,9 @@ gulp.task('build-vendor-js', function() {
 			'./assets/js/vendor/jQuery.headroom.min.js',
 			'./assets/js/vendor/headroom.min.js',
 			//'./assets/js/dist/build.min.js',
-			'./assets/js/vendor/bootstrap3.min.js',
-			'./assets/js/vendor/infobubble.js',
+
+			'./assets/js/vendor/infobubble.min.js',
+			'./assets/js/vendor/froogalop2.min.js',
 		])
     .pipe(concat('all.js'))
 
@@ -144,6 +146,8 @@ gulp.task('js-dev', function() {
 
     var all = gulp.src([
       './assets/js/src/*.js',
+			'./assets/js/navigation.js',
+			//'./assets/js/customizer.js',
       './assets/js/src/**/*.js',
       './patterns/*/*.js',
       './patterns/**/*.js',
