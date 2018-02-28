@@ -101,9 +101,9 @@
 		}
 
 		.border-div {
-			height: 400px;
+			//height: 400px;
 			padding-left: 200px;
-			//position: relative;
+			padding-bottom: 120px;
 
 			@media screen and (max-width: 768px) {
 				padding-left: 100px;
