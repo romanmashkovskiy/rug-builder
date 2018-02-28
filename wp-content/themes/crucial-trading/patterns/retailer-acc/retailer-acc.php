@@ -120,12 +120,15 @@ function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '', $ke
 function loop_render($retailer, $retailer_type) {
   if ( count( $retailer ) > 0 ) {
 
-    $local_html = (
+    echo (
       "<div class='retailer-result-dropdown panel-group'>
         <div class='retailer-result-dropdown__header'>
           <h2>$retailer_type</h2>
         </div>"
     );
+
+    echo cards_view_render_new($retailer);
+    echo "</div>";
 
     echo (
   		"<div class='r_card r_card__container clearfix'>
@@ -134,26 +137,33 @@ function loop_render($retailer, $retailer_type) {
   			<div class='r_card__wrapper clearfix'>"
   	);
 
-    for ( $i3 = 0; $i3 < count( $retailer ); $i3++ ) {
-      $dist = round( $retailer[$i3]->distance );
-      $iterator = 1 + $i3;
+    echo cards_view_render_old($retailer);
 
-      $post_type = $retailer[$i3]->post_type;
-      $id = $retailer[$i3]->ID;
-      $title = $post_id = $retailer[$i3]->post_title;
-      $local_html .= retailer_loop($dist, $id, $title, $iterator);
+    echo "</div></div>";
+  }
+}
 
-      /**
-       * Cards for original layout
-       * Only show once
-       */
-      echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $iterator . '"]' );
-    }
+function cards_view_render_new($retailer) {
+  for ( $i3 = 0; $i3 < count( $retailer ); $i3++ ) {
+    $dist = round( $retailer[$i3]->distance );
+    $iterator = 1 + $i3;
 
-    $local_html .= (
-      "</div></div></div>"
-    );
+    $post_type = $retailer[$i3]->post_type;
+    $id = $retailer[$i3]->ID;
+    $title = $post_id = $retailer[$i3]->post_title;
+    echo retailer_loop($dist, $id, $title, $iterator);
+  }
+}
 
-    echo $local_html;
+function cards_view_render_old($retailer) {
+  for ( $i3 = 0; $i3 < count( $retailer ); $i3++ ) {
+    $dist = round( $retailer[$i3]->distance );
+    $iterator = 1 + $i3;
+    $id = $retailer[$i3]->ID;
+    /**
+     * Cards for original layout
+     * Only show once
+     */
+    echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $iterator . '"]' );
   }
 }
