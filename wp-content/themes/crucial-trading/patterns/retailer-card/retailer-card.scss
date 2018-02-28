@@ -108,6 +108,10 @@
 			@media screen and (max-width: 768px) {
 				padding-left: 100px;
 			}
+
+			@media screen and (max-width: 436px) {
+				padding: 20px;
+			}
 		}
 
 		.flag-icon {
@@ -118,6 +122,10 @@
 
 			@media screen and (max-width: 768px) {
 				left: 50px;
+			}
+
+			@media screen and (max-width: 436px) {
+				left: 2px;
 			}
 		}
 
