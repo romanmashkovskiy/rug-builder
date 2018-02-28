@@ -121,35 +121,24 @@
 			}
 		}
 
-		.retailer__address {
-			float: left;
-			width: 60%;
-
-			@media screen and (max-width: 768px) {
-				float: none;
-				width: 100%;
-			}
-		}
-
-		.retailer__contact {
-			float: left;
-			width: 40%;
-
-			@media screen and (max-width: 768px) {
-				float: none;
-				width: 100%;
-			}
-		}
-
 		.retailer__website {
 			line-height: 1.6;
 			margin-bottom: 20px;
-			word-break: break-word;
+			text-transform: lowercase;
+			color: #252525;
+	    font-family: "Open Sans",sans-serif;
+	    font-size: 18px;
+	    font-weight: normal;
+	    letter-spacing: 0px;
+			padding: 0;
+	    display: block;
+	    margin-bottom: 20px;
 		}
 
 		.retailer_directions {
 			bottom: 30px;
 			position: absolute;
+			font-weight: bold;
 		}
 	}
 

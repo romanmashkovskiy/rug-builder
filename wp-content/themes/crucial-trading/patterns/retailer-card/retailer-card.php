@@ -118,7 +118,7 @@ function retailer_card( $atts = '' ) {
 		$html .= '<p class="retailer__address">' . nl2br( $address ) . '</p>';
 		$html .= '<div class="retailer__contact">';
 		if ( $website != '' ) {
-			$html .= '<p class="retailer__website">' . $website . '</p>';
+			$html .= "<a href=$website class=retailer__website>$website</a>";
 		}
 		if ( $phone != '' ) {
 			$html .= '<p class="retailer__phone">' . $phone . '</p>';
