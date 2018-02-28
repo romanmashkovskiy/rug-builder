@@ -1,4 +1,4 @@
-var $ = jQuery;
+/*var $ = jQuery;
 
 $(document).ready(function() {
 
@@ -10,4 +10,4 @@ $(document).ready(function() {
 			$(v).height(h + 'px');
 		});
 	}
-});
+});*/
