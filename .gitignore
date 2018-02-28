@@ -40,5 +40,5 @@ node_modules
 
 *.map
 # .htaccess
-# gulpfile.js
-# package.json
+gulpfile.js
+#package.json

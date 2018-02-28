@@ -128,10 +128,10 @@ function loop_render($retailer, $retailer_type) {
     );
 
     echo (
-  		"<div class='r_card clearfix'>
+  		"<div class='r_card r_card__container clearfix'>
   			<h2 class='page-subtitle'>Local Retailers</h2>
   			<span></span>
-  			<div class='clearfix'></div></div>"
+  			<div class='r_card__wrapper clearfix'>"
   	);
 
     for ( $i3 = 0; $i3 < count( $retailer ); $i3++ ) {
@@ -151,7 +151,7 @@ function loop_render($retailer, $retailer_type) {
     }
 
     $local_html .= (
-      "</div>"
+      "</div></div></div>"
     );
 
     echo $local_html;
