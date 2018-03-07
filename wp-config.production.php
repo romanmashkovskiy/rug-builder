@@ -36,9 +36,9 @@ define('DB_HOST', $_SERVER["RDS_HOSTNAME"]);
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
-define('WP_DEBUG', false);
+define('WP_DEBUG', true);
 
 // Hide Errors
 
-error_reporting(0);
-ini_set('display_errors', 0);
+//error_reporting(0);
+//ini_set('display_errors', 0);
