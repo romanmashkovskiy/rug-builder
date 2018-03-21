@@ -72,10 +72,7 @@ RugBuilder.prototype.drawerV2ViewComponent = function () {
    */
   const DrawerView = (props) => {
     return (
-      <div
-        className="drawerv2-container"
-        key={props.timestamp}
-      >
+      <div id="drawer" className="drawerv2-container" key={props.timestamp}>
         <StructurePaletteJsx props={props} />
         <ColorPaletteJsx props={props} />
       </div>

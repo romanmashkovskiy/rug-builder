@@ -10,12 +10,19 @@ class ReduxStore {
       }
     }
 
-    // this.updateStages = updatedCanvasImages => {
-    //   return {
-    //     type: 'MUTATE_SELECTED_STRUCTURE',
-    //     updatedCanvasImages: updatedCanvasImages
-    ///   }
-    // }
+    this.updateTour = updatedTourStage => {
+      return {
+        type: 'MUTATE_TOUR',
+        updatedTourStage: updatedTourStage
+      }
+    }
+
+    this.updateStructure = updatedStructure => {
+      return {
+        type: 'MUTATE_STRUCTURE',
+        updatedStructure: updatedStructure
+      }
+    }
 
     this.mutateSelectedStructureAction = newSelectedStructure => {
       return {
@@ -32,10 +39,11 @@ class ReduxStore {
     };
 
 
+
     /**
      * reducers
      */
-     const canvasImages = (state = [], action) => {
+    const canvasImages = (state = [], action) => {
        if (!state) {
          return [
            ...canvasImages, []
@@ -45,7 +53,38 @@ class ReduxStore {
        return [
           ...canvasImages, action.updatedCanvasImages
        ];
-     }
+    }
+
+
+    const tourStage = (state = null, action) => {
+      if (!state) {
+        return [
+          ...tourStage, { tourStage: '' }
+        ];
+      }
+
+      return [
+        ...tourStage,
+        { tourStage: action.updatedTourStage }
+      ];
+    }
+
+    /**
+     * STRUCTURE
+     */
+    const structure = (state = {}, action) => {
+      if (!state) {
+        return [
+          ...structure, {structure: {}}
+        ];
+      }
+
+      return [
+        ...structure, { structure: action.updateStructure }
+      ];
+    }
+
+
 
     const selectedStructure = (state = {}, action) => {
       if (!state) {
@@ -59,8 +98,7 @@ class ReduxStore {
       ];
     }
 
-    const selectedColors = (state = [], action) =>
-    {
+    const selectedColors = (state = [], action) => {
       if (!state) {
         return [
           ...selectedColors, { selectedColors: [] }
@@ -74,9 +112,12 @@ class ReduxStore {
 
     this.reducers = Redux.combineReducers({
       canvasImages,
+      tourStage,
+      structure,
       selectedStructure,
-      selectedColors
+      selectedColors,
     });
+
 
     this.store = Redux.createStore(this.reducers,
       window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -94,8 +135,26 @@ class ReduxStore {
     this.store.dispatch(this.updateCanvasImages(updatedCanvasImages));
   }
 
-  test() {
+  dispatchUpdateTourStage(updatedTourStage) {
+    console.log('dispatched new tour stage')
+    console.log(updatedTourStage)
+    console.log('<<<')
 
+    this.store.dispatch(this.updateTour(updatedTourStage));
+  }
+
+  /**
+   *
+   */
+  dispatchUpdateStructure(updatedStructure) {
+    console.log('dispatch update structure')
+    console.log(updatedStructure)
+
+    this.store.dispatch(this.updateStructure(updatedStructure));
+  }
+
+
+  test() {
     /**
      * FOR TESTING ONLY
      */

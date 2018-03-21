@@ -73,6 +73,7 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 // Ref3: Component Did Mount
 
 		componentDidMount: function() {
+			console.log('YOOOOOOO');
 			this.stageChange = PubSub.subscribe( 'newStage', this.stageHasChanged );
 			this.restart     = PubSub.subscribe( 'restart', this.restart );
 			this.submit      = PubSub.subscribe( 'submit', this.submit );

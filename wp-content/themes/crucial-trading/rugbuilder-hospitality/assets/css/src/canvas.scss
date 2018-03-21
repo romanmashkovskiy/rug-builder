@@ -1,5 +1,4 @@
 .canvas-container {
-  // border: 2px solid pink;
   position: relative;
 
   @media screen and (max-width: 1200px) {
@@ -8,9 +7,25 @@
   }
 
 
+  .canvas-builder {
+    // border: 1px solid pink;
+    margin: calc(50vh - 256px - 81px) auto auto;
+    text-align: center;
+
+    button {
+      margin-top: 50px;
+      width: 70%;
+
+      @media screen and (max-width: 600px) {
+        margin-top: 20px;
+        width: 100%;
+      }
+    }
+  }
+
   .canvas {
     margin: 0 auto;
-    margin-top: 100px;
+    // margin-top: 100px;
 
     @media screen and (max-width: 1300px) {
       width: 450px;

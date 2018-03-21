@@ -65,7 +65,7 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
   const ProgressMenuView = (props) => {
     return (
       <div className="hosp_builder_progress-menu__container progress-menu">
-        <div className="progress-menu__left-side">
+        <div className="progress-menu__left-side" id="leftSide">
           <div className="progress-menu__left-side__logo">
             <img src="https://d105txpzekqrfa.cloudfront.net/uploads/hosp-builder-logo.png" />
           </div>

@@ -24,7 +24,7 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
 
         <Link to={``}
         >
-          <p className="edit">
+          <p className="edit" id="summaryViewEdit">
             <i className="fa fa-chevron-left" aria-hidden="true"></i>
             EDIT
           </p>
@@ -114,7 +114,7 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
           }
         </div>
 
-        <div className="summary__right-side__button-container">
+        <div className="summary__right-side__button-container" id="summaryButtons">
           <button
             className="default fixed-width-195"
             onClick={(e) =>props.print()}

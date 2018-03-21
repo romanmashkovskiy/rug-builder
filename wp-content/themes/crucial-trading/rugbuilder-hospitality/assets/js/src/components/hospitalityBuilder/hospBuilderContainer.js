@@ -1,12 +1,12 @@
 RugBuilder.prototype.HospitalityBuilderComponent = function () {
   const Connect = window.ReactRedux.connect;
   const Router = window.ReactRouterDOM.BrowserRouter;
-
+  const WithRouter = window.ReactRouterDOM.withRouter;
   const R = rugBuilder;
   const store = ReduxStore.store;
-
   const HospBuilderView = R.hospBuilderViewComponent();
   const HosBuilderSummaryView = R.hospBuilderSummaryViewComponent();
+
 
   class HospitalityBuilder extends React.Component {
     constructor() {
@@ -18,7 +18,8 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
         submitted: false,
         stageInFocus: 0,
         selectedStructure: {},
-        storeCanvasImages: store.getState().canvasImages[0],
+        storeCanvasImages: [],
+        selectedChoiceCount: 0,
         summaryViewMode: false,
         showEmailModal: false,
         progressMenuHeader: 'CHOOSE A STRUCTURE'
@@ -26,6 +27,12 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
 
       this.currentStage = 0;
       store.subscribe(this.handleReduxStoreChange)
+
+      this.tourStepNineL = PubSub.subscribe('tourStepNine', this.tourStepNine)
+    }
+
+    componentWillUnmount() {
+      PubSub.unsubscribe(this.tourStepNineL)
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -33,6 +40,17 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
         this.urlChanged();
       }
     }
+
+
+    /**
+     *
+     */
+    tourStepNine = () => {
+      console.log('<!---------------- tour step nine ------------------>')
+
+      this.props.history.push(`/summary`)
+    }
+
 
     /**
      * detected change in the url
@@ -55,15 +73,21 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       this.setState({
         storeCanvasImages: store.getState().canvasImages[0],
       })
+
+      if (!store.getState().canvasImages[0]) { return }
+
+      const selectedCanvasImages =
+        this.state.storeCanvasImages.filter(function (x) {
+          return x.selected;
+        });
+
+      this.setState({selectedChoiceCount: selectedCanvasImages.length})
     }
 
     /**
      * when user select a new stage update 'current stage' used for canvas images
      */
     changeStage = (stage) => {
-      console.log('HOSP BUILDER -> CHANGE STAGE')
-      console.log(stage)
-
       this.currentStage = stage;
 
       if (stage === 0) {
@@ -80,6 +104,8 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * If already selected stage then update array-> else push
      */
     selectNewImage = (newImage) => {
+      console.log(' <!-------------- select new image' + newImage);
+
       newImage.stageIndex = this.currentStage;
       var newImages = this.state.canvasImages;
 
@@ -152,6 +178,7 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
             removeHighlightOnCanvasImage={this.removeHighlightOnCanvasImage}
             fadeOtherCanvasImages={this.state.fadeOtherCanvasImages}
             storeCanvasImages={this.state.storeCanvasImages}
+            selectedChoiceCount={this.state.selectedChoiceCount}
             selectNewImage={this.selectNewImage}
             stageInFocus={this.state.stageInFocus}
             progressMenuHeader={this.state.progressMenuHeader}
@@ -173,5 +200,11 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
     }
   }
 
-  return HospitalityBuilder;
+  const mapStateToProps = (state) => ({
+    progressStage: store.getState[0]
+  })
+
+
+
+  return WithRouter(HospitalityBuilder);
 }

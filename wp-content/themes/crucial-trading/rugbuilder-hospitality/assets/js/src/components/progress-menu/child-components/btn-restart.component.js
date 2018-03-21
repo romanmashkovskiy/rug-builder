@@ -25,7 +25,7 @@ RugBuilder.prototype.btnRestartComponent = function() {
 				const SRC = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg';
 
 				return (
-					<a
+					<a id="restartBuild"
 						href="#"
 						className="hosp_builder_progress-menu__restart nav-upper-link"
 						onClick={ this.restart }

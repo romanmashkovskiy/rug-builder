@@ -7,6 +7,7 @@ RugBuilder.prototype.canvasComponent = function () {
 
       this.state = {
         storeCanvasImages: store.getState().canvasImages[0],
+        selectedChoiceCount: 0
       }
 
       store.subscribe(this.handleReduxStoreChange)

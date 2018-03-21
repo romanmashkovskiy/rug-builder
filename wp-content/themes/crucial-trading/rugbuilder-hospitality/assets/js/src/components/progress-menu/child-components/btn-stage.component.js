@@ -1,13 +1,75 @@
 RugBuilder.prototype.btnStageComponent = function() {
 	const R = rugBuilder;
+	const RS = ReduxStore;
+	const store = RS.store;
 
 	class BtnStageComponent extends React.Component {
 		constructor(props) {
 			super(props);
 
 			this.state = {
-				currentStage: R.colorStage
+				currentStage: R.colorStage,
+				tourStep: false,
+				tourStep3: false
 			}
+
+			// store.subscribe(this.handleReduxStoreChange)
+		}
+
+		/**
+		 *
+		 */
+		// reduxStructureSelected = (index) => {
+		// 	console.log('redux, structure selected')
+		// 	console.log(index)
+		//
+		// 	R.stageVisited[index] = true
+		// 	R.colorStage = index
+		//
+		// 	PubSub.publish('newStage', index);
+		// 	this.props.handleCurrentStage(index);
+		// }
+
+		/**
+		 *
+		 */
+		// handleReduxStoreChange = () => {
+		// 	if (!store.getState().tourStage[0]) { return }
+		//
+		// 	const tourStage = store.getState().tourStage[0].tourStage
+		//
+		// 	if (tourStage === 2 && !this.state.tourStep) {
+		// 		this.tourStep()
+		// 	}
+		//
+		// 	if (tourStage === 3 && !this.state.tourStep3) {
+		// 		this.tourStep3()
+		// 	}
+		// }
+
+		/**
+		 *
+		 */
+		// tourStep = () => {
+		// 	if (this.props.index !== 1) { return }
+		//
+		// 	this.setState({tourStep: true})
+		//
+		// 	R.stageVisited[1] = true;
+		// 	R.colorStage = 1
+		//
+		// 	PubSub.publish( 'newStage', 1);
+		// 	this.props.handleCurrentStage(1);
+		// }
+
+		/**
+		 *
+		 */
+		tourStep3 = () => {
+			if (this.props.index !== 1) { return }
+
+			this.setState({tourStep3: true})
+			this.props.highlightCanvasImageOnHover(this.props.index)
 		}
 
 		/**
@@ -28,12 +90,12 @@ RugBuilder.prototype.btnStageComponent = function() {
 			this.props.removeHighlightOnCanvasImage();
 		}
 
+
+
 		/**
 		 *
 		 */
 		handleClick = (e) => {
-			console.log('handle click -> stage');
-			
 			e.preventDefault();
 
 			if (this.props.disableLinkHover) { return; }
@@ -44,6 +106,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 			PubSub.publish( 'newStage', this.props.index );
 			this.props.handleCurrentStage(this.props.index);
 		}
+
+
 
 		render() {
 			/* stage selected if current stage found in selected canvas images */
@@ -57,8 +121,7 @@ RugBuilder.prototype.btnStageComponent = function() {
 			}
 
 			return (
-				<li
-					className={
+				<li className={
 						"progress-menu__item " +
 						(stageSelected ? 'selected' : '')
 					}
@@ -66,14 +129,13 @@ RugBuilder.prototype.btnStageComponent = function() {
 					onMouseEnter={this.mouseEnter}
 					onMouseLeave={this.mouseLeave}
 				>
-					<a
-						href="#"
+					<a href="#" onClick={(e) => this.handleClick(e)}
+						id={"progressMenuLink" + this.props.index}
+
 						className={
 							"progress-menu__item__link " +
 							(stageSelected ? 'selected' : '')
 						}
-
-						onClick={(e) => this.handleClick(e)}
 					>
 						{ this.props.stage }
 					</a>

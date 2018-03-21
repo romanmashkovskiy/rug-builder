@@ -23,6 +23,7 @@ RugBuilder.prototype.drawerV2Component = function() {
         colors        : undefined,
         numColors     : undefined,
         resize : 0,
+        structure: {},
       }
 
       this.STRUCTURE_ELEMS_PER_PAGE = undefined;
@@ -40,9 +41,73 @@ RugBuilder.prototype.drawerV2Component = function() {
 
 			this.restart = PubSub.subscribe( 'restart', this.restart );
 			this.submit = PubSub.subscribe( 'submit', this.submit );
+      this.tso = PubSub.subscribe('tourStepOne', this.tourStepOne);
+      this.tourStepFiveL = PubSub.subscribe('tourStepFive', this.tourStepFive)
 
       window.addEventListener('resize', this.windowResize);
+
+      R.Tour();
     };
+
+    componentWillUnmount() {
+      PubSub.unsubscribe(this.tso)
+      PubSub.unsubscribe(this.tourStepFiveL)
+    }
+
+
+
+    /**
+     *
+     */
+    tourStepOne = () => {
+      console.log('<------------------- tour step one --------------------->')
+
+      const newImage = {
+        stageIndex: 0,
+        src: 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/base.jpg',
+        img: 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/base-colour.jpg',
+        jpg: '',
+        alt: 'H4350',
+        selected: true
+      };
+
+      this.props.selectNewImage(newImage)
+      R.updateCanvasImageService(newImage)
+      this.updateStructure('H4350')
+    }
+
+
+    /**
+     *
+     */
+    tourStepFive = () => {
+      console.log('<--------------------- tour step five --------------------->')
+
+      R.showLittleLoader();
+
+      const col = "https://d105txpzekqrfa.cloudfront.net/hospitality/colours/G70000.jpg"
+      const url = "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/G70000/colour-1.png"
+      const jpg = "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/G70000/colour-1.jpg"
+
+
+      // var obj = { alt: this.props.color, src: url, jpg: jpg, img: col }
+
+      var obj = {
+        stageIndex: R.colorStage,
+        alt: 'G70000',
+        src: url,
+        jpg: jpg,
+        img: col,
+        selected: true
+      }
+
+      console.log(obj)
+
+      this.props.selectNewImage(obj);
+      R.updateCanvasImageService(obj);
+    }
+
+
 
     /**
      * When window is resized set structor and color elements to undefined
@@ -130,6 +195,8 @@ RugBuilder.prototype.drawerV2Component = function() {
      * update structure menu
      */
     updateStructure = (code) => {
+      console.log('DRAWER >> update structure <<')
+
       const colors = R.numStructureColors[code];
 
       let x;
@@ -198,9 +265,14 @@ RugBuilder.prototype.drawerV2Component = function() {
           updateColor={this.updateColor}
           chosenStructure={this.state.chosenStructure}
           selectNewImage={this.props.selectNewImage}
+          clickMe={this.clickMe}
         />
     )};
   }
+
+  const mapStateToProps = (state) => ({
+    structure: store.getState()[0].structure
+  })
 
   return DrawerV2;
 }

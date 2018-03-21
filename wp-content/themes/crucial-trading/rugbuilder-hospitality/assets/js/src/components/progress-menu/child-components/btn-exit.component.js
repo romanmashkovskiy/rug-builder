@@ -14,7 +14,7 @@ RugBuilder.prototype.btnExitComponent = function() {
 
 			return (
 				// <p>
-					<a href={ URL } className="hosp_builder_progress-menu__exit nav-upper-link">
+					<a href={ URL } className="hosp_builder_progress-menu__exit nav-upper-link" id="exitBuilder">
 						<img src="https://d105txpzekqrfa.cloudfront.net/uploads/20170110133952/exit.svg" />
 						Exit
 					</a>

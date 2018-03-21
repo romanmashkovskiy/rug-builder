@@ -28,6 +28,9 @@ RugBuilder.prototype.progressMenuV2Component = function () {
       /* register subscribers to publishers */
       // PubSub.subscribe('newStructure', this.structureMutated);
 			PubSub.subscribe('newColor', this.colorMutated);
+      this.tourStepTwoL = PubSub.subscribe('tourStepTwo', this.tourStepTwo)
+      this.tourStepThreeL = PubSub.subscribe('tourStepThree', this.tourStepThree)
+      this.tourStepFiveL = PubSub.subscribe('tourStepFive', this.tourStepFive)
 
       const structureCode = store.getState().canvasImages[0] ?
         store.getState().canvasImages[0][0].alt : null;
@@ -37,10 +40,50 @@ RugBuilder.prototype.progressMenuV2Component = function () {
       }
     }
 
+    componentWillUnmount() {
+      PubSub.unsubscribe(this.tourStepTwoL)
+      PubSub.unsubscribe(this.tourStepThreeL)
+      PubSub.unsubscribe(this.tourStepFiveL)
+    }
+
+
+    /**
+     *
+     */
+    tourStepTwo = () => {
+      console.log('<--------- tour step two ------------>')
+
+      R.stageVisited[1] = true
+      R.colorStage = 1
+      PubSub.publish('newStage', 1)
+      this.handleCurrentStage(1)
+    }
+
+    /**
+     *
+     */
+    tourStepThree = () => {
+      console.log('<------------- tour step three ------------>')
+
+      this.props.highlightCanvasImageOnHover(1)
+    }
+
+    /**
+     *
+     */
+    tourStepFive = () => {
+      console.log('<---------------- tour step five (remove highlight) ---------------->')
+      this.props.removeHighlightOnCanvasImage()
+    }
+
+
     /**
      * listen to changes in the redux store and update state to changes in store
      */
     handleReduxStoreChange = () => {
+      if (!store.getState().canvasImages) { return }
+      if (!store.getState().canvasImages[0]) { return }
+
       this.setState({
         storeCanvasImages: store.getState().canvasImages[0]
       })
@@ -52,7 +95,6 @@ RugBuilder.prototype.progressMenuV2Component = function () {
      * handlers
      */
     handleCurrentStage = (stage) => {
-      console.log('PROGRESS MENU ->handle current stage !!');
       this.setState({currentStage: stage})
       this.props.changeStage(stage);
     }
