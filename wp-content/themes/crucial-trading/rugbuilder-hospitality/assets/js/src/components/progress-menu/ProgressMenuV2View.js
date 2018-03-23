@@ -27,7 +27,8 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
             selectedCanvasImages={props.selectedCanvasImages}
             highlightCanvasImageOnHover={props.highlightCanvasImageOnHover}
             removeHighlightOnCanvasImage={props.removeHighlightOnCanvasImage}
-            disableLinkHover={props.disableLinkHover} />
+            disableLinkHover={props.disableLinkHover}
+            disableButtons={props.disableButtons} />
           })
         }
       </ul>
@@ -83,7 +84,11 @@ RugBuilder.prototype.progressMenuViewComponent = function () {
 
             <ul>
               <li><SubmitLink props={props} /></li>
-              <li><BtnRestartComponent /></li>
+              <li>
+                <BtnRestartComponent
+                  disableButtons={props.disableButtons}
+                />
+              </li>
               <li><BtnExitComponent /></li>
             </ul>
           </div>

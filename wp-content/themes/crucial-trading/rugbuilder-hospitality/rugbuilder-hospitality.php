@@ -24,33 +24,17 @@
 	<title>Crucial Trading - Hospitality Builder</title>
 
   <style type="text/css">
-  .box {
-    width: 200px;
-    height: 200px;
-    margin-right: 20px;
-    float: left;
-  }
-
-  /* #box {
-    background: red;
-  }
-
-  #box2 {
-    background: blue;
-  }
-
-  #box3 {
-    background: green;
-  } */
-</style>
-
+    .box {
+      width: 200px;
+      height: 200px;
+      margin-right: 20px;
+      float: left;
+    }
+  </style>
 </head>
+
 <body>
 	<div id="root"> </div>
-
-  <!-- <div id="box" class="box"></div>
-  <div id="box2" class="box"></div>
-  <div id="box3" class="box"></div> -->
 
 	<?
 		$domain = $_SERVER['SERVER_NAME'];
@@ -84,30 +68,5 @@
 		})
 
 	</script>
-
-
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-      crossorigin="anonymous"
-    >
-    </script>
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"
-  >
-  </script>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/css/bootstrap-tour-standalone.css" />
-
-
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/js/bootstrap-tour.js"></script>
-
-
-
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/joyride/2.1.0/joyride.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/joyride/2.1.0/jquery.joyride.js"></script>
 </body>
 </html>

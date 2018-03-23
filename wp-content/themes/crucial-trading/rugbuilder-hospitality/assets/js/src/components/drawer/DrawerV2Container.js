@@ -1,5 +1,6 @@
 RugBuilder.prototype.drawerV2Component = function() {
   const R = rugBuilder;
+  const RS = ReduxStore;
   const DrawerV2View = R.drawerV2ViewComponent();
   const store = ReduxStore.store;
 
@@ -24,6 +25,7 @@ RugBuilder.prototype.drawerV2Component = function() {
         numColors     : undefined,
         resize : 0,
         structure: {},
+        disableButtons: false
       }
 
       this.STRUCTURE_ELEMS_PER_PAGE = undefined;
@@ -41,27 +43,47 @@ RugBuilder.prototype.drawerV2Component = function() {
 
 			this.restart = PubSub.subscribe( 'restart', this.restart );
 			this.submit = PubSub.subscribe( 'submit', this.submit );
+
+      this.tourOnL = PubSub.subscribe('tourOn', this.tourOn)
+      this.tourOffL = PubSub.subscribe('tourOff', this.tourOff)
       this.tso = PubSub.subscribe('tourStepOne', this.tourStepOne);
+
+      this.tourStepZeroL = PubSub.subscribe('tourStepZero', this.tourStepZero)
+      this.tourStepFourL = PubSub.subscribe('tourStepFour', this.tourStepFour)
       this.tourStepFiveL = PubSub.subscribe('tourStepFive', this.tourStepFive)
 
       window.addEventListener('resize', this.windowResize);
-
-      R.Tour();
     };
 
     componentWillUnmount() {
       PubSub.unsubscribe(this.tso)
       PubSub.unsubscribe(this.tourStepFiveL)
+      PubSub.unsubscribe(this.tourStepFourL)
     }
-
 
 
     /**
      *
      */
-    tourStepOne = () => {
-      console.log('<------------------- tour step one --------------------->')
+    tourOn = () => {
+      try {
+        this.setState({disableButtons: true})
+      } catch (err) {
+        console.log(err)
+      }
+    }
 
+    /**
+     *
+     */
+    tourOff = () => {
+      this.setState({disableButtons: false})
+    }
+
+    /**
+     *
+     */
+    tourStepOne = () => {
       const newImage = {
         stageIndex: 0,
         src: 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/base.jpg',
@@ -76,12 +98,21 @@ RugBuilder.prototype.drawerV2Component = function() {
       this.updateStructure('H4350')
     }
 
+    /**
+     *
+     */
+     tourStepFour = () => {
+       this.tourStepOne()
+
+
+     }
+
 
     /**
      *
      */
     tourStepFive = () => {
-      console.log('<--------------------- tour step five --------------------->')
+      store.getState().canvasImages
 
       R.showLittleLoader();
 
@@ -100,8 +131,6 @@ RugBuilder.prototype.drawerV2Component = function() {
         img: col,
         selected: true
       }
-
-      console.log(obj)
 
       this.props.selectNewImage(obj);
       R.updateCanvasImageService(obj);
@@ -195,8 +224,6 @@ RugBuilder.prototype.drawerV2Component = function() {
      * update structure menu
      */
     updateStructure = (code) => {
-      console.log('DRAWER >> update structure <<')
-
       const colors = R.numStructureColors[code];
 
       let x;
@@ -223,13 +250,17 @@ RugBuilder.prototype.drawerV2Component = function() {
         }
       }
 
-      this.setState({
-        colors         : R.structureColorCodes[code],
-        numOfColors    : numOfColors,
-        chosenStructure : code,
-        chosenColors    : [],
-        drawerSize      : 1
-      });
+      try {
+        this.setState({
+          colors         : R.structureColorCodes[code],
+          numOfColors    : numOfColors,
+          chosenStructure : code,
+          chosenColors    : [],
+          drawerSize      : 1
+        });
+      } catch (err) {
+        console.log(err)
+      }
 
       PubSub.publish('newStructure', code);
     };
@@ -243,7 +274,11 @@ RugBuilder.prototype.drawerV2Component = function() {
       let array = this.state.chosenColors;
       array[R.colorStage - 1] = color;
 
-      this.setState({chosenColors: array, drawerSize : 1});
+      try {
+        this.setState({chosenColors: array, drawerSize : 1});
+      } catch (err) {
+        console.log(err)
+      }
 
       PubSub.publish( 'newColor', true );
     }
@@ -266,6 +301,7 @@ RugBuilder.prototype.drawerV2Component = function() {
           chosenStructure={this.state.chosenStructure}
           selectNewImage={this.props.selectNewImage}
           clickMe={this.clickMe}
+          disableButtons={this.state.disableButtons}
         />
     )};
   }

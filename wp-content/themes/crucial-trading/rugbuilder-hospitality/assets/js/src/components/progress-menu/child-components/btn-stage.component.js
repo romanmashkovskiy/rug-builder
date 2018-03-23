@@ -12,55 +12,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 				tourStep: false,
 				tourStep3: false
 			}
-
-			// store.subscribe(this.handleReduxStoreChange)
 		}
 
-		/**
-		 *
-		 */
-		// reduxStructureSelected = (index) => {
-		// 	console.log('redux, structure selected')
-		// 	console.log(index)
-		//
-		// 	R.stageVisited[index] = true
-		// 	R.colorStage = index
-		//
-		// 	PubSub.publish('newStage', index);
-		// 	this.props.handleCurrentStage(index);
-		// }
-
-		/**
-		 *
-		 */
-		// handleReduxStoreChange = () => {
-		// 	if (!store.getState().tourStage[0]) { return }
-		//
-		// 	const tourStage = store.getState().tourStage[0].tourStage
-		//
-		// 	if (tourStage === 2 && !this.state.tourStep) {
-		// 		this.tourStep()
-		// 	}
-		//
-		// 	if (tourStage === 3 && !this.state.tourStep3) {
-		// 		this.tourStep3()
-		// 	}
-		// }
-
-		/**
-		 *
-		 */
-		// tourStep = () => {
-		// 	if (this.props.index !== 1) { return }
-		//
-		// 	this.setState({tourStep: true})
-		//
-		// 	R.stageVisited[1] = true;
-		// 	R.colorStage = 1
-		//
-		// 	PubSub.publish( 'newStage', 1);
-		// 	this.props.handleCurrentStage(1);
-		// }
 
 		/**
 		 *
@@ -78,6 +31,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 		mouseEnter = () => {
 			if (this.props.disableLinkHover) { return; }
 
+			if (this.props.disableButtons) { return; }
+
 			this.props.highlightCanvasImageOnHover(this.props.index);
 		}
 
@@ -86,6 +41,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 		 */
 		mouseLeave = () => {
 			if (this.props.disableLinkHover) { return; }
+
+			if (this.props.disableButtons) { return; }
 
 			this.props.removeHighlightOnCanvasImage();
 		}
@@ -99,6 +56,10 @@ RugBuilder.prototype.btnStageComponent = function() {
 			e.preventDefault();
 
 			if (this.props.disableLinkHover) { return; }
+
+			if (this.props.disableButtons) {
+				throw Error('cant select stage in tour mode')
+			}
 
 			R.stageVisited[this.props.index] = true;
 			R.colorStage = this.props.index;

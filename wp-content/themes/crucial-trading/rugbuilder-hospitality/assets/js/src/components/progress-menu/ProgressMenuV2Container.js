@@ -17,7 +17,8 @@ RugBuilder.prototype.progressMenuV2Component = function () {
         storeCanvasImages: store.getState().canvasImages[0],
 
         canScrollRight:  true,
-        canScrollLeft: true
+        canScrollLeft: true,
+        disableButtons: false
       }
 
       store.subscribe(this.handleReduxStoreChange)
@@ -25,12 +26,13 @@ RugBuilder.prototype.progressMenuV2Component = function () {
 
 
     componentDidMount() {
-      /* register subscribers to publishers */
-      // PubSub.subscribe('newStructure', this.structureMutated);
 			PubSub.subscribe('newColor', this.colorMutated);
       this.tourStepTwoL = PubSub.subscribe('tourStepTwo', this.tourStepTwo)
       this.tourStepThreeL = PubSub.subscribe('tourStepThree', this.tourStepThree)
       this.tourStepFiveL = PubSub.subscribe('tourStepFive', this.tourStepFive)
+
+      this.tourOnL = PubSub.subscribe('tourOn', this.tourOn)
+      this.tourOffL = PubSub.subscribe('tourOff', this.tourOff)
 
       const structureCode = store.getState().canvasImages[0] ?
         store.getState().canvasImages[0][0].alt : null;
@@ -44,6 +46,22 @@ RugBuilder.prototype.progressMenuV2Component = function () {
       PubSub.unsubscribe(this.tourStepTwoL)
       PubSub.unsubscribe(this.tourStepThreeL)
       PubSub.unsubscribe(this.tourStepFiveL)
+      PubSub.unsubscribe(this.tourOnL)
+      PubSub.unsubscribe(this.tourOffL)
+    }
+
+    /**
+     *
+     */
+    tourOn = () => {
+      this.setState({disableButtons: true})
+    }
+
+    /**
+     *
+     */
+    tourOff = () => {
+      this.setState({disableButtons: false})
     }
 
 
@@ -51,8 +69,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
      *
      */
     tourStepTwo = () => {
-      console.log('<--------- tour step two ------------>')
-
+      this.props.removeHighlightOnCanvasImage()
       R.stageVisited[1] = true
       R.colorStage = 1
       PubSub.publish('newStage', 1)
@@ -63,8 +80,6 @@ RugBuilder.prototype.progressMenuV2Component = function () {
      *
      */
     tourStepThree = () => {
-      console.log('<------------- tour step three ------------>')
-
       this.props.highlightCanvasImageOnHover(1)
     }
 
@@ -72,7 +87,6 @@ RugBuilder.prototype.progressMenuV2Component = function () {
      *
      */
     tourStepFive = () => {
-      console.log('<---------------- tour step five (remove highlight) ---------------->')
       this.props.removeHighlightOnCanvasImage()
     }
 
@@ -87,6 +101,8 @@ RugBuilder.prototype.progressMenuV2Component = function () {
       this.setState({
         storeCanvasImages: store.getState().canvasImages[0]
       })
+
+      if (!store.getState().canvasImages[0][0]) { return }
 
       this.structureMutated(store.getState().canvasImages[0][0].alt);
     }
@@ -170,6 +186,7 @@ RugBuilder.prototype.progressMenuV2Component = function () {
           disableLinkHover={this.props.disableLinkHover}
           canScrollLeft={this.state.canScrollLeft}
           canScrollRight={this.state.canScrollRight}
+          disableButtons={this.state.disableButtons}
         />
     )};
   }

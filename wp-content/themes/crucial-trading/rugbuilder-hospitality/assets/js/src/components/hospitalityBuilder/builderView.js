@@ -4,7 +4,6 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
   const ProgressMenuV2 = R.progressMenuV2Component();
   const ImageChoice = R.imageChoiceComponent();
   const Canvas = R.canvasComponent();
-  const ToolTips = R.ToolTipsComponent();
   const Link = window.ReactRouterDOM.Link;
 
 
@@ -13,6 +12,7 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
    *
    */
   const BuilderView = (props) => {
+    const summaryLink = !props.disableButtons ? 'summary' : '';
 
     return (
       <div id="hospitality-builder">
@@ -31,13 +31,18 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
 
           <div id="canvas" className="canvas-container">
             <div className="canvas-builder">
+              { props.showCanvasMask &&
+                <div id="canvasMask" className="canvas-mask"></div>
+              }
+
               <Canvas
                 fadeOtherCanvasImages={props.fadeOtherCanvasImages}
                 stageInFocus={props.stageInFocus}
+                showCanvasMask={props.showCanvasMask}
               />
 
               { props.selectedChoiceCount >= 2 &&
-                <Link to={`summary`}>
+                <Link to={summaryLink}>
                   <button id="finishDesignButton" className="default">
                     FINISH YOUR DESIGN
                   </button>
@@ -67,8 +72,6 @@ RugBuilder.prototype.hospBuilderViewComponent = function () {
             </div>
           </div>
         </div>
-
-        {/* <ToolTips /> */}
       </div>
   )}
 

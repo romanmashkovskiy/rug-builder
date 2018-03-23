@@ -4,8 +4,6 @@ RugBuilder.prototype.start = function() {
 	R.getStructuresData()
 		.then(() => {
 			R.AppComponent();
-			console.log('DEBUGGER');
-			debugger;
 		})
 		.catch((err) => {
 			throw new Error(err)
