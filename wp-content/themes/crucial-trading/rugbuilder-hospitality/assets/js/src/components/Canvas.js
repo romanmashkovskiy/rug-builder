@@ -56,7 +56,8 @@ RugBuilder.prototype.canvasComponent = function () {
           id="hosp_builder_img-container"
           className={
             "canvas " +
-            (this.props.fadeOtherCanvasImages ? 'fade-images' : '')
+            (this.props.fadeOtherCanvasImages ? 'fade-images' : '') +
+            (this.props.showCanvasMask ? ' mask' : '')
           }
         >
           {this.CanvasImagesJsx()}

@@ -73,7 +73,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 // Ref3: Component Did Mount
 
 		componentDidMount: function() {
-			console.log('YOOOOOOO');
 			this.stageChange = PubSub.subscribe( 'newStage', this.stageHasChanged );
 			this.restart     = PubSub.subscribe( 'restart', this.restart );
 			this.submit      = PubSub.subscribe( 'submit', this.submit );
@@ -332,7 +331,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 // Ref15: Update Stucture
 
 		updateStructure: function(code) {
-
 			R.stageVisited      = [ true, false, false, false, false, false, false, false, false, false ];
 			R.choices.structure = code;
 

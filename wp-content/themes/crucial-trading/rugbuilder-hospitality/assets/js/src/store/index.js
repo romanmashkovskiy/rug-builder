@@ -136,10 +136,6 @@ class ReduxStore {
   }
 
   dispatchUpdateTourStage(updatedTourStage) {
-    console.log('dispatched new tour stage')
-    console.log(updatedTourStage)
-    console.log('<<<')
-
     this.store.dispatch(this.updateTour(updatedTourStage));
   }
 
@@ -147,9 +143,6 @@ class ReduxStore {
    *
    */
   dispatchUpdateStructure(updatedStructure) {
-    console.log('dispatch update structure')
-    console.log(updatedStructure)
-
     this.store.dispatch(this.updateStructure(updatedStructure));
   }
 

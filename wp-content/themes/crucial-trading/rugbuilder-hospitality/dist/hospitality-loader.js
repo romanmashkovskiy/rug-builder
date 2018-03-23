@@ -59,11 +59,16 @@ function load(options, secret_DEPRECIATED) {
 	document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">');
 	document.write('<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">');
 
+	document.write('<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>');
+	document.write('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>');
+	document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/css/bootstrap-tour-standalone.css" />');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/js/bootstrap-tour.js"></script>');
+
 
 	var devMode = true;
 
 	if (window.location.hostname === 'localhost' && devMode) {
-		console.log('DEV MODE !!');
+		console.log('DEV MODE');
 		document.write('<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.js"></script>');
 		document.write('<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.css">');
 	}
@@ -82,23 +87,4 @@ function load(options, secret_DEPRECIATED) {
 
 	document.write('<script>var rugBuilder = new RugBuilder("website", ' + submit + ', ' + restart + ', ' + exit + '); rugBuilder.start();</script>');
 	document.write('<script> var ReduxStore = new ReduxStore(); </script>');
-
-	// document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/css/bootstrap-tour-standalone.css" />');
-	// document.write('<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>');
-	// document.write('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>');
-	// document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/js/bootstrap-tour.js"></script>');
-	// document.write('<script>var tour = new Tour({steps: [{ element: "#hosp_builder_img-container", title: "Title of my step", content: "Content of my step"},]}); tour.init(); tour.start(); </script>');
-
-	// tourtime();
 }
-
-// function tourtime() {
-// 	var myElem = document.getElementById('hosp_builder_img-container');
-// 	// debugger;
-//
-// 	if (myElem === null) {
-// 		console.log('ID DOES NOT EXIST');
-// 	} else {
-// 		console.log('ID EXISTS');
-// 	}
-// }
