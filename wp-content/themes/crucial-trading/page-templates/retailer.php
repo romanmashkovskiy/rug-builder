@@ -63,6 +63,15 @@ if ( is_array( $_GET ) ) {
 
 				$query = new WP_Query( $args );
 
+        /**
+         * Sort Array by Google API distance
+         */
+        usort( $uk_retailers, 'cmp' );
+
+        for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
+          $pin_coords .= $uk_retailers[$i3]->lat . ' ' . $uk_retailers[$i3]->lng . ',';
+        }
+
 				if ( !$query->have_posts() ) {
 					$error = 10;
 				} else {
@@ -81,6 +90,13 @@ if ( is_array( $_GET ) ) {
 						$post->lng = $lng;
 
 						array_push( $retailers, $post );
+
+            // Check for ovverseas
+            if ( $postcode == 'country' ) {
+
+              $pin_coords .= $lat . ' ' . $lng . ',';
+              array_push( $overseas_retailers, $post );
+            }
 					}
 
 					for ( $i2 = 0; $i2 < count( $retailers ); $i2++ ) {
@@ -93,7 +109,7 @@ if ( is_array( $_GET ) ) {
 						}
 					}
 
-					/**
+          /**
 					 * Sort Array by Google API distance
 					 */
 					usort( $uk_retailers, 'cmp' );
@@ -106,7 +122,63 @@ if ( is_array( $_GET ) ) {
 		} else {
 			$error = 1;
 		}
- }
+ } else if ( array_key_exists( 'country', $_GET ) ) {
+
+		$country = $_GET['country'];
+		$enccoun = urlencode( $country );
+
+		$url      = "https://maps.google.com/maps/api/geocode/json?&key=AIzaSyCHgDqWhs3PQTM-qzsZwLQO99UhFgVi5Tk&address={$enccoun}";
+		$json     = file_get_contents( $url );
+		$response = json_decode( $json, true );
+
+		if ( is_array( $response ) && array_key_exists( 'status', $response ) ) {
+
+			if ( $response['status'] == 'OK' ) {
+				$overseas_center  = $response['results'][0]['geometry']['location']['lat'] . ' ' . $response['results'][0]['geometry']['location']['lng'];
+			} else {
+				$error = 10;
+			}
+		} else {
+			$error = 10;
+		}
+
+		$args = array(
+			'post_type' => 'retailer',
+			'orderby'   => 'menu_order',
+			'order'     => 'ASC',
+			'posts_per_page' => -1,
+			'tax_query' => array(
+				array(
+					'taxonomy' => 'retailer_type',
+					'field'    => 'slug',
+					'terms'    => 'overseas',
+				),
+			),
+		);
+
+		$query = new WP_Query( $args );
+
+		if ( !$query->have_posts() ) {
+			$error = 10;
+		} else {
+
+			for ( $i = 0; $i < $query->post_count; $i++ ) {
+
+				$post         = $query->posts[$i];
+				$post_id      = $post->ID;
+				$post_country = strtolower( rwmb_meta( 'retailer_country', array(), $post_id ) );
+
+				if ( $country == $post_country ) {
+
+					$lat = get_post_meta( $post_id, 'retailer_lat', true );
+					$lng = get_post_meta( $post_id, 'retailer_lng', true );
+
+					$pin_coords .= $lat . ' ' . $lng . ',';
+					array_push( $overseas_retailers, $post );
+				}
+			}
+		}
+	}
 }
 
 get_header();
@@ -121,33 +193,35 @@ echo do_shortcode( '[google-map uk-center="' . $uk_center . '" overseas-center="
 
 echo switch_views();
 
-echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
-
+// Only show overseas cards when searched for overseas
 if ( is_array( $_GET ) ) {
+//var_dump("SHOWWWW");
+  // Detect when to display .r_card when displays the oversease cards
+  if ( array_key_exists( 'country', $_GET ) ) {
+    echo "<input id='get_country' type='hidden' value='true' />";
+    echo overseas_retailers();
+  }
 
 	if ( array_key_exists( 'postcode', $_GET ) ) {
+    echo retailer_acc('Local Retailers', 'retailer', $uk_retailers);
 		echo studio_acc('Studio Retailers', 'studio');
+    echo fixed_retailers('Online', 'online');
+    echo fixed_retailers('Showrooms', 'showroom');
 	}
+
 }
 
-/**
- * These accordions have no funtionality in Google API, Miles
- * miles nor postcode. These are only meant to show raw data without any miles
- * calculations. However, they use the retailer_loop() which has the mile logic
- * but are not shown to the user.
- */
-echo fixed_retailers('Online', 'online');
-echo fixed_retailers('Showrooms', 'showroom');
-/******************************************************************************/
-
-
-
-
-if ( count( $overseas_retailers ) > 0 ) {
-	for ( $i4 = 0; $i4 < count( $overseas_retailers ); $i4++ ) {
-		echo do_shortcode( '[retailer-card id="' . $overseas_retailers[$i4]->ID . '" distance="overseas"]' );
-	}
+if ( !$_GET  ) {
+  /**
+   * These accordions have no funtionality in Google API, Miles
+   * miles nor postcode. These are only meant to show raw data without any miles
+   * calculations. However, they use the retailer_loop() which has the mile logic
+   * but are not shown to the user.
+   */
+  echo fixed_retailers('Online', 'online');
+  echo fixed_retailers('Showrooms', 'showroom');
 }
+
 
 
 $showroom_args = array(
@@ -166,7 +240,7 @@ $showroom_args = array(
 
 $showroom_query = new WP_Query( $showroom_args );
 
-if ( $showroom_query->have_posts() ) :
+if ( $showroom_query->have_posts() && !array_key_exists( 'country', $_GET ) ) :
 
 	echo (
 		"<div class='r_card clearfix'>
@@ -198,7 +272,7 @@ $online_args = array(
 
 $online_query = new WP_Query( $online_args );
 
-if ( $online_query->have_posts() ) :
+if ( $online_query->have_posts() && !array_key_exists( 'country', $_GET )) :
 
 	echo (
 		"<div class='r_card clearfix'>

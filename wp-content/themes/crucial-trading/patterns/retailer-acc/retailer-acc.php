@@ -1,6 +1,6 @@
 <?php
 
-function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '') {
+function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '', $key = 'postcode') {
   $error = false;
 
   $uk_retailers       = array();
@@ -12,11 +12,11 @@ function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '') {
 
   if ( is_array( $_GET ) ) {
 
-  	if ( array_key_exists( 'postcode', $_GET ) ) {
+  	if ( array_key_exists( $key, $_GET ) ) {
 
 
-  		$postcode        = $_GET['postcode'];
-  		$postcode_tags   = strip_tags( $postcode );
+  		$key_type        = $_GET[$key];
+  		$postcode_tags   = strip_tags( $key_type );
   		$postcode_trim   = trim( $postcode_tags );
   		$postcode_filter = filter_var( $postcode_trim, FILTER_SANITIZE_STRING );
 
@@ -60,6 +60,7 @@ function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '') {
 
   						$post    = $query->posts[$i];
   						$post_id = $post->ID;
+              $post_country = strtolower( rwmb_meta( 'retailer_country', array(), $post_id ) );
 
   						$lat = get_post_meta( $post_id, 'retailer_lat', true );
   						$lng = get_post_meta( $post_id, 'retailer_lng', true );
@@ -68,6 +69,16 @@ function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '') {
   						$post->lng = $lng;
 
   						array_push( $retailers, $post );
+
+              // Check for ovverseas
+              if ( $key_type == $post_country ) {
+
+      					$lat = get_post_meta( $post_id, 'retailer_lat', true );
+      					$lng = get_post_meta( $post_id, 'retailer_lng', true );
+
+      					$pin_coords .= $lat . ' ' . $lng . ',';
+      					array_push( $overseas_retailers, $post );
+      				}
   					}
 
   					for ( $i2 = 0; $i2 < count( $retailers ); $i2++ ) {
@@ -98,60 +109,61 @@ function retailer_acc($retailer_type = '', $terms = '', $uk_retailers_ = '') {
 
   $uk_retailers = $uk_retailers_ != '' ? $uk_retailers_ : $uk_retailers;
 
-  // Outside the loop
-  if ( count( $uk_retailers ) > 0 ) {
+  // Render Local Retailer
+  echo loop_render($uk_retailers, $retailer_type);
+  // Render Overseas Retailer
+  echo loop_render($overseas_retailers, $retailer_type);
 
-    $local_html = (
+}
+
+// TODO: Put in Class and DRY up
+function loop_render($retailer, $retailer_type) {
+  if ( count( $retailer ) > 0 ) {
+
+    echo (
       "<div class='retailer-result-dropdown panel-group'>
         <div class='retailer-result-dropdown__header'>
           <h2>$retailer_type</h2>
         </div>"
     );
 
-    for ( $i3 = 0; $i3 < count( $uk_retailers ); $i3++ ) {
-      $dist = round( $uk_retailers[$i3]->distance );
-      $iterator = 1 + $i3;
+    echo cards_view_render_new($retailer);
+    echo "</div>";
 
-      $post_type = $uk_retailers[$i3]->post_type;
-      $id = $uk_retailers[$i3]->ID;
-      $title = $post_id = $uk_retailers[$i3]->post_title;
-      $local_html .= retailer_loop($dist, $id, $title, $iterator);
+    echo (
+  		"<div class='r_card r_card__container clearfix'>
+  			<h2 class='page-subtitle'>Local Retailers</h2>
+  			<span></span>
+  			<div class='r_card__wrapper clearfix'>"
+  	);
 
-      /**
-       * Cards for original layout
-       * Only show once
-       */
-      if ($retailer_type == "Local Retailers") {
-        echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $iterator . '"]' );
-      }
-    }
+    echo cards_view_render_old($retailer);
 
-    $local_html .= (
-      "</div>"
-    );
-
-    echo $local_html;
+    echo "</div></div>";
   }
+}
 
-  $msg = '';
+function cards_view_render_new($retailer) {
+  for ( $i3 = 0; $i3 < count( $retailer ); $i3++ ) {
+    $dist = round( $retailer[$i3]->distance );
+    $iterator = 1 + $i3;
 
-  switch ( $error ) {
-    case 1  : $msg = 'Sorry, we could not find that post code.'; break;
-    case 2  : $msg = 'Sorry, there are no retailers in your area.'; break;
-    case 10 : $msg = 'Sorry, an error has occured.'; break;
+    $post_type = $retailer[$i3]->post_type;
+    $id = $retailer[$i3]->ID;
+    $title = $post_id = $retailer[$i3]->post_title;
+    echo retailer_loop($dist, $id, $title, $iterator);
   }
+}
 
-  $errorHtml = (
-    "<div class='retailer-result-dropdown panel-group'>
-      <div class='retailer-result-dropdown__header'>
-        <h2>$retailer_type</h2>
-      </div>
-      <div class='retailer-result-dropdown_menu'>$msg</div>
-    </div>"
-  );
-
-  if ($error) {
-    echo $errorHtml;
+function cards_view_render_old($retailer) {
+  for ( $i3 = 0; $i3 < count( $retailer ); $i3++ ) {
+    $dist = round( $retailer[$i3]->distance );
+    $iterator = 1 + $i3;
+    $id = $retailer[$i3]->ID;
+    /**
+     * Cards for original layout
+     * Only show once
+     */
+    echo do_shortcode( '[retailer-card id="' . $id . '" distance="' . $dist . '" i="' . $iterator . '"]' );
   }
-
 }

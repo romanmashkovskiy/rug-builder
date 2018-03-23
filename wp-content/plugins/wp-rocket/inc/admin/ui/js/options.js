@@ -1,50 +1,154 @@
 jQuery( document ).ready( function($){
+	$( '#submit-support-button' ).prop( 'disabled', true );
+	var support_submit_disabled = true;
+
+	$( '#support_documentation_validation' ).change( function() {
+		if ( true === support_submit_disabled ) {
+			$( '#submit-support-button' ).prop( 'disabled', false );
+			support_submit_disabled = false;
+		} else if ( false === support_submit_disabled ) {
+			$( '#submit-support-button' ).prop( 'disabled', true );
+			support_submit_disabled = true;
+		}
+	});
+
 	// Fancybox
 	$(".fancybox").fancybox({'type' : 'iframe'});
 
-	// Deferred JS
-	function rocket_deferred_rename()
-	{
-		$('#rkt-drop-deferred .rkt-module-drag').each( function(i){
-			var $item_t_input = $(this).find( 'input[type=text]' );
-			var $item_c_input = $(this).find( 'input[type=checkbox]' );
-			$($item_t_input).attr( 'name', 'wp_rocket_settings[deferred_js_files]['+i+']' );
-			$($item_c_input).attr( 'name', 'wp_rocket_settings[deferred_js_wait]['+i+']' );
-		});
-	}
+	// Display warning message if lazyload options are checked
+	var $info = $('.fieldname-lazyload_common_issues'),
+    	$inputs = $('input[id^="lazyload"]'),
+		is_lazy_checked = function(){
+		return $inputs.filter(':checked').length > 0 ? true : false;
+    	},
+		check_lazy = function(){
+			if( is_lazy_checked() ) {
+				$info.fadeIn( 275 ).attr('aria-hidden', 'false' );
+      		} else {
+	  			$info.fadeOut( 275 ).attr('aria-hidden', 'true' );
+      		}
+    	};
 
-	// Minify JS in footer
-	function rocket_minify_js_rename() {
-		$('#rkt-drop-minify_js_in_footer .rkt-module-drag').each( function(i){
-			var $item_t_input = $(this).find( 'input[type=text]' );
-			$($item_t_input).attr( 'name', 'wp_rocket_settings[minify_js_in_footer]['+i+']' );
-		});
-	}
+	check_lazy();
 
-	$('.rkt-module-drop').sortable({
-		update : function() {
-			if ( $(this).attr('id') == 'rkt-drop-deferred' ) {
-				rocket_deferred_rename();
-			}
+	$inputs.on('change.wprocket', check_lazy);
 
-			if ( $(this).attr('id') == 'rkt-drop-minify_js_in_footer' ) {
-				rocket_minify_js_rename();
-			}
+	// Display warning message if any minification options are checked
+	var $info_minify = $('.fieldname-minify_warning'),
+	    $inputs_minify = $('input[id^="minify"]'),
+	    is_minify_checked = function(){
+			return $inputs_minify.filter(':checked').length > 0 ? true : false;
 		},
-		axis: "y",
-		items: ".rkt-module-drag",
-		containment: "parent",
-		cursor: "move",
-		handle: ".rkt-module-move",
-		forcePlaceholderSize: true,
-		dropOnEmpty: false,
-		placeholder: 'sortable-placeholder',
-		tolerance: 'pointer',
-		revert: true,
+		check_minify = function(){
+			if( is_minify_checked() ){
+				$info_minify.fadeIn( 275 ).attr('aria-hidden', 'false' );
+			} else {
+	  			$info_minify.fadeOut( 275 ).attr('aria-hidden', 'true' );
+			}
+		};
+
+	check_minify();
+
+	$inputs_minify.on('change.wprocket', check_minify);
+
+	// Display HTTP/2 warning message if CSS/JS minification options are checked
+	var $info_minify_js_css = $('.fieldname-minify_combine_http2_warning'),
+	    $inputs_minify_js_css = $('input#minify_css, input#minify_js'),
+	    is_minify_css_js_checked = function(){
+			return $inputs_minify_js_css.filter(':checked').length > 0 ? true : false;
+		},
+		check_minify_css_js = function(){
+			if( is_minify_css_js_checked() ){
+				$info_minify_js_css.fadeIn( 275 ).attr('aria-hidden', 'false' );
+			} else {
+	  			$info_minify_js_css.fadeOut( 275 ).attr('aria-hidden', 'true' );
+			}
+		};
+
+	check_minify_css_js();
+
+	$inputs_minify_js_css.on('change.wprocket', check_minify_css_js);
+
+	// Display warning message if purge interval is too low or too high
+	var $info_lifespan_less = $('.fieldname-purge_warning_less'),
+		$info_lifespan_more = $('.fieldname-purge_warning_more'),
+    	$input_cron_interval = $('#purge_cron_interval'),
+    	$input_cron_unit = $('#purge_cron_unit'),
+
+		check_purge_cron = function(){
+			if( 'DAY_IN_SECONDS' === $input_cron_unit.val() || 'HOUR_IN_SECONDS' === $input_cron_unit.val() && 10 < $input_cron_interval.val() ) {
+				$info_lifespan_less.fadeIn( 275 ).attr('aria-hidden', 'false' );
+				$info_lifespan_more.fadeOut( 275 ).attr('aria-hidden', 'true' );
+      		} else if ( 'MINUTE_IN_SECONDS' === $input_cron_unit.val() && 300 > $input_cron_interval.val() ) {
+	  			$info_lifespan_less.fadeOut( 275 ).attr('aria-hidden', 'true' );
+	  			$info_lifespan_more.fadeIn( 275 ).attr('aria-hidden', 'false' );
+      		} else {
+	      		$info_lifespan_less.fadeOut( 275 ).attr('aria-hidden', 'true' );
+	  			$info_lifespan_more.fadeOut( 275 ).attr('aria-hidden', 'true' );
+      		}
+    	};
+
+	check_purge_cron();
+
+	$input_cron_interval.on('change.wprocket', check_purge_cron);
+	$input_cron_unit.on('change.wprocket', check_purge_cron);
+
+	// Display warning message if render blocking options are checked
+	var $info_render_blocking = $('.fieldname-render_blocking_warning '),
+    	$inputs_render_blocking = $('#async_css, #defer_all_js'),
+		is_render_blocking_checked = function(){
+		return $inputs_render_blocking.filter(':checked').length > 0 ? true : false;
+    	},
+		check_minify = function(){
+			if( is_render_blocking_checked() ) {
+				$info_render_blocking.fadeIn( 275 ).attr('aria-hidden', 'false' );
+      		} else {
+	  			$info_render_blocking.fadeOut( 275 ).attr('aria-hidden', 'true' );
+      		}
+    	};
+
+	check_minify();
+
+	$inputs_render_blocking.on('change.wprocket', check_minify);
+
+	var minify_css 		= $( '#minify_css' );
+	var concatenate_css	= $( '.fieldname-minify_concatenate_css' );
+	var exclude_css_row = $( '.exclude-css-row' );
+
+	if ( ! minify_css.is( ':checked' ) ) {
+		concatenate_css.hide();
+		exclude_css_row.hide();
+	}
+
+	minify_css.change( function() {
+		if ( ! minify_css.is( ':checked' ) ) {
+			concatenate_css.find( '#minify_concatenate_css' ).prop( 'checked', false );
+		}
+
+		concatenate_css.toggle( 'fast' );
+		exclude_css_row.toggle( 'fast' );
+	});
+
+	var minify_js	   = $( '#minify_js' );
+	var concatenate_js = $( '.fieldname-minify_concatenate_js' );
+	var exclude_js_row = $( '.exclude-js-row' );
+
+	if ( ! minify_js.is( ':checked' ) ) {
+		concatenate_js.hide();
+		exclude_js_row.hide();
+	}
+
+	minify_js.change( function() {
+		if ( ! minify_js.is( ':checked' ) ) {
+			concatenate_js.find( '#minify_concatenate_js' ).prop( 'checked', false );
+		}
+
+		concatenate_js.toggle( 'fast' );
+		exclude_js_row.toggle( 'fast' );
 	});
 
 	// Remove input
-	$('.rkt-module-remove').css('cursor','pointer').live('click', function(e){
+	$('.rkt-module-remove').css('cursor','pointer').on('click', function(e){
 		e.preventDefault();
 		$(this).parent().css('background-color','red' ).slideUp( 'slow' , function(){$(this).remove(); } );
 	} );
@@ -57,17 +161,13 @@ jQuery( document ).ready( function($){
 		e.preventDefault();
 		$($('#' + moduleID ).siblings('.rkt-module-model:last')[0].innerHTML).appendTo('#' + moduleID);
 
-		if( moduleID == '' ) {
-			rocket_deferred_rename();
-		}
-
 	});
-	
+
 	// Inputs with parent
 	$('.has-parent').each( function() {
 		var input  = $(this),
 			parent = $('#'+$(this).data('parent'));
-		
+
 		parent.change( function() {
 			if( parent.is(':checked') ) {
 				input.parents('fieldset').show(200);
@@ -80,7 +180,7 @@ jQuery( document ).ready( function($){
 			$(this).parents('fieldset').hide();
 		}
 	});
-	
+
 	// Tabs
 	$('#rockettabs').css({padding: '5px', border: '1px solid #ccc', borderTop: '0px'});
 	$('.nav-tab-wrapper a').css({outline: '0px'});
@@ -99,7 +199,8 @@ jQuery( document ).ready( function($){
 				$('#tab_basic').show();
 		}
 	}
-	$( 'h2.nav-tab-wrapper .nav-tab' ).on( 'click', function(e){
+	// Context includes tab links in admin notices.
+	$( 'h2.nav-tab-wrapper .nav-tab, a[href^="#tab_"]', '#rocket_options' ).on( 'click', function(e){
 		e.preventDefault();
 		tab = $(this).attr( 'href' );
 		if( sup_html5st ) {
@@ -124,7 +225,7 @@ jQuery( document ).ready( function($){
 	}
 
 	// Sweet Alert for CSS & JS minification
-	$( '#minify_css, #minify_js' ).click(function() {
+	$( '#minify_css, #minify_js, #minify_concatenate_css, #minify_concatenate_js' ).click(function() {
 		obj = $(this);
 		if ( obj.is( ':checked' ) ) {
 			swal({
@@ -154,7 +255,7 @@ jQuery( document ).ready( function($){
 			});
 		}
 	});
-    
+
 	// Support form
 	$( '#submit-support-button' ).click( function(e) {
 		e.preventDefault();
@@ -171,7 +272,7 @@ jQuery( document ).ready( function($){
 				type: "warning"
 			});
 		}
-		
+
 		if ( validation.is( ':checked' ) && ( summary == '' || description == '' ) ) {
 			swal({
 				title: sawpr.requiredTitle,
@@ -214,7 +315,7 @@ jQuery( document ).ready( function($){
 						confirmButtonColor = "#f7a933";
 						type  = "warning";
 					}
-					
+
 					if( response.msg == 'BAD_CONNECTION' ) {
 						title = sawpr.badServerConnectionTitle;
 						text  = sawpr.badServerConnectionText;
@@ -222,7 +323,7 @@ jQuery( document ).ready( function($){
 						confirmButtonColor = "#f7a933";
 						type  = "error";
 					}
-					
+
 					if( response.msg == 'SUCCESS' ) {
 						title = sawpr.successSupportTitle;
 						text  = sawpr.successSupportText;
@@ -249,7 +350,7 @@ jQuery( document ).ready( function($){
 						if( response.msg == 'BAD_LICENCE' ) {
 							window.open(response.renew_url);
 						}
-						
+
 						if( response.msg == 'BAD_CONNECTION' ) {
 							window.open('http://wp-rocket.me/support/');
 						}
@@ -258,12 +359,12 @@ jQuery( document ).ready( function($){
 			);
 		}
 	});
-	
+
 	$('#support_summary').parents('fieldset').append( '<div id="support_searchbox" class="hidden"><p><strong>These articles should help you resolving your issue (EN):</strong></p><div id="support_searchbox-suggestions"><ul></ul></div></div>' );
-	
+
     // Live Search Cached Results
     last_search_results = new Array();
-    
+
 	 //Listen for the event
 	$( "#support_summary" ).on( "keyup", function(e) {
 		// Set Search String
@@ -287,7 +388,7 @@ jQuery( document ).ready( function($){
 		$(this).parents('fieldset').attr( 'data-loading', "true" );
 		$(this).data('timer', setTimeout(search, 200));
 	});
-    
+
     // Live Search
     // On Search Submit and Get Results
     function search() {
@@ -313,4 +414,11 @@ jQuery( document ).ready( function($){
         }
         return false;
     }
+
+	$( '.rocket-analytics-data-container' ).hide();
+	$( '.rocket-preview-analytics-data' ).on( 'click', function( e ) {
+		e.preventDefault();
+
+		$(this).parent().next( '.rocket-analytics-data-container' ).toggle();
+	} );
 } );

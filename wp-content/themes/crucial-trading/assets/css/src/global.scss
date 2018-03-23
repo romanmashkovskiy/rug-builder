@@ -11,11 +11,18 @@
 @import 'typography/_fonts.scss';
 @import '_iconfont.scss';
 
-// Variables
-@import '_defaults.scss';
+// Vendor
+@import '../vendor/bootstrap';
+@import '../vendor/animate';
+@import '../vendor/jquery-ui';
+@import '../vendor/jquery.pagepilling';
+@import '../vendor/flag-icon';
 
 // Variables
-@import '_variables.scss';
+@import 'defaults.scss';
+
+// Variables
+@import 'variables.scss';
 
 // Utilities
 @import '_utilities.scss';
@@ -32,6 +39,3 @@
 
 // Patterns
 @import '../../../patterns/*/*.scss';
-
-// Vendor
-@import '../vendor/bootstrap.min.css';

@@ -21,4 +21,12 @@ $(document).ready(function() {
     accordionEl.css('display', 'none');
     rCardEl.css('display', 'block')
   })
+
+  var hiddenInput = $('#get_country').val()
+  if (hiddenInput) {
+    rCardEl.css('display', 'block')
+
+    // Also hide the switch view container
+    $('.switch_views').css('display', 'none')
+  }
 })

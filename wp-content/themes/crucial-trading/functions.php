@@ -165,12 +165,13 @@ function crucial_trading_scripts() {
 	if ( constant('WP_ENV') == 'local' || constant('WP_ENV') == 'development' || constant('WP_ENV') == 'staging'  ) :
 
 		wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/dev/css/build.min.css', true );
-		//wp_enqueue_style( 'master', get_template_directory_uri() . '/assets/dev/css/build.min.js', true );
+		//wp_enqueue_style( 'master-css', get_template_directory_uri() . '/assets/css/dist/master.min.css', true );
+		wp_enqueue_script( 'vendor-js', get_template_directory_uri() . '/assets/js/dist/vendor.min.js', '', '', true );
 		wp_enqueue_script( 'master-js', get_template_directory_uri() . '/assets/js/dist/master.min.js', '', '', true );
 
   elseif ( constant('WP_ENV') == 'production' ) :
-
 		wp_enqueue_style( 'master-css', get_template_directory_uri() . '/assets/css/dist/master.min.css', true );
+		wp_enqueue_script( 'vendor-js', get_template_directory_uri() . '/assets/js/dist/vendor.min.js', '', '', true );
 		wp_enqueue_script( 'master-js', get_template_directory_uri() . '/assets/js/dist/master.min.js', '', '', true );
 
 	endif;
