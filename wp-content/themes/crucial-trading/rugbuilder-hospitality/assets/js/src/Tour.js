@@ -170,7 +170,8 @@ RugBuilder.prototype.Tour = function() {
     backdropPadding: 10,
   })
 
+  console.log('start');
   tour.setCurrentStep(0);
   tour.init();
-  tour.start();
+  tour.start(true);
 }
