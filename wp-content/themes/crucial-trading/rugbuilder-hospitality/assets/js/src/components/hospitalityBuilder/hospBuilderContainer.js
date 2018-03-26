@@ -1,12 +1,13 @@
 RugBuilder.prototype.HospitalityBuilderComponent = function () {
   const Connect = window.ReactRedux.connect;
   const Router = window.ReactRouterDOM.BrowserRouter;
-
+  const WithRouter = window.ReactRouterDOM.withRouter;
   const R = rugBuilder;
+  const RS = ReduxStore;
   const store = ReduxStore.store;
-
   const HospBuilderView = R.hospBuilderViewComponent();
   const HosBuilderSummaryView = R.hospBuilderSummaryViewComponent();
+
 
   class HospitalityBuilder extends React.Component {
     constructor() {
@@ -18,14 +19,38 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
         submitted: false,
         stageInFocus: 0,
         selectedStructure: {},
-        storeCanvasImages: store.getState().canvasImages[0],
+        storeCanvasImages: [],
+        selectedChoiceCount: 0,
         summaryViewMode: false,
         showEmailModal: false,
-        progressMenuHeader: 'CHOOSE A STRUCTURE'
+        progressMenuHeader: 'CHOOSE A STRUCTURE',
+        showCanvasMask: false,
+        disableButtons: false
       }
 
       this.currentStage = 0;
       store.subscribe(this.handleReduxStoreChange)
+    }
+
+    componentDidMount() {
+      R.Tour();
+      this.tourStepZeroL = PubSub.subscribe('tourStepZero', this.tourStepZero)
+      this.tourStepThreeL = PubSub.subscribe('tourStepThree', this.tourStepThree)
+      this.tourStepFourL = PubSub.subscribe('tourStepFour', this.tourStepFour)
+      this.tourStepEightL = PubSub.subscribe('tourStepEight', this.tourStepEight)
+      this.tourStepNineL = PubSub.subscribe('tourStepNine', this.tourStepNine)
+      this.tourOnL = PubSub.subscribe('tourOn', this.tourOn)
+      this.tourOffL = PubSub.subscribe('tourOff', this.tourOff)
+    }
+
+    componentWillUnmount() {
+      PubSub.unsubscribe(this.tourStepThreeL)
+      PubSub.unsubscribe(this.tourStepFourL)
+      PubSub.unsubscribe(this.tourStepEightL)
+      PubSub.unsubscribe(this.tourStepNineL)
+      PubSub.unsubscribe(this.tourOnL)
+      PubSub.unsubscribe(this.tourOffL)
+      PubSub.unsubscribe(this.tourStepZeroL)
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -35,15 +60,88 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
     }
 
     /**
+     *
+     */
+    tourStepZero = () => {
+      // RS.dispatchUpdateCanvasImagesAction([]);
+    }
+
+    /**
+     *
+     */
+    tourOn = () => {
+      this.setState({disableButtons: true})
+    }
+
+    /**
+     *
+     */
+    tourOff = () => {
+      this.setState({disableButtons: false})
+    }
+
+
+    /**
+     *
+     */
+    tourStepThree = () => {
+      this.setState({showCanvasMask: true})
+    }
+
+    /**
+     *
+     */
+    tourStepFour = () => {
+      this.setState({showCanvasMask: false})
+
+      const arr = [
+        {
+          stageIndex: 1,
+          alt: "G70000",
+          src: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/G70000/colour-1.png",
+          jpg: "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/G70000/colour-1.jpg",
+          img: "https://d105txpzekqrfa.cloudfront.net/hospitality/colours/G70000.jpg"
+        }
+      ]
+
+      // store.dispatchUpdateCanvasImagesAction(arr)
+    }
+
+    /**
+     *
+     */
+    tourStepEight = () => {
+      console.log('T step 8 >> push to edit')
+
+      this.props.history.push(`/`)
+    }
+
+
+    /**
+     *
+     */
+    tourStepNine = () => {
+      console.log('T step 9 >> push to summary')
+      this.props.history.push(`/summary`)
+    }
+
+
+    /**
      * detected change in the url
      */
     urlChanged = () => {
-      if (this.props.location.pathname === "/summary") {
-        this.setState({'summaryViewMode': true});
-      }
 
-      if (this.props.location.pathname === "/") {
-        this.setState({'summaryViewMode': false});
+      try {
+        if (this.props.location.pathname === "/summary") {
+          this.setState({'summaryViewMode': true});
+        }
+
+        if (this.props.location.pathname === "/") {
+          this.setState({'summaryViewMode': false});
+        }
+      } catch(err) {
+        console.log("ERRROR")
+        console.log(err)
       }
     }
 
@@ -55,15 +153,21 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
       this.setState({
         storeCanvasImages: store.getState().canvasImages[0],
       })
+
+      if (!store.getState().canvasImages[0]) { return }
+
+      const selectedCanvasImages =
+        this.state.storeCanvasImages.filter(function (x) {
+          return x.selected;
+        });
+
+      this.setState({selectedChoiceCount: selectedCanvasImages.length})
     }
 
     /**
      * when user select a new stage update 'current stage' used for canvas images
      */
     changeStage = (stage) => {
-      console.log('HOSP BUILDER -> CHANGE STAGE')
-      console.log(stage)
-
       this.currentStage = stage;
 
       if (stage === 0) {
@@ -131,6 +235,10 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      *
      */
     toggleEmailVisible = () => {
+      if (this.state.disableButtons) {
+        throw Error('cant email while in tour')
+      }
+
       this.setState({showEmailModal: !this.state.showEmailModal});
     }
 
@@ -138,6 +246,10 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
      * print screen
      */
     print = () => {
+      if (this.state.disableButtons) {
+        throw Error('cant print while in tour')
+      }
+
       window.print();
     }
 
@@ -152,9 +264,12 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
             removeHighlightOnCanvasImage={this.removeHighlightOnCanvasImage}
             fadeOtherCanvasImages={this.state.fadeOtherCanvasImages}
             storeCanvasImages={this.state.storeCanvasImages}
+            selectedChoiceCount={this.state.selectedChoiceCount}
             selectNewImage={this.selectNewImage}
             stageInFocus={this.state.stageInFocus}
             progressMenuHeader={this.state.progressMenuHeader}
+            showCanvasMask={this.state.showCanvasMask}
+            disableButtons={this.state.disableButtons}
           />
         )
       }
@@ -168,10 +283,17 @@ RugBuilder.prototype.HospitalityBuilderComponent = function () {
           stageInFocus={false}
           fadeOtherCanvasImages={false}
           print={this.print}
+          disableButtons={this.state.disableButtons}
         />
       )
     }
   }
 
-  return HospitalityBuilder;
+  const mapStateToProps = (state) => ({
+    progressStage: store.getState[0]
+  })
+
+
+
+  return WithRouter(HospitalityBuilder);
 }

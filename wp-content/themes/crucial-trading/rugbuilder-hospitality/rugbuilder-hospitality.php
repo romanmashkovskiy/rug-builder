@@ -22,9 +22,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<title>Crucial Trading - Hospitality Builder</title>
+
+  <style type="text/css">
+    .box {
+      width: 200px;
+      height: 200px;
+      margin-right: 20px;
+      float: left;
+    }
+  </style>
 </head>
+
 <body>
 	<div id="root"> </div>
+
 	<?
 		$domain = $_SERVER['SERVER_NAME'];
 		$rh_path = '/wp-content/themes/crucial-trading/rugbuilder-hospitality';

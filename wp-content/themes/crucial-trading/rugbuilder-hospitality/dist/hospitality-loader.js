@@ -53,17 +53,22 @@ function load(options, secret_DEPRECIATED) {
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js"></script>');
 	document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>');
 	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.js"></script>');
-	document.write('<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>');
+	// document.write('<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>');
 
 	document.write('<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">');
 	document.write('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">');
 	document.write('<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">');
 
+	document.write('<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>');
+	document.write('<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>');
+	document.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/css/bootstrap-tour-standalone.css" />');
+	document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.11.0/js/bootstrap-tour.js"></script>');
+
 
 	var devMode = true;
 
 	if (window.location.hostname === 'localhost' && devMode) {
-		console.log('DEV MODE !!');
+		console.log('DEV MODE');
 		document.write('<script src="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.js"></script>');
 		document.write('<link rel="stylesheet" href="http://localhost:8888/crucial-trading/wp-content/themes/crucial-trading/rugbuilder-hospitality/dist/hospitality-builder.min.css">');
 	}

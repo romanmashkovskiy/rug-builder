@@ -331,7 +331,6 @@ RugBuilder.prototype.drawerComponent = function(BtnExpandCollapseComponent, BtnS
 // Ref15: Update Stucture
 
 		updateStructure: function(code) {
-
 			R.stageVisited      = [ true, false, false, false, false, false, false, false, false, false ];
 			R.choices.structure = code;
 

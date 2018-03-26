@@ -31,7 +31,8 @@ RugBuilder.prototype.drawerV2ViewComponent = function () {
               page={page}
               pageInView={props.pageInView}
               updateStructure={props.updateStructure}
-              selectNewImage={props.selectNewImage} />
+              selectNewImage={props.selectNewImage}
+              disableButtons={props.disableButtons} />
           })
         }
       </ul>
@@ -59,7 +60,9 @@ RugBuilder.prototype.drawerV2ViewComponent = function () {
               page={ page }
               pageInView={ props.pageInView }
               onClick={ props.updateColor }
-              selectNewImage={props.selectNewImage} />
+              selectNewImage={props.selectNewImage}
+              disableButtons={props.disableButtons}
+            />
   				})
         }
       </ul>
@@ -72,10 +75,7 @@ RugBuilder.prototype.drawerV2ViewComponent = function () {
    */
   const DrawerView = (props) => {
     return (
-      <div
-        className="drawerv2-container"
-        key={props.timestamp}
-      >
+      <div id="drawer" className="drawerv2-container" key={props.timestamp}>
         <StructurePaletteJsx props={props} />
         <ColorPaletteJsx props={props} />
       </div>

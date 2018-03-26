@@ -61,8 +61,6 @@ RugBuilder.prototype.EmailModalComponent = function (choices) {
     }
 
     handleEmailChange = (event) => {
-      console.log('handle email change');
-
       this.setState({email: event.target.value});
     }
 

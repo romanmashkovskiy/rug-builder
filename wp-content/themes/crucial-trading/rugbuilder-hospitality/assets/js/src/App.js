@@ -3,13 +3,17 @@ RugBuilder.prototype.AppComponent = function () {
   const Route = window.ReactRouterDOM.Route;
   const Switch = window.ReactRouterDOM.Switch;
   const Provider = window.ReactRedux.Provider;
+  // const Joyride = window.Reactjoyride;;
 
   const R = rugBuilder;
   const RS = ReduxStore;
   const store = RS.store;
 
-  const hospitalityBuilder = R.HospitalityBuilderComponent();
-  // const summary = R.summaryComponent();
+  try {
+    var hospitalityBuilder = R.HospitalityBuilderComponent();
+  } catch(err) {
+    console.log(err)
+  }
 
   let baseName = '';
 
@@ -21,19 +25,26 @@ RugBuilder.prototype.AppComponent = function () {
     baseName = '/hospitality-builder/'
   }
 
-  const App = () => (
-    <Router basename={baseName}>
-      <div>
-        <Switch>
-          <Route
-            path="/"
-            component={hospitalityBuilder}
-          />
+  class App extends React.Component {
+    constructor() {
+      super();
+    }
 
-        </Switch>
-      </div>
-    </Router>
-  )
+
+    render() {
+      return (
+        <Router basename={baseName}>
+          <div>
+            <Switch>
+              <Route
+                path="/"
+                component={hospitalityBuilder}
+              />
+            </Switch>
+          </div>
+        </Router>
+    )}
+  }
 
   ReactDOM.render(
     <Provider store={store}>

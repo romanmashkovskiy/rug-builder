@@ -11,6 +11,8 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
    * Canvas JSX - Left Side
    */
   const CanvasContainer = ({props}) => {
+    const editLink = !props.disableButtons ? `` : `summary`
+
     return (
       <div id="canvas" className="canvas-summary summary__left-side">
         <p className="header"> Your Chosen Design </p>
@@ -22,9 +24,9 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
           stageInFocus={props.stageInFocus}
         />
 
-        <Link to={``}
+        <Link to={editLink}
         >
-          <p className="edit">
+          <p className="edit summary-view-edit" id="summaryViewEdit">
             <i className="fa fa-chevron-left" aria-hidden="true"></i>
             EDIT
           </p>
@@ -114,7 +116,7 @@ RugBuilder.prototype.hospBuilderSummaryViewComponent = function () {
           }
         </div>
 
-        <div className="summary__right-side__button-container">
+        <div className="summary__right-side__button-container" id="summaryButtons">
           <button
             className="default fixed-width-195"
             onClick={(e) =>props.print()}

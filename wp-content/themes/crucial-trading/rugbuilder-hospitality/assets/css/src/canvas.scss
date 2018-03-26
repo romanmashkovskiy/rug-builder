@@ -1,16 +1,32 @@
 .canvas-container {
-  // border: 2px solid pink;
   position: relative;
+  // border: 1px solid red;
 
   @media screen and (max-width: 1200px) {
     margin-top: 0;
     flex-direction:  column;
   }
 
+  .canvas-builder {
+    position: relative;
+    display: inline-block;
+    margin: calc(50vh - 256px - 81px) auto auto;
+    text-align: center;
+    // border: 1px solid  pink;
 
-  .canvas {
-    margin: 0 auto;
-    margin-top: 100px;
+    button {
+      margin-top: 50px;
+      width: 70%;
+
+      @media screen and (max-width: 600px) {
+        margin-top: 20px;
+        width: 100%;
+      }
+    }
+  }
+
+  .canvas, .canvas-builder {
+    // margin: 0 auto;
 
     @media screen and (max-width: 1300px) {
       width: 450px;
@@ -20,8 +36,8 @@
     @media screen and (max-width: 1200px) {
       margin: 0 auto;
       margin-top: 40px;
-      width: 550px;
-      height: 550px;
+      width: 500px;
+      height: 500px;
     }
 
     @media screen and (max-width: 770px) {
@@ -46,6 +62,10 @@
       width: 300px !important;
       height: 300px !important;
     }
+  }
+
+  .canvas {
+    margin: 0 auto;
   }
 
   .choice-thumbnail-container {

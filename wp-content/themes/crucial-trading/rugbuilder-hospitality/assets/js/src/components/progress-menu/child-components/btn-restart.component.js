@@ -1,12 +1,13 @@
 RugBuilder.prototype.btnRestartComponent = function() {
-
 	const R = rugBuilder;
 
 	const BtnRestartComponent = React.createClass({
-
 		restart: function(e) {
 			e.preventDefault();
 
+			if (this.props.disableButtons) {
+				throw Error('cant select restart in tour mode')
+			}
 
 			location.reload();
 
@@ -25,7 +26,7 @@ RugBuilder.prototype.btnRestartComponent = function() {
 				const SRC = 'https://d105txpzekqrfa.cloudfront.net/uploads/20170110133914/restart.svg';
 
 				return (
-					<a
+					<a id="restartBuild"
 						href="#"
 						className="hosp_builder_progress-menu__restart nav-upper-link"
 						onClick={ this.restart }

@@ -1,5 +1,6 @@
 RugBuilder.prototype.drawerV2Component = function() {
   const R = rugBuilder;
+  const RS = ReduxStore;
   const DrawerV2View = R.drawerV2ViewComponent();
   const store = ReduxStore.store;
 
@@ -23,6 +24,8 @@ RugBuilder.prototype.drawerV2Component = function() {
         colors        : undefined,
         numColors     : undefined,
         resize : 0,
+        structure: {},
+        disableButtons: false
       }
 
       this.STRUCTURE_ELEMS_PER_PAGE = undefined;
@@ -41,8 +44,99 @@ RugBuilder.prototype.drawerV2Component = function() {
 			this.restart = PubSub.subscribe( 'restart', this.restart );
 			this.submit = PubSub.subscribe( 'submit', this.submit );
 
+      this.tourOnL = PubSub.subscribe('tourOn', this.tourOn)
+      this.tourOffL = PubSub.subscribe('tourOff', this.tourOff)
+      this.tso = PubSub.subscribe('tourStepOne', this.tourStepOne);
+
+      this.tourStepZeroL = PubSub.subscribe('tourStepZero', this.tourStepZero)
+      this.tourStepFourL = PubSub.subscribe('tourStepFour', this.tourStepFour)
+      this.tourStepFiveL = PubSub.subscribe('tourStepFive', this.tourStepFive)
+
       window.addEventListener('resize', this.windowResize);
     };
+
+    componentWillUnmount() {
+      PubSub.unsubscribe(this.tso)
+      PubSub.unsubscribe(this.tourStepFiveL)
+      PubSub.unsubscribe(this.tourStepFourL)
+    }
+
+
+    /**
+     *
+     */
+    tourOn = () => {
+      try {
+        this.setState({disableButtons: true})
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
+    /**
+     *
+     */
+    tourOff = () => {
+      this.setState({disableButtons: false})
+    }
+
+    /**
+     *
+     */
+    tourStepOne = () => {
+      const newImage = {
+        stageIndex: 0,
+        src: 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/base.jpg',
+        img: 'https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/base-colour.jpg',
+        jpg: '',
+        alt: 'H4350',
+        selected: true
+      };
+
+      this.props.selectNewImage(newImage)
+      R.updateCanvasImageService(newImage)
+      this.updateStructure('H4350')
+    }
+
+    /**
+     *
+     */
+     tourStepFour = () => {
+       this.tourStepOne()
+
+
+     }
+
+
+    /**
+     *
+     */
+    tourStepFive = () => {
+      store.getState().canvasImages
+
+      R.showLittleLoader();
+
+      const col = "https://d105txpzekqrfa.cloudfront.net/hospitality/colours/G70000.jpg"
+      const url = "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/G70000/colour-1.png"
+      const jpg = "https://d105txpzekqrfa.cloudfront.net/hospitality/structures/H4350/G70000/colour-1.jpg"
+
+
+      // var obj = { alt: this.props.color, src: url, jpg: jpg, img: col }
+
+      var obj = {
+        stageIndex: R.colorStage,
+        alt: 'G70000',
+        src: url,
+        jpg: jpg,
+        img: col,
+        selected: true
+      }
+
+      this.props.selectNewImage(obj);
+      R.updateCanvasImageService(obj);
+    }
+
+
 
     /**
      * When window is resized set structor and color elements to undefined
@@ -156,13 +250,17 @@ RugBuilder.prototype.drawerV2Component = function() {
         }
       }
 
-      this.setState({
-        colors         : R.structureColorCodes[code],
-        numOfColors    : numOfColors,
-        chosenStructure : code,
-        chosenColors    : [],
-        drawerSize      : 1
-      });
+      try {
+        this.setState({
+          colors         : R.structureColorCodes[code],
+          numOfColors    : numOfColors,
+          chosenStructure : code,
+          chosenColors    : [],
+          drawerSize      : 1
+        });
+      } catch (err) {
+        console.log(err)
+      }
 
       PubSub.publish('newStructure', code);
     };
@@ -176,7 +274,11 @@ RugBuilder.prototype.drawerV2Component = function() {
       let array = this.state.chosenColors;
       array[R.colorStage - 1] = color;
 
-      this.setState({chosenColors: array, drawerSize : 1});
+      try {
+        this.setState({chosenColors: array, drawerSize : 1});
+      } catch (err) {
+        console.log(err)
+      }
 
       PubSub.publish( 'newColor', true );
     }
@@ -198,9 +300,15 @@ RugBuilder.prototype.drawerV2Component = function() {
           updateColor={this.updateColor}
           chosenStructure={this.state.chosenStructure}
           selectNewImage={this.props.selectNewImage}
+          clickMe={this.clickMe}
+          disableButtons={this.state.disableButtons}
         />
     )};
   }
+
+  const mapStateToProps = (state) => ({
+    structure: store.getState()[0].structure
+  })
 
   return DrawerV2;
 }

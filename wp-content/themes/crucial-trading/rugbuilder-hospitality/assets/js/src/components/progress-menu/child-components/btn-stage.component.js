@@ -1,13 +1,28 @@
 RugBuilder.prototype.btnStageComponent = function() {
 	const R = rugBuilder;
+	const RS = ReduxStore;
+	const store = RS.store;
 
 	class BtnStageComponent extends React.Component {
 		constructor(props) {
 			super(props);
 
 			this.state = {
-				currentStage: R.colorStage
+				currentStage: R.colorStage,
+				tourStep: false,
+				tourStep3: false
 			}
+		}
+
+
+		/**
+		 *
+		 */
+		tourStep3 = () => {
+			if (this.props.index !== 1) { return }
+
+			this.setState({tourStep3: true})
+			this.props.highlightCanvasImageOnHover(this.props.index)
 		}
 
 		/**
@@ -15,6 +30,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 		 */
 		mouseEnter = () => {
 			if (this.props.disableLinkHover) { return; }
+
+			if (this.props.disableButtons) { return; }
 
 			this.props.highlightCanvasImageOnHover(this.props.index);
 		}
@@ -25,18 +42,24 @@ RugBuilder.prototype.btnStageComponent = function() {
 		mouseLeave = () => {
 			if (this.props.disableLinkHover) { return; }
 
+			if (this.props.disableButtons) { return; }
+
 			this.props.removeHighlightOnCanvasImage();
 		}
+
+
 
 		/**
 		 *
 		 */
 		handleClick = (e) => {
-			console.log('handle click -> stage');
-			
 			e.preventDefault();
 
 			if (this.props.disableLinkHover) { return; }
+
+			if (this.props.disableButtons) {
+				throw Error('cant select stage in tour mode')
+			}
 
 			R.stageVisited[this.props.index] = true;
 			R.colorStage = this.props.index;
@@ -44,6 +67,8 @@ RugBuilder.prototype.btnStageComponent = function() {
 			PubSub.publish( 'newStage', this.props.index );
 			this.props.handleCurrentStage(this.props.index);
 		}
+
+
 
 		render() {
 			/* stage selected if current stage found in selected canvas images */
@@ -57,8 +82,7 @@ RugBuilder.prototype.btnStageComponent = function() {
 			}
 
 			return (
-				<li
-					className={
+				<li className={
 						"progress-menu__item " +
 						(stageSelected ? 'selected' : '')
 					}
@@ -66,14 +90,13 @@ RugBuilder.prototype.btnStageComponent = function() {
 					onMouseEnter={this.mouseEnter}
 					onMouseLeave={this.mouseLeave}
 				>
-					<a
-						href="#"
+					<a href="#" onClick={(e) => this.handleClick(e)}
+						id={"progressMenuLink" + this.props.index}
+
 						className={
 							"progress-menu__item__link " +
 							(stageSelected ? 'selected' : '')
 						}
-
-						onClick={(e) => this.handleClick(e)}
 					>
 						{ this.props.stage }
 					</a>

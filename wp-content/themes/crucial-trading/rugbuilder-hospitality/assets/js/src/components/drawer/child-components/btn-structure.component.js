@@ -1,12 +1,18 @@
 RugBuilder.prototype.structureItemComponent = function() {
 	const R = rugBuilder;
 	const RS = ReduxStore;
-	const storeActions = ReduxStore.actions;
+  const store = RS.store;
 	// const storeService = R.storeServices;
+
 
 	class StructureItem extends React.Component {
 		constructor(props) {
 		  super();
+
+			this.state = {
+				tourStep: false,
+				tourStageOneComplete: false
+			}
 		}
 
 		/**
@@ -15,7 +21,9 @@ RugBuilder.prototype.structureItemComponent = function() {
 		handleClick = (e) => {
 			e.preventDefault();
 
-			// R.imageChoiceComponent(this.props.code, this.props.img);
+			if (this.props.disableButtons) {
+				throw Error('cant select in tour mode')
+			}
 
 			const newImage = {
 				stageIndex: 0,
@@ -27,17 +35,8 @@ RugBuilder.prototype.structureItemComponent = function() {
 			};
 
 			this.props.selectNewImage(newImage);
-
 			R.updateCanvasImageService(newImage);
 			this.props.updateStructure(this.props.code);
-
-			// const RS = new ReduxStore();
-
-			// RS.store.dispatch(
-			// 	RS.getMutateSelectedStructureAction(newImage)
-			// );
-
-			// RS.dispatchAction(newImage);
 		}
 
 		render() {

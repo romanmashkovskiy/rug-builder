@@ -58,6 +58,7 @@ gulp.task('js', function() {
 		'./js/src/startRugbuilder.js',
 		'./js/src/App.js',
 		'./js/src/store/index.js',
+		'./js/src/Tour.js',
 		'./js/src/store/*.js',
 		'./js/src/store/*/*.js',
 		'./js/src/*.js',
@@ -70,6 +71,7 @@ gulp.task('js', function() {
 		'./js/src/functions/loadingScreens.function.js',
 		'./js/src/components/*.js',
 		'./js/src/components/*/*.js',
+		'./js/src/components/*/children/*.js',
 		'./js/src/components/drawer/*.js',
 		'./js/src/components/drawer/child-components/*.js',
 		'./js/src/components/progress-menu/*.js',
@@ -98,6 +100,7 @@ gulp.task('js-prod', function() {
 		'./js/src/functions/calculateContainerHeight.function.js',
 		'./js/src/functions/loadingScreens.function.js',
 		'./js/src/components/*.js',
+		'./js/src/components/*/*.js',
 		'./js/src/components/drawer/*.js',
 		'./js/src/components/progress-menu/*.js'
 	])
@@ -139,24 +142,25 @@ gulp.task('hosp-loader', function() {
 gulp.task('watch', function() {
 	gulp.watch('./css/src/style.scss',               ['css']);
 	gulp.watch('./css/src/*.scss', ['css']);
-	
+
 	gulp.watch('./css/src/base/*.scss',              ['css']);
 	gulp.watch('./css/src/canvas.scss', ['css']);
 	gulp.watch('./css/src/components/*.scss',        ['css']);
 	gulp.watch('./css/src/components/drawer/*.scss', ['css']);
 
 	gulp.watch('./js/src/*.js',                          ['js']);
-	gulp.watch('./js/src/store/*.js', ['js']);
-	gulp.watch('./js/src/store/*/*.js', ['js']);
+	gulp.watch('./js/src/store/*.js', 									 ['js']);
+	gulp.watch('./js/src/store/*/*.js', 								 ['js']);
 	gulp.watch('./js/src/data/*.js',                     ['js']);
 	gulp.watch('./js/src/functions/*.js',                ['js']);
-	gulp.watch('./js/src/components/*.js',               ['js']);
-	gulp.watch('./js/src/components/*/*.js', ['js']);
-	gulp.watch('./js/src/components/drawer/*.js',        ['js']);
-	gulp.watch('./js/src/components/drawer/child-components/*.js', ['js']);
-	gulp.watch('./js/src/components/progress-menu/*.js', ['js']);
+	gulp.watch('./js/src/components/*.js',               									['js']);
+	gulp.watch('./js/src/components/*/*.js', 						 									['js']);
+	gulp.watch('./js/src/components/*/children/*.js',        						  ['js']);
+	gulp.watch('./js/src/components/drawer/*.js',        									['js']);
+	gulp.watch('./js/src/components/drawer/child-components/*.js', 				['js']);
+	gulp.watch('./js/src/components/progress-menu/*.js', 									['js']);
 	gulp.watch('./js/src/components/progress-menu/child-components/*.js', ['js']);
-	gulp.watch('./js/src/components/summary/*.js', ['js']);
+	gulp.watch('./js/src/components/summary/*.js', 												['js']);
 })
 
 gulp.task('watch-prod', function() {

@@ -5,14 +5,11 @@ RugBuilder.prototype.emailForm = function(choices) {
 	const EmailForm = React.createClass({
 
 		submit: function() {
-			console.log('email form !!!!');
 			const EMAIL = document.querySelector('#hosp_builder_email-submit').value;
 
 			let req = new XMLHttpRequest();
 
 			req.addEventListener('load', callback);
-
-			console.log('send email request');
 
 			// const postUrl = window.location.href;
 			let apiUrl = '';

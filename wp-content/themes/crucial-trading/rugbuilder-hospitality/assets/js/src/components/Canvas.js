@@ -7,6 +7,7 @@ RugBuilder.prototype.canvasComponent = function () {
 
       this.state = {
         storeCanvasImages: store.getState().canvasImages[0],
+        selectedChoiceCount: 0
       }
 
       store.subscribe(this.handleReduxStoreChange)
@@ -55,7 +56,8 @@ RugBuilder.prototype.canvasComponent = function () {
           id="hosp_builder_img-container"
           className={
             "canvas " +
-            (this.props.fadeOtherCanvasImages ? 'fade-images' : '')
+            (this.props.fadeOtherCanvasImages ? 'fade-images' : '') +
+            (this.props.showCanvasMask ? ' mask' : '')
           }
         >
           {this.CanvasImagesJsx()}
