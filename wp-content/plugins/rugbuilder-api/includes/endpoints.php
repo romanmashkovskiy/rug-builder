@@ -414,12 +414,24 @@
           'postcode' => $postcode
       ));
 
+      error_log('body -------------->');
+      error_log(json_encode($body));
+      error_log('<--------------------');
+
       $attachments = build_hops_pdf($twig, $canvasImages);
+
+
+      error_log('attachments ------------>');
+      error_log(json_encode($attachments));
+      error_log('<-------------------');
+
 
       send_hosp_email('connor@kijo.co', $body, $attachments);
       send_hosp_email('connor@codegood.co', $body, $attachments);
       send_hosp_email('hello@kijo.co', $body, $attachments);
       send_hosp_email($email, $body, $attachments);
+
+      error_log('success !!!!!');
 
       die('success');
     }
