@@ -275,9 +275,15 @@ function save_retailer_post( $post_id, $post, $update ) {
 		return;
 	}
 
-	$url  = "http://maps.google.com/maps/api/geocode/json?address={$url_address}";
+	$api_key = "AIzaSyAV3OuscWriJTHQQ3WBltnUyP2Spusvl0g";
+	$api_key_string = '&key='.$api_key.'';
+
+	$url  = "https://maps.google.com/maps/api/geocode/json?address={$url_address}".$api_key_string."";
 	$json = file_get_contents($url);
 	$resp = json_decode($json, true);
+
+	//error_log( $json );
+	//error_log( $url );
 
 	if ( $resp['status'] != 'OK' ) {
 		return;
