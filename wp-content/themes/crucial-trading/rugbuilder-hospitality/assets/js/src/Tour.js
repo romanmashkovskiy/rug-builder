@@ -173,5 +173,5 @@ RugBuilder.prototype.Tour = function() {
   console.log('start');
   tour.setCurrentStep(0);
   tour.init();
-  tour.start(true);
+  tour.start();
 }
