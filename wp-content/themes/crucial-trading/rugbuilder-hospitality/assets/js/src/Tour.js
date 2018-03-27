@@ -35,7 +35,7 @@ RugBuilder.prototype.Tour = function() {
   /* Begin */
   tour.addStep({
       element: "#drawer",
-      title: "STRUCTURES",
+      title: "STRUCTURES 1/12",
       content: "USE THIS PANEL TO CHOOSE YOUR STRUCTURE",
       placement: "right",
 
@@ -48,7 +48,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step One */
   tour.addStep({
       element: "#progressMenuLower",
-      title: "PROGRESS BAR",
+      title: "PROGRESS BAR 2/12",
       content: "USE THE PROGRESS BAR TO BUILD YOUR DESIGN",
       placement: "bottom",
 
@@ -60,7 +60,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Two */
   tour.addStep({
     element: "#progressMenuLink1",
-    title: "COLOURS",
+    title: "COLOURS 3/12",
     content: "CLICK A COLOUR TO CHANGE YOUR DESIGN",
     placement: "bottom",
     backdropPadding: 20,
@@ -73,7 +73,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Three */
   tour.addStep({
     element: "#progressMenuLink1",
-    title: "HOVER EFFECT",
+    title: "HOVER EFFECT 4/12",
     content: "HOVER OVER YOUR COLOUR TO SEE WHAT PART OF THE DESIGN IT EFFECTS",
     placement: "bottom",
     backdropPadding: 20,
@@ -86,7 +86,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Four */
   tour.addStep({
     element: "#drawer",
-    title: "CHOOSE A COLOUR",
+    title: "CHOOSE A COLOUR 5/12",
     content: "CHOOSE A COLOUR FROM THE DRAWER TO ADD IT TO YOUR DESIGN",
     placement: "right",
 
@@ -98,7 +98,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Five */
   tour.addStep({
     element: "#progressMenuLower",
-    title: "CHANGE YOUR DESIGN",
+    title: "CHANGE YOUR DESIGN 6/12",
     content: "TO CHANGE YOUR DESIGN CLICK ON A COLOUR OR THE STRUCTURE IN THE PROGRESS BAR",
     placement: "bottom",
 
@@ -110,7 +110,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Six */
   tour.addStep({
     element: "#hosp_builder_choices",
-    title: "THE SIDE BAR",
+    title: "THE SIDE BAR 7/12",
     content: "ALL OF the PARTS YOU HAVE SELECTED WILL BE LISTED IN THE SIDE BAR",
     placement: "left",
     backdropPadding: 10,
@@ -119,7 +119,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Seven */
   tour.addStep({
     element: "#restartBuild",
-    title: "START AGAIN",
+    title: "START AGAIN 8/12",
     content: "IF YOU WISH TO START YOUR DESIGN AGAIN THEN JUST CLICK START AGAIN",
     placement: "bottom",
     backdropPadding: 10,
@@ -128,7 +128,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Eight */
   tour.addStep({
     element: "#finishDesignButton",
-    title: "DESIGN COMPLETE",
+    title: "DESIGN COMPLETE 9/12",
     content: 'CLICK "FINISH YOUR DESIGN" TO PRINT OR EMAIL YOUR SELECTIONS',
     placement: "top",
     backdropPadding: 10,
@@ -142,7 +142,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Nine */
   tour.addStep({
     element: "#summaryButtons",
-    title: "PRINT OR EMAIL",
+    title: "PRINT OR EMAIL 10/12",
     content: "PRINT OR EMAIL TO SAVE YOUR DETAILS OR SEND TO THE MANUFACTURER",
     placement: "top",
     backdropPadding: 10,
@@ -155,7 +155,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Ten */
   tour.addStep({
     element: "#summaryViewEdit",
-    title: "GOT A BETTER IDEA?",
+    title: "GOT A BETTER IDEA? 11/12",
     content: "CLICK EDIT TO MAKE EDITS TO YOUR DESIGN",
     placement: "top",
     backdropPadding: 10,
@@ -164,7 +164,7 @@ RugBuilder.prototype.Tour = function() {
   /* Step Eleven */
   tour.addStep({
     element: "#exitBuilder",
-    title: "FINISHED",
+    title: "FINISHED 12/12",
     content: "WHEN YOU'RE FINISHED JUST HIT THE EXIT BUTTON TO RETURN TO THE CRUCIAL TRADING WEBSITE",
     placement: "bottom",
     backdropPadding: 10,
@@ -173,5 +173,5 @@ RugBuilder.prototype.Tour = function() {
   console.log('start');
   tour.setCurrentStep(0);
   tour.init();
-  tour.start(true);
+  tour.start();
 }
