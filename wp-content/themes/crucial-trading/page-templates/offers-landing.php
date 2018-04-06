@@ -44,6 +44,7 @@ echo do_shortcode( '[header size="small" bg="true"]' );
     foreach ( $products_cats_tax as $products_cats ) :
         $project_query = new WP_Query( array(
             'post_type'      => 'product',
+            'posts_per_page' => -1,
             'orderby'        => 'menu_order',
             'order'          => 'ASC',
             'tax_query' => array(
@@ -78,7 +79,8 @@ echo do_shortcode( '[header size="small" bg="true"]' );
 
           <?php
             $title      = get_the_title( $post->ID );
-            $link       = get_the_permalink( $post->ID );
+            //$link       = get_the_permalink( $post->ID );
+            $link       = '/?add-to-cart=' . $post->ID;
             $src        = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'small' )[0];
             $reg_price  = $product->get_regular_price();
             $sale_price = $product->get_sale_price();
@@ -104,9 +106,9 @@ echo do_shortcode( '[header size="small" bg="true"]' );
                     <div class="swatch__price--regular">&pound;<?php echo $reg_price; ?></div>
                   <?php endif; ?>
                 </div>
-                <!--<div class="swatch__cta">
+                <div class="swatch__cta">
                   Order Now
-                </div>-->
+                </div>
               </div>
               <div class="swatch__image object-fit-container vertical-align">
                 <img src="<?php echo $src; ?>" alt="<?php echo $title; ?>">

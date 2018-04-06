@@ -30,7 +30,7 @@ config.codekit
 /sitemap.xml
 /sitemap.xml.gz
 license.txt
-readme.html
+readme.html.DS_Store
 
 *.zip
 
@@ -41,3 +41,5 @@ node_modules
 .htaccess
 gulpfile.js
 #package.json
+
+.DS_Store
