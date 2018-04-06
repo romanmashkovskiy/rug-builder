@@ -106,9 +106,9 @@ echo do_shortcode( '[header size="small" bg="true"]' );
                     <div class="swatch__price--regular">&pound;<?php echo $reg_price; ?></div>
                   <?php endif; ?>
                 </div>
-                <div class="swatch__cta">
+                <!--<div class="swatch__cta">
                   Order Now
-                </div>
+                </div>-->
               </div>
               <div class="swatch__image object-fit-container vertical-align">
                 <img src="<?php echo $src; ?>" alt="<?php echo $title; ?>">
