@@ -1,0 +1,282 @@
+/************************************************************************************************************************
+ Offers Landing Page
+
+ Crucial Trading - SCSS
+ Created by: KIJO Creative <hello@kijo.co>
+
+*************************************************************************************************************************/
+
+.page-template-offers-landing {
+  background-color: $light-grey-bg;
+
+  h1 {
+    @media all and (min-width: 769px) {
+      font-size: 64px;
+    }
+  }
+
+  hr {
+    background-color: #E8E8E8;
+  }
+
+  .offers-landing__container {
+    background-color: white;
+    width: 90%;
+    max-width: 1300px;
+    margin: auto;
+    padding: 75px;
+    margin-bottom: 100px;
+    position: relative;
+
+    @media all and (max-width: 769px) {
+      padding: 25px;
+      padding-top: 25px;
+      width: 100%;
+    }
+  }
+
+  .offers-landing__line {
+    width: 100px;
+    height: 1px;
+    background-color: #B1B1B1;
+    transform: rotate(90deg);
+    position: absolute;
+    display: block;
+    top: -5px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    transform-origin: center center;
+  }
+
+  // Lead Text
+  .offers-landing__lead-text {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+    color: #383838;
+    padding-top: 10px;
+
+    p {
+      margin-bottom: 65px;
+      font-size: 20px;
+
+      @media all and (max-width: 769px) {
+        font-size: 16px;
+        padding-top: 25px;
+      }
+    }
+  }
+
+  // Header
+  .offers-landing__materials__header {
+    display: flex;
+    align-items: center;
+    padding-top: 50px;
+    padding-bottom: 70px;
+
+    @media all and (max-width: 992px) {
+      display: block;
+      padding-top: 25px;
+      padding-bottom: 65px;
+    }
+
+    .offers-landing__materials__title {
+      width: 45%;
+      text-align: center;
+      font-size: 54px;
+
+      @media all and (max-width: 992px) {
+        width: 100%;
+        margin-bottom: 20px;
+        font-size: 42px;
+      }
+
+      img {
+        width: 65px;
+        position: relative;
+        top: -3px;
+
+        @media all and (max-width: 769px) {
+          width: 55px;
+        }
+      }
+    }
+
+    .offers-landing__materials__description {
+      width: 55%;
+      font-size: 16px;
+
+      @media all and (max-width: 992px) {
+        width: 100%;
+      }
+    }
+
+    &.wool {
+      .offers-landing__materials__title {
+        color: $color-wool-dark-new;
+      }
+      .offers-landing__materials__description {
+        color: #716045;
+      }
+    }
+
+    &.sisal {
+      .offers-landing__materials__title {
+        color: #6D7B6C;
+      }
+      .offers-landing__materials__description {
+        color: #556054;
+      }
+    }
+
+    &.sisool {
+      .offers-landing__materials__title {
+        color: #8f8b6e;
+      }
+      .offers-landing__materials__description {
+        color: #64614d;
+      }
+    }
+
+    &.seagrass {
+      .offers-landing__materials__title {
+        color: #98875e;
+      }
+      .offers-landing__materials__description {
+        color: #6f6345;
+      }
+    }
+
+    &.coir {
+      .offers-landing__materials__title {
+        color: #976e4e;;
+      }
+      .offers-landing__materials__description {
+        color: #76553c;
+      }
+    }
+
+    &.jute {
+      .offers-landing__materials__title {
+        color: #876a54;;
+      }
+      .offers-landing__materials__description {
+        color: #806550;
+      }
+    }
+  } // offers-landing__materials__header
+
+  .swatches {
+    width: 100%;
+    padding: 0px;
+
+    .swatch {
+      height: 220px;
+      position: relative;
+
+      @media all and (max-width: 992px) {
+        height: auto;
+        min-height: 300px;
+      }
+    }
+
+    .swatch__information {
+      width: 50%;
+      float: left;
+
+      @media all and (max-width: 992px) {
+        width: 100%;
+        float: none;
+        display: block;
+        min-height: 170px;
+      }
+    }
+
+    .swatch__image.object-fit-container {
+      @media all and (max-width: 992px) {
+        width: 100%;
+        float: none;
+        display: block;
+        height: 150px;
+      }
+
+      img {
+        @media all and (max-width: 992px) {
+          height: 100%;
+          min-width: 250%;
+        }
+      }
+    }
+
+    .swatch__name {
+      display: block;
+      width: 100%;
+      font-size: 13px;
+    }
+
+    .swatch__code {
+      display: block;
+    }
+
+    .swatch__price {
+      @media all and (max-width: 992px) {
+        text-align: center;
+        padding-top: 10px;
+      }
+    }
+
+    .swatch__price--regular {
+      color: #A4A4A4;
+    }
+
+    .swatch__price--regular--strike {
+      text-decoration: line-through;
+    }
+
+    .swatch__price--sale {
+      color: #FF5454;
+      font-size: 18px;
+
+      @media all and (max-width: 769px) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+
+    .vertical-align {
+      @media all and (max-width: 992px) {
+        transform: none;
+      }
+    }
+
+    .swatch__sale-badge {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #FF5454;
+      color: white;
+      position: absolute;
+      top: -40px;
+      left: -40px;
+      line-height: 15px;
+      text-align: center;
+      font-size: 12px;
+      padding-top: 10px;
+
+      @media all and (max-width: 769px) {
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: -55px;
+      }
+
+      .swatch__sale-badge__off {
+        display: block;
+      }
+    }
+  }
+
+}
