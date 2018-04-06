@@ -95,7 +95,7 @@ echo do_shortcode( '[header size="small" bg="true"]' );
               <?php endif; ?>
 
               <div class="swatch__information clearfix vertical-align">
-                <h3 class="swatch__name"><?php echo $title; ?><span class="swatch__code"><?php echo $product->get_sku(); ?></span></h3>
+                <h3 class="swatch__name"><?php echo $title; ?></h3>
                 <div class="swatch__price">
                   <?php if ( !empty( $product->get_sale_price() ) ) : ?>
                     <div class="swatch__price--regular swatch__price--regular--strike">&pound;<?php echo $reg_price; ?></div>
