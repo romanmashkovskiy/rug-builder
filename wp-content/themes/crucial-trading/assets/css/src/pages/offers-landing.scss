@@ -29,9 +29,9 @@
     position: relative;
 
     @media all and (max-width: 769px) {
-      padding: 35px;
-      padding-top: 55px;
-      width: 90%;
+      padding: 25px;
+      padding-top: 25px;
+      width: 100%;
     }
   }
 
@@ -63,7 +63,8 @@
       font-size: 20px;
 
       @media all and (max-width: 769px) {
-        font-size: 18px;
+        font-size: 16px;
+        padding-top: 25px;
       }
     }
   }
@@ -78,7 +79,7 @@
     @media all and (max-width: 992px) {
       display: block;
       padding-top: 25px;
-      padding-bottom: 25px;
+      padding-bottom: 65px;
     }
 
     .offers-landing__materials__title {
@@ -174,11 +175,39 @@
     .swatch {
       height: 220px;
       position: relative;
+
+      @media all and (max-width: 992px) {
+        height: auto;
+        min-height: 300px;
+      }
     }
 
     .swatch__information {
       width: 50%;
       float: left;
+
+      @media all and (max-width: 992px) {
+        width: 100%;
+        float: none;
+        display: block;
+        min-height: 170px;
+      }
+    }
+
+    .swatch__image.object-fit-container {
+      @media all and (max-width: 992px) {
+        width: 100%;
+        float: none;
+        display: block;
+        height: 150px;
+      }
+
+      img {
+        @media all and (max-width: 992px) {
+          height: 100%;
+          min-width: 250%;
+        }
+      }
     }
 
     .swatch__name {
@@ -189,6 +218,13 @@
 
     .swatch__code {
       display: block;
+    }
+
+    .swatch__price {
+      @media all and (max-width: 992px) {
+        text-align: center;
+        padding-top: 10px;
+      }
     }
 
     .swatch__price--regular {
@@ -202,6 +238,17 @@
     .swatch__price--sale {
       color: #FF5454;
       font-size: 18px;
+
+      @media all and (max-width: 769px) {
+        font-size: 16px;
+        line-height: 20px;
+      }
+    }
+
+    .vertical-align {
+      @media all and (max-width: 992px) {
+        transform: none;
+      }
     }
 
     .swatch__sale-badge {
@@ -217,6 +264,14 @@
       text-align: center;
       font-size: 12px;
       padding-top: 10px;
+
+      @media all and (max-width: 769px) {
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: -55px;
+      }
 
       .swatch__sale-badge__off {
         display: block;

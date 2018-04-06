@@ -47,76 +47,79 @@ echo do_shortcode( '[header size="small" bg="true"]' );
             'orderby'        => 'menu_order',
             'order'          => 'ASC',
             'tax_query' => array(
+                'relation' => 'AND',
                 array(
                     'taxonomy' => 'product_cat',
                     'field' => 'slug',
-                    'terms' => array('offers'),
-                    'operator' => 'IN'
-                )
+                    'terms' => 'offers',
+                ),
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field' => 'slug',
+                    'terms' => $products_cats,
+                ),
             ),
         ));
     ?>
 
-    <div class="offers-landing__materials__header <?php echo $products_cats->slug; ?>">
-      <?php
-        $icon_id = get_woocommerce_term_meta( $products_cats->term_id, 'thumbnail_id', true );
-  	    $icon_url = wp_get_attachment_url( $icon_id );
-        $icon_alt = get_post_meta( $icon_id, '_wp_attachment_image_alt', true);
-      ?>
-      <h2 class="offers-landing__materials__title"><img src="<?php echo $icon_url; ?>" alt="<?php echo $icon_alt; ?>" /> <?php echo $products_cats->name; ?></h2>
-      <div class="offers-landing__materials__description"><?php echo $products_cats->description; ?></div>
-    </div>
-
-
-
-    <div class="swatches swatches--large clearfix">
-      <?php if ( $project_query->have_posts() ) : while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
-
+    <?php if ($project_query->found_posts > 0 ) : ?>
+      <div class="offers-landing__materials__header <?php echo $products_cats->slug; ?>">
         <?php
-          $title      = get_the_title( $post->ID );
-          $link       = get_the_permalink( $post->ID );
-          $src        = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'small' )[0];
-          $reg_price  = $product->get_regular_price();
-          $sale_price = $product->get_sale_price();
-          $difference = $reg_price - $sale_price;
+          $icon_id = get_woocommerce_term_meta( $products_cats->term_id, 'thumbnail_id', true );
+    	    $icon_url = wp_get_attachment_url( $icon_id );
+          $icon_alt = get_post_meta( $icon_id, '_wp_attachment_image_alt', true);
         ?>
+        <h2 class="offers-landing__materials__title"><img src="<?php echo $icon_url; ?>" alt="<?php echo $icon_alt; ?>" /> <?php echo $products_cats->name; ?></h2>
+        <div class="offers-landing__materials__description"><?php echo $products_cats->description; ?></div>
+      </div>
 
-        <div class="swatch">
-          <a href="<?php echo $link; ?>" class="no-effect">
-            
-            <?php if ( !empty($sale_price) && $difference >= 50 ) : ?>
-              <div class="swatch__sale-badge">
-                &pound;<?php echo $difference; ?><span class="swatch__sale-badge__off">OFF</span>
+      <div class="swatches swatches--large clearfix">
+        <?php if ( $project_query->have_posts() ) : while ( $project_query->have_posts() ) : $project_query->the_post(); ?>
+
+          <?php
+            $title      = get_the_title( $post->ID );
+            $link       = get_the_permalink( $post->ID );
+            $src        = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'small' )[0];
+            $reg_price  = $product->get_regular_price();
+            $sale_price = $product->get_sale_price();
+            $difference = $reg_price - $sale_price;
+          ?>
+
+          <div class="swatch">
+            <a href="<?php echo $link; ?>" class="no-effect">
+
+              <?php if ( !empty($sale_price) && $difference >= 50 ) : ?>
+                <div class="swatch__sale-badge">
+                  &pound;<?php echo $difference; ?><span class="swatch__sale-badge__off">OFF</span>
+                </div>
+              <?php endif; ?>
+
+              <div class="swatch__information clearfix vertical-align">
+                <h3 class="swatch__name"><?php echo $title; ?><span class="swatch__code"><?php echo $product->get_sku(); ?></span></h3>
+                <div class="swatch__price">
+                  <?php if ( !empty( $product->get_sale_price() ) ) : ?>
+                    <div class="swatch__price--regular swatch__price--regular--strike">&pound;<?php echo $reg_price; ?></div>
+                    <div class="swatch__price--sale">NOW &pound;<?php echo $sale_price; ?></div>
+                  <?php else : ?>
+                    <div class="swatch__price--regular">&pound;<?php echo $reg_price; ?></div>
+                  <?php endif; ?>
+                </div>
+                <!--<div class="swatch__cta">
+                  Order Now
+                </div>-->
               </div>
-            <?php endif; ?>
-
-            <div class="swatch__information clearfix vertical-align">
-              <h3 class="swatch__name"><?php echo $title; ?><span class="swatch__code"><?php echo $product->get_sku(); ?></span></h3>
-              <div class="swatch__price">
-                <?php if ( !empty( $product->get_sale_price() ) ) : ?>
-                  <div class="swatch__price--regular swatch__price--regular--strike">&pound;<?php echo $reg_price; ?></div>
-                  <div class="swatch__price--sale">NOW &pound;<?php echo $sale_price; ?></div>
-                <?php else : ?>
-                  <div class="swatch__price--regular">&pound;<?php echo $reg_price; ?></div>
-                <?php endif; ?>
+              <div class="swatch__image object-fit-container vertical-align">
+                <img src="<?php echo $src; ?>" alt="<?php echo $title; ?>">
               </div>
-              <!--<div class="swatch__cta">
-                Order Now
-              </div>-->
-            </div>
-            <div class="object-fit-container vertical-align">
-              <img src="<?php echo $src; ?>" alt="<?php echo $title; ?>">
-            </div>
-          </a>
-        </div>
+            </a>
+          </div>
 
-      <?php endwhile; endif; ?>
-      <?php wp_reset_postdata(); ?>
-    </div>
+        <?php endwhile; endif; ?>
+        <?php wp_reset_postdata(); ?>
+      </div>
 
-
-
-    <hr />
+      <hr />
+    <?php endif; ?>
 
     <?php endforeach; ?>
     </div>
