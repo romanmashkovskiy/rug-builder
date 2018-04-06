@@ -80,7 +80,7 @@ echo do_shortcode( '[header size="small" bg="true"]' );
           <?php
             $title      = get_the_title( $post->ID );
             //$link       = get_the_permalink( $post->ID );
-            $link       = site_url() . '/?add-to-cart=' . $post->ID;
+            $link       = site_url() . '/springoffers/?add-to-cart=' . $post->ID;
             $src        = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'small' )[0];
             $reg_price  = $product->get_regular_price();
             $sale_price = $product->get_sale_price();
