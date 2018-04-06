@@ -326,7 +326,7 @@ function sort_materials_menu_order( $materials ) {
 function exclude_rug_borders( $materials ) {
 
 	for ( $i = 0; $i < count( $materials ); $i++ ) {
-		if ( $materials[$i]->slug == 'rug-borders' ) {
+		if ( $materials[$i]->slug == 'rug-borders' || $materials[$i]->slug == 'offers' ) {
 			unset( $materials[$i] );
 			break;
 		}

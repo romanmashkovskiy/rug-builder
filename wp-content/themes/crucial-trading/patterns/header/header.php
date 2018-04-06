@@ -2,7 +2,7 @@
 
 /**
  * Template Name: Super Slider
- * The large full size slider used on the homepage 
+ * The large full size slider used on the homepage
  *
  * Contents:
  *
@@ -10,7 +10,7 @@
  * @since Crucial Trading 1.0
  */
 
-/************** Normal Header **************/ 
+/************** Normal Header **************/
 
 function header_shortcode($atts = '') {
 
@@ -21,21 +21,25 @@ function header_shortcode($atts = '') {
 	if ( $atts != '' && array_key_exists('size', $atts) && $atts['size'] == 'large' ) {
 		$header_size = 'large';
 	}
-	
-	// Check if image overlay set or not  
+
+	if ( $atts != '' && array_key_exists('bg', $atts) && $atts['bg'] == 'true' ) {
+		$header_bg = 'bg';
+	}
+
+	// Check if image overlay set or not
 	if ( !empty($atts['overlay']) ) :
 		$header_overlay = $atts['overlay'];
-	else : 
+	else :
 		$header_overlay = '';
 	endif;
-	
-	// Check if archive, cat or tag page set to true 
+
+	// Check if archive, cat or tag page set to true
 	if ( !empty($atts['archive']) ) :
 		$header_archive_title = $atts['archive'];
-	else : 
+	else :
 		$header_archive_title = '';
 	endif;
-	
+
 	$title         = get_the_title();
 	$subtitle      = get_post_meta( get_the_ID(), 'subtitle', true );
 	$archive_title = get_the_archive_title();
@@ -45,40 +49,40 @@ function header_shortcode($atts = '') {
 
 	$html = '';
 
-	//if (!empty($background)) :
-		//$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
-	//else : 
+	if (!empty($background) && !empty($header_bg) )  :
+		$html .= '<header class="' . $header_size . '" style="background-image: url(' . $background . ')">';
+	else :
 		$html .= '<header class="' . $header_size . '">';
-	//endif;
-	
+	endif;
+
 	$html .= '<div class="header__text vertical-align">';
-	
+
 	if (!is_archive()) :
 		$html .= '<h3 class="side-title">' . $title . '</h3>';
 	endif;
-	
-	if (!empty($subtitle)) : 
+
+	if (!empty($subtitle)) :
 		$html .= '<h3 class="subtitle">' . $subtitle . '</h3>';
 	endif;
 
 	if ( is_array( $atts ) && array_key_exists( 'search', $atts ) ) {
 		$title = 'Search: '.$atts['search'].'';
 	}
-		
+
 	// Show archive title if is set to archive in $atts
-	if (!empty($header_archive_title)) : 
+	if (!empty($header_archive_title)) :
 		$html .= '<h1>'.$archive_title.'</h1>';
-	else : 
+	else :
 		$html .= '<h1>' . $title . '</h1>';
 	endif;
-	
+
 	$html .= '</div>';
-	
-	// Add dark image overlay if $atts set to true 
-	//if (!empty($header_overlay) && (!empty($background)) ) : 
+
+	// Add dark image overlay if $atts set to true
+	//if (!empty($header_overlay) && (!empty($background)) ) :
 		//$html .= '<div class="header__overlay"></div>';
 	//endif;
-	
+
 	$html .= '</header>';
 
 	return $html;
@@ -88,7 +92,7 @@ add_shortcode( 'header', 'header_shortcode' );
 
 
 
-/************** Materials Header **************/ 
+/************** Materials Header **************/
 
 function header_material_shortcode($atts = '') {
 
@@ -104,12 +108,15 @@ function header_material_shortcode($atts = '') {
 
 		$material  = $atts['material'];
 		$umaterial = ucwords( str_replace( '-', ' ', $atts['material'] ) );
-		
-		// Get Categories for Side menu 
+
+		$spring_offers = get_term_by('slug', 'offers', 'product_cat');
+
+		// Get Categories for Side menu
 		$args = array(
-			'hide_empty' => false, 
+			'hide_empty' => false,
 			'orderby'    => 'name',
 			'parent'     => 0,
+			'exclude' => array($spring_offers->term_id),
 		);
 
 		$categories = get_terms( 'product_cat', $args );
@@ -160,7 +167,7 @@ function header_material_shortcode($atts = '') {
 
 					$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
 					$src      = wp_get_attachment_url( $thumb_id );
-					$alt      = $cat->slug; 
+					$alt      = $cat->slug;
 
 					$active_class = $material == $alt ? 'class="active"' : '';
 
@@ -188,14 +195,14 @@ add_shortcode( 'header-material', 'header_material_shortcode' );
 
 
 function header_range_shortcode($atts = '') {
-	
+
 	$html = '';
-	
+
 	if ( $atts != '' && array_key_exists('range', $atts) ) {
 
-		// Get Categories for Side menu 
+		// Get Categories for Side menu
 		$args = array(
-			'hide_empty' => false, 
+			'hide_empty' => false,
 			'orderby'    => 'name',
 			'parent'     => 0,
 		);
@@ -206,14 +213,14 @@ function header_range_shortcode($atts = '') {
 
 		$range   = $atts['range'];
 		$s_range = array_key_exists( 'slug', $atts ) ? $atts['slug'] : $atts['range'];
-		
+
 		$range_cat = get_term_by( 'slug', $range, 'product_cat' );
 		$range_id  = $range_cat->term_id;
 		$range_parent = $range_cat->parent;
-		
+
 		$s_range_cat = get_term_by( 'slug', $s_range, 'product_cat' );
 		$slug_parent = $s_range_cat->parent;
-		
+
 		$request_uri  = $_SERVER['REQUEST_URI'];
 		$swatches_pos = strpos( $request_uri, 'material/' );
 		$uri_substr   = substr( $request_uri, $swatches_pos + 9 );
@@ -246,7 +253,7 @@ function header_range_shortcode($atts = '') {
 
 				$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
 				$src      = wp_get_attachment_url( $thumb_id );
-				$alt      = $cat->slug; 
+				$alt      = $cat->slug;
 
 				$active_class = $material == $alt ? 'class="active"' : '';
 
@@ -267,9 +274,9 @@ function header_range_shortcode($atts = '') {
 	return $html;
 }
 
-add_shortcode( 'header-range', 'header_range_shortcode' ); 
+add_shortcode( 'header-range', 'header_range_shortcode' );
 
-/************** Collection Header **************/ 
+/************** Collection Header **************/
 
 function header_collection_shortcode($atts = '') {
 
@@ -311,8 +318,3 @@ function header_collection_shortcode($atts = '') {
 }
 
 add_shortcode( 'header-collection', 'header_collection_shortcode' );
-
-
-
-
-
