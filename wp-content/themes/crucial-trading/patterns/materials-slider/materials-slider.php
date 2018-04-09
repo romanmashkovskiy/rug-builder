@@ -2,7 +2,7 @@
 
 /**
  * Template Name: Material Slider
- * The materials slider used on the homepage 
+ * The materials slider used on the homepage
  *
  * Contents:
  *
@@ -14,10 +14,14 @@ function materials_slider() {
 
 	$html = '';
 
+	// Exclude Offers by getting id from the slug
+	$spring_offers = get_term_by('slug', 'offers', 'product_cat');
+
 	$args = array(
 		'hide_empty' => false,
 		'orderby'    => 'name',
 		'parent'     => 0,
+	  'exclude'    => array($spring_offers->term_id),
 	);
 
 	$categories = get_terms( 'product_cat', $args );
@@ -81,19 +85,19 @@ function materials_slider() {
 			$thumb_id = get_woocommerce_term_meta( $cat->term_id, 'thumbnail_id', true );
 			$icon     = wp_get_attachment_url( $thumb_id );
 			$alt      = $post->post_title;
-			
+
 			//$id = get_woocommerce_term_meta( $cat->term_id);
-			
+
 			//var_dump($post);
-			
+
 			//$subtitle = get_woocommerce_term_meta( $cat->term_id, 'subtitle', true );
-			
+
 			$post_id = $post->ID;
 
 			$title    = ucwords( $alt );
 			$short_desc = array_key_exists( 'short_desc', $meta ) ? $meta['short_desc'] : $cat->description;
 			$subtitle = array_key_exists( 'subtitle', $meta ) ? $meta['subtitle'] : $cat->description;
-			
+
 			$html .= '<li class="material-slide" data-material="' . $alt . '">';
 
 			$html .= '<span class="theline ' . $alt . '"></span>';
