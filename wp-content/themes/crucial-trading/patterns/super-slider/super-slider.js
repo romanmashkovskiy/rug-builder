@@ -22,22 +22,26 @@ function createSuperslider() {
 
 // Stop Slider when video is started
 
-$(function(){
+$(document).ready(function() {
 
-    var video = $('.wp-video')[0];
+    var video = $('.wp-video-shortcode')[0];
 
     if ( video ) {
 
+			//console.log('if works');
+
 	    video.addEventListener('playing', function(){
 			    $('#super-slider').superslides('stop');
+					console.log('stop');
 	    })
 	     video.addEventListener('pause', function(){
 					$('#super-slider').superslides('playing');
+					console.log('play');
 	    })
 
     }
 
-})
+});
 
 
 $(document).ready(function() {

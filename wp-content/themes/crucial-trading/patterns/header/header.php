@@ -200,11 +200,14 @@ function header_range_shortcode($atts = '') {
 
 	if ( $atts != '' && array_key_exists('range', $atts) ) {
 
+		$spring_offers = get_term_by('slug', 'offers', 'product_cat');
+
 		// Get Categories for Side menu
 		$args = array(
 			'hide_empty' => false,
 			'orderby'    => 'name',
 			'parent'     => 0,
+			'exclude' => array($spring_offers->term_id),
 		);
 
 		$categories = get_terms( 'product_cat', $args );
