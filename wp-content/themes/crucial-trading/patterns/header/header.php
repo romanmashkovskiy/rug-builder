@@ -109,19 +109,8 @@ function header_material_shortcode($atts = '') {
 		$material  = $atts['material'];
 		$umaterial = ucwords( str_replace( '-', ' ', $atts['material'] ) );
 
-		$spring_offers = get_term_by('slug', 'offers', 'product_cat');
-
-		// Get Categories for Side menu
-		$args = array(
-			'hide_empty' => false,
-			'orderby'    => 'name',
-			'parent'     => 0,
-			'exclude' => array($spring_offers->term_id),
-		);
-
-		$categories = get_terms( 'product_cat', $args );
-		$categories = exclude_rug_borders( $categories );
-		$categories = sort_materials_menu_order( $categories );
+		// Get materials categories - set in functions.php
+		$categories = ct_get_materials_categories();
 
 		$this_cat          = get_term_by( 'slug', $material, 'product_cat' );
 		$term_id           = $this_cat->term_id;
@@ -200,19 +189,8 @@ function header_range_shortcode($atts = '') {
 
 	if ( $atts != '' && array_key_exists('range', $atts) ) {
 
-		$spring_offers = get_term_by('slug', 'offers', 'product_cat');
-
-		// Get Categories for Side menu
-		$args = array(
-			'hide_empty' => false,
-			'orderby'    => 'name',
-			'parent'     => 0,
-			'exclude' => array($spring_offers->term_id),
-		);
-
-		$categories = get_terms( 'product_cat', $args );
-		$categories = exclude_rug_borders( $categories );
-		$categories = sort_materials_menu_order( $categories );
+		// Get materials categories - set in functions.php
+		$categories = ct_get_materials_categories();
 
 		$range   = $atts['range'];
 		$s_range = array_key_exists( 'slug', $atts ) ? $atts['slug'] : $atts['range'];

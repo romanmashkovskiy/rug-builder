@@ -14,17 +14,7 @@ function materials_slider() {
 
 	$html = '';
 
-	// Exclude Offers by getting id from the slug
-	$spring_offers = get_term_by('slug', 'offers', 'product_cat');
-
-	$args = array(
-		'hide_empty' => false,
-		'orderby'    => 'name',
-		'parent'     => 0,
-	  'exclude'    => array($spring_offers->term_id),
-	);
-
-	$categories = get_terms( 'product_cat', $args );
+	$categories = ct_get_materials_categories();
 
 	if ( count( $categories ) > 0 ) {
 
@@ -53,9 +43,6 @@ function materials_slider() {
 				</g>
 			</svg>
 			';
-
-		$categories = exclude_rug_borders( $categories );
-		$categories = sort_materials_menu_order( $categories );
 
 		$all_materials = '';
 

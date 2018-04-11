@@ -3,21 +3,10 @@
 function materials_data() {
 	$res = array();
 
-	// Exclude Offers by getting id from the slug
-	$spring_offers = get_term_by('slug', 'offers', 'product_cat');
+	// Get materials categories - set in functions.php
+	$res = ct_get_materials_categories();
 
-	$terms = get_terms( array(
-		'taxonomy'   => 'product_cat',
-		'hide_empty' => false,
-		'parent'     => 0,
-		'exclude'    => array($spring_offers->term_id),
-	));
-
-	foreach ( $terms as $key => $value ) {
-		if ( $value->slug != 'rug-borders' ) {
-			array_push( $res, $value );
-		}
-	}
+	// Get thumbnails for each category 
 	foreach ( $res as $key => $value ) {
 
 		$material_id = $value->term_id;
@@ -27,21 +16,6 @@ function materials_data() {
 
 		$value->thumb = $thumb;
 	}
-
-	for ( $o = 0; $o < count( $res ); $o++ ) {
-
-		$material      = $res[$o];
-		$material_id   = $material->term_id;
-		$material_meta = get_option( "category_$material_id" );
-
-		$material->order = array_key_exists( 'menu_order', $material_meta ) ? $material_meta['menu_order'] : 0;
-	}
-
-	function cmp( $a, $b ) {
-		return $a->order - $b->order;
-	}
-
-	usort( $res, 'cmp' );
 
 	return $res;
 }

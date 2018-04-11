@@ -295,6 +295,33 @@ require get_template_directory() . '/inc/customizer.php';
  */
 //require get_template_directory() . '/inc/jetpack.php';
 
+
+
+/**
+ * Get materials categories
+ * Used in materials.php, patterns/header, rugbuilder/ajax-requests.php. patterns/material-slider
+ */
+
+function ct_get_materials_categories() {
+
+	// Exclude categories
+	$spring_offers = get_term_by('slug', 'offers', 'product_cat');
+	$rug_borders   = get_term_by('slug', 'rug-borders', 'product_cat');
+
+	$args = array(
+		'hide_empty' => false,
+		'orderby'    => 'name',
+		'parent'     => 0,
+	  'exclude'    => array($spring_offers->term_id, $rug_borders->term_id),
+	);
+
+	$materials_cats = get_terms( 'product_cat', $args );
+	$materials_cats = sort_materials_menu_order( $materials_cats );
+
+	return $materials_cats;
+}
+
+
 /**
  * Sort materials by menu order
  */
@@ -325,16 +352,17 @@ function sort_materials_menu_order( $materials ) {
  */
 function exclude_rug_borders( $materials ) {
 
-	for ( $i = 0; $i < count( $materials ); $i++ ) {
-		if ( $materials[$i]->slug == 'rug-borders' || $materials[$i]->slug == 'offers' ) {
+	for ( $i = 0; $i < count( $materials ); $i++ ) :
+		if ( $materials[$i]->slug == 'rug-borders' ) :
 			unset( $materials[$i] );
 			break;
-		}
-	}
+		endif;
+	endfor;
 
 	return array_values( $materials );
 
 }
+
 
 /**
  * Extend WordPress search to include custom fields
