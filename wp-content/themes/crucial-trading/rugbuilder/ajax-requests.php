@@ -6,7 +6,7 @@ function materials_data() {
 	// Get materials categories - set in functions.php
 	$res = ct_get_materials_categories();
 
-	// Get thumbnails for each category 
+	// Get thumbnails for each category
 	foreach ( $res as $key => $value ) {
 
 		$material_id = $value->term_id;
@@ -302,6 +302,8 @@ function log_error( $error_info ) {
 }
 
 function add_rug_to_cart() {
+
+	//$rug_product_id = get_page_by_path( 'bespoke-rug', OBJECT, 'product' ); 
 
 	return WC()->cart->add_to_cart( $_GET['products'], 1 );
 
