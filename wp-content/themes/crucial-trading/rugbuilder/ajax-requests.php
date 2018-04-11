@@ -3,7 +3,15 @@
 function materials_data() {
 	$res = array();
 
-	$terms = get_terms( array( 'taxonomy' => 'product_cat', 'hide_empty' => false, 'parent' => 0 ) );
+	// Exclude Offers by getting id from the slug
+	$spring_offers = get_term_by('slug', 'offers', 'product_cat');
+
+	$terms = get_terms( array(
+		'taxonomy'   => 'product_cat',
+		'hide_empty' => false,
+		'parent'     => 0,
+		'exclude'    => array($spring_offers->term_id),
+	));
 
 	foreach ( $terms as $key => $value ) {
 		if ( $value->slug != 'rug-borders' ) {
