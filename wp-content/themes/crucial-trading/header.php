@@ -17,7 +17,6 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 	<head>
-		
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="google-site-verification" content="frbcypQV4caMUho2FkpvOasdks8mHtic44EeduDBdqM" />
@@ -32,16 +31,6 @@ $header_class = WC()->cart->get_cart_contents_count() == 0 ? 'basket-empty' : 'b
     <script type="text/javascript">
       var templateUrl = '<?= get_bloginfo("template_url"); ?>';
     </script>
-		<script>
-				(function(h,o,t,j,a,r){
-						h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-						h._hjSettings={hjid:568420,hjsv:5};
-						a=o.getElementsByTagName('head')[0];
-						r=o.createElement('script');r.async=1;
-						r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-						a.appendChild(r);
-				})(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
-		</script>
 		<link href="<?php echo get_template_directory_uri(); ?>/assets/css/dist/ie9.min.css" rel="stylesheet" type="text/css" media="all">
 	</head>
 	<body <?php body_class( $header_class ); ?>>

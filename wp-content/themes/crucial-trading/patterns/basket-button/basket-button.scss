@@ -62,7 +62,7 @@ svg.main-menu__button__basket {
 	opacity: 0;
 	min-width: 350px;
 	padding: 25px;
-	position: absolute;
+	position: fixed;
 	right: 100px;
 	top: 90px;
 	transition: all ease-in-out 0.25s;
