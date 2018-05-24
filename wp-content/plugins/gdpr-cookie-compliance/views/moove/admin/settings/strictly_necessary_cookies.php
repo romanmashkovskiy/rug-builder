@@ -10,18 +10,26 @@
             die( 'Security check' );
         else :
             if ( is_array( $_POST ) ) :
+                $value  = 1;
+                if ( isset( $_POST['moove_gdpr_strictly_necessary_cookies_functionality'] ) && intval( $_POST['moove_gdpr_strictly_necessary_cookies_functionality'] ) ) :
+                    $value  = intval( $_POST['moove_gdpr_strictly_necessary_cookies_functionality'] );
+                endif;
+
+                $gdpr_options['moove_gdpr_strictly_necessary_cookies_functionality'] = $value;
+                update_option( $option_name, $gdpr_options );
+                $gdpr_options = get_option( $option_name );
                 foreach ( $_POST as $form_key => $form_value ) :
                     if ( $form_key === 'moove_gdpr_strict_necessary_cookies_tab_content' ) :
-                        $value  = apply_filters( 'the_content', wp_unslash( $form_value ) );
+                        $value  = wp_unslash( $form_value );
                         $gdpr_options[$form_key.$wpml_lang] = $value;
                         update_option( $option_name, $gdpr_options );
                         $gdpr_options = get_option( $option_name );
                     elseif ( $form_key === 'moove_gdpr_strictly_necessary_cookies_warning' ) :
-                        $value  = apply_filters( 'the_content', wp_unslash( $form_value ) );
+                        $value  = wp_unslash( $form_value );
                         $gdpr_options[$form_key.$wpml_lang] = $value;
                         update_option( $option_name, $gdpr_options );
                         $gdpr_options = get_option( $option_name );
-                    elseif ( $form_key !== 'moove_gdpr_strictly_necessary_cookies_enable' ) :
+                    elseif ( $form_key !== 'moove_gdpr_strictly_necessary_cookies_functionality' ) :
                         $value  = sanitize_text_field( $form_value );
                         $gdpr_options[$form_key] = $value;
                         update_option( $option_name, $gdpr_options );
@@ -47,6 +55,19 @@
     <?php wp_nonce_field( 'moove_gdpr_nonce_field', 'moove_gdpr_nonce' ); ?>
     <table class="form-table">
         <tbody>
+            <tr>
+                <th scope="row">
+                    <label for="moove_gdpr_strictly_necessary_cookies_functionality"><?php _e('Choose functionality','moove-gdpr'); ?></label>
+                </th>
+                <td>
+
+                    <input name="moove_gdpr_strictly_necessary_cookies_functionality" type="radio" value="1" id="moove_gdpr_strictly_necessary_cookies_functionality_1" <?php echo isset( $gdpr_options['moove_gdpr_strictly_necessary_cookies_functionality'] ) ? ( intval( $gdpr_options['moove_gdpr_strictly_necessary_cookies_functionality'] ) === 1  ? 'checked' : '' ) : 'checked'; ?> class="regular-text on-off"> <label for="moove_gdpr_strictly_necessary_cookies_functionality_1"><?php _e('Optional (user selects their preferences)','moove-gdpr'); ?></label> <span class="separator"></span><br /><br />
+
+                    <input name="moove_gdpr_strictly_necessary_cookies_functionality" type="radio" value="2" id="moove_gdpr_strictly_necessary_cookies_functionality_2" <?php echo isset( $gdpr_options['moove_gdpr_strictly_necessary_cookies_functionality'] ) ? ( intval( $gdpr_options['moove_gdpr_strictly_necessary_cookies_functionality'] ) === 2  ? 'checked' : '' ) : ''; ?> class="regular-text on-off"> <label for="moove_gdpr_strictly_necessary_cookies_functionality_2"><?php _e('Always enabled (user cannot disable it but can see the content)','moove-gdpr'); ?></label><br /><br />
+
+                    <input name="moove_gdpr_strictly_necessary_cookies_functionality" type="radio" value="3" id="moove_gdpr_strictly_necessary_cookies_functionality_3" <?php echo isset( $gdpr_options['moove_gdpr_strictly_necessary_cookies_functionality'] ) ? ( intval( $gdpr_options['moove_gdpr_strictly_necessary_cookies_functionality'] ) === 3  ? 'checked' : '' ) : ''; ?> class="regular-text on-off"> <label for="moove_gdpr_strictly_necessary_cookies_functionality_3"><?php _e('Always enabled and content hidden from user','moove-gdpr'); ?></label><br /><br />
+                </td>
+            </tr>
             <tr>
                 <th scope="row">
                     <label for="moove_gdpr_strictly_necessary_cookies_tab_title"><?php _e('Tab Title','moove-gdpr'); ?></label>

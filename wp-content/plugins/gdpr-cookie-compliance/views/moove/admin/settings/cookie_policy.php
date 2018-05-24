@@ -20,7 +20,7 @@
                 $gdpr_options = get_option( $option_name );
                 foreach ( $_POST as $form_key => $form_value ) :
                     if ( $form_key === 'moove_gdpr_cookies_policy_tab_content' ) :
-                        $value  = apply_filters( 'the_content', wp_unslash( $form_value ) );
+                        $value  = wp_unslash( $form_value );
                         $gdpr_options[$form_key.$wpml_lang] = $value;
                         update_option( $option_name, $gdpr_options );
                         $gdpr_options = get_option( $option_name );
@@ -80,7 +80,7 @@
                         $content =  isset( $gdpr_options['moove_gdpr_cookies_policy_tab_content'.$wpml_lang] ) && $gdpr_options['moove_gdpr_cookies_policy_tab_content'.$wpml_lang] ? wp_unslash( $gdpr_options['moove_gdpr_cookies_policy_tab_content'.$wpml_lang] ) : false;
                         if ( ! $content ) :
                             $_content   = $gdpr_default_content->moove_gdpr_get_cookie_policy_content();
-                            $content    = apply_filters( 'the_content', $_content );
+                            $content    = $_content;
                         endif;
                         ?>
                     <?php

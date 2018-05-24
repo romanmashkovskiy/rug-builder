@@ -44,10 +44,15 @@ You can view a demo of the plugin here: [GDPR Cookie Compliance Plugin by Moove 
 This plugin was developed by [Moove Agency](https://www.mooveagency.com).
 
 == Installation ==
+
 1. Upload the plugin files to the plugins directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the \'Plugins\' screen in WordPress.
 3. Settings are available in the "GDPR Cookie" menu under the Settings.
 4. Use the Settings screen to configure the plugin.
+5. You can link to the Cookie Settings on your website using the following: /#moove_gdpr_cookie_modal
+6. WPML supported, switch the language in your admin and translate the texts
+
+== Changelog ==
 
 = 1.0.0. =
 * Initial release of the plugin.
@@ -79,3 +84,19 @@ This plugin was developed by [Moove Agency](https://www.mooveagency.com).
 = 1.0.6. =
 * Fixed Lity conflict
 * Added "postscribe" library
+
+= 1.0.7. =
+* Third party script jump fixed
+* Added new warning message if the strict necessary cookes are not enabled but the user try to enable other cookies
+* Updated admin colorpicker
+* Qtranslate X support
+* Bugfixes
+
+= 1.0.8. =
+* Admin color picker fixed
+
+= 1.0.9. =
+* Added One Page layout
+* Extended strictly necessary cookies functionality
+* the_content conflicts resolved
+* Bugfixes

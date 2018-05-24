@@ -27,7 +27,7 @@
                     $gdpr_options = get_option( $option_name );
                     foreach ( $_POST as $form_key => $form_value ) :
                         if ( $form_key === 'moove_gdpr_performance_cookies_tab_content' ) :
-                            $value  = apply_filters( 'the_content', wp_unslash( $form_value ) );
+                            $value  = wp_unslash( $form_value );
                             $gdpr_options[$form_key.$wpml_lang]    = $value;
                             update_option( $option_name, $gdpr_options );
                             $gdpr_options               = get_option( $option_name );

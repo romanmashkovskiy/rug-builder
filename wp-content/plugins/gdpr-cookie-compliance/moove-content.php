@@ -95,12 +95,22 @@ class Moove_GDPR_Content {
 	}
 
 	/**
+	 * Get strict secondary notice
+	 */
+	public function moove_gdpr_get_secondary_notice() {
+		$_content = __('Please enable Strictly Necessary Cookies first so that we can save your preferences!','moove-gdpr');
+		return $_content;
+	}
+
+	/**
 	 * Get WMPL language code
 	 */
 
 	public function moove_gdpr_get_wpml_lang() {
 		if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
-		  return '_'.ICL_LANGUAGE_CODE;
+		  	return '_'.ICL_LANGUAGE_CODE;
+		} elseif ( isset( $GLOBALS['q_config']['language'] ) ) {
+			return $GLOBALS['q_config']['language'];
 		}
 		return '';
 	}

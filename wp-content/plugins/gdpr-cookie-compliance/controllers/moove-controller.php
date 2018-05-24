@@ -117,11 +117,6 @@ class Moove_GDPR_Controller {
             border: 1px solid <?php echo $primary_colour; ?> !important;
         }
 
-        #moove_gdpr_cookie_info_bar.moove-gdpr-light-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content a:hover,
-        #moove_gdpr_cookie_info_bar.moove-gdpr-light-scheme .moove-gdpr-info-bar-container .moove-gdpr-info-bar-content button:hover {
-            background-color: <?php echo $secondary_colour; ?> !important;
-        }
-
         #moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-close:hover i,
         #moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li a,
         #moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li button,
@@ -144,6 +139,9 @@ class Moove_GDPR_Controller {
         #moove_gdpr_cookie_modal .moove-gdpr-modal-content .moove-gdpr-modal-left-content #moove-gdpr-menu li.menu-item-selected button i {
             color: <?php echo $secondary_colour; ?> !important;
         }
+        #moove_gdpr_cookie_modal.lity-hide {
+            display: none;
+        }
 
         <?php
         $input = apply_filters( 'moove_gdpr_inline_styles', ob_get_clean(), $primary_colour, $secondary_colour, $button_bg, $button_hover_bg, $button_font );
@@ -156,13 +154,40 @@ class Moove_GDPR_Controller {
      * @return void
      */
     public function moove_gdpr_cookie_popup_modal() {
+        $gdpr_default_content = new Moove_GDPR_Content();
+        $option_name    = $gdpr_default_content->moove_gdpr_get_option_name();
+        $modal_options  = get_option( $option_name );
+        $wpml_lang      = $gdpr_default_content->moove_gdpr_get_wpml_lang();
+        $layout         = isset( $modal_options['moove_gdpr_plugin_layout'] ) ? $modal_options['moove_gdpr_plugin_layout'] : 'v1';
+        $modal_theme    = 'moove_gdpr_modal_theme_' . $layout;
+        $strictly       = isset( $modal_options['moove_gdpr_strictly_necessary_cookies_functionality'] ) && intval( $modal_options['moove_gdpr_strictly_necessary_cookies_functionality'] ) ? intval( $modal_options['moove_gdpr_strictly_necessary_cookies_functionality'] ) : 1;
+
+        // BRANDING CONTENT
         ob_start(); ?>
+        <div class="moove-gdpr-branding-cnt">
+            <?php
+                $moove_actions_cnt = new Moove_GDPR_Actions();
+                echo apply_filters( 'moove_gdpr_footer_branding_text', $moove_actions_cnt->moove_gdpr_footer_branding_content() );
+            ?>
+        </div>
+        <!--  .moove-gdpr-branding -->
+        <?php $branding_text = ob_get_clean(); ?>
+
         <?php
-            $gdpr_default_content = new Moove_GDPR_Content();
-            $option_name    = $gdpr_default_content->moove_gdpr_get_option_name();
-            $modal_options  = get_option( $option_name );
-            $wpml_lang      = $gdpr_default_content->moove_gdpr_get_wpml_lang();
+        // LOGO CONTENT
+        ob_start();
         ?>
+        <div class="moove-gdpr-company-logo-holder">
+            <?php
+                $logo_url   = isset( $modal_options['moove_gdpr_company_logo'] ) && $modal_options['moove_gdpr_company_logo'] ? $modal_options['moove_gdpr_company_logo'] :  plugin_dir_url( dirname( __FILE__ ) ) . 'dist/images/moove-logo.png';
+            ?>
+            <img src="<?php echo $logo_url ?>" alt="" class="img-responsive" />
+        </div>
+        <!--  .moove-gdpr-company-logo-holder -->
+        <?php
+        $logo_content = ob_get_clean();
+
+        ob_start(); ?>
         <?php if ( isset( $modal_options['moove_gdpr_floating_button_enable'] ) && intval( $modal_options['moove_gdpr_floating_button_enable'] ) === 1 ) : ?>
             <button data-href="#moove_gdpr_cookie_modal" id="moove_gdpr_save_popup_settings_button" style='display: none; <?php echo isset( $modal_options['moove_gdpr_floating_button_position'] ) ? $modal_options['moove_gdpr_floating_button_position'] : ''; ?>'>
                 <span class="moove_gdpr_icon"><i class="moovegdpr-advanced"></i></span>
@@ -184,16 +209,10 @@ class Moove_GDPR_Controller {
         </style>
 
         <div id="moove_gdpr_cookie_modal" class="lity-hide">
-            <div class="moove-gdpr-modal-content moove-clearfix logo-position-<?php echo isset( $modal_options['moove_gdpr_logo_position'] ) ? $modal_options['moove_gdpr_logo_position'] : 'left'; ?>">
+            <div class="moove-gdpr-modal-content moove-clearfix logo-position-<?php echo isset( $modal_options['moove_gdpr_logo_position'] ) ? $modal_options['moove_gdpr_logo_position'] : 'left'; ?> <?php echo $modal_theme; ?>">
                 <a href="#" class="moove-gdpr-modal-close" rel="nofollow"><i class="moovegdpr-arrow-close"></i></a>
                 <div class="moove-gdpr-modal-left-content">
-                    <div class="moove-gdpr-company-logo-holder">
-                        <?php
-                            $logo_url   = isset( $modal_options['moove_gdpr_company_logo'] ) && $modal_options['moove_gdpr_company_logo'] ? $modal_options['moove_gdpr_company_logo'] :  plugin_dir_url( dirname( __FILE__ ) ) . 'dist/images/moove-logo.png';
-                        ?>
-                        <img src="<?php echo $logo_url ?>" alt="" class="img-responsive" />
-                    </div>
-                    <!--  .moove-gdpr-company-logo-holder -->
+                    <?php echo $layout === 'v1' ? $logo_content : ''; ?>
                     <ul id="moove-gdpr-menu">
                         <?php
                             $nav_label  = isset( $modal_options['moove_gdpr_privacy_overview_tab_title'.$wpml_lang] ) && $modal_options['moove_gdpr_privacy_overview_tab_title'.$wpml_lang] ? $modal_options['moove_gdpr_privacy_overview_tab_title'.$wpml_lang] : __('Privacy Overview','moove-gdpr');
@@ -205,10 +224,11 @@ class Moove_GDPR_Controller {
                         <?php
                             $nav_label  = isset( $modal_options['moove_gdpr_strictly_necessary_cookies_tab_title'.$wpml_lang] ) && $modal_options['moove_gdpr_strictly_necessary_cookies_tab_title'.$wpml_lang] ? $modal_options['moove_gdpr_strictly_necessary_cookies_tab_title'.$wpml_lang] : __('Strictly Necessary Cookies','moove-gdpr');
                         ?>
-
-                        <li class="menu-item-strict-necesarry-cookies menu-item-off">
-                            <button data-href="#strict-necesarry-cookies" class="moove-gdpr-tab-nav"><i class="moovegdpr-strict-necessary"></i> <span><?php echo $nav_label; ?></span></button>
-                        </li>
+                        <?php if ( $strictly !== 3 ) : ?>
+                            <li class="menu-item-strict-necesarry-cookies menu-item-off">
+                                <button data-href="#strict-necesarry-cookies" class="moove-gdpr-tab-nav"><i class="moovegdpr-strict-necessary"></i> <span><?php echo $nav_label; ?></span></button>
+                            </li>
+                        <?php endif; ?>
 
 
                         <?php
@@ -244,88 +264,74 @@ class Moove_GDPR_Controller {
                             </li>
                         <?php endif; ?>
                     </ul>
-                <div class="moove-gdpr-branding-cnt">
-                    <?php
-                        $moove_actions_cnt = new Moove_GDPR_Actions();
-                        echo apply_filters( 'moove_gdpr_footer_branding_text', $moove_actions_cnt->moove_gdpr_footer_branding_content() );
-                    ?>
-                </div>
-                <!--  .moove-gdpr-branding -->
+
+                <?php echo $layout === 'v1' ? $branding_text : ''; ?>
                 </div>
                 <!--  .moove-gdpr-modal-left-content -->
+                <?php
+                    $tab_title  = isset( $modal_options['moove_gdpr_privacy_overview_tab_title'.$wpml_lang] ) && $modal_options['moove_gdpr_privacy_overview_tab_title'.$wpml_lang] ? $modal_options['moove_gdpr_privacy_overview_tab_title'.$wpml_lang] : __('Privacy Overview','moove-gdpr');
+                    $tab_content  = isset( $modal_options['moove_gdpr_privacy_overview_tab_content'.$wpml_lang] ) && $modal_options['moove_gdpr_privacy_overview_tab_content'.$wpml_lang] ? $modal_options['moove_gdpr_privacy_overview_tab_content'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_privacy_overview_content();
+                ?>
                 <div class="moove-gdpr-modal-right-content">
-                    <div class="main-modal-content">
-                        <div class="moove-gdpr-modal-title">
+                    <div class="moove-gdpr-modal-title">
 
-                        </div>
-                        <!-- .moove-gdpr-modal-ritle -->
+                        <?php if ( $layout === 'v2' ) : ?>
+                            <div>
+                                <h3 class="tab-title"><?php echo $tab_title; ?></h3>
+                            </div>
+                        <?php endif; ?>
+                        <?php echo $layout === 'v2' ? $logo_content : ''; ?>
+                    </div>
+                    <!-- .moove-gdpr-modal-ritle -->
+                    <div class="main-modal-content">
+
                         <div class="moove-gdpr-tab-content">
                             <div id="privacy_overview" class="moove-gdpr-tab-main">
-                                <?php
-                                    $tab_title  = isset( $modal_options['moove_gdpr_privacy_overview_tab_title'.$wpml_lang] ) && $modal_options['moove_gdpr_privacy_overview_tab_title'.$wpml_lang] ? $modal_options['moove_gdpr_privacy_overview_tab_title'.$wpml_lang] : __('Privacy Overview','moove-gdpr');
-                                    $tab_content  = isset( $modal_options['moove_gdpr_privacy_overview_tab_content'.$wpml_lang] ) && $modal_options['moove_gdpr_privacy_overview_tab_content'.$wpml_lang] ? $modal_options['moove_gdpr_privacy_overview_tab_content'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_privacy_overview_content();
-                                ?>
-                                <h3 class="tab-title"><?php echo $tab_title; ?></h3>
+                                <?php if ( $layout === 'v1' ) : ?>
+                                    <h3 class="tab-title"><?php echo $tab_title; ?></h3>
+                                <?php endif; ?>
                                 <div class="moove-gdpr-tab-main-conent">
-                                    <?php echo $tab_content; ?>
+                                    <?php echo wpautop( $tab_content ); ?>
                                 </div>
                                 <!--  .moove-gdpr-tab-main-conent -->
                             </div>
 
-                            <div id="strict-necesarry-cookies" class="moove-gdpr-tab-main" style="display:none">
-                                <?php
-                                    $tab_title  = isset( $modal_options['moove_gdpr_strictly_necessary_cookies_tab_title'.$wpml_lang] ) && $modal_options['moove_gdpr_strictly_necessary_cookies_tab_title'.$wpml_lang] ? $modal_options['moove_gdpr_strictly_necessary_cookies_tab_title'.$wpml_lang] : __('Strictly Necessary Cookies','moove-gdpr');
-                                    $tab_content  = isset( $modal_options['moove_gdpr_strict_necessary_cookies_tab_content'.$wpml_lang] ) && $modal_options['moove_gdpr_strict_necessary_cookies_tab_content'.$wpml_lang] ? $modal_options['moove_gdpr_strict_necessary_cookies_tab_content'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_strict_necessary_content();
-                                ?>
-                                <h3 class="tab-title"><?php echo $tab_title; ?></h3>
-                                <div class="moove-gdpr-tab-main-conent">
-                                    <?php echo $tab_content; ?>
-
-                                    <div class="moove-gdpr-status-bar">
-                                        <form>
-                                            <fieldset>
-                                                <label class="switch">
-                                                  <input type="checkbox" value="check" id="moove_gdpr_strict_cookies">
-                                                  <span class="slider round" data-text-enable="<?php echo isset( $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] : __('Enabled','moove-gdpr'); ?>" data-text-disabled="<?php echo isset( $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] : __('Disabled','moove-gdpr'); ?>"></span>
-                                                </label>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                    <!-- .moove-gdpr-status-bar -->
+                            <?php if ( $strictly !== 3 ) : ?>
+                                <div id="strict-necesarry-cookies" class="moove-gdpr-tab-main" style="display:none">
                                     <?php
-                                        $warning_message = isset( $modal_options['moove_gdpr_strictly_necessary_cookies_warning'.$wpml_lang] ) && $modal_options['moove_gdpr_strictly_necessary_cookies_warning'.$wpml_lang] ? $modal_options['moove_gdpr_strictly_necessary_cookies_warning'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_strict_necessary_warning();
-                                        if ( $warning_message  ) :
-                                    ?>
-                                        <div class="moove-gdpr-tab-main-conent moove-gdpr-strict-warning-message" style="margin-top: 10px;">
-                                            <?php echo wpautop( $warning_message ); ?>
-                                        </div>
-                                        <!--  .moove-gdpr-tab-main-conent -->
-                                    <?php endif; ?>
-                                </div>
-                                <!--  .moove-gdpr-tab-main-conent -->
-                            </div>
-
-
-                            <?php if ( $enabled_advanced_cookies ) : ?>
-                                <div id="advanced-cookies" class="moove-gdpr-tab-main" style="display:none">
-                                    <?php
-                                        $tab_title  = isset( $modal_options['moove_gdpr_advanced_cookies_tab_title'.$wpml_lang] ) && $modal_options['moove_gdpr_advanced_cookies_tab_title'.$wpml_lang] ? $modal_options['moove_gdpr_advanced_cookies_tab_title'.$wpml_lang] : __('Additional Cookies'.$wpml_lang,'moove-gdpr');
-                                        $tab_content  = isset( $modal_options['moove_gdpr_advanced_cookies_tab_content'.$wpml_lang] ) && $modal_options['moove_gdpr_advanced_cookies_tab_content'.$wpml_lang] ? $modal_options['moove_gdpr_advanced_cookies_tab_content'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_advanced_cookies_content();
+                                        $tab_title  = isset( $modal_options['moove_gdpr_strictly_necessary_cookies_tab_title'.$wpml_lang] ) && $modal_options['moove_gdpr_strictly_necessary_cookies_tab_title'.$wpml_lang] ? $modal_options['moove_gdpr_strictly_necessary_cookies_tab_title'.$wpml_lang] : __('Strictly Necessary Cookies','moove-gdpr');
+                                        $tab_content  = isset( $modal_options['moove_gdpr_strict_necessary_cookies_tab_content'.$wpml_lang] ) && $modal_options['moove_gdpr_strict_necessary_cookies_tab_content'.$wpml_lang] ? $modal_options['moove_gdpr_strict_necessary_cookies_tab_content'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_strict_necessary_content();
                                     ?>
                                     <h3 class="tab-title"><?php echo $tab_title; ?></h3>
                                     <div class="moove-gdpr-tab-main-conent">
-                                        <?php echo $tab_content; ?>
-                                        <div class="moove-gdpr-status-bar">
+                                        <?php echo wpautop( $tab_content ); ?>
+                                        <?php
+                                            $warning_message = isset( $modal_options['moove_gdpr_strictly_necessary_cookies_warning'.$wpml_lang] ) && $modal_options['moove_gdpr_strictly_necessary_cookies_warning'.$wpml_lang] ? $modal_options['moove_gdpr_strictly_necessary_cookies_warning'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_strict_necessary_warning();
+                                            if ( $warning_message  ) :
+                                        ?>
+                                        <?php
+                                            if ( $layout === 'v2' ) :
+                                                echo wpautop( $warning_message );
+                                            endif;
+                                        ?>
+                                        <div class="moove-gdpr-status-bar <?php echo $strictly !== 1 ? 'gdpr-checkbox-disabled checkbox-selected' : ''; ?>">
                                             <form>
-                                                <fieldset class="fl-disabled">
+                                                <fieldset>
                                                     <label class="switch">
-                                                      <input type="checkbox" value="check" id="moove_gdpr_advanced_cookies" disabled>
+                                                      <input type="checkbox" <?php echo $strictly !== 1 ? 'disabled checked="checked" ' : ''; ?> value="check" id="moove_gdpr_strict_cookies">
                                                       <span class="slider round" data-text-enable="<?php echo isset( $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] : __('Enabled','moove-gdpr'); ?>" data-text-disabled="<?php echo isset( $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] : __('Disabled','moove-gdpr'); ?>"></span>
                                                     </label>
                                                 </fieldset>
                                             </form>
                                         </div>
                                         <!-- .moove-gdpr-status-bar -->
+                                        <?php if ( $layout === 'v1' ) : ?>
+                                            <div class="moove-gdpr-tab-main-conent moove-gdpr-strict-warning-message" style="margin-top: 10px;">
+                                                <?php echo wpautop( $warning_message ); ?>
+                                            </div>
+                                            <!--  .moove-gdpr-tab-main-conent -->
+                                            <?php endif; ?>
+                                        <?php endif; ?>
                                     </div>
                                     <!--  .moove-gdpr-tab-main-conent -->
                                 </div>
@@ -339,22 +345,66 @@ class Moove_GDPR_Controller {
                                 <div id="third_party_cookies" class="moove-gdpr-tab-main" style="display:none">
                                     <h3 class="tab-title"><?php echo $tab_title; ?></h3>
                                     <div class="moove-gdpr-tab-main-conent">
-                                        <?php echo $tab_content; ?>
+                                        <?php echo wpautop( $tab_content ); ?>
                                         <div class="moove-gdpr-status-bar">
                                             <form>
-                                                <fieldset class="fl-disabled">
+                                                <fieldset class="<?php echo $strictly !== 1 ? 'fl-strenabled' : 'fl-disabled'; ?>">
                                                     <label class="switch">
-                                                      <input type="checkbox" value="check" id="moove_gdpr_performance_cookies" disabled>
+                                                      <input type="checkbox" value="check" id="moove_gdpr_performance_cookies" <?php echo $strictly !== 1 ? '' : 'disabled'; ?>>
                                                       <span class="slider round" data-text-enable="<?php echo isset( $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] : __('Enabled','moove-gdpr'); ?>" data-text-disabled="<?php echo isset( $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] : __('Disabled','moove-gdpr'); ?>"></span>
                                                     </label>
                                                 </fieldset>
                                             </form>
                                         </div>
                                         <!-- .moove-gdpr-status-bar -->
+                                        <?php
+                                        $warning_message = isset( $modal_options['moove_gdpr_modal_strictly_secondary_notice'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_strictly_secondary_notice'.$wpml_lang] ? $modal_options['moove_gdpr_modal_strictly_secondary_notice'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_secondary_notice();
+                                        if ( $warning_message  ) :
+                                            ?>
+                                            <div class="moove-gdpr-tab-main-conent moove-gdpr-strict-secondary-warning-message" style="margin-top: 10px; display: none;">
+                                                <?php echo wpautop( $warning_message ); ?>
+                                            </div>
+                                            <!--  .moove-gdpr-tab-main-conent -->
+                                        <?php endif; ?>
                                     </div>
                                     <!--  .moove-gdpr-tab-main-conent -->
                                 </div>
                             <?php endif; ?>
+
+                            <?php if ( $enabled_advanced_cookies ) : ?>
+                                <div id="advanced-cookies" class="moove-gdpr-tab-main" style="display:none">
+                                    <?php
+                                        $tab_title  = isset( $modal_options['moove_gdpr_advanced_cookies_tab_title'.$wpml_lang] ) && $modal_options['moove_gdpr_advanced_cookies_tab_title'.$wpml_lang] ? $modal_options['moove_gdpr_advanced_cookies_tab_title'.$wpml_lang] : __('Additional Cookies'.$wpml_lang,'moove-gdpr');
+                                        $tab_content  = isset( $modal_options['moove_gdpr_advanced_cookies_tab_content'.$wpml_lang] ) && $modal_options['moove_gdpr_advanced_cookies_tab_content'.$wpml_lang] ? $modal_options['moove_gdpr_advanced_cookies_tab_content'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_advanced_cookies_content();
+                                    ?>
+                                    <h3 class="tab-title"><?php echo $tab_title; ?></h3>
+                                    <div class="moove-gdpr-tab-main-conent">
+                                        <?php echo wpautop( $tab_content ); ?>
+                                        <div class="moove-gdpr-status-bar">
+                                            <form>
+                                                <fieldset class="<?php echo $strictly !== 1 ? 'fl-strenabled' : 'fl-disabled'; ?>">
+                                                    <label class="switch">
+                                                      <input type="checkbox" value="check" id="moove_gdpr_advanced_cookies" <?php echo $strictly !== 1 ? '' : 'disabled'; ?>>
+                                                      <span class="slider round" data-text-enable="<?php echo isset( $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_enabled_checkbox_label'.$wpml_lang] : __('Enabled','moove-gdpr'); ?>" data-text-disabled="<?php echo isset( $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_disabled_checkbox_label'.$wpml_lang] : __('Disabled','moove-gdpr'); ?>"></span>
+                                                    </label>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                        <!-- .moove-gdpr-status-bar -->
+                                    <?php
+                                    $warning_message = isset( $modal_options['moove_gdpr_modal_strictly_secondary_notice'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_strictly_secondary_notice'.$wpml_lang] ? $modal_options['moove_gdpr_modal_strictly_secondary_notice'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_secondary_notice();
+                                    if ( $warning_message  ) :
+                                    ?>
+                                        <div class="moove-gdpr-tab-main-conent moove-gdpr-strict-secondary-warning-message" style="margin-top: 10px; display: none;">
+                                            <?php echo wpautop( $warning_message ); ?>
+                                        </div>
+                                        <!--  .moove-gdpr-tab-main-conent -->
+                                    <?php endif; ?>
+                                    </div>
+                                    <!--  .moove-gdpr-tab-main-conent -->
+                                </div>
+                            <?php endif; ?>
+
                             <?php if ( $enabled_cookie_policy ) : ?>
                                 <?php
                                     $tab_title  = isset( $modal_options['moove_gdpr_cookie_policy_tab_nav_label'.$wpml_lang] ) && $modal_options['moove_gdpr_cookie_policy_tab_nav_label'.$wpml_lang] ? $modal_options['moove_gdpr_cookie_policy_tab_nav_label'.$wpml_lang] : __('3rd Party Cookies','moove-gdpr');
@@ -363,7 +413,7 @@ class Moove_GDPR_Controller {
                                 <div id="cookie_policy_modal" class="moove-gdpr-tab-main" style="display:none">
                                     <h3 class="tab-title"><?php echo $tab_title; ?></h3>
                                     <div class="moove-gdpr-tab-main-conent">
-                                        <?php echo $tab_content; ?>
+                                        <?php echo wpautop( $tab_content ); ?>
                                     </div>
                                     <!--  .moove-gdpr-tab-main-conent -->
                                 </div>
@@ -378,10 +428,11 @@ class Moove_GDPR_Controller {
                                 $allow_label = isset( $modal_options['moove_gdpr_modal_allow_button_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_allow_button_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_allow_button_label'.$wpml_lang] : __('Enable All','moove-gdpr');
                                 $save_settings = isset( $modal_options['moove_gdpr_modal_save_button_label'.$wpml_lang] ) && $modal_options['moove_gdpr_modal_save_button_label'.$wpml_lang] ? $modal_options['moove_gdpr_modal_save_button_label'.$wpml_lang] : __('Save Settings','moove-gdpr');
                             ?>
-                            <button class="mgbutton moove-gdpr-modal-allow-all" rel="nofollow"><?php echo $allow_label; ?></button>
-                            <button class="mgbutton moove-gdpr-modal-save-settings" rel="nofollow"><?php echo $save_settings; ?></button>
+                            <button class="mgbutton moove-gdpr-modal-allow-all button-visible" rel="nofollow"><?php echo $allow_label; ?></button>
+                            <button class="mgbutton moove-gdpr-modal-save-settings button-visible" rel="nofollow"><?php echo $save_settings; ?></button>
                         </div>
                         <!--  .moove-gdpr-button-holder -->
+                        <?php echo $layout === 'v2' ? $branding_text : ''; ?>
                     </div>
                     <!--  .moove-gdpr-modal-footer-content -->
                 </div>

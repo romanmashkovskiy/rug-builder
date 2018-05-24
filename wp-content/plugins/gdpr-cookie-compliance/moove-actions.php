@@ -62,6 +62,7 @@ class Moove_GDPR_Actions {
 			'current_user'							=>	get_current_user_id(),
 		);
 		wp_localize_script( $ascript, 'moove_frontend_gdpr_scripts', $this->gdpr_loc_data );
+
 	}
 
 	/**
@@ -71,8 +72,8 @@ class Moove_GDPR_Actions {
 	 */
 	public function moove_frontend_gdpr_scripts() {
 
-		wp_enqueue_script( 'moove_gdpr_frontend', plugins_url( basename( dirname( __FILE__ ) ) ) . '/dist/scripts/main.js', array( 'jquery' ), '1.0.6', true );
-		wp_enqueue_style( 'moove_gdpr_frontend', plugins_url( basename( dirname( __FILE__ ) ) ) . '/dist/styles/main.css', '', '1.0.6' );
+		wp_enqueue_script( 'moove_gdpr_frontend', plugins_url( basename( dirname( __FILE__ ) ) ) . '/dist/scripts/main.js', array( 'jquery' ), MOOVE_GDPR_VERSION, true );
+		wp_enqueue_style( 'moove_gdpr_frontend', plugins_url( basename( dirname( __FILE__ ) ) ) . '/dist/styles/main.css', '', MOOVE_GDPR_VERSION );
 		$this->moove_localize_script( 'moove_gdpr_frontend' );
 	}
 	/**
@@ -81,8 +82,8 @@ class Moove_GDPR_Actions {
 	 * @return void
 	 */
 	public function moove_gdpr_admin_scripts() {
-		wp_enqueue_script( 'moove_gdpr_backend', plugins_url( basename( dirname( __FILE__ ) ) ) . '/dist/scripts/admin.js', array( 'jquery' ), '1.0.6', true );
-		wp_enqueue_style( 'moove_gdpr_backend', plugins_url( basename( dirname( __FILE__ ) ) ) . '/dist/styles/admin.css', '', '1.0.6' );
+		wp_enqueue_script( 'moove_gdpr_backend', plugins_url( basename( dirname( __FILE__ ) ) ) . '/dist/scripts/admin.js', array( 'jquery', 'jquery-ui-core', 'jquery-ui-slider', 'jquery-ui-draggable' ), MOOVE_GDPR_VERSION, true );
+		wp_enqueue_style( 'moove_gdpr_backend', plugins_url( basename( dirname( __FILE__ ) ) ) . '/dist/styles/admin.css', '', MOOVE_GDPR_VERSION );
 	}
 
 	/**

@@ -69,7 +69,7 @@ function crucial_footer() {
 				<span class="footer__info--copyright">&copy; '.date("Y").' Crucial Trading Ltd </span>
 			</div>
 			<div class="footer__info__design">
-				<span class="footer__info--design-agency"><a href="https://kijo.co" title="Web Design by KIJO">Web Design</a> by <a href="https://kijo.co" title="Creative Web Design by KIJO">KIJO</a></span>
+				<span class="footer__info--design-agency"><a href="https://kijo.co" title="Web Design by KIJO" target="_blank" rel="noopener">Web Design</a> by <a href="https://kijo.co" title="Creative Web Design by KIJO" target="_blank" rel="noopener">KIJO</a></span>
 			</div>
 		</div>';
 		$html .= '</footer>';

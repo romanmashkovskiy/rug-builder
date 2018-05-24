@@ -20,7 +20,12 @@
                 $gdpr_options = get_option( $option_name );
                 foreach ( $_POST as $form_key => $form_value ) :
                     if ( $form_key === 'moove_gdpr_info_bar_content' ) :
-                        $value  = apply_filters( 'the_content', wp_unslash( $form_value ) );
+                        $value  = wpautop( wp_unslash( $form_value ) );
+                        $gdpr_options[$form_key.$wpml_lang] = $value;
+                        update_option( $option_name, $gdpr_options );
+                        $gdpr_options = get_option( $option_name );
+                    elseif ( $form_key === 'moove_gdpr_modal_strictly_secondary_notice' . $wpml_lang ) :
+                        $value  = wpautop( wp_unslash( $form_value ) );
                         $gdpr_options[$form_key.$wpml_lang] = $value;
                         update_option( $option_name, $gdpr_options );
                         $gdpr_options = get_option( $option_name );
@@ -53,7 +58,11 @@
                     <label for="moove_gdpr_brand_colour"><?php _e('Brand Primary Colour','moove-gdpr'); ?></label>
                 </th>
                 <td>
-                    <input class="jscolor {hash:true} regular-text" name="moove_gdpr_brand_colour" value="<?php echo isset( $gdpr_options['moove_gdpr_brand_colour'] ) && $gdpr_options['moove_gdpr_brand_colour'] ? $gdpr_options['moove_gdpr_brand_colour'] : '0C4DA2'; ?>" >
+                    <div class="iris-colorpicker-group-cnt">
+                        <?php $color = isset( $gdpr_options['moove_gdpr_brand_colour'] ) && $gdpr_options['moove_gdpr_brand_colour'] ? $gdpr_options['moove_gdpr_brand_colour'] : '0C4DA2'; ?>
+                        <input class="iris-colorpicker regular-text" name="moove_gdpr_brand_colour" value="<?php echo $color; ?>" style="background-color: <?php echo $color; ?>" type="text">
+                        <span class="iris-selectbtn"><?php _e('Select','moove-gdpr'); ?></span>
+                    </div>
                 </td>
             </tr>
 
@@ -62,7 +71,11 @@
                     <label for="moove_gdpr_brand_secondary_colour"><?php _e('Brand Secondary Colour','moove-gdpr'); ?></label>
                 </th>
                 <td>
-                    <input class="jscolor {hash:true} regular-text" name="moove_gdpr_brand_secondary_colour" value="<?php echo isset( $gdpr_options['moove_gdpr_brand_secondary_colour'] ) && $gdpr_options['moove_gdpr_brand_secondary_colour'] ? $gdpr_options['moove_gdpr_brand_secondary_colour'] : '000000'; ?>" >
+                    <div class="iris-colorpicker-group-cnt">
+                        <?php $color =  isset( $gdpr_options['moove_gdpr_brand_secondary_colour'] ) && $gdpr_options['moove_gdpr_brand_secondary_colour'] ? $gdpr_options['moove_gdpr_brand_secondary_colour'] : '000000'; ?>
+                        <input class="iris-colorpicker regular-text" name="moove_gdpr_brand_secondary_colour" value="<?php echo $color; ?>" style="background-color: <?php echo $color; ?>" >
+                        <span class="iris-selectbtn"><?php _e('Select','moove-gdpr'); ?></span>
+                    </div>
                 </td>
             </tr>
 
@@ -128,6 +141,18 @@
 
             <tr>
                 <th scope="row">
+                    <label for="moove_gdpr_plugin_layout"><?php _e('Choose your layout','moove-gdpr'); ?></label>
+                </th>
+                <td>
+                    <input name="moove_gdpr_plugin_layout" type="radio" value="v1" id="moove_gdpr_plugin_layout_v1" <?php echo isset( $gdpr_options['moove_gdpr_plugin_layout'] ) ? ( $gdpr_options['moove_gdpr_plugin_layout'] === 'v1'  ? 'checked' : '' ) : 'checked'; ?> class="regular-text on-off"> <label for="moove_gdpr_plugin_layout_v1"><?php _e('Tabs layout','moove-gdpr'); ?></label> <span class="separator"></span>
+
+                    <input name="moove_gdpr_plugin_layout" type="radio" value="v2" id="moove_gdpr_plugin_layout_v2" <?php echo isset( $gdpr_options['moove_gdpr_plugin_layout'] ) ? ( $gdpr_options['moove_gdpr_plugin_layout'] === 'v2'  ? 'checked' : '' ) : ''; ?> class="regular-text on-off"> <label for="moove_gdpr_plugin_layout_v2"><?php _e('One page layout','moove-gdpr'); ?></label>
+
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">
                     <label for="moove_gdpr_modal_save_button_label"><?php _e('Save Settings - Button Label','moove-gdpr'); ?></label>
                 </th>
                 <td>
@@ -157,10 +182,21 @@
 
             <tr>
                 <th scope="row">
-                    <label for="moove_gdpr_modal_allow_button_label"><?php _e('Powered by Label','moove-gdpr'); ?></label>
+                    <label for="moove_gdpr_modal_powered_by_label"><?php _e('Powered by Label','moove-gdpr'); ?></label>
                 </th>
                 <td>
                     <input name="moove_gdpr_modal_powered_by_label<?php echo $wpml_lang; ?>" type="text" id="moove_gdpr_modal_powered_by_label" value="<?php echo isset( $gdpr_options['moove_gdpr_modal_powered_by_label'.$wpml_lang] ) && $gdpr_options['moove_gdpr_modal_powered_by_label'.$wpml_lang] ? $gdpr_options['moove_gdpr_modal_powered_by_label'.$wpml_lang] : 'Powered by'; ?>" class="regular-text">
+                </td>
+
+            </tr>
+
+            <tr>
+                <th scope="row">
+                    <label for="moove_gdpr_modal_allow_button_label"><?php _e('Strictly necessary required message.','moove-gdpr'); ?></label>
+                </th>
+                <td>
+                    <textarea name="moove_gdpr_modal_strictly_secondary_notice<?php echo $wpml_lang; ?>" id="moove_gdpr_modal_strictly_secondary_notice" class="regular-text"><?php echo isset( $gdpr_options['moove_gdpr_modal_strictly_secondary_notice'.$wpml_lang] ) && $gdpr_options['moove_gdpr_modal_strictly_secondary_notice'.$wpml_lang] ? $gdpr_options['moove_gdpr_modal_strictly_secondary_notice'.$wpml_lang] : $gdpr_default_content->moove_gdpr_get_secondary_notice() ; ?></textarea>
+                    <p class="description" id="moove_gdpr_modal_strictly_secondary_notice-description" style="max-width: 25em;"><?php _e('This warning message will be displayed if the Strictly necesarry cookies are not enabled and the user try to enable the "Third Party" or "Additional cookies"','moove-gdpr'); ?></p>
                 </td>
 
             </tr>
@@ -187,7 +223,7 @@
                         $content =  isset( $gdpr_options['moove_gdpr_info_bar_content'.$wpml_lang] ) && $gdpr_options['moove_gdpr_info_bar_content'.$wpml_lang] ? maybe_unserialize( $gdpr_options['moove_gdpr_info_bar_content'.$wpml_lang] ) : false;
                         if ( ! $content ) :
                             $_content   = __("<p>We are using cookies to give you the best experience on our website.</p><p>You can find out more about which cookies we are using or switch them off in [setting]settings[/setting].</p>","moove-gdpr");
-                            $content    = apply_filters( 'the_content', $_content );
+                            $content    = $_content;
                         endif;
                         ?>
                     <?php
@@ -274,7 +310,11 @@
                     <label for="moove_gdpr_floating_button_background_colour"><?php _e('Button - Background Colour','moove-gdpr'); ?></label>
                 </th>
                 <td>
-                    <input class="jscolor {hash:true} regular-text" name="moove_gdpr_floating_button_background_colour" value="<?php echo isset( $gdpr_options['moove_gdpr_floating_button_background_colour'] ) && $gdpr_options['moove_gdpr_floating_button_background_colour'] ? $gdpr_options['moove_gdpr_floating_button_background_colour'] : '373737'; ?>" >
+                    <div class="iris-colorpicker-group-cnt">
+                        <?php $color = isset( $gdpr_options['moove_gdpr_floating_button_background_colour'] ) && $gdpr_options['moove_gdpr_floating_button_background_colour'] ? $gdpr_options['moove_gdpr_floating_button_background_colour'] : '373737'; ?>
+                        <input class="iris-colorpicker regular-text" name="moove_gdpr_floating_button_background_colour" value="<?php echo $color; ?>" style="background-color: <?php echo $color; ?>;" >
+                        <span class="iris-selectbtn"><?php _e('Select','moove-gdpr'); ?></span>
+                    </div>
                 </td>
             </tr>
 
@@ -283,7 +323,11 @@
                     <label for="moove_gdpr_floating_button_hover_background_colour"><?php _e('Button - Hover Background Colour','moove-gdpr'); ?></label>
                 </th>
                 <td>
-                    <input class="jscolor {hash:true} regular-text" name="moove_gdpr_floating_button_hover_background_colour" value="<?php echo isset( $gdpr_options['moove_gdpr_floating_button_hover_background_colour'] ) && $gdpr_options['moove_gdpr_floating_button_hover_background_colour'] ? $gdpr_options['moove_gdpr_floating_button_hover_background_colour'] : '000000'; ?>" >
+                    <div class="iris-colorpicker-group-cnt">
+                        <?php $color = isset( $gdpr_options['moove_gdpr_floating_button_hover_background_colour'] ) && $gdpr_options['moove_gdpr_floating_button_hover_background_colour'] ? $gdpr_options['moove_gdpr_floating_button_hover_background_colour'] : '000000';; ?>
+                        <input class="iris-colorpicker regular-text" name="moove_gdpr_floating_button_hover_background_colour" value="<?php echo $color ?>" style="background-color: <?php echo $color; ?>;" >
+                        <span class="iris-selectbtn"><?php _e('Select','moove-gdpr'); ?></span>
+                    </div>
                 </td>
             </tr>
 
@@ -292,7 +336,11 @@
                     <label for="moove_gdpr_floating_button_font_colour"><?php _e('Button - Font Colour','moove-gdpr'); ?></label>
                 </th>
                 <td>
-                    <input class="jscolor {hash:true} regular-text" name="moove_gdpr_floating_button_font_colour" value="<?php echo isset( $gdpr_options['moove_gdpr_floating_button_font_colour'] ) && $gdpr_options['moove_gdpr_floating_button_font_colour'] ? $gdpr_options['moove_gdpr_floating_button_font_colour'] : 'ffffff'; ?>" >
+                    <div class="iris-colorpicker-group-cnt">
+                        <?php $color = isset( $gdpr_options['moove_gdpr_floating_button_font_colour'] ) && $gdpr_options['moove_gdpr_floating_button_font_colour'] ? $gdpr_options['moove_gdpr_floating_button_font_colour'] : 'ffffff'; ?>
+                        <input class="iris-colorpicker regular-text" name="moove_gdpr_floating_button_font_colour" value="<?php echo $color; ?>" style="background-color: <?php echo $color; ?>;" >
+                        <span class="iris-selectbtn"><?php _e('Select','moove-gdpr'); ?></span>
+                    </div>
                 </td>
             </tr>
 
