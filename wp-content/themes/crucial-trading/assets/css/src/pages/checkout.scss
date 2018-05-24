@@ -126,25 +126,35 @@
 			display: block;
 			font-weight: normal;
 			font-size: 16px;
-			line-height: 25px;
 			padding-left: 40px;
 		}
 
 		input[type='checkbox'] {
-        -webkit-appearance:none;
-        width:20px;
-        height:20px;
-        background:white;
-        border-radius:0px;
-        border:2px solid black;
-        position: absolute;
-        top: 5px;
-				left: 0px;
-    }
+			-webkit-appearance:none;
+			appearance: none;
+			width:20px;
+			height:20px;
+			background:white;
+			border-radius:0px;
+			border:2px solid black;
+			position: absolute;
+			top: 4px;
+			left: 0px;
+		}
 
-    input[type='checkbox']:checked {
-        background: black;
-    }
+		input[type='checkbox']:checked {
+			background: black;
+		}
+
+		input[type='checkbox']:checked:after {
+			content: '✔';
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			font-size: 16px;
+			line-height: 0.8;
+			color: #fff;
+		}
 
 		a {
 			font-family: $font-copy;
