@@ -45,7 +45,8 @@
 		}
 
 		label {
-			display: none !important;
+			//display: none !important;
+			font-weight: normal;
 		}
 
 		.select2-choice {
@@ -108,6 +109,54 @@
 		font-size: 16px !important;
 		padding: 15px 25px 15px 25px !important;
 		height: 65px;
+	}
+
+	/*** Privacy & GDPR ****/
+
+	.wc-terms-and-conditions {
+		text-align: left;
+	}
+
+	.form-row.privacy {
+		text-align: left;
+		position: relative;
+		padding-bottom: 20px;
+
+		label {
+			display: block;
+			font-weight: normal;
+			font-size: 16px;
+			line-height: 25px;
+			padding-left: 40px;
+		}
+
+		input[type='checkbox'] {
+        -webkit-appearance:none;
+        width:20px;
+        height:20px;
+        background:white;
+        border-radius:0px;
+        border:2px solid black;
+        position: absolute;
+        top: 5px;
+				left: 0px;
+    }
+
+    input[type='checkbox']:checked {
+        background: black;
+    }
+
+		a {
+			font-family: $font-copy;
+			letter-spacing: 0px;
+			text-transform: capitalize;
+			text-decoration: underline !important;
+			padding: 0px;
+
+			&:hover {
+				text-decoration: none !important;
+			}
+		}
 	}
 
 }
