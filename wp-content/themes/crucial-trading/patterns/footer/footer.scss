@@ -1,5 +1,5 @@
 /**
- * Main Website Footer 
+ * Main Website Footer
  *
  * Contents:
  *
@@ -17,14 +17,14 @@ footer {
 	padding-top: 6%;
 	background-color: $main-menu-bg-color;
 	position: relative;
-	
+
 	@media all and (max-width: 992px) {
 		padding-top: 12%;
 	}
-	
+
 }
 
-/************** Footer Columns **************/ 
+/************** Footer Columns **************/
 
 .footer-columns {
 	width: 80%;
@@ -44,22 +44,22 @@ footer {
 }
 
 @media all and (max-width: 769px) {
-		
-	.footer__col--nav-1, 
+
+	.footer__col--nav-1,
 	.footer__col--nav-2 {
 		padding-left: 0;
 	}
-	
+
 	.footer__col--nav-1 {
 			margin-top: 25px;
 			margin-bottom: 25px;
 	}
-	
+
 }
 
 
 
-/************** Footer Social Columns **************/ 
+/************** Footer Social Columns **************/
 
 .footer__col--social ul li a {
 	position: relative;
@@ -71,14 +71,14 @@ footer {
 	position: absolute;
 	left: 210px;
 	top: 15px;
-	
+
 	@media all and (max-width: 1024px) {
 		left: 185px;
 	}
 }
 
 
-/************** Footer Decorative Line **************/ 
+/************** Footer Decorative Line **************/
 
 .footer__line {
 	height: 1px;
@@ -88,15 +88,15 @@ footer {
 	top: 17%;
 	left: 0;
 	opacity: 0.2;
-	
+
 	@media all and (max-width: 769px) {
 		display: none;
 	}
-	
+
 }
 
 
-/************** Footer Menu Links **************/ 
+/************** Footer Menu Links **************/
 
 .footer__col ul {
 	margin: 0;
@@ -117,13 +117,13 @@ footer {
 	padding: 15px;
 	transition: color background-color ease-in-out 0.25s;
 	transform: translate(0,0);
-	
+
 	@media all and (max-width: 767px) {
 		font-size: 15px;
 		padding: 10px;
 		padding-left: 0;
 	}
-	
+
 }
 
 .footer__col a:hover {
@@ -132,7 +132,7 @@ footer {
 	-webkit-transform: translate(5px,0);
 }
 
-/*** Footer Links Hover Line ***/ 
+/*** Footer Links Hover Line ***/
 
 .footer__col a::after {
 	width: 20px;
@@ -153,7 +153,7 @@ footer {
 	opacity: 0.6;
 }
 
-/************** Copyright & Design Credit **************/ 
+/************** Copyright & Design Credit **************/
 
 .footer__info {
 	display: block;
@@ -161,12 +161,12 @@ footer {
 	margin: auto;
 	padding-top: 5%;
 	padding-bottom: 2.5%;
-	
+
 	@media all and (max-width: 992px) {
 		padding-top: 7%;
 		padding-bottom: 5%;
 	}
-	
+
 }
 
 .footer__info,
@@ -176,62 +176,66 @@ footer {
 	letter-spacing: 3px;
 	color: darken($main-menu-link-color, 25%);
 	font-family: $font-sub-header;
-		
+
 	@media all and (max-width: 769px) {
 		font-size: 13px;
 	}
-	
+
 }
 
-.footer__info__contact-details, 
+.footer__info__contact-details,
 .footer__info__design {
 	display: inline-block;
 }
 
 .footer__info__contact-details {
 	width:75%;
-	
+
 	@media all and (max-width: 769px) {
 		width: 100%;
 	}
-	
+
 }
 
 .footer__info__design {
 	width: 24%;
 	text-align: right;
-	
+
 	@media all and (max-width: 992px) {
 		width: 100%;
 		text-align: left !important;
 	}
-	
+
 }
 
 .footer__info--copyright,
 .footer__info--address,
 .footer__info--phone,
-.footer__info--design-agency a {
+.footer__info--privacy {
 	padding: 0;
 	display: block;
 }
 
+.footer__info--privacy a:hover {
+	color: white;
+}
+
 .footer__info--copyright {
 	margin-right: 45px;
-	
+
 	@media all and (max-width: 992px) {
 		margin-right: 0px;
 	}
-	
+
 }
 
 .footer__info--design-agency {
-	
+
 	margin-left: 0px;
 	padding-top: 2%;
 	width: 24%;
 	text-align: right;
-	
+
 	@media all and (max-width: 992px) {
 		display: block;
 		width: 100%;
@@ -245,5 +249,3 @@ footer {
 .footer__info--design-agency a:hover {
 	color: #FFF;
 }
-
-
