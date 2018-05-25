@@ -91,7 +91,7 @@ add_action( 'woocommerce_review_order_before_submit', 'crucial_add_checkout_priv
        'class'         => array('form-row privacy'),
        'label_class'   => array('woocommerce-form__label woocommerce-form__label-for-checkbox checkbox'),
        'input_class'   => array('woocommerce-form__input woocommerce-form__input-checkbox input-checkbox'),
-       'required'      => true,
+       'required'      => false,
        'label'         => 'I agree to my personal data being stored and used to process this order. This includes sharing my personal information and the details of my order with our partner retailers. Read our <a href="/privacy-policy">Privacy Policy</a> for more information. Please tick here to opt-in.',
    ));
 
@@ -138,7 +138,7 @@ function ct_privacy_field_display_admin_order_meta( $order_id ) {
 
 
 /**
- * Display field value on the order edit page
+ * Display field value on the order edit page in the backend
  */
 add_action( 'woocommerce_admin_order_data_after_billing_address', 'ct_custom_checkout_field_display_admin_order_meta', 10, 1 );
 
@@ -161,4 +161,22 @@ function ct_custom_checkout_field_display_admin_order_meta($order){
 
     echo '<p><strong>'.__('Privacy Consent').':</strong> <br/>' . $privacy_policy_consent . '</p>';
     echo '<p><strong>'.__('Marketing Consent').':</strong> <br/>' . $marketing_policy_consent . '</p>';
+}
+
+
+/**
+ * Add field data to email
+ */
+/* To use:
+1. Add this snippet to your theme's functions.php file
+2. Change the meta key names in the snippet
+3. Create a custom field in the order post - e.g. key = "Tracking Code" value = abcdefg
+4. When next updating the status, or during any other event which emails the user, they will see this field in their email
+*/
+//add_filter('woocommerce_email_order_meta_keys', 'my_custom_order_meta_keys');
+
+function my_custom_order_meta_keys( $keys ) {
+     $keys[] = 'privacy_policy';
+     $keys[] = 'marketing_consent';
+     return $keys;
 }
