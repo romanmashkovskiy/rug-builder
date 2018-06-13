@@ -43,6 +43,12 @@ function newsletter_signup( $atts = '' ) {
 	$html .= '<input type="text" name="b_87904d618464b14e7cc55dafa_ba536732e6" tabindex="-1" value="">';
 	$html .= '</div>';
 
+	$html .= '<div class="mc-field-group input-group privacy-consent">
+	  <ul>
+			<li><input required type="checkbox" value="1" name="group[6579][1]" id="mce-group[6579]-6579-0"><label for="mce-group[6579]-6579-0">I would like to receive emails from Crucial Trading including news, promotions and offers. <a href="'.site_url().'/privacy-policy">View Privacy Policy</a></label></li>
+		</ul>
+	</div>';
+
 	$html .= '<div class="clear">';
 	$html .= '<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">';
 	$html .= '</div>';
@@ -53,7 +59,7 @@ function newsletter_signup( $atts = '' ) {
 	$html .= '<style>.mce_inline_error{color:#3d3d3d!important;}</style>';
 	$html .= '<script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>';
 	$html .= '<script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]="EMAIL";ftypes[0]="email";fnames[1]="FNAME";ftypes[1]="text";fnames[2]="LNAME";ftypes[2]="text";}(jQuery));var $mcj = jQuery.noConflict(true);</script>';
-	
+
 	$html .= '</div></div>';
 
 	return $html;
