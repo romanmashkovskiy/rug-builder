@@ -1,0 +1,131 @@
+*{
+    box-sizing: border-box;
+}
+
+.container-builder {
+    position: relative;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.header-builder {
+    width: 100%;
+    height: 80px;
+    background-color: #383838;
+    text-align: center;
+}
+
+.header-builder img {
+    width: 100%;
+    height: 100%;
+}
+
+.main-builder {
+    position: relative;
+    width: 100%;
+    height: 830px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-builder-carpet {
+    height: 586px;
+    display: flex;
+    flex-direction: row;
+}
+
+.main-carpet-preview {
+    background-color: #F9F9F9;
+    flex-basis: 77%;
+}
+
+.main-carpet-controls {
+    background-color: #FFFFFF;
+    flex-basis: 23%;
+    border-bottom: 2px solid #F9F9F9;
+}
+
+.rug-specification {
+    height: 80px;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.your-bespoke-rug-spe {
+    height: 40px;
+    width: 60%;
+    color: #2D2D2D;
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    line-height: 22px;
+    text-align: center;
+    margin-top: 21px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.current-carpet-size {
+    height: 80px;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.current-border-type {
+    height: 80px;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.centre-is-selected {
+    height: 80px;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.border-is-selected {
+    height: 80px;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.carpet-price {
+    height: 80px;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+
+.main-area-builder {
+    height: 244px;
+    display: flex;
+    flex-direction: row;
+}
+
+.main-area-builder-centre {
+    border: 2px solid #F9F9F9;
+    background-color: #FFFFFF;
+    width: 38.5%;
+
+}
+
+.main-area-builder-inner-border {
+    border: 2px solid #F9F9F9;
+    background-color: #FFFFFF;
+    width: 38.5%;
+
+}
+
+.main-area-builder-rest {
+    width: 23%;
+
+}
+
+.footer-builder {
+    width: 100%;
+    height: 591px;
+    background-color: #2D2D2D;
+    text-align: center;
+}
+
+.footer-builder img {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: 100%;
+}
