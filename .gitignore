@@ -1,45 +1,23 @@
-CRU04.*
-stop-emails/
+# See https://help.github.com/ignore-files/ for more about ignoring files.
 
-*.log
+# dependencies
+/node_modules
 
-#wp-config.production.php
-wp-config.staging.php
-wp-config.default.php
-wp-config.local.php
+.idea
 
-wp-content/advanced-cache.php
-wp-content/backup-db/
-wp-content/backups/
-wp-content/blogs.dir/
-wp-content/cache/
-wp-content/themes/twentysixteen/
-wp-content/upgrade/
-wp-content/uploads/
-wp-content/wp-cache-config.php
-wp-content/plugins/hello.php
+# testing
+/coverage
 
-production/*
-multi-config/*
+# production
+/build
 
-config.codekit
-.codekit-cache
-
-/license.txt
-/readme.html
-/sitemap.xml
-/sitemap.xml.gz
-license.txt
-readme.html.DS_Store
-
-*.zip
-
-/.sass-cache/*
-node_modules
-
-*.map
-.htaccess
-gulpfile.js
-#package.json
-
+# misc
 .DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
