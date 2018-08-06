@@ -10,20 +10,20 @@ import {setEditDimensionsBorderMode} from "../../actions";
 
 import header from './images/header.png';
 import footer from './images/footer.png';
-import edit from './images/edit.png';
+import edit from './images/edit-icon.svg';
 import exit from './images/exit.svg';
 import twice from './images/2x.png';
 import zoomIn from './images/zoom-in.svg';
 import zoomOut from './images/zoom-out.svg';
-import leftControlFirst from './images/left-control-first.png';
-import leftControlSecond from './images/left-control-second.png';
-import leftControlThird from './images/left-control-third.png';
+import leftControlFirst from './images/zoom window.svg';
+import leftControlSecond from './images/room-presets.svg';
+import leftControlThird from './images/random-icon.svg';
 import aboveHorizontal from './images/above-horizontal.svg';
 import aboveVertical from './images/above-vertical.svg';
 import angledHorizontal from './images/angled-horizontal.svg';
 import angled from './images/angled.svg';
-import centre from './images/centre.png';
-import innerBorder from './images/inner-border.png';
+import centre from './images/centre-icon.svg';
+import innerBorder from './images/inner-border-icon.svg';
 
 
 class BuilderSelectPart extends Component {
