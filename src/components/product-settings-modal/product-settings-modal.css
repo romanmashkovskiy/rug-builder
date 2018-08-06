@@ -127,6 +127,6 @@ label > input + img{
     border:2px solid transparent;
 }
 
-label > input:checked + img{
-    /*border:2px solid #f00;*/
-}
+/*label > input:checked + img {*/
+    /*background-color: red;*/
+/*}*/

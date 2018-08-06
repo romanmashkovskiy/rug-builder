@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import './product-settings-modal.css';
-import {setLength, setWidth, setBorderType} from "../../actions";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
+
+import {setLength, setWidth, setBorderType} from "../../actions";
+import LinkButton from '../link-button/link-button';
+import './product-settings-modal.css';
+
 import logo from './images/logo.png';
 import singleBorderIcon from "./images/single-border-icon.svg"
 import singlePipingIcon from "./images/single-piping-icon.svg"
@@ -78,7 +81,9 @@ class StartModal extends Component {
                     {(this.props.width === '' || this.props.length === '' || this.props.border === '') &&
                     <button className="get-started-btn-inactive" disabled>Get started</button>}
                     {(this.props.width !== '' && this.props.length !== '' && this.props.border !== '') &&
-                    <button className="get-started-btn-active">Get started</button>}
+                    <LinkButton to='/builder' className="get-started-btn-active" onClick={(event) => {
+                        console.log('custom event here!', event)
+                    }}>Get started</LinkButton>}
                 </div>
             </div>
         );
