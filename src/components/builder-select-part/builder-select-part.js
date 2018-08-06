@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import { withRouter } from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
 import './builder-select-part.css';
 
-import { setEditDimensionsBorderMode } from "../../actions";
+import StartModal from '../product-settings-modal/product-settings-modal';
+import {setEditDimensionsBorderMode} from "../../actions";
 
 import header from './images/header.png';
 import footer from './images/footer.png';
@@ -13,7 +14,7 @@ import edit from './images/edit.png';
 import exit from './images/exit.svg';
 import twice from './images/2x.png';
 import zoomIn from './images/zoom-in.svg';
-import  zoomOut from './images/zoom-out.svg';
+import zoomOut from './images/zoom-out.svg';
 import leftControlFirst from './images/left-control-first.png';
 import leftControlSecond from './images/left-control-second.png';
 import leftControlThird from './images/left-control-third.png';
@@ -33,6 +34,8 @@ class BuilderSelectPart extends Component {
                     <img src={header} alt="header"/>
                 </div>
                 <div className="main-builder">
+                    {this.props.editDimensionsBorderMode &&
+                    <StartModal/>}
                     <div className="main-builder-carpet">
                         <div className="main-carpet-preview">
                             <div className="left-controls">
@@ -79,9 +82,14 @@ class BuilderSelectPart extends Component {
                                 </div>
                             </div>
                             <div className="current-carpet-size">
-                                <div className="current-size-edit" onClick={() => {
-                                    this.props.setEditDimensionsBorderMode(true);
-                                    this.props.history.push('/')}}>
+                                <div
+                                    className="current-size-edit"
+                                    onClick={() => {
+                                        this.props.setEditDimensionsBorderMode(true);
+                                        // this.props.history.push('/');
+                                    }
+                                    }
+                                >
                                     <img src={edit} alt="edit"/>
                                     <div className="current-size-edit-dimensions">
                                         {`${this.props.length}m X ${this.props.width}m`}
@@ -89,9 +97,14 @@ class BuilderSelectPart extends Component {
                                 </div>
                             </div>
                             <div className="current-border-type">
-                                <div className="current-size-edit" onClick={() => {
-                                    this.props.setEditDimensionsBorderMode(true);
-                                    this.props.history.push('/')}}>
+                                <div
+                                    className="current-size-edit"
+                                    onClick={() => {
+                                        this.props.setEditDimensionsBorderMode(true);
+                                        // this.props.history.push('/')
+                                    }
+                                    }
+                                >
                                     <img src={edit} alt="edit"/>
                                     <div className="current-size-edit-dimensions">
                                         {`${this.props.border.toUpperCase()}`}
@@ -149,6 +162,7 @@ class BuilderSelectPart extends Component {
                     <img src={footer} alt="footer"/>
                 </div>
 
+
             </div>
         );
     }
@@ -161,6 +175,7 @@ const mapStateToProps = (state) => {
         border: state.border,
         centre: state.centre,
         innerBorder: state.innerBorder,
+        editDimensionsBorderMode: state.editDimensionsBorderMode
     };
 };
 

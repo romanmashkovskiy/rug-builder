@@ -13,7 +13,6 @@ import singlePipingIcon from "./images/single-piping-icon.svg"
 import doubleBorderIcon from "./images/double-border-icon.svg"
 import exit from './images/exit.svg';
 
-
 class StartModal extends Component {
     constructor(props) {
         super(props);
@@ -35,6 +34,7 @@ class StartModal extends Component {
 
     setBorderType(e) {
         const val = e.target.value;
+        console.log(e.target);
         this.setState({borderType: val});
     }
 
@@ -63,21 +63,21 @@ class StartModal extends Component {
                     </div>
 
                     <div className="border-selector">
-                        <div className="picture-wrapper">
+                        <div className={ (this.state.borderType !== 'single-border') ? 'picture-wrapper' : 'picture-wrapper-highlighted'}>
                             <label>
                                 <input type="radio" name="border" value="single-border" onClick={this.setBorderType}/>
                                 <img className="border-type-picture" src={singleBorderIcon} alt="singleBorderIcon"/>
                             </label>
                             <h3>Single Border</h3>
                         </div>
-                        <div className="picture-wrapper">
+                        <div className={ (this.state.borderType !== 'border-piping') ? 'picture-wrapper' : 'picture-wrapper-highlighted'}>
                             <label>
                                 <input type="radio" name="border" value="border-piping" onClick={this.setBorderType}/>
                                 <img className="border-type-picture" src={singlePipingIcon} alt="singlePipingIcon"/>
                             </label>
                             <h3>Border & Piping</h3>
                         </div>
-                        <div className="picture-wrapper">
+                        <div className={ (this.state.borderType !== 'double-border') ? 'picture-wrapper' : 'picture-wrapper-highlighted'}>
                             <label>
                                 <input type="radio" name="border" value="double-border" onClick={this.setBorderType}/>
                                 <img className="border-type-picture" src={doubleBorderIcon} alt="doubleBorderIcon"/>
