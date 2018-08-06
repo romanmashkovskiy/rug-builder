@@ -91,6 +91,16 @@
     letter-spacing: 2px;
     line-height: 31px;
     text-align: center;
+    cursor: pointer;
+}
+
+.exit-edit-mode-btn {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 24.19px;
+    right: 26.57px;
+    cursor: pointer;
 }
 
 .picture-wrapper {

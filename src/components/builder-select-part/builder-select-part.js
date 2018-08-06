@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
-import './builder-select-part.css';
 import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import { withRouter } from 'react-router-dom';
+
+import './builder-select-part.css';
+
+import { setEditDimensionsBorderMode } from "../../actions";
 
 import header from './images/header.png';
 import footer from './images/footer.png';
@@ -19,50 +24,51 @@ import angled from './images/angled.svg';
 import centre from './images/centre.png';
 import innerBorder from './images/inner-border.png';
 
+
 class BuilderSelectPart extends Component {
     render() {
         return (
             <div className="container-builder">
                 <div className="header-builder">
-                    <img src={header}/>
+                    <img src={header} alt="header"/>
                 </div>
                 <div className="main-builder">
                     <div className="main-builder-carpet">
                         <div className="main-carpet-preview">
                             <div className="left-controls">
                                 <div className="left-controls-first">
-                                    <img src={leftControlFirst}/>
+                                    <img src={leftControlFirst} alt="leftControlFirst"/>
                                 </div>
                                 <div className="left-controls-second">
-                                    <img src={leftControlSecond}/>
+                                    <img src={leftControlSecond} alt="leftControlSecond"/>
                                 </div>
                                 <div className="left-controls-third">
-                                    <img src={leftControlThird}/>
+                                    <img src={leftControlThird} alt="leftControlThird"/>
                                 </div>
                             </div>
                             <div className="zoomin-zoomout">
                                 <div className="twice">
-                                    <img src={twice}/>
+                                    <img src={twice} alt="twice"/>
                                 </div>
                                 <div className="zoom-in">
-                                    <img src={zoomIn}/>
+                                    <img src={zoomIn} alt="zoomIn"/>
                                 </div>
                                 <div className="zoom-out">
-                                    <img src={zoomOut}/>
+                                    <img src={zoomOut} alt="zoomOut"/>
                                 </div>
                             </div>
                             <div className="perspective-control">
                                 <div className="above-vertical">
-                                    <img src={aboveVertical}/>
+                                    <img src={aboveVertical} alt="aboveVertical"/>
                                 </div>
                                 <div className="above-horizontal">
-                                    <img src={aboveHorizontal}/>
+                                    <img src={aboveHorizontal} alt="aboveHorizontal"/>
                                 </div>
                                 <div className="angled-horizontal">
-                                    <img src={angledHorizontal}/>
+                                    <img src={angledHorizontal} alt="angledHorizontal"/>
                                 </div>
                                 <div className="angled">
-                                    <img src={angled}/>
+                                    <img src={angled} alt="angled"/>
                                 </div>
                             </div>
                         </div>
@@ -73,16 +79,20 @@ class BuilderSelectPart extends Component {
                                 </div>
                             </div>
                             <div className="current-carpet-size">
-                                <div className="current-size-edit">
-                                    <img src={edit}/>
+                                <div className="current-size-edit" onClick={() => {
+                                    this.props.setEditDimensionsBorderMode(true);
+                                    this.props.history.push('/')}}>
+                                    <img src={edit} alt="edit"/>
                                     <div className="current-size-edit-dimensions">
                                         {`${this.props.length}m X ${this.props.width}m`}
                                     </div>
                                 </div>
                             </div>
                             <div className="current-border-type">
-                                <div className="current-size-edit">
-                                    <img src={edit}/>
+                                <div className="current-size-edit" onClick={() => {
+                                    this.props.setEditDimensionsBorderMode(true);
+                                    this.props.history.push('/')}}>
+                                    <img src={edit} alt="edit"/>
                                     <div className="current-size-edit-dimensions">
                                         {`${this.props.border.toUpperCase()}`}
                                     </div>
@@ -90,7 +100,7 @@ class BuilderSelectPart extends Component {
                             </div>
                             <div className="centre-is-selected">
                                 <div className="current-size-edit">
-                                    <img src={exit}/>
+                                    <img src={exit} alt="exit"/>
                                     <div className="centre-is-selected-type">
                                         {`${this.props.centre}`}
                                     </div>
@@ -98,7 +108,7 @@ class BuilderSelectPart extends Component {
                             </div>
                             <div className="border-is-selected">
                                 <div className="current-size-edit">
-                                    <img src={exit}/>
+                                    <img src={exit} alt="exit"/>
                                     <div className="centre-is-selected-type">
                                         {`${this.props.innerBorder}`}
                                     </div>
@@ -109,7 +119,7 @@ class BuilderSelectPart extends Component {
                             <div className="carpet-price">
                                 <div className="carpet-price-block">
                                     <div className="price-word">Price:</div>
-                                    <div className="price-value">1050</div>
+                                    <div className="price-value">&#163; 1050</div>
                                 </div>
                             </div>
                             <div className="finish-building-block">
@@ -123,12 +133,12 @@ class BuilderSelectPart extends Component {
                     <div className="main-area-builder">
                         <div className="main-area-builder-centre">
                             <div className="centre">
-                                <img src={centre}/>
+                                <img src={centre} alt="centre"/>
                             </div>
                         </div>
                         <div className="main-area-builder-inner-border">
                             <div className="centre">
-                                <img src={innerBorder}/>
+                                <img src={innerBorder} alt="innerBorder"/>
                             </div>
                         </div>
                         <div className="main-area-builder-rest">
@@ -136,7 +146,7 @@ class BuilderSelectPart extends Component {
                     </div>
                 </div>
                 <div className="footer-builder">
-                    <img src={footer}/>
+                    <img src={footer} alt="footer"/>
                 </div>
 
             </div>
@@ -150,8 +160,15 @@ const mapStateToProps = (state) => {
         length: state.length,
         border: state.border,
         centre: state.centre,
-        innerBorder: state.innerBorder
+        innerBorder: state.innerBorder,
     };
 };
 
-export default connect(mapStateToProps)(BuilderSelectPart);
+const matchDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+            setEditDimensionsBorderMode: setEditDimensionsBorderMode
+        },
+        dispatch)
+};
+
+export default withRouter(connect(mapStateToProps, matchDispatchToProps)(BuilderSelectPart));
