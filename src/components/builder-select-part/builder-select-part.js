@@ -25,6 +25,8 @@ import angled from './images/angled.svg';
 import centre from './images/centre-icon.svg';
 import innerBorder from './images/inner-border-icon.svg';
 
+//import Rug from '../rug/rug'
+
 
 class BuilderSelectPart extends Component {
     render() {

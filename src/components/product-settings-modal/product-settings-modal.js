@@ -34,7 +34,6 @@ class StartModal extends Component {
 
     setBorderType(e) {
         const val = e.target.value;
-        console.log(e.target);
         this.setState({borderType: val});
     }
 
