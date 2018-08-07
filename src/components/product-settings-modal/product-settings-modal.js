@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import {setLength, setWidth, setBorderType, setEditDimensionsBorderMode} from "../../actions";
+import {setLength, setWidth, setBorderType, setEditDimensionsMode, setEditBorderMode } from "../../actions";
 import LinkButton from '../link-elements/link-button';
 import LinkImg from '../link-elements/link-img';
 import './product-settings-modal.css';
@@ -38,6 +38,11 @@ class StartModal extends Component {
         this.setState({borderType: val});
     }
 
+    highlightRadioButton(type) {
+        if (this.props.editDimensionsMode) return this.props.border === type ? 'picture-wrapper-highlighted' : 'picture-wrapper';
+        return this.state.borderType === type ? 'picture-wrapper-highlighted' : 'picture-wrapper';
+    }
+
     render() {
         return (
             <div className="container">
@@ -50,43 +55,43 @@ class StartModal extends Component {
                     <div>
                         <input
                             type="text"
-                            value={ this.state.width }
+                            value={ this.props.editBorderMode ? this.props.width : this.state.width }
                             placeholder="Width (m)"
                             className="input"
                             onChange={this.onChangeWidth}/>
                         <input
                             type="text"
-                            value={ this.state.length }
+                            value={ this.props.editBorderMode ? this.props.length : this.state.length }
                             placeholder="Length (m)"
                             className="input"
                             onChange={this.onChangeLength}/>
                     </div>
 
                     <div className="border-selector">
-                        <div className={ (this.state.borderType !== 'single-border') ? 'picture-wrapper' : 'picture-wrapper-highlighted'}>
+                        <div className={this.highlightRadioButton('single-border')}>
                             <label>
-                                <input type="radio" name="border" value="single-border" onClick={this.setBorderType}/>
+                                <input type="radio" name="border" value="single-border" onChange={this.setBorderType}/>
                                 <img className="border-type-picture" src={singleBorderIcon} alt="singleBorderIcon"/>
                             </label>
                             <h3>Single Border</h3>
                         </div>
-                        <div className={ (this.state.borderType !== 'border-piping') ? 'picture-wrapper' : 'picture-wrapper-highlighted'}>
+                        <div className={this.highlightRadioButton('border-piping')}>
                             <label>
-                                <input type="radio" name="border" value="border-piping" onClick={this.setBorderType}/>
+                                <input type="radio" name="border" value="border-piping" onChange={this.setBorderType}/>
                                 <img className="border-type-picture" src={singlePipingIcon} alt="singlePipingIcon"/>
                             </label>
                             <h3>Border & Piping</h3>
                         </div>
-                        <div className={ (this.state.borderType !== 'double-border') ? 'picture-wrapper' : 'picture-wrapper-highlighted'}>
+                        <div className={this.highlightRadioButton('double-border')}>
                             <label>
-                                <input type="radio" name="border" value="double-border" onClick={this.setBorderType}/>
+                                <input type="radio" name="border" value="double-border" onChange={this.setBorderType} />
                                 <img className="border-type-picture" src={doubleBorderIcon} alt="doubleBorderIcon"/>
                             </label>
                             <h3>Double Border</h3>
                         </div>
                     </div>
                     {
-                        (!this.props.editDimensionsBorderMode &&
+                        ((!this.props.editDimensionsMode && !this.props.editBorderMode) &&
                             (this.state.width === '' ||
                                 this.state.length === '' ||
                                 this.state.borderType === '')) &&
@@ -97,7 +102,7 @@ class StartModal extends Component {
                             GET STARTED</button>
                     }
                     {
-                        (!this.props.editDimensionsBorderMode &&
+                        ((!this.props.editDimensionsMode && !this.props.editBorderMode) &&
                             this.state.width !== ''
                             && this.state.length !== '' &&
                             this.state.borderType !== '') &&
@@ -112,39 +117,58 @@ class StartModal extends Component {
                         >GET STARTED</LinkButton>
                     }
                     {
-                        (this.props.editDimensionsBorderMode &&
+                        (this.props.editDimensionsMode &&
                             (this.state.width === '' ||
-                                this.state.length === '' ||
-                                this.state.borderType === '')) &&
+                                this.state.length === '')) &&
                         <button
                             className="get-started-btn-inactive"
                             disabled
                         >EDIT SIZE</button>
                     }
                     {
-                        (this.props.editDimensionsBorderMode &&
+                        (this.props.editBorderMode && this.state.borderType === '') &&
+                        <button
+                            className="get-started-btn-inactive"
+                            disabled
+                        >EDIT SIZE</button>
+                    }
+                    {
+                        (this.props.editDimensionsMode &&
                             this.state.width !== '' &&
-                            this.state.length !== '' &&
-                            this.state.borderType !== '') &&
+                            this.state.length !== '') &&
                         <LinkButton
                             to='/builder'
                             className="get-started-btn-active"
                             onClick={() => {
                                 this.props.setWidth(this.state.width);
                                 this.props.setLength(this.state.length);
-                                this.props.setBorderType(this.state.borderType);
-                                this.props.setEditDimensionsBorderMode(false)
+                                this.props.setEditDimensionsMode(false);
                             }}
                         >EDIT SIZE</LinkButton>
                     }
                     {
-                        this.props.editDimensionsBorderMode &&
+                        (this.props.editBorderMode &&
+                            this.state.borderType !== '') &&
+                        <LinkButton
+                            to='/builder'
+                            className="get-started-btn-active"
+                            onClick={() => {
+                                this.props.setBorderType(this.state.borderType);
+                                this.props.setEditBorderMode(false);
+                            }}
+                        >EDIT SIZE</LinkButton>
+                    }
+                    {
+                        (this.props.editDimensionsMode || this.props.editBorderMode) &&
                         <LinkImg
                             className="exit-edit-mode-btn"
                             src={exit}
                             alt="exit"
                             to='/builder'
-                            onClick={() => this.props.setEditDimensionsBorderMode(false)}
+                            onClick={() => {
+                                this.props.setEditDimensionsMode(false);
+                                this.props.setEditBorderMode(false);
+                            }}
                         />
                     }
                 </div>
@@ -158,7 +182,8 @@ const mapStateToProps = (state) => {
         width: state.width,
         length: state.length,
         border: state.border,
-        editDimensionsBorderMode: state.editDimensionsBorderMode
+        editDimensionsMode: state.editDimensionsMode,
+        editBorderMode: state.editBorderMode
     };
 };
 
@@ -167,7 +192,9 @@ const matchDispatchToProps = (dispatch) => {
             setWidth: setWidth,
             setLength: setLength,
             setBorderType: setBorderType,
-            setEditDimensionsBorderMode: setEditDimensionsBorderMode
+            setEditDimensionsMode: setEditDimensionsMode,
+            setEditBorderMode: setEditBorderMode,
+
         },
         dispatch)
 };

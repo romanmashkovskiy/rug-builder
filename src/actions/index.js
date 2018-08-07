@@ -21,9 +21,16 @@ export const setBorderType = (border) => {
     }
 };
 
-export const setEditDimensionsBorderMode = (mode) => {
+export const setEditDimensionsMode = (mode) => {
     return {
-        type: actions.SET_EDIT_DIMENSIONS_BORDER_MODE,
+        type: actions.SET_EDIT_DIMENSIONS_MODE,
+        payload: mode
+    }
+};
+
+export const setEditBorderMode = (mode) => {
+    return {
+        type: actions.SET_EDIT_BORDER_MODE,
         payload: mode
     }
 };

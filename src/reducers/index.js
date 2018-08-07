@@ -2,9 +2,10 @@ import {combineReducers} from 'redux';
 import widthReducer from './width-reducer';
 import lengthReducer from './length-reducer';
 import borderReducer from './border-reducer';
-import centreReducer from './centre-reducer';
-import innerBorderReducer from './inner-border-reducer';
-import editDimensionsBorder from './edit-dimensions-border-reducer';
+import centreReducer from './centre-reducer';            //change action
+import innerBorderReducer from './inner-border-reducer'; //change action
+import editDimensions from './edit-dimensions-reducer';
+import editBorder from './edit-border-mode';
 
 const rootReducer = combineReducers({
     width: widthReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     border: borderReducer,
     centre: centreReducer,
     innerBorder: innerBorderReducer,
-    editDimensionsBorderMode: editDimensionsBorder
+    editDimensionsMode: editDimensions,
+    editBorderMode: editBorder
 });
 
 export default rootReducer;

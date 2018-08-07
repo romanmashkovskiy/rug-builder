@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom';
 import './builder-select-part.css';
 
 import StartModal from '../product-settings-modal/product-settings-modal';
-import {setEditDimensionsBorderMode} from "../../actions";
+import { setEditDimensionsMode, setEditBorderMode } from "../../actions";
 
 import header from './images/header.png';
 import footer from './images/footer.png';
@@ -34,7 +34,7 @@ class BuilderSelectPart extends Component {
                     <img src={header} alt="header"/>
                 </div>
                 <div className="main-builder">
-                    {this.props.editDimensionsBorderMode &&
+                    {(this.props.editDimensionsMode || this.props.editBorderMode) &&
                     <StartModal/>}
                     <div className="main-builder-carpet">
                         <div className="main-carpet-preview">
@@ -85,8 +85,7 @@ class BuilderSelectPart extends Component {
                                 <div
                                     className="current-size-edit"
                                     onClick={() => {
-                                        this.props.setEditDimensionsBorderMode(true);
-                                        // this.props.history.push('/');
+                                        this.props.setEditDimensionsMode(true);
                                     }
                                     }
                                 >
@@ -100,8 +99,7 @@ class BuilderSelectPart extends Component {
                                 <div
                                     className="current-size-edit"
                                     onClick={() => {
-                                        this.props.setEditDimensionsBorderMode(true);
-                                        // this.props.history.push('/')
+                                        this.props.setEditBorderMode(true);
                                     }
                                     }
                                 >
@@ -175,13 +173,15 @@ const mapStateToProps = (state) => {
         border: state.border,
         centre: state.centre,
         innerBorder: state.innerBorder,
-        editDimensionsBorderMode: state.editDimensionsBorderMode
+        editDimensionsMode: state.editDimensionsMode,
+        editBorderMode: state.editBorderMode
     };
 };
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
-            setEditDimensionsBorderMode: setEditDimensionsBorderMode
+            setEditDimensionsMode: setEditDimensionsMode,
+            setEditBorderMode: setEditBorderMode
         },
         dispatch)
 };
