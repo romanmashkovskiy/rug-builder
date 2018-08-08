@@ -4,8 +4,8 @@ import lengthReducer from './length-reducer';
 import borderReducer from './border-reducer';
 import centreReducer from './centre-reducer';            //change action
 import innerBorderReducer from './inner-border-reducer'; //change action
-import editDimensions from './edit-dimensions-reducer';
-import editBorder from './edit-border-mode';
+import editDimensions from './edit-dimensions-mode-reducer';
+import editBorder from './edit-border-mode-reducer';
 
 const rootReducer = combineReducers({
     width: widthReducer,

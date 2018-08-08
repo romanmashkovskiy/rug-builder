@@ -1,0 +1,33 @@
+.materials-center-list {
+    width: 77%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.single-materials-center-list {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+    height:100%;
+    justify-content: center;
+    align-items: center;
+    border-right: 2px solid #F9F9F9;
+    cursor: pointer;
+}
+
+.single-materials-center-list img {
+    max-width: 100%;
+    width: 67px;
+    height: 67px;
+}
+
+.single-materials-center-list h3 {
+    height: 26px;
+    color: #2D2D2D;
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    line-height: 16px;
+    text-align: center;
+}

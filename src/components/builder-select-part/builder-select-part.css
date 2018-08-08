@@ -416,14 +416,23 @@
 }
 
 .centre {
-    width: 77px;
-    height: 100px;
+    text-align: center;
 }
 
 .centre img {
     max-width: 100%;
-    width: 100%;
-    height: 100%;
+    width: 77px;
+    height: 100px;
+}
+
+.centre h3 {
+    height: 31px;
+    color: #2D2D2D;
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    line-height: 16px;
+    text-align: center;
 }
 
 .main-area-builder-inner-border {
@@ -437,6 +446,22 @@
 
 .main-area-builder-rest {
     width: 23%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.close-center {
+    height: 16px;
+    color: #383838;
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.73px;
+    line-height: 17px;
+    text-align: center;
+    cursor: pointer;
+    padding-bottom: 30px;
+    border-bottom: 	2px solid black;
 }
 
 .footer-builder {

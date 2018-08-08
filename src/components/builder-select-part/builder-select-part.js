@@ -6,7 +6,9 @@ import {withRouter} from 'react-router-dom';
 import './builder-select-part.css';
 
 import StartModal from '../product-settings-modal/product-settings-modal';
-import { setEditDimensionsMode, setEditBorderMode } from "../../actions";
+import CenterMaterial from '../center-material/center-material';
+import InnerBorderMaterial from '../inner-border-material/inner-border-material';
+import {setEditDimensionsMode, setEditBorderMode} from "../../actions";
 
 import header from './images/header.png';
 import footer from './images/footer.png';
@@ -29,6 +31,14 @@ import innerBorder from './images/inner-border-icon.svg';
 
 
 class BuilderSelectPart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showCenterMaterial: false,
+            showInnerBorderMaterial: false
+        }
+    }
+
     render() {
         return (
             <div className="container-builder">
@@ -144,17 +154,44 @@ class BuilderSelectPart extends Component {
                         </div>
                     </div>
                     <div className="main-area-builder">
-                        <div className="main-area-builder-centre">
-                            <div className="centre">
-                                <img src={centre} alt="centre"/>
+                        {this.state.showCenterMaterial && <CenterMaterial />}
+                        {this.state.showInnerBorderMaterial && <InnerBorderMaterial />}
+
+                        {
+                            !this.state.showCenterMaterial && !this.state.showInnerBorderMaterial &&
+                            <div className="main-area-builder-centre">
+                                <div className="centre"
+                                     onClick={() => {
+                                         this.setState({showCenterMaterial: true})
+                                     }}>
+                                    <img src={centre} alt="centre" />
+                                    <h3>CENTRE</h3>
+                                </div>
                             </div>
-                        </div>
-                        <div className="main-area-builder-inner-border">
-                            <div className="centre">
-                                <img src={innerBorder} alt="innerBorder"/>
+
+                        }
+                        {
+                            !this.state.showCenterMaterial && !this.state.showInnerBorderMaterial &&
+                            <div className="main-area-builder-inner-border">
+                                <div className="centre" onClick={() => {
+                                    this.setState({showInnerBorderMaterial: true})
+                                }}>
+                                    <img src={innerBorder} alt="innerBorder"/>
+                                    <h3>INNER BORDER</h3>
+                                </div>
                             </div>
-                        </div>
+                        }
                         <div className="main-area-builder-rest">
+                            {
+                                (this.state.showCenterMaterial || this.state.showInnerBorderMaterial) &&
+                                <div className="close-center" onClick={() => {
+                                    this.setState({showCenterMaterial: false, showInnerBorderMaterial: false})
+                                }}>
+                                    {
+                                        this.state.showCenterMaterial ? 'CLOSE CENTRE' : 'CLOSE INNER BORDER'
+                                    }
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
