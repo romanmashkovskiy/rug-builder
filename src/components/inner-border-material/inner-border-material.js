@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-//classes from center-material.css
+//styles from center-material.css
 
 class InnerBorderMaterial extends Component {
     render() {

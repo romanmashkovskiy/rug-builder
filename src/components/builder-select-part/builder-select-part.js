@@ -8,7 +8,14 @@ import './builder-select-part.css';
 import StartModal from '../product-settings-modal/product-settings-modal';
 import CenterMaterial from '../center-material/center-material';
 import InnerBorderMaterial from '../inner-border-material/inner-border-material';
-import {setEditDimensionsMode, setEditBorderMode} from "../../actions";
+import {
+    setEditDimensionsMode,
+    setEditBorderMode,
+    setShowCenterMaterialMode,
+    setShowInnerBorderMaterialMode,
+    setShowCenterMaterialChildrenMode,
+    setShowInnerBorderMaterialChildrenMode
+} from "../../actions";
 
 import header from './images/header.png';
 import footer from './images/footer.png';
@@ -31,13 +38,7 @@ import innerBorder from './images/inner-border-icon.svg';
 
 
 class BuilderSelectPart extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            showCenterMaterial: false,
-            showInnerBorderMaterial: false
-        }
-    }
+
 
     render() {
         return (
@@ -154,27 +155,27 @@ class BuilderSelectPart extends Component {
                         </div>
                     </div>
                     <div className="main-area-builder">
-                        {this.state.showCenterMaterial && <CenterMaterial />}
-                        {this.state.showInnerBorderMaterial && <InnerBorderMaterial />}
+                        {this.props.showCenterMaterialMode && <CenterMaterial/>}
+                        {this.props.showInnerBorderMaterialMode && <InnerBorderMaterial/>}
 
                         {
-                            !this.state.showCenterMaterial && !this.state.showInnerBorderMaterial &&
+                            !this.props.showCenterMaterialMode && !this.props.showInnerBorderMaterialMode &&
                             <div className="main-area-builder-centre">
                                 <div className="centre"
                                      onClick={() => {
-                                         this.setState({showCenterMaterial: true})
+                                         this.props.setShowCenterMaterialMode(true);
                                      }}>
-                                    <img src={centre} alt="centre" />
+                                    <img src={centre} alt="centre"/>
                                     <h3>CENTRE</h3>
                                 </div>
                             </div>
 
                         }
                         {
-                            !this.state.showCenterMaterial && !this.state.showInnerBorderMaterial &&
+                            !this.props.showCenterMaterialMode && !this.props.showInnerBorderMaterialMode &&
                             <div className="main-area-builder-inner-border">
                                 <div className="centre" onClick={() => {
-                                    this.setState({showInnerBorderMaterial: true})
+                                    this.props.setShowInnerBorderMaterialMode(true);
                                 }}>
                                     <img src={innerBorder} alt="innerBorder"/>
                                     <h3>INNER BORDER</h3>
@@ -183,12 +184,15 @@ class BuilderSelectPart extends Component {
                         }
                         <div className="main-area-builder-rest">
                             {
-                                (this.state.showCenterMaterial || this.state.showInnerBorderMaterial) &&
+                                (this.props.showCenterMaterialMode || this.props.showInnerBorderMaterialMode) &&
                                 <div className="close-center" onClick={() => {
-                                    this.setState({showCenterMaterial: false, showInnerBorderMaterial: false})
+                                    this.props.setShowCenterMaterialMode(false);
+                                    this.props.setShowInnerBorderMaterialMode(false);
+                                    this.props.setShowCenterMaterialChildrenMode(false);
+                                    this.props.setShowInnerBorderMaterialChildrenMode(false);
                                 }}>
                                     {
-                                        this.state.showCenterMaterial ? 'CLOSE CENTRE' : 'CLOSE INNER BORDER'
+                                        this.props.showCenterMaterialMode ? 'CLOSE CENTRE' : 'CLOSE INNER BORDER'
                                     }
                                 </div>
                             }
@@ -213,14 +217,20 @@ const mapStateToProps = (state) => {
         centre: state.centre,
         innerBorder: state.innerBorder,
         editDimensionsMode: state.editDimensionsMode,
-        editBorderMode: state.editBorderMode
+        editBorderMode: state.editBorderMode,
+        showCenterMaterialMode: state.showCenterMaterialMode,
+        showInnerBorderMaterialMode: state.showInnerBorderMaterialMode
     };
 };
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
             setEditDimensionsMode: setEditDimensionsMode,
-            setEditBorderMode: setEditBorderMode
+            setEditBorderMode: setEditBorderMode,
+            setShowCenterMaterialMode: setShowCenterMaterialMode,
+            setShowInnerBorderMaterialMode: setShowInnerBorderMaterialMode,
+            setShowCenterMaterialChildrenMode: setShowCenterMaterialChildrenMode,
+            setShowInnerBorderMaterialChildrenMode: setShowInnerBorderMaterialChildrenMode
         },
         dispatch)
 };

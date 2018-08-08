@@ -35,3 +35,30 @@ export const setEditBorderMode = (mode) => {
     }
 };
 
+export const setShowCenterMaterialMode = (mode) => {
+    return {
+        type: actions.SHOW_CENTER_MATERIAL_MODE,
+        payload: mode
+    }
+};
+
+export const setShowCenterMaterialChildrenMode = (mode) => {
+    return {
+        type: actions.SHOW_CENTER_MATERIAL_CHILDREN_MODE,
+        payload: mode
+    }
+};
+
+export const setShowInnerBorderMaterialMode = (mode) => {
+    return {
+        type: actions.SHOW_INNER_BORDER_MATERIAL_MODE,
+        payload: mode
+    }
+};
+
+export const setShowInnerBorderMaterialChildrenMode = (mode) => {
+    return {
+        type: actions.SHOW_INNER_BORDER_MATERIAL_MODE_CHILDREN_MODE,
+        payload: mode
+    }
+};

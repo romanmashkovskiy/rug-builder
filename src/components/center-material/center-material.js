@@ -1,18 +1,29 @@
 import React, {Component} from 'react';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+
+import {
+    setShowCenterMaterialMode,
+    setShowCenterMaterialChildrenMode
+} from "../../actions";
+
 import './center-material.css';
-import './wool-center/wool-center';
+
 
 class CenterMaterial extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showChildrenFibre: false
+            currentChildren: []
         }
     }
 
 
-    renderChildren(children) {
-        //this.setState({showChildrenFibre: true});
+    showChildren(children) {
+        this.props.setShowCenterMaterialChildrenMode(true);
+        this.setState({
+            currentChildren: children
+        });
     }
 
     render() {
@@ -250,14 +261,27 @@ class CenterMaterial extends Component {
         return (
             <div className="materials-center-list">
                 {
-                    !this.state.showChildrenFibre &&
+                    !this.props.showCenterMaterialChildrenMode &&
                     materials.map((material) => {
                         return (
                             <div className="single-materials-center-list" key={material.id}
-                                 onClick={() => this.setState({showChildrenFibre: true})}>
+                                 onClick={() => this.showChildren(material.children)}>
                                 <div>
                                     <img src={material.src} alt="type-material-center"/>
                                     <h3>{material.name}</h3>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+                {
+                    this.props.showCenterMaterialChildrenMode &&
+                    this.state.currentChildren.map((child) => {
+                        return (
+                            <div className="single-materials-center-list-child" key={child.id}>
+                                <div className="single-materials-center-list-child-wrapper">
+                                    <img src={child.src} alt="material-center-child"/>
+                                    <h3>{child.name}</h3>
                                 </div>
                             </div>
                         )
@@ -269,4 +293,18 @@ class CenterMaterial extends Component {
     }
 }
 
-export default CenterMaterial;
+const mapStateToProps = (state) => {
+    return {
+        showCenterMaterialChildrenMode: state.showCenterMaterialChildrenMode,
+    };
+};
+
+const matchDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+            setShowCenterMaterialChildrenMode: setShowCenterMaterialChildrenMode,
+            setShowCenterMaterialMode: setShowCenterMaterialMode
+        },
+        dispatch)
+};
+
+export default connect(mapStateToProps, matchDispatchToProps)(CenterMaterial)
