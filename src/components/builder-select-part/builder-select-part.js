@@ -21,6 +21,7 @@ import header from './images/header.png';
 import footer from './images/footer.png';
 import edit from './images/edit-icon.svg';
 import exit from './images/exit.svg';
+import restart from './images/restart.svg'
 import twice from './images/2x.png';
 import zoomIn from './images/zoom-in.svg';
 import zoomOut from './images/zoom-out.svg';
@@ -184,16 +185,75 @@ class BuilderSelectPart extends Component {
                         }
                         <div className="main-area-builder-rest">
                             {
-                                (this.props.showCenterMaterialMode || this.props.showInnerBorderMaterialMode) &&
+                                (this.props.showCenterMaterialMode && !this.props.showCenterMaterialChildrenMode) &&
                                 <div className="close-center" onClick={() => {
                                     this.props.setShowCenterMaterialMode(false);
-                                    this.props.setShowInnerBorderMaterialMode(false);
-                                    this.props.setShowCenterMaterialChildrenMode(false);
-                                    this.props.setShowInnerBorderMaterialChildrenMode(false);
                                 }}>
-                                    {
-                                        this.props.showCenterMaterialMode ? 'CLOSE CENTRE' : 'CLOSE INNER BORDER'
+                                    CLOSE CENTRE
+                                </div>
+                            }
+                            {
+                                (this.props.showInnerBorderMaterialMode && !this.props.showInnerBorderMaterialChildrenMode) &&
+                                <div className="close-center" onClick={() => {
+                                    this.props.setShowInnerBorderMaterialMode(false);
+                                }}>
+                                    CLOSE INNER BORDER
+                                </div>
+                            }
+                            {
+                                (this.props.showCenterMaterialMode && this.props.showCenterMaterialChildrenMode) &&
+                                <div className="back-to-fibre-close-center">
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowCenterMaterialChildrenMode(false)
                                     }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={restart} alt="restart"/>
+                                            <div>
+                                                BACK TO FIBRE
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowCenterMaterialMode(false);
+                                        this.props.setShowCenterMaterialChildrenMode(false)
+                                    }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={exit} alt="exit"/>
+                                            <div>
+                                                CLOSE CENTRE
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            {
+                                (this.props.showInnerBorderMaterialMode && this.props.showInnerBorderMaterialChildrenMode) &&
+                                <div className="back-to-fibre-close-center">
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowInnerBorderMaterialChildrenMode(false)
+                                    }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={restart} alt="restart"/>
+                                            <div>
+                                                BACK TO STYLE
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowInnerBorderMaterialMode(false);
+                                        this.props.setShowInnerBorderMaterialChildrenMode(false)
+                                    }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={exit} alt="exit"/>
+                                            <div>
+                                                CLOSE INNER BORDER
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             }
                         </div>
@@ -219,7 +279,9 @@ const mapStateToProps = (state) => {
         editDimensionsMode: state.editDimensionsMode,
         editBorderMode: state.editBorderMode,
         showCenterMaterialMode: state.showCenterMaterialMode,
-        showInnerBorderMaterialMode: state.showInnerBorderMaterialMode
+        showInnerBorderMaterialMode: state.showInnerBorderMaterialMode,
+        showCenterMaterialChildrenMode: state.showCenterMaterialChildrenMode,
+        showInnerBorderMaterialChildrenMode: state.showInnerBorderMaterialChildrenMode
     };
 };
 

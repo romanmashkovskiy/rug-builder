@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
     showCenterMaterialMode: setShowCenterMaterialModeReducer,
     showCenterMaterialChildrenMode: setShowCenterMaterialChildrenModeReducer,
     showInnerBorderMaterialMode: setShowInnerBorderMaterialModeReducer,
-    showInnerBorderChildrenMaterialMode: setShowInnerBorderMaterialChildrenModeReducer
+    showInnerBorderMaterialChildrenMode: setShowInnerBorderMaterialChildrenModeReducer
 });
 
 export default rootReducer;

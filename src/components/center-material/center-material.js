@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
-import {
-    setShowCenterMaterialMode,
-    setShowCenterMaterialChildrenMode
-} from "../../actions";
+import {setShowCenterMaterialChildrenMode} from "../../actions";
+
+import random from './images/random-icon.svg';
 
 import './center-material.css';
 
@@ -17,7 +16,6 @@ class CenterMaterial extends Component {
             currentChildren: []
         }
     }
-
 
     showChildren(children) {
         this.props.setShowCenterMaterialChildrenMode(true);
@@ -35,8 +33,35 @@ class CenterMaterial extends Component {
                 children: [
                     {
                         id: 1,
-                        name: "affluenc",
-                        src: "http://cdn.crucial-trading.com/uploads/20161111175248/GPC20643480.jpg"
+                        name: "affluence",
+                        src: "http://cdn.crucial-trading.com/uploads/20161111175248/GPC20643480.jpg",
+                        children: [
+                            {
+                                id: 1,
+                                name: "AF420",
+                                src: "http://cdn.crucial-trading.com/uploads/20161111175248/GPC20643480-150x150.jpg"
+                            },
+                            {
+                                id: 2,
+                                name: "AF421",
+                                src: "http://cdn.crucial-trading.com/uploads/20161111175254/GPC20643501-150x150.jpg"
+                            },
+                            {
+                                id: 3,
+                                name: "AF422",
+                                src: "http://cdn.crucial-trading.com/uploads/20161111175301/GPC20643528-150x150.jpg"
+                            },
+                            {
+                                id: 4,
+                                name: "AF423",
+                                src: "http://cdn.crucial-trading.com/uploads/20161111175310/GPC20643544-150x150.jpg"
+                            },
+                            {
+                                id: 5,
+                                name: "AF425",
+                                src: "http://cdn.crucial-trading.com/uploads/20161111175318/GPC20643587-150x150.jpg"
+                            }
+                        ]
                     },
                     {
                         id: 2,
@@ -276,6 +301,15 @@ class CenterMaterial extends Component {
                 }
                 {
                     this.props.showCenterMaterialChildrenMode &&
+                    <div className="single-materials-center-list-child">
+                        <div className="single-materials-center-list-child-wrapper">
+                            <img src={random} alt="random"/>
+                            <h3>random</h3>
+                        </div>
+                    </div>
+                }
+                {
+                    this.props.showCenterMaterialChildrenMode &&
                     this.state.currentChildren.map((child) => {
                         return (
                             <div className="single-materials-center-list-child" key={child.id}>
@@ -301,8 +335,7 @@ const mapStateToProps = (state) => {
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
-            setShowCenterMaterialChildrenMode: setShowCenterMaterialChildrenMode,
-            setShowCenterMaterialMode: setShowCenterMaterialMode
+            setShowCenterMaterialChildrenMode: setShowCenterMaterialChildrenMode
         },
         dispatch)
 };
