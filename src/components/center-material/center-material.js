@@ -2,9 +2,14 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
-import {setShowCenterMaterialChildrenMode} from "../../actions";
+import {
+    setShowCenterMaterialFirstChildrenMode,
+    setShowCenterMaterialSecondChildrenMode,
+    setCenterMaterialType
+} from "../../actions";
 
 import random from './images/random-icon.svg';
+
 
 import './center-material.css';
 
@@ -13,14 +18,22 @@ class CenterMaterial extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentChildren: []
+            currentFirstChildren: [],
+            currentSecondChildren: []
         }
     }
 
-    showChildren(children) {
-        this.props.setShowCenterMaterialChildrenMode(true);
+    showFirstChildren(children) {
+        this.props.setShowCenterMaterialFirstChildrenMode(true);
         this.setState({
-            currentChildren: children
+            currentFirstChildren: children
+        });
+    }
+
+    showSecondChildren(children) {
+        this.props.setShowCenterMaterialSecondChildrenMode(true);
+        this.setState({
+            currentSecondChildren: children
         });
     }
 
@@ -285,12 +298,14 @@ class CenterMaterial extends Component {
 
         return (
             <div className="materials-center-list">
+
+                {/*parent center material*/}
                 {
-                    !this.props.showCenterMaterialChildrenMode &&
+                    !this.props.showCenterMaterialFirstChildrenMode &&
                     materials.map((material) => {
                         return (
                             <div className="single-materials-center-list" key={material.id}
-                                 onClick={() => this.showChildren(material.children)}>
+                                 onClick={() => this.showFirstChildren(material.children)}>
                                 <div>
                                     <img src={material.src} alt="type-material-center"/>
                                     <h3>{material.name}</h3>
@@ -299,8 +314,11 @@ class CenterMaterial extends Component {
                         )
                     })
                 }
+
+                {/*random children center material*/}
                 {
-                    this.props.showCenterMaterialChildrenMode &&
+                    (this.props.showCenterMaterialFirstChildrenMode ||
+                        this.props.showCenterMaterialSecondChildrenMode) &&
                     <div className="single-materials-center-list-child">
                         <div className="single-materials-center-list-child-wrapper">
                             <img src={random} alt="random"/>
@@ -308,11 +326,14 @@ class CenterMaterial extends Component {
                         </div>
                     </div>
                 }
+
+                {/*first children center material*/}
                 {
-                    this.props.showCenterMaterialChildrenMode &&
-                    this.state.currentChildren.map((child) => {
+                    (this.props.showCenterMaterialFirstChildrenMode && !this.props.showCenterMaterialSecondChildrenMode) &&
+                    this.state.currentFirstChildren.map((child) => {
                         return (
-                            <div className="single-materials-center-list-child" key={child.id}>
+                            <div className="single-materials-center-list-child" key={child.id}
+                                 onClick={() => this.showSecondChildren(child.children)}>
                                 <div className="single-materials-center-list-child-wrapper">
                                     <img src={child.src} alt="material-center-child"/>
                                     <h3>{child.name}</h3>
@@ -322,6 +343,21 @@ class CenterMaterial extends Component {
                     })
                 }
 
+                {/*second children center material*/}
+                {
+                    this.props.showCenterMaterialSecondChildrenMode &&
+                    this.state.currentSecondChildren.map((child) => {
+                        return (
+                            <div className="single-materials-center-list-child" key={child.id}
+                                 onClick={() => {this.props.setCenterMaterialType(child.name)}}>
+                                <div className="single-materials-center-list-child-wrapper">
+                                    <img src={child.src} alt="material-center-child"/>
+                                    <h3>{child.name}</h3>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
             </div>
         );
     }
@@ -329,13 +365,17 @@ class CenterMaterial extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        showCenterMaterialChildrenMode: state.showCenterMaterialChildrenMode,
+        showCenterMaterialFirstChildrenMode: state.showCenterMaterialFirstChildrenMode,
+        showCenterMaterialSecondChildrenMode: state.showCenterMaterialSecondChildrenMode,
+        centre: state.centre
     };
 };
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
-            setShowCenterMaterialChildrenMode: setShowCenterMaterialChildrenMode
+            setShowCenterMaterialFirstChildrenMode: setShowCenterMaterialFirstChildrenMode,
+            setShowCenterMaterialSecondChildrenMode: setShowCenterMaterialSecondChildrenMode,
+            setCenterMaterialType: setCenterMaterialType
         },
         dispatch)
 };

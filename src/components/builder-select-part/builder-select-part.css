@@ -309,6 +309,18 @@
     position: absolute;
     top: 50%;
     margin-top: -7.5px;
+}
+
+.centre-is-not-selected-type {
+    display: inline-block;
+    color: #272727;
+    font-family: Montserrat, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.47px;
+    line-height: 15px;
+    position: absolute;
+    top: 50%;
+    margin-top: -7.5px;
     opacity: 0.42;
 }
 

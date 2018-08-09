@@ -2,14 +2,16 @@ import {combineReducers} from 'redux';
 import widthReducer from './width-reducer';
 import lengthReducer from './length-reducer';
 import borderReducer from './border-reducer';
-import centreReducer from './centre-reducer';            //change action
-import innerBorderReducer from './inner-border-reducer'; //change action
+import centreReducer from './centre-reducer';
+import innerBorderReducer from './inner-border-reducer';
 import editDimensions from './edit-dimensions-mode-reducer';
 import editBorder from './edit-border-mode-reducer';
 import setShowCenterMaterialModeReducer from './set-show-center-material-mode';
-import setShowCenterMaterialChildrenModeReducer from './set-show-center-material-children-mode';
+import setShowCenterMaterialFirstChildrenModeReducer from './set-show-center-material-first-children-mode';
+import setShowCenterMaterialSecondChildrenModeReducer from './set-show-center-material-second-children-mode';
 import setShowInnerBorderMaterialModeReducer from './set-show-inner-border-material-mode';
-import setShowInnerBorderMaterialChildrenModeReducer from './set-show-inner-border-material-children-mode';
+import setShowInnerBorderMaterialFirstChildrenModeReducer from './set-show-inner-border-material-first-children-mode';
+import setShowInnerBorderMaterialSecondChildrenModeReducer from './set-show-inner-border-material-second-children-mode';
 
 const rootReducer = combineReducers({
     width: widthReducer,
@@ -20,9 +22,11 @@ const rootReducer = combineReducers({
     editDimensionsMode: editDimensions,
     editBorderMode: editBorder,
     showCenterMaterialMode: setShowCenterMaterialModeReducer,
-    showCenterMaterialChildrenMode: setShowCenterMaterialChildrenModeReducer,
+    showCenterMaterialFirstChildrenMode: setShowCenterMaterialFirstChildrenModeReducer,
+    showCenterMaterialSecondChildrenMode: setShowCenterMaterialSecondChildrenModeReducer,
     showInnerBorderMaterialMode: setShowInnerBorderMaterialModeReducer,
-    showInnerBorderMaterialChildrenMode: setShowInnerBorderMaterialChildrenModeReducer
+    showInnerBorderMaterialFirstChildrenMode: setShowInnerBorderMaterialFirstChildrenModeReducer,
+    showInnerBorderMaterialSecondChildrenMode: setShowInnerBorderMaterialSecondChildrenModeReducer
 });
 
 export default rootReducer;

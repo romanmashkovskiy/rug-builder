@@ -2,7 +2,11 @@ import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
-import {setShowInnerBorderMaterialChildrenMode} from "../../actions";
+import {
+    setShowInnerBorderMaterialFirstChildrenMode,
+    setShowInnerBorderMaterialSecondChildrenMode,
+    setInnerBorderMaterialType
+} from "../../actions";
 
 import random from './images/random-icon.svg';
 
@@ -12,14 +16,22 @@ class InnerBorderMaterial extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentChildren: []
+            currentFirstChildren: [],
+            currentSecondChildren: []
         }
     }
 
-    showChildren(children) {
-        this.props.setShowInnerBorderMaterialChildrenMode(true);
+    showFirstChildren(children) {
+        this.props.setShowInnerBorderMaterialFirstChildrenMode(true);
         this.setState({
-            currentChildren: children
+            currentFirstChildren: children
+        });
+    }
+
+    showSecondChildren(children) {
+        this.props.setShowInnerBorderMaterialSecondChildrenMode(true);
+        this.setState({
+            currentSecondChildren: children
         });
     }
 
@@ -33,7 +45,24 @@ class InnerBorderMaterial extends Component {
                     {
                         id: 1,
                         name: "Cotton Chenille",
-                        src: "http://cdn.crucial-trading.com/uploads/20170131113640/Cotton_Chenille_CCN1_1223_small.jpg"
+                        src: "http://cdn.crucial-trading.com/uploads/20170131113640/Cotton_Chenille_CCN1_1223_small.jpg",
+                        children: [
+                            {
+                                id: 1,
+                                name: "CCN1",
+                                src: "http://cdn.crucial-trading.com/uploads/20161114134225/GPC20238437-150x150.jpg"
+                            },
+                            {
+                                id: 2,
+                                name: "CCN10",
+                                src: "http://cdn.crucial-trading.com/uploads/20161114172558/GPC20238445-150x150.jpg"
+                            },
+                            {
+                                id: 3,
+                                name: "CCN12",
+                                src: "http://cdn.crucial-trading.com/uploads/20161114172602/GPC20238453-150x150.jpg"
+                            }
+                        ]
                     },
                     {
                         id: 2,
@@ -66,12 +95,14 @@ class InnerBorderMaterial extends Component {
 
         return (
             <div className="materials-center-list">
+
+                {/*parent inner border material*/}
                 {
-                    !this.props.showInnerBorderMaterialChildrenMode &&
+                    !this.props.showInnerBorderMaterialFirstChildrenMode &&
                     materials.map((material) => {
                         return (
                             <div className="single-materials-center-list" key={material.id}
-                                 onClick={() => this.showChildren(material.children)}>
+                                 onClick={() => this.showFirstChildren(material.children)}>
                                 <div>
                                     <img src={material.src} alt="type-material-center"/>
                                     <h3>{material.name}</h3>
@@ -80,8 +111,10 @@ class InnerBorderMaterial extends Component {
                         )
                     })
                 }
+
+                {/*random children center material*/}
                 {
-                    this.props.showInnerBorderMaterialChildrenMode &&
+                    this.props.showInnerBorderMaterialFirstChildrenMode &&
                     <div className="single-materials-center-list-child">
                         <div className="single-materials-center-list-child-wrapper">
                             <img src={random} alt="random"/>
@@ -89,9 +122,11 @@ class InnerBorderMaterial extends Component {
                         </div>
                     </div>
                 }
+
+                {/*first children center material*/}
                 {
-                    this.props.showInnerBorderMaterialChildrenMode &&
-                    this.state.currentChildren.map((child) => {
+                    (this.props.showInnerBorderMaterialFirstChildrenMode && !this.props.showCenterMaterialSecondChildrenMode) &&
+                    this.state.currentFirstChildren.map((child) => {
                         return (
                             <div className="single-materials-center-list-child" key={child.id}>
                                 <div className="single-materials-center-list-child-wrapper">
@@ -103,6 +138,8 @@ class InnerBorderMaterial extends Component {
                     })
                 }
 
+
+
             </div>
         );
     }
@@ -110,13 +147,15 @@ class InnerBorderMaterial extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        showInnerBorderMaterialChildrenMode: state.showInnerBorderMaterialChildrenMode,
+        showInnerBorderMaterialFirstChildrenMode: state.showInnerBorderMaterialFirstChildrenMode,
     };
 };
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
-            setShowInnerBorderMaterialChildrenMode: setShowInnerBorderMaterialChildrenMode
+            setShowInnerBorderMaterialFirstChildrenMode: setShowInnerBorderMaterialFirstChildrenMode,
+            setShowInnerBorderMaterialSecondChildrenMode: setShowInnerBorderMaterialSecondChildrenMode,
+            setInnerBorderMaterialType: setInnerBorderMaterialType
         },
         dispatch)
 };
