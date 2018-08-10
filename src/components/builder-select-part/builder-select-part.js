@@ -50,6 +50,18 @@ class BuilderSelectPart extends Component {
 
 
     render() {
+        const initCenter = {
+            id: 0,
+            name: 'CENTRE',
+            src: ''
+        };
+
+        const initInnerBorder = {
+            id: 0,
+            name: 'INNER BORDER',
+            src: ''
+        };
+
         return (
             <div className="container-builder">
                 <div className="header-builder">
@@ -134,40 +146,40 @@ class BuilderSelectPart extends Component {
                             <div className="centre-is-selected">
 
                                 {/*type of selected center*/}
-                                {this.props.centre === "CENTRE" &&
+                                {this.props.centre.name === "CENTRE" &&
                                 <div className="current-size-edit">
                                     <img src={exit} alt="exit"/>
                                     <div className="centre-is-not-selected-type">
-                                        {`${this.props.centre}`}
+                                        {`${this.props.centre.name}`}
                                     </div>
                                 </div>}
-                                {this.props.centre !== "CENTRE" &&
+                                {this.props.centre.name!== "CENTRE" &&
                                 <div className="current-size-edit">
                                     <img src={exitSelected} alt="exit" onClick={() => {
-                                        this.props.setCenterMaterialType('CENTRE');
+                                        this.props.setCenterMaterialType(initCenter);
                                     }}/>
                                     <div className="centre-is-selected-type">
-                                        {`${this.props.centre}`}
+                                        {`${this.props.centre.name}`}
                                     </div>
                                 </div>}
                             </div>
 
                             {/*type of selected inner border*/}
                             <div className="border-is-selected">
-                                {this.props.innerBorder === "INNER BORDER" &&
+                                {this.props.innerBorder.name === "INNER BORDER" &&
                                 <div className="current-size-edit">
                                     <img src={exit} alt="exit"/>
                                     <div className="centre-is-not-selected-type">
-                                        {`${this.props.innerBorder}`}
+                                        {`${this.props.innerBorder.name}`}
                                     </div>
                                 </div>}
-                                {this.props.innerBorder !== "INNER BORDER" &&
+                                {this.props.innerBorder.name !== "INNER BORDER" &&
                                 <div className="current-size-edit">
                                     <img src={exitSelected} alt="exit" onClick={() => {
-                                        this.props.setInnerBorderMaterialType('INNER BORDER');
+                                        this.props.setInnerBorderMaterialType(initInnerBorder);
                                     }}/>
                                     <div className="centre-is-selected-type">
-                                        {`${this.props.innerBorder}`}
+                                        {`${this.props.innerBorder.name}`}
                                     </div>
                                 </div>}
                             </div>
@@ -198,11 +210,14 @@ class BuilderSelectPart extends Component {
                                      onClick={() => {
                                          this.props.setShowCenterMaterialMode(true);
                                      }}>
-                                    <img src={centre} alt="centre"/>
-                                    {this.props.centre !== 'CENTRE' &&
-                                    <img src={centre} alt="type" />}
+                                    <img className="centre-icon" src={centre} alt="centre"/>
                                     <h3>CENTRE</h3>
+                                    {this.props.centre.name !== 'CENTRE' &&
+                                    <div className="centre-icon-selected-material">
+                                        <img src={this.props.centre.src} alt="type" />
+                                    </div>}
                                 </div>
+
                             </div>
 
                         }
@@ -212,8 +227,12 @@ class BuilderSelectPart extends Component {
                                 <div className="centre" onClick={() => {
                                     this.props.setShowInnerBorderMaterialMode(true);
                                 }}>
-                                    <img src={innerBorder} alt="innerBorder"/>
+                                    <img className="centre-icon" src={innerBorder} alt="innerBorder"/>
                                     <h3>INNER BORDER</h3>
+                                    {this.props.innerBorder.name !== 'INNER BORDER' &&
+                                    <div className="centre-icon-selected-material">
+                                        <img src={this.props.innerBorder.src} alt="type" />
+                                    </div>}
                                 </div>
                             </div>
                         }
@@ -277,13 +296,13 @@ class BuilderSelectPart extends Component {
                                     this.props.showCenterMaterialFirstChildrenMode &&
                                     this.props.showCenterMaterialSecondChildrenMode) &&
                                 <div className="back-to-fibre-close-center">
-                                    {this.props.centre === 'CENTRE' &&
+                                    {this.props.centre.name === 'CENTRE' &&
                                     <div className="back-to-fibre-close-center-first">
                                         <div className="back-to-fibre-close-center-first-text-image">
                                             <img src={donePale} alt="done"/>
                                         </div>
                                     </div>}
-                                    {this.props.centre !== 'CENTRE' &&
+                                    {this.props.centre.name !== 'CENTRE' &&
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowCenterMaterialMode(false);
                                         this.props.setShowCenterMaterialFirstChildrenMode(false);
@@ -296,7 +315,7 @@ class BuilderSelectPart extends Component {
                                     </div>}
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowCenterMaterialSecondChildrenMode(false);
-                                        this.props.setCenterMaterialType('CENTRE');
+                                        this.props.setCenterMaterialType(initCenter);
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -344,13 +363,13 @@ class BuilderSelectPart extends Component {
                                     this.props.showInnerBorderMaterialFirstChildrenMode &&
                                     this.props.showInnerBorderMaterialSecondChildrenMode) &&
                                 <div className="back-to-fibre-close-center">
-                                    {this.props.innerBorder === 'INNER BORDER' &&
+                                    {this.props.innerBorder.name === 'INNER BORDER' &&
                                     <div className="back-to-fibre-close-center-first">
                                         <div className="back-to-fibre-close-center-first-text-image">
                                             <img src={donePale} alt="done"/>
                                         </div>
                                     </div>}
-                                    {this.props.innerBorder !== 'INNER BORDER' &&
+                                    {this.props.innerBorder.name !== 'INNER BORDER' &&
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowInnerBorderMaterialMode(false);
                                         this.props.setShowInnerBorderMaterialFirstChildrenMode(false);
@@ -363,7 +382,7 @@ class BuilderSelectPart extends Component {
                                     </div>}
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowInnerBorderMaterialSecondChildrenMode(false);
-                                        this.props.setInnerBorderMaterialType('INNER BORDER');
+                                        this.props.setInnerBorderMaterialType(initInnerBorder);
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">

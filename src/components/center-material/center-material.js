@@ -24,7 +24,7 @@ class CenterMaterial extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getCenterMaterials();
     }
 
@@ -40,6 +40,18 @@ class CenterMaterial extends Component {
         this.setState({
             currentSecondChildren: children
         });
+    }
+
+    calculateRandom() {
+        if (this.props.showCenterMaterialSecondChildrenMode) {
+            const length = this.state.currentSecondChildren.length;
+            const randomIndex = Math.round(Math.random() * (length - 1));
+            this.props.setCenterMaterialType(this.state.currentSecondChildren[randomIndex]);
+        } else {
+            const length = this.state.currentFirstChildren.length;
+            const randomIndex = Math.round(Math.random() * (length - 1));
+            this.showSecondChildren(this.state.currentFirstChildren[0].children);
+        }
     }
 
     render() {
@@ -67,7 +79,10 @@ class CenterMaterial extends Component {
                 {
                     (this.props.showCenterMaterialFirstChildrenMode ||
                         this.props.showCenterMaterialSecondChildrenMode) &&
-                    <div className="single-materials-center-list-child">
+                    <div className="single-materials-center-list-child"
+                         onClick={() => {
+                             this.calculateRandom();
+                         }}>
                         <div className="single-materials-center-list-child-wrapper">
                             <img src={random} alt="random"/>
                             <h3>random</h3>
@@ -97,8 +112,14 @@ class CenterMaterial extends Component {
                     this.state.currentSecondChildren.map((child) => {
                         return (
                             <div className="single-materials-center-list-child" key={child.id}
-                                 onClick={() => {this.props.setCenterMaterialType(child.name)}}>
+                                 onClick={() => {
+                                     this.props.setCenterMaterialType(child)
+                                 }}>
                                 <div className="single-materials-center-list-child-wrapper">
+                                    <img src={child.src} alt="material-center-child"/>
+                                    <h3>{child.name}</h3>
+                                </div>
+                                <div className="single-materials-center-hover">
                                     <img src={child.src} alt="material-center-child"/>
                                     <h3>{child.name}</h3>
                                 </div>

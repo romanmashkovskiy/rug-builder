@@ -22,7 +22,7 @@ class InnerBorderMaterial extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.getInnerBorderMaterials();
     }
 
@@ -40,8 +40,19 @@ class InnerBorderMaterial extends Component {
         });
     }
 
-    render() {
+    calculateRandom() {
+        if (this.props.showInnerBorderMaterialSecondChildrenMode) {
+            const length = this.state.currentSecondChildren.length;
+            const randomIndex = Math.round(Math.random() * (length - 1));
+            this.props.setInnerBorderMaterialType(this.state.currentSecondChildren[randomIndex]);
+        } else {
+            const length = this.state.currentFirstChildren.length;
+            const randomIndex = Math.round(Math.random() * (length - 1));
+            this.showSecondChildren(this.state.currentFirstChildren[0].children);
+        }
+    }
 
+    render() {
 
         return (
             <div className="materials-center-list">
@@ -66,7 +77,10 @@ class InnerBorderMaterial extends Component {
                 {
                     (this.props.showInnerBorderMaterialFirstChildrenMode ||
                         this.props.showInnerBorderMaterialSecondChildrenMode) &&
-                    <div className="single-materials-center-list-child">
+                    <div className="single-materials-center-list-child"
+                         onClick={() => {
+                             this.calculateRandom();
+                         }}>
                         <div className="single-materials-center-list-child-wrapper">
                             <img src={random} alt="random"/>
                             <h3>random</h3>
@@ -96,7 +110,9 @@ class InnerBorderMaterial extends Component {
                     this.state.currentSecondChildren.map((child) => {
                         return (
                             <div className="single-materials-center-list-child" key={child.id}
-                                 onClick={() => {this.props.setInnerBorderMaterialType(child.name)}}>
+                                 onClick={() => {
+                                     this.props.setInnerBorderMaterialType(child)
+                                 }}>
                                 <div className="single-materials-center-list-child-wrapper">
                                     <img src={child.src} alt="material-center-child"/>
                                     <h3>{child.name}</h3>
@@ -105,7 +121,6 @@ class InnerBorderMaterial extends Component {
                         )
                     })
                 }
-
 
 
             </div>
