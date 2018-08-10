@@ -199,6 +199,8 @@ class BuilderSelectPart extends Component {
                                          this.props.setShowCenterMaterialMode(true);
                                      }}>
                                     <img src={centre} alt="centre"/>
+                                    {this.props.centre !== 'CENTRE' &&
+                                    <img src={centre} alt="type" />}
                                     <h3>CENTRE</h3>
                                 </div>
                             </div>

@@ -12,6 +12,8 @@ import setShowCenterMaterialSecondChildrenModeReducer from './set-show-center-ma
 import setShowInnerBorderMaterialModeReducer from './set-show-inner-border-material-mode';
 import setShowInnerBorderMaterialFirstChildrenModeReducer from './set-show-inner-border-material-first-children-mode';
 import setShowInnerBorderMaterialSecondChildrenModeReducer from './set-show-inner-border-material-second-children-mode';
+import getInnerBorderMaterialsReducer from './get-inner-border-materials';
+import getCenterMaterialsReducer from './get-center-materials';
 
 const rootReducer = combineReducers({
     width: widthReducer,
@@ -26,7 +28,9 @@ const rootReducer = combineReducers({
     showCenterMaterialSecondChildrenMode: setShowCenterMaterialSecondChildrenModeReducer,
     showInnerBorderMaterialMode: setShowInnerBorderMaterialModeReducer,
     showInnerBorderMaterialFirstChildrenMode: setShowInnerBorderMaterialFirstChildrenModeReducer,
-    showInnerBorderMaterialSecondChildrenMode: setShowInnerBorderMaterialSecondChildrenModeReducer
+    showInnerBorderMaterialSecondChildrenMode: setShowInnerBorderMaterialSecondChildrenModeReducer,
+    innerBorderMaterials: getInnerBorderMaterialsReducer,
+    centerMaterials: getCenterMaterialsReducer
 });
 
 export default rootReducer;

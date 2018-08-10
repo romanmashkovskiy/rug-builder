@@ -90,3 +90,15 @@ export const setInnerBorderMaterialType = (type) => {
         payload: type
     }
 };
+
+export const getCenterMaterials = () => {
+    return {
+        type: actions.GET_MATERIALS_CENTER
+    }
+};
+
+export const getInnerBorderMaterials = () => {
+    return {
+        type: actions.GET_MATERIALS_INNER_BORDER
+    }
+};
