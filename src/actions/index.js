@@ -65,14 +65,14 @@ export const setShowInnerBorderMaterialMode = (mode) => {
 
 export const setShowInnerBorderMaterialFirstChildrenMode = (mode) => {
     return {
-        type: actions.SHOW_INNER_BORDER_MATERIAL_MODE_FIRST_CHILDREN_MODE,
+        type: actions.SHOW_INNER_BORDER_MATERIAL_FIRST_CHILDREN_MODE,
         payload: mode
     }
 };
 
 export const setShowInnerBorderMaterialSecondChildrenMode = (mode) => {
     return {
-        type: actions.SHOW_INNER_BORDER_MATERIAL_MODE_SECOND_CHILDREN_MODE,
+        type: actions.SHOW_INNER_BORDER_MATERIAL_SECOND_CHILDREN_MODE,
         payload: mode
     }
 };

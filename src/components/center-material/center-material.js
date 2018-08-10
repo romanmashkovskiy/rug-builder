@@ -366,8 +366,7 @@ class CenterMaterial extends Component {
 const mapStateToProps = (state) => {
     return {
         showCenterMaterialFirstChildrenMode: state.showCenterMaterialFirstChildrenMode,
-        showCenterMaterialSecondChildrenMode: state.showCenterMaterialSecondChildrenMode,
-        centre: state.centre
+        showCenterMaterialSecondChildrenMode: state.showCenterMaterialSecondChildrenMode
     };
 };
 
