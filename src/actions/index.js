@@ -77,6 +77,28 @@ export const setShowInnerBorderMaterialSecondChildrenMode = (mode) => {
     }
 };
 
+
+export const setShowOuterBorderMaterialMode = (mode) => {
+    return {
+        type: actions.SHOW_OUTER_BORDER_MATERIAL_MODE,
+        payload: mode
+    }
+};
+
+export const setShowOuterBorderMaterialFirstChildrenMode = (mode) => {
+    return {
+        type: actions.SHOW_OUTER_BORDER_MATERIAL_FIRST_CHILDREN_MODE,
+        payload: mode
+    }
+};
+
+export const setShowOuterBorderMaterialSecondChildrenMode = (mode) => {
+    return {
+        type: actions.SHOW_OUTER_BORDER_MATERIAL_SECOND_CHILDREN_MODE,
+        payload: mode
+    }
+};
+
 export const setCenterMaterialType = (type) => {
     return {
         type: actions.SET_CENTER_MATERIAL_TYPE,
@@ -91,6 +113,13 @@ export const setInnerBorderMaterialType = (type) => {
     }
 };
 
+export const setOuterBorderMaterialType = (type) => {
+    return {
+        type: actions.SET_OUTER_BORDER_MATERIAL_TYPE,
+        payload: type
+    }
+};
+
 export const getCenterMaterials = () => {
     return {
         type: actions.GET_MATERIALS_CENTER
@@ -100,5 +129,25 @@ export const getCenterMaterials = () => {
 export const getInnerBorderMaterials = () => {
     return {
         type: actions.GET_MATERIALS_INNER_BORDER
+    }
+};
+
+export const getOuterBorderMaterials = () => {
+    return {
+        type: actions.GET_MATERIALS_OUTER_BORDER
+    }
+};
+
+export const setCurrentMaterialHover = (material) => {
+    return {
+        type: actions.SET_CURRENT_MATERIAL_HOVER,
+        payload: material
+    }
+};
+
+export const setCurrentMaterialHoverCoords = (coords) => {
+    return {
+        type: actions.SET_CURRENT_MATERIAL_HOVER_COORDS,
+        payload: coords
     }
 };

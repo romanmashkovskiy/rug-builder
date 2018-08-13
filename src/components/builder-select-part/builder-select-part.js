@@ -8,6 +8,7 @@ import './builder-select-part.css';
 import StartModal from '../product-settings-modal/product-settings-modal';
 import CenterMaterial from '../center-material/center-material';
 import InnerBorderMaterial from '../inner-border-material/inner-border-material';
+import OuterBorderMaterial from '../outer-border/outer-border';
 import {
     setEditDimensionsMode,
     setEditBorderMode,
@@ -17,8 +18,12 @@ import {
     setShowInnerBorderMaterialMode,
     setShowInnerBorderMaterialFirstChildrenMode,
     setShowInnerBorderMaterialSecondChildrenMode,
+    setShowOuterBorderMaterialMode,
+    setShowOuterBorderMaterialFirstChildrenMode,
+    setShowOuterBorderMaterialSecondChildrenMode,
     setCenterMaterialType,
-    setInnerBorderMaterialType
+    setInnerBorderMaterialType,
+    setOuterBorderMaterialType
 } from "../../actions";
 
 import header from './images/header.png';
@@ -42,6 +47,8 @@ import innerBorder from './images/inner-border-icon.svg';
 import donePale from './images/done-pale.png';
 import done from './images/done.png';
 import exitSelection from './images/exit.png';
+import outerBorder from './images/outer-border.svg'
+import piping from './images/piping.svg';
 
 //import Rug from '../rug/rug'
 
@@ -59,6 +66,12 @@ class BuilderSelectPart extends Component {
         const initInnerBorder = {
             id: 0,
             name: 'INNER BORDER',
+            src: ''
+        };
+
+        const initOuterBorder = {
+            id: 0,
+            name: 'OUTER BORDER',
             src: ''
         };
 
@@ -139,7 +152,7 @@ class BuilderSelectPart extends Component {
                                 >
                                     <img src={edit} alt="edit"/>
                                     <div className="current-size-edit-dimensions">
-                                        {`${this.props.border.toUpperCase()}`}
+                                        {`${this.props.border}`}
                                     </div>
                                 </div>
                             </div>
@@ -202,9 +215,15 @@ class BuilderSelectPart extends Component {
                     <div className="main-area-builder">
                         {this.props.showCenterMaterialMode && <CenterMaterial/>}
                         {this.props.showInnerBorderMaterialMode && <InnerBorderMaterial/>}
+                        {this.props.showOuterBorderMaterialMode && <OuterBorderMaterial/>}
 
+
+                        {/*DOUBLE-BORDER*/}
                         {
-                            !this.props.showCenterMaterialMode && !this.props.showInnerBorderMaterialMode &&
+                            this.props.border === 'DOUBLE-BORDER' &&
+                            !this.props.showCenterMaterialMode &&
+                            !this.props.showInnerBorderMaterialMode &&
+                            !this.props.showOuterBorderMaterialMode &&
                             <div className="main-area-builder-centre">
                                 <div className="centre"
                                      onClick={() => {
@@ -222,8 +241,11 @@ class BuilderSelectPart extends Component {
 
                         }
                         {
-                            !this.props.showCenterMaterialMode && !this.props.showInnerBorderMaterialMode &&
-                            <div className="main-area-builder-inner-border">
+                            this.props.border === 'DOUBLE-BORDER' &&
+                            !this.props.showCenterMaterialMode &&
+                            !this.props.showInnerBorderMaterialMode &&
+                            !this.props.showOuterBorderMaterialMode &&
+                            <div className="main-area-builder-centre">
                                 <div className="centre" onClick={() => {
                                     this.props.setShowInnerBorderMaterialMode(true);
                                 }}>
@@ -236,6 +258,72 @@ class BuilderSelectPart extends Component {
                                 </div>
                             </div>
                         }
+                        {
+                            this.props.border === 'DOUBLE-BORDER' &&
+                            !this.props.showCenterMaterialMode &&
+                            !this.props.showInnerBorderMaterialMode &&
+                            !this.props.showOuterBorderMaterialMode &&
+                            <div className="main-area-builder-centre">
+                                <div className="centre" onClick={() => {
+                                    this.props.setShowOuterBorderMaterialMode(true);
+                                }}>
+                                    <img className="centre-icon" src={outerBorder} alt="outerBorder"/>
+                                    <h3>OUTER BORDER</h3>
+                                </div>
+                            </div>
+                        }
+
+                        {/*BORDER-PIPING*/}
+                        {
+                            this.props.border === 'BORDER-PIPING' &&
+                            <div className="main-area-builder-centre">
+                                <div className="centre">
+                                    <img className="centre-icon" src={centre} alt="centre"/>
+                                    <h3>CENTRE</h3>
+                                </div>
+
+                            </div>
+                        }
+                        {
+                            this.props.border === 'BORDER-PIPING' &&
+                            <div className="main-area-builder-inner-border">
+                                <div className="centre">
+                                    <img className="centre-icon" src={outerBorder} alt="innerBorder"/>
+                                    <h3>OUTER BORDER</h3>
+                                </div>
+                            </div>
+                        }
+                        {
+                            this.props.border === 'BORDER-PIPING' &&
+                            <div className="main-area-builder-inner-border">
+                                <div className="centre" >
+                                    <img className="centre-icon" src={piping} alt="piping"/>
+                                    <h3>PIPING</h3>
+                                </div>
+                            </div>
+                        }
+
+                        {/*SINGLE-BORDER*/}
+                        {
+                            this.props.border === 'SINGLE-BORDER' &&
+                            <div className="main-area-builder-centre">
+                                <div className="centre">
+                                    <img className="centre-icon" src={centre} alt="centre"/>
+                                    <h3>CENTRE</h3>
+                                </div>
+
+                            </div>
+                        }
+                        {
+                            this.props.border === 'SINGLE-BORDER' &&
+                            <div className="main-area-builder-inner-border">
+                                <div className="centre">
+                                    <img className="centre-icon" src={outerBorder} alt="innerBorder"/>
+                                    <h3>BORDER</h3>
+                                </div>
+                            </div>
+                        }
+
                         <div className="main-area-builder-rest">
 
                             {/*center material types*/}
@@ -255,6 +343,16 @@ class BuilderSelectPart extends Component {
                                     this.props.setShowInnerBorderMaterialMode(false);
                                 }}>
                                     CLOSE INNER BORDER
+                                </div>
+                            }
+
+                            {/*outer border material types*/}
+                            {
+                                (this.props.showOuterBorderMaterialMode && !this.props.showOuterBorderMaterialFirstChildrenMode) &&
+                                <div className="close-center" onClick={() => {
+                                    this.props.setShowOuterBorderMaterialMode(false);
+                                }}>
+                                    CLOSE OUTER BORDER
                                 </div>
                             }
 
@@ -391,6 +489,73 @@ class BuilderSelectPart extends Component {
                                     </div>
                                 </div>
                             }
+
+                            {/*outer border material types first children */}
+                            {
+                                (this.props.showOuterBorderMaterialMode &&
+                                    this.props.showOuterBorderMaterialFirstChildrenMode &&
+                                    !this.props.showOuterBorderMaterialSecondChildrenMode) &&
+                                <div className="back-to-fibre-close-center">
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowOuterBorderMaterialFirstChildrenMode(false)
+                                    }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={restart} alt="restart"/>
+                                            <div>
+                                                BACK TO STYLE
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowOuterBorderMaterialMode(false);
+                                        this.props.setShowOuterBorderMaterialFirstChildrenMode(false)
+                                    }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={exit} alt="exit"/>
+                                            <div>
+                                                CLOSE OUTER BORDER
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            {/*outer border material types second children */}
+                            {
+                                (this.props.showOuterBorderMaterialMode &&
+                                    this.props.showOuterBorderMaterialFirstChildrenMode &&
+                                    this.props.showOuterBorderMaterialSecondChildrenMode) &&
+                                <div className="back-to-fibre-close-center">
+                                    {this.props.outerBorder.name === 'OUTER BORDER' &&
+                                    <div className="back-to-fibre-close-center-first">
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={donePale} alt="done"/>
+                                        </div>
+                                    </div>}
+                                    {this.props.outerBorder.name !== 'OUTER BORDER' &&
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowOuterBorderMaterialMode(false);
+                                        this.props.setShowOuterBorderMaterialFirstChildrenMode(false);
+                                        this.props.setShowOuterBorderMaterialSecondChildrenMode(false);
+                                    }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={done} alt="done"/>
+                                        </div>
+                                    </div>}
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowOuterBorderMaterialSecondChildrenMode(false);
+                                        this.props.setOuterBorderMaterialType(initOuterBorder);
+                                    }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={exitSelection} alt="exit"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -411,6 +576,7 @@ const mapStateToProps = (state) => {
         border: state.border,
         centre: state.centre,
         innerBorder: state.innerBorder,
+        outerBorder: state.outerBorder,
         editDimensionsMode: state.editDimensionsMode,
         editBorderMode: state.editBorderMode,
         showCenterMaterialMode: state.showCenterMaterialMode,
@@ -418,7 +584,10 @@ const mapStateToProps = (state) => {
         showCenterMaterialSecondChildrenMode: state.showCenterMaterialSecondChildrenMode,
         showInnerBorderMaterialMode: state.showInnerBorderMaterialMode,
         showInnerBorderMaterialFirstChildrenMode: state.showInnerBorderMaterialFirstChildrenMode,
-        showInnerBorderMaterialSecondChildrenMode: state.showInnerBorderMaterialSecondChildrenMode
+        showInnerBorderMaterialSecondChildrenMode: state.showInnerBorderMaterialSecondChildrenMode,
+        showOuterBorderMaterialMode: state.showOuterBorderMaterialMode,
+        showOuterBorderMaterialFirstChildrenMode: state.showOuterBorderMaterialFirstChildrenMode,
+        showOuterBorderMaterialSecondChildrenMode: state.showOuterBorderMaterialSecondChildrenMode
     };
 };
 
@@ -432,8 +601,12 @@ const matchDispatchToProps = (dispatch) => {
             setShowInnerBorderMaterialMode: setShowInnerBorderMaterialMode,
             setShowInnerBorderMaterialFirstChildrenMode: setShowInnerBorderMaterialFirstChildrenMode,
             setShowInnerBorderMaterialSecondChildrenMode: setShowInnerBorderMaterialSecondChildrenMode,
+            setShowOuterBorderMaterialMode: setShowOuterBorderMaterialMode,
+            setShowOuterBorderMaterialFirstChildrenMode: setShowOuterBorderMaterialFirstChildrenMode,
+            setShowOuterBorderMaterialSecondChildrenMode: setShowOuterBorderMaterialSecondChildrenMode,
             setCenterMaterialType: setCenterMaterialType,
-            setInnerBorderMaterialType: setInnerBorderMaterialType
+            setInnerBorderMaterialType: setInnerBorderMaterialType,
+            setOuterBorderMaterialType: setOuterBorderMaterialType
         },
         dispatch)
 };

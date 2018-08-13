@@ -67,23 +67,23 @@ class StartModal extends Component {
                     </div>
 
                     <div className="border-selector">
-                        <div className={this.highlightRadioButton('single-border')}>
+                        <div className={this.highlightRadioButton('SINGLE-BORDER')}>
                             <label>
-                                <input type="radio" name="border" value="single-border" onChange={this.setBorderType}/>
+                                <input type="radio" name="border" value="SINGLE-BORDER" onChange={this.setBorderType}/>
                                 <img className="border-type-picture" src={singleBorderIcon} alt="singleBorderIcon"/>
                             </label>
                             <h3>Single Border</h3>
                         </div>
-                        <div className={this.highlightRadioButton('border-piping')}>
+                        <div className={this.highlightRadioButton('BORDER-PIPING')}>
                             <label>
-                                <input type="radio" name="border" value="border-piping" onChange={this.setBorderType}/>
+                                <input type="radio" name="border" value="BORDER-PIPING" onChange={this.setBorderType}/>
                                 <img className="border-type-picture" src={singlePipingIcon} alt="singlePipingIcon"/>
                             </label>
                             <h3>Border & Piping</h3>
                         </div>
-                        <div className={this.highlightRadioButton('double-border')}>
+                        <div className={this.highlightRadioButton('DOUBLE-BORDER')}>
                             <label>
-                                <input type="radio" name="border" value="double-border" onChange={this.setBorderType} />
+                                <input type="radio" name="border" value="DOUBLE-BORDER" onChange={this.setBorderType} />
                                 <img className="border-type-picture" src={doubleBorderIcon} alt="doubleBorderIcon"/>
                             </label>
                             <h3>Double Border</h3>
