@@ -3,10 +3,10 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 
 import {
-    setShowInnerBorderMaterialFirstChildrenMode,
-    setShowInnerBorderMaterialSecondChildrenMode,
-    setInnerBorderMaterialType,
-    getInnerBorderMaterials,
+    setShowOuterBorderMaterialFirstChildrenMode,
+    setShowOuterBorderMaterialSecondChildrenMode,
+    setOuterBorderMaterialType,
+    getOuterBorderMaterials,
     setCurrentMaterialHover,
     setCurrentMaterialHoverCoords
 } from "../../actions";
@@ -15,7 +15,7 @@ import random from './images/random-icon.svg';
 
 //styles from center-material.css
 
-class InnerBorderMaterial extends Component {
+class OuterBorderMaterial extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,28 +25,28 @@ class InnerBorderMaterial extends Component {
     }
 
     componentDidMount() {
-        this.props.getInnerBorderMaterials();
+        this.props.getOuterBorderMaterials();
     }
 
     showFirstChildren(children) {
-        this.props.setShowInnerBorderMaterialFirstChildrenMode(true);
+        this.props.setShowOuterBorderMaterialFirstChildrenMode(true);
         this.setState({
             currentFirstChildren: children
         });
     }
 
     showSecondChildren(children) {
-        this.props.setShowInnerBorderMaterialSecondChildrenMode(true);
+        this.props.setShowOuterBorderMaterialSecondChildrenMode(true);
         this.setState({
             currentSecondChildren: children
         });
     }
 
     calculateRandom() {
-        if (this.props.showInnerBorderMaterialSecondChildrenMode) {
+        if (this.props.showOuterBorderMaterialSecondChildrenMode) {
             const length = this.state.currentSecondChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
-            this.props.setInnerBorderMaterialType(this.state.currentSecondChildren[randomIndex]);
+            this.props.setOuterBorderMaterialType(this.state.currentSecondChildren[randomIndex]);
         } else {
             const length = this.state.currentFirstChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
@@ -67,20 +67,17 @@ class InnerBorderMaterial extends Component {
                 {
                     this.props.currentMaterialHover.name &&
                     <div className="single-materials-center-hover"
-                         style={{
-                             left: this.props.currentMaterialHoverCoords.left - (195 - this.props.currentMaterialHoverCoords.width) / 2,
-                             top: this.props.currentMaterialHoverCoords.top - 340
-                         }}>
+                         style={{left: this.props.currentMaterialHoverCoords.left - (195-this.props.currentMaterialHoverCoords.width)/2, top: this.props.currentMaterialHoverCoords.top - 340} }>
                         <img src={this.props.currentMaterialHover.src} alt="material-center-child"/>
                         <h3>{this.props.currentMaterialHover.name}</h3>
                     </div>
                 }
                 <div className="materials-center-list">
 
-                    {/*parent inner border material*/}
+                    {/*parent outer border material*/}
                     {
-                        !this.props.showInnerBorderMaterialFirstChildrenMode &&
-                        this.props.innerBorderMaterials.map((material) => {
+                        !this.props.showOuterBorderMaterialFirstChildrenMode &&
+                        this.props.outerBorderMaterials.map((material) => {
                             return (
                                 <div className="single-materials-center-list" key={material.id}
                                      onClick={() => this.showFirstChildren(material.children)}>
@@ -93,10 +90,10 @@ class InnerBorderMaterial extends Component {
                         })
                     }
 
-                    {/*random children inner border material*/}
+                    {/*random children outer border material*/}
                     {
-                        (this.props.showInnerBorderMaterialFirstChildrenMode ||
-                            this.props.showInnerBorderMaterialSecondChildrenMode) &&
+                        (this.props.showOuterBorderMaterialFirstChildrenMode ||
+                            this.props.showOuterBorderMaterialSecondChildrenMode) &&
                         <div className="single-materials-center-list-child"
                              onClick={() => {
                                  this.calculateRandom();
@@ -108,9 +105,9 @@ class InnerBorderMaterial extends Component {
                         </div>
                     }
 
-                    {/*first children inner border material*/}
+                    {/*first children outer border material*/}
                     {
-                        (this.props.showInnerBorderMaterialFirstChildrenMode && !this.props.showInnerBorderMaterialSecondChildrenMode) &&
+                        (this.props.showOuterBorderMaterialFirstChildrenMode && !this.props.showOuterBorderMaterialSecondChildrenMode) &&
                         this.state.currentFirstChildren.map((child) => {
                             return (
                                 <div className="single-materials-center-list-child" key={child.id}
@@ -124,14 +121,14 @@ class InnerBorderMaterial extends Component {
                         })
                     }
 
-                    {/*second children inner border material*/}
+                    {/*second children outer border material*/}
                     {
-                        this.props.showInnerBorderMaterialSecondChildrenMode &&
+                        this.props.showOuterBorderMaterialSecondChildrenMode &&
                         this.state.currentSecondChildren.map((child) => {
                             return (
                                 <div className="single-materials-center-list-child" key={child.id} ref={child.name}
                                      onClick={() => {
-                                         this.props.setInnerBorderMaterialType(child)
+                                         this.props.setOuterBorderMaterialType(child)
                                      }}
                                      onMouseEnter={() => {
                                          this.currentMaterialHover(child);
@@ -158,9 +155,9 @@ class InnerBorderMaterial extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        showInnerBorderMaterialFirstChildrenMode: state.showInnerBorderMaterialFirstChildrenMode,
-        showInnerBorderMaterialSecondChildrenMode: state.showInnerBorderMaterialSecondChildrenMode,
-        innerBorderMaterials: state.innerBorderMaterials,
+        showOuterBorderMaterialFirstChildrenMode: state.showOuterBorderMaterialFirstChildrenMode,
+        showOuterBorderMaterialSecondChildrenMode: state.showOuterBorderMaterialSecondChildrenMode,
+        outerBorderMaterials: state.outerBorderMaterials,
         currentMaterialHover: state.currentMaterialHover,
         currentMaterialHoverCoords: state.currentMaterialHoverCoords
     };
@@ -168,14 +165,14 @@ const mapStateToProps = (state) => {
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
-            setShowInnerBorderMaterialFirstChildrenMode: setShowInnerBorderMaterialFirstChildrenMode,
-            setShowInnerBorderMaterialSecondChildrenMode: setShowInnerBorderMaterialSecondChildrenMode,
-            setInnerBorderMaterialType: setInnerBorderMaterialType,
-            getInnerBorderMaterials: getInnerBorderMaterials,
+            setShowOuterBorderMaterialFirstChildrenMode: setShowOuterBorderMaterialFirstChildrenMode,
+            setShowOuterBorderMaterialSecondChildrenMode: setShowOuterBorderMaterialSecondChildrenMode,
+            setOuterBorderMaterialType: setOuterBorderMaterialType,
+            getOuterBorderMaterials: getOuterBorderMaterials,
             setCurrentMaterialHover: setCurrentMaterialHover,
             setCurrentMaterialHoverCoords: setCurrentMaterialHoverCoords
         },
         dispatch)
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(InnerBorderMaterial);
+export default connect(mapStateToProps, matchDispatchToProps)(OuterBorderMaterial);

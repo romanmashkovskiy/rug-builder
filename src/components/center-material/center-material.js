@@ -12,8 +12,6 @@ import {
 } from "../../actions";
 
 import random from './images/random-icon.svg';
-
-
 import './center-material.css';
 
 

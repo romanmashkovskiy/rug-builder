@@ -6,24 +6,34 @@ import {withRouter} from 'react-router-dom';
 import './builder-select-part.css';
 
 import StartModal from '../product-settings-modal/product-settings-modal';
+
 import CenterMaterial from '../center-material/center-material';
 import InnerBorderMaterial from '../inner-border-material/inner-border-material';
-import OuterBorderMaterial from '../outer-border/outer-border';
+import OuterBorderMaterial from '../outer-border-material/outer-border';
+import PipingMaterial from '../piping-material/piping-material';
 import {
     setEditDimensionsMode,
     setEditBorderMode,
+
     setShowCenterMaterialMode,
     setShowCenterMaterialFirstChildrenMode,
     setShowCenterMaterialSecondChildrenMode,
+
     setShowInnerBorderMaterialMode,
     setShowInnerBorderMaterialFirstChildrenMode,
     setShowInnerBorderMaterialSecondChildrenMode,
+
     setShowOuterBorderMaterialMode,
     setShowOuterBorderMaterialFirstChildrenMode,
     setShowOuterBorderMaterialSecondChildrenMode,
+
+    setShowPipingMaterialMode,
+
     setCenterMaterialType,
     setInnerBorderMaterialType,
-    setOuterBorderMaterialType
+    setOuterBorderMaterialType,
+    setPipingMaterialType
+
 } from "../../actions";
 
 import header from './images/header.png';
@@ -72,6 +82,12 @@ class BuilderSelectPart extends Component {
         const initOuterBorder = {
             id: 0,
             name: 'OUTER BORDER',
+            src: ''
+        };
+
+        const initPiping = {
+            id: 0,
+            name: 'PIPING',
             src: ''
         };
 
@@ -166,7 +182,7 @@ class BuilderSelectPart extends Component {
                                         {`${this.props.centre.name}`}
                                     </div>
                                 </div>}
-                                {this.props.centre.name!== "CENTRE" &&
+                                {this.props.centre.name !== "CENTRE" &&
                                 <div className="current-size-edit">
                                     <img src={exitSelected} alt="exit" onClick={() => {
                                         this.props.setCenterMaterialType(initCenter);
@@ -216,14 +232,20 @@ class BuilderSelectPart extends Component {
                         {this.props.showCenterMaterialMode && <CenterMaterial/>}
                         {this.props.showInnerBorderMaterialMode && <InnerBorderMaterial/>}
                         {this.props.showOuterBorderMaterialMode && <OuterBorderMaterial/>}
+                        {this.props.showPipingMaterialMode && <PipingMaterial/>}
 
 
-                        {/*DOUBLE-BORDER*/}
+                        {/*CENTRE*/}
                         {
-                            this.props.border === 'DOUBLE-BORDER' &&
+                            (
+                                this.props.border === 'DOUBLE-BORDER' ||
+                                this.props.border === 'SINGLE-BORDER' ||
+                                this.props.border === 'BORDER-PIPING'
+                            ) &&
                             !this.props.showCenterMaterialMode &&
                             !this.props.showInnerBorderMaterialMode &&
                             !this.props.showOuterBorderMaterialMode &&
+                            !this.props.showPipingMaterialMode &&
                             <div className="main-area-builder-centre">
                                 <div className="centre"
                                      onClick={() => {
@@ -233,18 +255,46 @@ class BuilderSelectPart extends Component {
                                     <h3>CENTRE</h3>
                                     {this.props.centre.name !== 'CENTRE' &&
                                     <div className="centre-icon-selected-material">
-                                        <img src={this.props.centre.src} alt="type" />
+                                        <img src={this.props.centre.src} alt="type"/>
                                     </div>}
                                 </div>
 
                             </div>
 
                         }
+
+                        {/*OUTER BORDER*/}
+                        {
+                            (
+                                this.props.border === 'DOUBLE-BORDER' ||
+                                this.props.border === 'SINGLE-BORDER' ||
+                                this.props.border === 'BORDER-PIPING'
+                            ) &&
+                            !this.props.showCenterMaterialMode &&
+                            !this.props.showInnerBorderMaterialMode &&
+                            !this.props.showOuterBorderMaterialMode &&
+                            !this.props.showPipingMaterialMode &&
+                            <div className="main-area-builder-centre">
+                                <div className="centre" onClick={() => {
+                                    this.props.setShowOuterBorderMaterialMode(true);
+                                }}>
+                                    <img className="centre-icon" src={outerBorder} alt="outerBorder"/>
+                                    <h3>OUTER BORDER</h3>
+                                    {this.props.outerBorder.name !== 'OUTER BORDER' &&
+                                    <div className="centre-icon-selected-material">
+                                        <img src={this.props.outerBorder.src} alt="type"/>
+                                    </div>}
+                                </div>
+                            </div>
+                        }
+
+                        {/*INNER BORDER*/}
                         {
                             this.props.border === 'DOUBLE-BORDER' &&
                             !this.props.showCenterMaterialMode &&
                             !this.props.showInnerBorderMaterialMode &&
                             !this.props.showOuterBorderMaterialMode &&
+                            !this.props.showPipingMaterialMode &&
                             <div className="main-area-builder-centre">
                                 <div className="centre" onClick={() => {
                                     this.props.setShowInnerBorderMaterialMode(true);
@@ -253,76 +303,34 @@ class BuilderSelectPart extends Component {
                                     <h3>INNER BORDER</h3>
                                     {this.props.innerBorder.name !== 'INNER BORDER' &&
                                     <div className="centre-icon-selected-material">
-                                        <img src={this.props.innerBorder.src} alt="type" />
+                                        <img src={this.props.innerBorder.src} alt="type"/>
                                     </div>}
                                 </div>
                             </div>
                         }
+
+
+                        {/*PIPING*/}
                         {
-                            this.props.border === 'DOUBLE-BORDER' &&
+                            this.props.border === 'BORDER-PIPING' &&
                             !this.props.showCenterMaterialMode &&
                             !this.props.showInnerBorderMaterialMode &&
                             !this.props.showOuterBorderMaterialMode &&
-                            <div className="main-area-builder-centre">
+                            !this.props.showPipingMaterialMode &&
+                            <div className="main-area-builder-inner-border">
                                 <div className="centre" onClick={() => {
-                                    this.props.setShowOuterBorderMaterialMode(true);
+                                    this.props.setShowPipingMaterialMode(true);
                                 }}>
-                                    <img className="centre-icon" src={outerBorder} alt="outerBorder"/>
-                                    <h3>OUTER BORDER</h3>
-                                </div>
-                            </div>
-                        }
-
-                        {/*BORDER-PIPING*/}
-                        {
-                            this.props.border === 'BORDER-PIPING' &&
-                            <div className="main-area-builder-centre">
-                                <div className="centre">
-                                    <img className="centre-icon" src={centre} alt="centre"/>
-                                    <h3>CENTRE</h3>
-                                </div>
-
-                            </div>
-                        }
-                        {
-                            this.props.border === 'BORDER-PIPING' &&
-                            <div className="main-area-builder-inner-border">
-                                <div className="centre">
-                                    <img className="centre-icon" src={outerBorder} alt="innerBorder"/>
-                                    <h3>OUTER BORDER</h3>
-                                </div>
-                            </div>
-                        }
-                        {
-                            this.props.border === 'BORDER-PIPING' &&
-                            <div className="main-area-builder-inner-border">
-                                <div className="centre" >
                                     <img className="centre-icon" src={piping} alt="piping"/>
                                     <h3>PIPING</h3>
+                                    {this.props.piping.name !== 'PIPING' &&
+                                    <div className="centre-icon-selected-material">
+                                        <img src={this.props.piping.src} alt="type"/>
+                                    </div>}
                                 </div>
                             </div>
                         }
 
-                        {/*SINGLE-BORDER*/}
-                        {
-                            this.props.border === 'SINGLE-BORDER' &&
-                            <div className="main-area-builder-centre">
-                                <div className="centre">
-                                    <img className="centre-icon" src={centre} alt="centre"/>
-                                    <h3>CENTRE</h3>
-                                </div>
-
-                            </div>
-                        }
-                        {
-                            this.props.border === 'SINGLE-BORDER' &&
-                            <div className="main-area-builder-inner-border">
-                                <div className="centre">
-                                    <img className="centre-icon" src={outerBorder} alt="innerBorder"/>
-                                    <h3>BORDER</h3>
-                                </div>
-                            </div>
-                        }
 
                         <div className="main-area-builder-rest">
 
@@ -556,6 +564,38 @@ class BuilderSelectPart extends Component {
                                     </div>
                                 </div>
                             }
+
+                            {/*piping material types*/}
+                            {
+                                this.props.showPipingMaterialMode &&
+                                <div className="back-to-fibre-close-center">
+                                    {this.props.piping.name === 'PIPING' &&
+                                    <div className="back-to-fibre-close-center-first">
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={donePale} alt="done"/>
+                                        </div>
+                                    </div>}
+                                    {this.props.piping.name !== 'PIPING' &&
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowPipingMaterialMode(false);
+                                    }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={done} alt="done"/>
+                                        </div>
+                                    </div>}
+                                    <div className="back-to-fibre-close-center-first" onClick={() => {
+                                        this.props.setShowPipingMaterialMode(false);
+                                        this.props.setPipingMaterialType(initPiping);
+                                    }
+                                    }>
+                                        <div className="back-to-fibre-close-center-first-text-image">
+                                            <img src={exitSelection} alt="exit"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -574,20 +614,28 @@ const mapStateToProps = (state) => {
         width: state.width,
         length: state.length,
         border: state.border,
+
         centre: state.centre,
         innerBorder: state.innerBorder,
         outerBorder: state.outerBorder,
+        piping: state.piping,
+
         editDimensionsMode: state.editDimensionsMode,
         editBorderMode: state.editBorderMode,
+
         showCenterMaterialMode: state.showCenterMaterialMode,
         showCenterMaterialFirstChildrenMode: state.showCenterMaterialFirstChildrenMode,
         showCenterMaterialSecondChildrenMode: state.showCenterMaterialSecondChildrenMode,
+
         showInnerBorderMaterialMode: state.showInnerBorderMaterialMode,
         showInnerBorderMaterialFirstChildrenMode: state.showInnerBorderMaterialFirstChildrenMode,
         showInnerBorderMaterialSecondChildrenMode: state.showInnerBorderMaterialSecondChildrenMode,
+
         showOuterBorderMaterialMode: state.showOuterBorderMaterialMode,
         showOuterBorderMaterialFirstChildrenMode: state.showOuterBorderMaterialFirstChildrenMode,
-        showOuterBorderMaterialSecondChildrenMode: state.showOuterBorderMaterialSecondChildrenMode
+        showOuterBorderMaterialSecondChildrenMode: state.showOuterBorderMaterialSecondChildrenMode,
+
+        showPipingMaterialMode: state.showPipingMaterialMode
     };
 };
 
@@ -595,18 +643,25 @@ const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
             setEditDimensionsMode: setEditDimensionsMode,
             setEditBorderMode: setEditBorderMode,
+
             setShowCenterMaterialMode: setShowCenterMaterialMode,
             setShowCenterMaterialFirstChildrenMode: setShowCenterMaterialFirstChildrenMode,
             setShowCenterMaterialSecondChildrenMode: setShowCenterMaterialSecondChildrenMode,
+
             setShowInnerBorderMaterialMode: setShowInnerBorderMaterialMode,
             setShowInnerBorderMaterialFirstChildrenMode: setShowInnerBorderMaterialFirstChildrenMode,
             setShowInnerBorderMaterialSecondChildrenMode: setShowInnerBorderMaterialSecondChildrenMode,
+
             setShowOuterBorderMaterialMode: setShowOuterBorderMaterialMode,
             setShowOuterBorderMaterialFirstChildrenMode: setShowOuterBorderMaterialFirstChildrenMode,
             setShowOuterBorderMaterialSecondChildrenMode: setShowOuterBorderMaterialSecondChildrenMode,
+
+            setShowPipingMaterialMode: setShowPipingMaterialMode,
+
             setCenterMaterialType: setCenterMaterialType,
             setInnerBorderMaterialType: setInnerBorderMaterialType,
-            setOuterBorderMaterialType: setOuterBorderMaterialType
+            setOuterBorderMaterialType: setOuterBorderMaterialType,
+            setPipingMaterialType: setPipingMaterialType
         },
         dispatch)
 };

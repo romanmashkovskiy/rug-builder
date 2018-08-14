@@ -2,9 +2,11 @@ import {combineReducers} from 'redux';
 import widthReducer from './width-reducer';
 import lengthReducer from './length-reducer';
 import borderReducer from './border-reducer';
+
 import centreReducer from './centre-reducer';
 import innerBorderReducer from './inner-border-reducer';
 import outerBorderReducer from './outer-border-reducer';
+import pipingReducer from './piping-reducer';
 
 import editDimensions from './edit-dimensions-mode-reducer';
 import editBorder from './edit-border-mode-reducer';
@@ -20,10 +22,13 @@ import setShowInnerBorderMaterialSecondChildrenModeReducer from './set-show-inne
 import setShowOuterBorderMaterialModeReducer from './set-show-outer-border-material-mode';
 import setShowOuterBorderMaterialFirstChildrenModeReducer from './set-show-outer-border-material-first-children-mode';
 import setShowOuterBorderMaterialSecondChildrenModeReducer from './set-show-outer-border-material-second-children-mode';
+import setShowPipingMaterialModeReducer from './set-show-piping-material-mode';
 
 import getInnerBorderMaterialsReducer from './get-inner-border-materials';
 import getCenterMaterialsReducer from './get-center-materials';
 import getOuterBorderMaterialsReducer from './get-outer-border-materials';
+import getPipingMaterialsReducer from './get-piping-materials';
+
 import setCurrentMaterialHoverReducer from './set-current-material-hover';
 import setCurrentMaterialHoverCoordsReducer from './set-current-material-hover-coords';
 
@@ -32,25 +37,37 @@ const rootReducer = combineReducers({
     width: widthReducer,
     length: lengthReducer,
     border: borderReducer,
+
     centre: centreReducer,
     innerBorder: innerBorderReducer,
     outerBorder: outerBorderReducer,
+    piping: pipingReducer,
+
     editDimensionsMode: editDimensions,
     editBorderMode: editBorder,
+
     showCenterMaterialMode: setShowCenterMaterialModeReducer,
     showCenterMaterialFirstChildrenMode: setShowCenterMaterialFirstChildrenModeReducer,
     showCenterMaterialSecondChildrenMode: setShowCenterMaterialSecondChildrenModeReducer,
+
     showInnerBorderMaterialMode: setShowInnerBorderMaterialModeReducer,
     showInnerBorderMaterialFirstChildrenMode: setShowInnerBorderMaterialFirstChildrenModeReducer,
     showInnerBorderMaterialSecondChildrenMode: setShowInnerBorderMaterialSecondChildrenModeReducer,
+
     showOuterBorderMaterialMode: setShowOuterBorderMaterialModeReducer,
     showOuterBorderMaterialFirstChildrenMode: setShowOuterBorderMaterialFirstChildrenModeReducer,
     showOuterBorderMaterialSecondChildrenMode: setShowOuterBorderMaterialSecondChildrenModeReducer,
+
+    showPipingMaterialMode: setShowPipingMaterialModeReducer,
+
     innerBorderMaterials: getInnerBorderMaterialsReducer,
     centerMaterials: getCenterMaterialsReducer,
+    outerBorderMaterials: getOuterBorderMaterialsReducer,
+    pipingMaterials: getPipingMaterialsReducer,
+
     currentMaterialHover: setCurrentMaterialHoverReducer,
-    currentMaterialHoverCoords: setCurrentMaterialHoverCoordsReducer,
-    outerBorderMaterials: getOuterBorderMaterialsReducer
+    currentMaterialHoverCoords: setCurrentMaterialHoverCoordsReducer
+
 });
 
 export default rootReducer;

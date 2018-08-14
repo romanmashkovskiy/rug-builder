@@ -99,6 +99,15 @@ export const setShowOuterBorderMaterialSecondChildrenMode = (mode) => {
     }
 };
 
+export const setShowPipingMaterialMode = (mode) => {
+    return {
+        type: actions.SHOW_PIPING_MATERIAL_MODE,
+        payload: mode
+    }
+};
+
+
+
 export const setCenterMaterialType = (type) => {
     return {
         type: actions.SET_CENTER_MATERIAL_TYPE,
@@ -120,6 +129,15 @@ export const setOuterBorderMaterialType = (type) => {
     }
 };
 
+export const setPipingMaterialType = (type) => {
+    return {
+        type: actions.SET_PIPING_MATERIAL_TYPE,
+        payload: type
+    }
+};
+
+
+
 export const getCenterMaterials = () => {
     return {
         type: actions.GET_MATERIALS_CENTER
@@ -135,6 +153,12 @@ export const getInnerBorderMaterials = () => {
 export const getOuterBorderMaterials = () => {
     return {
         type: actions.GET_MATERIALS_OUTER_BORDER
+    }
+};
+
+export const getPipingMaterials = () => {
+    return {
+        type: actions.GET_MATERIALS_PIPING
     }
 };
 
