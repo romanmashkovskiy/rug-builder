@@ -55,6 +55,16 @@
     left: 20px;
 }
 
+.rug-3d {
+    position: absolute;
+    height: 70%;
+    width: 95%;
+    border: 1px solid red;
+    top: 80px;
+    left: 20px;
+    overflow: hidden;
+}
+
 .left-controls-first {
     height: 100%;
     width: 44px;

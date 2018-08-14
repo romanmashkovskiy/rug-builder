@@ -61,6 +61,7 @@ import outerBorder from './images/outer-border.svg'
 import piping from './images/piping.svg';
 
 //import Rug from '../rug/rug'
+import Rug from '../rug/rug-new';
 
 
 class BuilderSelectPart extends Component {
@@ -101,6 +102,9 @@ class BuilderSelectPart extends Component {
                     <StartModal/>}
                     <div className="main-builder-carpet">
                         <div className="main-carpet-preview">
+                            <div className="rug-3d">
+                                <Rug/>
+                            </div>
                             <div className="left-controls">
                                 <div className="left-controls-first">
                                     <img src={leftControlFirst} alt="leftControlFirst"/>
