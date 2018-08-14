@@ -193,27 +193,83 @@ class BuilderSelectPart extends Component {
                                 </div>}
                             </div>
 
-                            {/*type of selected inner border*/}
-                            <div className="border-is-selected">
-                                {this.props.innerBorder.name === "INNER BORDER" &&
+                            {/*type of selected outer border*/}
+
+                            <div className="centre-is-selected">
+
+                                {/*type of selected center*/}
+                                {this.props.outerBorder.name === "OUTER BORDER" &&
                                 <div className="current-size-edit">
                                     <img src={exit} alt="exit"/>
                                     <div className="centre-is-not-selected-type">
-                                        {`${this.props.innerBorder.name}`}
+                                        {`${this.props.outerBorder.name}`}
                                     </div>
                                 </div>}
-                                {this.props.innerBorder.name !== "INNER BORDER" &&
+                                {this.props.outerBorder.name !== "OUTER BORDER" &&
                                 <div className="current-size-edit">
                                     <img src={exitSelected} alt="exit" onClick={() => {
-                                        this.props.setInnerBorderMaterialType(initInnerBorder);
+                                        this.props.setOuterBorderMaterialType(initOuterBorder);
                                     }}/>
                                     <div className="centre-is-selected-type">
-                                        {`${this.props.innerBorder.name}`}
+                                        {`${this.props.outerBorder.name}`}
                                     </div>
                                 </div>}
                             </div>
-                            <div className="border-is-selected">
-                            </div>
+
+
+                            {/*type of selected inner border*/}
+                            {
+                                this.props.border === 'DOUBLE-BORDER' &&
+                                <div className="border-is-selected">
+                                    {this.props.innerBorder.name === "INNER BORDER" &&
+                                    <div className="current-size-edit">
+                                        <img src={exit} alt="exit"/>
+                                        <div className="centre-is-not-selected-type">
+                                            {`${this.props.innerBorder.name}`}
+                                        </div>
+                                    </div>}
+                                    {this.props.innerBorder.name !== "INNER BORDER" &&
+                                    <div className="current-size-edit">
+                                        <img src={exitSelected} alt="exit" onClick={() => {
+                                            this.props.setInnerBorderMaterialType(initInnerBorder);
+                                        }}/>
+                                        <div className="centre-is-selected-type">
+                                            {`${this.props.innerBorder.name}`}
+                                        </div>
+                                    </div>}
+                                </div>
+                            }
+
+                            {/*type of selected piping*/}
+                            {
+                                this.props.border === 'BORDER-PIPING' &&
+                                <div className="border-is-selected">
+                                    {this.props.piping.name === "PIPING" &&
+                                    <div className="current-size-edit">
+                                        <img src={exit} alt="exit"/>
+                                        <div className="centre-is-not-selected-type">
+                                            {`${this.props.piping.name}`}
+                                        </div>
+                                    </div>}
+                                    {this.props.piping.name !== "PIPING" &&
+                                    <div className="current-size-edit">
+                                        <img src={exitSelected} alt="exit" onClick={() => {
+                                            this.props.setPipingMaterialType(initPiping);
+                                        }}/>
+                                        <div className="centre-is-selected-type">
+                                            {`${this.props.piping.name}`}
+                                        </div>
+                                    </div>}
+                                </div>
+                            }
+
+                            {
+                                this.props.border === 'SINGLE-BORDER' &&
+                                <div className="border-is-selected">
+                                </div>
+                            }
+
+
                             <div className="carpet-price">
                                 <div className="carpet-price-block">
                                     <div className="price-word">Price:</div>
