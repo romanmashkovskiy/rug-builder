@@ -2,97 +2,95 @@ import React, {Component} from 'react';
 import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
 import * as OrbitControls from 'three-orbit-controls';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {} from "../../actions";
 
 OBJLoader(THREE);
-var OrbitControl = OrbitControls(THREE);
+const OrbitControl = OrbitControls(THREE);
 
 class Rug extends Component {
 
     componentDidMount() {
         this.THREE = THREE;
 
-        var container = document.getElementById("root-for-rug");
+        const container = document.getElementById("root-for-rug");
         const containerSize = {
             width: container.offsetWidth,
             height: container.offsetHeight
         };
 
-        console.log(containerSize);
 
-        var scene = new THREE.Scene();
-
-        var camera = new THREE.PerspectiveCamera(
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
             75,
             window.innerWidth / window.innerHeight,
             0.1,
             1000
         );
 
-        camera.position.z = 100;
+        camera.position.z = 200;
         scene.add(camera);
 
-        var controls = new OrbitControl(camera);
+        const controls = new OrbitControl(camera);
 
-        var light = new THREE.AmbientLight();
+        const light = new THREE.AmbientLight();
         scene.add(light);
 
-        var renderer = new THREE.WebGLRenderer({alpha: true});
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.3);
+        scene.add(dirLight);
+
+        const renderer = new THREE.WebGLRenderer({alpha: true});
         renderer.setSize(window.innerWidth, window.innerHeight);
 
         container.appendChild(renderer.domElement);
-        var texture = new THREE.TextureLoader().load("texture.jpg");
-        console.log(texture);
-
-        var material = new THREE.MeshLambertMaterial({color: 0xfd59d7});
-
-        // var textureLoader = new THREE.TextureLoader();
-        //
-        // textureLoader.load(
-        //     "texture.jpg",
-        //     function (texture) {
-        //         console.log(texture);
-        //         // loadModel(texture);
-        //     });
-        //
-        //
-        //
-        //
-        // const loadModel = (texture) => {
-        //     var objectLoader = new this.THREE.OBJLoader();
-        //     objectLoader.load(
-        //         "rug.obj",
-        //         function (object) {
-        //             for (var i = 0; i < object.children.length; i++) {
-        //                             object.children[i].material = texture;
-        //                         }
-        //             console.log(object);
-        //             scene.add(object);
-        //         });
-        // };
 
 
+        const textureCentre = new THREE.TextureLoader().load("http://cdn.crucial-trading.com/uploads/20161114134225/GPC20238437-150x150.jpg");
+        const textureOuterBorder = new THREE.TextureLoader().load("http://cdn.crucial-trading.com/uploads/20161114172558/GPC20238445-150x150.jpg");
+        const texturePiping = new THREE.TextureLoader().load("http://cdn.crucial-trading.com/uploads/20161114172602/GPC20238453-150x150.jpg");
 
 
-        var objectLoader = new this.THREE.OBJLoader();
-
-        objectLoader.load(
-            "rug.obj",
-            function (object) {
-                var phongMaterial = new THREE.MeshPhongMaterial({
-                    ambient: 0x555555,
-                    color: 0x555555,
-                    specular: 0xffffff,
-                    shininess: 50,
-                    shading: THREE.SmoothShading
+        const loadModelTexture = () => {
+            const objectLoader = new this.THREE.OBJLoader();
+            objectLoader.load("rug.obj",
+                function (object) {
+                    object.traverse(function (child) {
+                        if (child instanceof THREE.Mesh && child.name.indexOf('Centre') !== -1) {
+                            child.material.map = textureCentre;
+                        } else if (child instanceof THREE.Mesh && child.name.indexOf('Trim') !== -1) {
+                            child.material.map = texturePiping;
+                        } else if (child instanceof THREE.Mesh && child.name.indexOf('Border') !== -1) {
+                            child.material.map = textureOuterBorder;
+                        }
+                    });
+                    scene.add(object);
                 });
-                for (var i = 0; i < object.children.length; i++) {
-                    object.children[i].material = phongMaterial;
-                }
-                console.log(object);
-                scene.add(object);
-            });
+        };
 
-        var animate = function () {
+        const loadModelDefault = () => {
+            const objectLoader = new this.THREE.OBJLoader();
+            objectLoader.load("rug.obj",
+                function (object) {
+                    var phongMaterial = new THREE.MeshPhongMaterial({
+                        ambient: 0x555555,
+                        color: 0x555555,
+                        specular: 0xffffff,
+                        shininess: 50,
+                        shading: THREE.SmoothShading
+                    });
+                    object.traverse(function (child) {
+                        if (child instanceof THREE.Mesh ) {
+                            child.material = phongMaterial;
+                        }
+                    });
+                    scene.add(object);
+                });
+        };
+
+        loadModelTexture();
+
+        const animate = function () {
             requestAnimationFrame(animate);
             controls.update();
             renderer.render(scene, camera);
@@ -110,4 +108,18 @@ class Rug extends Component {
     }
 }
 
-export default Rug;
+const mapStateToProps = (state) => {
+    return {
+        border: state.border,
+        centre: state.centre,
+        outerBorder: state.outerBorder,
+        piping: state.piping
+    };
+};
+
+const matchDispatchToProps = (dispatch) => {
+    return bindActionCreators({},
+        dispatch)
+};
+
+export default connect(mapStateToProps, matchDispatchToProps)(Rug);
