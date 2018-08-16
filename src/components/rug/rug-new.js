@@ -5,98 +5,95 @@ import * as OrbitControls from 'three-orbit-controls';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {} from "../../actions";
+import './rug.css';
 
 OBJLoader(THREE);
 const OrbitControl = OrbitControls(THREE);
 
+
 class Rug extends Component {
 
-    componentDidMount() {
-        this.THREE = THREE;
-
-        const container = document.getElementById("root-for-rug");
-        const containerSize = {
-            width: container.offsetWidth,
-            height: container.offsetHeight
-        };
-
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(
+    constructor(props) {
+        super(props);
+        this.scene = new THREE.Scene();
+        this.camera = new THREE.PerspectiveCamera(
             75,
             window.innerWidth / window.innerHeight,
             0.1,
             1000
         );
 
-        camera.position.z = 200;
-        scene.add(camera);
-
-        const controls = new OrbitControl(camera);
+        this.camera.position.z = 200;
+        this.scene.add(this.camera);
 
         const light = new THREE.AmbientLight();
-        scene.add(light);
+        this.scene.add(light);
 
         const dirLight = new THREE.DirectionalLight(0xffffff, 0.3);
-        scene.add(dirLight);
+        this.scene.add(dirLight);
+    }
+
+    objectLoader() {
+        const materialDef = new THREE.MeshPhongMaterial({
+            ambient: 0x555555,
+            color: 0x555555,
+            specular: 0xffffff,
+            shininess: 5,
+            shading: THREE.SmoothShading
+        });
+
+        const textureCentre = new THREE.TextureLoader().load(`${this.props.centre.src}`);
+        const textureOuterBorder = new THREE.TextureLoader().load(`${this.props.outerBorder.src}`);
+        const texturePiping = new THREE.TextureLoader().load(`${this.props.piping.src}`);
+
+        const objectLoader = new this.THREE.OBJLoader();
+        objectLoader.load("rug.obj",
+            (object) => {
+                object.traverse((child) => {
+                    if (child instanceof THREE.Mesh && child.name.indexOf('Centre') !== -1 && textureCentre.image) {
+                        child.material.map = textureCentre;
+                    } else if (child instanceof THREE.Mesh && child.name.indexOf('Trim') !== -1 && texturePiping.image) {
+                        child.material.map = texturePiping;
+                    } else if (child instanceof THREE.Mesh && child.name.indexOf('Border') !== -1 && textureOuterBorder.image) {
+                        child.material.map = textureOuterBorder;
+                    } else {
+                        child.material = materialDef;
+                    }
+                    child.material.needsUpdate = true;
+                });
+                this.scene.add(object);
+            });
+    }
+
+    componentDidMount() {
+        this.THREE = THREE;
+
+        const container = document.getElementById("root-for-rug");
+        console.log('container ', container);
+
+        this.objectLoader();
+
+        const controls = new OrbitControl(this.camera);
 
         const renderer = new THREE.WebGLRenderer({alpha: true});
-        renderer.setSize(window.innerWidth, window.innerHeight);
 
-        container.appendChild(renderer.domElement);
+        renderer.setSize(container.offsetWidth, container.offsetHeight);
 
+        this.camera.aspect = container.offsetWidth / container.offsetHeight;
 
-        const textureCentre = new THREE.TextureLoader().load("http://cdn.crucial-trading.com/uploads/20161114134225/GPC20238437-150x150.jpg");
-        const textureOuterBorder = new THREE.TextureLoader().load("http://cdn.crucial-trading.com/uploads/20161114172558/GPC20238445-150x150.jpg");
-        const texturePiping = new THREE.TextureLoader().load("http://cdn.crucial-trading.com/uploads/20161114172602/GPC20238453-150x150.jpg");
-
-
-        const loadModelTexture = () => {
-            const objectLoader = new this.THREE.OBJLoader();
-            objectLoader.load("rug.obj",
-                function (object) {
-                    object.traverse(function (child) {
-                        if (child instanceof THREE.Mesh && child.name.indexOf('Centre') !== -1) {
-                            child.material.map = textureCentre;
-                        } else if (child instanceof THREE.Mesh && child.name.indexOf('Trim') !== -1) {
-                            child.material.map = texturePiping;
-                        } else if (child instanceof THREE.Mesh && child.name.indexOf('Border') !== -1) {
-                            child.material.map = textureOuterBorder;
-                        }
-                    });
-                    scene.add(object);
-                });
-        };
-
-        const loadModelDefault = () => {
-            const objectLoader = new this.THREE.OBJLoader();
-            objectLoader.load("rug.obj",
-                function (object) {
-                    var phongMaterial = new THREE.MeshPhongMaterial({
-                        ambient: 0x555555,
-                        color: 0x555555,
-                        specular: 0xffffff,
-                        shininess: 50,
-                        shading: THREE.SmoothShading
-                    });
-                    object.traverse(function (child) {
-                        if (child instanceof THREE.Mesh ) {
-                            child.material = phongMaterial;
-                        }
-                    });
-                    scene.add(object);
-                });
-        };
-
-        loadModelTexture();
-
-        const animate = function () {
+        const animate = () => {
             requestAnimationFrame(animate);
             controls.update();
-            renderer.render(scene, camera);
+            renderer.render(this.scene, this.camera);
         };
-
         animate();
+
+        container.appendChild(renderer.domElement);
+    }
+
+
+    componentDidUpdate() {
+        this.objectLoader();
     }
 
 
