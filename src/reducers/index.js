@@ -32,6 +32,8 @@ import getPipingMaterialsReducer from './get-piping-materials';
 import setCurrentMaterialHoverReducer from './set-current-material-hover';
 import setCurrentMaterialHoverCoordsReducer from './set-current-material-hover-coords';
 
+import setRugCurrentViewReducer from './set-rug-current-view';
+
 
 const rootReducer = combineReducers({
     width: widthReducer,
@@ -66,7 +68,9 @@ const rootReducer = combineReducers({
     pipingMaterials: getPipingMaterialsReducer,
 
     currentMaterialHover: setCurrentMaterialHoverReducer,
-    currentMaterialHoverCoords: setCurrentMaterialHoverCoordsReducer
+    currentMaterialHoverCoords: setCurrentMaterialHoverCoordsReducer,
+
+    currentRugView: setRugCurrentViewReducer
 
 });
 

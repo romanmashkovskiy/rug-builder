@@ -175,3 +175,22 @@ export const setCurrentMaterialHoverCoords = (coords) => {
         payload: coords
     }
 };
+
+export const setRugCurrentView = (view) => {
+    return {
+        type: actions.SET_RUG_CURRENT_VIEW,
+        payload: view
+    }
+};
+
+export const zoomRugIn = () => {
+    return {
+        type: actions.ZOOM_RUG_IN
+    }
+};
+
+export const zoomRugOut = () => {
+    return {
+        type: actions.ZOOM_RUG_OUT
+    }
+};

@@ -29,7 +29,14 @@ class Rug extends Component {
             1000
         );
 
-        this.camera.position.z = 200;
+        this.camera.position.x = 0;
+        this.camera.position.y = 170;
+        this.camera.position.z = 0;
+
+        // this.camera.rotation.x = -1.5708;
+        // this.camera.rotation.y = 0;
+        // this.camera.rotation.z = 1.5708;
+
         this.scene.add(this.camera);
 
         const light = new THREE.AmbientLight();
@@ -57,7 +64,7 @@ class Rug extends Component {
         textureLoader.load(url,
             (texture) => {
                 texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                texture.repeat.set( 2, 2 );
+                texture.repeat.set(2, 2);
                 const materialWithTexture = new THREE.MeshPhongMaterial({
                     color: 0x555555,
                     specular: 0xffffff,
@@ -106,7 +113,7 @@ class Rug extends Component {
             });
     }
 
-    updateMapOuterBorder (url) {
+    updateMapOuterBorder(url) {
         const object = this.object;
         textureLoader.load(url,
             (texture) => {
@@ -132,6 +139,50 @@ class Rug extends Component {
             });
     }
 
+    changeView(currentView) {
+        this.camera.updateProjectionMatrix();
+
+        if (currentView === 'above-horizontal') {
+            this.camera.position.x = -40;
+            this.camera.position.y = 170;
+            this.camera.position.z = 0;
+
+            this.camera.rotation.x = -1.5708;
+            this.camera.rotation.y = 0;
+            this.camera.rotation.z = 1.5708;
+        }
+
+        if (currentView === 'angled') {
+            this.camera.position.x = 70;
+            this.camera.position.y = 97.86732004062627;
+            this.camera.position.z = 108.5265830159921;
+
+            this.camera.rotation.x = -0.7337987907741792;
+            this.camera.rotation.y = 0.47612198934967903;
+            this.camera.rotation.z = 0.3919353811096299;
+        }
+
+        if (currentView === 'angled-horizontal') {
+            this.camera.position.x = -65;
+            this.camera.position.y = 146.97868270469004;
+            this.camera.position.z = 0.00630814379798243;
+
+            this.camera.rotation.x = -1.5707534317349763;
+            this.camera.rotation.y = -0.5996570925812806;
+            this.camera.rotation.z = -1.5707203029033585;
+        }
+
+        if (currentView === 'above-vertical') {
+            this.camera.position.x = 0;
+            this.camera.position.y = 170;
+            this.camera.position.z = -55;
+
+            this.camera.rotation.x = -1.5708;
+            this.camera.rotation.y = 0;
+            this.camera.rotation.z = 0;
+        }
+    }
+
     componentDidMount() {
         this.THREE = THREE;
 
@@ -140,8 +191,15 @@ class Rug extends Component {
         this.objectLoader();
 
         const controls = new OrbitControl(this.camera);
+        controls.enableZoom  = false;
+        controls.minPolarAngle = 0;
+        controls.maxPolarAngle = Math.PI/2 - 0.15;
 
-        const renderer = new THREE.WebGLRenderer({alpha: true});
+
+        const axesHelper = new THREE.AxesHelper(500);
+        this.scene.add(axesHelper);
+
+        const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
 
         renderer.setSize(container.offsetWidth, container.offsetHeight);
 
@@ -159,9 +217,12 @@ class Rug extends Component {
 
 
     componentDidUpdate() {
+        //this.updateMapCentre('http://cdn.crucial-trading.com/uploads/20170202190119/Affluence_AF422_933.jpg');
         this.updateMapCentre(this.props.centre.src);
         this.updateMapPiping(this.props.piping.src);
         this.updateMapOuterBorder(this.props.outerBorder.src);
+
+        this.changeView(this.props.currentRugView);
     }
 
 
@@ -178,7 +239,8 @@ const mapStateToProps = (state) => {
         border: state.border,
         centre: state.centre,
         outerBorder: state.outerBorder,
-        piping: state.piping
+        piping: state.piping,
+        currentRugView: state.currentRugView
     };
 };
 

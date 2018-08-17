@@ -32,7 +32,9 @@ import {
     setCenterMaterialType,
     setInnerBorderMaterialType,
     setOuterBorderMaterialType,
-    setPipingMaterialType
+    setPipingMaterialType,
+
+    setRugCurrentView
 
 } from "../../actions";
 
@@ -128,16 +130,16 @@ class BuilderSelectPart extends Component {
                                 </div>
                             </div>
                             <div className="perspective-control">
-                                <div className="above-vertical">
+                                <div className="above-vertical" onClick={() => this.props.setRugCurrentView('above-vertical')}>
                                     <img src={aboveVertical} alt="aboveVertical"/>
                                 </div>
-                                <div className="above-horizontal">
+                                <div className="above-horizontal" onClick={() => this.props.setRugCurrentView('above-horizontal')}>
                                     <img src={aboveHorizontal} alt="aboveHorizontal"/>
                                 </div>
-                                <div className="angled-horizontal">
+                                <div className="angled-horizontal" onClick={() => this.props.setRugCurrentView('angled-horizontal')}>
                                     <img src={angledHorizontal} alt="angledHorizontal"/>
                                 </div>
-                                <div className="angled">
+                                <div className="angled" onClick={() => this.props.setRugCurrentView('angled')}>
                                     <img src={angled} alt="angled"/>
                                 </div>
                             </div>
@@ -721,7 +723,9 @@ const matchDispatchToProps = (dispatch) => {
             setCenterMaterialType: setCenterMaterialType,
             setInnerBorderMaterialType: setInnerBorderMaterialType,
             setOuterBorderMaterialType: setOuterBorderMaterialType,
-            setPipingMaterialType: setPipingMaterialType
+            setPipingMaterialType: setPipingMaterialType,
+
+            setRugCurrentView: setRugCurrentView
         },
         dispatch)
 };
