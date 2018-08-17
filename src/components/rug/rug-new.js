@@ -4,12 +4,18 @@ import * as OBJLoader from 'three-obj-loader';
 import * as OrbitControls from 'three-orbit-controls';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import {} from "../../actions";
+
 import './rug.css';
 
 OBJLoader(THREE);
 const OrbitControl = OrbitControls(THREE);
+const textureLoader = new THREE.TextureLoader();
 
+const materialDef = new THREE.MeshPhongMaterial({
+    color: 0x555555,
+    specular: 0xffffff,
+    shininess: 5
+});
 
 class Rug extends Component {
 
@@ -31,37 +37,98 @@ class Rug extends Component {
 
         const dirLight = new THREE.DirectionalLight(0xffffff, 0.3);
         this.scene.add(dirLight);
+
     }
 
     objectLoader() {
-        const materialDef = new THREE.MeshPhongMaterial({
-            ambient: 0x555555,
-            color: 0x555555,
-            specular: 0xffffff,
-            shininess: 5,
-            shading: THREE.SmoothShading
-        });
-
-        const textureCentre = new THREE.TextureLoader().load(`${this.props.centre.src}`);
-        const textureOuterBorder = new THREE.TextureLoader().load(`${this.props.outerBorder.src}`);
-        const texturePiping = new THREE.TextureLoader().load(`${this.props.piping.src}`);
-
         const objectLoader = new this.THREE.OBJLoader();
         objectLoader.load("rug.obj",
             (object) => {
-                object.traverse((child) => {
-                    if (child instanceof THREE.Mesh && child.name.indexOf('Centre') !== -1 && textureCentre.image) {
-                        child.material.map = textureCentre;
-                    } else if (child instanceof THREE.Mesh && child.name.indexOf('Trim') !== -1 && texturePiping.image) {
-                        child.material.map = texturePiping;
-                    } else if (child instanceof THREE.Mesh && child.name.indexOf('Border') !== -1 && textureOuterBorder.image) {
-                        child.material.map = textureOuterBorder;
-                    } else {
-                        child.material = materialDef;
-                    }
-                    child.material.needsUpdate = true;
-                });
+                for (let i = 0; i < object.children.length; i++) {
+                    object.children[i].material = materialDef;
+                }
+                this.object = object;
                 this.scene.add(object);
+            });
+    }
+
+    updateMapCentre(url) {
+        const object = this.object;
+        textureLoader.load(url,
+            (texture) => {
+                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                texture.repeat.set( 2, 2 );
+                const materialWithTexture = new THREE.MeshPhongMaterial({
+                    color: 0x555555,
+                    specular: 0xffffff,
+                    shininess: 5,
+                    map: texture
+                });
+                for (let i = 0; i < object.children.length; i += 1) {
+                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1 && texture.image) {
+                        object.children[i].material = materialWithTexture;
+                    }
+                }
+            },
+            undefined,
+            function (err) {
+                for (let i = 0; i < object.children.length; i += 1) {
+                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1) {
+                        object.children[i].material = materialDef;
+                    }
+                }
+            });
+    }
+
+    updateMapPiping(url) {
+        const object = this.object;
+        textureLoader.load(url,
+            (texture) => {
+                const materialWithTexture = new THREE.MeshPhongMaterial({
+                    color: 0x555555,
+                    specular: 0xffffff,
+                    shininess: 5,
+                    map: texture
+                });
+                for (let i = 0; i < object.children.length; i += 1) {
+                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Trim') !== -1 && texture.image) {
+                        object.children[i].material = materialWithTexture;
+                    }
+                }
+            },
+            undefined,
+            function (err) {
+                for (let i = 0; i < object.children.length; i += 1) {
+                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Trim') !== -1) {
+                        object.children[i].material = materialDef;
+                    }
+                }
+            });
+    }
+
+    updateMapOuterBorder (url) {
+        const object = this.object;
+        textureLoader.load(url,
+            (texture) => {
+                const materialWithTexture = new THREE.MeshPhongMaterial({
+                    color: 0x555555,
+                    specular: 0xffffff,
+                    shininess: 5,
+                    map: texture
+                });
+                for (let i = 0; i < object.children.length; i += 1) {
+                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Outer') !== -1 && texture.image) {
+                        object.children[i].material = materialWithTexture;
+                    }
+                }
+            },
+            undefined,
+            function (err) {
+                for (let i = 0; i < object.children.length; i += 1) {
+                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Outer') !== -1) {
+                        object.children[i].material = materialDef;
+                    }
+                }
             });
     }
 
@@ -69,7 +136,6 @@ class Rug extends Component {
         this.THREE = THREE;
 
         const container = document.getElementById("root-for-rug");
-        console.log('container ', container);
 
         this.objectLoader();
 
@@ -93,7 +159,9 @@ class Rug extends Component {
 
 
     componentDidUpdate() {
-        this.objectLoader();
+        this.updateMapCentre(this.props.centre.src);
+        this.updateMapPiping(this.props.piping.src);
+        this.updateMapOuterBorder(this.props.outerBorder.src);
     }
 
 
