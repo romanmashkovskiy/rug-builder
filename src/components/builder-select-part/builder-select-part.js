@@ -34,8 +34,12 @@ import {
     setOuterBorderMaterialType,
     setPipingMaterialType,
 
-    setRugCurrentView
+    setRugCurrentView,
 
+    zoomRugIn,
+    zoomRugOut,
+
+    setShowRugCornerMode
 } from "../../actions";
 
 import header from './images/header.png';
@@ -44,7 +48,6 @@ import edit from './images/edit-icon.svg';
 import exit from './images/exit.svg';
 import exitSelected from './images/exit-selected.png';
 import restart from './images/restart.svg'
-import twice from './images/2x.png';
 import zoomIn from './images/zoom-in.svg';
 import zoomOut from './images/zoom-out.svg';
 import leftControlFirst from './images/zoom window.svg';
@@ -108,7 +111,8 @@ class BuilderSelectPart extends Component {
                                 <Rug/>
                             </div>
                             <div className="left-controls">
-                                <div className="left-controls-first">
+                                <div className="left-controls-first"
+                                     onClick={() => this.props.setShowRugCornerMode(true)}>
                                     <img src={leftControlFirst} alt="leftControlFirst"/>
                                 </div>
                                 <div className="left-controls-second">
@@ -118,25 +122,39 @@ class BuilderSelectPart extends Component {
                                     <img src={leftControlThird} alt="leftControlThird"/>
                                 </div>
                             </div>
+                            {this.props.showRugCornerMode &&
+                            <div className="rug-corner">
+                                <div className="rug-corner-preview">
+                                </div>
+                                <div className="rug-corner-close" onClick={() => this.props.setShowRugCornerMode(false)}>
+                                    <img src={exitSelected} alt="exit" />
+                                    <div className="rug-corner-close-text">
+                                        CLOSE
+                                    </div>
+                                </div>
+                            </div>}
                             <div className="zoomin-zoomout">
                                 <div className="twice">
-                                    <img src={twice} alt="twice"/>
+                                    {this.props.currentZoom}X
                                 </div>
-                                <div className="zoom-in">
+                                <div className="zoom-in" onClick={() => this.props.zoomRugIn()}>
                                     <img src={zoomIn} alt="zoomIn"/>
                                 </div>
-                                <div className="zoom-out">
+                                <div className="zoom-out" onClick={() => this.props.zoomRugOut()}>
                                     <img src={zoomOut} alt="zoomOut"/>
                                 </div>
                             </div>
                             <div className="perspective-control">
-                                <div className="above-vertical" onClick={() => this.props.setRugCurrentView('above-vertical')}>
+                                <div className="above-vertical"
+                                     onClick={() => this.props.setRugCurrentView('above-vertical')}>
                                     <img src={aboveVertical} alt="aboveVertical"/>
                                 </div>
-                                <div className="above-horizontal" onClick={() => this.props.setRugCurrentView('above-horizontal')}>
+                                <div className="above-horizontal"
+                                     onClick={() => this.props.setRugCurrentView('above-horizontal')}>
                                     <img src={aboveHorizontal} alt="aboveHorizontal"/>
                                 </div>
-                                <div className="angled-horizontal" onClick={() => this.props.setRugCurrentView('angled-horizontal')}>
+                                <div className="angled-horizontal"
+                                     onClick={() => this.props.setRugCurrentView('angled-horizontal')}>
                                     <img src={angledHorizontal} alt="angledHorizontal"/>
                                 </div>
                                 <div className="angled" onClick={() => this.props.setRugCurrentView('angled')}>
@@ -697,7 +715,11 @@ const mapStateToProps = (state) => {
         showOuterBorderMaterialFirstChildrenMode: state.showOuterBorderMaterialFirstChildrenMode,
         showOuterBorderMaterialSecondChildrenMode: state.showOuterBorderMaterialSecondChildrenMode,
 
-        showPipingMaterialMode: state.showPipingMaterialMode
+        showPipingMaterialMode: state.showPipingMaterialMode,
+
+        currentZoom: state.currentZoom,
+
+        showRugCornerMode: state.showRugCornerMode
     };
 };
 
@@ -725,7 +747,12 @@ const matchDispatchToProps = (dispatch) => {
             setOuterBorderMaterialType: setOuterBorderMaterialType,
             setPipingMaterialType: setPipingMaterialType,
 
-            setRugCurrentView: setRugCurrentView
+            setRugCurrentView: setRugCurrentView,
+
+            zoomRugIn: zoomRugIn,
+            zoomRugOut: zoomRugOut,
+
+            setShowRugCornerMode: setShowRugCornerMode
         },
         dispatch)
 };

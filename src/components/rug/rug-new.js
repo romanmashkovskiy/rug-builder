@@ -29,13 +29,14 @@ class Rug extends Component {
             1000
         );
 
-        this.camera.position.x = 0;
+        this.camera.position.x = 0.000001;
         this.camera.position.y = 170;
         this.camera.position.z = 0;
 
-        // this.camera.rotation.x = -1.5708;
-        // this.camera.rotation.y = 0;
-        // this.camera.rotation.z = 1.5708;
+        this.camera.rotation.x = -1.5708;
+        this.camera.rotation.y = 0;
+        this.camera.rotation.z = 1.5708;
+
 
         this.scene.add(this.camera);
 
@@ -44,7 +45,6 @@ class Rug extends Component {
 
         const dirLight = new THREE.DirectionalLight(0xffffff, 0.3);
         this.scene.add(dirLight);
-
     }
 
     objectLoader() {
@@ -141,9 +141,10 @@ class Rug extends Component {
 
     changeView(currentView) {
         this.camera.updateProjectionMatrix();
+        this.controls.reset();
 
         if (currentView === 'above-horizontal') {
-            this.camera.position.x = -40;
+            this.camera.position.x = 0.000001;
             this.camera.position.y = 170;
             this.camera.position.z = 0;
 
@@ -153,7 +154,7 @@ class Rug extends Component {
         }
 
         if (currentView === 'angled') {
-            this.camera.position.x = 70;
+            this.camera.position.x = 150;
             this.camera.position.y = 97.86732004062627;
             this.camera.position.z = 108.5265830159921;
 
@@ -175,7 +176,7 @@ class Rug extends Component {
         if (currentView === 'above-vertical') {
             this.camera.position.x = 0;
             this.camera.position.y = 170;
-            this.camera.position.z = -55;
+            this.camera.position.z = 0;
 
             this.camera.rotation.x = -1.5708;
             this.camera.rotation.y = 0;
@@ -183,36 +184,54 @@ class Rug extends Component {
         }
     }
 
+    cameraZoom(zoom) {
+        this.camera.zoom = zoom;
+        this.camera.updateProjectionMatrix();
+    }
+
+
+
     componentDidMount() {
+        const resize = () => {
+            renderer.setSize(container.offsetWidth, container.offsetHeight);
+            this.camera.aspect = container.offsetWidth / container.offsetHeight;
+            this.camera.updateProjectionMatrix();
+        };
+
         this.THREE = THREE;
 
         const container = document.getElementById("root-for-rug");
 
+        this.controls = new OrbitControl(this.camera, container);
+        this.controls.enableZoom  = false;
+        this.controls.minPolarAngle = 0;
+        this.controls.maxPolarAngle = Math.PI/2 - 0.15;
+
+        this.camera.zoom = 2;
+
         this.objectLoader();
 
-        const controls = new OrbitControl(this.camera);
-        controls.enableZoom  = false;
-        controls.minPolarAngle = 0;
-        controls.maxPolarAngle = Math.PI/2 - 0.15;
-
-
-        const axesHelper = new THREE.AxesHelper(500);
-        this.scene.add(axesHelper);
+        // const axesHelper = new THREE.AxesHelper(500);
+        // this.scene.add(axesHelper);
 
         const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
 
         renderer.setSize(container.offsetWidth, container.offsetHeight);
 
         this.camera.aspect = container.offsetWidth / container.offsetHeight;
+        this.camera.updateProjectionMatrix();
+
+        window.onresize =  resize;
 
         const animate = () => {
             requestAnimationFrame(animate);
-            controls.update();
+            this.controls.update();
             renderer.render(this.scene, this.camera);
         };
         animate();
 
         container.appendChild(renderer.domElement);
+        console.log('zoom', this.camera.zoom);
     }
 
 
@@ -223,6 +242,8 @@ class Rug extends Component {
         this.updateMapOuterBorder(this.props.outerBorder.src);
 
         this.changeView(this.props.currentRugView);
+
+        this.cameraZoom(this.props.currentZoom);
     }
 
 
@@ -240,7 +261,8 @@ const mapStateToProps = (state) => {
         centre: state.centre,
         outerBorder: state.outerBorder,
         piping: state.piping,
-        currentRugView: state.currentRugView
+        currentRugView: state.currentRugView,
+        currentZoom: state.currentZoom
     };
 };
 

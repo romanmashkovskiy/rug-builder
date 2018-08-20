@@ -36,3 +36,7 @@ export const SET_RUG_CURRENT_VIEW = 'SET_RUG_CURRENT_VIEW';
 
 export const  ZOOM_RUG_IN = 'ZOOM_RUG_IN';
 export const  ZOOM_RUG_OUT = 'ZOOM_RUG_OUT';
+
+export const SHOW_RUG_CORNER = 'SHOW_RUG_CORNER';
+
+export const LOAD_MATERIALS_SUCCESS = 'LOAD_MATERIALS_SUCCESS';

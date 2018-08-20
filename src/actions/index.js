@@ -1,4 +1,5 @@
 import * as actions from './action-types';
+import materialsApi from '../api/materials-api';
 
 export const setLength = (length) => {
     return {
@@ -107,7 +108,6 @@ export const setShowPipingMaterialMode = (mode) => {
 };
 
 
-
 export const setCenterMaterialType = (type) => {
     return {
         type: actions.SET_CENTER_MATERIAL_TYPE,
@@ -137,12 +137,28 @@ export const setPipingMaterialType = (type) => {
 };
 
 
-
 export const getCenterMaterials = () => {
     return {
         type: actions.GET_MATERIALS_CENTER
     }
 };
+
+// export const getCenterMaterials = () => {
+//     return (dispatch) => {
+//         return materialsApi.getMaterials().
+//         then(response => {
+//             console.log(response);
+//             dispatch(loadMaterialsSuccess(response));
+//         }).catch(error => {
+//             console.log(111);
+//             console.log(error)
+//         })
+//     }
+// };
+//
+// export function loadMaterialsSuccess(response) {
+//     return {type: actions.LOAD_MATERIALS_SUCCESS, payload: response};
+// }
 
 export const getInnerBorderMaterials = () => {
     return {
@@ -192,5 +208,12 @@ export const zoomRugIn = () => {
 export const zoomRugOut = () => {
     return {
         type: actions.ZOOM_RUG_OUT
+    }
+};
+
+export const setShowRugCornerMode = (mode) => {
+    return {
+        type: actions.SHOW_RUG_CORNER,
+        payload: mode
     }
 };

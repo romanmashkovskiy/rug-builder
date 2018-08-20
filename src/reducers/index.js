@@ -34,6 +34,10 @@ import setCurrentMaterialHoverCoordsReducer from './set-current-material-hover-c
 
 import setRugCurrentViewReducer from './set-rug-current-view';
 
+import currentZoomReducer from './zoom-rug-in-out';
+
+import showRugCornerModeReducer from './show-rug-corner';
+
 
 const rootReducer = combineReducers({
     width: widthReducer,
@@ -70,8 +74,11 @@ const rootReducer = combineReducers({
     currentMaterialHover: setCurrentMaterialHoverReducer,
     currentMaterialHoverCoords: setCurrentMaterialHoverCoordsReducer,
 
-    currentRugView: setRugCurrentViewReducer
+    currentRugView: setRugCurrentViewReducer,
 
+    currentZoom: currentZoomReducer,
+
+    showRugCornerMode: showRugCornerModeReducer
 });
 
 export default rootReducer;

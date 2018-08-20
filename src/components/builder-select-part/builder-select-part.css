@@ -55,11 +55,45 @@
     left: 20px;
 }
 
+.rug-corner {
+    position: absolute;
+    height: 268px;
+    width: 308px;
+    /*border: 1px solid red;*/
+    left: 20px;
+    top: 62.79px;
+    display: flex;
+}
+
+.rug-corner-preview {
+    width: 283px;
+}
+
+.rug-corner-close {
+    width: 25px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rug-corner-close-text {
+    transform: rotate(-90deg);
+    margin-top: 20px;
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    letter-spacing: 2.29px;
+    line-height: 17px;
+    text-align: center;
+    background-color: #FFFFFF;
+}
+
 .rug-3d {
     position: absolute;
     height: 70%;
     width: 95%;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     top: 80px;
     left: 20px;
     overflow: hidden;
@@ -126,12 +160,12 @@
 .twice {
     height: 100%;
     width: 43px;
-}
-
-.twice img {
-    max-width: 100%;
-    width: 100%;
-    height: 100%;
+    background-color: #F1F1F1;
+    text-align: center;
+    font-family: Montserrat, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.47px;
+    line-height: 41.57px;
 }
 
 .zoom-in {
@@ -139,6 +173,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .zoom-in img {
@@ -150,6 +185,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .zoom-out img {
@@ -178,6 +214,7 @@
     justify-content: center;
     align-items: center;
     border-right: 1px solid #E8E8E8;
+    cursor: pointer;
 }
 
 .above-vertical img {
@@ -194,6 +231,7 @@
     justify-content: center;
     align-items: center;
     border-right: 1px solid #E8E8E8;
+    cursor: pointer;
 }
 
 .above-horizontal img {
@@ -210,6 +248,7 @@
     justify-content: center;
     align-items: center;
     border-right: 1px solid #E8E8E8;
+    cursor: pointer;
 }
 
 .angled-horizontal img {
@@ -225,6 +264,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .angled img {
