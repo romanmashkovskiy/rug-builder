@@ -63,8 +63,8 @@ class Rug extends Component {
         const object = this.object;
         textureLoader.load(url,
             (texture) => {
-                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                texture.repeat.set(2, 2);
+                // texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                // texture.repeat.set(2, 2);
                 const materialWithTexture = new THREE.MeshPhongMaterial({
                     color: 0x555555,
                     specular: 0xffffff,
@@ -237,7 +237,7 @@ class Rug extends Component {
 
     componentDidUpdate() {
         //this.updateMapCentre('http://cdn.crucial-trading.com/uploads/20170202190119/Affluence_AF422_933.jpg');
-        this.updateMapCentre(this.props.centre.src);
+        this.updateMapCentre(this.props.centre.picture);
         this.updateMapPiping(this.props.piping.src);
         this.updateMapOuterBorder(this.props.outerBorder.src);
 

@@ -25,7 +25,11 @@ import setShowOuterBorderMaterialSecondChildrenModeReducer from './set-show-oute
 import setShowPipingMaterialModeReducer from './set-show-piping-material-mode';
 
 import getInnerBorderMaterialsReducer from './get-inner-border-materials';
+
 import getCenterMaterialsReducer from './get-center-materials';
+import getCenterMaterialsFirstChildrenReducer from './get-center-materials-first-children';
+import getCenterMaterialsSecondChildrenReducer from './get-center-materials-second-children';
+
 import getOuterBorderMaterialsReducer from './get-outer-border-materials';
 import getPipingMaterialsReducer from './get-piping-materials';
 
@@ -67,7 +71,11 @@ const rootReducer = combineReducers({
     showPipingMaterialMode: setShowPipingMaterialModeReducer,
 
     innerBorderMaterials: getInnerBorderMaterialsReducer,
+
     centerMaterials: getCenterMaterialsReducer,
+    centerMaterialsFirstChildren: getCenterMaterialsFirstChildrenReducer,
+    centerMaterialsSecondChildren: getCenterMaterialsSecondChildrenReducer,
+
     outerBorderMaterials: getOuterBorderMaterialsReducer,
     pipingMaterials: getPipingMaterialsReducer,
 

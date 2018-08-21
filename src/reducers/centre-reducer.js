@@ -2,8 +2,7 @@ import * as actions from '../actions/action-types'
 
 const initial ={
     id: 0,
-    name: 'CENTRE',
-    src: ''
+    name: 'CENTRE'
 };
 
 export default (state = initial, action) => {

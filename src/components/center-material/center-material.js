@@ -7,6 +7,8 @@ import {
     setShowCenterMaterialSecondChildrenMode,
     setCenterMaterialType,
     getCenterMaterials,
+    getCenterMaterialsFirstChildren,
+    getCenterMaterialsSecondChildren,
     setCurrentMaterialHover,
     setCurrentMaterialHoverCoords
 } from "../../actions";
@@ -26,31 +28,30 @@ class CenterMaterial extends Component {
 
     componentDidMount() {
         this.props.getCenterMaterials();
+        this.props.getCenterMaterialsFirstChildren();
     }
 
-    showFirstChildren(children) {
+    showFirstChildren(parent) {
         this.props.setShowCenterMaterialFirstChildrenMode(true);
         this.setState({
-            currentFirstChildren: children
+            currentFirstChildren: this.props.centerMaterialsFirstChildren[parent.name]
         });
     }
 
-    showSecondChildren(children) {
+    showSecondChildren(parent) {
         this.props.setShowCenterMaterialSecondChildrenMode(true);
-        this.setState({
-            currentSecondChildren: children
-        });
+        this.props. getCenterMaterialsSecondChildren(parent.slug);
     }
 
     calculateRandom() {
         if (this.props.showCenterMaterialSecondChildrenMode) {
             const length = this.state.currentSecondChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
-            this.props.setCenterMaterialType(this.state.currentSecondChildren[randomIndex]);
+            this.props.setCenterMaterialType(this.props.centerMaterialsSecondChildren[randomIndex]);
         } else {
             const length = this.state.currentFirstChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
-            this.showSecondChildren(this.state.currentFirstChildren[0].children);
+            this.showSecondChildren(this.state.currentFirstChildren[randomIndex]);
         }
     }
 
@@ -67,8 +68,11 @@ class CenterMaterial extends Component {
                 {
                     this.props.currentMaterialHover.name &&
                     <div className="single-materials-center-hover"
-                         style={{left: this.props.currentMaterialHoverCoords.left - (195-this.props.currentMaterialHoverCoords.width)/2, top: this.props.currentMaterialHoverCoords.top - 340} }>
-                        <img src={this.props.currentMaterialHover.src} alt="material-center-child"/>
+                         style={{
+                             left: this.props.currentMaterialHoverCoords.left - (195 - this.props.currentMaterialHoverCoords.width) / 2,
+                             top: this.props.currentMaterialHoverCoords.top - 340
+                         }}>
+                        <img src={this.props.currentMaterialHover.picture} alt="material-center-child"/>
                         <h3>{this.props.currentMaterialHover.name}</h3>
                     </div>
                 }
@@ -79,10 +83,11 @@ class CenterMaterial extends Component {
                         !this.props.showCenterMaterialFirstChildrenMode &&
                         this.props.centerMaterials.map((material) => {
                             return (
-                                <div className="single-materials-center-list" key={material.id}
-                                     onClick={() => this.showFirstChildren(material.children)}>
+                                material.thumb &&
+                                <div className="single-materials-center-list" key={material.term_id}
+                                     onClick={() => this.showFirstChildren(material)}>
                                     <div>
-                                        <img src={material.src} alt="type-material-center"/>
+                                        <img src={material.thumb} alt="type-material-center"/>
                                         <h3>{material.name}</h3>
                                     </div>
                                 </div>
@@ -110,10 +115,10 @@ class CenterMaterial extends Component {
                         (this.props.showCenterMaterialFirstChildrenMode && !this.props.showCenterMaterialSecondChildrenMode) &&
                         this.state.currentFirstChildren.map((child) => {
                             return (
-                                <div className="single-materials-center-list-child" key={child.id}
-                                     onClick={() => this.showSecondChildren(child.children)}>
+                                <div className="single-materials-center-list-child" key={child.term_id}
+                                     onClick={() => this.showSecondChildren(child)}>
                                     <div className="single-materials-center-list-child-wrapper">
-                                        <img src={child.src} alt="material-center-child"/>
+                                        <img src={child.thumbnail} alt="material-center-child"/>
                                         <h3>{child.name}</h3>
                                     </div>
                                 </div>
@@ -124,7 +129,7 @@ class CenterMaterial extends Component {
                     {/*second children center material*/}
                     {
                         this.props.showCenterMaterialSecondChildrenMode &&
-                        this.state.currentSecondChildren.map((child) => {
+                        this.props.centerMaterialsSecondChildren.map((child) => {
                             return (
                                 <div className="single-materials-center-list-child" key={child.id} ref={child.name}
                                      onClick={() => {
@@ -138,8 +143,8 @@ class CenterMaterial extends Component {
                                          this.props.setCurrentMaterialHoverCoords({});
                                      }}>
                                     <div className="single-materials-center-list-child-wrapper">
-                                        <img src={child.src} alt="material-center-child"/>
-                                        <h3>{child.name}</h3>
+                                        <img src={child.picture} alt="material-center-child"/>
+                                        <h3>{child.code}</h3>
                                     </div>
                                 </div>
                             )
@@ -156,7 +161,11 @@ const mapStateToProps = (state) => {
     return {
         showCenterMaterialFirstChildrenMode: state.showCenterMaterialFirstChildrenMode,
         showCenterMaterialSecondChildrenMode: state.showCenterMaterialSecondChildrenMode,
+
         centerMaterials: state.centerMaterials,
+        centerMaterialsFirstChildren: state.centerMaterialsFirstChildren,
+        centerMaterialsSecondChildren: state.centerMaterialsSecondChildren,
+
         currentMaterialHover: state.currentMaterialHover,
         currentMaterialHoverCoords: state.currentMaterialHoverCoords
     };
@@ -167,9 +176,13 @@ const matchDispatchToProps = (dispatch) => {
             setShowCenterMaterialFirstChildrenMode: setShowCenterMaterialFirstChildrenMode,
             setShowCenterMaterialSecondChildrenMode: setShowCenterMaterialSecondChildrenMode,
             setCenterMaterialType: setCenterMaterialType,
+
             getCenterMaterials: getCenterMaterials,
+            getCenterMaterialsFirstChildren: getCenterMaterialsFirstChildren,
+            getCenterMaterialsSecondChildren: getCenterMaterialsSecondChildren,
+
             setCurrentMaterialHover: setCurrentMaterialHover,
-            setCurrentMaterialHoverCoords: setCurrentMaterialHoverCoords
+            setCurrentMaterialHoverCoords: setCurrentMaterialHoverCoords,
         },
         dispatch)
 };

@@ -75,8 +75,7 @@ class BuilderSelectPart extends Component {
     render() {
         const initCenter = {
             id: 0,
-            name: 'CENTRE',
-            src: ''
+            name: 'CENTRE'
         };
 
         const initInnerBorder = {
@@ -335,7 +334,7 @@ class BuilderSelectPart extends Component {
                                     <h3>CENTRE</h3>
                                     {this.props.centre.name !== 'CENTRE' &&
                                     <div className="centre-icon-selected-material">
-                                        <img src={this.props.centre.src} alt="type"/>
+                                        <img src={this.props.centre.picture} alt="type"/>
                                     </div>}
                                 </div>
 

@@ -79,10 +79,10 @@ class OuterBorderMaterial extends Component {
                         !this.props.showOuterBorderMaterialFirstChildrenMode &&
                         this.props.outerBorderMaterials.map((material) => {
                             return (
-                                <div className="single-materials-center-list" key={material.id}
+                                <div className="single-materials-center-list" key={material.term_id}
                                      onClick={() => this.showFirstChildren(material.children)}>
                                     <div>
-                                        <img src={material.src} alt="type-material-center"/>
+                                        <img src={material.thumb} alt="type-material-center"/>
                                         <h3>{material.name}</h3>
                                     </div>
                                 </div>

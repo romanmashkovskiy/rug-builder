@@ -1,5 +1,5 @@
 import * as actions from './action-types';
-import materialsApi from '../api/materials-api';
+import materialsApi from '../api/center-materials-api';
 
 export const setLength = (length) => {
     return {
@@ -136,29 +136,51 @@ export const setPipingMaterialType = (type) => {
     }
 };
 
-
 export const getCenterMaterials = () => {
-    return {
-        type: actions.GET_MATERIALS_CENTER
+    return (dispatch) => {
+        return materialsApi.getMaterials('materials-data').
+        then(response => {
+            dispatch(loadCenterMaterialsSuccess(response));
+        }).catch(error => {
+            console.log(error)
+        })
     }
 };
 
-// export const getCenterMaterials = () => {
-//     return (dispatch) => {
-//         return materialsApi.getMaterials().
-//         then(response => {
-//             console.log(response);
-//             dispatch(loadMaterialsSuccess(response));
-//         }).catch(error => {
-//             console.log(111);
-//             console.log(error)
-//         })
-//     }
-// };
-//
-// export function loadMaterialsSuccess(response) {
-//     return {type: actions.LOAD_MATERIALS_SUCCESS, payload: response};
-// }
+export function loadCenterMaterialsSuccess(response) {
+    return {type: actions.LOAD_CENTER_MATERIALS_SUCCESS, payload: response};
+}
+
+export const getCenterMaterialsFirstChildren = () => {
+    return (dispatch) => {
+        return materialsApi.getMaterials('collections-data').
+        then(response => {
+            dispatch(loadCenterMaterialsFirstChildrenSuccess(response));
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+};
+
+export function loadCenterMaterialsFirstChildrenSuccess(response) {
+    return {type: actions.LOAD_CENTER_MATERIALS_FIRST_CHILDREN_SUCCESS, payload: response};
+}
+
+export const getCenterMaterialsSecondChildren = (parent) => {
+    return (dispatch) => {
+        return materialsApi.getMaterials(`swatches-data/?request=swatches&collection=${parent}`).
+        then(response => {
+            dispatch(loadCenterMaterialsSecondChildrenSuccess(response));
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+};
+
+export function loadCenterMaterialsSecondChildrenSuccess(response) {
+    console.log(response);
+    return {type: actions.LOAD_CENTER_MATERIALS_SECOND_CHILDREN_SUCCESS, payload: response};
+}
 
 export const getInnerBorderMaterials = () => {
     return {
@@ -166,11 +188,26 @@ export const getInnerBorderMaterials = () => {
     }
 };
 
+// export const getOuterBorderMaterials = () => {
+//     return {
+//         type: actions.GET_MATERIALS_OUTER_BORDER
+//     }
+// };
+
 export const getOuterBorderMaterials = () => {
-    return {
-        type: actions.GET_MATERIALS_OUTER_BORDER
+    return (dispatch) => {
+        return materialsApi.getMaterials('borders-data').
+        then(response => {
+            dispatch(loadOuterBorderMaterialsSuccess(response));
+        }).catch(error => {
+            console.log(error)
+        })
     }
 };
+
+export function loadOuterBorderMaterialsSuccess(response) {
+    return {type: actions.LOAD_OUTER_BORDER_MATERIALS_SUCCESS, payload: response};
+}
 
 export const getPipingMaterials = () => {
     return {
