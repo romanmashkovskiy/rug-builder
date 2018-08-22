@@ -1,9 +1,8 @@
 import * as actions from '../actions/action-types'
 
 const initial ={
-    id: 0,
-    name: 'PIPING',
-    src: ''
+    ID: 0,
+    post_title: 'PIPING'
 };
 
 export default (state = initial, action) => {

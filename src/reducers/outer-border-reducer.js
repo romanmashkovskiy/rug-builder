@@ -2,8 +2,7 @@ import * as actions from '../actions/action-types'
 
 const initial = {
     id: 0,
-    name: 'OUTER BORDER',
-    src: ''
+    name: 'OUTER BORDER'
 };
 
 export default (state = initial, action) => {

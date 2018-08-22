@@ -21,8 +21,7 @@ class CenterMaterial extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentFirstChildren: [],
-            currentSecondChildren: []
+            currentFirstChildren: []
         }
     }
 
@@ -40,12 +39,12 @@ class CenterMaterial extends Component {
 
     showSecondChildren(parent) {
         this.props.setShowCenterMaterialSecondChildrenMode(true);
-        this.props. getCenterMaterialsSecondChildren(parent.slug);
+        this.props.getCenterMaterialsSecondChildren(parent.slug);
     }
 
     calculateRandom() {
         if (this.props.showCenterMaterialSecondChildrenMode) {
-            const length = this.state.currentSecondChildren.length;
+            const length = this.props.centerMaterialsSecondChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
             this.props.setCenterMaterialType(this.props.centerMaterialsSecondChildren[randomIndex]);
         } else {
@@ -73,7 +72,7 @@ class CenterMaterial extends Component {
                              top: this.props.currentMaterialHoverCoords.top - 340
                          }}>
                         <img src={this.props.currentMaterialHover.picture} alt="material-center-child"/>
-                        <h3>{this.props.currentMaterialHover.name}</h3>
+                        <h3>{this.props.currentMaterialHover.code}</h3>
                     </div>
                 }
                 <div className="materials-center-list">

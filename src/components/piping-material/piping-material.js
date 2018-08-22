@@ -28,7 +28,7 @@ class PipingMaterial extends Component {
 
     currentMaterialHover(material) {
         this.props.setCurrentMaterialHover(material);
-        const {left, top, width} = this.refs[material.name].getBoundingClientRect();
+        const {left, top, width} = this.refs[material.code].getBoundingClientRect();
         this.props.setCurrentMaterialHoverCoords({left, top, width});
     }
 
@@ -37,14 +37,14 @@ class PipingMaterial extends Component {
         return (
             <Fragment>
                 {
-                    this.props.currentMaterialHover.name &&
+                    this.props.currentMaterialHover.code &&
                     <div className="single-materials-center-hover"
                          style={{
                              left: this.props.currentMaterialHoverCoords.left - (195 - this.props.currentMaterialHoverCoords.width) / 2,
                              top: this.props.currentMaterialHoverCoords.top - 340
                          }}>
-                        <img src={this.props.currentMaterialHover.src} alt="material-center-child"/>
-                        <h3>{this.props.currentMaterialHover.name}</h3>
+                        <img src={this.props.currentMaterialHover.picture} alt="material-center-child"/>
+                        <h3>{this.props.currentMaterialHover.code}</h3>
                     </div>
                 }
                 <div className="materials-center-list">
@@ -65,8 +65,8 @@ class PipingMaterial extends Component {
                     {
                         this.props.pipingMaterials.map((material) => {
                             return (
-                                <div className="single-materials-center-list-child" key={material.id}
-                                     ref={material.name}
+                                <div className="single-materials-center-list-child" key={material.ID}
+                                     ref={material.code}
                                      onClick={() => {
                                          this.props.setPipingMaterialType(material);
                                      }}
@@ -78,8 +78,8 @@ class PipingMaterial extends Component {
                                          this.props.setCurrentMaterialHoverCoords({});
                                      }}>
                                     <div className="single-materials-center-list-child-wrapper">
-                                        <img src={material.src} alt="material-center-child"/>
-                                        <h3>{material.name}</h3>
+                                        <img src={material.picture} alt="material-center-child"/>
+                                        <h3>{material.code}</h3>
                                     </div>
                                 </div>
                             )

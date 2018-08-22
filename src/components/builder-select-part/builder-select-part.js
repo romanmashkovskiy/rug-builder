@@ -65,7 +65,6 @@ import exitSelection from './images/exit.png';
 import outerBorder from './images/outer-border.svg'
 import piping from './images/piping.svg';
 
-//import Rug from '../rug/rug'
 import Rug from '../rug/rug-new';
 
 
@@ -80,20 +79,17 @@ class BuilderSelectPart extends Component {
 
         const initInnerBorder = {
             id: 0,
-            name: 'INNER BORDER',
-            src: ''
+            name: 'INNER BORDER'
         };
 
         const initOuterBorder = {
             id: 0,
-            name: 'OUTER BORDER',
-            src: ''
+            name: 'OUTER BORDER'
         };
 
         const initPiping = {
             id: 0,
-            name: 'PIPING',
-            src: ''
+            post_title: 'PIPING'
         };
 
         return (
@@ -267,20 +263,20 @@ class BuilderSelectPart extends Component {
                             {
                                 this.props.border === 'BORDER-PIPING' &&
                                 <div className="border-is-selected">
-                                    {this.props.piping.name === "PIPING" &&
+                                    {this.props.piping.post_title === "PIPING" &&
                                     <div className="current-size-edit">
                                         <img src={exit} alt="exit"/>
                                         <div className="centre-is-not-selected-type">
-                                            {`${this.props.piping.name}`}
+                                            {`${this.props.piping.post_title}`}
                                         </div>
                                     </div>}
-                                    {this.props.piping.name !== "PIPING" &&
+                                    {this.props.piping.post_title !== "PIPING" &&
                                     <div className="current-size-edit">
                                         <img src={exitSelected} alt="exit" onClick={() => {
                                             this.props.setPipingMaterialType(initPiping);
                                         }}/>
                                         <div className="centre-is-selected-type">
-                                            {`${this.props.piping.name}`}
+                                            {`${this.props.piping.post_title}`}
                                         </div>
                                     </div>}
                                 </div>
@@ -361,7 +357,7 @@ class BuilderSelectPart extends Component {
                                     <h3>OUTER BORDER</h3>
                                     {this.props.outerBorder.name !== 'OUTER BORDER' &&
                                     <div className="centre-icon-selected-material">
-                                        <img src={this.props.outerBorder.src} alt="type"/>
+                                        <img src={this.props.outerBorder.picture} alt="type"/>
                                     </div>}
                                 </div>
                             </div>
@@ -382,7 +378,7 @@ class BuilderSelectPart extends Component {
                                     <h3>INNER BORDER</h3>
                                     {this.props.innerBorder.name !== 'INNER BORDER' &&
                                     <div className="centre-icon-selected-material">
-                                        <img src={this.props.innerBorder.src} alt="type"/>
+                                        <img src={this.props.innerBorder.picture} alt="type"/>
                                     </div>}
                                 </div>
                             </div>
@@ -402,9 +398,9 @@ class BuilderSelectPart extends Component {
                                 }}>
                                     <img className="centre-icon" src={piping} alt="piping"/>
                                     <h3>PIPING</h3>
-                                    {this.props.piping.name !== 'PIPING' &&
+                                    {this.props.piping.post_title !== 'PIPING' &&
                                     <div className="centre-icon-selected-material">
-                                        <img src={this.props.piping.src} alt="type"/>
+                                        <img src={this.props.piping.picture} alt="type"/>
                                     </div>}
                                 </div>
                             </div>
@@ -648,13 +644,13 @@ class BuilderSelectPart extends Component {
                             {
                                 this.props.showPipingMaterialMode &&
                                 <div className="back-to-fibre-close-center">
-                                    {this.props.piping.name === 'PIPING' &&
+                                    {this.props.piping.post_title === 'PIPING' &&
                                     <div className="back-to-fibre-close-center-first">
                                         <div className="back-to-fibre-close-center-first-text-image">
                                             <img src={donePale} alt="done"/>
                                         </div>
                                     </div>}
-                                    {this.props.piping.name !== 'PIPING' &&
+                                    {this.props.piping.post_title !== 'PIPING' &&
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowPipingMaterialMode(false);
                                     }

@@ -6,7 +6,11 @@ import {
     setShowOuterBorderMaterialFirstChildrenMode,
     setShowOuterBorderMaterialSecondChildrenMode,
     setOuterBorderMaterialType,
+
     getOuterBorderMaterials,
+    getOuterBorderMaterialsFirstChildren,
+    getOuterBorderMaterialsSecondChildren,
+
     setCurrentMaterialHover,
     setCurrentMaterialHoverCoords
 } from "../../actions";
@@ -16,41 +20,30 @@ import random from './images/random-icon.svg';
 //styles from center-material.css
 
 class OuterBorderMaterial extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentFirstChildren: [],
-            currentSecondChildren: []
-        }
-    }
 
     componentDidMount() {
         this.props.getOuterBorderMaterials();
     }
 
-    showFirstChildren(children) {
+    showFirstChildren(parent) {
         this.props.setShowOuterBorderMaterialFirstChildrenMode(true);
-        this.setState({
-            currentFirstChildren: children
-        });
+        this.props.getOuterBorderMaterialsFirstChildren(parent.name);
     }
 
-    showSecondChildren(children) {
+    showSecondChildren(parent) {
         this.props.setShowOuterBorderMaterialSecondChildrenMode(true);
-        this.setState({
-            currentSecondChildren: children
-        });
+        this.props.getOuterBorderMaterialsSecondChildren(parent.slug);
     }
 
     calculateRandom() {
         if (this.props.showOuterBorderMaterialSecondChildrenMode) {
-            const length = this.state.currentSecondChildren.length;
+            const length = this.props.outerBorderMaterialsSecondChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
-            this.props.setOuterBorderMaterialType(this.state.currentSecondChildren[randomIndex]);
+            this.props.setOuterBorderMaterialType(this.props.outerBorderMaterialsSecondChildren[randomIndex]);
         } else {
-            const length = this.state.currentFirstChildren.length;
+            const length = this.props.outerBorderMaterialsFirstChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
-            this.showSecondChildren(this.state.currentFirstChildren[0].children);
+            this.showSecondChildren(this.props.outerBorderMaterialsFirstChildren[randomIndex]);
         }
     }
 
@@ -67,9 +60,12 @@ class OuterBorderMaterial extends Component {
                 {
                     this.props.currentMaterialHover.name &&
                     <div className="single-materials-center-hover"
-                         style={{left: this.props.currentMaterialHoverCoords.left - (195-this.props.currentMaterialHoverCoords.width)/2, top: this.props.currentMaterialHoverCoords.top - 340} }>
-                        <img src={this.props.currentMaterialHover.src} alt="material-center-child"/>
-                        <h3>{this.props.currentMaterialHover.name}</h3>
+                         style={{
+                             left: this.props.currentMaterialHoverCoords.left - (195 - this.props.currentMaterialHoverCoords.width) / 2,
+                             top: this.props.currentMaterialHoverCoords.top - 340
+                         }}>
+                        <img src={this.props.currentMaterialHover.picture} alt="material-center-child"/>
+                        <h3>{this.props.currentMaterialHover.code}</h3>
                     </div>
                 }
                 <div className="materials-center-list">
@@ -80,7 +76,7 @@ class OuterBorderMaterial extends Component {
                         this.props.outerBorderMaterials.map((material) => {
                             return (
                                 <div className="single-materials-center-list" key={material.term_id}
-                                     onClick={() => this.showFirstChildren(material.children)}>
+                                     onClick={() => this.showFirstChildren(material)}>
                                     <div>
                                         <img src={material.thumb} alt="type-material-center"/>
                                         <h3>{material.name}</h3>
@@ -108,12 +104,12 @@ class OuterBorderMaterial extends Component {
                     {/*first children outer border material*/}
                     {
                         (this.props.showOuterBorderMaterialFirstChildrenMode && !this.props.showOuterBorderMaterialSecondChildrenMode) &&
-                        this.state.currentFirstChildren.map((child) => {
+                        this.props.outerBorderMaterialsFirstChildren.map((child) => {
                             return (
-                                <div className="single-materials-center-list-child" key={child.id}
-                                     onClick={() => this.showSecondChildren((child.children))}>
+                                <div className="single-materials-center-list-child" key={child.term_id}
+                                     onClick={() => this.showSecondChildren((child))}>
                                     <div className="single-materials-center-list-child-wrapper">
-                                        <img src={child.src} alt="material-center-child"/>
+                                        <img src={child.thumbnail} alt="material-center-child"/>
                                         <h3>{child.name}</h3>
                                     </div>
                                 </div>
@@ -124,7 +120,7 @@ class OuterBorderMaterial extends Component {
                     {/*second children outer border material*/}
                     {
                         this.props.showOuterBorderMaterialSecondChildrenMode &&
-                        this.state.currentSecondChildren.map((child) => {
+                        this.props.outerBorderMaterialsSecondChildren.map((child) => {
                             return (
                                 <div className="single-materials-center-list-child" key={child.id} ref={child.name}
                                      onClick={() => {
@@ -138,8 +134,8 @@ class OuterBorderMaterial extends Component {
                                          this.props.setCurrentMaterialHoverCoords({});
                                      }}>
                                     <div className="single-materials-center-list-child-wrapper">
-                                        <img src={child.src} alt="material-center-child"/>
-                                        <h3>{child.name}</h3>
+                                        <img src={child.picture} alt="material-center-child"/>
+                                        <h3>{child.code}</h3>
                                     </div>
                                 </div>
                             )
@@ -157,7 +153,11 @@ const mapStateToProps = (state) => {
     return {
         showOuterBorderMaterialFirstChildrenMode: state.showOuterBorderMaterialFirstChildrenMode,
         showOuterBorderMaterialSecondChildrenMode: state.showOuterBorderMaterialSecondChildrenMode,
+
         outerBorderMaterials: state.outerBorderMaterials,
+        outerBorderMaterialsFirstChildren: state.outerBorderMaterialsFirstChildren,
+        outerBorderMaterialsSecondChildren: state.outerBorderMaterialsSecondChildren,
+
         currentMaterialHover: state.currentMaterialHover,
         currentMaterialHoverCoords: state.currentMaterialHoverCoords
     };
@@ -168,7 +168,11 @@ const matchDispatchToProps = (dispatch) => {
             setShowOuterBorderMaterialFirstChildrenMode: setShowOuterBorderMaterialFirstChildrenMode,
             setShowOuterBorderMaterialSecondChildrenMode: setShowOuterBorderMaterialSecondChildrenMode,
             setOuterBorderMaterialType: setOuterBorderMaterialType,
+
             getOuterBorderMaterials: getOuterBorderMaterials,
+            getOuterBorderMaterialsFirstChildren: getOuterBorderMaterialsFirstChildren,
+            getOuterBorderMaterialsSecondChildren: getOuterBorderMaterialsSecondChildren,
+
             setCurrentMaterialHover: setCurrentMaterialHover,
             setCurrentMaterialHoverCoords: setCurrentMaterialHoverCoords
         },

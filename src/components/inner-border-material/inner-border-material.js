@@ -6,7 +6,11 @@ import {
     setShowInnerBorderMaterialFirstChildrenMode,
     setShowInnerBorderMaterialSecondChildrenMode,
     setInnerBorderMaterialType,
+
     getInnerBorderMaterials,
+    getInnerBorderMaterialsFirstChildren,
+    getInnerBorderMaterialsSecondChildren,
+
     setCurrentMaterialHover,
     setCurrentMaterialHoverCoords
 } from "../../actions";
@@ -16,41 +20,30 @@ import random from './images/random-icon.svg';
 //styles from center-material.css
 
 class InnerBorderMaterial extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentFirstChildren: [],
-            currentSecondChildren: []
-        }
-    }
 
     componentDidMount() {
         this.props.getInnerBorderMaterials();
     }
 
-    showFirstChildren(children) {
+    showFirstChildren(parent) {
         this.props.setShowInnerBorderMaterialFirstChildrenMode(true);
-        this.setState({
-            currentFirstChildren: children
-        });
+        this.props.getInnerBorderMaterialsFirstChildren(parent.name);
     }
 
-    showSecondChildren(children) {
+    showSecondChildren(parent) {
         this.props.setShowInnerBorderMaterialSecondChildrenMode(true);
-        this.setState({
-            currentSecondChildren: children
-        });
+        this.props.getInnerBorderMaterialsSecondChildren(parent.slug);
     }
 
     calculateRandom() {
         if (this.props.showInnerBorderMaterialSecondChildrenMode) {
-            const length = this.state.currentSecondChildren.length;
+            const length = this.props.outerBorderMaterialsSecondChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
-            this.props.setInnerBorderMaterialType(this.state.currentSecondChildren[randomIndex]);
+            this.props.setInnerBorderMaterialType(this.props.outerBorderMaterialsSecondChildren[randomIndex]);
         } else {
-            const length = this.state.currentFirstChildren.length;
+            const length = this.props.innerBorderMaterialsFirstChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
-            this.showSecondChildren(this.state.currentFirstChildren[0].children);
+            this.showSecondChildren(this.props.innerBorderMaterialsFirstChildren[randomIndex]);
         }
     }
 
@@ -71,8 +64,8 @@ class InnerBorderMaterial extends Component {
                              left: this.props.currentMaterialHoverCoords.left - (195 - this.props.currentMaterialHoverCoords.width) / 2,
                              top: this.props.currentMaterialHoverCoords.top - 340
                          }}>
-                        <img src={this.props.currentMaterialHover.src} alt="material-center-child"/>
-                        <h3>{this.props.currentMaterialHover.name}</h3>
+                        <img src={this.props.currentMaterialHover.picture} alt="material-center-child"/>
+                        <h3>{this.props.currentMaterialHover.code}</h3>
                     </div>
                 }
                 <div className="materials-center-list">
@@ -82,10 +75,10 @@ class InnerBorderMaterial extends Component {
                         !this.props.showInnerBorderMaterialFirstChildrenMode &&
                         this.props.innerBorderMaterials.map((material) => {
                             return (
-                                <div className="single-materials-center-list" key={material.id}
-                                     onClick={() => this.showFirstChildren(material.children)}>
+                                <div className="single-materials-center-list" key={material.term_id}
+                                     onClick={() => this.showFirstChildren(material)}>
                                     <div>
-                                        <img src={material.src} alt="type-material-center"/>
+                                        <img src={material.thumb} alt="type-material-center"/>
                                         <h3>{material.name}</h3>
                                     </div>
                                 </div>
@@ -111,12 +104,12 @@ class InnerBorderMaterial extends Component {
                     {/*first children inner border material*/}
                     {
                         (this.props.showInnerBorderMaterialFirstChildrenMode && !this.props.showInnerBorderMaterialSecondChildrenMode) &&
-                        this.state.currentFirstChildren.map((child) => {
+                        this.props.innerBorderMaterialsFirstChildren.map((child) => {
                             return (
-                                <div className="single-materials-center-list-child" key={child.id}
-                                     onClick={() => this.showSecondChildren((child.children))}>
+                                <div className="single-materials-center-list-child" key={child.term_id}
+                                     onClick={() => this.showSecondChildren((child))}>
                                     <div className="single-materials-center-list-child-wrapper">
-                                        <img src={child.src} alt="material-center-child"/>
+                                        <img src={child.thumbnail} alt="material-center-child"/>
                                         <h3>{child.name}</h3>
                                     </div>
                                 </div>
@@ -127,7 +120,7 @@ class InnerBorderMaterial extends Component {
                     {/*second children inner border material*/}
                     {
                         this.props.showInnerBorderMaterialSecondChildrenMode &&
-                        this.state.currentSecondChildren.map((child) => {
+                        this.props.innerBorderMaterialsSecondChildren.map((child) => {
                             return (
                                 <div className="single-materials-center-list-child" key={child.id} ref={child.name}
                                      onClick={() => {
@@ -141,8 +134,8 @@ class InnerBorderMaterial extends Component {
                                          this.props.setCurrentMaterialHoverCoords({});
                                      }}>
                                     <div className="single-materials-center-list-child-wrapper">
-                                        <img src={child.src} alt="material-center-child"/>
-                                        <h3>{child.name}</h3>
+                                        <img src={child.picture} alt="material-center-child"/>
+                                        <h3>{child.code}</h3>
                                     </div>
                                 </div>
                             )
@@ -160,7 +153,11 @@ const mapStateToProps = (state) => {
     return {
         showInnerBorderMaterialFirstChildrenMode: state.showInnerBorderMaterialFirstChildrenMode,
         showInnerBorderMaterialSecondChildrenMode: state.showInnerBorderMaterialSecondChildrenMode,
+
         innerBorderMaterials: state.innerBorderMaterials,
+        innerBorderMaterialsFirstChildren: state.innerBorderMaterialsFirstChildren,
+        innerBorderMaterialsSecondChildren: state.innerBorderMaterialsSecondChildren,
+
         currentMaterialHover: state.currentMaterialHover,
         currentMaterialHoverCoords: state.currentMaterialHoverCoords
     };
@@ -171,7 +168,11 @@ const matchDispatchToProps = (dispatch) => {
             setShowInnerBorderMaterialFirstChildrenMode: setShowInnerBorderMaterialFirstChildrenMode,
             setShowInnerBorderMaterialSecondChildrenMode: setShowInnerBorderMaterialSecondChildrenMode,
             setInnerBorderMaterialType: setInnerBorderMaterialType,
+
             getInnerBorderMaterials: getInnerBorderMaterials,
+            getInnerBorderMaterialsFirstChildren: getInnerBorderMaterialsFirstChildren,
+            getInnerBorderMaterialsSecondChildren: getInnerBorderMaterialsSecondChildren,
+
             setCurrentMaterialHover: setCurrentMaterialHover,
             setCurrentMaterialHoverCoords: setCurrentMaterialHoverCoords
         },

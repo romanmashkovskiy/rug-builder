@@ -25,12 +25,17 @@ import setShowOuterBorderMaterialSecondChildrenModeReducer from './set-show-oute
 import setShowPipingMaterialModeReducer from './set-show-piping-material-mode';
 
 import getInnerBorderMaterialsReducer from './get-inner-border-materials';
+import getInnerBorderMaterialsFirstChildrenReducer from './get-inner-border-materials-first-children';
+import getInnerBorderMaterialsSecondChildrenReducer from './get-inner-border-materials-second-children';
 
 import getCenterMaterialsReducer from './get-center-materials';
 import getCenterMaterialsFirstChildrenReducer from './get-center-materials-first-children';
 import getCenterMaterialsSecondChildrenReducer from './get-center-materials-second-children';
 
 import getOuterBorderMaterialsReducer from './get-outer-border-materials';
+import getOuterBorderMaterialsFirstChildrenReducer from './get-outer-border-materials-first-children';
+import getOuterBorderMaterialsSecondChildrenReducer from './get-outer-order-materials-second-children';
+
 import getPipingMaterialsReducer from './get-piping-materials';
 
 import setCurrentMaterialHoverReducer from './set-current-material-hover';
@@ -71,12 +76,17 @@ const rootReducer = combineReducers({
     showPipingMaterialMode: setShowPipingMaterialModeReducer,
 
     innerBorderMaterials: getInnerBorderMaterialsReducer,
+    innerBorderMaterialsFirstChildren: getInnerBorderMaterialsFirstChildrenReducer,
+    innerBorderMaterialsSecondChildren: getInnerBorderMaterialsSecondChildrenReducer,
 
     centerMaterials: getCenterMaterialsReducer,
     centerMaterialsFirstChildren: getCenterMaterialsFirstChildrenReducer,
     centerMaterialsSecondChildren: getCenterMaterialsSecondChildrenReducer,
 
     outerBorderMaterials: getOuterBorderMaterialsReducer,
+    outerBorderMaterialsFirstChildren: getOuterBorderMaterialsFirstChildrenReducer,
+    outerBorderMaterialsSecondChildren: getOuterBorderMaterialsSecondChildrenReducer,
+
     pipingMaterials: getPipingMaterialsReducer,
 
     currentMaterialHover: setCurrentMaterialHoverReducer,

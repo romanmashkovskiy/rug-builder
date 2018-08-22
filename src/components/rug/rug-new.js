@@ -238,8 +238,8 @@ class Rug extends Component {
     componentDidUpdate() {
         //this.updateMapCentre('http://cdn.crucial-trading.com/uploads/20170202190119/Affluence_AF422_933.jpg');
         this.updateMapCentre(this.props.centre.picture);
-        this.updateMapPiping(this.props.piping.src);
-        this.updateMapOuterBorder(this.props.outerBorder.src);
+        this.updateMapPiping(this.props.piping.picture);
+        this.updateMapOuterBorder(this.props.outerBorder.picture);
 
         this.changeView(this.props.currentRugView);
 

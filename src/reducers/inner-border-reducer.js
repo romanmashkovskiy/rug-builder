@@ -2,8 +2,7 @@ import * as actions from '../actions/action-types'
 
 const initial = {
     id: 0,
-    name: 'INNER BORDER',
-    src: ''
+    name: 'INNER BORDER'
 };
 
 export default (state = initial, action) => {

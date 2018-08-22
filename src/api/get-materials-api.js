@@ -1,4 +1,4 @@
-export default class CenterMaterialsApi {
+export default class GetMaterialsApi {
     static getMaterials(url) {
         return fetch(`${process.env.REACT_APP_API_ROOT}/${url}`)
             .then(response => {
