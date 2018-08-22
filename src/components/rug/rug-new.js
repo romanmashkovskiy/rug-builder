@@ -190,7 +190,6 @@ class Rug extends Component {
     }
 
 
-
     componentDidMount() {
         const resize = () => {
             renderer.setSize(container.offsetWidth, container.offsetHeight);
@@ -203,9 +202,9 @@ class Rug extends Component {
         const container = document.getElementById("root-for-rug");
 
         this.controls = new OrbitControl(this.camera, container);
-        this.controls.enableZoom  = false;
+        this.controls.enableZoom = false;
         this.controls.minPolarAngle = 0;
-        this.controls.maxPolarAngle = Math.PI/2 - 0.15;
+        this.controls.maxPolarAngle = Math.PI / 2 - 0.15;
 
         this.camera.zoom = 2;
 
@@ -221,7 +220,7 @@ class Rug extends Component {
         this.camera.aspect = container.offsetWidth / container.offsetHeight;
         this.camera.updateProjectionMatrix();
 
-        window.onresize =  resize;
+        window.onresize = resize;
 
         const animate = () => {
             requestAnimationFrame(animate);
@@ -236,13 +235,25 @@ class Rug extends Component {
 
 
     componentDidUpdate() {
-        //this.updateMapCentre('http://cdn.crucial-trading.com/uploads/20170202190119/Affluence_AF422_933.jpg');
-        this.updateMapCentre(this.props.centre.picture);
-        this.updateMapPiping(this.props.piping.picture);
-        this.updateMapOuterBorder(this.props.outerBorder.picture);
+        if (this.props.centre.thumb) {
+            const key = Object.keys(this.props.centre.thumb)[0];
+            console.log(this.props.centre.thumb[key].full_url);
+            this.updateMapCentre(this.props.centre.thumb[key].full_url);
+        }
+
+        if (this.props.outerBorder.thumb) {
+            const key = Object.keys(this.props.outerBorder.thumb)[0];
+            console.log(this.props.outerBorder.thumb[key].full_url);
+            this.updateMapOuterBorder(this.props.outerBorder.thumb[key].full_url);
+        }
+
+        if (this.props.piping.thumb) {
+            const key = Object.keys(this.props.piping.thumb)[0];
+            console.log(this.props.piping.thumb[key].full_url);
+            this.updateMapPiping(this.props.piping.thumb[key].full_url);
+        }
 
         this.changeView(this.props.currentRugView);
-
         this.cameraZoom(this.props.currentZoom);
     }
 
