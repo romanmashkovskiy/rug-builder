@@ -17,6 +17,8 @@ const materialDef = new THREE.MeshPhongMaterial({
     shininess: 5
 });
 
+console.log(materialDef);
+
 class Rug extends Component {
 
     constructor(props) {
@@ -63,8 +65,8 @@ class Rug extends Component {
         const object = this.object;
         textureLoader.load(url,
             (texture) => {
-                // texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                // texture.repeat.set(2, 2);
+                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                texture.repeat.set(6, 6);
                 const materialWithTexture = new THREE.MeshPhongMaterial({
                     color: 0x555555,
                     specular: 0xffffff,
