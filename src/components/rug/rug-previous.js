@@ -13,9 +13,11 @@ const textureLoader = new THREE.TextureLoader();
 
 const materialDef = new THREE.MeshPhongMaterial({
     color: 0x555555,
+    specular: 0xffffff,
+    shininess: 5
 });
 
-//console.log(materialDef);
+console.log(materialDef);
 
 class Rug extends Component {
 
@@ -59,64 +61,39 @@ class Rug extends Component {
             });
     }
 
-    // updateMapCentre(urlTexture, urlBumpMap, urlNormalMap) {
-    //     const object = this.object;
-    //     async function loadPromise(url) {
-    //         return new Promise((resolve, reject) => {
-    //             textureLoader.load(url, (texture, undefined, error))
-    //         })
-    //     }
-    //
-    //     const loader = (url) => {
-    //         textureLoader.load(url,
-    //     }
-    // }
-
-
-    async updateMapCentre(urlTexture, urlBumpMap, urlNormalMap) {
+    updateMapCentre(url) {
         const object = this.object;
-        const texture = await textureLoader.load(urlTexture,
+        textureLoader.load(url,
             (texture) => {
-            //console.log(texture);
+            console.log(texture);
+                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+                texture.repeat.set(6, 6);
+                const materialWithTexture = new THREE.MeshPhongMaterial({
+                    color: 0x555555,
+                    specular: 0xffffff,
+                    shininess: 5,
+                    map: texture
+                });
+                for (let i = 0; i < object.children.length; i += 1) {
+                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1 && texture.image) {
+                        object.children[i].material = materialWithTexture;
+                    }
+                }
             },
             undefined,
-            (err) => {
-            console.log('eeeeee');
+            function (err) {
                 for (let i = 0; i < object.children.length; i += 1) {
                     if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1) {
                         object.children[i].material = materialDef;
                     }
                 }
             });
-        const bumpMap = await textureLoader.load(urlBumpMap);
-        const normalMap = await textureLoader.load(urlNormalMap);
-
-        const materialWithTexture = new THREE.MeshPhongMaterial({
-            color: 0x555555,
-            map: texture,
-            bumpMap: bumpMap,
-            normalMap: normalMap
-        });
-
-        //console.log(texture);
-
-        if (urlTexture) {
-            for (let i = 0; i < object.children.length; i += 1) {
-                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1) {
-                    object.children[i].material = materialWithTexture;
-                }
-            }
-        }
-
     }
 
     updateMapPiping(url) {
         const object = this.object;
         textureLoader.load(url,
             (texture) => {
-                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                //texture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
-                texture.anisotropy = 16;
                 const materialWithTexture = new THREE.MeshPhongMaterial({
                     color: 0x555555,
                     specular: 0xffffff,
@@ -143,9 +120,6 @@ class Rug extends Component {
         const object = this.object;
         textureLoader.load(url,
             (texture) => {
-                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                //texture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
-                texture.anisotropy = 16;
                 const materialWithTexture = new THREE.MeshPhongMaterial({
                     color: 0x555555,
                     specular: 0xffffff,
@@ -221,7 +195,7 @@ class Rug extends Component {
 
     componentDidMount() {
         const resize = () => {
-            this.renderer.setSize(container.offsetWidth, container.offsetHeight);
+            renderer.setSize(container.offsetWidth, container.offsetHeight);
             this.camera.aspect = container.offsetWidth / container.offsetHeight;
             this.camera.updateProjectionMatrix();
         };
@@ -242,9 +216,9 @@ class Rug extends Component {
         // const axesHelper = new THREE.AxesHelper(500);
         // this.scene.add(axesHelper);
 
-        this.renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+        const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
 
-        this.renderer.setSize(container.offsetWidth, container.offsetHeight);
+        renderer.setSize(container.offsetWidth, container.offsetHeight);
 
         this.camera.aspect = container.offsetWidth / container.offsetHeight;
         this.camera.updateProjectionMatrix();
@@ -254,51 +228,33 @@ class Rug extends Component {
         const animate = () => {
             requestAnimationFrame(animate);
             this.controls.update();
-            this.renderer.render(this.scene, this.camera);
+            renderer.render(this.scene, this.camera);
         };
         animate();
 
-        container.appendChild(this.renderer.domElement);
-        // console.log('zoom', this.camera.zoom);
+        container.appendChild(renderer.domElement);
+        console.log('zoom', this.camera.zoom);
     }
 
 
     componentDidUpdate() {
         if (this.props.centre.thumb) {
-            const keyTexture = Object.keys(this.props.centre.thumb)[0];
-            const keyBumpMap = Object.keys(this.props.centre.bmap)[0];
-            const keyNormalMap = Object.keys(this.props.centre.nmap)[0];
-
-            this.updateMapCentre(this.props.centre.thumb[keyTexture].full_url,
-                this.props.centre.bmap instanceof Array ? '' : this.props.centre.bmap[keyBumpMap].full_url,
-                this.props.centre.nmap instanceof Array ? '' : this.props.centre.nmap[keyNormalMap].full_url);
-        } else {
-            this.updateMapCentre('', '', '');
+            const key = Object.keys(this.props.centre.thumb)[0];
+            console.log(this.props.centre.thumb[key].full_url);
+            this.updateMapCentre(this.props.centre.thumb[key].full_url);
         }
-        //
-        // if (this.props.outerBorder.thumb) {
-        //     const key = Object.keys(this.props.outerBorder.thumb)[0];
-        //     console.log(this.props.outerBorder.thumb[key].full_url);
-        //     this.updateMapOuterBorder(this.props.outerBorder.thumb[key].full_url);
-        // } else {
-        //     this.updateMapOuterBorder('');
-        // }
-        //
-        // if (this.props.piping.thumb) {
-        //     const key = Object.keys(this.props.piping.thumb)[0];
-        //     console.log(this.props.piping.thumb[key].full_url);
-        //     this.updateMapPiping(this.props.piping.thumb[key].full_url);
-        // } else {
-        //     this.updateMapPiping('');
-        // }
 
-        // this.updateMapCentre(this.props.centre.picture);
-        // this.updateMapOuterBorder(this.props.outerBorder.picture);
-        // this.updateMapPiping(this.props.piping.picture);
+        if (this.props.outerBorder.thumb) {
+            const key = Object.keys(this.props.outerBorder.thumb)[0];
+            console.log(this.props.outerBorder.thumb[key].full_url);
+            this.updateMapOuterBorder(this.props.outerBorder.thumb[key].full_url);
+        }
 
-        // this.updateMapCentre(this.props.centre.picture, this.props.centre.picture, this.props.centre.picture);
-        // // this.updateMapOuterBorder(this.props.outerBorder);
-        // // this.updateMapPiping(this.props.piping);
+        if (this.props.piping.thumb) {
+            const key = Object.keys(this.props.piping.thumb)[0];
+            console.log(this.props.piping.thumb[key].full_url);
+            this.updateMapPiping(this.props.piping.thumb[key].full_url);
+        }
 
         this.changeView(this.props.currentRugView);
         this.cameraZoom(this.props.currentZoom);
@@ -306,7 +262,6 @@ class Rug extends Component {
 
 
     render() {
-
         return (
             <div className="rug-container" id="root-for-rug">
             </div>
