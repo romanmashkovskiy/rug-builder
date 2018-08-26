@@ -4,6 +4,7 @@ import * as OBJLoader from 'three-obj-loader';
 import * as OrbitControls from 'three-orbit-controls';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
+import { loadWithPromise } from '../../utils/load-texture-with-promise';
 
 import './rug.css';
 
@@ -59,113 +60,115 @@ class Rug extends Component {
             });
     }
 
-    // updateMapCentre(urlTexture, urlBumpMap, urlNormalMap) {
-    //     const object = this.object;
-    //     async function loadPromise(url) {
-    //         return new Promise((resolve, reject) => {
-    //             textureLoader.load(url, (texture, undefined, error))
-    //         })
-    //     }
-    //
-    //     const loader = (url) => {
-    //         textureLoader.load(url,
-    //     }
-    // }
-
-
     async updateMapCentre(urlTexture, urlBumpMap, urlNormalMap) {
         const object = this.object;
-        const texture = await textureLoader.load(urlTexture,
-            (texture) => {
-            //console.log(texture);
-            },
-            undefined,
-            (err) => {
-            console.log('eeeeee');
-                for (let i = 0; i < object.children.length; i += 1) {
-                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1) {
-                        object.children[i].material = materialDef;
-                    }
+        if (urlTexture === '') {
+            for (let i = 0; i < object.children.length; i += 1) {
+                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1) {
+                    object.children[i].material = materialDef;
                 }
-            });
-        const bumpMap = await textureLoader.load(urlBumpMap);
-        const normalMap = await textureLoader.load(urlNormalMap);
+            }
+            return;
+        }
 
-        const materialWithTexture = new THREE.MeshPhongMaterial({
-            color: 0x555555,
-            map: texture,
-            bumpMap: bumpMap,
-            normalMap: normalMap
-        });
+        const textures = {
+            color: 0x555555
+        };
+        try {
+            textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
+            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
+        } catch (e) {
+            textures.bumpMap = null;
+            textures.normalMap = null;
+            console.log(e);
+        }
 
-        //console.log(texture);
+        try {
+            textures.map = await loadWithPromise(urlTexture, textureLoader);
+            const materialWithTexture = new THREE.MeshPhongMaterial(textures);
 
-        if (urlTexture) {
             for (let i = 0; i < object.children.length; i += 1) {
                 if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1) {
                     object.children[i].material = materialWithTexture;
                 }
             }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async updateMapPiping(urlTexture, urlBumpMap, urlNormalMap) {
+        const object = this.object;
+        if (urlTexture === '') {
+            for (let i = 0; i < object.children.length; i += 1) {
+                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Trim') !== -1) {
+                    object.children[i].material = materialDef;
+                }
+            }
+            return;
         }
 
+        const textures = {
+            color: 0x555555
+        };
+        try {
+            textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
+            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
+        } catch (e) {
+            textures.bumpMap = null;
+            textures.normalMap = null;
+            console.log(e);
+        }
+
+        try {
+            textures.map = await loadWithPromise(urlTexture, textureLoader);
+            const materialWithTexture = new THREE.MeshPhongMaterial(textures);
+
+            for (let i = 0; i < object.children.length; i += 1) {
+                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Trim') !== -1) {
+                    object.children[i].material = materialWithTexture;
+                }
+            }
+        } catch (e) {
+            console.log(e);
+        }
     }
 
-    updateMapPiping(url) {
+    async updateMapOuterBorder(urlTexture, urlBumpMap, urlNormalMap) {
         const object = this.object;
-        textureLoader.load(url,
-            (texture) => {
-                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                //texture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
-                texture.anisotropy = 16;
-                const materialWithTexture = new THREE.MeshPhongMaterial({
-                    color: 0x555555,
-                    specular: 0xffffff,
-                    shininess: 5,
-                    map: texture
-                });
-                for (let i = 0; i < object.children.length; i += 1) {
-                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Trim') !== -1 && texture.image) {
-                        object.children[i].material = materialWithTexture;
-                    }
+        if (urlTexture === '') {
+            for (let i = 0; i < object.children.length; i += 1) {
+                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Outer') !== -1) {
+                    object.children[i].material = materialDef;
                 }
-            },
-            undefined,
-            function (err) {
-                for (let i = 0; i < object.children.length; i += 1) {
-                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Trim') !== -1) {
-                        object.children[i].material = materialDef;
-                    }
-                }
-            });
-    }
+            }
+            return;
+        }
 
-    updateMapOuterBorder(url) {
-        const object = this.object;
-        textureLoader.load(url,
-            (texture) => {
-                texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-                //texture.anisotropy = this.renderer.capabilities.getMaxAnisotropy();
-                texture.anisotropy = 16;
-                const materialWithTexture = new THREE.MeshPhongMaterial({
-                    color: 0x555555,
-                    specular: 0xffffff,
-                    shininess: 5,
-                    map: texture
-                });
-                for (let i = 0; i < object.children.length; i += 1) {
-                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Outer') !== -1 && texture.image) {
-                        object.children[i].material = materialWithTexture;
-                    }
+        const textures = {
+            color: 0x555555
+        };
+        try {
+            textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
+            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
+        } catch (e) {
+            textures.bumpMap = null;
+            textures.normalMap = null;
+            console.log(e);
+        }
+
+        try {
+            textures.map = await loadWithPromise(urlTexture, textureLoader);
+            const materialWithTexture = new THREE.MeshPhongMaterial(textures);
+
+            for (let i = 0; i < object.children.length; i += 1) {
+                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Outer') !== -1) {
+                    object.children[i].material = materialWithTexture;
                 }
-            },
-            undefined,
-            function (err) {
-                for (let i = 0; i < object.children.length; i += 1) {
-                    if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Outer') !== -1) {
-                        object.children[i].material = materialDef;
-                    }
-                }
-            });
+            }
+        } catch (e) {
+            console.log(e);
+        }
     }
 
     changeView(currentView) {
@@ -273,32 +276,32 @@ class Rug extends Component {
                 this.props.centre.bmap instanceof Array ? '' : this.props.centre.bmap[keyBumpMap].full_url,
                 this.props.centre.nmap instanceof Array ? '' : this.props.centre.nmap[keyNormalMap].full_url);
         } else {
-            this.updateMapCentre('', '', '');
+            this.updateMapCentre('');
         }
-        //
-        // if (this.props.outerBorder.thumb) {
-        //     const key = Object.keys(this.props.outerBorder.thumb)[0];
-        //     console.log(this.props.outerBorder.thumb[key].full_url);
-        //     this.updateMapOuterBorder(this.props.outerBorder.thumb[key].full_url);
-        // } else {
-        //     this.updateMapOuterBorder('');
-        // }
-        //
-        // if (this.props.piping.thumb) {
-        //     const key = Object.keys(this.props.piping.thumb)[0];
-        //     console.log(this.props.piping.thumb[key].full_url);
-        //     this.updateMapPiping(this.props.piping.thumb[key].full_url);
-        // } else {
-        //     this.updateMapPiping('');
-        // }
 
-        // this.updateMapCentre(this.props.centre.picture);
-        // this.updateMapOuterBorder(this.props.outerBorder.picture);
-        // this.updateMapPiping(this.props.piping.picture);
+        if (this.props.piping.thumb) {
+            const keyTexture = Object.keys(this.props.piping.thumb)[0];
+            const keyBumpMap = Object.keys(this.props.piping.bmap)[0];
+            const keyNormalMap = Object.keys(this.props.piping.nmap)[0];
 
-        // this.updateMapCentre(this.props.centre.picture, this.props.centre.picture, this.props.centre.picture);
-        // // this.updateMapOuterBorder(this.props.outerBorder);
-        // // this.updateMapPiping(this.props.piping);
+            this.updateMapPiping(this.props.piping.thumb[keyTexture].full_url,
+                this.props.piping.bmap instanceof Array ? '' : this.props.piping.bmap[keyBumpMap].full_url,
+                this.props.piping.nmap instanceof Array ? '' : this.props.piping.nmap[keyNormalMap].full_url);
+        } else {
+            this.updateMapPiping('');
+        }
+
+        if (this.props.outerBorder.thumb) {
+            const keyTexture = Object.keys(this.props.outerBorder.thumb)[0];
+            const keyBumpMap = Object.keys(this.props.outerBorder.bmap)[0];
+            const keyNormalMap = Object.keys(this.props.outerBorder.nmap)[0];
+
+            this.updateMapOuterBorder(this.props.outerBorder.thumb[keyTexture].full_url,
+                this.props.outerBorder.bmap instanceof Array ? '' : this.props.outerBorder.bmap[keyBumpMap].full_url,
+                this.props.outerBorder.nmap instanceof Array ? '' : this.props.outerBorder.nmap[keyNormalMap].full_url);
+        } else {
+            this.updateMapOuterBorder('');
+        }
 
         this.changeView(this.props.currentRugView);
         this.cameraZoom(this.props.currentZoom);
