@@ -47,6 +47,8 @@ import currentZoomReducer from './zoom-rug-in-out';
 
 import showRugCornerModeReducer from './show-rug-corner';
 
+import centerMaterialPriceReducer from './get-center-materials-price';
+
 
 const rootReducer = combineReducers({
     width: widthReducer,
@@ -96,7 +98,9 @@ const rootReducer = combineReducers({
 
     currentZoom: currentZoomReducer,
 
-    showRugCornerMode: showRugCornerModeReducer
+    showRugCornerMode: showRugCornerModeReducer,
+
+    centerMaterialPrice: centerMaterialPriceReducer
 });
 
 export default rootReducer;

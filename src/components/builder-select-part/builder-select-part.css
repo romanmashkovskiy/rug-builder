@@ -91,11 +91,11 @@
 
 .rug-3d {
     position: absolute;
-    height: 70%;
-    width: 95%;
+    height: 100%;
+    width: 100%;
     /*border: 1px solid red;*/
-    top: 80px;
-    left: 20px;
+    top: 0;
+    left: 0;
     overflow: hidden;
 }
 

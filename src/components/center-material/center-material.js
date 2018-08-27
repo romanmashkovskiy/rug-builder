@@ -21,20 +21,17 @@ class CenterMaterial extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentFirstChildren: []
+            currentParent: ''
         }
     }
 
     componentDidMount() {
         this.props.getCenterMaterials();
-        this.props.getCenterMaterialsFirstChildren();
     }
 
     showFirstChildren(parent) {
         this.props.setShowCenterMaterialFirstChildrenMode(true);
-        this.setState({
-            currentFirstChildren: this.props.centerMaterialsFirstChildren[parent.name]
-        });
+        this.props.getCenterMaterialsFirstChildren(parent.name);
     }
 
     showSecondChildren(parent) {
@@ -48,9 +45,9 @@ class CenterMaterial extends Component {
             const randomIndex = Math.round(Math.random() * (length - 1));
             this.props.setCenterMaterialType(this.props.centerMaterialsSecondChildren[randomIndex]);
         } else {
-            const length = this.state.currentFirstChildren.length;
+            const length = this.props.centerMaterialsFirstChildren.length;
             const randomIndex = Math.round(Math.random() * (length - 1));
-            this.showSecondChildren(this.state.currentFirstChildren[randomIndex]);
+            this.showSecondChildren(this.props.centerMaterialsFirstChildren[randomIndex]);
         }
     }
 
@@ -112,7 +109,7 @@ class CenterMaterial extends Component {
                     {/*first children center material*/}
                     {
                         (this.props.showCenterMaterialFirstChildrenMode && !this.props.showCenterMaterialSecondChildrenMode) &&
-                        this.state.currentFirstChildren.map((child) => {
+                        this.props.centerMaterialsFirstChildren.map((child) => {
                             return (
                                 <div className="single-materials-center-list-child" key={child.term_id}
                                      onClick={() => this.showSecondChildren(child)}>

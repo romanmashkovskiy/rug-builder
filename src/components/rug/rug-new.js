@@ -16,7 +16,6 @@ const materialDef = new THREE.MeshPhongMaterial({
     color: 0x555555,
 });
 
-//console.log(materialDef);
 
 class Rug extends Component {
 
@@ -74,11 +73,17 @@ class Rug extends Component {
         const textures = {
             color: 0x555555
         };
+
         try {
             textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
-            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
         } catch (e) {
             textures.bumpMap = null;
+            console.log(e);
+        }
+
+        try {
+            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
+        } catch (e) {
             textures.normalMap = null;
             console.log(e);
         }
@@ -111,11 +116,17 @@ class Rug extends Component {
         const textures = {
             color: 0x555555
         };
+
         try {
             textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
-            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
         } catch (e) {
             textures.bumpMap = null;
+            console.log(e);
+        }
+
+        try {
+            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
+        } catch (e) {
             textures.normalMap = null;
             console.log(e);
         }
@@ -148,11 +159,17 @@ class Rug extends Component {
         const textures = {
             color: 0x555555
         };
+
         try {
             textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
-            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
         } catch (e) {
             textures.bumpMap = null;
+            console.log(e);
+        }
+
+        try {
+            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
+        } catch (e) {
             textures.normalMap = null;
             console.log(e);
         }

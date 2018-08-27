@@ -39,8 +39,12 @@ import {
     zoomRugIn,
     zoomRugOut,
 
-    setShowRugCornerMode
+    setShowRugCornerMode,
+
+    getCenterMaterialsPrice
 } from "../../actions";
+
+import {calculatePrice} from '../../utils/calculate-rug-price';
 
 import header from './images/header.png';
 import footer from './images/footer.png';
@@ -69,6 +73,20 @@ import Rug from '../rug/rug-new';
 
 
 class BuilderSelectPart extends Component {
+
+    componentDidUpdate() {
+        this.props.getCenterMaterialsPrice(encodeURIComponent(this.props.centre.name));
+
+        calculatePrice(
+            this.props.length,
+            this.props.width,
+            this.props.border,
+            this.props.innerBorder,
+            this.props.outerBorder,
+            this.props.piping,
+            this.props.centerMaterialPrice
+        )
+    }
 
 
     render() {
@@ -121,8 +139,9 @@ class BuilderSelectPart extends Component {
                             <div className="rug-corner">
                                 <div className="rug-corner-preview">
                                 </div>
-                                <div className="rug-corner-close" onClick={() => this.props.setShowRugCornerMode(false)}>
-                                    <img src={exitSelected} alt="exit" />
+                                <div className="rug-corner-close"
+                                     onClick={() => this.props.setShowRugCornerMode(false)}>
+                                    <img src={exitSelected} alt="exit"/>
                                     <div className="rug-corner-close-text">
                                         CLOSE
                                     </div>
@@ -292,7 +311,7 @@ class BuilderSelectPart extends Component {
                             <div className="carpet-price">
                                 <div className="carpet-price-block">
                                     <div className="price-word">Price:</div>
-                                    <div className="price-value">&#163; 1050</div>
+                                    <div className="price-value">&#163; {this.props.centerMaterialPrice}</div>
                                 </div>
                             </div>
                             <div className="finish-building-block">
@@ -714,7 +733,9 @@ const mapStateToProps = (state) => {
 
         currentZoom: state.currentZoom,
 
-        showRugCornerMode: state.showRugCornerMode
+        showRugCornerMode: state.showRugCornerMode,
+
+        centerMaterialPrice: state.centerMaterialPrice
     };
 };
 
@@ -747,7 +768,9 @@ const matchDispatchToProps = (dispatch) => {
             zoomRugIn: zoomRugIn,
             zoomRugOut: zoomRugOut,
 
-            setShowRugCornerMode: setShowRugCornerMode
+            setShowRugCornerMode: setShowRugCornerMode,
+
+            getCenterMaterialsPrice: getCenterMaterialsPrice
         },
         dispatch)
 };

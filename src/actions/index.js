@@ -150,10 +150,10 @@ export function loadCenterMaterialsSuccess(response) {
     return {type: actions.LOAD_CENTER_MATERIALS_SUCCESS, payload: response};
 }
 
-export const getCenterMaterialsFirstChildren = () => {
+export const getCenterMaterialsFirstChildren = (parent) => {
     return (dispatch) => {
         return materialsApi.getMaterials('?request=collections').then(response => {
-            dispatch(loadCenterMaterialsFirstChildrenSuccess(response));
+            dispatch(loadCenterMaterialsFirstChildrenSuccess(response[parent]));
         }).catch(error => {
             console.log(error)
         })
@@ -316,4 +316,19 @@ export const setShowRugCornerMode = (mode) => {
         type: actions.SHOW_RUG_CORNER,
         payload: mode
     }
+};
+
+export const getCenterMaterialsPrice = (name) => {
+    return (dispatch) => {
+
+        return materialsApi.getMaterials(`?request=price&material=${name}`).then(response => {
+            dispatch(loadCenterMaterialsPriceSuccess(response));
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+};
+
+export function loadCenterMaterialsPriceSuccess(response) {
+    return {type: actions.LOAD_CENTER_MATERIALS_PRICE_SUCCESS, payload: response};
 };
