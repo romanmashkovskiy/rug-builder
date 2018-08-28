@@ -1,5 +1,6 @@
 import * as actions from './action-types';
 import materialsApi from '../api/get-materials-api';
+import { calculatePrice } from '../utils/calculate-rug-price';
 
 export const setLength = (length) => {
     return {
@@ -318,17 +319,27 @@ export const setShowRugCornerMode = (mode) => {
     }
 };
 
-export const getCenterMaterialsPrice = (name) => {
+export const getRugPrice = (name, length, width, rugType, innerBorder, outerBorder, piping) => {
     return (dispatch) => {
 
         return materialsApi.getMaterials(`?request=price&material=${name}`).then(response => {
-            dispatch(loadCenterMaterialsPriceSuccess(response));
+            dispatch(loadCenterMaterialsPriceSuccess(response, length, width, rugType, innerBorder, outerBorder, piping));
         }).catch(error => {
             console.log(error)
         })
     }
 };
 
-export function loadCenterMaterialsPriceSuccess(response) {
-    return {type: actions.LOAD_CENTER_MATERIALS_PRICE_SUCCESS, payload: response};
+export const loadCenterMaterialsPriceSuccess = (response, length, width, rugType, innerBorder, outerBorder, piping) => {
+    const rugPrice = calculatePrice(
+        length,
+        width,
+        rugType,
+        innerBorder,
+        outerBorder,
+        piping,
+        response
+    );
+
+    return {type: actions.RUG_PRICE_CALCULATED, payload: rugPrice ? rugPrice : ''};
 };

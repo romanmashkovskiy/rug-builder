@@ -1,8 +1,8 @@
-export const loadWithPromise = (url, textureLoader) => {
+export const loadWithPromise = (url, loader) => {
     return new Promise((resolve, reject) => {
-        textureLoader.load(url,
-            (texture) => {
-                resolve(texture);
+        loader.load(url,
+            (result) => {
+                resolve(result);
             },
             undefined,
             (err) => {

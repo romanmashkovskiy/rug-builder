@@ -47,7 +47,7 @@ import currentZoomReducer from './zoom-rug-in-out';
 
 import showRugCornerModeReducer from './show-rug-corner';
 
-import centerMaterialPriceReducer from './get-center-materials-price';
+import rugPriceReducer from './get-rug-price';
 
 
 const rootReducer = combineReducers({
@@ -100,7 +100,7 @@ const rootReducer = combineReducers({
 
     showRugCornerMode: showRugCornerModeReducer,
 
-    centerMaterialPrice: centerMaterialPriceReducer
+    rugPrice: rugPriceReducer
 });
 
 export default rootReducer;

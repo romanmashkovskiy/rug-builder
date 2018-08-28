@@ -4,7 +4,7 @@ import * as OBJLoader from 'three-obj-loader';
 import * as OrbitControls from 'three-orbit-controls';
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import { loadWithPromise } from '../../utils/load-with-promise';
+import {loadWithPromise} from '../../utils/load-with-promise';
 
 import './rug.css';
 
@@ -47,24 +47,36 @@ class Rug extends Component {
         this.scene.add(dirLight);
     }
 
-    objectLoader() {
+    async objectLoader() {
         const objectLoader = new this.THREE.OBJLoader();
-        objectLoader.load("single.obj",
-            (object) => {
-                for (let i = 0; i < object.children.length; i++) {
-                    object.children[i].material = materialDef;
-                }
-                this.object = object;
-                this.scene.add(object);
-            });
+
+        let rugFile;
+        if (this.props.border === 'DOUBLE-BORDER') {
+            rugFile = 'double.obj';
+        } else if (this.props.border === 'BORDER-PIPING') {
+            rugFile = 'piping.obj';
+        } else {
+            rugFile = 'single.obj';
+        }
+
+        try {
+            this.object = await loadWithPromise(rugFile, objectLoader);
+            for (let i = 0; i < this.object.children.length; i++) {
+                this.object.children[i].material = materialDef;
+            }
+            this.scene.add(this.object);
+        } catch(e) {
+            console.log(e);
+        }
     }
 
     async updateMapCentre(urlTexture, urlBumpMap, urlNormalMap) {
-        const object = this.object;
+        console.log(this.object);
+
         if (urlTexture === '') {
-            for (let i = 0; i < object.children.length; i += 1) {
-                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1) {
-                    object.children[i].material = materialDef;
+            for (let i = 0; i < this.object.children.length; i += 1) {
+                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Centre') !== -1) {
+                    this.object.children[i].material = materialDef;
                 }
             }
             return;
@@ -92,9 +104,9 @@ class Rug extends Component {
             textures.map = await loadWithPromise(urlTexture, textureLoader);
             const materialWithTexture = new THREE.MeshPhongMaterial(textures);
 
-            for (let i = 0; i < object.children.length; i += 1) {
-                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Centre') !== -1) {
-                    object.children[i].material = materialWithTexture;
+            for (let i = 0; i < this.object.children.length; i += 1) {
+                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Centre') !== -1) {
+                    this.object.children[i].material = materialWithTexture;
                 }
             }
         } catch (e) {
@@ -103,11 +115,11 @@ class Rug extends Component {
     }
 
     async updateMapPiping(urlTexture, urlBumpMap, urlNormalMap) {
-        const object = this.object;
+
         if (urlTexture === '') {
-            for (let i = 0; i < object.children.length; i += 1) {
-                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Trim') !== -1) {
-                    object.children[i].material = materialDef;
+            for (let i = 0; i < this.object.children.length; i += 1) {
+                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Trim') !== -1) {
+                    this.object.children[i].material = materialDef;
                 }
             }
             return;
@@ -135,9 +147,9 @@ class Rug extends Component {
             textures.map = await loadWithPromise(urlTexture, textureLoader);
             const materialWithTexture = new THREE.MeshPhongMaterial(textures);
 
-            for (let i = 0; i < object.children.length; i += 1) {
-                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Trim') !== -1) {
-                    object.children[i].material = materialWithTexture;
+            for (let i = 0; i < this.object.children.length; i += 1) {
+                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Trim') !== -1) {
+                    this.object.children[i].material = materialWithTexture;
                 }
             }
         } catch (e) {
@@ -146,11 +158,10 @@ class Rug extends Component {
     }
 
     async updateMapOuterBorder(urlTexture, urlBumpMap, urlNormalMap) {
-        const object = this.object;
         if (urlTexture === '') {
-            for (let i = 0; i < object.children.length; i += 1) {
-                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Outer') !== -1) {
-                    object.children[i].material = materialDef;
+            for (let i = 0; i < this.object.children.length; i += 1) {
+                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Outer') !== -1) {
+                    this.object.children[i].material = materialDef;
                 }
             }
             return;
@@ -178,9 +189,51 @@ class Rug extends Component {
             textures.map = await loadWithPromise(urlTexture, textureLoader);
             const materialWithTexture = new THREE.MeshPhongMaterial(textures);
 
-            for (let i = 0; i < object.children.length; i += 1) {
-                if (object.children[i] instanceof THREE.Mesh && object.children[i].name.indexOf('Outer') !== -1) {
-                    object.children[i].material = materialWithTexture;
+            for (let i = 0; i < this.object.children.length; i += 1) {
+                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Outer') !== -1) {
+                    this.object.children[i].material = materialWithTexture;
+                }
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    async updateMapInnerBorder(urlTexture, urlBumpMap, urlNormalMap) {
+        if (urlTexture === '') {
+            for (let i = 0; i < this.object.children.length; i += 1) {
+                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Inner') !== -1) {
+                    this.object.children[i].material = materialDef;
+                }
+            }
+            return;
+        }
+
+        const textures = {
+            color: 0x555555
+        };
+
+        try {
+            textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
+        } catch (e) {
+            textures.bumpMap = null;
+            console.log(e);
+        }
+
+        try {
+            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
+        } catch (e) {
+            textures.normalMap = null;
+            console.log(e);
+        }
+
+        try {
+            textures.map = await loadWithPromise(urlTexture, textureLoader);
+            const materialWithTexture = new THREE.MeshPhongMaterial(textures);
+
+            for (let i = 0; i < this.object.children.length; i += 1) {
+                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Inner') !== -1) {
+                    this.object.children[i].material = materialWithTexture;
                 }
             }
         } catch (e) {
@@ -283,11 +336,21 @@ class Rug extends Component {
     }
 
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+        if (prevProps.border !== this.props.border) {
+            this.scene.remove(this.object);
+            this.objectLoader();
+        }
+
         if (this.props.centre.thumb) {
+            console.log(1111111111);
             const keyTexture = Object.keys(this.props.centre.thumb)[0];
+            console.log(keyTexture);
             const keyBumpMap = Object.keys(this.props.centre.bmap)[0];
+            console.log(keyBumpMap);
             const keyNormalMap = Object.keys(this.props.centre.nmap)[0];
+            console.log(keyNormalMap);
+            console.log(this.props.centre.thumb[keyTexture].full_url);
 
             this.updateMapCentre(this.props.centre.thumb[keyTexture].full_url,
                 this.props.centre.bmap instanceof Array ? '' : this.props.centre.bmap[keyBumpMap].full_url,
@@ -296,7 +359,19 @@ class Rug extends Component {
             this.updateMapCentre('');
         }
 
-        if (this.props.piping.thumb) {
+        // if (this.props.centre.thumb && prevProps.centre.thumb !== this.props.centre.thumb) {
+        //     const keyTexture = Object.keys(this.props.centre.thumb)[0];
+        //     const keyBumpMap = Object.keys(this.props.centre.bmap)[0];
+        //     const keyNormalMap = Object.keys(this.props.centre.nmap)[0];
+        //
+        //     this.updateMapCentre(this.props.centre.thumb[keyTexture].full_url,
+        //         this.props.centre.bmap instanceof Array ? '' : this.props.centre.bmap[keyBumpMap].full_url,
+        //         this.props.centre.nmap instanceof Array ? '' : this.props.centre.nmap[keyNormalMap].full_url);
+        // } else if (!this.props.centre.thumb && prevProps.centre.thumb !== this.props.centre.thumb) {
+        //     this.updateMapCentre('');
+        // }
+
+        if (this.props.piping.thumb && prevProps.piping.thumb !== this.props.piping.thumb) {
             const keyTexture = Object.keys(this.props.piping.thumb)[0];
             const keyBumpMap = Object.keys(this.props.piping.bmap)[0];
             const keyNormalMap = Object.keys(this.props.piping.nmap)[0];
@@ -304,11 +379,11 @@ class Rug extends Component {
             this.updateMapPiping(this.props.piping.thumb[keyTexture].full_url,
                 this.props.piping.bmap instanceof Array ? '' : this.props.piping.bmap[keyBumpMap].full_url,
                 this.props.piping.nmap instanceof Array ? '' : this.props.piping.nmap[keyNormalMap].full_url);
-        } else {
+        } else if (!this.props.piping.thumb && prevProps.piping.thumb !== this.props.piping.thumb){
             this.updateMapPiping('');
         }
 
-        if (this.props.outerBorder.thumb) {
+        if (this.props.outerBorder.thumb && prevProps.outerBorder.thumb !== this.props.outerBorder.thumb) {
             const keyTexture = Object.keys(this.props.outerBorder.thumb)[0];
             const keyBumpMap = Object.keys(this.props.outerBorder.bmap)[0];
             const keyNormalMap = Object.keys(this.props.outerBorder.nmap)[0];
@@ -316,8 +391,20 @@ class Rug extends Component {
             this.updateMapOuterBorder(this.props.outerBorder.thumb[keyTexture].full_url,
                 this.props.outerBorder.bmap instanceof Array ? '' : this.props.outerBorder.bmap[keyBumpMap].full_url,
                 this.props.outerBorder.nmap instanceof Array ? '' : this.props.outerBorder.nmap[keyNormalMap].full_url);
-        } else {
+        } else if (!this.props.outerBorder.thumb && prevProps.outerBorder.thumb !== this.props.outerBorder.thumb) {
             this.updateMapOuterBorder('');
+        }
+
+        if (this.props.innerBorder.thumb && prevProps.innerBorder.thumb !== this.props.innerBorder.thumb) {
+            const keyTexture = Object.keys(this.props.innerBorder.thumb)[0];
+            const keyBumpMap = Object.keys(this.props.innerBorder.bmap)[0];
+            const keyNormalMap = Object.keys(this.props.innerBorder.nmap)[0];
+
+            this.updateMapInnerBorder(this.props.innerBorder.thumb[keyTexture].full_url,
+                this.props.innerBorder.bmap instanceof Array ? '' : this.props.innerBorder.bmap[keyBumpMap].full_url,
+                this.props.innerBorder.nmap instanceof Array ? '' : this.props.innerBorder.nmap[keyNormalMap].full_url);
+        } else if (!this.props.innerBorder.thumb && prevProps.innerBorder.thumb !== this.props.innerBorder.thumb){
+            this.updateMapInnerBorder('');
         }
 
         this.changeView(this.props.currentRugView);
@@ -339,6 +426,7 @@ const mapStateToProps = (state) => {
         border: state.border,
         centre: state.centre,
         outerBorder: state.outerBorder,
+        innerBorder: state.innerBorder,
         piping: state.piping,
         currentRugView: state.currentRugView,
         currentZoom: state.currentZoom

@@ -41,10 +41,8 @@ import {
 
     setShowRugCornerMode,
 
-    getCenterMaterialsPrice
+    getRugPrice
 } from "../../actions";
-
-import {calculatePrice} from '../../utils/calculate-rug-price';
 
 import header from './images/header.png';
 import footer from './images/footer.png';
@@ -69,25 +67,23 @@ import exitSelection from './images/exit.png';
 import outerBorder from './images/outer-border.svg'
 import piping from './images/piping.svg';
 
-import Rug from '../rug/rug-new';
+import Rug from '../rug/rug-new-new-new';
 
 
 class BuilderSelectPart extends Component {
 
-    componentDidUpdate() {
-        this.props.getCenterMaterialsPrice(encodeURIComponent(this.props.centre.name));
 
-        calculatePrice(
+    componentDidUpdate() {
+        this.props.getRugPrice(
+            encodeURIComponent(this.props.centre.name),
             this.props.length,
             this.props.width,
             this.props.border,
             this.props.innerBorder,
             this.props.outerBorder,
-            this.props.piping,
-            this.props.centerMaterialPrice
-        )
+            this.props.piping
+        );
     }
-
 
     render() {
         const initCenter = {
@@ -311,7 +307,7 @@ class BuilderSelectPart extends Component {
                             <div className="carpet-price">
                                 <div className="carpet-price-block">
                                     <div className="price-word">Price:</div>
-                                    <div className="price-value">&#163; {this.props.centerMaterialPrice}</div>
+                                    <div className="price-value">&#163; {this.props.rugPrice}</div>
                                 </div>
                             </div>
                             <div className="finish-building-block">
@@ -735,7 +731,7 @@ const mapStateToProps = (state) => {
 
         showRugCornerMode: state.showRugCornerMode,
 
-        centerMaterialPrice: state.centerMaterialPrice
+        rugPrice: state.rugPrice
     };
 };
 
@@ -770,7 +766,7 @@ const matchDispatchToProps = (dispatch) => {
 
             setShowRugCornerMode: setShowRugCornerMode,
 
-            getCenterMaterialsPrice: getCenterMaterialsPrice
+            getRugPrice: getRugPrice
         },
         dispatch)
 };

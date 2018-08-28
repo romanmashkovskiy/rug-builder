@@ -1,8 +1,8 @@
 import * as actions from '../actions/action-types'
 
-export default (state = false, action) => {
+export default (state = '', action) => {
     switch (action.type) {
-        case actions.LOAD_CENTER_MATERIALS_PRICE_SUCCESS:
+        case actions.RUG_PRICE_CALCULATED:
             return action.payload;
         default:
             return state;
