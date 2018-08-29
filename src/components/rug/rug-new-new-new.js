@@ -60,20 +60,19 @@ class Rug extends Component {
         }
 
         try {
-            this.object = await loadWithPromise(rugFile, objectLoader);
-            for (let i = 0; i < this.object.children.length; i++) {
-                this.object.children[i].material = materialDef;
+            const object = await loadWithPromise(rugFile, objectLoader);
+            for (let i = 0; i < object.children.length; i++) {
+                object.children[i].material = materialDef;
             }
-            this.scene.add(this.object);
+            this.object = object;
+            this.scene.add(object);
         } catch(e) {
             console.log(e);
         }
     }
 
     async updateMapCentre(urlTexture, urlBumpMap, urlNormalMap) {
-        console.log(this.object);
-
-        if (urlTexture === '') {
+        if (urlTexture === undefined) {
             for (let i = 0; i < this.object.children.length; i += 1) {
                 if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Centre') !== -1) {
                     this.object.children[i].material = materialDef;
@@ -116,7 +115,7 @@ class Rug extends Component {
 
     async updateMapPiping(urlTexture, urlBumpMap, urlNormalMap) {
 
-        if (urlTexture === '') {
+        if (urlTexture === undefined) {
             for (let i = 0; i < this.object.children.length; i += 1) {
                 if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Trim') !== -1) {
                     this.object.children[i].material = materialDef;
@@ -158,7 +157,7 @@ class Rug extends Component {
     }
 
     async updateMapOuterBorder(urlTexture, urlBumpMap, urlNormalMap) {
-        if (urlTexture === '') {
+        if (urlTexture === undefined) {
             for (let i = 0; i < this.object.children.length; i += 1) {
                 if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Outer') !== -1) {
                     this.object.children[i].material = materialDef;
@@ -200,7 +199,7 @@ class Rug extends Component {
     }
 
     async updateMapInnerBorder(urlTexture, urlBumpMap, urlNormalMap) {
-        if (urlTexture === '') {
+        if (urlTexture === undefined) {
             for (let i = 0; i < this.object.children.length; i += 1) {
                 if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf('Inner') !== -1) {
                     this.object.children[i].material = materialDef;
@@ -238,6 +237,21 @@ class Rug extends Component {
             }
         } catch (e) {
             console.log(e);
+        }
+    }
+
+    calculateUrlsForTextures(rugPart) {
+        if (rugPart.thumb) {
+            const keyTexture = Object.keys(rugPart.thumb)[0];
+            const keyBumpMap = Object.keys(rugPart.bmap)[0];
+            const keyNormalMap = Object.keys(rugPart.nmap)[0];
+            const urlTexture = rugPart.thumb[keyTexture].full_url;
+            const urlBumpMap = rugPart.bmap instanceof Array ? '' : rugPart.bmap[keyBumpMap].full_url;
+            const urlNormalMap = rugPart.nmap instanceof Array ? '' : rugPart.nmap[keyNormalMap].full_url;
+
+            return [urlTexture,urlBumpMap,urlNormalMap]
+        } else {
+            return [];
         }
     }
 
@@ -332,88 +346,25 @@ class Rug extends Component {
         animate();
 
         container.appendChild(this.renderer.domElement);
-        // console.log('zoom', this.camera.zoom);
     }
 
 
-    componentDidUpdate(prevProps) {
+    async componentDidUpdate(prevProps) {
         if (prevProps.border !== this.props.border) {
             this.scene.remove(this.object);
-            this.objectLoader();
+            await this.objectLoader();
         }
 
-        if (this.props.centre.thumb) {
-            console.log(1111111111);
-            const keyTexture = Object.keys(this.props.centre.thumb)[0];
-            console.log(keyTexture);
-            const keyBumpMap = Object.keys(this.props.centre.bmap)[0];
-            console.log(keyBumpMap);
-            const keyNormalMap = Object.keys(this.props.centre.nmap)[0];
-            console.log(keyNormalMap);
-            console.log(this.props.centre.thumb[keyTexture].full_url);
-
-            this.updateMapCentre(this.props.centre.thumb[keyTexture].full_url,
-                this.props.centre.bmap instanceof Array ? '' : this.props.centre.bmap[keyBumpMap].full_url,
-                this.props.centre.nmap instanceof Array ? '' : this.props.centre.nmap[keyNormalMap].full_url);
-        } else {
-            this.updateMapCentre('');
-        }
-
-        // if (this.props.centre.thumb && prevProps.centre.thumb !== this.props.centre.thumb) {
-        //     const keyTexture = Object.keys(this.props.centre.thumb)[0];
-        //     const keyBumpMap = Object.keys(this.props.centre.bmap)[0];
-        //     const keyNormalMap = Object.keys(this.props.centre.nmap)[0];
-        //
-        //     this.updateMapCentre(this.props.centre.thumb[keyTexture].full_url,
-        //         this.props.centre.bmap instanceof Array ? '' : this.props.centre.bmap[keyBumpMap].full_url,
-        //         this.props.centre.nmap instanceof Array ? '' : this.props.centre.nmap[keyNormalMap].full_url);
-        // } else if (!this.props.centre.thumb && prevProps.centre.thumb !== this.props.centre.thumb) {
-        //     this.updateMapCentre('');
-        // }
-
-        if (this.props.piping.thumb && prevProps.piping.thumb !== this.props.piping.thumb) {
-            const keyTexture = Object.keys(this.props.piping.thumb)[0];
-            const keyBumpMap = Object.keys(this.props.piping.bmap)[0];
-            const keyNormalMap = Object.keys(this.props.piping.nmap)[0];
-
-            this.updateMapPiping(this.props.piping.thumb[keyTexture].full_url,
-                this.props.piping.bmap instanceof Array ? '' : this.props.piping.bmap[keyBumpMap].full_url,
-                this.props.piping.nmap instanceof Array ? '' : this.props.piping.nmap[keyNormalMap].full_url);
-        } else if (!this.props.piping.thumb && prevProps.piping.thumb !== this.props.piping.thumb){
-            this.updateMapPiping('');
-        }
-
-        if (this.props.outerBorder.thumb && prevProps.outerBorder.thumb !== this.props.outerBorder.thumb) {
-            const keyTexture = Object.keys(this.props.outerBorder.thumb)[0];
-            const keyBumpMap = Object.keys(this.props.outerBorder.bmap)[0];
-            const keyNormalMap = Object.keys(this.props.outerBorder.nmap)[0];
-
-            this.updateMapOuterBorder(this.props.outerBorder.thumb[keyTexture].full_url,
-                this.props.outerBorder.bmap instanceof Array ? '' : this.props.outerBorder.bmap[keyBumpMap].full_url,
-                this.props.outerBorder.nmap instanceof Array ? '' : this.props.outerBorder.nmap[keyNormalMap].full_url);
-        } else if (!this.props.outerBorder.thumb && prevProps.outerBorder.thumb !== this.props.outerBorder.thumb) {
-            this.updateMapOuterBorder('');
-        }
-
-        if (this.props.innerBorder.thumb && prevProps.innerBorder.thumb !== this.props.innerBorder.thumb) {
-            const keyTexture = Object.keys(this.props.innerBorder.thumb)[0];
-            const keyBumpMap = Object.keys(this.props.innerBorder.bmap)[0];
-            const keyNormalMap = Object.keys(this.props.innerBorder.nmap)[0];
-
-            this.updateMapInnerBorder(this.props.innerBorder.thumb[keyTexture].full_url,
-                this.props.innerBorder.bmap instanceof Array ? '' : this.props.innerBorder.bmap[keyBumpMap].full_url,
-                this.props.innerBorder.nmap instanceof Array ? '' : this.props.innerBorder.nmap[keyNormalMap].full_url);
-        } else if (!this.props.innerBorder.thumb && prevProps.innerBorder.thumb !== this.props.innerBorder.thumb){
-            this.updateMapInnerBorder('');
-        }
+        this.updateMapCentre(...this.calculateUrlsForTextures(this.props.centre));
+        this.updateMapPiping(...this.calculateUrlsForTextures(this.props.piping));
+        this.updateMapOuterBorder(...this.calculateUrlsForTextures(this.props.outerBorder));
+        this.updateMapInnerBorder(...this.calculateUrlsForTextures(this.props.innerBorder));
 
         this.changeView(this.props.currentRugView);
         this.cameraZoom(this.props.currentZoom);
     }
 
-
     render() {
-
         return (
             <div className="rug-container" id="root-for-rug">
             </div>
