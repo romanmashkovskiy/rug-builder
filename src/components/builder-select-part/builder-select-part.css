@@ -59,7 +59,7 @@
     position: absolute;
     height: 268px;
     width: 308px;
-    /*border: 1px solid red;*/
+    border: 1px solid red;
     left: 20px;
     top: 62.79px;
     display: flex;
@@ -67,6 +67,7 @@
 
 .rug-corner-preview {
     width: 283px;
+    height: 268px;
 }
 
 .rug-corner-close {

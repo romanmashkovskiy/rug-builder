@@ -67,13 +67,14 @@ import exitSelection from './images/exit.png';
 import outerBorder from './images/outer-border.svg'
 import piping from './images/piping.svg';
 
-import Rug from '../rug/rug-new-new-new';
+import Rug from '../rug/rug';
+import RugCorner from '../rug/rug-corner'
 
 
 class BuilderSelectPart extends Component {
 
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         this.props.getRugPrice(
             encodeURIComponent(this.props.centre.name),
             this.props.length,
@@ -134,6 +135,7 @@ class BuilderSelectPart extends Component {
                             {this.props.showRugCornerMode &&
                             <div className="rug-corner">
                                 <div className="rug-corner-preview">
+                                    <RugCorner/>
                                 </div>
                                 <div className="rug-corner-close"
                                      onClick={() => this.props.setShowRugCornerMode(false)}>
@@ -142,7 +144,8 @@ class BuilderSelectPart extends Component {
                                         CLOSE
                                     </div>
                                 </div>
-                            </div>}
+                            </div>
+                            }
                             <div className="zoomin-zoomout">
                                 <div className="twice">
                                     {this.props.currentZoom}X
