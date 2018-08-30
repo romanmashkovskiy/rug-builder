@@ -59,7 +59,7 @@
     position: absolute;
     height: 268px;
     width: 308px;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
     left: 20px;
     top: 62.79px;
     display: flex;
@@ -77,6 +77,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #FFFFFF;
 }
 
 .rug-corner-close-text {
@@ -87,7 +88,6 @@
     letter-spacing: 2.29px;
     line-height: 17px;
     text-align: center;
-    background-color: #FFFFFF;
 }
 
 .rug-3d {
@@ -434,6 +434,18 @@
 .finish-building-btn-inactive {
     height: 55.08px;
     opacity: 0.2;
+    width: 100%;
+    background-color: #2D2D2D;
+    color: #FFFFFF;
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.73px;
+    line-height: 31px;
+    text-align: center;
+}
+
+.finish-building-btn-active {
+    height: 55.08px;
     width: 100%;
     background-color: #2D2D2D;
     color: #FFFFFF;

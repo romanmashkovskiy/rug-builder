@@ -132,9 +132,7 @@ class RugCorner extends Component {
         const container = document.getElementById("root-for-rug-corner");
 
         this.controls = new OrbitControl(this.camera, container);
-        //this.controls.enableZoom = false;
-        //this.controls.minPolarAngle = 0;
-        //this.controls.maxPolarAngle = Math.PI / 2 - 0.15;
+        this.controls.enabled = false;
 
         this.camera.zoom = 8;
 
@@ -144,9 +142,6 @@ class RugCorner extends Component {
         this.updateMap(...this.calculateUrlsForTextures(this.props.piping), 'Trim');
         this.updateMap(...this.calculateUrlsForTextures(this.props.outerBorder), 'Outer');
         this.updateMap(...this.calculateUrlsForTextures(this.props.innerBorder), 'Inner');
-
-        // const axesHelper = new THREE.AxesHelper(500);
-        // this.scene.add(axesHelper);
 
         this.renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
 
@@ -158,7 +153,6 @@ class RugCorner extends Component {
 
         const animate = () => {
             requestAnimationFrame(animate);
-            this.controls.update();
             this.renderer.render(this.scene, this.camera);
         };
         animate();
@@ -197,9 +191,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-const matchDispatchToProps = (dispatch) => {
-    return bindActionCreators({},
-        dispatch)
-};
-
-export default connect(mapStateToProps, matchDispatchToProps)(RugCorner);
+export default connect(mapStateToProps)(RugCorner);

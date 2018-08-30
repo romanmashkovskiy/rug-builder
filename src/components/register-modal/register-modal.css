@@ -1,0 +1,38 @@
+.modal-register {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 9999;
+    height: 683px;
+    width: 616px;
+    border: 1px solid #E9E9E9;
+    background-color: #FFFFFF;
+
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    padding-top: 34px;
+}
+
+.button-back-register {
+    position: absolute;
+    left: 70px;
+    top: 54px;
+}
+
+.login-register-text {
+    color: #353535;
+    font-family: Playfair Display, sans-serif;
+    font-size: 32px;
+    line-height: 44px;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #353535;
+    margin-bottom: 58px;
+}

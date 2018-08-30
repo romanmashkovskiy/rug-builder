@@ -6,6 +6,9 @@ import {withRouter} from 'react-router-dom';
 import './builder-select-part.css';
 
 import StartModal from '../product-settings-modal/product-settings-modal';
+import LoginRegisterModal from '../login-register/login-register-modal';
+import LoginModal from '../login-modal/login-modal';
+import RegisterModal from '../register-modal/register-modal';
 
 import CenterMaterial from '../center-material/center-material';
 import InnerBorderMaterial from '../inner-border-material/inner-border-material';
@@ -41,7 +44,9 @@ import {
 
     setShowRugCornerMode,
 
-    getRugPrice
+    getRugPrice,
+
+    setShowLoginRegisterMode
 } from "../../actions";
 
 import header from './images/header.png';
@@ -115,6 +120,13 @@ class BuilderSelectPart extends Component {
                 <div className="main-builder">
                     {(this.props.editDimensionsMode || this.props.editBorderMode) &&
                     <StartModal/>}
+                    {this.props.showLoginRegisterModal &&
+                    <LoginRegisterModal/>}
+                    {this.props.showLoginModal &&
+                    <LoginModal/>}
+                    {this.props.showRegisterModal &&
+                    <RegisterModal/>}
+
                     <div className="main-builder-carpet">
                         <div className="main-carpet-preview">
                             <div className="rug-3d">
@@ -225,7 +237,7 @@ class BuilderSelectPart extends Component {
                                         this.props.setCenterMaterialType(initCenter);
                                     }}/>
                                     <div className="centre-is-selected-type">
-                                        {`${this.props.centre.name}`}
+                                        {`${this.props.centre.name} ${this.props.centre.code}`}
                                     </div>
                                 </div>}
                             </div>
@@ -248,7 +260,7 @@ class BuilderSelectPart extends Component {
                                         this.props.setOuterBorderMaterialType(initOuterBorder);
                                     }}/>
                                     <div className="centre-is-selected-type">
-                                        {`${this.props.outerBorder.name}`}
+                                        {`${this.props.outerBorder.name} ${this.props.outerBorder.code}`}
                                     </div>
                                 </div>}
                             </div>
@@ -271,7 +283,7 @@ class BuilderSelectPart extends Component {
                                             this.props.setInnerBorderMaterialType(initInnerBorder);
                                         }}/>
                                         <div className="centre-is-selected-type">
-                                            {`${this.props.innerBorder.name}`}
+                                            {`${this.props.innerBorder.name} ${this.props.innerBorder.code}`}
                                         </div>
                                     </div>}
                                 </div>
@@ -294,7 +306,7 @@ class BuilderSelectPart extends Component {
                                             this.props.setPipingMaterialType(initPiping);
                                         }}/>
                                         <div className="centre-is-selected-type">
-                                            {`${this.props.piping.post_title}`}
+                                            {`${this.props.piping.post_title} ${this.props.piping.code}`}
                                         </div>
                                     </div>}
                                 </div>
@@ -313,9 +325,70 @@ class BuilderSelectPart extends Component {
                                     <div className="price-value">&#163; {this.props.rugPrice}</div>
                                 </div>
                             </div>
-                            <div className="finish-building-block">
-                                <button className="finish-building-btn-inactive" disabled>FINISH BUILDING</button>
-                            </div>
+                            {
+                                (
+                                    this.props.width === '' ||
+                                    this.props.width === 0 ||
+                                    this.props.length === '' ||
+                                    this.props.length === 0 ||
+                                    this.props.centre === 'CENTRE' ||
+                                    this.props.border === '' ||
+                                    (
+                                        this.props.border === 'DOUBLE-BORDER' &&
+                                        (this.props.innerBorder.name === 'INNER BORDER' ||
+                                            this.props.outerBorder.name === 'OUTER BORDER' ||
+                                            this.props.centre.name === 'CENTRE')
+                                    ) ||
+                                    (
+                                        this.props.border === 'BORDER-PIPING' &&
+                                        (this.props.piping.post_title === 'PIPING' ||
+                                            this.props.outerBorder.name === 'OUTER BORDER' ||
+                                            this.props.centre.name === 'CENTRE')
+                                    ) ||
+                                    (
+                                        this.props.border === 'SINGLE-BORDER' &&
+                                        (this.props.outerBorder.name === 'OUTER BORDER' ||
+                                            this.props.centre.name === 'CENTRE')
+                                    )
+                                )
+                                &&
+                                <div className="finish-building-block">
+                                    <button className="finish-building-btn-inactive" disabled>FINISH BUILDING</button>
+                                </div>
+                            }
+                            {
+                                (this.props.width !== '' &&
+                                    this.props.width !== 0 &&
+                                    this.props.length !== '' &&
+                                    this.props.length !== 0 &&
+                                    (
+                                        (
+                                            this.props.border === 'DOUBLE-BORDER' &&
+                                            this.props.innerBorder.name !== 'INNER BORDER' &&
+                                            this.props.outerBorder.name !== 'OUTER BORDER' &&
+                                            this.props.centre.name !== 'CENTRE'
+                                        ) ||
+                                        (
+                                            this.props.border === 'BORDER-PIPING' &&
+                                            this.props.piping.post_title !== 'PIPING' &&
+                                            this.props.outerBorder.name !== 'OUTER BORDER' &&
+                                            this.props.centre.name !== 'CENTRE'
+                                        ) ||
+                                        (
+                                            this.props.border === 'SINGLE-BORDER' &&
+                                            this.props.outerBorder.name !== 'OUTER BORDER' &&
+                                            this.props.centre.name !== 'CENTRE'
+                                        )
+                                    )
+                                )
+                                &&
+                                <div className="finish-building-block">
+                                    <button className="finish-building-btn-active" onClick={() => {
+                                    this.props.setShowLoginRegisterMode(true)}
+                                    }>FINISH BUILDING</button>
+                                </div>
+                            }
+
                             <div className="finish-building-block">
                                 <button className="ap-preview-btn" disabled>AR PREVIEW</button>
                             </div>
@@ -734,7 +807,11 @@ const mapStateToProps = (state) => {
 
         showRugCornerMode: state.showRugCornerMode,
 
-        rugPrice: state.rugPrice
+        rugPrice: state.rugPrice,
+
+        showLoginRegisterModal: state.showLoginRegisterModal,
+        showLoginModal: state.showLoginModal,
+        showRegisterModal: state.showRegisterModal,
     };
 };
 
@@ -769,7 +846,9 @@ const matchDispatchToProps = (dispatch) => {
 
             setShowRugCornerMode: setShowRugCornerMode,
 
-            getRugPrice: getRugPrice
+            getRugPrice: getRugPrice,
+
+            setShowLoginRegisterMode: setShowLoginRegisterMode
         },
         dispatch)
 };

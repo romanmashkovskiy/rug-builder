@@ -343,3 +343,24 @@ export const loadCenterMaterialsPriceSuccess = (response, length, width, rugType
 
     return {type: actions.RUG_PRICE_CALCULATED, payload: rugPrice ? rugPrice : ''};
 };
+
+export const setShowLoginRegisterMode = (mode) => {
+    return {
+        type: actions.SHOW_LOGIN_REGISTER_MODAL,
+        payload: mode
+    }
+};
+
+export const setShowLoginMode = (mode) => {
+    return {
+        type: actions.SHOW_LOGIN_MODAL,
+        payload: mode
+    }
+};
+
+export const setShowRegisterMode = (mode) => {
+    return {
+        type: actions.SHOW_REGISTER_MODAL,
+        payload: mode
+    }
+};
