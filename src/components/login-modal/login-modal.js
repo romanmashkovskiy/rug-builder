@@ -12,7 +12,11 @@ import basket from './images/basket.png';
 class LoginModal extends Component {
     constructor(props) {
         super(props);
-        this.state = {email: '', password: ''};
+        this.state = {
+            email: '',
+            password: '',
+            orderFreeSwatchSamples: false
+        };
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
     }
@@ -47,14 +51,18 @@ class LoginModal extends Component {
                         onChange={this.onChangeEmail}
                     />
                     <input
-                        type="text"
+                        type="password"
                         value={this.state.password}
                         placeholder="Password"
                         className="input-login"
                         onChange={this.onChangePassword}
                     />
-                    <img src={basket} className="button-basket" alt="exit"/>
-                    <div className="free-swatch-samples">
+                    {this.state.orderFreeSwatchSamples &&
+                    <div className="free-swatch-samples-checkmark-login"/>}
+                    <img src={basket} className="button-basket-login" alt="basket"/>
+                    <div className="free-swatch-samples-login" onClick={() => {
+                        this.setState({orderFreeSwatchSamples: !this.state.orderFreeSwatchSamples})
+                    }}>
                         Order Free Swatch Samples?
                     </div>
                     <button className="login-button">

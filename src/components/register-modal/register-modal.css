@@ -24,9 +24,16 @@
     position: absolute;
     left: 70px;
     top: 54px;
+    cursor: pointer;
 }
 
-.login-register-text {
+.button-basket-register {
+    position: absolute;
+    left: 160px;
+    top: 370px;
+}
+
+.register-header-text {
     color: #353535;
     font-family: Playfair Display, sans-serif;
     font-size: 32px;
@@ -34,5 +41,128 @@
     text-align: center;
     padding-bottom: 15px;
     border-bottom: 2px solid #353535;
-    margin-bottom: 58px;
+    margin-bottom: 37px;
+}
+
+.input-register-block {
+    margin-bottom: 20px;
+    width: 499px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-register {
+    height: 38px;
+    width: 240px;
+    border: 1px solid #E6E6E6;
+    background-color: #F9F9F9;
+    color: #919191;
+    font-family: Open Sans, sans-serif;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    line-height: 22px;
+    padding-left: 22px;
+    /*margin-right: 15px;*/
+}
+
+.free-swatch-samples-register {
+    margin-top: 7px;
+    color: #181818;
+    font-family: Open Sans, sans-serif;
+    font-size: 16px;
+    line-height: 35px;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.free-swatch-samples-checkmark-register {
+    position: absolute;
+    left: 177px;
+    top: 369px;
+    width: 10px;
+    height: 25px;
+    border: solid #353535;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    z-index: 9999;
+}
+
+.register-button {
+    height: 61px;
+    width: 499px;
+    background-color: #353535;
+    color: #FFFFFF;
+    font-family: Montserrat, sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 31px;
+    text-align: center;
+    margin-bottom: 24px;
+    cursor: pointer;
+}
+
+.register-checkbox-wrapper {
+    width: 499px;
+}
+
+/* Customize the label (the container) */
+.register-checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: Open Sans, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.44px;
+    line-height: 23px;
+}
+
+/* Hide the browser's default checkbox */
+.register-checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.register-checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    border: 2px solid #353535;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.register-checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.register-checkbox-container input:checked ~ .register-checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.register-checkbox-container .register-checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid #353535;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }

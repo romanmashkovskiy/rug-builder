@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import { setShowLoginRegisterMode, setShowLoginMode, setShowRegisterMode } from '../../actions';
+import { setShowLoginRegisterMode, setShowLoginMode, setShowRegisterMode, setShowGuestMode } from '../../actions';
 
 import './login-register-modal.css';
 
@@ -48,7 +48,10 @@ class LoginRegisterModal extends Component {
                         </div>
                     </div>
                     <div className="continue-as-guest">
-                        <div className="continue-as-guest-text">
+                        <div className="continue-as-guest-text" onClick={() => {
+                            this.props.setShowLoginRegisterMode(false);
+                            this.props.setShowGuestMode(true);
+                        }}>
                             Continue as a Guest
                         </div>
                     </div>
@@ -68,7 +71,8 @@ const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
             setShowLoginRegisterMode: setShowLoginRegisterMode,
             setShowLoginMode: setShowLoginMode,
-            setShowRegisterMode: setShowRegisterMode
+            setShowRegisterMode: setShowRegisterMode,
+            setShowGuestMode: setShowGuestMode
         },
         dispatch)
 };

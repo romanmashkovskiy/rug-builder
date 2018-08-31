@@ -52,6 +52,8 @@ import rugPriceReducer from './get-rug-price';
 import setShowLoginRegisterModalReducer from './set-show-login-register-mode';
 import setShowLoginModalReducer from './set-show-login-mode';
 import setShowRegisterModalReducer from './set-show-register-mode';
+import setShowGuestModalReducer from './set-show-guest-mode';
+
 
 
 const rootReducer = combineReducers({
@@ -108,7 +110,8 @@ const rootReducer = combineReducers({
 
     showLoginRegisterModal: setShowLoginRegisterModalReducer,
     showLoginModal: setShowLoginModalReducer,
-    showRegisterModal: setShowRegisterModalReducer
+    showRegisterModal: setShowRegisterModalReducer,
+    showGuestModal: setShowGuestModalReducer
 });
 
 export default rootReducer;

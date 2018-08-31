@@ -364,3 +364,10 @@ export const setShowRegisterMode = (mode) => {
         payload: mode
     }
 };
+
+export const setShowGuestMode = (mode) => {
+    return {
+        type: actions.SHOW_GUEST_MODAL,
+        payload: mode
+    }
+};

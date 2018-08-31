@@ -9,6 +9,7 @@ import StartModal from '../product-settings-modal/product-settings-modal';
 import LoginRegisterModal from '../login-register/login-register-modal';
 import LoginModal from '../login-modal/login-modal';
 import RegisterModal from '../register-modal/register-modal';
+import GuestModal from '../guest-modal/guest-modal';
 
 import CenterMaterial from '../center-material/center-material';
 import InnerBorderMaterial from '../inner-border-material/inner-border-material';
@@ -121,11 +122,17 @@ class BuilderSelectPart extends Component {
                     {(this.props.editDimensionsMode || this.props.editBorderMode) &&
                     <StartModal/>}
                     {this.props.showLoginRegisterModal &&
-                    <LoginRegisterModal/>}
+                    <LoginRegisterModal/>
+                    }
                     {this.props.showLoginModal &&
-                    <LoginModal/>}
+                    <LoginModal/>
+                    }
                     {this.props.showRegisterModal &&
-                    <RegisterModal/>}
+                    <RegisterModal/>
+                    }
+                    {this.props.showGuestModal &&
+                    <GuestModal/>
+                    }
 
                     <div className="main-builder-carpet">
                         <div className="main-carpet-preview">
@@ -812,6 +819,7 @@ const mapStateToProps = (state) => {
         showLoginRegisterModal: state.showLoginRegisterModal,
         showLoginModal: state.showLoginModal,
         showRegisterModal: state.showRegisterModal,
+        showGuestModal: state.showGuestModal
     };
 };
 

@@ -24,12 +24,7 @@
     position: absolute;
     left: 70px;
     top: 54px;
-}
-
-.button-basket {
-    position: absolute;
-    left: 122px;
-    top: 293px;
+    cursor: pointer;
 }
 
 .login-header-text {
@@ -57,14 +52,37 @@
     padding-left: 24px;
 }
 
-.free-swatch-samples {
+.free-swatch-samples-login {
     margin-top: 16px;
     color: #181818;
     font-family: Open Sans, sans-serif;
     font-size: 16px;
     line-height: 35px;
     margin-bottom: 25px;
+    cursor: pointer;
 }
+
+.button-basket-login {
+    position: absolute;
+    left: 122px;
+    top: 293px;
+}
+
+.free-swatch-samples-checkmark-login {
+    position: absolute;
+    left: 139px;
+    top: 293px;
+    width: 10px;
+    height: 25px;
+    border: solid #353535;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    z-index: 9999;
+}
+
+
 
 .login-button {
     height: 61px;
@@ -77,6 +95,7 @@
     line-height: 31px;
     text-align: center;
     margin-bottom: 23px;
+    cursor: pointer;
 }
 
 .forgotten-password {
@@ -86,4 +105,5 @@
     font-weight: 300;
     line-height: 35px;
     text-align: center;
+    cursor: pointer;
 }

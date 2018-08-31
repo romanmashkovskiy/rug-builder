@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import {setShowRegisterMode, setShowLoginRegisterMode} from "../../actions";
+import {setShowGuestMode, setShowLoginRegisterMode} from "../../actions";
 
-import './register-modal.css';
+import './guest-modal.css';
 
 import restart from './images/restart.svg'
 import basket from './images/basket.png';
 
-class RegisterModal extends Component {
+class GuestModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,8 +19,6 @@ class RegisterModal extends Component {
             addressLine2: '',
             city: '',
             postcode: '',
-            password: '',
-            confirmPassword: '',
             orderFreeSwatchSamples: false
         };
         this.onChangeFullName = this.onChangeFullName.bind(this);
@@ -29,8 +27,6 @@ class RegisterModal extends Component {
         this.onChangeAddressLine2 = this.onChangeAddressLine2.bind(this);
         this.onChangeCity = this.onChangeCity.bind(this);
         this.onChangePostcode = this.onChangePostcode.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
     }
 
     onChangeFullName(e) {
@@ -63,28 +59,17 @@ class RegisterModal extends Component {
         this.setState({postcode: val});
     }
 
-    onChangePassword(e) {
-        const val = e.target.value;
-        this.setState({password: val});
-    }
-
-    onChangeConfirmPassword(e) {
-        const val = e.target.value;
-        this.setState({confirmPassword: val});
-    }
-
-
     render() {
         return (
             <div className="container">
                 <div className="cover-div"/>
-                <div className="modal-register">
+                <div className="modal-guest">
                     <img src={restart} className="button-back-register" alt="exit" onClick={() => {
-                        this.props.setShowRegisterMode(false);
+                        this.props.setShowGuestMode(false);
                         this.props.setShowLoginRegisterMode(true);
                     }}/>
                     <div className="register-header-text">
-                        Register
+                        Guest
                     </div>
                     <div className="input-register-block">
                         <input
@@ -134,37 +119,21 @@ class RegisterModal extends Component {
                             onChange={this.onChangePostcode}
                         />
                     </div>
-                    <div className="input-register-block">
-                        <input
-                            type="password"
-                            value={this.state.password}
-                            placeholder="Password"
-                            className="input-register"
-                            onChange={this.onChangePassword}
-                        />
-                        <input
-                            type="password"
-                            value={this.state.confirmPassword}
-                            placeholder="Postcode"
-                            className="input-register"
-                            onChange={this.onChangeConfirmPassword}
-                        />
-                    </div>
                     {this.state.orderFreeSwatchSamples &&
-                    <div className="free-swatch-samples-checkmark-register"/>}
-                    <img src={basket} className="button-basket-register" alt="basket"/>
+                    <div className="free-swatch-samples-checkmark-guest"/>}
+                    <img src={basket} className="button-basket-guest" alt="basket"/>
                     <div className="free-swatch-samples-register" onClick={() => {
                         this.setState({orderFreeSwatchSamples: !this.state.orderFreeSwatchSamples})
                     }}>
                         Order Free Swatch Samples?
                     </div>
                     <button className="register-button">
-                        REGISTER
+                        FINISH BUILDING
                     </button>
                     <div className="register-checkbox-wrapper">
-                        <label className="register-checkbox-container">I agree my personal data being stored and sent
-                            to our selected retailer partners in order to process this order. View Privacy Policy.
-                            Please tick here to opt-in.
+                        <label className="register-checkbox-container">I agree to my personal data being stored and sent
+                            to our selected retailer partners in order to process this order. View Privacy Policy Please
+                            tick here to opt-in.
                             <input type="checkbox"/>
                             <span className="register-checkmark"></span>
                         </label>
@@ -172,8 +141,7 @@ class RegisterModal extends Component {
                     <div className="register-checkbox-wrapper">
                         <label className="register-checkbox-container">I would like to receive marketing communication
                             including promotions, special offers, news and events from Crucial Trading View Privacy
-                            Policy
-                            Please tick here to opt in.
+                            Policy Please tick here to opt in.
                             <input type="checkbox"/>
                             <span className="register-checkmark"></span>
                         </label>
@@ -191,9 +159,9 @@ const mapStateToProps = (state) => {
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
             setShowLoginRegisterMode: setShowLoginRegisterMode,
-            setShowRegisterMode: setShowRegisterMode
+            setShowGuestMode: setShowGuestMode
         },
         dispatch)
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(RegisterModal);
+export default connect(mapStateToProps, matchDispatchToProps)(GuestModal);
