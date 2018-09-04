@@ -11,6 +11,8 @@ import LoginModal from '../login-modal/login-modal';
 import RegisterModal from '../register-modal/register-modal';
 import GuestModal from '../guest-modal/guest-modal';
 
+import LinkButton from '../link-elements/link-button';
+
 import CenterMaterial from '../center-material/center-material';
 import InnerBorderMaterial from '../inner-border-material/inner-border-material';
 import OuterBorderMaterial from '../outer-border-material/outer-border';
@@ -47,7 +49,7 @@ import {
 
     getRugPrice,
 
-    setShowLoginRegisterMode
+    setShowLoginRegisterMode,
 } from "../../actions";
 
 import header from './images/header.png';
@@ -74,7 +76,9 @@ import outerBorder from './images/outer-border.svg'
 import piping from './images/piping.svg';
 
 import Rug from '../rug/rug';
-import RugCorner from '../rug/rug-corner'
+import RugCorner from '../rug/rug-corner';
+
+var ls = require('local-storage');
 
 
 class BuilderSelectPart extends Component {
@@ -390,9 +394,16 @@ class BuilderSelectPart extends Component {
                                 )
                                 &&
                                 <div className="finish-building-block">
-                                    <button className="finish-building-btn-active" onClick={() => {
-                                    this.props.setShowLoginRegisterMode(true)}
-                                    }>FINISH BUILDING</button>
+                                    <LinkButton
+                                        to = {ls('curUser') ? '/summary' : '/builder'}
+                                        className="finish-building-btn-active"
+                                        onClick={() => {
+                                            console.log(ls('curUser'));
+                                            if (!ls('curUser')) {
+                                                this.props.setShowLoginRegisterMode(true);
+                                            }
+                                        }
+                                    }>FINISH BUILDING</LinkButton>
                                 </div>
                             }
 
@@ -819,7 +830,9 @@ const mapStateToProps = (state) => {
         showLoginRegisterModal: state.showLoginRegisterModal,
         showLoginModal: state.showLoginModal,
         showRegisterModal: state.showRegisterModal,
-        showGuestModal: state.showGuestModal
+        showGuestModal: state.showGuestModal,
+
+        currentUser: state.currentUser
     };
 };
 
@@ -856,7 +869,7 @@ const matchDispatchToProps = (dispatch) => {
 
             getRugPrice: getRugPrice,
 
-            setShowLoginRegisterMode: setShowLoginRegisterMode
+            setShowLoginRegisterMode: setShowLoginRegisterMode,
         },
         dispatch)
 };

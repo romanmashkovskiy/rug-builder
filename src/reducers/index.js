@@ -55,7 +55,6 @@ import setShowRegisterModalReducer from './set-show-register-mode';
 import setShowGuestModalReducer from './set-show-guest-mode';
 
 
-
 const rootReducer = combineReducers({
     width: widthReducer,
     length: lengthReducer,

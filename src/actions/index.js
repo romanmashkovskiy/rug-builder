@@ -1,6 +1,9 @@
 import * as actions from './action-types';
 import materialsApi from '../api/get-materials-api';
+import LoginApi from '../api/login-api';
 import { calculatePrice } from '../utils/calculate-rug-price';
+
+var ls = require('local-storage');
 
 export const setLength = (length) => {
     return {
@@ -371,3 +374,17 @@ export const setShowGuestMode = (mode) => {
         payload: mode
     }
 };
+
+export const loginUser = (username, password) => {
+    return () => {
+        return LoginApi.LoginUser(username, password).then(response => {
+            console.log(response);
+            ls('curUser', response);
+            //dispatch(loginUserSuccess(response));
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+};
+
+// export const

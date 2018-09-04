@@ -2,14 +2,18 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import {setShowLoginMode, setShowLoginRegisterMode} from "../../actions";
+import {setShowLoginMode, setShowLoginRegisterMode, loginUser, checkLoginUser} from "../../actions";
+import LinkButton from '../link-elements/link-button';
 
 import './login-modal.css';
 
-import restart from './images/restart.svg'
+import restart from './images/restart.svg';
 import basket from './images/basket.png';
 
+var ls = require('local-storage');
+
 class LoginModal extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -65,9 +69,15 @@ class LoginModal extends Component {
                     }}>
                         Order Free Swatch Samples?
                     </div>
-                    <button className="login-button">
+                    <LinkButton
+                        to = {ls('curUser') ? '/summary' : '/builder'}
+                        className="login-button"
+                        onClick={() => {
+                            this.props.loginUser(this.state.email, this.state.password)
+                        }}
+                    >
                         LOGIN
-                    </button>
+                    </LinkButton>
                     <div className="forgotten-password">
                         Forgotten your password?
                     </div>
@@ -78,13 +88,16 @@ class LoginModal extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        currentUser: state.currentUser
+    };
 };
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
             setShowLoginRegisterMode: setShowLoginRegisterMode,
-            setShowLoginMode: setShowLoginMode
+            setShowLoginMode: setShowLoginMode,
+            loginUser: loginUser
         },
         dispatch)
 };
