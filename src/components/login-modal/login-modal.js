@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import {setShowLoginMode, setShowLoginRegisterMode, loginUser, checkLoginUser} from "../../actions";
-import LinkButton from '../link-elements/link-button';
+import {setShowLoginMode, setShowLoginRegisterMode, loginUser } from "../../actions";
 
 import './login-modal.css';
 
 import restart from './images/restart.svg';
 import basket from './images/basket.png';
+
+import {withRouter} from 'react-router-dom';
 
 var ls = require('local-storage');
 
@@ -69,15 +70,19 @@ class LoginModal extends Component {
                     }}>
                         Order Free Swatch Samples?
                     </div>
-                    <LinkButton
-                        to = {ls('curUser') ? '/summary' : '/builder'}
+                    <button
                         className="login-button"
                         onClick={() => {
-                            this.props.loginUser(this.state.email, this.state.password)
+                            this.props.loginUser(this.state.email, this.state.password).
+                                then((result) => {
+                                    if (result) {
+                                        this.props.history.replace('/summary');
+                                    }
+                                })
                         }}
                     >
                         LOGIN
-                    </LinkButton>
+                    </button>
                     <div className="forgotten-password">
                         Forgotten your password?
                     </div>
@@ -89,7 +94,7 @@ class LoginModal extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        currentUser: state.currentUser
+
     };
 };
 
@@ -102,4 +107,4 @@ const matchDispatchToProps = (dispatch) => {
         dispatch)
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(LoginModal);
+export default withRouter(connect(mapStateToProps, matchDispatchToProps)(LoginModal));

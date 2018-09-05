@@ -2,18 +2,23 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import {setShowRegisterMode, setShowLoginRegisterMode} from "../../actions";
+import {setShowRegisterMode, setShowLoginRegisterMode, registerUser } from "../../actions";
 
 import './register-modal.css';
 
 import restart from './images/restart.svg'
 import basket from './images/basket.png';
 
+import {withRouter} from 'react-router-dom';
+
+var ls = require('local-storage');
+
 class RegisterModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fullName: '',
+            firstName: '',
+            lastName: '',
             email: '',
             addressLine1: '',
             addressLine2: '',
@@ -23,7 +28,8 @@ class RegisterModal extends Component {
             confirmPassword: '',
             orderFreeSwatchSamples: false
         };
-        this.onChangeFullName = this.onChangeFullName.bind(this);
+        this.onChangeFirstName = this.onChangeFirstName.bind(this);
+        this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeAddressLine1 = this.onChangeAddressLine1.bind(this);
         this.onChangeAddressLine2 = this.onChangeAddressLine2.bind(this);
@@ -33,9 +39,14 @@ class RegisterModal extends Component {
         this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
     }
 
-    onChangeFullName(e) {
+    onChangeFirstName(e) {
         const val = e.target.value;
-        this.setState({fullName: val});
+        this.setState({firstName: val});
+    }
+
+    onChangeLastName(e) {
+        const val = e.target.value;
+        this.setState({lastName: val});
     }
 
     onChangeEmail(e) {
@@ -89,11 +100,20 @@ class RegisterModal extends Component {
                     <div className="input-register-block">
                         <input
                             type="text"
-                            value={this.state.fullName}
-                            placeholder="Full Name"
+                            value={this.state.firstName}
+                            placeholder="First Name"
                             className="input-register"
-                            onChange={this.onChangeFullName}
+                            onChange={this.onChangeFirstName}
                         />
+                        <input
+                            type="text"
+                            value={this.state.lastName}
+                            placeholder="Last Name"
+                            className="input-register"
+                            onChange={this.onChangeLastName}
+                        />
+                    </div>
+                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.email}
@@ -101,8 +121,6 @@ class RegisterModal extends Component {
                             className="input-register"
                             onChange={this.onChangeEmail}
                         />
-                    </div>
-                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.addressLine1}
@@ -110,6 +128,8 @@ class RegisterModal extends Component {
                             className="input-register"
                             onChange={this.onChangeAddressLine1}
                         />
+                    </div>
+                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.addressLine2}
@@ -117,8 +137,6 @@ class RegisterModal extends Component {
                             className="input-register"
                             onChange={this.onChangeAddressLine2}
                         />
-                    </div>
-                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.city}
@@ -126,6 +144,8 @@ class RegisterModal extends Component {
                             className="input-register"
                             onChange={this.onChangeCity}
                         />
+                    </div>
+                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.postcode}
@@ -133,8 +153,6 @@ class RegisterModal extends Component {
                             className="input-register"
                             onChange={this.onChangePostcode}
                         />
-                    </div>
-                    <div className="input-register-block">
                         <input
                             type="password"
                             value={this.state.password}
@@ -142,10 +160,12 @@ class RegisterModal extends Component {
                             className="input-register"
                             onChange={this.onChangePassword}
                         />
+                    </div>
+                    <div className="input-register-block">
                         <input
                             type="password"
                             value={this.state.confirmPassword}
-                            placeholder="Postcode"
+                            placeholder="Confirm Password"
                             className="input-register"
                             onChange={this.onChangeConfirmPassword}
                         />
@@ -158,7 +178,28 @@ class RegisterModal extends Component {
                     }}>
                         Order Free Swatch Samples?
                     </div>
-                    <button className="register-button">
+                    <button
+                        className="register-button"
+                        onClick={() => {
+                            if (this.state.password === this.state.confirmPassword) {
+                                this.props.registerUser(
+                                    this.state.email,
+                                    this.state.password,
+                                    this.state.firstName,
+                                    this.state.lastName,
+                                    this.state.addressLine1,
+                                    this.state.addressLine2,
+                                    this.state.postcode,
+                                    this.state.city
+                                ).
+                                then((result) => {
+                                    if (result) {
+                                        this.props.history.replace('/summary');
+                                    }
+                                })
+                            }
+                        }}
+                    >
                         REGISTER
                     </button>
                     <div className="register-checkbox-wrapper">
@@ -191,9 +232,11 @@ const mapStateToProps = (state) => {
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
             setShowLoginRegisterMode: setShowLoginRegisterMode,
-            setShowRegisterMode: setShowRegisterMode
+            setShowRegisterMode: setShowRegisterMode,
+            registerUser: registerUser,
+
         },
         dispatch)
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(RegisterModal);
+export default withRouter(connect(mapStateToProps, matchDispatchToProps)(RegisterModal));
