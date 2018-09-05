@@ -226,7 +226,9 @@ class RegisterModal extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+
+    };
 };
 
 const matchDispatchToProps = (dispatch) => {

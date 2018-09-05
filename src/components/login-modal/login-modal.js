@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import {setShowLoginMode, setShowLoginRegisterMode, loginUser } from "../../actions";
+import {setShowLoginMode, setShowLoginRegisterMode, loginUser, forgotPassword } from "../../actions";
 
 import './login-modal.css';
 
@@ -73,17 +73,23 @@ class LoginModal extends Component {
                     <button
                         className="login-button"
                         onClick={() => {
-                            this.props.loginUser(this.state.email, this.state.password).
+                            if (this.state.email !== '' && this.state.password !== '') {
+                                this.props.loginUser(this.state.email, this.state.password).
                                 then((result) => {
                                     if (result) {
                                         this.props.history.replace('/summary');
                                     }
                                 })
+                            }
                         }}
                     >
                         LOGIN
                     </button>
-                    <div className="forgotten-password">
+                    <div className="forgotten-password"
+                         onClick={() => {
+                             this.props.forgotPassword(this.state.email);
+                         }}
+                    >
                         Forgotten your password?
                     </div>
                 </div>
@@ -102,7 +108,8 @@ const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
             setShowLoginRegisterMode: setShowLoginRegisterMode,
             setShowLoginMode: setShowLoginMode,
-            loginUser: loginUser
+            loginUser: loginUser,
+            forgotPassword: forgotPassword
         },
         dispatch)
 };

@@ -2,6 +2,7 @@ import * as actions from './action-types';
 import materialsApi from '../api/get-materials-api';
 import LoginApi from '../api/login-api';
 import RegisterApi from '../api/register-api';
+import ForgotPasswordApi from '../api/forgot-password api';
 import { calculatePrice } from '../utils/calculate-rug-price';
 
 var ls = require('local-storage');
@@ -379,7 +380,6 @@ export const setShowGuestMode = (mode) => {
 export const loginUser = (username, password) => {
     return () => {
         return LoginApi.LoginUser(username, password).then(response => {
-            console.log(response);
             ls('curUser', response);
             return response;
         }).catch(error => {
@@ -392,14 +392,22 @@ export const registerUser = (email, password, first_name, last_name, address_1, 
     return (dispatch) => {
         return RegisterApi.RegisterUser(email, password, first_name, last_name, address_1, address_2, postcode, city).
         then(response => {
-            console.log(typeof response.user_id);
             if (typeof response.user_id === 'number') {
-                console.log('LOGIN');
                 dispatch(loginUser(email, password));
                 return response;
             } else {
                 throw new Error('register failed!');
             }
+        }).catch(error => {
+            console.log(error);
+        })
+    }
+};
+
+export const forgotPassword = (email) => {
+    return () => {
+        return ForgotPasswordApi.ForgotPassword(email).then(response => {
+           console.log(response);
         }).catch(error => {
             console.log(error);
         })
