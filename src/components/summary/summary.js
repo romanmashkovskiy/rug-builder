@@ -19,8 +19,6 @@ import chain from './images/link-symbol.svg';
 import mail from './images/envelope.svg';
 
 
-
-
 class Summary extends Component {
 
 
@@ -82,17 +80,17 @@ class Summary extends Component {
                             </div>
                             {
                                 this.props.border === 'DOUBLE-BORDER' &&
-                            <div className="summary-specification-rug-data">
-                                <div className="summary-specification-rug-data-title">
-                                    INNER BORDER:
-                                </div>
-                                <div className="summary-specification-rug-data-parameters-block">
-                                    <img src={this.props.innerBorder.picture} alt="img"/>
-                                    <div className="summary-specification-rug-data-parameters">
-                                        {this.props.innerBorder.name} {this.props.innerBorder.code}
+                                <div className="summary-specification-rug-data">
+                                    <div className="summary-specification-rug-data-title">
+                                        INNER BORDER:
+                                    </div>
+                                    <div className="summary-specification-rug-data-parameters-block">
+                                        <img src={this.props.innerBorder.picture} alt="img"/>
+                                        <div className="summary-specification-rug-data-parameters">
+                                            {this.props.innerBorder.name} {this.props.innerBorder.code}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             }
                             {
                                 this.props.border === 'BORDER-PIPING' &&
@@ -196,9 +194,7 @@ const mapStateToProps = (state) => {
 };
 
 const matchDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-
-        },
+    return bindActionCreators({},
         dispatch)
 };
 

@@ -1,16 +1,20 @@
+import axios from 'axios';
+
 export default class LoginApi {
     static LoginUser(username, password) {
         const form = new FormData();
         form.append("username", username);
         form.append("password", password);
 
-        return fetch(process.env.REACT_APP_LOGIN_ROOT, {method: 'POST', body: form})
+        return axios({method: 'POST', data: form, url: process.env.REACT_APP_LOGIN_ROOT})
             .then(response => {
-                if (!response.redirected) {
-                    return response.json();
-                } else {
-                    throw new Error('incorrect login or password!');
-                }
+                return new Promise((resolve, reject) => {
+                    if (!response.data.redirected) {
+                        resolve(response.data);
+                    } else {
+                        reject('incorrect login or password!');
+                    }
+                })
             })
     }
 }

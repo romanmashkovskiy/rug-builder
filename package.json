@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
     "local-storage": "^1.4.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -21,5 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "axios": "0.18.0"
   }
 }

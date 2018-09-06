@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import {setShowLoginMode, setShowLoginRegisterMode, loginUser, forgotPassword } from "../../actions";
+import {
+    setShowLoginMode,
+    setShowLoginRegisterMode,
+    loginUser,
+    forgotPassword,
+    saveRug
+} from "../../actions";
 
 import './login-modal.css';
 
@@ -11,7 +17,7 @@ import basket from './images/basket.png';
 
 import {withRouter} from 'react-router-dom';
 
-var ls = require('local-storage');
+const ls = require('local-storage');
 
 class LoginModal extends Component {
 
@@ -74,11 +80,36 @@ class LoginModal extends Component {
                         className="login-button"
                         onClick={() => {
                             if (this.state.email !== '' && this.state.password !== '') {
-                                this.props.loginUser(this.state.email, this.state.password).
-                                then((result) => {
-                                    if (result) {
-                                        this.props.history.replace('/summary');
-                                    }
+                                this.props.loginUser(this.state.email, this.state.password).then((result) => {
+
+
+                                    ls('curUser', result);
+                                    this.props.history.replace('/summary');
+                                    this.props.saveRug(
+                                        this.props.border,
+
+                                        this.props.centre.code,
+                                        this.props.centre.name,
+                                        this.props.centre.id,
+
+                                        this.props.outerBorder.code,
+                                        this.props.outerBorder.name,
+                                        this.props.outerBorder.id,
+
+                                        this.props.innerBorder.code,
+                                        this.props.innerBorder.name,
+                                        this.props.innerBorder.id,
+
+                                        this.props.piping.code,
+                                        this.props.piping.post_title,
+                                        this.props.piping.ID,
+
+                                        this.props.width,
+                                        this.props.height
+                                    );
+
+                                }).catch(error => {
+                                    console.log(error);
                                 })
                             }
                         }}
@@ -100,7 +131,14 @@ class LoginModal extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        width: state.width,
+        length: state.length,
+        border: state.border,
 
+        centre: state.centre,
+        innerBorder: state.innerBorder,
+        outerBorder: state.outerBorder,
+        piping: state.piping
     };
 };
 
@@ -109,7 +147,8 @@ const matchDispatchToProps = (dispatch) => {
             setShowLoginRegisterMode: setShowLoginRegisterMode,
             setShowLoginMode: setShowLoginMode,
             loginUser: loginUser,
-            forgotPassword: forgotPassword
+            forgotPassword: forgotPassword,
+            saveRug: saveRug
         },
         dispatch)
 };

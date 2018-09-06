@@ -1,11 +1,14 @@
 import * as actions from './action-types';
+
 import materialsApi from '../api/get-materials-api';
 import LoginApi from '../api/login-api';
 import RegisterApi from '../api/register-api';
 import ForgotPasswordApi from '../api/forgot-password api';
-import { calculatePrice } from '../utils/calculate-rug-price';
+import SaveRugApi from '../api/save-rug-api';
 
-var ls = require('local-storage');
+import {calculatePrice} from '../utils/calculate-rug-price';
+
+const ls = require('local-storage');
 
 export const setLength = (length) => {
     return {
@@ -379,38 +382,123 @@ export const setShowGuestMode = (mode) => {
 
 export const loginUser = (username, password) => {
     return () => {
-        return LoginApi.LoginUser(username, password).then(response => {
-            ls('curUser', response);
-            return response;
-        }).catch(error => {
-            console.log(error);
-        })
+        return LoginApi.LoginUser(username, password)
     }
 };
 
 export const registerUser = (email, password, first_name, last_name, address_1, address_2, postcode, city) => {
-    return (dispatch) => {
-        return RegisterApi.RegisterUser(email, password, first_name, last_name, address_1, address_2, postcode, city).
-        then(response => {
-            if (typeof response.user_id === 'number') {
-                dispatch(loginUser(email, password));
-                return response;
-            } else {
-                throw new Error('register failed!');
-            }
-        }).catch(error => {
-            console.log(error);
-        })
+    return () => {
+        return RegisterApi
+            .RegisterUser(email, password, first_name, last_name, address_1, address_2, postcode, city)
     }
 };
 
 export const forgotPassword = (email) => {
     return () => {
         return ForgotPasswordApi.ForgotPassword(email).then(response => {
-           console.log(response);
+            console.log(response);
         }).catch(error => {
             console.log(error);
         })
     }
 };
+
+export const saveRug = (
+    rug_type,
+    cm_sku,
+    cm_product_name,
+    cm_product_id,
+    bm1_sku,
+    bm1_product_name,
+    bm1_product_id,
+    bm2_sku,
+    bm2_product_name,
+    bm2_product_id,
+    piping_sku,
+    piping_product_name,
+    piping_product_id,
+    width,
+    height,
+    preview_image
+) => {
+    return () => {
+        switch (rug_type) {
+
+            case 'SINGLE-BORDER':
+                return SaveRugApi.SaveRug(
+                    rug_type,
+                    cm_sku,
+                    cm_product_name,
+                    cm_product_id,
+                    bm1_sku,
+                    bm1_product_name,
+                    bm1_product_id,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    width,
+                    height,
+                    preview_image
+                ).then(response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            case 'BORDER-PIPING':
+                return SaveRugApi.SaveRug(
+                    rug_type,
+                    cm_sku,
+                    cm_product_name,
+                    cm_product_id,
+                    bm1_sku,
+                    bm1_product_name,
+                    bm1_product_id,
+                    undefined,
+                    undefined,
+                    undefined,
+                    piping_sku,
+                    piping_product_name,
+                    piping_product_id,
+                    width,
+                    height,
+                    preview_image
+                ).then(response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            case 'DOUBLE-BORDER':
+                return SaveRugApi.SaveRug(
+                    rug_type,
+                    cm_sku,
+                    cm_product_name,
+                    cm_product_id,
+                    bm1_sku,
+                    bm1_product_name,
+                    bm1_product_id,
+                    bm2_sku,
+                    bm2_product_name,
+                    bm2_product_id,
+                    undefined,
+                    undefined,
+                    undefined,
+                    width,
+                    height,
+                    preview_image
+                ).then(response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.log(error);
+                });
+        }
+    }
+};
+
+
+
 

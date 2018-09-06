@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export default class RegisterApi {
     static RegisterUser(email, password, first_name, last_name, address_1, address_2, postcode, city) {
         const form = new FormData();
@@ -10,9 +12,16 @@ export default class RegisterApi {
         form.append("postcode", postcode);
         form.append("city", city);
 
-        return fetch(process.env.REACT_APP_REGISTER_ROOT, {method: 'POST', body: form})
+        return axios({method: 'POST', data: form, url: process.env.REACT_APP_REGISTER_ROOT})
             .then(response => {
-                return response.json();
-            })
+                    return new Promise((resolve, reject) => {
+                        if (typeof response.data.user_id === 'number') {
+                            resolve(response.data);
+                        } else {
+                            reject('registration failed');
+                        }
+                    })
+                }
+            )
     }
 }

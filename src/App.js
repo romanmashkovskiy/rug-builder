@@ -12,13 +12,13 @@ class App extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/" component={StartModal} />
-                    <Route path="/builder" component={BuilderSelectPart} />
-                    <Route path="/summary" component={Summary} />
+                    <Route exact path="/" component={StartModal}/>
+                    <Route path="/builder" component={BuilderSelectPart}/>
+                    <Route path="/summary" component={Summary}/>
                 </Switch>
             </Router>
-    );
+        );
     }
-    }
+}
 
-    export default App;
+export default App;

@@ -50,6 +50,8 @@ import {
     getRugPrice,
 
     setShowLoginRegisterMode,
+
+    saveRug
 } from "../../actions";
 
 import header from './images/header.png';
@@ -78,7 +80,7 @@ import piping from './images/piping.svg';
 import Rug from '../rug/rug';
 import RugCorner from '../rug/rug-corner';
 
-var ls = require('local-storage');
+const ls = require('local-storage');
 
 
 class BuilderSelectPart extends Component {
@@ -395,15 +397,37 @@ class BuilderSelectPart extends Component {
                                 &&
                                 <div className="finish-building-block">
                                     <LinkButton
-                                        to = {ls('curUser') ? '/summary' : '/builder'}
+                                        to={ls('curUser') ? '/summary' : '/builder'}
                                         className="finish-building-btn-active"
                                         onClick={() => {
-                                            console.log(ls('curUser'));
                                             if (!ls('curUser')) {
                                                 this.props.setShowLoginRegisterMode(true);
+                                            } else {
+                                                this.props.saveRug(
+                                                    this.props.border,
+
+                                                    this.props.centre.code,
+                                                    this.props.centre.name,
+                                                    this.props.centre.id,
+
+                                                    this.props.outerBorder.code,
+                                                    this.props.outerBorder.name,
+                                                    this.props.outerBorder.id,
+
+                                                    this.props.innerBorder.code,
+                                                    this.props.innerBorder.name,
+                                                    this.props.innerBorder.id,
+
+                                                    this.props.piping.code,
+                                                    this.props.piping.post_title,
+                                                    this.props.piping.ID,
+
+                                                    this.props.width,
+                                                    this.props.height
+                                                );
                                             }
                                         }
-                                    }>FINISH BUILDING</LinkButton>
+                                        }>FINISH BUILDING</LinkButton>
                                 </div>
                             }
 
@@ -831,8 +855,6 @@ const mapStateToProps = (state) => {
         showLoginModal: state.showLoginModal,
         showRegisterModal: state.showRegisterModal,
         showGuestModal: state.showGuestModal,
-
-        currentUser: state.currentUser
     };
 };
 
@@ -870,6 +892,8 @@ const matchDispatchToProps = (dispatch) => {
             getRugPrice: getRugPrice,
 
             setShowLoginRegisterMode: setShowLoginRegisterMode,
+
+            saveRug: saveRug
         },
         dispatch)
 };
