@@ -147,7 +147,7 @@ export const setPipingMaterialType = (type) => {
 
 export const getCenterMaterials = () => {
     return (dispatch) => {
-        return materialsApi.getMaterials('?request=materials').then(response => {
+        return materialsApi.getMaterials('materials-data').then(response => {
             dispatch(loadCenterMaterialsSuccess(response));
         }).catch(error => {
             console.log(error)
@@ -155,13 +155,15 @@ export const getCenterMaterials = () => {
     }
 };
 
+
+
 export function loadCenterMaterialsSuccess(response) {
     return {type: actions.LOAD_CENTER_MATERIALS_SUCCESS, payload: response};
 }
 
 export const getCenterMaterialsFirstChildren = (parent) => {
     return (dispatch) => {
-        return materialsApi.getMaterials('?request=collections').then(response => {
+        return materialsApi.getMaterials('collections-data').then(response => {
             dispatch(loadCenterMaterialsFirstChildrenSuccess(response[parent]));
         }).catch(error => {
             console.log(error)
@@ -175,7 +177,7 @@ export function loadCenterMaterialsFirstChildrenSuccess(response) {
 
 export const getCenterMaterialsSecondChildren = (parent) => {
     return (dispatch) => {
-        return materialsApi.getMaterials(`?request=swatches&collection=${parent}`).then(response => {
+        return materialsApi.getMaterials(`swatches-data/?collection=${parent}`).then(response => {
             dispatch(loadCenterMaterialsSecondChildrenSuccess(response));
         }).catch(error => {
             console.log(error)
@@ -183,13 +185,14 @@ export const getCenterMaterialsSecondChildren = (parent) => {
     }
 };
 
+
 export function loadCenterMaterialsSecondChildrenSuccess(response) {
     return {type: actions.LOAD_CENTER_MATERIALS_SECOND_CHILDREN_SUCCESS, payload: response};
 }
 
 export const getInnerBorderMaterials = () => {
     return (dispatch) => {
-        return materialsApi.getMaterials('?request=border').then(response => {
+        return materialsApi.getMaterials('borders-data').then(response => {
             dispatch(loadInnerBorderMaterialsSuccess(response));
         }).catch(error => {
             console.log(error)
@@ -203,7 +206,7 @@ export function loadInnerBorderMaterialsSuccess(response) {
 
 export const getInnerBorderMaterialsFirstChildren = (parent) => {
     return (dispatch) => {
-        return materialsApi.getMaterials(`?request=collections&collection=${parent}`).then(response => {
+        return materialsApi.getMaterials(`collections-data/?collection=${parent}`).then(response => {
             dispatch(loadInnerBorderMaterialsFirstChildrenSuccess(response));
         }).catch(error => {
             console.log(error)
@@ -217,7 +220,7 @@ export function loadInnerBorderMaterialsFirstChildrenSuccess(response) {
 
 export const getInnerBorderMaterialsSecondChildren = (parent) => {
     return (dispatch) => {
-        return materialsApi.getMaterials(`?request=swatches&collection=${parent}`).then(response => {
+        return materialsApi.getMaterials(`swatches-data/?collection=${parent}`).then(response => {
             dispatch(loadInnerBorderMaterialsSecondChildrenSuccess(response));
         }).catch(error => {
             console.log(error)
@@ -229,10 +232,9 @@ export function loadInnerBorderMaterialsSecondChildrenSuccess(response) {
     return {type: actions.LOAD_INNER_BORDER_MATERIALS_SECOND_CHILDREN_SUCCESS, payload: response};
 }
 
-
 export const getOuterBorderMaterials = () => {
     return (dispatch) => {
-        return materialsApi.getMaterials('?request=border').then(response => {
+        return materialsApi.getMaterials('borders-data').then(response => {
             dispatch(loadOuterBorderMaterialsSuccess(response));
         }).catch(error => {
             console.log(error)
@@ -246,7 +248,7 @@ export function loadOuterBorderMaterialsSuccess(response) {
 
 export const getOuterBorderMaterialsFirstChildren = (parent) => {
     return (dispatch) => {
-        return materialsApi.getMaterials(`?request=collections&collection=${parent}`).then(response => {
+        return materialsApi.getMaterials(`collections-data/?collection=${parent}`).then(response => {
             dispatch(loadOuterBorderMaterialsFirstChildrenSuccess(response));
         }).catch(error => {
             console.log(error)
@@ -260,7 +262,7 @@ export function loadOuterBorderMaterialsFirstChildrenSuccess(response) {
 
 export const getOuterBorderMaterialsSecondChildren = (parent) => {
     return (dispatch) => {
-        return materialsApi.getMaterials(`?request=swatches&collection=${parent}`).then(response => {
+        return materialsApi.getMaterials(`swatches-data/?collection=${parent}`).then(response => {
             dispatch(loadOuterBorderMaterialsSecondChildrenSuccess(response));
         }).catch(error => {
             console.log(error)
@@ -272,10 +274,9 @@ export function loadOuterBorderMaterialsSecondChildrenSuccess(response) {
     return {type: actions.LOAD_OUTER_BORDER_MATERIALS_SECOND_CHILDREN_SUCCESS, payload: response};
 }
 
-
 export const getPipingMaterials = () => {
     return (dispatch) => {
-        return materialsApi.getMaterials('?request=piping').then(response => {
+        return materialsApi.getMaterials('piping-data').then(response => {
             dispatch(loadPipingMaterialsSuccess(response));
         }).catch(error => {
             console.log(error)
@@ -330,7 +331,7 @@ export const setShowRugCornerMode = (mode) => {
 export const getRugPrice = (name, length, width, rugType, innerBorder, outerBorder, piping) => {
     return (dispatch) => {
 
-        return materialsApi.getMaterials(`?request=price&material=${name}`).then(response => {
+        return materialsApi.getMaterials(`price-data/?material=${name}`).then(response => {
             dispatch(loadCenterMaterialsPriceSuccess(response, length, width, rugType, innerBorder, outerBorder, piping));
         }).catch(error => {
             console.log(error)
