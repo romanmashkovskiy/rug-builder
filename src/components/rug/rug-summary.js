@@ -14,7 +14,7 @@ const materialDef = new THREE.MeshPhongMaterial({
 });
 
 
-class RugCorner extends Component {
+class RugSummary extends Component {
 
     constructor(props) {
         super(props);
@@ -26,9 +26,9 @@ class RugCorner extends Component {
             1000
         );
 
-        this.camera.position.x = 0;
-        this.camera.position.y = 170;
-        this.camera.position.z = 0;
+        this.camera.position.x = -40;
+        this.camera.position.y = 44;
+        this.camera.position.z = 165;
 
         this.scene.add(this.camera);
 
@@ -37,10 +37,15 @@ class RugCorner extends Component {
 
         const dirLight = new THREE.DirectionalLight(0xffffff, 0.3);
         this.scene.add(dirLight);
+
+        // this.scene.background = new THREE.Color( 'blue' );
     }
 
     async objectLoader() {
         const objectLoader = new this.THREE.OBJLoader();
+
+        // const axesHelper = new THREE.AxesHelper(500);
+        // this.scene.add(axesHelper);
 
         let rugFile;
         if (this.props.border === 'DOUBLE-BORDER') {
@@ -56,8 +61,7 @@ class RugCorner extends Component {
             for (let i = 0; i < object.children.length; i++) {
                 object.children[i].material = materialDef;
             }
-            object.position.x = 35;
-            object.position.z = 85;
+
             this.object = object;
             this.scene.add(object);
         } catch(e) {
@@ -126,14 +130,20 @@ class RugCorner extends Component {
 
     async componentDidMount() {
 
+        const resize = () => {
+            this.renderer.setSize(container.offsetWidth, container.offsetHeight);
+            this.camera.aspect = container.offsetWidth / container.offsetHeight;
+            this.camera.updateProjectionMatrix();
+        };
+
         this.THREE = THREE;
 
-        const container = document.getElementById("root-for-rug-corner");
+        const container = document.getElementById("root-for-rug-summary");
 
         this.controls = new OrbitControl(this.camera, container);
         this.controls.enabled = false;
 
-        this.camera.zoom = 8;
+        this.camera.zoom = 2;
 
         await this.objectLoader();
 
@@ -149,6 +159,8 @@ class RugCorner extends Component {
         this.camera.aspect = container.offsetWidth / container.offsetHeight;
 
         this.camera.updateProjectionMatrix();
+
+        window.onresize = resize;
 
         const animate = () => {
             requestAnimationFrame(animate);
@@ -174,7 +186,7 @@ class RugCorner extends Component {
 
     render() {
         return (
-            <div id="root-for-rug-corner">
+            <div id="root-for-rug-summary">
             </div>
         )
     }
@@ -190,4 +202,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps)(RugCorner);
+export default connect(mapStateToProps)(RugSummary);
