@@ -32,7 +32,9 @@ class RegisterModal extends Component {
             postcode: '',
             password: '',
             confirmPassword: '',
-            orderFreeSwatchSamples: false
+            orderFreeSwatchSamples: false,
+            isAgree: 0,
+            isSubscribed: 0
         };
         this.onChangeFirstName = this.onChangeFirstName.bind(this);
         this.onChangeLastName = this.onChangeLastName.bind(this);
@@ -43,6 +45,8 @@ class RegisterModal extends Component {
         this.onChangePostcode = this.onChangePostcode.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+        this.onChangeIsAgree = this.onChangeIsAgree.bind(this);
+        this.onChangeIsSubscribed = this.onChangeIsSubscribed.bind(this);
     }
 
     onChangeFirstName(e) {
@@ -88,6 +92,20 @@ class RegisterModal extends Component {
     onChangeConfirmPassword(e) {
         const val = e.target.value;
         this.setState({confirmPassword: val});
+    }
+
+    onChangeIsAgree(e) {
+        const val = e.target.checked;
+        // console.log(val);
+        val ? this.setState({isAgree: 1}) : this.setState({isAgree: 0});
+        // console.log(this.state.isAgree);
+    }
+
+    onChangeIsSubscribed(e) {
+        const val = e.target.checked;
+        // console.log(val);
+        val ? this.setState({isSubscribed: 1}) : this.setState({isSubscribed: 0});
+        // console.log(this.state.isSubscribed);
     }
 
 
@@ -197,7 +215,9 @@ class RegisterModal extends Component {
                                     this.state.addressLine1,
                                     this.state.addressLine2,
                                     this.state.postcode,
-                                    this.state.city
+                                    this.state.city,
+                                    this.state.isAgree,
+                                    this.state.isSubscribed
                                 ).
                                 then(() => {
                                      return this.props.loginUser(
@@ -230,7 +250,7 @@ class RegisterModal extends Component {
                                             this.props.piping.ID,
 
                                             this.props.width,
-                                            this.props.height
+                                            this.props.length
                                         );
                                     }
                                 })
@@ -246,7 +266,7 @@ class RegisterModal extends Component {
                         <label className="register-checkbox-container">I agree my personal data being stored and sent
                             to our selected retailer partners in order to process this order. View Privacy Policy.
                             Please tick here to opt-in.
-                            <input type="checkbox"/>
+                            <input type="checkbox" onChange={this.onChangeIsAgree}/>
                             <span className="register-checkmark"></span>
                         </label>
                     </div>
@@ -255,7 +275,7 @@ class RegisterModal extends Component {
                             including promotions, special offers, news and events from Crucial Trading View Privacy
                             Policy
                             Please tick here to opt in.
-                            <input type="checkbox"/>
+                            <input type="checkbox" onChange={this.onChangeIsSubscribed}/>
                             <span className="register-checkmark"></span>
                         </label>
                     </div>

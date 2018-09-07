@@ -105,7 +105,7 @@ class LoginModal extends Component {
                                         this.props.piping.ID,
 
                                         this.props.width,
-                                        this.props.height
+                                        this.props.length
                                     );
 
                                 }).catch(error => {

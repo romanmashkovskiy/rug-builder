@@ -8,8 +8,6 @@ import SaveRugApi from '../api/save-rug-api';
 
 import {calculatePrice} from '../utils/calculate-rug-price';
 
-const ls = require('local-storage');
-
 export const setLength = (length) => {
     return {
         type: actions.SET_LENGTH,
@@ -295,6 +293,7 @@ export const setCurrentMaterialHover = (material) => {
     }
 };
 
+
 export const setCurrentMaterialHoverCoords = (coords) => {
     return {
         type: actions.SET_CURRENT_MATERIAL_HOVER_COORDS,
@@ -387,10 +386,10 @@ export const loginUser = (username, password) => {
     }
 };
 
-export const registerUser = (email, password, first_name, last_name, address_1, address_2, postcode, city) => {
+export const registerUser = (email, password, first_name, last_name, address_1, address_2, postcode, city, is_agree, is_subscribed) => {
     return () => {
         return RegisterApi
-            .RegisterUser(email, password, first_name, last_name, address_1, address_2, postcode, city)
+            .RegisterUser(email, password, first_name, last_name, address_1, address_2, postcode, city, is_agree, is_subscribed)
     }
 };
 
@@ -423,6 +422,7 @@ export const saveRug = (
     preview_image
 ) => {
     return () => {
+
         switch (rug_type) {
 
             case 'SINGLE-BORDER':
@@ -443,7 +443,8 @@ export const saveRug = (
                     width,
                     height,
                     preview_image
-                ).then(response => {
+                ).
+                then(response => {
                     console.log(response);
                 }).catch(error => {
                     console.log(error);

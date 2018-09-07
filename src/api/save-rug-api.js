@@ -22,10 +22,9 @@ export default class SaveRugApi {
         height,
         preview_image
     ) {
-        const headers = new Headers();
-        debugger
-        let ii = ls('curUser');
-        headers.append('Authorization', `Bearer ${ls('curUser').token}`)
+        // const uu = ls('curUser').token;
+        // const headers = new Headers();
+        // headers.append('authorization', `Bearer ${ls('curUser').token}`);
 
         const form = new FormData();
         form.append("rug_type", rug_type);
@@ -45,14 +44,26 @@ export default class SaveRugApi {
         form.append("height", height);
         form.append("preview_image", preview_image);
 
-        return axios(process.env.REACT_APP_SAVE_RUG_ROOT, {
+
+
+        return axios({
             method: 'POST',
-            data: form,
             url: process.env.REACT_APP_SAVE_RUG_ROOT,
-            headers: headers
+            headers: {authorization: `Bearer ${ls('curUser').token}`},
+            data: form
         })
             .then(response => {
                 return response.data;
             })
+
+        // return axios({
+        //     method: 'POST',
+        //     data: form,
+        //     url: process.env.REACT_APP_SAVE_RUG_ROOT,
+        //     headers: headers
+        // })
+        //     .then(response => {
+        //         return response.data;
+        //     })
     }
 }
