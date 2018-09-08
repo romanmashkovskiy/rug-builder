@@ -13,7 +13,7 @@ const OrbitControl = OrbitControls(THREE);
 const textureLoader = new THREE.TextureLoader();
 
 const materialDef = new THREE.MeshPhongMaterial({
-	color: 0x555555,
+	color: 0xcccccc,
 });
 
 
@@ -29,64 +29,32 @@ class Rug extends Component {
 			1000
 		);
 
-		this.camera.position.x = 0.000001;
+		this.camera.position.x = 1;
 		this.camera.position.y = 170;
 		this.camera.position.z = 0;
 
-		this.camera.rotation.x = -1.5708;
-		this.camera.rotation.y = 0;
-		this.camera.rotation.z = 1.5708;
+		// this.camera.rotation.x = -1.5708;
+		// this.camera.rotation.y = 0;
+		// this.camera.rotation.z = 1.5708;
 
 		this.scene.add(this.camera);
 	}
 
 	addLight() {
-		var hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xFFFFFF, 0.7);
+		var hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xFFFFFF, 0.5);
 		this.scene.add(hemiLight);
 
 		var keyLight2 = new THREE.PointLight(0xffffff, 1, 150);
-		keyLight2.position.set(0, 50, 120);
+		keyLight2.position.set(0, 50, 60);
 		keyLight2.castShadow = true;
 		keyLight2.rotation.x = 45;
 		this.scene.add(keyLight2)
 
-		var fillLight = new THREE.PointLight(0xffffff, 1, 150);
-		fillLight.position.set(0, 50, -120);
+		var fillLight = new THREE.PointLight(0xffffff, 1, 75);
+		fillLight.position.set(0, 50, -60);
 		fillLight.castShadow = true;
 		fillLight.rotation.x = 45;
 		this.scene.add(fillLight)
-
-		var backLight = new THREE.PointLight(0xffffff, 1, 70);
-		backLight.position.set(50, 50, 0);
-		backLight.castShadow = true;
-		backLight.rotation.x = 45;
-		this.scene.add(backLight)
-	}
-
-	async addShadow() {
-		var shadowGeometry = new THREE.PlaneBufferGeometry(150, 150, 50, 5);
-
-		const textures = {
-			shininess: 0,
-		};
-
-		try {
-			textures.map = await loadWithPromise('shadow-texture.jpg', textureLoader);
-			textures.map.wrapS = textures.map.wrapT = THREE.RepeatWrapping;
-			// textures.map.repeat.set(8, 8);
-		} catch (e) {
-			textures.map = null;
-			console.log(e);
-		}
-
-		var shadowMaterial = new THREE.MeshBasicMaterial(textures)
-
-		var shadow = new THREE.Mesh(shadowGeometry, shadowMaterial);
-		shadow.position.set(0, -20, 0);
-		shadow.rotation.x = (Math.PI / 2) * -1;
-		shadow.rotation.z = (Math.PI / 2) * -1;
-		// shadow.rotation.y = (Math.PI / 2) * -1;
-		this.scene.add(shadow)
 	}
 
 	async objectLoader() {
@@ -103,10 +71,10 @@ class Rug extends Component {
 
 		try {
 			const object = await loadWithPromise(rugFile, objectLoader);
-			debugger
 			for (let i = 0; i < object.children.length; i++) {
 				object.children[i].castShadow = true;
 				object.children[i].receiveShadow = false;
+				object.children[i].scale.set(0.5, 0.5, 0.5);
 				object.children[i].material = materialDef;
 			}
 			this.object = object;
@@ -119,15 +87,15 @@ class Rug extends Component {
 	async getFloor() {
 		var floorRepeatX = 8;
 		var floorRepeatY = 8;
-		var floorBumpScale = 10;
+		var floorBumpScale = 1.5;
 		var floorShininess = 20;
 
-		var geometry = new THREE.PlaneGeometry(700, 700);
+		var geometry = new THREE.PlaneGeometry(500, 500, 50, 5);
 
 		const textures = {
 			shininess: floorShininess,
 			bumpScale: floorBumpScale,
-			anisotropy: 2
+			anisotropy: 16
 		};
 
 		try {
@@ -147,14 +115,11 @@ class Rug extends Component {
 			textures.bumpMap = null;
 			console.log(e);
 		}
-
-		debugger
-
 		var material = new THREE.MeshPhongMaterial(textures);
 		var floor = new THREE.Mesh(geometry, material);
+		floor.receiveShadow = true;
 		floor.position.set(0, -1, 0);
 		floor.rotation.x = (Math.PI / 2) * -1;
-		floor.receiveShadow = true;
 		this.scene.add(floor);
 	}
 
@@ -177,7 +142,7 @@ class Rug extends Component {
 			bumpScale: 0.3,
 		});
 
-		var wallX = 300
+		var wallX = 200
 		var wallY = 1000
 
 		var geometry = new THREE.BoxGeometry(wallX * 2, wallY, 1);
@@ -191,14 +156,14 @@ class Rug extends Component {
 
 		var geometry = new THREE.BoxGeometry(1, wallY, wallX * 2);
 		var wall3 = new THREE.Mesh(geometry, paintM);
-		wall3.position.set(-1 * wallX, 25, 0);
+		wall3.position.set(wallX, 25, 0);
 		this.scene.add(wall3);
 	}
 
 	async updateMap(urlTexture, urlBumpMap, urlNormalMap, rugPart) {
 		var rugRepeatX = 8;
 		var rugRepeatY = 8;
-		var bumpScale = 10;
+		var bumpScale = 20;
 		var dispScale = 3;
 
 		if (urlTexture === '') {
@@ -213,14 +178,16 @@ class Rug extends Component {
 		const textures = {
 			emissive: new THREE.Color("rgb(7,3,5)"),
 			specular: new THREE.Color("rgb(100,100,100)"),
-			shininess: 1,
+			shininess: 0,
 			displacementScale: dispScale,
 			bumpScale: bumpScale,
+			anisotropy: 16
 		};
 
 		try {
 			textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
 			textures.bumpMap.wrapS = textures.bumpMap.wrapT = THREE.RepeatWrapping;
+			textures.bumpMap.anisotropy = 16
 			textures.bumpMap.repeat.set(rugRepeatX, rugRepeatY);
 		} catch (e) {
 			textures.bumpMap = null;
@@ -246,12 +213,11 @@ class Rug extends Component {
 
 		const materialWithTexture = new THREE.MeshPhongMaterial(textures);
 
-		debugger
-
 		for (let i = 0; i < this.object.children.length; i += 1) {
 			if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf(rugPart) !== -1) {
 				this.object.children[i].material = materialWithTexture;
-				this.object.children[i].castShadow = true
+				this.object.children[i].castShadow = true;
+				this.object.children[i].receiveShadow = false;
 			}
 		}
 	}
@@ -333,26 +299,24 @@ class Rug extends Component {
 
 		this.addLight()
 
-		this.addShadow()
-
 		const container = document.getElementById("root-for-rug");
 
 		this.controls = new OrbitControl(this.camera, container);
-		this.controls.enableZoom = false;
+		// this.controls.enableZoom = false;
 		this.controls.minPolarAngle = 0;
 		this.controls.maxPolarAngle = Math.PI / 2 - 0.15;
 
 		this.camera.zoom = 2;
 
+		this.objectLoader();
+		
 		this.getFloor()
 		this.getWall()
-
-		this.objectLoader();
 
 		// const axesHelper = new THREE.AxesHelper(500);
 		// this.scene.add(axesHelper);
 
-		this.renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 
 		this.renderer.setSize(container.offsetWidth, container.offsetHeight);
 
@@ -369,7 +333,9 @@ class Rug extends Component {
 		animate();
 
 		container.appendChild(this.renderer.domElement);
-		this.renderer.shadowMapEnabled = true;
+		this.renderer.setClearColor(0xffffff)
+		this.renderer.shadowMap.enabled = true;
+		this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	}
 
 
