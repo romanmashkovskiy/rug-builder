@@ -18,6 +18,8 @@ import pinterest from './images/pinterest-logo.svg';
 import chain from './images/link-symbol.svg';
 import mail from './images/envelope.svg';
 
+import RugSummary from '../rug/rug-summary';
+
 
 class Summary extends Component {
 
@@ -30,6 +32,7 @@ class Summary extends Component {
                 </div>
                 <div className="summary-block-container">
                     <div className="summary-block-item">
+                        <RugSummary/>
                     </div>
                     <div className="summary-block-item">
                         <div className="logo-summary">
