@@ -129,7 +129,8 @@ class BuilderSelectPart extends Component {
         return (
             <div className="container-builder">
                 <div className="header-builder">
-                    <img src={header} alt="header"/>
+                    {/*<img src={header} alt="header"/>*/}
+                    <img/>
                 </div>
                 <div className="main-builder">
                     {(this.props.editDimensionsMode || this.props.editBorderMode) &&
@@ -532,7 +533,7 @@ class BuilderSelectPart extends Component {
                             !this.props.showInnerBorderMaterialMode &&
                             !this.props.showOuterBorderMaterialMode &&
                             !this.props.showPipingMaterialMode &&
-                            <div className="main-area-builder-inner-border">
+                            <div className="main-area-builder-centre">
                                 <div className="centre" onClick={() => {
                                     this.props.setShowPipingMaterialMode(true);
                                 }}>
@@ -542,6 +543,18 @@ class BuilderSelectPart extends Component {
                                     <div className="centre-icon-selected-material">
                                         <img src={this.props.piping.picture} alt="type"/>
                                     </div>}
+                                </div>
+                            </div>
+                        }
+
+                        {
+                            !this.props.showCenterMaterialMode &&
+                            !this.props.showInnerBorderMaterialMode &&
+                            !this.props.showOuterBorderMaterialMode &&
+                            !this.props.showPipingMaterialMode &&
+                            <div className="main-area-builder-view-selections">
+                                <div className="centre">
+                                    <h3>VIEW SELECTIONS</h3>
                                 </div>
                             </div>
                         }

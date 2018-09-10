@@ -12,6 +12,7 @@ import singleBorderIcon from "./images/single-border-icon.svg"
 import singlePipingIcon from "./images/single-piping-icon.svg"
 import doubleBorderIcon from "./images/double-border-icon.svg"
 import exit from './images/exit.svg';
+import headerMobile from './images/header-mobile.png';
 
 class StartModal extends Component {
     constructor(props) {
@@ -47,6 +48,9 @@ class StartModal extends Component {
             <div className="container">
                 <div className="cover-div"/>
                 <div className="modal">
+                    <div className="header-mobile">
+                        <img src={headerMobile} alt="headerMobile" />
+                    </div>
                     <div className="logo">
                         <img src={logo} alt="logo"/>
                     </div>

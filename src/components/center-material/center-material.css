@@ -119,3 +119,21 @@
     text-align: center;
 }
 
+@media screen and (max-width: 450px) {
+    .materials-center-list {
+        width: 100%;
+    }
+
+    .single-materials-center-list {
+        width: 33.3%;
+        height: 50%;
+        border-bottom: 2px solid #F9F9F9;
+    }
+
+    .single-materials-center-list-child {
+        width: 25%;
+        height: 50px;
+
+    }
+}
+
