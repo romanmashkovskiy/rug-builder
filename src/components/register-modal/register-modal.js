@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
+import React, { Component } from 'react';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 
 import {
-    setShowRegisterMode,
-    setShowLoginRegisterMode,
-    registerUser,
-    saveRug,
-    loginUser
+	setRugPosition,
+	setShowRegisterMode,
+	setShowLoginRegisterMode,
+	registerUser,
+	saveRug,
+	loginUser
 } from "../../actions";
 
 import './register-modal.css';
@@ -15,298 +16,277 @@ import './register-modal.css';
 import restart from './images/restart.svg'
 import basket from './images/basket.png';
 
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const ls = require('local-storage');
 
 class RegisterModal extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
-            addressLine1: '',
-            addressLine2: '',
-            city: '',
-            postcode: '',
-            password: '',
-            confirmPassword: '',
-            orderFreeSwatchSamples: false,
-            isAgree: 0,
-            isSubscribed: 0
-        };
-        this.onChangeFirstName = this.onChangeFirstName.bind(this);
-        this.onChangeLastName = this.onChangeLastName.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangeAddressLine1 = this.onChangeAddressLine1.bind(this);
-        this.onChangeAddressLine2 = this.onChangeAddressLine2.bind(this);
-        this.onChangeCity = this.onChangeCity.bind(this);
-        this.onChangePostcode = this.onChangePostcode.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
-        this.onChangeIsAgree = this.onChangeIsAgree.bind(this);
-        this.onChangeIsSubscribed = this.onChangeIsSubscribed.bind(this);
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			firstName: '',
+			lastName: '',
+			email: '',
+			addressLine1: '',
+			addressLine2: '',
+			city: '',
+			postcode: '',
+			password: '',
+			confirmPassword: '',
+			orderFreeSwatchSamples: false,
+			isAgree: 0,
+			isSubscribed: 0
+		};
+		this.onChangeFirstName = this.onChangeFirstName.bind(this);
+		this.onChangeLastName = this.onChangeLastName.bind(this);
+		this.onChangeEmail = this.onChangeEmail.bind(this);
+		this.onChangeAddressLine1 = this.onChangeAddressLine1.bind(this);
+		this.onChangeAddressLine2 = this.onChangeAddressLine2.bind(this);
+		this.onChangeCity = this.onChangeCity.bind(this);
+		this.onChangePostcode = this.onChangePostcode.bind(this);
+		this.onChangePassword = this.onChangePassword.bind(this);
+		this.onChangeConfirmPassword = this.onChangeConfirmPassword.bind(this);
+		this.onChangeIsAgree = this.onChangeIsAgree.bind(this);
+		this.onChangeIsSubscribed = this.onChangeIsSubscribed.bind(this);
+	}
 
-    onChangeFirstName(e) {
-        const val = e.target.value;
-        this.setState({firstName: val});
-    }
+	onChangeFirstName(e) {
+		const val = e.target.value;
+		this.setState({ firstName: val });
+	}
 
-    onChangeLastName(e) {
-        const val = e.target.value;
-        this.setState({lastName: val});
-    }
+	onChangeLastName(e) {
+		const val = e.target.value;
+		this.setState({ lastName: val });
+	}
 
-    onChangeEmail(e) {
-        const val = e.target.value;
-        this.setState({email: val});
-    }
+	onChangeEmail(e) {
+		const val = e.target.value;
+		this.setState({ email: val });
+	}
 
-    onChangeAddressLine1(e) {
-        const val = e.target.value;
-        this.setState({addressLine1: val});
-    }
+	onChangeAddressLine1(e) {
+		const val = e.target.value;
+		this.setState({ addressLine1: val });
+	}
 
-    onChangeAddressLine2(e) {
-        const val = e.target.value;
-        this.setState({addressLine2: val});
-    }
+	onChangeAddressLine2(e) {
+		const val = e.target.value;
+		this.setState({ addressLine2: val });
+	}
 
-    onChangeCity(e) {
-        const val = e.target.value;
-        this.setState({city: val});
-    }
+	onChangeCity(e) {
+		const val = e.target.value;
+		this.setState({ city: val });
+	}
 
-    onChangePostcode(e) {
-        const val = e.target.value;
-        this.setState({postcode: val});
-    }
+	onChangePostcode(e) {
+		const val = e.target.value;
+		this.setState({ postcode: val });
+	}
 
-    onChangePassword(e) {
-        const val = e.target.value;
-        this.setState({password: val});
-    }
+	onChangePassword(e) {
+		const val = e.target.value;
+		this.setState({ password: val });
+	}
 
-    onChangeConfirmPassword(e) {
-        const val = e.target.value;
-        this.setState({confirmPassword: val});
-    }
+	onChangeConfirmPassword(e) {
+		const val = e.target.value;
+		this.setState({ confirmPassword: val });
+	}
 
-    onChangeIsAgree(e) {
-        const val = e.target.checked;
-        // console.log(val);
-        val ? this.setState({isAgree: 1}) : this.setState({isAgree: 0});
-        // console.log(this.state.isAgree);
-    }
+	onChangeIsAgree(e) {
+		const val = e.target.checked;
+		// console.log(val);
+		val ? this.setState({ isAgree: 1 }) : this.setState({ isAgree: 0 });
+		// console.log(this.state.isAgree);
+	}
 
-    onChangeIsSubscribed(e) {
-        const val = e.target.checked;
-        // console.log(val);
-        val ? this.setState({isSubscribed: 1}) : this.setState({isSubscribed: 0});
-        // console.log(this.state.isSubscribed);
-    }
+	onChangeIsSubscribed(e) {
+		const val = e.target.checked;
+		// console.log(val);
+		val ? this.setState({ isSubscribed: 1 }) : this.setState({ isSubscribed: 0 });
+		// console.log(this.state.isSubscribed);
+	}
 
 
-    render() {
-        return (
-            <div className="container">
-                <div className="cover-div"/>
-                <div className="modal-register">
-                    <img src={restart} className="button-back-register" alt="exit" onClick={() => {
-                        this.props.setShowRegisterMode(false);
-                        this.props.setShowLoginRegisterMode(true);
-                    }}/>
-                    <div className="register-header-text">
-                        Register
+	render() {
+		return (
+			<div className="container">
+				<div className="cover-div" />
+				<div className="modal-register">
+					<img src={restart} className="button-back-register" alt="exit" onClick={() => {
+						this.props.setShowRegisterMode(false);
+						this.props.setShowLoginRegisterMode(true);
+					}} />
+					<div className="register-header-text">
+						Register
                     </div>
-                    <div className="input-register-block">
-                        <input
-                            type="text"
-                            value={this.state.firstName}
-                            placeholder="First Name"
-                            className="input-register"
-                            onChange={this.onChangeFirstName}
-                        />
-                        <input
-                            type="text"
-                            value={this.state.lastName}
-                            placeholder="Last Name"
-                            className="input-register"
-                            onChange={this.onChangeLastName}
-                        />
+					<div className="input-register-block">
+						<input
+							type="text"
+							value={this.state.firstName}
+							placeholder="First Name"
+							className="input-register"
+							onChange={this.onChangeFirstName}
+						/>
+						<input
+							type="text"
+							value={this.state.lastName}
+							placeholder="Last Name"
+							className="input-register"
+							onChange={this.onChangeLastName}
+						/>
+					</div>
+					<div className="input-register-block">
+						<input
+							type="text"
+							value={this.state.email}
+							placeholder="Email Address"
+							className="input-register"
+							onChange={this.onChangeEmail}
+						/>
+						<input
+							type="text"
+							value={this.state.addressLine1}
+							placeholder="Address Line 1"
+							className="input-register"
+							onChange={this.onChangeAddressLine1}
+						/>
+					</div>
+					<div className="input-register-block">
+						<input
+							type="text"
+							value={this.state.addressLine2}
+							placeholder="Address Line 2"
+							className="input-register"
+							onChange={this.onChangeAddressLine2}
+						/>
+						<input
+							type="text"
+							value={this.state.city}
+							placeholder="Town/City"
+							className="input-register"
+							onChange={this.onChangeCity}
+						/>
+					</div>
+					<div className="input-register-block">
+						<input
+							type="text"
+							value={this.state.postcode}
+							placeholder="Postcode"
+							className="input-register"
+							onChange={this.onChangePostcode}
+						/>
+						<input
+							type="password"
+							value={this.state.password}
+							placeholder="Password"
+							className="input-register"
+							onChange={this.onChangePassword}
+						/>
+					</div>
+					<div className="input-register-block">
+						<input
+							type="password"
+							value={this.state.confirmPassword}
+							placeholder="Confirm Password"
+							className="input-register"
+							onChange={this.onChangeConfirmPassword}
+						/>
+					</div>
+					{this.state.orderFreeSwatchSamples &&
+						<div className="free-swatch-samples-checkmark-register" />}
+					<img src={basket} className="button-basket-register" alt="basket" />
+					<div className="free-swatch-samples-register" onClick={() => {
+						this.setState({ orderFreeSwatchSamples: !this.state.orderFreeSwatchSamples })
+					}}>
+						Order Free Swatch Samples?
                     </div>
-                    <div className="input-register-block">
-                        <input
-                            type="text"
-                            value={this.state.email}
-                            placeholder="Email Address"
-                            className="input-register"
-                            onChange={this.onChangeEmail}
-                        />
-                        <input
-                            type="text"
-                            value={this.state.addressLine1}
-                            placeholder="Address Line 1"
-                            className="input-register"
-                            onChange={this.onChangeAddressLine1}
-                        />
-                    </div>
-                    <div className="input-register-block">
-                        <input
-                            type="text"
-                            value={this.state.addressLine2}
-                            placeholder="Address Line 2"
-                            className="input-register"
-                            onChange={this.onChangeAddressLine2}
-                        />
-                        <input
-                            type="text"
-                            value={this.state.city}
-                            placeholder="Town/City"
-                            className="input-register"
-                            onChange={this.onChangeCity}
-                        />
-                    </div>
-                    <div className="input-register-block">
-                        <input
-                            type="text"
-                            value={this.state.postcode}
-                            placeholder="Postcode"
-                            className="input-register"
-                            onChange={this.onChangePostcode}
-                        />
-                        <input
-                            type="password"
-                            value={this.state.password}
-                            placeholder="Password"
-                            className="input-register"
-                            onChange={this.onChangePassword}
-                        />
-                    </div>
-                    <div className="input-register-block">
-                        <input
-                            type="password"
-                            value={this.state.confirmPassword}
-                            placeholder="Confirm Password"
-                            className="input-register"
-                            onChange={this.onChangeConfirmPassword}
-                        />
-                    </div>
-                    {this.state.orderFreeSwatchSamples &&
-                    <div className="free-swatch-samples-checkmark-register"/>}
-                    <img src={basket} className="button-basket-register" alt="basket"/>
-                    <div className="free-swatch-samples-register" onClick={() => {
-                        this.setState({orderFreeSwatchSamples: !this.state.orderFreeSwatchSamples})
-                    }}>
-                        Order Free Swatch Samples?
-                    </div>
-                    <button
-                        className="register-button"
-                        onClick={() => {
-                            if (this.state.password === this.state.confirmPassword &&
-                                this.state.email !== '' && this.state.password !== '') {
-                                this.props.registerUser(
-                                    this.state.email,
-                                    this.state.password,
-                                    this.state.firstName,
-                                    this.state.lastName,
-                                    this.state.addressLine1,
-                                    this.state.addressLine2,
-                                    this.state.postcode,
-                                    this.state.city,
-                                    this.state.isAgree,
-                                    this.state.isSubscribed
-                                ).
-                                then(() => {
-                                     return this.props.loginUser(
-                                         this.state.email,
-                                         this.state.password
-                                     )
+					<button
+						className="register-button"
+						onClick={() => {
+							if (this.state.password === this.state.confirmPassword &&
+								this.state.email !== '' && this.state.password !== '') {
+								this.props.registerUser(
+									this.state.email,
+									this.state.password,
+									this.state.firstName,
+									this.state.lastName,
+									this.state.addressLine1,
+									this.state.addressLine2,
+									this.state.postcode,
+									this.state.city,
+									this.state.isAgree,
+									this.state.isSubscribed
+								).
+									then(() => {
+										return this.props.loginUser(
+											this.state.email,
+											this.state.password
+										)
 
-                                 }).
-                                then((result) => {
-                                    if (result) {
-                                        ls('curUser', result);
-                                        this.props.history.replace('/summary');
-                                        this.props.saveRug(
-                                            this.props.border,
-
-                                            this.props.centre.code,
-                                            this.props.centre.name,
-                                            this.props.centre.id,
-
-                                            this.props.outerBorder.code,
-                                            this.props.outerBorder.name,
-                                            this.props.outerBorder.id,
-
-                                            this.props.innerBorder.code,
-                                            this.props.innerBorder.name,
-                                            this.props.innerBorder.id,
-
-                                            this.props.piping.code,
-                                            this.props.piping.post_title,
-                                            this.props.piping.ID,
-
-                                            this.props.width,
-                                            this.props.length
-                                        );
-                                    }
-                                })
-                                .catch(error => {
-                                    console.log(error);
-                                })
-                            }
-                        }}
-                    >
-                        REGISTER
+									}).
+									then((result) => {
+										if (result) {
+											ls('curUser', result);
+											this.props.setRugPosition(true)
+										}
+									})
+									.catch(error => {
+										console.log(error);
+									})
+							}
+						}}
+					>
+						REGISTER
                     </button>
-                    <div className="register-checkbox-wrapper">
-                        <label className="register-checkbox-container">I agree my personal data being stored and sent
+					<div className="register-checkbox-wrapper">
+						<label className="register-checkbox-container">I agree my personal data being stored and sent
                             to our selected retailer partners in order to process this order. View Privacy Policy.
                             Please tick here to opt-in.
-                            <input type="checkbox" onChange={this.onChangeIsAgree}/>
-                            <span className="register-checkmark"></span>
-                        </label>
-                    </div>
-                    <div className="register-checkbox-wrapper">
-                        <label className="register-checkbox-container">I would like to receive marketing communication
+                            <input type="checkbox" onChange={this.onChangeIsAgree} />
+							<span className="register-checkmark"></span>
+						</label>
+					</div>
+					<div className="register-checkbox-wrapper">
+						<label className="register-checkbox-container">I would like to receive marketing communication
                             including promotions, special offers, news and events from Crucial Trading View Privacy
                             Policy
                             Please tick here to opt in.
-                            <input type="checkbox" onChange={this.onChangeIsSubscribed}/>
-                            <span className="register-checkmark"></span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+                            <input type="checkbox" onChange={this.onChangeIsSubscribed} />
+							<span className="register-checkmark"></span>
+						</label>
+					</div>
+				</div>
+			</div>
+		)
+	}
 }
 
 const mapStateToProps = (state) => {
-    return {
-        width: state.width,
-        length: state.length,
-        border: state.border,
+	return {
+		width: state.width,
+		length: state.length,
+		border: state.border,
 
-        centre: state.centre,
-        innerBorder: state.innerBorder,
-        outerBorder: state.outerBorder,
-        piping: state.piping
-    };
+		centre: state.centre,
+		innerBorder: state.innerBorder,
+		outerBorder: state.outerBorder,
+		piping: state.piping
+	};
 };
 
 const matchDispatchToProps = (dispatch) => {
-    return bindActionCreators({
-            setShowLoginRegisterMode: setShowLoginRegisterMode,
-            setShowRegisterMode: setShowRegisterMode,
-            registerUser: registerUser,
-            saveRug: saveRug,
-            loginUser: loginUser
-        },
-        dispatch)
+	return bindActionCreators({
+		setRugPosition: setRugPosition,
+		setShowLoginRegisterMode: setShowLoginRegisterMode,
+		setShowRegisterMode: setShowRegisterMode,
+		registerUser: registerUser,
+		saveRug: saveRug,
+		loginUser: loginUser
+	},
+		dispatch)
 };
 
 export default withRouter(connect(mapStateToProps, matchDispatchToProps)(RegisterModal));

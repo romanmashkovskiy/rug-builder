@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import * as THREE from 'three';
 import * as OBJLoader from 'three-obj-loader';
 import * as OrbitControls from 'three-orbit-controls';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { loadWithPromise } from '../../utils/load-with-promise';
-
+import { saveRug } from '../../actions'
 import './rug.css';
 
 OBJLoader(THREE);
@@ -15,6 +16,8 @@ const textureLoader = new THREE.TextureLoader();
 const materialDef = new THREE.MeshPhongMaterial({
 	color: 0xcccccc,
 });
+
+const ls = require('local-storage');
 
 class Rug extends Component {
 
@@ -272,6 +275,86 @@ class Rug extends Component {
 		this.camera.updateProjectionMatrix();
 	}
 
+
+	b64toBlob(b64Data) {
+		let contentType = 'jpeg';
+		let sliceSize = 512;
+
+		var block = b64Data.split(";");
+		var realData = block[1].split(",")[1];
+
+		debugger
+
+		var byteCharacters = window.atob(realData);
+		var byteArrays = [];
+
+		for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+			var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+			var byteNumbers = new Array(slice.length);
+			for (var i = 0; i < slice.length; i++) {
+				byteNumbers[i] = slice.charCodeAt(i);
+			}
+
+			var byteArray = new Uint8Array(byteNumbers);
+
+			byteArrays.push(byteArray);
+		}
+
+		var blob = new Blob(byteArrays, { type: contentType });
+		return blob;
+	}
+
+
+	saveRug() {
+		let base64 = this.renderer.domElement.toDataURL("image/jpeg");
+		let blob = this.b64toBlob(base64 )
+		// let fd = new FormData();
+		// fd.append("image", blob);
+
+		this.props.saveRug(
+			this.props.border,
+
+			this.props.centre.code,
+			this.props.centre.name,
+			this.props.centre.id,
+
+			this.props.outerBorder.code,
+			this.props.outerBorder.name,
+			this.props.outerBorder.id,
+
+			this.props.innerBorder.code,
+			this.props.innerBorder.name,
+			this.props.innerBorder.id,
+
+			this.props.piping.code,
+			this.props.piping.post_title,
+			this.props.piping.ID,
+
+			this.props.width,
+			this.props.length,
+
+			blob
+		);
+	}
+
+	changePositionToCorner() {
+		this.camera.position.x = 0;
+		this.camera.position.y = 170;
+		this.camera.position.z = 0;
+
+		this.object.position.x = 35;
+		this.object.position.z = 85;
+	}
+
+	async componentWillReceiveProps(nextProps) {
+		if (nextProps.rugPosition) {
+			// this.changePositionToCorner()
+			await this.saveRug()
+			this.props.history.push(ls('curUser') ? '/summary' : '/builder')
+		}
+	}
+
 	async componentDidMount() {
 		const resize = () => {
 			this.renderer.setSize(container.offsetWidth, container.offsetHeight);
@@ -296,12 +379,12 @@ class Rug extends Component {
 		this.camera.zoom = 2;
 
 		this.objectLoader();
-		
+
 		this.getFloor()
 
 		this.getWall()
 
-		this.renderer = new THREE.WebGLRenderer({ antialias: true });
+		this.renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
 
 		this.renderer.setSize(container.offsetWidth, container.offsetHeight);
 
@@ -355,13 +438,16 @@ const mapStateToProps = (state) => {
 		innerBorder: state.innerBorder,
 		piping: state.piping,
 		currentRugView: state.currentRugView,
-		currentZoom: state.currentZoom
+		currentZoom: state.currentZoom,
+		rugPosition: state.rugPosition
 	};
 };
 
 const matchDispatchToProps = (dispatch) => {
-	return bindActionCreators({},
+	return bindActionCreators({
+		saveRug: saveRug,
+	},
 		dispatch)
 };
 
-export default connect(mapStateToProps, matchDispatchToProps)(Rug);
+export default withRouter(connect(mapStateToProps, matchDispatchToProps)(Rug));

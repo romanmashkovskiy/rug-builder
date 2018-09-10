@@ -20,6 +20,7 @@ import PipingMaterial from '../piping-material/piping-material';
 import {
     setEditDimensionsMode,
     setEditBorderMode,
+    setRugPosition,
 
     setShowCenterMaterialMode,
     setShowCenterMaterialFirstChildrenMode,
@@ -50,8 +51,6 @@ import {
     getRugPrice,
 
     setShowLoginRegisterMode,
-
-    saveRug,
 
     clearCenterMaterialFirstChildrenMaterials,
     clearCenterMaterialSecondChildrenMaterials,
@@ -404,38 +403,15 @@ class BuilderSelectPart extends Component {
                                 )
                                 &&
                                 <div className="finish-building-block">
-                                    <LinkButton
-                                        to={ls('curUser') ? '/summary' : '/builder'}
+                                    <button
                                         className="finish-building-btn-active"
                                         onClick={() => {
                                             if (!ls('curUser')) {
                                                 this.props.setShowLoginRegisterMode(true);
                                             } else {
-                                                this.props.saveRug(
-                                                    this.props.border,
-
-                                                    this.props.centre.code,
-                                                    this.props.centre.name,
-                                                    this.props.centre.id,
-
-                                                    this.props.outerBorder.code,
-                                                    this.props.outerBorder.name,
-                                                    this.props.outerBorder.id,
-
-                                                    this.props.innerBorder.code,
-                                                    this.props.innerBorder.name,
-                                                    this.props.innerBorder.id,
-
-                                                    this.props.piping.code,
-                                                    this.props.piping.post_title,
-                                                    this.props.piping.ID,
-
-                                                    this.props.width,
-                                                    this.props.length
-                                                );
+												this.props.setRugPosition(true)
                                             }
-                                        }
-                                        }>FINISH BUILDING</LinkButton>
+                                        }}>FINISH BUILDING</button>
                                 </div>
                             }
 
@@ -857,7 +833,8 @@ const mapStateToProps = (state) => {
     return {
         width: state.width,
         length: state.length,
-        border: state.border,
+		border: state.border,
+		rugImage: state.rugImage,
 
         centre: state.centre,
         innerBorder: state.innerBorder,
@@ -898,6 +875,7 @@ const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
             setEditDimensionsMode: setEditDimensionsMode,
             setEditBorderMode: setEditBorderMode,
+            setRugPosition: setRugPosition,
 
             setShowCenterMaterialMode: setShowCenterMaterialMode,
             setShowCenterMaterialFirstChildrenMode: setShowCenterMaterialFirstChildrenMode,
@@ -928,8 +906,6 @@ const matchDispatchToProps = (dispatch) => {
             getRugPrice: getRugPrice,
 
             setShowLoginRegisterMode: setShowLoginRegisterMode,
-
-            saveRug: saveRug,
 
             clearCenterMaterialFirstChildrenMaterials: clearCenterMaterialFirstChildrenMaterials,
             clearCenterMaterialSecondChildrenMaterials: clearCenterMaterialSecondChildrenMaterials,

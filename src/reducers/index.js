@@ -53,12 +53,14 @@ import setShowLoginRegisterModalReducer from './set-show-login-register-mode';
 import setShowLoginModalReducer from './set-show-login-mode';
 import setShowRegisterModalReducer from './set-show-register-mode';
 import setShowGuestModalReducer from './set-show-guest-mode';
+import setRugPosition from './set-rug-current-position';
 
 
 const rootReducer = combineReducers({
     width: widthReducer,
     length: lengthReducer,
     border: borderReducer,
+	rugPosition: setRugPosition,
 
     centre: centreReducer,
     innerBorder: innerBorderReducer,

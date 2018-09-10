@@ -308,6 +308,13 @@ export const setRugCurrentView = (view) => {
     }
 };
 
+export const setRugPosition = (isSet) => {
+    return {
+		type: actions.SET_RUG_POSITION,
+		payload: isSet
+    }
+};
+
 export const zoomRugIn = () => {
     return {
         type: actions.ZOOM_RUG_IN
