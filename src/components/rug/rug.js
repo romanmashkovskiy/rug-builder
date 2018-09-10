@@ -29,13 +29,9 @@ class Rug extends Component {
 			1000
 		);
 
-		this.camera.position.x = 1;
+		this.camera.position.x = -1;
 		this.camera.position.y = 170;
 		this.camera.position.z = 0;
-
-		// this.camera.rotation.x = -1.5708;
-		// this.camera.rotation.y = 0;
-		// this.camera.rotation.z = 1.5708;
 
 		this.scene.add(this.camera);
 	}
@@ -95,13 +91,13 @@ class Rug extends Component {
 		const textures = {
 			shininess: floorShininess,
 			bumpScale: floorBumpScale,
-			anisotropy: 16
 		};
 
 		try {
 			textures.map = await loadWithPromise('floor-texture.jpg', textureLoader);
 			textures.map.wrapS = textures.map.wrapT = THREE.RepeatWrapping;
 			textures.map.repeat.set(floorRepeatX, floorRepeatY);
+			textures.map.anisotropy = 16
 		} catch (e) {
 			textures.map = null;
 			console.log(e);
@@ -111,6 +107,7 @@ class Rug extends Component {
 			textures.bumpMap = await loadWithPromise('floor-bmap.jpg', textureLoader);
 			textures.bumpMap.wrapS = textures.bumpMap.wrapT = THREE.RepeatWrapping;
 			textures.bumpMap.repeat.set(floorRepeatX, floorRepeatY);
+			textures.map.anisotropy = 16
 		} catch (e) {
 			textures.bumpMap = null;
 			console.log(e);
@@ -143,7 +140,7 @@ class Rug extends Component {
 		});
 
 		var wallX = 200
-		var wallY = 1000
+		var wallY = 430
 
 		var geometry = new THREE.BoxGeometry(wallX * 2, wallY, 1);
 		var wall = new THREE.Mesh(geometry, paintM);
@@ -151,13 +148,18 @@ class Rug extends Component {
 		this.scene.add(wall);
 
 		var wall2 = new THREE.Mesh(geometry, paintM);
-		wall2.position.set(0, 25, -1 * wallX);
+		wall2.position.set(0, 25, -wallX);
 		this.scene.add(wall2);
 
 		var geometry = new THREE.BoxGeometry(1, wallY, wallX * 2);
 		var wall3 = new THREE.Mesh(geometry, paintM);
 		wall3.position.set(wallX, 25, 0);
 		this.scene.add(wall3);
+
+		var geometry = new THREE.BoxGeometry(1, wallY, wallX * 2);
+		var wall4 = new THREE.Mesh(geometry, paintM);
+		wall4.position.set(-wallX, 25, 0);
+		this.scene.add(wall4);
 	}
 
 	async updateMap(urlTexture, urlBumpMap, urlNormalMap, rugPart) {
@@ -243,13 +245,13 @@ class Rug extends Component {
 		this.controls.reset();
 
 		if (currentView === 'above-horizontal') {
-			this.camera.position.x = 0.000001;
+			this.camera.position.x = -1;
 			this.camera.position.y = 170;
 			this.camera.position.z = 0;
 
-			this.camera.rotation.x = -1.5708;
-			this.camera.rotation.y = 0;
-			this.camera.rotation.z = 1.5708;
+			// this.camera.rotation.x = -1.5708;
+			// this.camera.rotation.y = 0;
+			// this.camera.rotation.z = 1.5708;
 		}
 
 		if (currentView === 'angled') {
@@ -257,19 +259,19 @@ class Rug extends Component {
 			this.camera.position.y = 97.86732004062627;
 			this.camera.position.z = 108.5265830159921;
 
-			this.camera.rotation.x = -0.7337987907741792;
-			this.camera.rotation.y = 0.47612198934967903;
-			this.camera.rotation.z = 0.3919353811096299;
+			// this.camera.rotation.x = -0.7337987907741792;
+			// this.camera.rotation.y = 0.47612198934967903;
+			// this.camera.rotation.z = 0.3919353811096299;
 		}
 
 		if (currentView === 'angled-horizontal') {
-			this.camera.position.x = -65;
+			this.camera.position.x = -120;
 			this.camera.position.y = 146.97868270469004;
 			this.camera.position.z = 0.00630814379798243;
 
-			this.camera.rotation.x = -1.5707534317349763;
-			this.camera.rotation.y = -0.5996570925812806;
-			this.camera.rotation.z = -1.5707203029033585;
+			// this.camera.rotation.x = -1.5707534317349763;
+			// this.camera.rotation.y = -0.5996570925812806;
+			// this.camera.rotation.z = -1.5707203029033585;
 		}
 
 		if (currentView === 'above-vertical') {
@@ -277,9 +279,9 @@ class Rug extends Component {
 			this.camera.position.y = 170;
 			this.camera.position.z = 0;
 
-			this.camera.rotation.x = -1.5708;
-			this.camera.rotation.y = 0;
-			this.camera.rotation.z = 0;
+			// this.camera.rotation.x = -1.5708;
+			// this.camera.rotation.y = 0;
+			// this.camera.rotation.z = 0;
 		}
 	}
 
@@ -303,6 +305,8 @@ class Rug extends Component {
 
 		this.controls = new OrbitControl(this.camera, container);
 		// this.controls.enableZoom = false;
+		this.controls.minDistance = 50;
+		this.controls.maxDistance = 120;
 		this.controls.minPolarAngle = 0;
 		this.controls.maxPolarAngle = Math.PI / 2 - 0.15;
 
