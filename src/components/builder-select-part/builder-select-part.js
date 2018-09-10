@@ -51,7 +51,14 @@ import {
 
     setShowLoginRegisterMode,
 
-    saveRug
+    saveRug,
+
+    clearCenterMaterialFirstChildrenMaterials,
+    clearCenterMaterialSecondChildrenMaterials,
+    clearInnerBorderMaterialFirstChildrenMaterials,
+    clearInnerBorderMaterialSecondChildrenMaterials,
+    clearOuterBorderMaterialFirstChildrenMaterials,
+    clearOuterBorderMaterialSecondChildrenMaterials
 } from "../../actions";
 
 import header from './images/header.png';
@@ -579,7 +586,8 @@ class BuilderSelectPart extends Component {
                                     && !this.props.showCenterMaterialSecondChildrenMode) &&
                                 <div className="back-to-fibre-close-center">
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
-                                        this.props.setShowCenterMaterialFirstChildrenMode(false)
+                                        this.props.setShowCenterMaterialFirstChildrenMode(false);
+                                        this.props.clearCenterMaterialFirstChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -591,7 +599,8 @@ class BuilderSelectPart extends Component {
                                     </div>
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowCenterMaterialMode(false);
-                                        this.props.setShowCenterMaterialFirstChildrenMode(false)
+                                        this.props.setShowCenterMaterialFirstChildrenMode(false);
+                                        this.props.clearCenterMaterialFirstChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -621,6 +630,9 @@ class BuilderSelectPart extends Component {
                                         this.props.setShowCenterMaterialMode(false);
                                         this.props.setShowCenterMaterialFirstChildrenMode(false);
                                         this.props.setShowCenterMaterialSecondChildrenMode(false);
+                                        this.props.clearCenterMaterialFirstChildrenMaterials();
+                                        this.props.clearCenterMaterialSecondChildrenMaterials();
+
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -630,6 +642,7 @@ class BuilderSelectPart extends Component {
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowCenterMaterialSecondChildrenMode(false);
                                         this.props.setCenterMaterialType(initCenter);
+                                        this.props.clearCenterMaterialSecondChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -646,7 +659,8 @@ class BuilderSelectPart extends Component {
                                     !this.props.showInnerBorderMaterialSecondChildrenMode) &&
                                 <div className="back-to-fibre-close-center">
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
-                                        this.props.setShowInnerBorderMaterialFirstChildrenMode(false)
+                                        this.props.setShowInnerBorderMaterialFirstChildrenMode(false);
+                                        this.props.clearInnerBorderMaterialFirstChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -658,7 +672,8 @@ class BuilderSelectPart extends Component {
                                     </div>
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowInnerBorderMaterialMode(false);
-                                        this.props.setShowInnerBorderMaterialFirstChildrenMode(false)
+                                        this.props.setShowInnerBorderMaterialFirstChildrenMode(false);
+                                        this.props.clearInnerBorderMaterialFirstChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -688,6 +703,8 @@ class BuilderSelectPart extends Component {
                                         this.props.setShowInnerBorderMaterialMode(false);
                                         this.props.setShowInnerBorderMaterialFirstChildrenMode(false);
                                         this.props.setShowInnerBorderMaterialSecondChildrenMode(false);
+                                        this.props.clearInnerBorderMaterialFirstChildrenMaterials();
+                                        this.props.clearInnerBorderMaterialSecondChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -697,6 +714,7 @@ class BuilderSelectPart extends Component {
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowInnerBorderMaterialSecondChildrenMode(false);
                                         this.props.setInnerBorderMaterialType(initInnerBorder);
+                                        this.props.clearInnerBorderMaterialSecondChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -713,7 +731,8 @@ class BuilderSelectPart extends Component {
                                     !this.props.showOuterBorderMaterialSecondChildrenMode) &&
                                 <div className="back-to-fibre-close-center">
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
-                                        this.props.setShowOuterBorderMaterialFirstChildrenMode(false)
+                                        this.props.setShowOuterBorderMaterialFirstChildrenMode(false);
+                                        this.props.clearOuterBorderMaterialFirstChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -725,7 +744,8 @@ class BuilderSelectPart extends Component {
                                     </div>
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowOuterBorderMaterialMode(false);
-                                        this.props.setShowOuterBorderMaterialFirstChildrenMode(false)
+                                        this.props.setShowOuterBorderMaterialFirstChildrenMode(false);
+                                        this.props.clearOuterBorderMaterialFirstChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -755,6 +775,8 @@ class BuilderSelectPart extends Component {
                                         this.props.setShowOuterBorderMaterialMode(false);
                                         this.props.setShowOuterBorderMaterialFirstChildrenMode(false);
                                         this.props.setShowOuterBorderMaterialSecondChildrenMode(false);
+                                        this.props.clearOuterBorderMaterialFirstChildrenMaterials();
+                                        this.props.clearOuterBorderMaterialSecondChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -764,6 +786,7 @@ class BuilderSelectPart extends Component {
                                     <div className="back-to-fibre-close-center-first" onClick={() => {
                                         this.props.setShowOuterBorderMaterialSecondChildrenMode(false);
                                         this.props.setOuterBorderMaterialType(initOuterBorder);
+                                        this.props.clearOuterBorderMaterialSecondChildrenMaterials();
                                     }
                                     }>
                                         <div className="back-to-fibre-close-center-first-text-image">
@@ -893,7 +916,14 @@ const matchDispatchToProps = (dispatch) => {
 
             setShowLoginRegisterMode: setShowLoginRegisterMode,
 
-            saveRug: saveRug
+            saveRug: saveRug,
+
+            clearCenterMaterialFirstChildrenMaterials: clearCenterMaterialFirstChildrenMaterials,
+            clearCenterMaterialSecondChildrenMaterials: clearCenterMaterialSecondChildrenMaterials,
+            clearInnerBorderMaterialFirstChildrenMaterials: clearInnerBorderMaterialFirstChildrenMaterials,
+            clearInnerBorderMaterialSecondChildrenMaterials: clearInnerBorderMaterialSecondChildrenMaterials,
+            clearOuterBorderMaterialFirstChildrenMaterials: clearOuterBorderMaterialFirstChildrenMaterials,
+            clearOuterBorderMaterialSecondChildrenMaterials: clearOuterBorderMaterialSecondChildrenMaterials
         },
         dispatch)
 };

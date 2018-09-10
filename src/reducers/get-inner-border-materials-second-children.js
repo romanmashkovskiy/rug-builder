@@ -5,6 +5,8 @@ export default (state = [], action) => {
     switch (action.type) {
         case actions.LOAD_INNER_BORDER_MATERIALS_SECOND_CHILDREN_SUCCESS:
             return convertObjectToArray(action.payload);
+        case actions.CLEAR_INNER_BORDER_MATERIAL_SECOND_CHILDREN:
+            return [];
         default:
             return state;
     }

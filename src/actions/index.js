@@ -501,6 +501,42 @@ export const saveRug = (
     }
 };
 
+export const clearCenterMaterialFirstChildrenMaterials = () => {
+    return {
+        type: actions.CLEAR_CENTER_MATERIAL_FIRST_CHILDREN
+    }
+};
+
+export const clearCenterMaterialSecondChildrenMaterials = () => {
+    return {
+        type: actions.CLEAR_CENTER_MATERIAL_SECOND_CHILDREN
+    }
+};
+
+export const clearInnerBorderMaterialFirstChildrenMaterials = () => {
+    return {
+        type: actions.CLEAR_INNER_BORDER_MATERIAL_FIRST_CHILDREN
+    }
+};
+
+export const clearInnerBorderMaterialSecondChildrenMaterials = () => {
+    return {
+        type: actions.CLEAR_INNER_BORDER_MATERIAL_SECOND_CHILDREN
+    }
+};
+
+export const clearOuterBorderMaterialFirstChildrenMaterials = () => {
+    return {
+        type: actions.CLEAR_OUTER_BORDER_MATERIAL_FIRST_CHILDREN
+    }
+};
+
+export const clearOuterBorderMaterialSecondChildrenMaterials = () => {
+    return {
+        type: actions.CLEAR_OUTER_BORDER_MATERIAL_SECOND_CHILDREN
+    }
+};
+
 
 
 
