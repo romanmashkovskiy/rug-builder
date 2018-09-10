@@ -16,7 +16,6 @@ const materialDef = new THREE.MeshPhongMaterial({
 	color: 0xcccccc,
 });
 
-
 class Rug extends Component {
 
 	constructor(props) {
@@ -225,7 +224,6 @@ class Rug extends Component {
 	}
 
 	calculateUrlsForTextures(rugPart) {
-		console.log('rugPart', rugPart)
 		if (rugPart.thumb) {
 			const keyTexture = Object.keys(rugPart.thumb)[0];
 			const keyBumpMap = Object.keys(rugPart.bmap)[0];
@@ -248,40 +246,24 @@ class Rug extends Component {
 			this.camera.position.x = -1;
 			this.camera.position.y = 170;
 			this.camera.position.z = 0;
-
-			// this.camera.rotation.x = -1.5708;
-			// this.camera.rotation.y = 0;
-			// this.camera.rotation.z = 1.5708;
 		}
 
 		if (currentView === 'angled') {
 			this.camera.position.x = 150;
 			this.camera.position.y = 97.86732004062627;
 			this.camera.position.z = 108.5265830159921;
-
-			// this.camera.rotation.x = -0.7337987907741792;
-			// this.camera.rotation.y = 0.47612198934967903;
-			// this.camera.rotation.z = 0.3919353811096299;
 		}
 
 		if (currentView === 'angled-horizontal') {
 			this.camera.position.x = -120;
 			this.camera.position.y = 146.97868270469004;
 			this.camera.position.z = 0.00630814379798243;
-
-			// this.camera.rotation.x = -1.5707534317349763;
-			// this.camera.rotation.y = -0.5996570925812806;
-			// this.camera.rotation.z = -1.5707203029033585;
 		}
 
 		if (currentView === 'above-vertical') {
 			this.camera.position.x = 0;
 			this.camera.position.y = 170;
 			this.camera.position.z = 0;
-
-			// this.camera.rotation.x = -1.5708;
-			// this.camera.rotation.y = 0;
-			// this.camera.rotation.z = 0;
 		}
 	}
 
@@ -304,6 +286,7 @@ class Rug extends Component {
 		const container = document.getElementById("root-for-rug");
 
 		this.controls = new OrbitControl(this.camera, container);
+		this.controls.enablePan = false
 		// this.controls.enableZoom = false;
 		this.controls.minDistance = 50;
 		this.controls.maxDistance = 120;
@@ -315,16 +298,15 @@ class Rug extends Component {
 		this.objectLoader();
 		
 		this.getFloor()
-		this.getWall()
 
-		// const axesHelper = new THREE.AxesHelper(500);
-		// this.scene.add(axesHelper);
+		this.getWall()
 
 		this.renderer = new THREE.WebGLRenderer({ antialias: true });
 
 		this.renderer.setSize(container.offsetWidth, container.offsetHeight);
 
 		this.camera.aspect = container.offsetWidth / container.offsetHeight;
+
 		this.camera.updateProjectionMatrix();
 
 		window.onresize = resize;
@@ -341,7 +323,6 @@ class Rug extends Component {
 		this.renderer.shadowMap.enabled = true;
 		this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	}
-
 
 	async componentDidUpdate(prevProps) {
 		if (prevProps.border !== this.props.border) {
