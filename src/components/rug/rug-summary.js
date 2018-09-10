@@ -10,9 +10,8 @@ const OrbitControl = OrbitControls(THREE);
 const textureLoader = new THREE.TextureLoader();
 
 const materialDef = new THREE.MeshPhongMaterial({
-    color: 0x555555,
+	color: 0xcccccc,
 });
-
 
 class RugSummary extends Component {
 
@@ -31,21 +30,27 @@ class RugSummary extends Component {
         this.camera.position.z = 165;
 
         this.scene.add(this.camera);
+	}
 
-        const light = new THREE.AmbientLight();
-        this.scene.add(light);
+	addLight() {
+		var hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xFFFFFF, 0.5);
+		this.scene.add(hemiLight);
 
-        const dirLight = new THREE.DirectionalLight(0xffffff, 0.3);
-        this.scene.add(dirLight);
+		var keyLight2 = new THREE.PointLight(0xffffff, 1, 150);
+		keyLight2.position.set(0, 50, 60);
+		keyLight2.castShadow = true;
+		keyLight2.rotation.x = 45;
+		this.scene.add(keyLight2)
 
-        // this.scene.background = new THREE.Color( 'blue' );
-    }
+		var fillLight = new THREE.PointLight(0xffffff, 1, 75);
+		fillLight.position.set(0, 50, -60);
+		fillLight.castShadow = true;
+		fillLight.rotation.x = 45;
+		this.scene.add(fillLight)
+	}
 
     async objectLoader() {
         const objectLoader = new this.THREE.OBJLoader();
-
-        // const axesHelper = new THREE.AxesHelper(500);
-        // this.scene.add(axesHelper);
 
         let rugFile;
         if (this.props.border === 'DOUBLE-BORDER') {
@@ -67,51 +72,151 @@ class RugSummary extends Component {
         } catch(e) {
             console.log(e);
         }
-    }
+	}
+	
+	async getFloor() {
+		var floorRepeatX = 8;
+		var floorRepeatY = 8;
+		var floorBumpScale = 1.5;
+		var floorShininess = 20;
 
-    async updateMap(urlTexture, urlBumpMap, urlNormalMap, rugPart) {
-        if (urlTexture === '') {
-            for (let i = 0; i < this.object.children.length; i += 1) {
-                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf(rugPart) !== -1) {
-                    this.object.children[i].material = materialDef;
-                }
-            }
-            return;
-        }
+		var geometry = new THREE.PlaneGeometry(500, 500, 50, 5);
 
-        const textures = {
-            color: 0x555555
-        };
+		const textures = {
+			shininess: floorShininess,
+			bumpScale: floorBumpScale,
+		};
 
-        try {
-            textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
-        } catch (e) {
-            textures.bumpMap = null;
-            console.log(e);
-        }
+		try {
+			textures.map = await loadWithPromise('floor-texture.jpg', textureLoader);
+			textures.map.wrapS = textures.map.wrapT = THREE.RepeatWrapping;
+			textures.map.repeat.set(floorRepeatX, floorRepeatY);
+			textures.map.anisotropy = 16
+		} catch (e) {
+			textures.map = null;
+			console.log(e);
+		}
 
-        try {
-            textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
-        } catch (e) {
-            textures.normalMap = null;
-            console.log(e);
-        }
+		try {
+			textures.bumpMap = await loadWithPromise('floor-bmap.jpg', textureLoader);
+			textures.bumpMap.wrapS = textures.bumpMap.wrapT = THREE.RepeatWrapping;
+			textures.bumpMap.repeat.set(floorRepeatX, floorRepeatY);
+			textures.map.anisotropy = 16
+		} catch (e) {
+			textures.bumpMap = null;
+			console.log(e);
+		}
+		var material = new THREE.MeshPhongMaterial(textures);
+		var floor = new THREE.Mesh(geometry, material);
+		floor.receiveShadow = true;
+		floor.position.set(0, -1, 0);
+		floor.rotation.x = (Math.PI / 2) * -1;
+		this.scene.add(floor);
+	}
 
-        try {
-            textures.map = await loadWithPromise(urlTexture, textureLoader);
-            textures.map.wrapS = textures.map.wrapT = THREE.RepeatWrapping;
-            textures.map.repeat.set( 6, 6 );
-            const materialWithTexture = new THREE.MeshPhongMaterial(textures);
+	async getWall() {
+		try {
+			var paintT = await loadWithPromise('wall-texture.jpg', textureLoader);
+			paintT.wrapS = paintT.wrapT = THREE.RepeatWrapping;
+			paintT.repeat.set(10, 10);
+			paintT.rotation = Math.PI / 2;
+		} catch (e) {
+			paintT = null;
+			console.log(e);
+		}
 
-            for (let i = 0; i < this.object.children.length; i += 1) {
-                if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf(rugPart) !== -1) {
-                    this.object.children[i].material = materialWithTexture;
-                }
-            }
-        } catch (e) {
-            console.log(e);
-        }
-    }
+		var paintM = new THREE.MeshPhongMaterial({
+			emissive: new THREE.Color("rgb(50,50,50)"),
+			specular: new THREE.Color("rgb(200,200,200)"),
+			shininess: 100,
+			map: paintT,
+			bumpScale: 0.3,
+		});
+
+		var wallX = 200
+		var wallY = 430
+
+		var geometry = new THREE.BoxGeometry(wallX * 2, wallY, 1);
+		var wall = new THREE.Mesh(geometry, paintM);
+		wall.position.set(0, 25, wallX);
+		this.scene.add(wall);
+
+		var wall2 = new THREE.Mesh(geometry, paintM);
+		wall2.position.set(0, 25, -wallX);
+		this.scene.add(wall2);
+
+		var geometry = new THREE.BoxGeometry(1, wallY, wallX * 2);
+		var wall3 = new THREE.Mesh(geometry, paintM);
+		wall3.position.set(wallX, 25, 0);
+		this.scene.add(wall3);
+
+		var geometry = new THREE.BoxGeometry(1, wallY, wallX * 2);
+		var wall4 = new THREE.Mesh(geometry, paintM);
+		wall4.position.set(-wallX, 25, 0);
+		this.scene.add(wall4);
+	}
+
+	async updateMap(urlTexture, urlBumpMap, urlNormalMap, rugPart) {
+		var rugRepeatX = 8;
+		var rugRepeatY = 8;
+		var bumpScale = 20;
+		var dispScale = 3;
+
+		if (urlTexture === '') {
+			for (let i = 0; i < this.object.children.length; i += 1) {
+				if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf(rugPart) !== -1) {
+					this.object.children[i].material = materialDef;
+				}
+			}
+			return;
+		}
+
+		const textures = {
+			emissive: new THREE.Color("rgb(7,3,5)"),
+			specular: new THREE.Color("rgb(100,100,100)"),
+			shininess: 0,
+			displacementScale: dispScale,
+			bumpScale: bumpScale,
+			anisotropy: 16
+		};
+
+		try {
+			textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
+			textures.bumpMap.wrapS = textures.bumpMap.wrapT = THREE.RepeatWrapping;
+			textures.bumpMap.anisotropy = 16
+			textures.bumpMap.repeat.set(rugRepeatX, rugRepeatY);
+		} catch (e) {
+			textures.bumpMap = null;
+			console.log(e);
+		}
+
+		try {
+			textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
+			textures.normalMap.wrapS = textures.normalMap.wrapT = THREE.RepeatWrapping;
+			textures.normalMap.repeat.set(rugRepeatX, rugRepeatY);
+		} catch (e) {
+			textures.normalMap = null;
+			console.log(e);
+		}
+
+		try {
+			textures.map = await loadWithPromise(urlTexture, textureLoader);
+			textures.map.wrapS = textures.map.wrapT = THREE.RepeatWrapping;
+			textures.map.repeat.set(rugRepeatX, rugRepeatY);
+		} catch (e) {
+			console.log(e);
+		}
+
+		const materialWithTexture = new THREE.MeshPhongMaterial(textures);
+
+		for (let i = 0; i < this.object.children.length; i += 1) {
+			if (this.object.children[i] instanceof THREE.Mesh && this.object.children[i].name.indexOf(rugPart) !== -1) {
+				this.object.children[i].material = materialWithTexture;
+				this.object.children[i].castShadow = true;
+				this.object.children[i].receiveShadow = false;
+			}
+		}
+	}
 
     calculateUrlsForTextures(rugPart) {
         if (rugPart.thumb) {
@@ -129,7 +234,6 @@ class RugSummary extends Component {
     }
 
     async componentDidMount() {
-
         const resize = () => {
             this.renderer.setSize(container.offsetWidth, container.offsetHeight);
             this.camera.aspect = container.offsetWidth / container.offsetHeight;
@@ -138,12 +242,17 @@ class RugSummary extends Component {
 
         this.THREE = THREE;
 
+		this.addLight()
+
         const container = document.getElementById("root-for-rug-summary");
 
         this.controls = new OrbitControl(this.camera, container);
         this.controls.enabled = false;
 
-        this.camera.zoom = 2;
+		this.camera.zoom = 2;
+		
+		this.getFloor()
+		this.getWall()
 
         await this.objectLoader();
 
@@ -168,7 +277,10 @@ class RugSummary extends Component {
         };
         animate();
 
-        container.appendChild(this.renderer.domElement);
+		container.appendChild(this.renderer.domElement);
+		this.renderer.setClearColor(0xffffff)
+		this.renderer.shadowMap.enabled = true;
+		this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     }
 
 
