@@ -8,14 +8,21 @@
     .modal-login.modal-login-A {
         position: absolute;
         width: 100vw;
-        height: 100vh;
+        height: 870px;
         top: 0 !important;
         left: 0 !important;
         transform: none
     } 
+    .modal-login.modal-login-A > input {
+        width: 80%;
+    }
     .button-basket-login.button-basket-login-A {
-        left: 50px !important;
+        left: 30px !important;
         top: 293px;
+        /* width: 300px; */
+    }
+    .login-button-A5 {
+        width: 80% !important;
     }
 
     
