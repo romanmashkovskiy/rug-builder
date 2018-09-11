@@ -5,20 +5,21 @@ import {connect} from "react-redux";
 import { setShowLoginRegisterMode, setShowLoginMode, setShowRegisterMode, setShowGuestMode } from '../../actions';
 
 import './login-register-modal.css';
+import './mobileLoginRegister.css';
 
 class LoginRegisterModal extends Component {
 
     render() {
         return (
             <div className="container">
-                <div className="cover-div"/>
-                <div className="modal-login-register">
-                    <div className="login-register">
-                        <div className="login-register-start">
-                            <div className="login-register-header">
+                <div className="cover-div cover-div__log-reg-mobile"/>
+                <div className="modal-login-register login-register__mobile">
+                    <div className="login-register login-register__mobile-content">
+                        <div className="login-register-start login-register-start__mobile">
+                            <div className="login-register-header login-register-header__mobile">
                                 Register
                             </div>
-                            <div className="login-register-text">
+                            <div className="login-register-text login-register-text__mobile">
                                 Don't have an account yet? Register for an
                                 account now to access features such as our
                                 ARR App Experience
@@ -30,11 +31,11 @@ class LoginRegisterModal extends Component {
                                 REGISTER
                             </button>
                         </div>
-                        <div className="login-register-start">
-                            <div className="login-register-header">
+                        <div className="login-register-start login-register-start__mobile">
+                            <div className="login-register-header login-register-header__mobile">
                                 Login
                             </div>
-                            <div className="login-register-text">
+                            <div className="login-register-text login-register-text__mobile">
                                 Please log in to your Crucial Trading Accout
                                 to access this feature and save your created
                                 rug design
@@ -47,7 +48,7 @@ class LoginRegisterModal extends Component {
                             </button>
                         </div>
                     </div>
-                    <div className="continue-as-guest">
+                    <div className="continue-as-guest continue-as-guest__mobile">
                         <div className="continue-as-guest-text" onClick={() => {
                             this.props.setShowLoginRegisterMode(false);
                             this.props.setShowGuestMode(true);

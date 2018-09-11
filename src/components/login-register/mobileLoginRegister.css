@@ -1,0 +1,42 @@
+@media screen and (max-width: 450px) {
+  .cover-div__log-reg-mobile{
+    display: initial;
+    background: white;
+    opacity: 0.98;
+  }
+  .login-register__mobile{
+    position: absolute;
+    height: 665px;
+    width: 375px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .login-register__mobile-content{
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+  .login-register-start__mobile{
+    padding-top: 16px;
+    height: 295px;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  .login-register-header__mobile{
+    font-size: 24px;
+    padding-bottom: 8px;
+    margin-bottom: 27px;
+  }
+  .login-register-text__mobile{
+    height: 90px;
+    width: 320px;
+    font-size: 16px;
+    line-height: 30px;
+    margin-bottom: 27px;
+  }
+  .continue-as-guest__mobile{
+    height: 77px;
+    bottom: 0;
+    position: absolute;
+  }
+}
