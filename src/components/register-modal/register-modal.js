@@ -112,9 +112,9 @@ class RegisterModal extends Component {
 
 	render() {
 		return (
-			<div className="container">
+			<div className="container container-A">
 				<div className="cover-div" />
-				<div className="modal-register">
+				<div className="modal-register modal-register-A">
 					<img src={restart} className="button-back-register" alt="exit" onClick={() => {
 						this.props.setShowRegisterMode(false);
 						this.props.setShowLoginRegisterMode(true);
@@ -122,7 +122,7 @@ class RegisterModal extends Component {
 					<div className="register-header-text">
 						Register
                     </div>
-					<div className="input-register-block">
+					<div className="input-register-block input-register-block-A">
 						<input
 							type="text"
 							value={this.state.firstName}
@@ -138,7 +138,7 @@ class RegisterModal extends Component {
 							onChange={this.onChangeLastName}
 						/>
 					</div>
-					<div className="input-register-block">
+					<div className="input-register-block input-register-block-A">
 						<input
 							type="text"
 							value={this.state.email}
@@ -154,7 +154,7 @@ class RegisterModal extends Component {
 							onChange={this.onChangeAddressLine1}
 						/>
 					</div>
-					<div className="input-register-block">
+					<div className="input-register-block input-register-block-A">
 						<input
 							type="text"
 							value={this.state.addressLine2}
@@ -170,7 +170,7 @@ class RegisterModal extends Component {
 							onChange={this.onChangeCity}
 						/>
 					</div>
-					<div className="input-register-block">
+					<div className="input-register-block input-register-block-A">
 						<input
 							type="text"
 							value={this.state.postcode}
@@ -186,7 +186,7 @@ class RegisterModal extends Component {
 							onChange={this.onChangePassword}
 						/>
 					</div>
-					<div className="input-register-block">
+					<div className="input-register-block input-register-block-A">
 						<input
 							type="password"
 							value={this.state.confirmPassword}
@@ -197,14 +197,14 @@ class RegisterModal extends Component {
 					</div>
 					{this.state.orderFreeSwatchSamples &&
 						<div className="free-swatch-samples-checkmark-register" />}
-					<img src={basket} className="button-basket-register" alt="basket" />
+					<img src={basket} className="button-basket-register button-basket-register-AA" alt="basket" />
 					<div className="free-swatch-samples-register" onClick={() => {
 						this.setState({ orderFreeSwatchSamples: !this.state.orderFreeSwatchSamples })
 					}}>
 						Order Free Swatch Samples?
                     </div>
 					<button
-						className="register-button"
+						className="register-button register-button-A"
 						onClick={() => {
 							if (this.state.password === this.state.confirmPassword &&
 								this.state.email !== '' && this.state.password !== '') {
@@ -241,7 +241,7 @@ class RegisterModal extends Component {
 					>
 						REGISTER
                     </button>
-					<div className="register-checkbox-wrapper">
+					<div className="register-checkbox-wrapper register-checkbox-wrapper-A">
 						<label className="register-checkbox-container">I agree my personal data being stored and sent
                             to our selected retailer partners in order to process this order. View Privacy Policy.
                             Please tick here to opt-in.
@@ -249,7 +249,7 @@ class RegisterModal extends Component {
 							<span className="register-checkmark"></span>
 						</label>
 					</div>
-					<div className="register-checkbox-wrapper">
+					<div className="register-checkbox-wrapper register-checkbox-wrapper-A">
 						<label className="register-checkbox-container">I would like to receive marketing communication
                             including promotions, special offers, news and events from Crucial Trading View Privacy
                             Policy
