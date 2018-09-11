@@ -45,9 +45,9 @@ class LoginModal extends Component {
 
 	render() {
 		return (
-			<div className="container">
+			<div className="container container-A">
 				<div className="cover-div" />
-				<div className="modal-login">
+				<div className="modal-login modal-login-A">
 					<img src={restart} className="button-back-login" alt="exit" onClick={() => {
 						this.props.setShowLoginMode(false);
 						this.props.setShowLoginRegisterMode(true);
@@ -71,7 +71,7 @@ class LoginModal extends Component {
 					/>
 					{this.state.orderFreeSwatchSamples &&
 						<div className="free-swatch-samples-checkmark-login" />}
-					<img src={basket} className="button-basket-login" alt="basket" />
+					<img src={basket} className="button-basket-login button-basket-login-A" alt="basket" />
 					<div className="free-swatch-samples-login" onClick={() => {
 						this.setState({ orderFreeSwatchSamples: !this.state.orderFreeSwatchSamples })
 					}}>
