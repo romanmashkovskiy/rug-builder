@@ -1,0 +1,21 @@
+
+@media screen and (max-width: 450px) {
+
+       .container.container-A {
+        height: calc(100vh - 53px)
+    }
+   
+    .modal-login.modal-login-A {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        top: 0 !important;
+        left: 0 !important;
+        transform: none
+    } 
+    .button-basket-login.button-basket-login-A {
+        left: 50px !important;
+        top: 293px;
+    }
+    
+}

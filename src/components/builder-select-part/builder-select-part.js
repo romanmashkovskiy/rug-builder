@@ -89,6 +89,7 @@ import RugCorner from '../rug/rug-corner';
 const ls = require('local-storage');
 
 
+
 class BuilderSelectPart extends Component {
 
 
@@ -127,7 +128,7 @@ class BuilderSelectPart extends Component {
 
         return (
             <div className="container-builder">
-                <div className="header-builder">
+                <div className="header-builder header-builder-A">
                     {/*<img src={header} alt="header"/>*/}
                     <img/>
                 </div>
