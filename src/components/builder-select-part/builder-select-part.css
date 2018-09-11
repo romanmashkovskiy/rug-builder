@@ -652,16 +652,21 @@
         height: calc((100% - 53px) / 2);
     }
 
-    /*.main-carpet-controls {*/
-    /*display: none;*/
-    /*}*/
     .main-carpet-controls {
+        display: none;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
+        height: calc(100% - 60px);
         z-index: 100;
+        flex-direction: column;
     }
+
+    .visible {
+        display: flex !important;
+    }
+
 
     .current-carpet-size {
         padding-left: 59px;
@@ -673,6 +678,26 @@
 
     .centre-is-selected {
         padding-left: 59px;
+    }
+
+    .border-is-selected {
+        padding-left: 59px;
+    }
+
+    .finish-building-block {
+        padding-left: 0;
+        padding-right: 0;
+        width: 74%;
+        align-self: center;
+    }
+
+    .carpet-price {
+        padding-left: 13%;
+        padding-right: 13%;
+    }
+
+    .price-word {
+        text-transform: uppercase;
     }
 
     .main-carpet-preview {

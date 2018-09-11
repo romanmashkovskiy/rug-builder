@@ -92,6 +92,11 @@ const ls = require('local-storage');
 
 class BuilderSelectPart extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {showMobileSpecification: false};
+    }
+
 
     componentDidUpdate(prevProps) {
         this.props.getRugPrice(
@@ -208,7 +213,10 @@ class BuilderSelectPart extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="main-carpet-controls">
+                        {/*<div className="main-carpet-controls">*/}
+                        <div className={window.innerWidth > 450 ? "main-carpet-controls" :
+                            (this.state.showMobileSpecification ? "main-carpet-controls visible" : "main-carpet-controls")
+                            }>
                             <div className="rug-specification">
                                 <div className="your-bespoke-rug-spe">
                                     YOUR BESPOKE RUG SPECIFICATION
@@ -530,7 +538,7 @@ class BuilderSelectPart extends Component {
                             !this.props.showOuterBorderMaterialMode &&
                             !this.props.showPipingMaterialMode &&
                             <div className="main-area-builder-view-selections">
-                                <div className="centre">
+                                <div className="centre" onClick={() => this.setState({showMobileSpecification: true})}>
                                     <h3>VIEW SELECTIONS</h3>
                                 </div>
                             </div>
@@ -600,6 +608,15 @@ class BuilderSelectPart extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            }
+
+                            {
+                                this.state.showMobileSpecification &&
+                                <div className="close-center" onClick={() => {
+                                this.setState({showMobileSpecification: false})}
+                                }>
+                                    BACK TO BUILDER
                                 </div>
                             }
 
