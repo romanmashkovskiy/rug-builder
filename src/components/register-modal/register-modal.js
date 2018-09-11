@@ -122,7 +122,7 @@ class RegisterModal extends Component {
 					<div className="register-header-text">
 						Register
                     </div>
-					<div className="input-register-block input-register-block-A">
+					<div className="input-register-block input-register-block-AAA">
 						<input
 							type="text"
 							value={this.state.firstName}
@@ -138,7 +138,7 @@ class RegisterModal extends Component {
 							onChange={this.onChangeLastName}
 						/>
 					</div>
-					<div className="input-register-block input-register-block-A">
+					<div className="input-register-block input-register-block-AAA">
 						<input
 							type="text"
 							value={this.state.email}
@@ -154,7 +154,7 @@ class RegisterModal extends Component {
 							onChange={this.onChangeAddressLine1}
 						/>
 					</div>
-					<div className="input-register-block input-register-block-A">
+					<div className="input-register-block input-register-block-AAA">
 						<input
 							type="text"
 							value={this.state.addressLine2}
@@ -170,7 +170,7 @@ class RegisterModal extends Component {
 							onChange={this.onChangeCity}
 						/>
 					</div>
-					<div className="input-register-block input-register-block-A">
+					<div className="input-register-block input-register-block-AAA">
 						<input
 							type="text"
 							value={this.state.postcode}
@@ -186,7 +186,7 @@ class RegisterModal extends Component {
 							onChange={this.onChangePassword}
 						/>
 					</div>
-					<div className="input-register-block input-register-block-A">
+					<div className="input-register-block input-register-block-AAA">
 						<input
 							type="password"
 							value={this.state.confirmPassword}

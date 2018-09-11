@@ -78,7 +78,7 @@ class LoginModal extends Component {
 						Order Free Swatch Samples?
                     </div>
 					<button
-						className="login-button"
+						className="login-button login-button-A5"
 						onClick={() => {
 							if (this.state.email !== '' && this.state.password !== '') {
 								this.props.loginUser(this.state.email, this.state.password).then((result) => {
