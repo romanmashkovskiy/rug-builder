@@ -143,10 +143,10 @@ class BuilderSelectPart extends Component {
                     }
                     {this.props.showRegisterModal &&
                     <RegisterModal/>
-                    }
+                    } 
                     {this.props.showGuestModal &&
                     <GuestModal/>
-                    }
+                    } 
 
                     <div className="main-builder-carpet">
                         <div className="main-carpet-preview">

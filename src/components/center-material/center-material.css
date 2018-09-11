@@ -122,18 +122,26 @@
 @media screen and (max-width: 450px) {
     .materials-center-list {
         width: 100%;
+        height: 100%;
+        align-content: flex-start;
     }
 
     .single-materials-center-list {
         width: 33.3%;
-        height: 50%;
+        height: 34%;
         border-bottom: 2px solid #F9F9F9;
+        padding-top: 18px;
     }
 
     .single-materials-center-list-child {
+        padding-top: 10px;
         width: 25%;
-        height: 50px;
+        height: 88px;
+    }
 
+    .single-materials-center-list-child-wrapper img {
+        width: 37px;
+        height: 37px;
     }
 }
 
