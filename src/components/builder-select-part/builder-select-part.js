@@ -141,9 +141,9 @@ class BuilderSelectPart extends Component {
                     {this.props.showLoginModal &&
                     <LoginModal/>
                     }
-                    {/* {this.props.showRegisterModal && */}
+                    {this.props.showRegisterModal &&
                     <RegisterModal/>
-                    {/* } */}
+                    }
                     {this.props.showGuestModal &&
                     <GuestModal/>
                     }
