@@ -1,4 +1,7 @@
 @media screen and (max-width: 450px) {
+  .header-builder {
+    z-index: 9999;
+  }
   .cover-div__log-reg-mobile{
     display: initial;
     background: white;
