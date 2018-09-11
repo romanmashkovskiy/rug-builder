@@ -1,0 +1,30 @@
+@media screen and (max-width: 450px) {
+    .modal-register.modal-register-A {
+        position: absolute;
+        width: 100vw;
+        left: 0;
+        top: 0;
+        transform: none;
+        height: 830px;
+        overflow-y: auto;
+    }
+    .input-register-block.input-register-block-A {
+        height: 300px;
+        margin-bottom: 90px
+    }
+    .input-register-block.input-register-block-A > input {
+    }
+    .register-button-A{
+        padding: 30px 0 !important;
+        display: block;
+        height: auto !important;
+        line-height: 8px !important;
+    }
+    .register-checkbox-wrapper-A {
+        transform: translateY(30px)
+    }
+    .button-basket-register-AA {
+        top: 590px !important;
+        left: 50px !important;
+    }
+}

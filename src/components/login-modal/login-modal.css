@@ -1,3 +1,5 @@
+@import './login-modal-responsive.css';
+
 .modal-login {
     position: fixed;
     display: flex;
@@ -107,3 +109,5 @@
     text-align: center;
     cursor: pointer;
 }
+
+
