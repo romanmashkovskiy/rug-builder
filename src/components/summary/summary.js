@@ -3,6 +3,7 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
 import './summary.css';
+import './mobileSummary.css';
 
 import header from './images/header.png';
 import footer from './images/footer.png';
@@ -23,25 +24,24 @@ import RugSummary from '../rug/rug-summary';
 
 class Summary extends Component {
 
-
     render() {
         return (
             <div className="container-builder">
                 <div className="header-builder">
                     <img src={header} alt="header"/>
                 </div>
-                <div className="summary-block-container">
-                    <div className="summary-block-item">
+                <div className="summary-block-container summary-block-container__mobile">
+                    <div className="summary-block-item summary-block-item__mobile-data">
                         <RugSummary/>
                     </div>
-                    <div className="summary-block-item">
+                    <div className="summary-block-item summary-block-item__mobile-data">
                         <div className="logo-summary">
                             <img src={logo} alt="logo"/>
                         </div>
-                        <div className="summary-title">
+                        <div className="summary-title summary-title__mobile">
                             Your rug design has been sent to a local retailer
                         </div>
-                        <div className="summary-specification">
+                        <div className="summary-specification summary-specification__mobile">
                             <div className="summary-specification-rug-size">
                                 <div className="summary-specification-rug-size-title">
                                     RUG SIZE:
@@ -116,7 +116,17 @@ class Summary extends Component {
                             }
 
                         </div>
-                        <div className="summary-price-social">
+
+                        <div className="summary-price-social summary-price__mobile-view">
+                            <div className="summary-price summary-price__mobile">
+                                Price:
+                            </div>
+                            <div className="summary-price-data summary-price-data__mobile">
+                                &#163; {this.props.rugPrice}
+                            </div>
+                        </div>
+
+                        <div className="summary-price-social mobile-hide-block">
                             <div className="summary-price">
                                 Price:
                             </div>
@@ -124,7 +134,7 @@ class Summary extends Component {
                                 Share your creation:
                             </div>
                         </div>
-                        <div className="summary-price-social-data">
+                        <div className="summary-price-social-data mobile-hide-block">
                             <div className="summary-price-data">
                                 &#163; {this.props.rugPrice}
                             </div>
@@ -146,7 +156,7 @@ class Summary extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="summary-button-block">
+                        <div className="summary-button-block summary-button-block__mobile">
                             <button className="summary-button-order-swatches">
                                 ORDER SWATCHES
                             </button>
@@ -154,10 +164,32 @@ class Summary extends Component {
                                 PRINT DETAILS
                             </button>
                         </div>
+                        <div className="summary-price-social summary-price-social__mobile-view">
+                            <div className="summary-share-creation summary-share-creation__mobile">
+                                Share your creation:
+                            </div>
+                            <div className="summary-share-creation-links">
+                                <div className="social-link">
+                                    <img src={twitter} alt="twitter"/>
+                                </div>
+                                <div className="social-link">
+                                    <img src={facebook} alt="facebook"/>
+                                </div>
+                                <div className="social-link">
+                                    <img src={pinterest} alt="pinterest"/>
+                                </div>
+                                <div className="social-link">
+                                    <img src={chain} alt="chain"/>
+                                </div>
+                                <div className="social-link">
+                                    <img src={mail} alt="mail"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="summary-block-container">
+                <div className="summary-block-container summary-block-container__mobile">
                     <div className="summary-block-item">
                         <img src={appStore} alt="appStore"/>
                     </div>
@@ -165,7 +197,7 @@ class Summary extends Component {
                         <img src={room} alt="room"/>
                     </div>
                 </div>
-                <div className="summary-block-container">
+                <div className="summary-block-container summary-block-container__mobile">
                     <div className="summary-block-item">
                         <img src={map} alt="map"/>
                     </div>
