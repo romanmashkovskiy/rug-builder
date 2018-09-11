@@ -40,12 +40,22 @@
         padding: 20px;
     }
 
+    .free-swatch-samples-checkmark-guest {
+        left: 66px !important;
+        top: 410px !important;
+    }
+
     
 }
 
 @media screen and (max-width: 370px) {
     .button-basket-guest {
         left: 30px !important;
+        top: 380px !important;
+    }
+
+    .free-swatch-samples-checkmark-guest {
+        left: 48px !important;
         top: 380px !important;
     }
 }

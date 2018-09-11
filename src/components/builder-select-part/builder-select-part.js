@@ -195,6 +195,19 @@ class BuilderSelectPart extends Component {
                                     <img src={zoomOut} alt="zoomOut"/>
                                 </div>
                             </div>
+
+                            {
+                                window.innerWidth < 450 &&
+                                <div className="price-mobile">
+                                    <div className="price-mobile-value">
+                                        &#163; {this.props.rugPrice}
+                                    </div>
+                                </div>
+                            }
+
+
+
+
                             <div className="perspective-control">
                                 <div className="above-vertical"
                                      onClick={() => this.props.setRugCurrentView('above-vertical')}>
@@ -537,7 +550,9 @@ class BuilderSelectPart extends Component {
                             !this.props.showInnerBorderMaterialMode &&
                             !this.props.showOuterBorderMaterialMode &&
                             !this.props.showPipingMaterialMode &&
-                            <div className="main-area-builder-view-selections">
+
+                            <div className={this.state.showMobileSpecification ?
+                            "main-area-builder-view-selections inVisible" : "main-area-builder-view-selections"}>
                                 <div className="centre" onClick={() => this.setState({showMobileSpecification: true})}>
                                     <h3>VIEW SELECTIONS</h3>
                                 </div>
@@ -612,7 +627,7 @@ class BuilderSelectPart extends Component {
                             }
 
                             {
-                                this.state.showMobileSpecification &&
+                                window.innerWidth < 450 && this.state.showMobileSpecification &&
                                 <div className="close-center" onClick={() => {
                                 this.setState({showMobileSpecification: false})}
                                 }>

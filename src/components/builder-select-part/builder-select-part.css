@@ -652,13 +652,49 @@
         height: calc((100% - 53px) / 2);
     }
 
+    .zoomin-zoomout {
+        height: 36px;
+        width: 113px;
+        top: 8px;
+        right: 8px;
+    }
+
+    .price-mobile {
+        height: 37px;
+        width: 81px;
+        border: 1px solid #E8E8E8;
+        background-color: #FFFFFF;
+        box-shadow: 0 2px 21px 0 rgba(0, 0, 0, 0.07);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 8px;
+        right: 8px;
+    }
+
+    .price-mobile-value {
+        font-family: Montserrat, sans-serif;
+        font-size: 12px;
+        letter-spacing: 1.6px;
+        line-height: 16px;
+        text-align: center;
+    }
+
+    .left-controls {
+        height: 36px;
+        width: 113px;
+        top: 8px;
+        left: 8px;
+    }
+
     .main-carpet-controls {
         display: none;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: calc(100% - 60px);
+        /*height: calc(100% - 60px);*/
         z-index: 100;
         flex-direction: column;
     }
@@ -667,6 +703,9 @@
         display: flex !important;
     }
 
+    .inVisible {
+        display: none !important;
+    }
 
     .current-carpet-size {
         padding-left: 59px;
@@ -705,7 +744,10 @@
     }
 
     .perspective-control {
-        display: none;
+        height: 37px;
+        width: 191px;
+        bottom: 8px;
+        left: 8px;
     }
 
     .main-area-builder {
