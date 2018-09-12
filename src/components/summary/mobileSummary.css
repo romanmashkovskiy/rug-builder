@@ -1,12 +1,13 @@
 @media screen and (max-width: 450px) {
   .summary-block-container__mobile{
     flex-direction: column;
-    height: initial;
   }
-  /* .summary-block-item canvas{
+  .summary-block-item canvas{
     height: 280px !important;
-  }*/
-
+  }
+  .summary-block-item__mobile-data{
+    height: auto !important;
+  }
   .summary-title__mobile{
     height: 82.15px;
     width: 302px;
