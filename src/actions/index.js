@@ -434,7 +434,8 @@ export const saveRug = (
 
             case 'SINGLE-BORDER':
                 return SaveRugApi.SaveRug(
-                    rug_type,
+                    // rug_type,
+                    'Single border', //on demand 12.09.18
                     cm_sku,
                     cm_product_name,
                     cm_product_id,
@@ -459,7 +460,8 @@ export const saveRug = (
 
             case 'BORDER-PIPING':
                 return SaveRugApi.SaveRug(
-                    rug_type,
+                    //rug_type,
+                    'Single border', //on demand 12.09.18
                     cm_sku,
                     cm_product_name,
                     cm_product_id,
@@ -483,7 +485,8 @@ export const saveRug = (
 
             case 'DOUBLE-BORDER':
                 return SaveRugApi.SaveRug(
-                    rug_type,
+                    //rug_type,
+                    'Double border', //on demand 12.09.18
                     cm_sku,
                     cm_product_name,
                     cm_product_id,
