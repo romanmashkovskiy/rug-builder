@@ -31,7 +31,7 @@ class Summary extends Component {
                     <img src={header} alt="header"/>
                 </div>
                 <div className="summary-block-container summary-block-container__mobile">
-                    <div className="summary-block-item summary-block-item__mobile-data">
+                    <div className="summary-block-item summary-block-item__mobile-data_model">
                         <RugSummary/>
                     </div>
                     <div className="summary-block-item summary-block-item__mobile-data">

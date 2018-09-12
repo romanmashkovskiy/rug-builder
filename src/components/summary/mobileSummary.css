@@ -2,7 +2,8 @@
   .summary-block-container__mobile{
     flex-direction: column;
   }
-  .summary-block-item canvas{
+
+  .summary-block-item__mobile-data_model {
     height: 280px !important;
   }
   .summary-block-item__mobile-data{
