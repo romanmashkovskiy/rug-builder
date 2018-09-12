@@ -89,8 +89,37 @@ import RugCorner from '../rug/rug-corner';
 const ls = require('local-storage');
 
 
-
 class BuilderSelectPart extends Component {
+
+    checkRugFinished() {
+        if (this.props.width !== '' &&
+            this.props.width !== 0 &&
+            this.props.length !== '' &&
+            this.props.length !== 0 &&
+            (
+                (
+                    this.props.border === 'DOUBLE-BORDER' &&
+                    this.props.innerBorder.name !== 'INNER BORDER' &&
+                    this.props.outerBorder.name !== 'OUTER BORDER' &&
+                    this.props.centre.name !== 'CENTRE'
+                ) ||
+                (
+                    this.props.border === 'BORDER-PIPING' &&
+                    this.props.piping.post_title !== 'PIPING' &&
+                    this.props.outerBorder.name !== 'OUTER BORDER' &&
+                    this.props.centre.name !== 'CENTRE'
+                ) ||
+                (
+                    this.props.border === 'SINGLE-BORDER' &&
+                    this.props.outerBorder.name !== 'OUTER BORDER' &&
+                    this.props.centre.name !== 'CENTRE'
+                )
+            )
+        ) {
+            return true;
+        }
+        return false;
+    }
 
     constructor(props) {
         super(props);
@@ -148,10 +177,10 @@ class BuilderSelectPart extends Component {
                     }
                     {this.props.showRegisterModal &&
                     <RegisterModal/>
-                    } 
+                    }
                     {this.props.showGuestModal &&
                     <GuestModal/>
-                    } 
+                    }
 
                     <div className="main-builder-carpet">
                         <div className="main-carpet-preview">
@@ -163,12 +192,20 @@ class BuilderSelectPart extends Component {
                                      onClick={() => this.props.setShowRugCornerMode(true)}>
                                     <img src={leftControlFirst} alt="leftControlFirst"/>
                                 </div>
-                                <div className="left-controls-second">
-                                    <img src={leftControlSecond} alt="leftControlSecond"/>
-                                </div>
-                                <div className="left-controls-third">
-                                    <img src={leftControlThird} alt="leftControlThird"/>
-                                </div>
+                                {
+                                    false && // not ready
+                                    <div className="left-controls-second">
+                                        <img src={leftControlSecond} alt="leftControlSecond"/>
+                                    </div>
+
+                                }
+                                {
+                                    false && // not ready
+                                    <div className="left-controls-third">
+                                        <img src={leftControlThird} alt="leftControlThird"/>
+                                    </div>
+
+                                }
                             </div>
                             {this.props.showRugCornerMode &&
                             <div className="rug-corner">
@@ -206,8 +243,6 @@ class BuilderSelectPart extends Component {
                             }
 
 
-
-
                             <div className="perspective-control">
                                 <div className="above-vertical"
                                      onClick={() => this.props.setRugCurrentView('above-vertical')}>
@@ -229,7 +264,7 @@ class BuilderSelectPart extends Component {
                         {/*<div className="main-carpet-controls">*/}
                         <div className={window.innerWidth > 450 ? "main-carpet-controls" :
                             (this.state.showMobileSpecification ? "main-carpet-controls visible" : "main-carpet-controls")
-                            }>
+                        }>
                             <div className="rug-specification">
                                 <div className="your-bespoke-rug-spe">
                                     YOUR BESPOKE RUG SPECIFICATION
@@ -399,30 +434,7 @@ class BuilderSelectPart extends Component {
                                 </div>
                             }
                             {
-                                (this.props.width !== '' &&
-                                    this.props.width !== 0 &&
-                                    this.props.length !== '' &&
-                                    this.props.length !== 0 &&
-                                    (
-                                        (
-                                            this.props.border === 'DOUBLE-BORDER' &&
-                                            this.props.innerBorder.name !== 'INNER BORDER' &&
-                                            this.props.outerBorder.name !== 'OUTER BORDER' &&
-                                            this.props.centre.name !== 'CENTRE'
-                                        ) ||
-                                        (
-                                            this.props.border === 'BORDER-PIPING' &&
-                                            this.props.piping.post_title !== 'PIPING' &&
-                                            this.props.outerBorder.name !== 'OUTER BORDER' &&
-                                            this.props.centre.name !== 'CENTRE'
-                                        ) ||
-                                        (
-                                            this.props.border === 'SINGLE-BORDER' &&
-                                            this.props.outerBorder.name !== 'OUTER BORDER' &&
-                                            this.props.centre.name !== 'CENTRE'
-                                        )
-                                    )
-                                )
+                                this.checkRugFinished()
                                 &&
                                 <div className="finish-building-block">
                                     <button
@@ -431,15 +443,22 @@ class BuilderSelectPart extends Component {
                                             if (!ls('curUser')) {
                                                 this.props.setShowLoginRegisterMode(true);
                                             } else {
-												this.props.setRugPosition(true)
+                                                this.props.setRugPosition(true)
                                             }
-                                        }}>FINISH BUILDING</button>
+                                        }}>FINISH BUILDING
+                                    </button>
+                                </div>
+                            }
+                            {
+                                // this.checkRugFinished()
+                                window.innerWidth < 450 //not ready for production
+                                &&
+                                <div className="finish-building-block">
+                                    <button className="ap-preview-btn" disabled>AR PREVIEW</button>
                                 </div>
                             }
 
-                            <div className="finish-building-block">
-                                <button className="ap-preview-btn" disabled>AR PREVIEW</button>
-                            </div>
+
                         </div>
                     </div>
                     <div className="main-area-builder">
@@ -552,7 +571,7 @@ class BuilderSelectPart extends Component {
                             !this.props.showPipingMaterialMode &&
 
                             <div className={this.state.showMobileSpecification ?
-                            "main-area-builder-view-selections inVisible" : "main-area-builder-view-selections"}>
+                                "main-area-builder-view-selections inVisible" : "main-area-builder-view-selections"}>
                                 <div className="centre" onClick={() => this.setState({showMobileSpecification: true})}>
                                     <h3>VIEW SELECTIONS</h3>
                                 </div>
@@ -629,7 +648,8 @@ class BuilderSelectPart extends Component {
                             {
                                 window.innerWidth < 450 && this.state.showMobileSpecification &&
                                 <div className="close-center" onClick={() => {
-                                this.setState({showMobileSpecification: false})}
+                                    this.setState({showMobileSpecification: false})
+                                }
                                 }>
                                     BACK TO BUILDER
                                 </div>
@@ -866,8 +886,8 @@ const mapStateToProps = (state) => {
     return {
         width: state.width,
         length: state.length,
-		border: state.border,
-		rugImage: state.rugImage,
+        border: state.border,
+        rugImage: state.rugImage,
 
         centre: state.centre,
         innerBorder: state.innerBorder,
