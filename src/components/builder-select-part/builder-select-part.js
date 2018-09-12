@@ -92,6 +92,11 @@ const ls = require('local-storage');
 
 class BuilderSelectPart extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {showMobileSpecification: false};
+    }
+
 
     componentDidUpdate(prevProps) {
         this.props.getRugPrice(
@@ -190,6 +195,19 @@ class BuilderSelectPart extends Component {
                                     <img src={zoomOut} alt="zoomOut"/>
                                 </div>
                             </div>
+
+                            {
+                                window.innerWidth < 450 &&
+                                <div className="price-mobile">
+                                    <div className="price-mobile-value">
+                                        &#163; {this.props.rugPrice}
+                                    </div>
+                                </div>
+                            }
+
+
+
+
                             <div className="perspective-control">
                                 <div className="above-vertical"
                                      onClick={() => this.props.setRugCurrentView('above-vertical')}>
@@ -208,7 +226,10 @@ class BuilderSelectPart extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="main-carpet-controls">
+                        {/*<div className="main-carpet-controls">*/}
+                        <div className={window.innerWidth > 450 ? "main-carpet-controls" :
+                            (this.state.showMobileSpecification ? "main-carpet-controls visible" : "main-carpet-controls")
+                            }>
                             <div className="rug-specification">
                                 <div className="your-bespoke-rug-spe">
                                     YOUR BESPOKE RUG SPECIFICATION
@@ -529,8 +550,10 @@ class BuilderSelectPart extends Component {
                             !this.props.showInnerBorderMaterialMode &&
                             !this.props.showOuterBorderMaterialMode &&
                             !this.props.showPipingMaterialMode &&
-                            <div className="main-area-builder-view-selections">
-                                <div className="centre">
+
+                            <div className={this.state.showMobileSpecification ?
+                            "main-area-builder-view-selections inVisible" : "main-area-builder-view-selections"}>
+                                <div className="centre" onClick={() => this.setState({showMobileSpecification: true})}>
                                     <h3>VIEW SELECTIONS</h3>
                                 </div>
                             </div>
@@ -600,6 +623,15 @@ class BuilderSelectPart extends Component {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            }
+
+                            {
+                                window.innerWidth < 450 && this.state.showMobileSpecification &&
+                                <div className="close-center" onClick={() => {
+                                this.setState({showMobileSpecification: false})}
+                                }>
+                                    BACK TO BUILDER
                                 </div>
                             }
 

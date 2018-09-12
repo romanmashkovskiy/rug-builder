@@ -207,6 +207,8 @@ class Rug extends Component {
 			console.log(e);
 		}
 
+		console.log(textures);
+
 		try {
 			textures.map = await loadWithPromise(urlTexture, textureLoader);
 			textures.map.wrapS = textures.map.wrapT = THREE.RepeatWrapping;
