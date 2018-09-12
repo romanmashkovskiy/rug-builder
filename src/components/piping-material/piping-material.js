@@ -37,7 +37,7 @@ class PipingMaterial extends Component {
         return (
             <Fragment>
                 {
-                    this.props.currentMaterialHover.code &&
+                    window.innerWidth > 450 && this.props.currentMaterialHover.code &&
                     <div className="single-materials-center-hover"
                          style={{
                              left: this.props.currentMaterialHoverCoords.left - (195 - this.props.currentMaterialHoverCoords.width) / 2,

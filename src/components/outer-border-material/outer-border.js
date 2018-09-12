@@ -58,7 +58,7 @@ class OuterBorderMaterial extends Component {
         return (
             <Fragment>
                 {
-                    this.props.currentMaterialHover.name &&
+                    window.innerWidth > 450 && this.props.currentMaterialHover.name &&
                     <div className="single-materials-center-hover"
                          style={{
                              left: this.props.currentMaterialHoverCoords.left - (195 - this.props.currentMaterialHoverCoords.width) / 2,

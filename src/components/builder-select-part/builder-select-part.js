@@ -133,13 +133,15 @@ class BuilderSelectPart extends Component {
 
         return (
             <div className="container-builder">
+                {(this.props.editDimensionsMode || this.props.editBorderMode) &&
+                <StartModal/>}
                 <div className="header-builder header-builder-A">
                     {/*<img src={header} alt="header"/>*/}
                     <img/>
                 </div>
                 <div className="main-builder">
-                    {(this.props.editDimensionsMode || this.props.editBorderMode) &&
-                    <StartModal/>}
+                    {/*{(this.props.editDimensionsMode || this.props.editBorderMode) &&*/}
+                    {/*<StartModal/>}*/}
                     {this.props.showLoginRegisterModal &&
                     <LoginRegisterModal/>
                     }
