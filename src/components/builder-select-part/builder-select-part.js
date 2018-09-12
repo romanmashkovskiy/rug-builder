@@ -140,8 +140,6 @@ class BuilderSelectPart extends Component {
                     <img/>
                 </div>
                 <div className="main-builder">
-                    {/*{(this.props.editDimensionsMode || this.props.editBorderMode) &&*/}
-                    {/*<StartModal/>}*/}
                     {this.props.showLoginRegisterModal &&
                     <LoginRegisterModal/>
                     }

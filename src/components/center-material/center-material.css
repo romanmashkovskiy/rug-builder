@@ -131,6 +131,7 @@
         height: 34%;
         border-bottom: 2px solid #F9F9F9;
         padding-top: 18px;
+        flex-grow: 0;
     }
 
     .single-materials-center-list-child {

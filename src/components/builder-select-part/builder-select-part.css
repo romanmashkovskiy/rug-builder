@@ -61,7 +61,6 @@
     position: absolute;
     height: 268px;
     width: 308px;
-    /*border: 1px solid red;*/
     left: 20px;
     top: 62.79px;
     display: flex;
@@ -781,5 +780,10 @@
         width: 50%;
         height: 100%;
         border: none;
+    }
+
+    .rug-corner {
+        left: 8px;
+        top: 46px;
     }
 }
