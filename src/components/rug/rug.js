@@ -185,13 +185,13 @@ class Rug extends Component {
 			shininess: 0,
 			displacementScale: dispScale,
 			bumpScale: bumpScale,
-			anisotropy: 16
+			// anisotropy: 16
 		};
 
 		try {
 			textures.bumpMap = await loadWithPromise(urlBumpMap, textureLoader);
 			textures.bumpMap.wrapS = textures.bumpMap.wrapT = THREE.RepeatWrapping;
-			textures.bumpMap.anisotropy = 16
+			textures.bumpMap.anisotropy = 16;
 			textures.bumpMap.repeat.set(rugRepeatX, rugRepeatY);
 		} catch (e) {
 			textures.bumpMap = null;
@@ -201,6 +201,7 @@ class Rug extends Component {
 		try {
 			textures.normalMap = await loadWithPromise(urlNormalMap, textureLoader);
 			textures.normalMap.wrapS = textures.normalMap.wrapT = THREE.RepeatWrapping;
+            textures.normalMap.anisotropy = 16;
 			textures.normalMap.repeat.set(rugRepeatX, rugRepeatY);
 		} catch (e) {
 			textures.normalMap = null;
@@ -212,6 +213,7 @@ class Rug extends Component {
 		try {
 			textures.map = await loadWithPromise(urlTexture, textureLoader);
 			textures.map.wrapS = textures.map.wrapT = THREE.RepeatWrapping;
+            textures.map.anisotropy = 16;
 			textures.map.repeat.set(rugRepeatX, rugRepeatY);
 		} catch (e) {
 			console.log(e);
