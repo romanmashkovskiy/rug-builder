@@ -41,6 +41,8 @@ export default class SaveRugApi {
         form.append("height", height);
         form.append("preview_image", preview_image);
 
+        console.log(form);
+
 
         return axios({
             method: 'POST',

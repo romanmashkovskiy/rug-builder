@@ -443,7 +443,9 @@ const mapStateToProps = (state) => {
 		piping: state.piping,
 		currentRugView: state.currentRugView,
 		currentZoom: state.currentZoom,
-		rugPosition: state.rugPosition
+		rugPosition: state.rugPosition,
+		width: state.width,
+		length: state.length
 	};
 };
 
