@@ -449,14 +449,10 @@ class BuilderSelectPart extends Component {
                                     </button>
                                 </div>
                             }
-                            {
-                                // this.checkRugFinished()
-                                window.innerWidth < 450 //not ready for production
-                                &&
-                                <div className="finish-building-block">
-                                    <button className="ap-preview-btn" disabled>AR PREVIEW</button>
-                                </div>
-                            }
+
+                            <div className="ap-preview-block">
+                                <button className="ap-preview-btn" disabled>AR PREVIEW</button>
+                            </div>
 
 
                         </div>

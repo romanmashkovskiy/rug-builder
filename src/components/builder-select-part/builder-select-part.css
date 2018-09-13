@@ -432,6 +432,15 @@
     align-items: center;
 }
 
+.ap-preview-block {
+    height: 65px;
+    padding-left: 20px;
+    padding-right: 23px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
 .finish-building-btn-inactive {
     height: 55.08px;
     opacity: 0.2;
@@ -727,6 +736,14 @@
         padding-right: 0;
         width: 74%;
         align-self: center;
+    }
+
+    .ap-preview-block {
+        padding-left: 0;
+        padding-right: 0;
+        width: 74%;
+        align-self: center;
+        display: flex;
     }
 
     .carpet-price {
