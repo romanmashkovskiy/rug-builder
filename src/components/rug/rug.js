@@ -287,7 +287,6 @@ class Rug extends Component {
 		var block = b64Data.split(";");
 		var realData = block[1].split(",")[1];
 
-		debugger
 
 		var byteCharacters = window.atob(realData);
 		var byteArrays = [];

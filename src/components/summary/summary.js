@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
+import {
+    orderSamples
+} from "../../actions";
+
 import './summary.css';
 import './mobileSummary.css';
 
@@ -20,6 +24,8 @@ import chain from './images/link-symbol.svg';
 import mail from './images/envelope.svg';
 
 import RugSummary from '../rug/rug-summary';
+
+const ls = require('local-storage');
 
 
 class Summary extends Component {
@@ -157,7 +163,9 @@ class Summary extends Component {
                             </div>
                         </div>
                         <div className="summary-button-block summary-button-block__mobile">
-                            <button className="summary-button-order-swatches">
+                            <button className="summary-button-order-swatches" onClick={() => {
+                                this.props.orderSamples(ls('curUser').user_id, this.props.centre.id);
+                            }}>
                                 ORDER SWATCHES
                             </button>
                             <button className="summary-button-print-details">
@@ -229,7 +237,9 @@ const mapStateToProps = (state) => {
 };
 
 const matchDispatchToProps = (dispatch) => {
-    return bindActionCreators({},
+    return bindActionCreators({
+            orderSamples: orderSamples
+        },
         dispatch)
 };
 

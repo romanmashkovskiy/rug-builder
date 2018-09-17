@@ -5,6 +5,7 @@ import LoginApi from '../api/login-api';
 import RegisterApi from '../api/register-api';
 import ForgotPasswordApi from '../api/forgot-password api';
 import SaveRugApi from '../api/save-rug-api';
+import OrderSamplesApi from '../api/order-samples-api';
 
 import {calculatePrice} from '../utils/calculate-rug-price';
 
@@ -152,7 +153,6 @@ export const getCenterMaterials = () => {
         })
     }
 };
-
 
 
 export function loadCenterMaterialsSuccess(response) {
@@ -310,8 +310,8 @@ export const setRugCurrentView = (view) => {
 
 export const setRugPosition = (isSet) => {
     return {
-		type: actions.SET_RUG_POSITION,
-		payload: isSet
+        type: actions.SET_RUG_POSITION,
+        payload: isSet
     }
 };
 
@@ -451,8 +451,7 @@ export const saveRug = (
                     width,
                     height,
                     preview_image
-                ).
-                then(response => {
+                ).then(response => {
                     console.log(response);
                 }).catch(error => {
                     console.log(error);
@@ -508,6 +507,36 @@ export const saveRug = (
                     console.log(error);
                 });
         }
+    }
+};
+
+export const orderSamples = (
+    user_id,
+    product_id,
+    first_name,
+    last_name,
+    email,
+    address_1,
+    address_2,
+    postcode,
+    city
+) => {
+    return () => {
+        return OrderSamplesApi.OrderSamples(
+            user_id,
+            product_id,
+            first_name,
+            last_name,
+            email,
+            address_1,
+            address_2,
+            postcode,
+            city
+        ).then(response => {
+            console.log(response);
+        }).catch(error => {
+            console.log(error);
+        });
     }
 };
 

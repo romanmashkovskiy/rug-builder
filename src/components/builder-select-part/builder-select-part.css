@@ -691,9 +691,13 @@
 
     .left-controls {
         height: 36px;
-        width: 113px;
+        /*width: 113px;*/
         top: 8px;
         left: 8px;
+    }
+
+    .left-controls-first {
+        width: 39px;
     }
 
     .main-carpet-controls {

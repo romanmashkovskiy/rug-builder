@@ -20,7 +20,9 @@ class GuestModal extends Component {
             addressLine2: '',
             city: '',
             postcode: '',
-            orderFreeSwatchSamples: false
+            orderFreeSwatchSamples: false,
+            isAgree: 0,
+            isSubscribed: 0
         };
         this.onChangeFullName = this.onChangeFullName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
@@ -28,6 +30,8 @@ class GuestModal extends Component {
         this.onChangeAddressLine2 = this.onChangeAddressLine2.bind(this);
         this.onChangeCity = this.onChangeCity.bind(this);
         this.onChangePostcode = this.onChangePostcode.bind(this);
+        this.onChangeIsAgree = this.onChangeIsAgree.bind(this);
+        this.onChangeIsSubscribed = this.onChangeIsSubscribed.bind(this);
     }
 
     onChangeFullName(e) {
@@ -58,6 +62,16 @@ class GuestModal extends Component {
     onChangePostcode(e) {
         const val = e.target.value;
         this.setState({postcode: val});
+    }
+
+    onChangeIsAgree(e) {
+        const val = e.target.checked;
+        val ? this.setState({ isAgree: 1 }) : this.setState({ isAgree: 0 });
+    }
+
+    onChangeIsSubscribed(e) {
+        const val = e.target.checked;
+        val ? this.setState({ isSubscribed: 1 }) : this.setState({ isSubscribed: 0 });
     }
 
     render() {

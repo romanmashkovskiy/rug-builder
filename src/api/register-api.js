@@ -1,7 +1,18 @@
 import axios from 'axios';
 
 export default class RegisterApi {
-    static RegisterUser(email, password, first_name, last_name, address_1, address_2, postcode, city, is_agree, is_subscribed) {
+    static RegisterUser(
+        email,
+        password,
+        first_name,
+        last_name,
+        address_1,
+        address_2,
+        postcode,
+        city,
+        is_agree,
+        is_subscribed
+    ) {
 
         const form = new FormData();
         form.append("email", email);
