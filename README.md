@@ -520,9 +520,9 @@ For example, this:
 
 ```css
 .App {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: -webkit-box;      display: -ms-flexbox;      display: flex;
+  -webkit-box-orient: horizontal;        -webkit-box-direction: normal;            -ms-flex-direction: row;                flex-direction: row;
+  -webkit-box-align: center;     -ms-flex-align: center;         align-items: center;
 }
 ```
 
@@ -532,14 +532,14 @@ becomes this:
 .App {
   display: -webkit-box;
   display: -ms-flexbox;
-  display: flex;
+  display: -webkit-box;      display: -ms-flexbox;      display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms--webkit-box-orient: horizontal;        -webkit-box-direction: normal;            -ms-flex-direction: row;                flex-direction: row;
+          -webkit-box-orient: horizontal;        -webkit-box-direction: normal;            -ms-flex-direction: row;                flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
-          align-items: center;
+          -webkit-box-align: center;     -ms-flex-align: center;         align-items: center;
 }
 ```
 

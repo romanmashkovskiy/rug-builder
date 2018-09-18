@@ -21,8 +21,15 @@ body {
 
 .modal {
     position: fixed;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     text-align: center;
     z-index: 9999;
@@ -179,7 +186,7 @@ label > input + img {
 
     .modal {
         position: absolute;
-        justify-content: space-between;
+        -webkit-box-pack: justify;     -ms-flex-pack: justify;         justify-content: space-between;
         height: 100%;
         width: 100%;
         padding-top: 0;

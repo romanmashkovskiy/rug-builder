@@ -1,8 +1,15 @@
 .materials-center-list {
     width: 77%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     overflow-y: auto;
 }
@@ -22,11 +29,23 @@
 }
 
 .single-materials-center-list {
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
     flex: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
-    height: 100%;
+    /*height: 100%;*/
+    height: 244px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     border-right: 2px solid #F9F9F9;
     cursor: pointer;
@@ -49,11 +68,17 @@
 }
 
 .single-materials-center-list-child {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     /*height: 50%;*/
     height: 122px;
     width: 11.1%;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     border-right: 2px solid #F9F9F9;
     border-bottom: 2px solid #F9F9F9;

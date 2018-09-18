@@ -1,51 +1,50 @@
-
-
 @media screen and (max-width: 450px) {
-    .modal-guest.modal-guest-A{
+    .modal-guest.modal-guest-A {
         position: absolute;
         width: 100vw;
-        /* top: 53px; */
         left: 0;
         top: 0;
         transform: none;
-        /* min-height: calc(100vh - 53px); */
         height: 830px;
         overflow-y: auto;
     }
+
     .input-register-block {
         flex-flow: column nowrap;
         width: 100vw;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         margin-bottom: 3px;
-        /* margin: 0 */
     }
+
     .input-register-block > input {
-        /* margin: 10px 0; */
         width: 90%;
         padding: 5px;
         margin: 3px 0;
-        /* margin-top: 10px */
         line-height: 10px
-        }
+    }
+
     .button-basket-guest {
-        left: 50px !important;
+        left: 44px !important;
         top: 410px !important;
     }
+
     .register-button {
         width: 90vw;
         margin: auto;
-    }    
+    }
+
     .register-checkbox-wrapper {
         width: 100vw;
         padding: 20px;
     }
 
     .free-swatch-samples-checkmark-guest {
-        left: 66px !important;
+        left: 62px !important;
         top: 410px !important;
     }
 
-    
 }
 
 @media screen and (max-width: 370px) {
