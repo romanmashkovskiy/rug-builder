@@ -54,6 +54,9 @@ import setShowLoginModalReducer from './set-show-login-mode';
 import setShowRegisterModalReducer from './set-show-register-mode';
 import setShowGuestModalReducer from './set-show-guest-mode';
 import setRugPosition from './set-rug-current-position';
+import setRugPositionGuest from './set-rug-current-position-guest';
+
+import setGuestUser from './set-guest-user';
 
 
 const rootReducer = combineReducers({
@@ -61,6 +64,7 @@ const rootReducer = combineReducers({
     length: lengthReducer,
     border: borderReducer,
 	rugPosition: setRugPosition,
+    rugPositionGuest: setRugPositionGuest,
 
     centre: centreReducer,
     innerBorder: innerBorderReducer,
@@ -112,7 +116,9 @@ const rootReducer = combineReducers({
     showLoginRegisterModal: setShowLoginRegisterModalReducer,
     showLoginModal: setShowLoginModalReducer,
     showRegisterModal: setShowRegisterModalReducer,
-    showGuestModal: setShowGuestModalReducer
+    showGuestModal: setShowGuestModalReducer,
+
+    guestUser: setGuestUser
 });
 
 export default rootReducer;

@@ -6,6 +6,7 @@ import RegisterApi from '../api/register-api';
 import ForgotPasswordApi from '../api/forgot-password api';
 import SaveRugApi from '../api/save-rug-api';
 import OrderSamplesApi from '../api/order-samples-api';
+import GuestCheckoutApi from '../api/guest-checkout-api';
 
 import {calculatePrice} from '../utils/calculate-rug-price';
 
@@ -315,6 +316,13 @@ export const setRugPosition = (isSet) => {
     }
 };
 
+export const setRugPositionGuest = (isSet) => {
+    return {
+        type: actions.SET_RUG_POSITION_GUEST,
+        payload: isSet
+    }
+};
+
 export const zoomRugIn = () => {
     return {
         type: actions.ZOOM_RUG_IN
@@ -510,6 +518,116 @@ export const saveRug = (
     }
 };
 
+export const guestCheckout = (
+    first_name,
+    last_name,
+    email,
+    rug_type,
+    cm_sku,
+    cm_product_name,
+    cm_product_id,
+    bm1_sku,
+    bm1_product_name,
+    bm1_product_id,
+    bm2_sku,
+    bm2_product_name,
+    bm2_product_id,
+    piping_sku,
+    piping_product_name,
+    piping_product_id,
+    width,
+    height,
+    preview_image
+) => {
+    return () => {
+
+        switch (rug_type) {
+
+            case 'SINGLE-BORDER':
+                return GuestCheckoutApi.GuestCheckout(
+                    first_name,
+                    last_name,
+                    email,
+                    rug_type,
+                    cm_sku,
+                    cm_product_name,
+                    cm_product_id,
+                    bm1_sku,
+                    bm1_product_name,
+                    bm1_product_id,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    width,
+                    height,
+                    preview_image
+                ).then(response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            case 'BORDER-PIPING':
+                return GuestCheckoutApi.GuestCheckout(
+                    first_name,
+                    last_name,
+                    email,
+                    rug_type,
+                    cm_sku,
+                    cm_product_name,
+                    cm_product_id,
+                    bm1_sku,
+                    bm1_product_name,
+                    bm1_product_id,
+                    undefined,
+                    undefined,
+                    undefined,
+                    piping_sku,
+                    piping_product_name,
+                    piping_product_id,
+                    width,
+                    height,
+                    preview_image
+                ).then(response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.log(error);
+                });
+
+            case 'DOUBLE-BORDER':
+                return GuestCheckoutApi.GuestCheckout(
+                    first_name,
+                    last_name,
+                    email,
+                    rug_type,
+                    cm_sku,
+                    cm_product_name,
+                    cm_product_id,
+                    bm1_sku,
+                    bm1_product_name,
+                    bm1_product_id,
+                    bm2_sku,
+                    bm2_product_name,
+                    bm2_product_id,
+                    undefined,
+                    undefined,
+                    undefined,
+                    width,
+                    height,
+                    preview_image
+                ).then(response => {
+                    console.log(response);
+                }).catch(error => {
+                    console.log(error);
+                });
+        }
+    }
+};
+
+
 export const orderSamples = (
     user_id,
     product_id,
@@ -573,6 +691,29 @@ export const clearOuterBorderMaterialFirstChildrenMaterials = () => {
 export const clearOuterBorderMaterialSecondChildrenMaterials = () => {
     return {
         type: actions.CLEAR_OUTER_BORDER_MATERIAL_SECOND_CHILDREN
+    }
+};
+
+export const setGuestUser = (
+    firstName,
+    lastName,
+    email,
+    addressLine1,
+    addressLine2,
+    city,
+    postcode
+) => {
+    return {
+        type: actions.SET_GUEST_USER,
+        payload: {
+            firstName,
+            lastName,
+            email,
+            addressLine1,
+            addressLine2,
+            city,
+            postcode
+        }
     }
 };
 

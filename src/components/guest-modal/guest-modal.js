@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
-import {setShowGuestMode, setShowLoginRegisterMode} from "../../actions";
+import {
+    setShowGuestMode,
+    setShowLoginRegisterMode,
+    setRugPositionGuest,
+    orderSamples,
+    setGuestUser
+} from "../../actions";
 
 import './guest-modal.css';
 
@@ -14,7 +20,8 @@ class GuestModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            fullName: '',
+            firstName: '',
+            lastName: '',
             email: '',
             addressLine1: '',
             addressLine2: '',
@@ -24,7 +31,8 @@ class GuestModal extends Component {
             isAgree: 0,
             isSubscribed: 0
         };
-        this.onChangeFullName = this.onChangeFullName.bind(this);
+        this.onChangeFirstName = this.onChangeFirstName.bind(this);
+        this.onChangeLastName = this.onChangeLastName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangeAddressLine1 = this.onChangeAddressLine1.bind(this);
         this.onChangeAddressLine2 = this.onChangeAddressLine2.bind(this);
@@ -32,11 +40,17 @@ class GuestModal extends Component {
         this.onChangePostcode = this.onChangePostcode.bind(this);
         this.onChangeIsAgree = this.onChangeIsAgree.bind(this);
         this.onChangeIsSubscribed = this.onChangeIsSubscribed.bind(this);
+        this.onFinish = this.onFinish.bind(this);
     }
 
-    onChangeFullName(e) {
+    onChangeFirstName(e) {
         const val = e.target.value;
-        this.setState({fullName: val});
+        this.setState({firstName: val});
+    }
+
+    onChangeLastName(e) {
+        const val = e.target.value;
+        this.setState({lastName: val});
     }
 
     onChangeEmail(e) {
@@ -66,12 +80,40 @@ class GuestModal extends Component {
 
     onChangeIsAgree(e) {
         const val = e.target.checked;
-        val ? this.setState({ isAgree: 1 }) : this.setState({ isAgree: 0 });
+        val ? this.setState({isAgree: 1}) : this.setState({isAgree: 0});
     }
 
     onChangeIsSubscribed(e) {
         const val = e.target.checked;
-        val ? this.setState({ isSubscribed: 1 }) : this.setState({ isSubscribed: 0 });
+        val ? this.setState({isSubscribed: 1}) : this.setState({isSubscribed: 0});
+    }
+
+    async onFinish() {
+            await this.props.setGuestUser(
+                this.state.firstName,
+                this.state.lastName,
+                this.state.email,
+                this.state.addressLine1,
+                this.state.addressLine2,
+                this.state.city,
+                this.state.postcode
+            );
+
+            if (this.state.orderFreeSwatchSamples) {
+                this.props.orderSamples(
+                    undefined,
+                    this.props.centre.id,
+                    this.state.firstName,
+                    this.state.lastName,
+                    this.state.email,
+                    this.state.addressLine1,
+                    this.state.addressLine2,
+                    undefined,
+                    this.state.city
+                );
+            }
+
+            this.props.setRugPositionGuest(true);
     }
 
     render() {
@@ -89,11 +131,20 @@ class GuestModal extends Component {
                     <div className="input-register-block">
                         <input
                             type="text"
-                            value={this.state.fullName}
-                            placeholder="Full Name"
+                            value={this.state.firstName}
+                            placeholder="First Name"
                             className="input-register"
-                            onChange={this.onChangeFullName}
+                            onChange={this.onChangeFirstName}
                         />
+                        <input
+                            type="text"
+                            value={this.state.lastName}
+                            placeholder="Last Name"
+                            className="input-register"
+                            onChange={this.onChangeLastName}
+                        />
+                    </div>
+                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.email}
@@ -101,8 +152,6 @@ class GuestModal extends Component {
                             className="input-register"
                             onChange={this.onChangeEmail}
                         />
-                    </div>
-                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.addressLine1}
@@ -110,6 +159,8 @@ class GuestModal extends Component {
                             className="input-register"
                             onChange={this.onChangeAddressLine1}
                         />
+                    </div>
+                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.addressLine2}
@@ -117,8 +168,6 @@ class GuestModal extends Component {
                             className="input-register"
                             onChange={this.onChangeAddressLine2}
                         />
-                    </div>
-                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.city}
@@ -126,6 +175,8 @@ class GuestModal extends Component {
                             className="input-register"
                             onChange={this.onChangeCity}
                         />
+                    </div>
+                    <div className="input-register-block">
                         <input
                             type="text"
                             value={this.state.postcode}
@@ -142,7 +193,7 @@ class GuestModal extends Component {
                     }}>
                         Order Free Swatch Samples?
                     </div>
-                    <button className="register-button">
+                    <button className="register-button" onClick= {this.onFinish}>
                         FINISH BUILDING
                     </button>
                     <div className="register-checkbox-wrapper">
@@ -168,13 +219,26 @@ class GuestModal extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        width: state.width,
+        length: state.length,
+        border: state.border,
+
+        centre: state.centre,
+        innerBorder: state.innerBorder,
+        outerBorder: state.outerBorder,
+        piping: state.piping,
+        guestUser: state.guestUser
+    };
 };
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
             setShowLoginRegisterMode: setShowLoginRegisterMode,
-            setShowGuestMode: setShowGuestMode
+            setShowGuestMode: setShowGuestMode,
+            setRugPositionGuest: setRugPositionGuest,
+            orderSamples: orderSamples,
+            setGuestUser: setGuestUser
         },
         dispatch)
 };

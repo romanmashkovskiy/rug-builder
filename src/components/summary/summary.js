@@ -29,6 +29,29 @@ const ls = require('local-storage');
 
 
 class Summary extends Component {
+    constructor(props) {
+        super(props);
+        this.onOrderSwatches = this.onOrderSwatches.bind(this);
+    }
+
+    onOrderSwatches() {
+        if (ls('curUser')) {
+            this.props.orderSamples(ls('curUser').user_id, this.props.centre.id)
+        } else {
+            this.props.orderSamples(
+                undefined,
+                this.props.centre.id,
+                this.props.guestUser.firstName,
+                this.props.guestUser.lastName,
+                this.props.guestUser.email,
+                this.props.guestUser.addressLine1,
+                this.props.guestUser.addressLine2,
+                undefined,
+                this.props.guestUser.city
+            );
+        }
+
+    }
 
     render() {
         return (
@@ -163,9 +186,7 @@ class Summary extends Component {
                             </div>
                         </div>
                         <div className="summary-button-block summary-button-block__mobile">
-                            <button className="summary-button-order-swatches" onClick={() => {
-                                this.props.orderSamples(ls('curUser').user_id, this.props.centre.id);
-                            }}>
+                            <button className="summary-button-order-swatches" onClick={this.onOrderSwatches}>
                                 ORDER SWATCHES
                             </button>
                             <button className="summary-button-print-details">
@@ -233,6 +254,8 @@ const mapStateToProps = (state) => {
         piping: state.piping,
 
         rugPrice: state.rugPrice,
+
+        guestUser: state.guestUser
     };
 };
 
