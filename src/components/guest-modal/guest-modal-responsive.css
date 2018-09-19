@@ -5,7 +5,7 @@
         left: 0;
         top: 0;
         transform: none;
-        height: 830px;
+        min-height: 830px;
         overflow-y: auto;
     }
 
@@ -27,7 +27,7 @@
 
     .button-basket-guest {
         left: 44px !important;
-        top: 410px !important;
+        top: 458px !important;
     }
 
     .register-button {
@@ -42,7 +42,7 @@
 
     .free-swatch-samples-checkmark-guest {
         left: 62px !important;
-        top: 410px !important;
+        top: 457px !important;
     }
 
 }
@@ -50,11 +50,11 @@
 @media screen and (max-width: 370px) {
     .button-basket-guest {
         left: 30px !important;
-        top: 380px !important;
+        top: 457px !important;
     }
 
     .free-swatch-samples-checkmark-guest {
         left: 48px !important;
-        top: 380px !important;
+        top: 457px !important;
     }
 }

@@ -1,17 +1,17 @@
 @media screen and (max-width: 450px) {
     .modal-register.modal-register-A {
         position: absolute;
-        width: 100vw;
+       width: 100vw;
         left: 0;
         top: 0;
         transform: none;
-        height: 830px;
+        min-height: 830px;
         overflow-y: auto;
     }
-    .input-register-block.input-register-block-AAA {
-        height: 300px;
-        margin-bottom: 90px
-    }
+    /*.input-register-block.input-register-block-AAA {*/
+        /*height: 300px;*/
+        /*margin-bottom: 90px*/
+    /*}*/
     .input-register-block.input-register-block-AAA > input {
         line-height: 16px;
         margin: 5px;
@@ -26,12 +26,12 @@
         transform: translateY(30px)
     }
     .button-basket-register-AA {
-        top: 590px !important;
+        top: 587px !important;
         left: 30px !important;
     }
 
     .free-swatch-samples-checkmark-register {
-        top: 590px !important;
+        top: 587px !important;
         left: 48px !important;
     }
 

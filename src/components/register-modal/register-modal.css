@@ -13,7 +13,7 @@
     -ms-flex-align: center;
     align-items: center;
     z-index: 9999;
-    height: 683px;
+    min-height: 683px;
     width: 616px;
     border: 1px solid #E9E9E9;
     background-color: #FFFFFF;
@@ -39,7 +39,7 @@
 .button-basket-register {
     position: absolute;
     left: 160px;
-    top: 388px;
+    top: 380px;
 }
 
 .register-header-text {
@@ -54,7 +54,7 @@
 }
 
 .input-register-block {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 499px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -88,7 +88,7 @@
 .free-swatch-samples-checkmark-register {
     position: absolute;
     left: 177px;
-    top: 388px;
+    top: 380px;
     width: 10px;
     height: 25px;
     border: solid #353535;
@@ -145,7 +145,7 @@
 /* Create a custom checkbox */
 .register-checkmark {
     position: absolute;
-    top: 0;
+    top: 5px;
     left: 0;
     height: 22px;
     width: 22px;
