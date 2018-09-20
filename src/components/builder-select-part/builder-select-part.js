@@ -188,10 +188,10 @@ class BuilderSelectPart extends Component {
             <div className="container-builder">
                 {(this.props.editDimensionsMode || this.props.editBorderMode) &&
                 <StartModal/>}
-                <div className="header-builder header-builder-A">
-                    {/*<img src={header} alt="header"/>*/}
-                    <img/>
-                </div>
+                {/*<div className="header-builder header-builder-A">*/}
+                    {/*/!*<img src={header} alt="header"/>*!/*/}
+                    {/*<img/>*/}
+                {/*</div>*/}
                 <div className="main-builder">
                     {this.props.showLoginRegisterModal &&
                     <LoginRegisterModal/>
@@ -922,9 +922,9 @@ class BuilderSelectPart extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="footer-builder">
-                    <img src={footer} alt="footer"/>
-                </div>
+                {/*<div className="footer-builder">*/}
+                    {/*<img src={footer} alt="footer"/>*/}
+                {/*</div>*/}
 
 
             </div>
