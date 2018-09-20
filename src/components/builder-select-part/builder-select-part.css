@@ -726,7 +726,7 @@
     border: 2px solid #F9F9F9;
     background-color: #FFFFFF;
     width: 33.3%;
-    height: calc((100vh - 53px - 60px)/4);
+    height: calc((100vh - 53px - 60px) / 4);
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -739,7 +739,7 @@
 .centre {
     text-align: center;
     position: relative;
-    /*width: 130px;*/
+    width: 130px;
 }
 
 .centre-icon {
@@ -765,8 +765,6 @@
     left: 9px;
     top: 7px;
     background-image: url(./images/tick.svg);
-    /*background-repeat: no-repeat;*/
-    /*background-position: 50% 0;*/
 }
 
 .centre-icon-selected-material img {
@@ -984,6 +982,7 @@
         top: 0;
         left: 0;
         width: 100%;
+        height: calc(100vh - 53px);
         z-index: 100;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -1001,18 +1000,22 @@
 
     .current-carpet-size {
         padding-left: 59px;
+        height: 56px;
     }
 
     .current-border-type {
         padding-left: 59px;
+        height: 56px;
     }
 
     .centre-is-selected {
         padding-left: 59px;
+        height: 56px;
     }
 
     .border-is-selected {
         padding-left: 59px;
+        height: 56px;
     }
 
     .finish-building-block {
@@ -1022,6 +1025,7 @@
         -ms-flex-item-align: center;
         -ms-grid-row-align: center;
         align-self: center;
+        height: 60px;
     }
 
     .ap-preview-block {
@@ -1034,11 +1038,14 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+        height: 60px;
     }
 
     .carpet-price {
         padding-left: 13%;
         padding-right: 13%;
+        height: 52px;
+        padding-top: 5px;
     }
 
     .price-word {
@@ -1058,7 +1065,7 @@
     }
 
     .main-area-builder {
-        height: calc((100vh - 53px - 60px)/2);
+        height: calc((100vh - 53px - 60px) / 2);
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
         align-content: flex-start;
@@ -1066,7 +1073,7 @@
 
     .main-area-builder-centre {
         width: 33.3%;
-        height: calc((100vh - 53px - 60px)/4);
+        height: calc((100vh - 53px - 60px) / 4);
         padding-top: 10px;
     }
 
@@ -1107,5 +1114,43 @@
     .rug-corner {
         left: 8px;
         top: 46px;
+    }
+
+    .centre {
+        width: 100px;
+    }
+
+    .centre-icon-selected-material {
+        width: 20px;
+        height: 20px;
+        top: -4px;
+        right: 22px;
+    }
+
+    .centre-icon-selected-material::before {
+        width: 10px;
+        height: 10px;
+        left: 6px;
+        top: 5px;
+    }
+
+    .rug-specification {
+        display: none;
+    }
+
+    .back-to-builder-mobile {
+        height: 60px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        border-top: 2px solid #F5F5F5;
+        color: #383838;
+        font-family: Montserrat, sans-serif;
+        font-size: 12px;
+        letter-spacing: 1.6px;
+        line-height: 16px;
+        bottom: 0;
     }
 }

@@ -188,10 +188,10 @@ class BuilderSelectPart extends Component {
             <div className="container-builder">
                 {(this.props.editDimensionsMode || this.props.editBorderMode) &&
                 <StartModal/>}
-                {/*<div className="header-builder header-builder-A">*/}
-                    {/*/!*<img src={header} alt="header"/>*!/*/}
-                    {/*<img/>*/}
-                {/*</div>*/}
+                <div className="header-builder header-builder-A">
+                    {/*<img src={header} alt="header"/>*/}
+                    <img/>
+                </div>
                 <div className="main-builder">
                     {this.props.showLoginRegisterModal &&
                     <LoginRegisterModal/>
@@ -249,10 +249,14 @@ class BuilderSelectPart extends Component {
                                 </div>
                                 <div className="room-presets-image-wrapper">
                                     <img className="room-presets-images" src={roomSet1} name="PATIO1"/>
-                                    <img className="room-presets-images" src={roomSet2} style={{display: "none"}} name="PATIO2"/>
-                                    <img className="room-presets-images" src={roomSet3} style={{display: "none"}} name="PATIO3"/>
-                                    <img className="room-presets-images" src={roomSet4} style={{display: "none"}} name="PATIO4"/>
-                                    <img className="room-presets-images" src={roomSet5} style={{display: "none"}} name="PATIO5"/>
+                                    <img className="room-presets-images" src={roomSet2} style={{display: "none"}}
+                                         name="PATIO2"/>
+                                    <img className="room-presets-images" src={roomSet3} style={{display: "none"}}
+                                         name="PATIO3"/>
+                                    <img className="room-presets-images" src={roomSet4} style={{display: "none"}}
+                                         name="PATIO4"/>
+                                    <img className="room-presets-images" src={roomSet5} style={{display: "none"}}
+                                         name="PATIO5"/>
                                 </div>
                                 <div className="room-presets-room-select">
                                     <div className="room-presets-back" onClick={() => {
@@ -508,6 +512,18 @@ class BuilderSelectPart extends Component {
                                 <button className="ap-preview-btn" disabled>AR PREVIEW</button>
                             </div>
 
+                            {
+                                window.innerWidth < 450 && this.state.showMobileSpecification &&
+                                <div className="back-to-builder-mobile" onClick={() => {
+                                    this.setState({showMobileSpecification: false})
+                                }
+                                }>
+                                    <div>
+                                        BACK TO BUILDER
+                                    </div>
+                                </div>
+                            }
+
 
                         </div>
                     </div>
@@ -692,16 +708,6 @@ class BuilderSelectPart extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            }
-
-                            {
-                                window.innerWidth < 450 && this.state.showMobileSpecification &&
-                                <div className="close-center" onClick={() => {
-                                    this.setState({showMobileSpecification: false})
-                                }
-                                }>
-                                    BACK TO BUILDER
                                 </div>
                             }
 
@@ -922,9 +928,9 @@ class BuilderSelectPart extends Component {
                         </div>
                     </div>
                 </div>
-                {/*<div className="footer-builder">*/}
-                    {/*<img src={footer} alt="footer"/>*/}
-                {/*</div>*/}
+                <div className="footer-builder">
+                    <img src={footer} alt="footer"/>
+                </div>
 
 
             </div>

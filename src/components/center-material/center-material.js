@@ -82,7 +82,7 @@ class CenterMaterial extends Component {
                                 material.thumb &&
                                 <div className="single-materials-center-list" key={material.term_id}
                                      onClick={() => this.showFirstChildren(material)}>
-                                    <div>
+                                    <div className="single-materials-center-list-wrapper">
                                         <img src={material.thumb} alt="type-material-center"/>
                                         <h3>{material.name}</h3>
                                     </div>
