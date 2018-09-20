@@ -167,7 +167,7 @@ class Rug extends Component {
     async updateMap(urlTexture, urlBumpMap, urlNormalMap, rugPart) {
         var rugRepeatX = 8;
         var rugRepeatY = 8;
-        var bumpScale = 1;
+        var bumpScale = 1.5;
         var dispScale = 3;
 
         if (urlTexture === '') {
@@ -396,12 +396,14 @@ class Rug extends Component {
 
         this.THREE = THREE;
 
-        this.addLight()
+        this.addLight();
 
         const container = document.getElementById("root-for-rug");
 
         this.controls = new OrbitControl(this.camera, container);
-        this.controls.enablePan = false
+
+        this.controls.enablePan = false;
+
         // this.controls.enableZoom = false;
         this.controls.minDistance = 50;
         this.controls.maxDistance = 120;
@@ -445,6 +447,12 @@ class Rug extends Component {
             await this.objectLoader();
         }
 
+        if (this.props.showRoomPresetsMode) {
+            this.controls.enabled = false;
+        } else {
+            this.controls.enabled = true;
+        }
+
         this.updateMap(...this.calculateUrlsForTextures(this.props.centre), 'Centre');
         this.updateMap(...this.calculateUrlsForTextures(this.props.piping), 'Trim');
         this.updateMap(...this.calculateUrlsForTextures(this.props.outerBorder), 'Outer');
@@ -475,7 +483,8 @@ const mapStateToProps = (state) => {
         rugPositionGuest: state.rugPositionGuest,
         width: state.width,
         length: state.length,
-        guestUser: state.guestUser
+        guestUser: state.guestUser,
+        showRoomPresetsMode: state.showRoomPresetsMode
     };
 };
 

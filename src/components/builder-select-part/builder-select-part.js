@@ -118,6 +118,7 @@ class BuilderSelectPart extends Component {
             x[i].style.display = "none";
         }
         x[this.slideIndex - 1].style.display = "block";
+        document.getElementsByClassName("room-presets-room-name")[0].innerHTML = x[this.slideIndex - 1].name;
     }
 
     checkRugFinished() {
@@ -247,18 +248,18 @@ class BuilderSelectPart extends Component {
                                     PRESET SCENES
                                 </div>
                                 <div className="room-presets-image-wrapper">
-                                    <img className="room-presets-images" src={roomSet1}/>
-                                    <img className="room-presets-images" src={roomSet2} style={{display: "none"}}/>
-                                    <img className="room-presets-images" src={roomSet3} style={{display: "none"}}/>
-                                    <img className="room-presets-images" src={roomSet4} style={{display: "none"}}/>
-                                    <img className="room-presets-images" src={roomSet5} style={{display: "none"}}/>
+                                    <img className="room-presets-images" src={roomSet1} name="PATIO1"/>
+                                    <img className="room-presets-images" src={roomSet2} style={{display: "none"}} name="PATIO2"/>
+                                    <img className="room-presets-images" src={roomSet3} style={{display: "none"}} name="PATIO3"/>
+                                    <img className="room-presets-images" src={roomSet4} style={{display: "none"}} name="PATIO4"/>
+                                    <img className="room-presets-images" src={roomSet5} style={{display: "none"}} name="PATIO5"/>
                                 </div>
                                 <div className="room-presets-room-select">
                                     <div className="room-presets-back" onClick={() => {
                                         this.changeRoomPreset(-1)
                                     }}/>
                                     <div className="room-presets-room-name">
-                                        THE PATIO
+                                        PATIO1
                                     </div>
                                     <div className="room-presets-forward" onClick={() => {
                                         this.changeRoomPreset(1)

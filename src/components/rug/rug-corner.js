@@ -206,7 +206,7 @@ class RugCorner extends Component {
 
 		this.camera.zoom = 8;
 
-		this.getFloor()
+		this.getFloor();
 
 		await this.objectLoader();
 
@@ -230,7 +230,7 @@ class RugCorner extends Component {
 		animate();
 
 		container.appendChild(this.renderer.domElement);
-		this.renderer.setClearColor(0xffffff)
+		this.renderer.setClearColor(0xffffff);
 		this.renderer.shadowMap.enabled = true;
 		this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 	}
