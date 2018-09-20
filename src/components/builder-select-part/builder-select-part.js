@@ -11,8 +11,6 @@ import LoginModal from '../login-modal/login-modal';
 import RegisterModal from '../register-modal/register-modal';
 import GuestModal from '../guest-modal/guest-modal';
 
-import LinkButton from '../link-elements/link-button';
-
 import CenterMaterial from '../center-material/center-material';
 import InnerBorderMaterial from '../inner-border-material/inner-border-material';
 import OuterBorderMaterial from '../outer-border-material/outer-border';
@@ -47,6 +45,7 @@ import {
     zoomRugOut,
 
     setShowRugCornerMode,
+    setShowRoomPresetsMode,
 
     getRugPrice,
 
@@ -83,6 +82,12 @@ import exitSelection from './images/exit.png';
 import outerBorder from './images/outer-border.svg'
 import piping from './images/piping.svg';
 
+import roomSet1 from './room-presets/room-set-1.jpg';
+import roomSet2 from './room-presets/room-set-2.jpg';
+import roomSet3 from './room-presets/room-set-3.jpg';
+import roomSet4 from './room-presets/room-set-4.jpg';
+import roomSet5 from './room-presets/room-set-5.jpg';
+
 import Rug from '../rug/rug';
 import RugCorner from '../rug/rug-corner';
 
@@ -90,6 +95,30 @@ const ls = require('local-storage');
 
 
 class BuilderSelectPart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {showMobileSpecification: false};
+        this.slideIndex = 1;
+    }
+
+    changeRoomPreset(n) {
+        this.showRoomPreset(this.slideIndex += n);
+    }
+
+    showRoomPreset(n) {
+        let i;
+        const x = document.getElementsByClassName("room-presets-images");
+        if (n > x.length) {
+            this.slideIndex = 1
+        }
+        if (n < 1) {
+            this.slideIndex = x.length
+        }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[this.slideIndex - 1].style.display = "block";
+    }
 
     checkRugFinished() {
         if (this.props.width !== '' &&
@@ -121,13 +150,7 @@ class BuilderSelectPart extends Component {
         return false;
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {showMobileSpecification: false};
-    }
-
-
-    componentDidUpdate(prevProps) {
+    componentDidUpdate() {
         this.props.getRugPrice(
             encodeURIComponent(this.props.centre.name),
             this.props.length,
@@ -192,13 +215,10 @@ class BuilderSelectPart extends Component {
                                      onClick={() => this.props.setShowRugCornerMode(true)}>
                                     <img src={leftControlFirst} alt="leftControlFirst"/>
                                 </div>
-                                {
-                                    false && // not ready
-                                    <div className="left-controls-second">
-                                        <img src={leftControlSecond} alt="leftControlSecond"/>
-                                    </div>
-
-                                }
+                                <div className="left-controls-second"
+                                     onClick={() => this.props.setShowRoomPresetsMode(true)}>
+                                    <img src={leftControlSecond} alt="leftControlSecond"/>
+                                </div>
                                 {
                                     false && // not ready
                                     <div className="left-controls-third">
@@ -207,7 +227,7 @@ class BuilderSelectPart extends Component {
 
                                 }
                             </div>
-                            {this.props.showRugCornerMode &&
+                            {this.props.showRugCornerMode && !this.props.showRoomPresetsMode &&
                             <div className="rug-corner">
                                 <div className="rug-corner-preview">
                                     <RugCorner/>
@@ -221,6 +241,39 @@ class BuilderSelectPart extends Component {
                                 </div>
                             </div>
                             }
+                            {this.props.showRoomPresetsMode && !this.props.showRugCornerMode &&
+                            <div className="room-presets">
+                                <div className="room-presets-header">
+                                    PRESET SCENES
+                                </div>
+                                <div className="room-presets-image-wrapper">
+                                    <img className="room-presets-images" src={roomSet1}/>
+                                    <img className="room-presets-images" src={roomSet2} style={{display: "none"}}/>
+                                    <img className="room-presets-images" src={roomSet3} style={{display: "none"}}/>
+                                    <img className="room-presets-images" src={roomSet4} style={{display: "none"}}/>
+                                    <img className="room-presets-images" src={roomSet5} style={{display: "none"}}/>
+                                </div>
+                                <div className="room-presets-room-select">
+                                    <div className="room-presets-back" onClick={() => {
+                                        this.changeRoomPreset(-1)
+                                    }}/>
+                                    <div className="room-presets-room-name">
+                                        THE PATIO
+                                    </div>
+                                    <div className="room-presets-forward" onClick={() => {
+                                        this.changeRoomPreset(1)
+                                    }}/>
+                                </div>
+                                <div>
+                                    <button className="room-presets-clear-preset-btn"
+                                            onClick={() => this.props.setShowRoomPresetsMode(false)}
+                                    >
+                                        CLEAR PRESET
+                                    </button>
+                                </div>
+                            </div>
+                            }
+                            {!this.props.showRoomPresetsMode &&
                             <div className="zoomin-zoomout">
                                 <div className="twice">
                                     {this.props.currentZoom}X
@@ -232,7 +285,7 @@ class BuilderSelectPart extends Component {
                                     <img src={zoomOut} alt="zoomOut"/>
                                 </div>
                             </div>
-
+                            }
                             {
                                 window.innerWidth < 450 &&
                                 <div className="price-mobile">
@@ -241,8 +294,7 @@ class BuilderSelectPart extends Component {
                                     </div>
                                 </div>
                             }
-
-
+                            {!this.props.showRoomPresetsMode &&
                             <div className="perspective-control">
                                 <div className="above-vertical"
                                      onClick={() => this.props.setRugCurrentView('above-vertical')}>
@@ -260,6 +312,7 @@ class BuilderSelectPart extends Component {
                                     <img src={angled} alt="angled"/>
                                 </div>
                             </div>
+                            }
                         </div>
                         {/*<div className="main-carpet-controls">*/}
                         <div className={window.innerWidth > 450 ? "main-carpet-controls" :
@@ -910,6 +963,7 @@ const mapStateToProps = (state) => {
         currentZoom: state.currentZoom,
 
         showRugCornerMode: state.showRugCornerMode,
+        showRoomPresetsMode: state.showRoomPresetsMode,
 
         rugPrice: state.rugPrice,
 
@@ -951,6 +1005,7 @@ const matchDispatchToProps = (dispatch) => {
             zoomRugOut: zoomRugOut,
 
             setShowRugCornerMode: setShowRugCornerMode,
+            setShowRoomPresetsMode: setShowRoomPresetsMode,
 
             getRugPrice: getRugPrice,
 

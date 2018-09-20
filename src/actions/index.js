@@ -342,6 +342,13 @@ export const setShowRugCornerMode = (mode) => {
     }
 };
 
+export const setShowRoomPresetsMode = (mode) => {
+    return {
+        type: actions.SHOW_ROOM_PRESETS,
+        payload: mode
+    }
+};
+
 export const getRugPrice = (name, length, width, rugType, innerBorder, outerBorder, piping) => {
     return (dispatch) => {
 

@@ -31,9 +31,9 @@ class Rug extends Component {
             1000
         );
 
-        this.camera.position.x = -1;
-        this.camera.position.y = 170;
-        this.camera.position.z = 0;
+        this.camera.position.x = -120;
+        this.camera.position.y = 146.97868270469004;
+        this.camera.position.z = 0.00630814379798243;
 
         this.scene.add(this.camera);
     }
@@ -167,7 +167,7 @@ class Rug extends Component {
     async updateMap(urlTexture, urlBumpMap, urlNormalMap, rugPart) {
         var rugRepeatX = 8;
         var rugRepeatY = 8;
-        var bumpScale = 20;
+        var bumpScale = 1;
         var dispScale = 3;
 
         if (urlTexture === '') {
@@ -310,7 +310,6 @@ class Rug extends Component {
 
 
     saveRug() {
-        debugger
         let base64 = this.renderer.domElement.toDataURL("image/jpeg");
         let blob = this.b64toBlob(base64);
         // let fd = new FormData();

@@ -46,6 +46,7 @@ import setRugCurrentViewReducer from './set-rug-current-view';
 import currentZoomReducer from './zoom-rug-in-out';
 
 import showRugCornerModeReducer from './show-rug-corner';
+import showRoomPresetsModeReducer from './show-room-presets';
 
 import rugPriceReducer from './get-rug-price';
 
@@ -110,6 +111,7 @@ const rootReducer = combineReducers({
     currentZoom: currentZoomReducer,
 
     showRugCornerMode: showRugCornerModeReducer,
+    showRoomPresetsMode: showRoomPresetsModeReducer,
 
     rugPrice: rugPriceReducer,
 
