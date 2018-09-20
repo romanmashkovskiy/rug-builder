@@ -726,7 +726,7 @@
     border: 2px solid #F9F9F9;
     background-color: #FFFFFF;
     width: 33.3%;
-    height: 47%;
+    height: calc((100vh - 53px - 60px)/4);
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -739,7 +739,7 @@
 .centre {
     text-align: center;
     position: relative;
-    width: 130px;
+    /*width: 130px;*/
 }
 
 .centre-icon {
@@ -908,8 +908,12 @@
 
 @media screen and (max-width: 450px) {
 
+    .container-builder {
+        height: calc(100vh - 60px);
+    }
+
     .main-builder {
-        min-height: calc(100% - 53px);
+        min-height: calc(100vh - 53px - 60px);
     }
 
     .header-builder {
@@ -925,7 +929,7 @@
     }
 
     .main-builder-carpet {
-        height: calc((100% - 53px) / 2);
+        height: calc((100vh - 53px - 60px) / 2);
     }
 
     .zoomin-zoomout {
@@ -980,7 +984,6 @@
         top: 0;
         left: 0;
         width: 100%;
-        /*height: calc(100% - 60px);*/
         z-index: 100;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -1055,14 +1058,22 @@
     }
 
     .main-area-builder {
-        height: 50%;
+        height: calc((100vh - 53px - 60px)/2);
         -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+        align-content: flex-start;
     }
 
     .main-area-builder-centre {
         width: 33.3%;
-        height: 47%;
+        height: calc((100vh - 53px - 60px)/4);
+        padding-top: 10px;
+    }
+
+    .centre-icon {
+        max-width: 100%;
+        width: 41px;
+        height: 53px;
     }
 
     .main-area-builder-view-selections {
