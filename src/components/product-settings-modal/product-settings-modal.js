@@ -33,9 +33,8 @@ class StartModal extends Component {
         this.setState({length: val});
     }
 
-    setBorderType(e) {
-        const val = e.target.value;
-        this.setState({borderType: val});
+    setBorderType(borderType) {
+        this.setState({borderType: borderType});
     }
 
     highlightRadioButton(type) {
@@ -71,23 +70,23 @@ class StartModal extends Component {
                     </div>
 
                     <div className="border-selector">
-                        <div className={this.highlightRadioButton('SINGLE-BORDER')}>
+                        <div className={this.highlightRadioButton('SINGLE-BORDER')} onClick={() => this.setBorderType('SINGLE-BORDER')}>
                             <label>
-                                <input type="radio" name="border" value="SINGLE-BORDER" onChange={this.setBorderType}/>
+                                <input type="radio" name="border"/>
                                 <img className="border-type-picture" src={singleBorderIcon} alt="singleBorderIcon"/>
                             </label>
                             <h3>Single Border</h3>
                         </div>
-                        <div className={this.highlightRadioButton('BORDER-PIPING')}>
+                        <div className={this.highlightRadioButton('BORDER-PIPING')} onClick={() => this.setBorderType('BORDER-PIPING')}>
                             <label>
-                                <input type="radio" name="border" value="BORDER-PIPING" onChange={this.setBorderType}/>
+                                <input type="radio" name="border" />
                                 <img className="border-type-picture" src={singlePipingIcon} alt="singlePipingIcon"/>
                             </label>
                             <h3>Border & Piping</h3>
                         </div>
-                        <div className={this.highlightRadioButton('DOUBLE-BORDER')}>
+                        <div className={this.highlightRadioButton('DOUBLE-BORDER')} onClick={() => this.setBorderType('DOUBLE-BORDER')}>
                             <label>
-                                <input type="radio" name="border" value="DOUBLE-BORDER" onChange={this.setBorderType} />
+                                <input type="radio" name="border" />
                                 <img className="border-type-picture" src={doubleBorderIcon} alt="doubleBorderIcon"/>
                             </label>
                             <h3>Double Border</h3>

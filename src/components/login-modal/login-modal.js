@@ -105,9 +105,10 @@ class LoginModal extends Component {
                                         } else {
                                             this.props.setRugPosition(true);
                                         }
-                                    }).catch(error => {
-                                    console.log(error);
-                                })
+                                    })
+                                    .catch(error => {
+                                        console.log(error);
+                                    })
                             }
                         }}
                     >

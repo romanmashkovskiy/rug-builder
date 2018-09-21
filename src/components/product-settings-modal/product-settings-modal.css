@@ -134,6 +134,7 @@ body {
     background-color: #FFFFFF;
     margin-bottom: 29px;
     padding-top: 46px;
+    cursor: pointer;
 }
 
 .picture-wrapper-highlighted {
@@ -144,6 +145,7 @@ body {
     background-color: #F9F9F9;
     margin-bottom: 29px;
     padding-top: 46px;
+    cursor: pointer;
 }
 
 h3 {
