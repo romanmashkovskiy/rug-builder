@@ -635,6 +635,36 @@ export const guestCheckout = (
 };
 
 
+// export const orderSamples = (
+//     user_id,
+//     product_id,
+//     first_name,
+//     last_name,
+//     email,
+//     address_1,
+//     address_2,
+//     postcode,
+//     city
+// ) => {
+//     return () => {
+//         return OrderSamplesApi.OrderSamples(
+//             user_id,
+//             product_id,
+//             first_name,
+//             last_name,
+//             email,
+//             address_1,
+//             address_2,
+//             postcode,
+//             city
+//         ).then(response => {
+//             console.log(response.status);
+//         }).catch(error => {
+//             console.log(error);
+//         });
+//     }
+// };
+
 export const orderSamples = (
     user_id,
     product_id,
@@ -657,13 +687,18 @@ export const orderSamples = (
             address_2,
             postcode,
             city
-        ).then(response => {
-            console.log(response);
-        }).catch(error => {
-            console.log(error);
-        });
+        )
     }
 };
+
+export const setSamplesOrderedSuccess = (isSuccess) => {
+    return {
+        type: actions.SAMPLES_ORDERED_SUCCESS,
+        payload: isSuccess
+    }
+};
+
+
 
 export const clearCenterMaterialFirstChildrenMaterials = () => {
     return {

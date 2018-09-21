@@ -24,13 +24,24 @@ export default class OrderSamplesApi {
         form.append("city", city);
         form.append("client_token", '2J2fltPtbRZfN5DkPVxEEp2B');
 
-        return axios({
-            method: 'POST',
-            url: process.env.REACT_APP_ORDER_SAMPLES,
-            data: form
-        })
+        // return axios({
+        //     method: 'POST',
+        //     url: process.env.REACT_APP_ORDER_SAMPLES,
+        //     data: form
+        // })
+        //     .then(response => {
+        //         return response.data;
+        //     })
+
+        return axios({method: 'POST', data: form, url: process.env.REACT_APP_ORDER_SAMPLES})
             .then(response => {
-                return response.data;
+                return new Promise((resolve, reject) => {
+                    if (response.data.status === 'success') {
+                        resolve(response.data);
+                    } else {
+                        reject('order samples failed');
+                    }
+                })
             })
     }
 }

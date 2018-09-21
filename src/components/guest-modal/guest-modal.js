@@ -7,7 +7,8 @@ import {
     setShowLoginRegisterMode,
     setRugPositionGuest,
     orderSamples,
-    setGuestUser
+    setGuestUser,
+    setSamplesOrderedSuccess
 } from "../../actions";
 
 import './guest-modal.css';
@@ -89,31 +90,40 @@ class GuestModal extends Component {
     }
 
     async onFinish() {
-            await this.props.setGuestUser(
+        await this.props.setGuestUser(
+            this.state.firstName,
+            this.state.lastName,
+            this.state.email,
+            this.state.addressLine1,
+            this.state.addressLine2,
+            this.state.city,
+            this.state.postcode
+        );
+
+        if (this.state.orderFreeSwatchSamples) {
+            this.props.orderSamples(
+                undefined,
+                this.props.centre.id,
                 this.state.firstName,
                 this.state.lastName,
                 this.state.email,
                 this.state.addressLine1,
                 this.state.addressLine2,
-                this.state.city,
-                this.state.postcode
-            );
-
-            if (this.state.orderFreeSwatchSamples) {
-                this.props.orderSamples(
-                    undefined,
-                    this.props.centre.id,
-                    this.state.firstName,
-                    this.state.lastName,
-                    this.state.email,
-                    this.state.addressLine1,
-                    this.state.addressLine2,
-                    undefined,
-                    this.state.city
-                );
-            }
-
+                undefined,
+                this.state.city
+            )
+                .then(result => {
+                    console.log(result);
+                    this.props.setSamplesOrderedSuccess(true);
+                    this.props.setRugPositionGuest(true);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+            ;
+        } else {
             this.props.setRugPositionGuest(true);
+        }
     }
 
     render() {
@@ -193,7 +203,7 @@ class GuestModal extends Component {
                     }}>
                         Order Free Swatch Samples?
                     </div>
-                    <button className="register-button" onClick= {this.onFinish}>
+                    <button className="register-button" onClick={this.onFinish}>
                         FINISH BUILDING
                     </button>
                     <div className="register-checkbox-wrapper">
@@ -238,7 +248,8 @@ const matchDispatchToProps = (dispatch) => {
             setShowGuestMode: setShowGuestMode,
             setRugPositionGuest: setRugPositionGuest,
             orderSamples: orderSamples,
-            setGuestUser: setGuestUser
+            setGuestUser: setGuestUser,
+            setSamplesOrderedSuccess: setSamplesOrderedSuccess
         },
         dispatch)
 };

@@ -59,6 +59,8 @@ import setRugPositionGuest from './set-rug-current-position-guest';
 
 import setGuestUser from './set-guest-user';
 
+import samplesOrderedSuccessReducer from './samples-ordered-success';
+
 
 const rootReducer = combineReducers({
     width: widthReducer,
@@ -120,7 +122,9 @@ const rootReducer = combineReducers({
     showRegisterModal: setShowRegisterModalReducer,
     showGuestModal: setShowGuestModalReducer,
 
-    guestUser: setGuestUser
+    guestUser: setGuestUser,
+
+    samplesOrderedSuccess: samplesOrderedSuccessReducer
 });
 
 export default rootReducer;

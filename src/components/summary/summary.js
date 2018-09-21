@@ -3,7 +3,8 @@ import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 
 import {
-    orderSamples
+    orderSamples,
+    setSamplesOrderedSuccess
 } from "../../actions";
 
 import './summary.css';
@@ -36,7 +37,17 @@ class Summary extends Component {
 
     onOrderSwatches() {
         if (ls('curUser')) {
-            this.props.orderSamples(ls('curUser').user_id, this.props.centre.id)
+            this.props.orderSamples(
+                ls('curUser').user_id,
+                this.props.centre.id
+            )
+                .then(result => {
+                    console.log(result);
+                    this.props.setSamplesOrderedSuccess(true);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         } else {
             this.props.orderSamples(
                 undefined,
@@ -48,7 +59,14 @@ class Summary extends Component {
                 this.props.guestUser.addressLine2,
                 undefined,
                 this.props.guestUser.city
-            );
+            )
+                .then(result => {
+                    console.log(result);
+                    this.props.setSamplesOrderedSuccess(true);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
         }
 
     }
@@ -186,9 +204,13 @@ class Summary extends Component {
                             </div>
                         </div>
                         <div className="summary-button-block summary-button-block__mobile">
-                            <button className="summary-button-order-swatches" onClick={this.onOrderSwatches}>
-                                ORDER SWATCHES
-                            </button>
+                            {
+                                !this.props.samplesOrderedSuccess &&
+                                <button className="summary-button-order-swatches"
+                                        onClick={this.onOrderSwatches}>
+                                    ORDER SWATCHES
+                                </button>
+                            }
                             <button className="summary-button-print-details">
                                 PRINT DETAILS
                             </button>
@@ -255,13 +277,15 @@ const mapStateToProps = (state) => {
 
         rugPrice: state.rugPrice,
 
-        guestUser: state.guestUser
+        guestUser: state.guestUser,
+        samplesOrderedSuccess: state.samplesOrderedSuccess
     };
 };
 
 const matchDispatchToProps = (dispatch) => {
     return bindActionCreators({
-            orderSamples: orderSamples
+            orderSamples: orderSamples,
+            setSamplesOrderedSuccess: setSamplesOrderedSuccess
         },
         dispatch)
 };

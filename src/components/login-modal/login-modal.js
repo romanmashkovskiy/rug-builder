@@ -9,7 +9,8 @@ import {
     loginUser,
     forgotPassword,
     saveRug,
-    orderSamples
+    orderSamples,
+    setSamplesOrderedSuccess
 } from "../../actions";
 
 import './login-modal.css';
@@ -82,13 +83,29 @@ class LoginModal extends Component {
                         className="login-button login-button-A5"
                         onClick={() => {
                             if (this.state.email !== '' && this.state.password !== '') {
-                                this.props.loginUser(this.state.email, this.state.password).then((result) => {
-                                    ls('curUser', result);
-                                    if (this.state.orderFreeSwatchSamples) {
-                                        this.props.orderSamples(ls('curUser').user_id, this.props.centre.id);
-                                    }
-                                    this.props.setRugPosition(true);
-                                }).catch(error => {
+                                this.props.loginUser(
+                                    this.state.email,
+                                    this.state.password
+                                )
+                                    .then((result) => {
+                                        ls('curUser', result);
+                                        if (this.state.orderFreeSwatchSamples) {
+                                            this.props.orderSamples(
+                                                ls('curUser').user_id,
+                                                this.props.centre.id
+                                            )
+                                                .then(result => {
+                                                    console.log(result);
+                                                    this.props.setSamplesOrderedSuccess(true);
+                                                    this.props.setRugPosition(true);
+                                                })
+                                                .catch(error => {
+                                                    console.log(error);
+                                                });
+                                        } else {
+                                            this.props.setRugPosition(true);
+                                        }
+                                    }).catch(error => {
                                     console.log(error);
                                 })
                             }
@@ -130,7 +147,8 @@ const matchDispatchToProps = (dispatch) => {
             loginUser: loginUser,
             forgotPassword: forgotPassword,
             saveRug: saveRug,
-            orderSamples: orderSamples
+            orderSamples: orderSamples,
+            setSamplesOrderedSuccess: setSamplesOrderedSuccess
         },
         dispatch)
 };

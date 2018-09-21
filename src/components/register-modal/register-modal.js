@@ -9,7 +9,8 @@ import {
     registerUser,
     saveRug,
     loginUser,
-    orderSamples
+    orderSamples,
+    setSamplesOrderedSuccess
 } from "../../actions";
 
 import './register-modal.css';
@@ -226,9 +227,21 @@ class RegisterModal extends Component {
                                     if (result) {
                                         ls('curUser', result);
                                         if (this.state.orderFreeSwatchSamples) {
-                                            this.props.orderSamples(ls('curUser').user_id, this.props.centre.id);
+                                            this.props.orderSamples(
+                                                ls('curUser').user_id,
+                                                this.props.centre.id
+                                            )
+                                                .then(result => {
+                                                    console.log(result);
+                                                    this.props.setSamplesOrderedSuccess(true);
+                                                    this.props.setRugPosition(true);
+                                                })
+                                                .catch(error => {
+                                                    console.log(error);
+                                                });
+                                        } else {
+                                            this.props.setRugPosition(true);
                                         }
-                                        this.props.setRugPosition(true)
                                     }
                                 })
                                     .catch(error => {
@@ -283,7 +296,8 @@ const matchDispatchToProps = (dispatch) => {
             registerUser: registerUser,
             saveRug: saveRug,
             loginUser: loginUser,
-            orderSamples: orderSamples
+            orderSamples: orderSamples,
+            setSamplesOrderedSuccess: setSamplesOrderedSuccess
         },
         dispatch)
 };
