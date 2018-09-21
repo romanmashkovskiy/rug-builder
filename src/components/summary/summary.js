@@ -74,9 +74,9 @@ class Summary extends Component {
     render() {
         return (
             <div className="container-builder-summary">
-                <div className="header-builder">
-                    <img src={header} alt="header"/>
-                </div>
+                {/*<div className="header-builder">*/}
+                    {/*<img src={header} alt="header"/>*/}
+                {/*</div>*/}
                 <div className="summary-block-container summary-block-container__mobile">
                     <div className="summary-block-item summary-block-item__mobile-data_model">
                         <RugSummary/>
@@ -256,9 +256,9 @@ class Summary extends Component {
                         <img src={findRetailer} alt="findRetailer"/>
                     </div>
                 </div>
-                <div className="footer-builder">
-                    <img src={footer} alt="footer"/>
-                </div>
+                {/*<div className="footer-builder">*/}
+                    {/*<img src={footer} alt="footer"/>*/}
+                {/*</div>*/}
             </div>
         )
     }
