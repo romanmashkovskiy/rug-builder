@@ -82,6 +82,15 @@ class Rug extends Component {
         }
     }
 
+    async getRoom() {
+        try {
+            this.scene.background = await loadWithPromise('room-set-1.jpg', textureLoader);
+        } catch (e) {
+            console.log(e);
+        }
+
+    }
+
     async getFloor() {
         var floorRepeatX = 8;
         var floorRepeatY = 8;
@@ -141,8 +150,8 @@ class Rug extends Component {
             bumpScale: 0.3,
         });
 
-        var wallX = 200
-        var wallY = 430
+        var wallX = 200;
+        var wallY = 430;
 
         var geometry = new THREE.BoxGeometry(wallX * 2, wallY, 1);
         var wall = new THREE.Mesh(geometry, paintM);
@@ -312,8 +321,6 @@ class Rug extends Component {
     saveRug() {
         let base64 = this.renderer.domElement.toDataURL("image/jpeg");
         let blob = this.b64toBlob(base64);
-        // let fd = new FormData();
-        // fd.append("image", blob);
 
         this.props.saveRug(
             this.props.border,
@@ -404,7 +411,6 @@ class Rug extends Component {
 
         this.controls.enablePan = false;
 
-        // this.controls.enableZoom = false;
         this.controls.minDistance = 50;
         this.controls.maxDistance = 120;
         this.controls.minPolarAngle = 0;
@@ -414,9 +420,11 @@ class Rug extends Component {
 
         this.objectLoader();
 
-        this.getFloor()
+        this.getFloor();
 
-        this.getWall()
+        this.getWall();
+
+        // this.getRoom();
 
         this.renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true});
 
@@ -436,7 +444,7 @@ class Rug extends Component {
         animate();
 
         container.appendChild(this.renderer.domElement);
-        this.renderer.setClearColor(0xffffff)
+        this.renderer.setClearColor(0xffffff);
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     }
