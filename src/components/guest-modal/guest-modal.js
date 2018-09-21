@@ -119,6 +119,7 @@ class GuestModal extends Component {
                 })
                 .catch(error => {
                     console.log(error);
+                    this.props.setRugPositionGuest(true);
                 })
             ;
         } else {

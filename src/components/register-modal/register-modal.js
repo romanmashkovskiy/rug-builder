@@ -217,33 +217,34 @@ class RegisterModal extends Component {
                                     this.state.city,
                                     this.state.isAgree,
                                     this.state.isSubscribed
-                                ).then(() => {
-                                    return this.props.loginUser(
-                                        this.state.email,
-                                        this.state.password
-                                    )
+                                )
+                                    .then(() => {
+                                        return this.props.loginUser(
+                                            this.state.email,
+                                            this.state.password
+                                        )
 
-                                }).then((result) => {
-                                    if (result) {
-                                        ls('curUser', result);
-                                        if (this.state.orderFreeSwatchSamples) {
-                                            this.props.orderSamples(
-                                                ls('curUser').user_id,
-                                                this.props.centre.id
-                                            )
-                                                .then(result => {
-                                                    console.log(result);
-                                                    this.props.setSamplesOrderedSuccess(true);
-                                                    this.props.setRugPosition(true);
-                                                })
-                                                .catch(error => {
-                                                    console.log(error);
-                                                });
-                                        } else {
+                                    })
+                                    .then((result) => {
+                                        if (result) {
+                                            ls('curUser', result);
+                                            if (this.state.orderFreeSwatchSamples) {
+                                                return this.props.orderSamples(
+                                                    ls('curUser').user_id,
+                                                    this.props.centre.id
+                                                )
+                                            } else {
+                                                this.props.setRugPosition(true);
+                                            }
+                                        }
+                                    })
+                                    .then(result => {
+                                        if (result) {
+                                            console.log(result);
+                                            this.props.setSamplesOrderedSuccess(true);
                                             this.props.setRugPosition(true);
                                         }
-                                    }
-                                })
+                                    })
                                     .catch(error => {
                                         console.log(error);
                                     })
