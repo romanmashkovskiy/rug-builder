@@ -1,3 +1,7 @@
+.container-builder-summary {
+    width: 100%;
+}
+
 .summary-block-container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -221,7 +225,7 @@
     display: flex;
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .summary-button-order-swatches {
@@ -234,6 +238,7 @@
     letter-spacing: 1.73px;
     line-height: 31px;
     text-align: center;
+    margin-right: 31.5px;
 }
 
 .summary-button-print-details {
