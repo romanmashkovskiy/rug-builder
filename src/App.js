@@ -13,8 +13,8 @@ class App extends Component {
             <Router basename={'/rugbuilder'}>
                 <Switch>
                     <Route exact path="/" component={StartModal}/>
-                    <Route exact path="/builder/" component={BuilderSelectPart}/>
-                    <Route exact path="/summary/" component={Summary}/>
+                    <Route exact path="/builder" component={BuilderSelectPart}/>
+                    <Route exact path="/summary" component={Summary}/>
                 </Switch>
             </Router>
         );
