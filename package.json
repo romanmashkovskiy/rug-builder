@@ -1,6 +1,7 @@
 {
   "name": "rug-builder",
   "version": "0.1.0",
+  "homepage": "http://kijodev.com/rugbuilder/",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",
