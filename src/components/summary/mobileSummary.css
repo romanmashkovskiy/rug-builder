@@ -87,6 +87,60 @@
     .summary-button-order-swatches {
         margin-right: 0;
     }
+
+    .preview-your-design-in-ar {
+        margin-top: 50px;
+        font-size: 25px;
+    }
+
+    .click-below-to-download {
+        width: 80%;
+        font-size: 13px;
+    }
+
+    .download-on-the-app-store {
+        width: 180px;
+    }
+
+    .your-rugs-journey-so-far {
+        font-size: 25px;
+        margin-top: 10px;
+        height: auto;
+    }
+
+    .order-details-has-been-sent {
+        width: 90%;
+        font-size: 13px;
+        line-height: 20px;
+        margin-bottom: 20px;
+        height: auto;
+    }
+
+    .find-retailer-list {
+        width: 100%;
+    }
+
+    .find-retailer-line {
+        width: 100%;
+    }
+
+    .find-retailer-list-item {
+        font-size: 13px;
+        line-height: 20px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .find-retailer-link {
+        margin-top: 36px;
+    }
+
+    .reorder {
+        order: -1;
+    }
+
+
+
 }
 
 @media screen and (min-width: 451px) {

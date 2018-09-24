@@ -84,7 +84,7 @@ class Rug extends Component {
 
     async getRoom() {
         try {
-            this.scene.background = await loadWithPromise('room-set-1.jpg', textureLoader);
+            this.scene.background = await loadWithPromise(this.props.currentRoomPreset, textureLoader);
         } catch (e) {
             console.log(e);
         }
@@ -461,6 +461,10 @@ class Rug extends Component {
             this.controls.enabled = true;
         }
 
+        if (prevProps.currentRoomPreset !== this.props.currentRoomPreset) {
+            this.getRoom();
+        }
+
         this.updateMap(...this.calculateUrlsForTextures(this.props.centre), 'Centre');
         this.updateMap(...this.calculateUrlsForTextures(this.props.piping), 'Trim');
         this.updateMap(...this.calculateUrlsForTextures(this.props.outerBorder), 'Outer');
@@ -492,7 +496,8 @@ const mapStateToProps = (state) => {
         width: state.width,
         length: state.length,
         guestUser: state.guestUser,
-        showRoomPresetsMode: state.showRoomPresetsMode
+        showRoomPresetsMode: state.showRoomPresetsMode,
+        currentRoomPreset: state.currentRoomPreset
     };
 };
 

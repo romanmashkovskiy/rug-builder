@@ -634,37 +634,6 @@ export const guestCheckout = (
     }
 };
 
-
-// export const orderSamples = (
-//     user_id,
-//     product_id,
-//     first_name,
-//     last_name,
-//     email,
-//     address_1,
-//     address_2,
-//     postcode,
-//     city
-// ) => {
-//     return () => {
-//         return OrderSamplesApi.OrderSamples(
-//             user_id,
-//             product_id,
-//             first_name,
-//             last_name,
-//             email,
-//             address_1,
-//             address_2,
-//             postcode,
-//             city
-//         ).then(response => {
-//             console.log(response.status);
-//         }).catch(error => {
-//             console.log(error);
-//         });
-//     }
-// };
-
 export const orderSamples = (
     user_id,
     product_id,
@@ -759,6 +728,12 @@ export const setGuestUser = (
     }
 };
 
+export const setCurrentRoomPreset = (room) => {
+    return {
+        type: actions.SET_CURRENT_ROOM_PRESET,
+        payload: room
+    }
+};
 
 
 

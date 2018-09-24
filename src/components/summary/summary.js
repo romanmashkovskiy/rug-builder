@@ -17,12 +17,14 @@ import room from './images/room.png';
 import map from './images/map.png';
 import findRetailer from './images/find-retailer.png';
 import logo from './images/logo.png';
+import downloadAppStore from './images/Download_on_the_App_Store_Badge.svg';
 
 import twitter from './images/twitter-logo-silhouette.svg';
 import facebook from './images/facebook.svg';
 import pinterest from './images/pinterest-logo.svg';
 import chain from './images/link-symbol.svg';
 import mail from './images/envelope.svg';
+
 
 import RugSummary from '../rug/rug-summary';
 
@@ -74,9 +76,9 @@ class Summary extends Component {
     render() {
         return (
             <div className="container-builder-summary">
-                {/*<div className="header-builder">*/}
-                    {/*<img src={header} alt="header"/>*/}
-                {/*</div>*/}
+                <div className="header-builder">
+                    <img src={header} alt="header"/>
+                </div>
                 <div className="summary-block-container summary-block-container__mobile">
                     <div className="summary-block-item summary-block-item__mobile-data_model">
                         <RugSummary/>
@@ -242,9 +244,22 @@ class Summary extends Component {
 
                 <div className="summary-block-container summary-block-container__mobile">
                     <div className="summary-block-item">
-                        <img src={appStore} alt="appStore"/>
+                        <div className="preview-your-design-in-ar">
+                            <div>
+                                Preview Your Design in AR
+                            </div>
+                        </div>
+                        <div className="click-below-to-download">
+                            <div>
+                                Click below to download our augmented reality preview app to see your rug in your own
+                                home.
+                            </div>
+                        </div>
+                        <a className="download-on-the-app-store" href="" target="_blank">
+                            <img src={downloadAppStore} alt="downloadAppStore"/>
+                        </a>
                     </div>
-                    <div className="summary-block-item">
+                    <div className="summary-block-item reorder">
                         <img src={room} alt="room"/>
                     </div>
                 </div>
@@ -253,12 +268,37 @@ class Summary extends Component {
                         <img src={map} alt="map"/>
                     </div>
                     <div className="summary-block-item">
-                        <img src={findRetailer} alt="findRetailer"/>
+                        {/*<img src={findRetailer} alt="findRetailer"/>*/}
+                        <div className="your-rugs-journey-so-far">
+                            Your Rug’s Journey So Far
+                        </div>
+                        <div className="order-details-has-been-sent">
+                            Your order details has been sent to your local retailer, you will recieve a confirmation
+                            email shortly.
+                        </div>
+                        <div className="find-retailer-list">
+                            <div className="find-retailer-line"/>
+                            <div className="find-retailer-list-item">
+                                1. Your rug creation has been saved to your account
+                            </div>
+                            <div className="find-retailer-line"/>
+                            <div className="find-retailer-list-item">
+                                2. Your rug design has been sent to your nearest retailer
+                            </div>
+                            <div className="find-retailer-line"/>
+                            <div className="find-retailer-list-item">
+                                3. You will receive an Email shortly
+                            </div>
+                            <div className="find-retailer-line"/>
+                        </div>
+                        <a className="find-retailer-link" href="https://www.crucial-trading.com/find-retailer" target="_blank">
+                            FIND A RETAILER
+                        </a>
                     </div>
                 </div>
-                {/*<div className="footer-builder">*/}
-                    {/*<img src={footer} alt="footer"/>*/}
-                {/*</div>*/}
+                <div className="footer-builder">
+                    <img src={footer} alt="footer"/>
+                </div>
             </div>
         )
     }

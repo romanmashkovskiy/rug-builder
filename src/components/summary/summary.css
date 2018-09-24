@@ -253,3 +253,97 @@
     line-height: 31px;
     text-align: center;
 }
+
+.preview-your-design-in-ar {
+    height: 82px;
+    /*width: 433px;*/
+    color: #353535;
+    font-family: Playfair Display, sans-serif;
+    font-size: 32px;
+    line-height: 44px;
+    text-align: center;
+    margin-top: 179px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.click-below-to-download {
+    height: 70px;
+    width: 50%;
+    color: #181818;
+    font-family: Open Sans, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 35px;
+    text-align: center;
+}
+
+.download-on-the-app-store {
+    height: 120px;
+    width: 233px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 22px;
+}
+
+.your-rugs-journey-so-far {
+    height: 82px;
+    /*width: 433px;*/
+    color: #353535;
+    font-family: Playfair Display, sans-serif;
+    font-size: 32px;
+    line-height: 44px;
+    text-align: center;
+    margin-top: 36px;
+}
+
+.order-details-has-been-sent {
+    height: 70px;
+    width: 50%;
+    color: #181818;
+    font-family: Open Sans, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 35px;
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.find-retailer-line {
+    box-sizing: border-box;
+    height: 1px;
+    width: 529px;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.find-retailer-list-item {
+    /*height: 35px;*/
+    /*width: 460px;*/
+    color: #181818;
+    font-family: Open Sans, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 35px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.find-retailer-link {
+    height: 55.08px;
+    width: 252.25px;
+    border: 1px solid #3B3B3B;
+    background-color: #2D2D2D;
+    color: #FFFFFF;
+    font-family: Montserrat, sans-serif;
+    font-size: 13px;
+    letter-spacing: 1.73px;
+    line-height: 31px;
+    margin-top: 46px;
+    text-decoration:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

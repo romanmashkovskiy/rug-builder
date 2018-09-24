@@ -56,7 +56,9 @@ import {
     clearInnerBorderMaterialFirstChildrenMaterials,
     clearInnerBorderMaterialSecondChildrenMaterials,
     clearOuterBorderMaterialFirstChildrenMaterials,
-    clearOuterBorderMaterialSecondChildrenMaterials
+    clearOuterBorderMaterialSecondChildrenMaterials,
+
+    setCurrentRoomPreset
 } from "../../actions";
 
 import header from './images/header.png';
@@ -81,6 +83,7 @@ import done from './images/done.png';
 import exitSelection from './images/exit.png';
 import outerBorder from './images/outer-border.svg'
 import piping from './images/piping.svg';
+
 
 import roomSet1 from './room-presets/room-set-1.jpg';
 import roomSet2 from './room-presets/room-set-2.jpg';
@@ -118,6 +121,9 @@ class BuilderSelectPart extends Component {
             x[i].style.display = "none";
         }
         x[this.slideIndex - 1].style.display = "block";
+        console.log(x[this.slideIndex - 1].src);
+        this.props.setCurrentRoomPreset(x[this.slideIndex - 1].src);
+
         document.getElementsByClassName("room-presets-room-name")[0].innerHTML = x[this.slideIndex - 1].name;
     }
 
@@ -188,10 +194,10 @@ class BuilderSelectPart extends Component {
             <div className="container-builder">
                 {(this.props.editDimensionsMode || this.props.editBorderMode) &&
                 <StartModal/>}
-                {/*<div className="header-builder header-builder-A">*/}
-                    {/*/!*<img src={header} alt="header"/>*!/*/}
-                    {/*<img/>*/}
-                {/*</div>*/}
+                <div className="header-builder header-builder-A">
+                    {/*<img src={header} alt="header"/>*/}
+                    <img/>
+                </div>
                 <div className="main-builder">
                     {this.props.showLoginRegisterModal &&
                     <LoginRegisterModal/>
@@ -217,7 +223,10 @@ class BuilderSelectPart extends Component {
                                     <img src={leftControlFirst} alt="leftControlFirst"/>
                                 </div>
                                 <div className="left-controls-second"
-                                     onClick={() => this.props.setShowRoomPresetsMode(true)}>
+                                     onClick={() => {
+                                         this.props.setShowRoomPresetsMode(true);
+                                         this.props.setCurrentRoomPreset(roomSet1);
+                                     }}>
                                     <img src={leftControlSecond} alt="leftControlSecond"/>
                                 </div>
                                 {
@@ -248,7 +257,8 @@ class BuilderSelectPart extends Component {
                                     PRESET SCENES
                                 </div>
                                 <div className="room-presets-image-wrapper">
-                                    <img className="room-presets-images" src={roomSet1} name="PATIO1"/>
+                                    <img className="room-presets-images" src={roomSet1}
+                                         name="PATIO1"/>
                                     <img className="room-presets-images" src={roomSet2} style={{display: "none"}}
                                          name="PATIO2"/>
                                     <img className="room-presets-images" src={roomSet3} style={{display: "none"}}
@@ -271,7 +281,10 @@ class BuilderSelectPart extends Component {
                                 </div>
                                 <div>
                                     <button className="room-presets-clear-preset-btn"
-                                            onClick={() => this.props.setShowRoomPresetsMode(false)}
+                                            onClick={() => {
+                                                this.props.setShowRoomPresetsMode(false);
+                                                this.props.setCurrentRoomPreset('');
+                                            }}
                                     >
                                         CLEAR PRESET
                                     </button>
@@ -319,7 +332,7 @@ class BuilderSelectPart extends Component {
                             </div>
                             }
                         </div>
-                        {/*<div className="main-carpet-controls">*/}
+
                         <div className={window.innerWidth > 450 ? "main-carpet-controls" :
                             (this.state.showMobileSpecification ? "main-carpet-controls visible" : "main-carpet-controls")
                         }>
@@ -928,9 +941,9 @@ class BuilderSelectPart extends Component {
                         </div>
                     </div>
                 </div>
-                {/*<div className="footer-builder">*/}
-                    {/*<img src={footer} alt="footer"/>*/}
-                {/*</div>*/}
+                <div className="footer-builder">
+                    <img src={footer} alt="footer"/>
+                </div>
 
 
             </div>
@@ -1023,7 +1036,9 @@ const matchDispatchToProps = (dispatch) => {
             clearInnerBorderMaterialFirstChildrenMaterials: clearInnerBorderMaterialFirstChildrenMaterials,
             clearInnerBorderMaterialSecondChildrenMaterials: clearInnerBorderMaterialSecondChildrenMaterials,
             clearOuterBorderMaterialFirstChildrenMaterials: clearOuterBorderMaterialFirstChildrenMaterials,
-            clearOuterBorderMaterialSecondChildrenMaterials: clearOuterBorderMaterialSecondChildrenMaterials
+            clearOuterBorderMaterialSecondChildrenMaterials: clearOuterBorderMaterialSecondChildrenMaterials,
+
+            setCurrentRoomPreset: setCurrentRoomPreset
         },
         dispatch)
 };

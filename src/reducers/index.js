@@ -61,6 +61,8 @@ import setGuestUser from './set-guest-user';
 
 import samplesOrderedSuccessReducer from './samples-ordered-success';
 
+import setCurrentRoomPresetReducer from './set-current-room-preset';
+
 
 const rootReducer = combineReducers({
     width: widthReducer,
@@ -124,7 +126,9 @@ const rootReducer = combineReducers({
 
     guestUser: setGuestUser,
 
-    samplesOrderedSuccess: samplesOrderedSuccessReducer
+    samplesOrderedSuccess: samplesOrderedSuccessReducer,
+
+    currentRoomPreset: setCurrentRoomPresetReducer
 });
 
 export default rootReducer;
