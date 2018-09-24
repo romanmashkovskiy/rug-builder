@@ -223,8 +223,10 @@ class BuilderSelectPart extends Component {
                                 </div>
                                 <div className="left-controls-second"
                                      onClick={() => {
-                                         this.props.setShowRoomPresetsMode(true);
-                                         this.props.setCurrentRoomPreset(roomSet1);
+                                         this.props.setShowRoomPresetsMode(!this.props.showRoomPresetsMode);
+                                         if (this.props.currentRoomPreset === '') {
+                                             this.props.setCurrentRoomPreset(roomSet1);
+                                         }
                                      }}>
                                     <img src={leftControlSecond} alt="leftControlSecond"/>
                                 </div>
@@ -290,7 +292,7 @@ class BuilderSelectPart extends Component {
                                 </div>
                             </div>
                             }
-                            {!this.props.showRoomPresetsMode &&
+                            {!this.props.showRoomPresetsMode && this.props.currentRoomPreset === '' &&
                             <div className="zoomin-zoomout">
                                 <div className="twice">
                                     {this.props.currentZoom}X
@@ -311,7 +313,7 @@ class BuilderSelectPart extends Component {
                                     </div>
                                 </div>
                             }
-                            {!this.props.showRoomPresetsMode &&
+                            {!this.props.showRoomPresetsMode && this.props.currentRoomPreset === '' &&
                             <div className="perspective-control">
                                 <div className="above-vertical"
                                      onClick={() => this.props.setRugCurrentView('above-vertical')}>
@@ -990,6 +992,7 @@ const mapStateToProps = (state) => {
         showLoginModal: state.showLoginModal,
         showRegisterModal: state.showRegisterModal,
         showGuestModal: state.showGuestModal,
+        currentRoomPreset: state.currentRoomPreset
     };
 };
 

@@ -89,7 +89,7 @@ class RugSummary extends Component {
 		};
 
 		try {
-			textures.map = await loadWithPromise('floor-texture.jpg', textureLoader);
+			textures.map = await loadWithPromise(`${BASE_URL}/floor-texture.jpg`, textureLoader);
 			textures.map.wrapS = textures.map.wrapT = THREE.RepeatWrapping;
 			textures.map.repeat.set(floorRepeatX, floorRepeatY);
 			textures.map.anisotropy = 16
@@ -99,7 +99,7 @@ class RugSummary extends Component {
 		}
 
 		try {
-			textures.bumpMap = await loadWithPromise('floor-bmap.jpg', textureLoader);
+			textures.bumpMap = await loadWithPromise(`${BASE_URL}/floor-bmap.jpg`, textureLoader);
 			textures.bumpMap.wrapS = textures.bumpMap.wrapT = THREE.RepeatWrapping;
 			textures.bumpMap.repeat.set(floorRepeatX, floorRepeatY);
 			textures.map.anisotropy = 16
@@ -117,7 +117,7 @@ class RugSummary extends Component {
 
 	async getWall() {
 		try {
-			var paintT = await loadWithPromise('wall-texture.jpg', textureLoader);
+			var paintT = await loadWithPromise(`${BASE_URL}/wall-texture.jpg`, textureLoader);
 			paintT.wrapS = paintT.wrapT = THREE.RepeatWrapping;
 			paintT.repeat.set(10, 10);
 			paintT.rotation = Math.PI / 2;

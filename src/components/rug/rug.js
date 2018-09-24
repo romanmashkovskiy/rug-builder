@@ -108,7 +108,7 @@ class Rug extends Component {
         };
 
         try {
-            textures.map = await loadWithPromise('floor-texture.jpg', textureLoader);
+            textures.map = await loadWithPromise(`${BASE_URL}/floor-texture.jpg`, textureLoader);
             textures.map.wrapS = textures.map.wrapT = THREE.RepeatWrapping;
             textures.map.repeat.set(floorRepeatX, floorRepeatY);
             textures.map.anisotropy = 16
@@ -118,7 +118,7 @@ class Rug extends Component {
         }
 
         try {
-            textures.bumpMap = await loadWithPromise('floor-bmap.jpg', textureLoader);
+            textures.bumpMap = await loadWithPromise(`${BASE_URL}/floor-bmap.jpg`, textureLoader);
             textures.bumpMap.wrapS = textures.bumpMap.wrapT = THREE.RepeatWrapping;
             textures.bumpMap.repeat.set(floorRepeatX, floorRepeatY);
             textures.map.anisotropy = 16
@@ -128,15 +128,20 @@ class Rug extends Component {
         }
         var material = new THREE.MeshPhongMaterial(textures);
         var floor = new THREE.Mesh(geometry, material);
-        floor.receiveShadow = true;
-        floor.position.set(0, -1, 0);
-        floor.rotation.x = (Math.PI / 2) * -1;
-        this.scene.add(floor);
+        // floor.receiveShadow = true;
+        // floor.position.set(0, -1, 0);
+        // floor.rotation.x = (Math.PI / 2) * -1;
+        // this.scene.add(floor);
+        this.floor = new THREE.Mesh(geometry, material);
+        this.floor.receiveShadow = true;
+        this.floor.position.set(0, -1, 0);
+        this.floor.rotation.x = (Math.PI / 2) * -1;
+        this.scene.add(this.floor);
     }
 
     async getWall() {
         try {
-            var paintT = await loadWithPromise('wall-texture.jpg', textureLoader);
+            var paintT = await loadWithPromise(`${BASE_URL}/wall-texture.jpg`, textureLoader);
             paintT.wrapS = paintT.wrapT = THREE.RepeatWrapping;
             paintT.repeat.set(10, 10);
             paintT.rotation = Math.PI / 2;
@@ -157,23 +162,23 @@ class Rug extends Component {
         var wallY = 430;
 
         var geometry = new THREE.BoxGeometry(wallX * 2, wallY, 1);
-        var wall = new THREE.Mesh(geometry, paintM);
-        wall.position.set(0, 25, wallX);
-        this.scene.add(wall);
+        this.wall = new THREE.Mesh(geometry, paintM);
+        this.wall.position.set(0, 25, wallX);
+        this.scene.add(this.wall);
 
-        var wall2 = new THREE.Mesh(geometry, paintM);
-        wall2.position.set(0, 25, -wallX);
-        this.scene.add(wall2);
-
-        var geometry = new THREE.BoxGeometry(1, wallY, wallX * 2);
-        var wall3 = new THREE.Mesh(geometry, paintM);
-        wall3.position.set(wallX, 25, 0);
-        this.scene.add(wall3);
+        this.wall2 = new THREE.Mesh(geometry, paintM);
+        this.wall2.position.set(0, 25, -wallX);
+        this.scene.add(this.wall2);
 
         var geometry = new THREE.BoxGeometry(1, wallY, wallX * 2);
-        var wall4 = new THREE.Mesh(geometry, paintM);
-        wall4.position.set(-wallX, 25, 0);
-        this.scene.add(wall4);
+        this.wall3 = new THREE.Mesh(geometry, paintM);
+        this.wall3.position.set(wallX, 25, 0);
+        this.scene.add(this.wall3);
+
+        var geometry = new THREE.BoxGeometry(1, wallY, wallX * 2);
+        this.wall4 = new THREE.Mesh(geometry, paintM);
+        this.wall4.position.set(-wallX, 25, 0);
+        this.scene.add(this.wall4);
     }
 
     async updateMap(urlTexture, urlBumpMap, urlNormalMap, rugPart) {
@@ -458,10 +463,22 @@ class Rug extends Component {
             await this.objectLoader();
         }
 
-        if (this.props.showRoomPresetsMode) {
+        if (this.props.currentRoomPreset !== '') {
             this.controls.enabled = false;
+            this.scene.remove(this.floor);
+            this.scene.remove(this.wall);
+            this.scene.remove(this.wall2);
+            this.scene.remove(this.wall3);
+            this.scene.remove(this.wall4);
+            this.getRoom();
         } else {
             this.controls.enabled = true;
+            this.scene.add(this.floor);
+            this.scene.add(this.floor);
+            this.scene.add(this.wall);
+            this.scene.add(this.wall2);
+            this.scene.add(this.wall3);
+            this.scene.add(this.wall4);
         }
 
         if (prevProps.currentRoomPreset !== this.props.currentRoomPreset) {
@@ -500,7 +517,7 @@ const mapStateToProps = (state) => {
         length: state.length,
         guestUser: state.guestUser,
         showRoomPresetsMode: state.showRoomPresetsMode,
-        currentRoomPreset: state.currentRoomPreset
+        currentRoomPreset: state.currentRoomPreset,
     };
 };
 
