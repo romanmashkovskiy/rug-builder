@@ -10,11 +10,11 @@ import Summary from './components/summary/summary';
 class App extends Component {
     render() {
         return (
-            <Router>
+            <Router basename={'/rugbuilder'}>
                 <Switch>
                     <Route exact path="/" component={StartModal}/>
-                    <Route path="/builder" component={BuilderSelectPart}/>
-                    <Route path="/summary" component={Summary}/>
+                    <Route exact path="/builder" component={BuilderSelectPart}/>
+                    <Route exact path="/summary" component={Summary}/>
                 </Switch>
             </Router>
         );
