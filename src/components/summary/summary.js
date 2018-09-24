@@ -77,7 +77,7 @@ class Summary extends Component {
         return (
             <div className="container-builder-summary">
                 <div className="header-builder">
-                    <img src={header} alt="header"/>
+                    {/*<img src={header} alt="header"/>*/}
                 </div>
                 <div className="summary-block-container summary-block-container__mobile">
                     <div className="summary-block-item summary-block-item__mobile-data_model">
@@ -297,7 +297,7 @@ class Summary extends Component {
                     </div>
                 </div>
                 <div className="footer-builder">
-                    <img src={footer} alt="footer"/>
+                    {/*<img src={footer} alt="footer"/>*/}
                 </div>
             </div>
         )

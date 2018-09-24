@@ -6,6 +6,7 @@ export const loadWithPromise = (url, loader) => {
             },
             undefined,
             (err) => {
+
                 reject(err);
             });
     })

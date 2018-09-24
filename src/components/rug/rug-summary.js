@@ -4,6 +4,7 @@ import * as OBJLoader from 'three-obj-loader';
 import * as OrbitControls from 'three-orbit-controls';
 import {connect} from "react-redux";
 import {loadWithPromise} from '../../utils/load-with-promise';
+import {BASE_URL} from '../../utils/base-url';
 
 OBJLoader(THREE);
 const OrbitControl = OrbitControls(THREE);
@@ -54,11 +55,11 @@ class RugSummary extends Component {
 
         let rugFile;
         if (this.props.border === 'DOUBLE-BORDER') {
-            rugFile = 'double.obj';
+            rugFile = `${BASE_URL}/double.obj`;
         } else if (this.props.border === 'BORDER-PIPING') {
-            rugFile = 'piping.obj';
+            rugFile = `${BASE_URL}/piping.obj`;
         } else {
-            rugFile = 'single.obj';
+            rugFile = `${BASE_URL}/single.obj`;
         }
 
         try {

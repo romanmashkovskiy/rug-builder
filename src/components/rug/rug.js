@@ -8,6 +8,8 @@ import {bindActionCreators} from "redux";
 import {loadWithPromise} from '../../utils/load-with-promise';
 import {saveRug, guestCheckout} from '../../actions'
 import './rug.css';
+import {BASE_URL} from '../../utils/base-url';
+
 
 OBJLoader(THREE);
 const OrbitControl = OrbitControls(THREE);
@@ -60,12 +62,13 @@ class Rug extends Component {
 
         let rugFile;
         if (this.props.border === 'DOUBLE-BORDER') {
-            rugFile = 'double.obj';
+            rugFile = `${BASE_URL}/double.obj`;
         } else if (this.props.border === 'BORDER-PIPING') {
-            rugFile = 'piping.obj';
+            rugFile = `${BASE_URL}/piping.obj`;
         } else {
-            rugFile = 'single.obj';
+            rugFile = `${BASE_URL}/single.obj`;
         }
+
 
         try {
             const object = await loadWithPromise(rugFile, objectLoader);
@@ -78,7 +81,7 @@ class Rug extends Component {
             this.object = object;
             this.scene.add(object);
         } catch (e) {
-            console.log(e);
+            console.log(String(e));
         }
     }
 
