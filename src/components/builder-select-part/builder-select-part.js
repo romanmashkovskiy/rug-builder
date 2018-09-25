@@ -942,9 +942,9 @@ class BuilderSelectPart extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="footer-builder">
+                {/*<div className="footer-builder">*/}
                     {/*<img src={footer} alt="footer"/>*/}
-                </div>
+                {/*</div>*/}
 
 
             </div>

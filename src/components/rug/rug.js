@@ -48,7 +48,7 @@ class Rug extends Component {
         keyLight2.position.set(0, 50, 60);
         keyLight2.castShadow = true;
         keyLight2.rotation.x = 45;
-        this.scene.add(keyLight2)
+        this.scene.add(keyLight2);
 
         var fillLight = new THREE.PointLight(0xffffff, 1, 75);
         fillLight.position.set(0, 50, -60);
