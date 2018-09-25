@@ -7,6 +7,10 @@ body {
     height: 100vh;
 }
 
+.position-absolute {
+    position: absolute;
+}
+
 .cover-div {
     position: fixed;
     top: 0;

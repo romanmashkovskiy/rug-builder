@@ -44,7 +44,7 @@ class StartModal extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className={(this.props.editBorderMode || this.props.editDimensionsMode) ? "container position-absolute" : "container"}>
                 <div className="cover-div"/>
                 <div className="modal">
                     <div className="header-mobile">
