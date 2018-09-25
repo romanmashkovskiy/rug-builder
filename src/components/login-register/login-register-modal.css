@@ -1,3 +1,9 @@
+.container-login-register {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+}
+
 .modal-login-register {
     position: fixed;
     display: -webkit-box;

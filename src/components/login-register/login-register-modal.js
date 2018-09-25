@@ -11,7 +11,7 @@ class LoginRegisterModal extends Component {
 
     render() {
         return (
-            <div className="container">
+            <div className="container-login-register">
                 <div className="cover-div cover-div__log-reg-mobile"/>
                 <div className="modal-login-register login-register__mobile">
                     <div className="login-register login-register__mobile-content">

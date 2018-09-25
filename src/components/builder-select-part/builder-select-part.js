@@ -92,6 +92,7 @@ import roomSet4 from './room-presets/room-set-4.jpg';
 import roomSet5 from './room-presets/room-set-5.jpg';
 
 import Rug from '../rug/rug';
+// import Rug from '../rug/rug-with-background';
 import RugCorner from '../rug/rug-corner';
 
 const ls = require('local-storage');
@@ -375,14 +376,14 @@ class BuilderSelectPart extends Component {
                                 {/*type of selected center*/}
                                 {this.props.centre.name === "CENTRE" &&
                                 <div className="current-size-edit">
-                                    <img src={exit} alt="exit"/>
+                                    <img className="image-size-60" src={exit} alt="exit"/>
                                     <div className="centre-is-not-selected-type">
                                         {`${this.props.centre.name}`}
                                     </div>
                                 </div>}
                                 {this.props.centre.name !== "CENTRE" &&
                                 <div className="current-size-edit">
-                                    <img src={exitSelected} alt="exit" onClick={() => {
+                                    <img className="image-size-60" src={exitSelected} alt="exit" onClick={() => {
                                         this.props.setCenterMaterialType(initCenter);
                                     }}/>
                                     <div className="centre-is-selected-type">
@@ -398,14 +399,14 @@ class BuilderSelectPart extends Component {
                                 {/*type of selected center*/}
                                 {this.props.outerBorder.name === "OUTER BORDER" &&
                                 <div className="current-size-edit">
-                                    <img src={exit} alt="exit"/>
+                                    <img className="image-size-60" src={exit} alt="exit"/>
                                     <div className="centre-is-not-selected-type">
                                         {`${this.props.outerBorder.name}`}
                                     </div>
                                 </div>}
                                 {this.props.outerBorder.name !== "OUTER BORDER" &&
                                 <div className="current-size-edit">
-                                    <img src={exitSelected} alt="exit" onClick={() => {
+                                    <img className="image-size-60" src={exitSelected} alt="exit" onClick={() => {
                                         this.props.setOuterBorderMaterialType(initOuterBorder);
                                     }}/>
                                     <div className="centre-is-selected-type">
@@ -421,14 +422,14 @@ class BuilderSelectPart extends Component {
                                 <div className="border-is-selected">
                                     {this.props.innerBorder.name === "INNER BORDER" &&
                                     <div className="current-size-edit">
-                                        <img src={exit} alt="exit"/>
+                                        <img className="image-size-60" src={exit} alt="exit"/>
                                         <div className="centre-is-not-selected-type">
                                             {`${this.props.innerBorder.name}`}
                                         </div>
                                     </div>}
                                     {this.props.innerBorder.name !== "INNER BORDER" &&
                                     <div className="current-size-edit">
-                                        <img src={exitSelected} alt="exit" onClick={() => {
+                                        <img className="image-size-60" src={exitSelected} alt="exit" onClick={() => {
                                             this.props.setInnerBorderMaterialType(initInnerBorder);
                                         }}/>
                                         <div className="centre-is-selected-type">
@@ -444,14 +445,14 @@ class BuilderSelectPart extends Component {
                                 <div className="border-is-selected">
                                     {this.props.piping.post_title === "PIPING" &&
                                     <div className="current-size-edit">
-                                        <img src={exit} alt="exit"/>
+                                        <img className="image-size-60" src={exit} alt="exit"/>
                                         <div className="centre-is-not-selected-type">
                                             {`${this.props.piping.post_title}`}
                                         </div>
                                     </div>}
                                     {this.props.piping.post_title !== "PIPING" &&
                                     <div className="current-size-edit">
-                                        <img src={exitSelected} alt="exit" onClick={() => {
+                                        <img className="image-size-60" src={exitSelected} alt="exit" onClick={() => {
                                             this.props.setPipingMaterialType(initPiping);
                                         }}/>
                                         <div className="centre-is-selected-type">

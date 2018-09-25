@@ -129,7 +129,7 @@ class GuestModal extends Component {
 
     render() {
         return (
-            <div className="container container-A">
+            <div className="container-login-register container-A">
                 <div className="cover-div"/>
                 <div className="modal-guest modal-guest-A">
                     <img src={restart} className="button-back-register" alt="exit" onClick={() => {

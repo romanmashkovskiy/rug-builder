@@ -245,7 +245,7 @@
     height: 55.08px;
     width: 252.25px;
     background-color: #FFFFFF;
-    color: #2D2D2D;
+    color: #2D2D2D !important;
     border: 1px solid #3B3B3B;
     font-family: Montserrat, sans-serif;
     font-size: 13px;

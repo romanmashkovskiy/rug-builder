@@ -47,7 +47,7 @@ class LoginModal extends Component {
 
     render() {
         return (
-            <div className="container container-A">
+            <div className="container-login-register container-A">
                 <div className="cover-div"/>
                 <div className="modal-login modal-login-A">
                     <img src={restart} className="button-back-login" alt="exit" onClick={() => {

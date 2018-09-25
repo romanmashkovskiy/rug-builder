@@ -519,9 +519,15 @@
     cursor: pointer;
 }
 
-.current-size-edit img {
+.current-size-edit > img {
     height: 100%;
+    vertical-align: unset !important;
+    line-height: 1 !important;
     margin-right: 15px;
+}
+
+.image-size-60 {
+    height: 60% !important;
 }
 
 .current-size-edit-dimensions {
@@ -549,9 +555,8 @@
 }
 
 .centre-is-selected img {
-    height: 60%;
-    margin-right: 15px;
-    vertical-align: middle;
+    /*height: 60%;*/
+    /*margin-right: 15px;*/
 }
 
 .centre-is-selected-type {
@@ -773,7 +778,7 @@
     border-radius: 50%;
 }
 
-.centre h3 {
+.centre > h3 {
     height: 31px;
     color: #2D2D2D;
     font-family: Montserrat, sans-serif;
@@ -781,6 +786,7 @@
     letter-spacing: 1.6px;
     line-height: 16px;
     text-align: center;
+    margin-top: 12px !important;
 }
 
 .main-area-builder-inner-border {
