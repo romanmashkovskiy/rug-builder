@@ -10,6 +10,7 @@ import {saveRug, guestCheckout} from '../../actions'
 import './rug.css';
 import {BASE_URL} from '../../utils/base-url';
 
+
 OBJLoader(THREE);
 const OrbitControl = OrbitControls(THREE);
 const textureLoader = new THREE.TextureLoader();
@@ -24,6 +25,8 @@ class Rug extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {initialContainerWidth: 0};
+
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera(
             75,
@@ -31,8 +34,6 @@ class Rug extends Component {
             0.1,
             1000
         );
-        var axesHelper = new THREE.AxesHelper(200);
-        this.scene.add(axesHelper);
 
         this.camera.position.x = -120;
         this.camera.position.y = 146.97868270469004;
@@ -85,106 +86,6 @@ class Rug extends Component {
             console.log(String(e));
         }
     }
-
-    //
-    // async getRoom() {
-    //     try {
-    //         const texture = await loadWithPromise(gg, textureLoader);
-    //         const material = new THREE.MeshBasicMaterial({
-    //             map: texture
-    //         });
-    //
-    //         console.log(this.container.offsetWidth, this.container.offsetHeight);
-    //
-    //         var geometry = new THREE.PlaneGeometry(1,1);
-    //         console.log(this.container.clientWidth, this.container.clientHeight);
-    //         this.room = new THREE.Mesh(geometry, material);
-    //         this.room.scale.x = 160;
-    //         this.room.scale.y = 90;
-    //         // this.room.scale.set( this.container.clientWidth, this.container.clientHeight, 1 );
-    //         this.room.position.set(55, -15, 5);
-    //         this.room.rotation.y = (Math.PI / 2) * -1;
-    //         this.scene.add(this.room);
-    //         this.object.position.y = -35;
-    //         this.camera.updateProjectionMatrix();
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
-
-
-    // async getRoom() {
-    //     try {
-    //         const texture = await loadWithPromise(this.props.currentRoomPreset, textureLoader);
-    //         this.room = new THREE.Mesh(
-    //             new THREE.PlaneGeometry(2, 2, 0),
-    //             new THREE.MeshBasicMaterial({
-    //                 map: texture
-    //             }));
-    //
-    //         this.room.material.depthTest = false;
-    //         this.room.material.depthWrite = false;
-    //
-    //         this.bgScene = new THREE.Scene();
-    //         this.bgCam = new THREE.Camera();
-    //
-    //         this.bgScene.add(this.bgCam);
-    //         this.bgScene.add(this.room);
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
-
-    // async getRoom() {
-    //     try {
-    //         const texture = await loadWithPromise(this.props.currentRoomPreset, textureLoader);
-    //
-    //
-    //
-    //         // const geometry = new THREE.PlaneGeometry(this.container.innerWidth, this.container.innerHeight, 0);
-    //         const geometry = new THREE.PlaneGeometry(1, 1);
-    //         const material = new THREE.MeshBasicMaterial({
-    //             map: texture
-    //         });
-    //         const backgroundMesh = new THREE.Mesh(geometry, material);
-    //         backgroundMesh.scale.set( this.container.offsetWidth, this.container.offsetHeight, 1 );
-    //
-    //         backgroundMesh.position.z = -5;
-    //         this.scene.add(backgroundMesh);
-    //
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
-
-    // async getRoom() {
-    //     try {
-    //         const texture = await loadWithPromise(gg, textureLoader);
-    //        this.scene.background = texture;
-    //
-    //     } catch (e) {
-    //         console.log(e);
-    //     }
-    // }
-
-    // getRoom() {
-    //     var canvas = document.getElementById("root-for-rug-canvas");
-    //
-    //     console.log(canvas);
-    //
-    //     var context = canvas.getContext("2d");
-    //
-    //     console.log(context);
-    //
-    //     var img = new Image();
-    //     img.src = roomSet;
-    //     img.onload = function() {
-    //         var pattern = context.createPattern(img, 'repeat');
-    //         context.fillStyle = pattern;
-    //         context.fillRect(100, 100, 200, 200);
-    //     };
-    // }
-
 
     async getFloor() {
         var floorRepeatX = 8;
@@ -289,6 +190,7 @@ class Rug extends Component {
             shininess: 0,
             displacementScale: dispScale,
             bumpScale: bumpScale,
+            // anisotropy: 16
         };
 
         try {
@@ -477,6 +379,55 @@ class Rug extends Component {
         );
     }
 
+
+    getRoom() {
+        const removeFloorWalls = (className) => {
+            this.scene.remove(this.floor);
+            this.scene.remove(this.wall);
+            this.scene.remove(this.wall2);
+            this.scene.remove(this.wall3);
+            this.scene.remove(this.wall4);
+            this.container.className = className;
+        };
+
+        const addFloorWalls = () => {
+            this.scene.add(this.floor);
+            this.scene.add(this.wall);
+            this.scene.add(this.wall2);
+            this.scene.add(this.wall3);
+            this.scene.add(this.wall4);
+            this.container.className = '';
+        };
+
+        switch (this.props.currentRoomPreset) {
+            case 1:
+                removeFloorWalls('room-preset-1');
+                break;
+            case 2:
+                removeFloorWalls('room-preset-2');
+                break;
+            case 3:
+                removeFloorWalls('room-preset-3');
+                break;
+            case 4:
+                removeFloorWalls('room-preset-4');
+                break;
+            case 5:
+                removeFloorWalls('room-preset-5');
+                break;
+            default:
+                addFloorWalls();
+
+        }
+    }
+
+    resizeRug() {
+        const koef = this.container.offsetWidth / this.state.initialContainerWidth;
+        for (let i = 0; i < this.object.children.length; i++) {
+            this.object.children[i].scale.set(koef, koef, koef);
+        }
+    }
+
     async componentWillReceiveProps(nextProps) {
         if (nextProps.rugPosition) {
             await this.saveRug();
@@ -486,14 +437,17 @@ class Rug extends Component {
             await this.guestCheckout();
             this.props.history.push('/summary');
         }
-
     }
 
     async componentDidMount() {
+
         const resize = () => {
+            console.log(this.container.offsetWidth, this.container.offsetHeight);
             this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight);
             this.camera.aspect = this.container.offsetWidth / this.container.offsetHeight;
             this.camera.updateProjectionMatrix();
+
+            // this.resizeRug();
         };
 
         this.THREE = THREE;
@@ -502,8 +456,7 @@ class Rug extends Component {
 
         this.container = document.getElementById("root-for-rug");
 
-        console.log(this.container.offsetWidth, this.container.offsetHeight);
-
+        this.setState({initialContainerWidth: this.container.offsetWidth});
 
         this.controls = new OrbitControl(this.camera, this.container);
 
@@ -522,16 +475,7 @@ class Rug extends Component {
 
         this.getWall();
 
-        // this.getRoom();
-
-
-        const canvas = document.getElementById("root-for-rug-canvas");
-
-        this.renderer = new THREE.WebGLRenderer({
-            antialias: true,
-            preserveDrawingBuffer: true,
-            alpha: true
-        });
+        this.renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true, alpha: true});
 
         this.renderer.setSize(this.container.offsetWidth, this.container.offsetHeight);
 
@@ -544,13 +488,6 @@ class Rug extends Component {
         const animate = () => {
             requestAnimationFrame(animate);
             this.controls.update();
-
-
-            // this.renderer.autoClear = false;
-            // this.renderer.clear();
-            // this.renderer.render(this.bgScene, this.bgCam);
-
-
             this.renderer.render(this.scene, this.camera);
         };
         animate();
@@ -567,44 +504,7 @@ class Rug extends Component {
             await this.objectLoader();
         }
 
-        if (this.props.currentRoomPreset !== '') {
-            switch (this.props.currentRoomPreset) {
-                case 1:
-                    this.container.className = 'room-preset-1';
-                    break;
-                case 2:
-                    this.container.className = 'room-preset-2';
-                    break;
-                case 3:
-                    this.container.className = 'room-preset-3';
-                    break;
-                case 4:
-                    this.container.className = 'room-preset-4';
-                    break;
-                case 5:
-                    this.container.className = 'room-preset-5';
-                    break;
-            }
-            // this.container.className = 'room-preset-2';
-            // this.controls.enabled = false;
-            this.scene.remove(this.floor);
-            this.scene.remove(this.wall);
-            this.scene.remove(this.wall2);
-            this.scene.remove(this.wall3);
-            this.scene.remove(this.wall4);
-            // this.getRoom();
-
-        } else {
-            // this.controls.enabled = true;
-            this.scene.add(this.floor);
-            this.scene.add(this.wall);
-            this.scene.add(this.wall2);
-            this.scene.add(this.wall3);
-            this.scene.add(this.wall4);
-            this.container.className = '';
-            // this.object.position.y = 0;
-            // this.scene.remove(this.room);
-        }
+        // this.getRoom();
 
         this.updateMap(...this.calculateUrlsForTextures(this.props.centre), 'Centre');
         this.updateMap(...this.calculateUrlsForTextures(this.props.piping), 'Trim');

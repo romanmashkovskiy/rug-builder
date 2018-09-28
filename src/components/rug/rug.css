@@ -1,7 +1,51 @@
 #root-for-rug {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+
+.room-preset-1 {
+    background-image: url('../builder-select-part/room-presets/room-set-1.jpg');
+    background-position: center bottom;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+
+}
+
+.room-preset-2 {
+    background-image: url('../builder-select-part/room-presets/room-set-2.jpg');
+    background-position: center bottom;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.room-preset-3 {
+    background-image: url('../builder-select-part/room-presets/room-set-3.jpg');
+    background-position: center bottom;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.room-preset-4 {
+    background-image: url('../builder-select-part/room-presets/room-set-4.jpg');
+    background-position: center bottom;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+.room-preset-5 {
+    background-image: url('../builder-select-part/room-presets/room-set-5.jpg');
+    background-position: center bottom;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+}
+
+#root-for-rug-canvas {
     width: 100%;
     height: 100%;
 }
+
 
 #root-for-rug-corner {
     width: 100%;

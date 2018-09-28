@@ -85,15 +85,6 @@ class Rug extends Component {
         }
     }
 
-    async getRoom() {
-        try {
-            this.scene.background = await loadWithPromise(this.props.currentRoomPreset, textureLoader);
-        } catch (e) {
-            console.log(e);
-        }
-
-    }
-
     async getFloor() {
         var floorRepeatX = 8;
         var floorRepeatY = 8;
@@ -432,8 +423,6 @@ class Rug extends Component {
 
         this.getWall();
 
-        // this.getRoom();
-
         this.renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true});
 
         this.renderer.setSize(container.offsetWidth, container.offsetHeight);
@@ -463,27 +452,6 @@ class Rug extends Component {
             await this.objectLoader();
         }
 
-        if (this.props.currentRoomPreset !== '') {
-            this.controls.enabled = false;
-            this.scene.remove(this.floor);
-            this.scene.remove(this.wall);
-            this.scene.remove(this.wall2);
-            this.scene.remove(this.wall3);
-            this.scene.remove(this.wall4);
-            this.getRoom();
-        } else {
-            this.controls.enabled = true;
-            this.scene.add(this.floor);
-            this.scene.add(this.floor);
-            this.scene.add(this.wall);
-            this.scene.add(this.wall2);
-            this.scene.add(this.wall3);
-            this.scene.add(this.wall4);
-        }
-
-        if (prevProps.currentRoomPreset !== this.props.currentRoomPreset) {
-            this.getRoom();
-        }
 
         this.updateMap(...this.calculateUrlsForTextures(this.props.centre), 'Centre');
         this.updateMap(...this.calculateUrlsForTextures(this.props.piping), 'Trim');

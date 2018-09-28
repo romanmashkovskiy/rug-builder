@@ -91,8 +91,9 @@ import roomSet3 from './room-presets/room-set-3.jpg';
 import roomSet4 from './room-presets/room-set-4.jpg';
 import roomSet5 from './room-presets/room-set-5.jpg';
 
-import Rug from '../rug/rug';
+// import Rug from '../rug/rug';
 // import Rug from '../rug/rug-with-background';
+import Rug from '../rug/rug-new-new';
 import RugCorner from '../rug/rug-corner';
 
 const ls = require('local-storage');
@@ -122,8 +123,8 @@ class BuilderSelectPart extends Component {
             x[i].style.display = "none";
         }
         x[this.slideIndex - 1].style.display = "block";
-        console.log(x[this.slideIndex - 1].src);
-        this.props.setCurrentRoomPreset(x[this.slideIndex - 1].src);
+
+        this.props.setCurrentRoomPreset(this.slideIndex);
 
         document.getElementsByClassName("room-presets-room-name")[0].innerHTML = x[this.slideIndex - 1].name;
     }
@@ -226,7 +227,7 @@ class BuilderSelectPart extends Component {
                                      onClick={() => {
                                          this.props.setShowRoomPresetsMode(!this.props.showRoomPresetsMode);
                                          if (this.props.currentRoomPreset === '') {
-                                             this.props.setCurrentRoomPreset(roomSet1);
+                                             this.props.setCurrentRoomPreset(1);
                                          }
                                      }}>
                                     <img src={leftControlSecond} alt="leftControlSecond"/>
