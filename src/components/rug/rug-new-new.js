@@ -21,6 +21,8 @@ const materialDef = new THREE.MeshPhongMaterial({
 
 const ls = require('local-storage');
 
+let initWidth;
+
 class Rug extends Component {
 
     constructor(props) {
@@ -419,7 +421,7 @@ class Rug extends Component {
                 this.object.position.z = 0;
                 removeFloorWalls('room-preset-1');
                 this.object.position.z = -10;
-                this.object.position.y = -30;
+                this.object.position.x = -35;
 
                 break;
             case 2:
@@ -438,8 +440,8 @@ class Rug extends Component {
                 this.object.position.y = 0;
                 this.object.position.z = 0;
                 removeFloorWalls('room-preset-3');
-                this.object.position.x = -20;
-                this.object.position.z = -39;
+                this.object.position.x = -30;
+                this.object.position.z = -65;
 
                 break;
             case 4:
@@ -449,7 +451,7 @@ class Rug extends Component {
                 this.object.position.z = 0;
                 removeFloorWalls('room-preset-4');
                 this.object.rotation.y = (Math.PI / 2) * -1;
-                this.object.position.z = 40;
+                this.object.position.z = 55;
 
                 break;
             case 5:
@@ -458,7 +460,7 @@ class Rug extends Component {
                 this.object.position.y = 0;
                 this.object.position.z = 0;
                 removeFloorWalls('room-preset-5');
-                this.object.position.x = -20;
+                this.object.position.x = -25;
 
                 break;
             default:
@@ -471,7 +473,7 @@ class Rug extends Component {
     }
 
     resizeRug() {
-        const koef = 0.5 * this.container.offsetWidth / 1458;
+        const koef = 0.5 * this.container.offsetWidth / initWidth;
         for (let i = 0; i < this.object.children.length; i++) {
             this.object.children[i].scale.set(koef, koef, koef);
         }
@@ -502,6 +504,9 @@ class Rug extends Component {
         this.addLight();
 
         this.container = document.getElementById("root-for-rug");
+
+        initWidth = this.container.offsetWidth;
+        console.log(initWidth);
 
         this.controls = new OrbitControl(this.camera, this.container);
 
@@ -534,7 +539,7 @@ class Rug extends Component {
             requestAnimationFrame(animate);
             this.controls.update();
             this.renderer.render(this.scene, this.camera);
-            console.log(this.camera.position.x, this.camera.position.y = 50, this.camera.position.z);
+            // console.log(this.camera.position.x, this.camera.position.y = 50, this.camera.position.z);
         };
         animate();
 
