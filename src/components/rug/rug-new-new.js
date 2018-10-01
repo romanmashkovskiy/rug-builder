@@ -21,7 +21,7 @@ const materialDef = new THREE.MeshPhongMaterial({
 
 const ls = require('local-storage');
 
-let initWidth;
+let prevWidth1, prevWidth2, prevWidth3, prevWidth4, prevWidth5;
 
 class Rug extends Component {
 
@@ -79,6 +79,7 @@ class Rug extends Component {
 
         try {
             const object = await loadWithPromise(rugFile, objectLoader);
+
             for (let i = 0; i < object.children.length; i++) {
                 object.children[i].castShadow = true;
                 object.children[i].receiveShadow = false;
@@ -125,11 +126,6 @@ class Rug extends Component {
             console.log(e);
         }
         var material = new THREE.MeshPhongMaterial(textures);
-        var floor = new THREE.Mesh(geometry, material);
-        // floor.receiveShadow = true;
-        // floor.position.set(0, -1, 0);
-        // floor.rotation.x = (Math.PI / 2) * -1;
-        // this.scene.add(floor);
         this.floor = new THREE.Mesh(geometry, material);
         this.floor.receiveShadow = true;
         this.floor.position.set(0, -1, 0);
@@ -389,6 +385,7 @@ class Rug extends Component {
     }
 
     getRoom() {
+        this.resizeRug();
         const removeFloorWalls = (className) => {
             this.scene.remove(this.floor);
             this.scene.remove(this.wall);
@@ -423,6 +420,13 @@ class Rug extends Component {
                 this.object.position.z = -10;
                 this.object.position.x = -35;
 
+                if (this.container.offsetWidth !== 1467) {
+                    console.log('resize3', this.container.offsetWidth);
+                    const dif = 1467 - this.container.offsetWidth;
+                    this.object.position.x = this.object.position.x - 0.01 * dif;
+                    this.object.position.z = this.object.position.z + 0.008 * dif;
+                }
+
                 break;
             case 2:
                 this.object.rotation.y = 0;
@@ -432,6 +436,12 @@ class Rug extends Component {
                 removeFloorWalls('room-preset-2');
                 this.object.rotation.y = (Math.PI / 2) * -1;
                 this.object.position.x = -35;
+
+                if (this.container.offsetWidth !== 1467) {
+                    console.log('resize3', this.container.offsetWidth);
+                    const dif = 1467 - this.container.offsetWidth;
+                    this.object.position.x = this.object.position.x - 0.015 * dif;
+                }
 
                 break;
             case 3:
@@ -443,6 +453,12 @@ class Rug extends Component {
                 this.object.position.x = -30;
                 this.object.position.z = -65;
 
+                if (this.container.offsetWidth !== 1467) {
+                    const dif = 1467 - this.container.offsetWidth;
+                    this.object.position.x = this.object.position.x - 0.01 * dif;
+                    this.object.position.z = this.object.position.z + 0.05 * dif;
+                }
+
                 break;
             case 4:
                 this.object.rotation.y = 0;
@@ -453,6 +469,12 @@ class Rug extends Component {
                 this.object.rotation.y = (Math.PI / 2) * -1;
                 this.object.position.z = 55;
 
+                if (this.container.offsetWidth !== 1467) {
+                    const dif = 1467 - this.container.offsetWidth;
+                    this.object.position.x = this.object.position.x - 0.05 * dif;
+                    this.object.position.z = this.object.position.z - 0.045 * dif;
+                }
+
                 break;
             case 5:
                 this.object.rotation.y = 0;
@@ -461,6 +483,11 @@ class Rug extends Component {
                 this.object.position.z = 0;
                 removeFloorWalls('room-preset-5');
                 this.object.position.x = -25;
+
+                if (this.container.offsetWidth !== 1467) {
+                    const dif = 1467 - this.container.offsetWidth;
+                    this.object.position.x = this.object.position.x - 0.015 * dif;
+                }
 
                 break;
             default:
@@ -472,10 +499,70 @@ class Rug extends Component {
         }
     }
 
-    resizeRug() {
-        const koef = 0.5 * this.container.offsetWidth / initWidth;
+    resizeRug(newWidth) {
+        const koef = 0.5 * this.container.offsetWidth / 1467;
         for (let i = 0; i < this.object.children.length; i++) {
             this.object.children[i].scale.set(koef, koef, koef);
+        }
+
+        switch (this.props.currentRoomPreset) {
+            case 1:
+                if (newWidth < prevWidth1) {
+                    this.object.position.x = this.object.position.x - 0.24 * this.container.offsetWidth / 1467;
+                    this.object.position.z = this.object.position.z + 0.16 * this.container.offsetWidth / 1467;
+                }
+                else if (newWidth > prevWidth1) {
+                    this.object.position.x = this.object.position.x + 0.24 * this.container.offsetWidth / 1467;
+                    this.object.position.z = this.object.position.z - 0.16 * this.container.offsetWidth / 1467;
+                }
+                prevWidth1 = newWidth;
+                break;
+            case 2:
+                if (newWidth < prevWidth2) {
+                    this.object.position.x = this.object.position.x - 0.23 * this.container.offsetWidth / 1467;
+                }
+                else if (newWidth > prevWidth2) {
+                    this.object.position.x = this.object.position.x + 0.24 * this.container.offsetWidth / 1467;
+                }
+                prevWidth2 = newWidth;
+                break;
+            case 3:
+                if (newWidth < prevWidth3) {
+                    console.log('resize1', prevWidth3 - newWidth);
+                    this.object.position.x = this.object.position.x - 0.1 * this.container.offsetWidth / 1467;
+                    this.object.position.z = this.object.position.z + 0.35 * this.container.offsetWidth / 1467;
+                }
+                else if (newWidth > prevWidth3) {
+                    console.log('resize2', prevWidth3 - newWidth);
+                    this.object.position.x = this.object.position.x + 0.1 * this.container.offsetWidth / 1467;
+                    this.object.position.z = this.object.position.z - 0.35 * this.container.offsetWidth / 1467;
+                }
+                prevWidth3 = newWidth;
+
+                break;
+            case 4:
+                if (newWidth < prevWidth4) {
+                    this.object.position.x = this.object.position.x - 0.38 * this.container.offsetWidth / 1467;
+                    this.object.position.z = this.object.position.z - 0.32 * this.container.offsetWidth / 1467;
+                }
+                else if (newWidth > prevWidth4) {
+                    this.object.position.x = this.object.position.x + 0.38 * this.container.offsetWidth / 1467;
+                    this.object.position.z = this.object.position.z + 0.32 * this.container.offsetWidth / 1467;
+                }
+                prevWidth4 = newWidth;
+
+                break;
+
+            case 5:
+                if (newWidth < prevWidth5) {
+                    this.object.position.x = this.object.position.x - 0.27 * this.container.offsetWidth / 1467;
+                }
+                else if (newWidth > prevWidth4) {
+                    this.object.position.x = this.object.position.x + 0.27 * this.container.offsetWidth / 1467;
+                }
+                prevWidth5 = newWidth;
+
+                break;
         }
     }
 
@@ -496,7 +583,9 @@ class Rug extends Component {
             this.camera.aspect = this.container.offsetWidth / this.container.offsetHeight;
             this.camera.updateProjectionMatrix();
 
-            this.resizeRug();
+            if (this.props.currentRoomPreset !== '') {
+                this.resizeRug(this.container.offsetWidth);
+            }
         };
 
         this.THREE = THREE;
@@ -504,9 +593,7 @@ class Rug extends Component {
         this.addLight();
 
         this.container = document.getElementById("root-for-rug");
-
-        initWidth = this.container.offsetWidth;
-        console.log(initWidth);
+        prevWidth1 = prevWidth2 = prevWidth3 = prevWidth4 = prevWidth5 = this.container.offsetWidth;
 
         this.controls = new OrbitControl(this.camera, this.container);
 
@@ -539,12 +626,10 @@ class Rug extends Component {
             requestAnimationFrame(animate);
             this.controls.update();
             this.renderer.render(this.scene, this.camera);
-            // console.log(this.camera.position.x, this.camera.position.y = 50, this.camera.position.z);
         };
         animate();
 
         this.container.appendChild(this.renderer.domElement);
-        // this.renderer.setClearColor(0xffffff);
         this.renderer.shadowMap.enabled = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
@@ -571,10 +656,7 @@ class Rug extends Component {
             this.changeView(this.props.currentRugView);
         }
         
-
-        // if (this.props.currentRoomPreset === '') {
-            this.cameraZoom(this.props.currentZoom);
-        // }
+        this.cameraZoom(this.props.currentZoom);
     }
 
     render() {
