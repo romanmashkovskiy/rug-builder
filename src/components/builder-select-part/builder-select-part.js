@@ -10,6 +10,7 @@ import LoginRegisterModal from '../login-register/login-register-modal';
 import LoginModal from '../login-modal/login-modal';
 import RegisterModal from '../register-modal/register-modal';
 import GuestModal from '../guest-modal/guest-modal';
+import RandomiseAllModal from '../randomise-all-modal/randomise-all-modal';
 
 import CenterMaterial from '../center-material/center-material';
 import InnerBorderMaterial from '../inner-border-material/inner-border-material';
@@ -58,7 +59,9 @@ import {
     clearOuterBorderMaterialFirstChildrenMaterials,
     clearOuterBorderMaterialSecondChildrenMaterials,
 
-    setCurrentRoomPreset
+    setCurrentRoomPreset,
+
+    setShowRandomiseAllMode
 } from "../../actions";
 
 import edit from './images/edit-icon.svg';
@@ -208,6 +211,9 @@ class BuilderSelectPart extends Component {
                     {this.props.showGuestModal &&
                     <GuestModal/>
                     }
+                    {this.props.showRandomiseAllModal &&
+                    <RandomiseAllModal/>
+                    }
 
                     <div className="main-builder-carpet">
                         <div className="main-carpet-preview">
@@ -229,8 +235,11 @@ class BuilderSelectPart extends Component {
                                     <img src={leftControlSecond} alt="leftControlSecond"/>
                                 </div>
                                 {
-                                    false && // not ready
-                                    <div className="left-controls-third">
+                                    window.innerWidth > 450 &&
+                                    <div className="left-controls-third" onClick={() => {
+                                        this.props.setShowRandomiseAllMode(true)
+                                    }
+                                    }>
                                         <img src={leftControlThird} alt="leftControlThird"/>
                                     </div>
 
@@ -941,7 +950,7 @@ class BuilderSelectPart extends Component {
                     </div>
                 </div>
                 {/*<div className="footer-builder">*/}
-                    {/*<img src={footer} alt="footer"/>*/}
+                {/*<img src={footer} alt="footer"/>*/}
                 {/*</div>*/}
 
 
@@ -990,7 +999,9 @@ const mapStateToProps = (state) => {
         showLoginModal: state.showLoginModal,
         showRegisterModal: state.showRegisterModal,
         showGuestModal: state.showGuestModal,
-        currentRoomPreset: state.currentRoomPreset
+        currentRoomPreset: state.currentRoomPreset,
+
+        showRandomiseAllModal: state.showRandomiseAllModal
     };
 };
 
@@ -1038,7 +1049,9 @@ const matchDispatchToProps = (dispatch) => {
             clearOuterBorderMaterialFirstChildrenMaterials: clearOuterBorderMaterialFirstChildrenMaterials,
             clearOuterBorderMaterialSecondChildrenMaterials: clearOuterBorderMaterialSecondChildrenMaterials,
 
-            setCurrentRoomPreset: setCurrentRoomPreset
+            setCurrentRoomPreset: setCurrentRoomPreset,
+
+            setShowRandomiseAllMode: setShowRandomiseAllMode
         },
         dispatch)
 };

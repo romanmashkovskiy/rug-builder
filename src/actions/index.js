@@ -735,5 +735,13 @@ export const setCurrentRoomPreset = (room) => {
     }
 };
 
+export const setShowRandomiseAllMode = (mode) => {
+    return {
+        type: actions.SHOW_RANDOMISE_ALL_MODAL,
+        payload: mode
+    }
+};
+
+
 
 

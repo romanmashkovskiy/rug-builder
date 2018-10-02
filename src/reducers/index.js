@@ -63,6 +63,8 @@ import samplesOrderedSuccessReducer from './samples-ordered-success';
 
 import setCurrentRoomPresetReducer from './set-current-room-preset';
 
+import showRandomiseAllModalReducer from './show-randomise-all-modal';
+
 
 const rootReducer = combineReducers({
     width: widthReducer,
@@ -128,7 +130,9 @@ const rootReducer = combineReducers({
 
     samplesOrderedSuccess: samplesOrderedSuccessReducer,
 
-    currentRoomPreset: setCurrentRoomPresetReducer
+    currentRoomPreset: setCurrentRoomPresetReducer,
+
+    showRandomiseAllModal: showRandomiseAllModalReducer
 });
 
 export default rootReducer;
