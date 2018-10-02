@@ -61,8 +61,6 @@ import {
     setCurrentRoomPreset
 } from "../../actions";
 
-import header from './images/header.png';
-import footer from './images/footer.png';
 import edit from './images/edit-icon.svg';
 import exit from './images/exit.svg';
 import exitSelected from './images/exit-selected.png';
@@ -91,8 +89,6 @@ import roomSet3 from './room-presets/room-set-3.jpg';
 import roomSet4 from './room-presets/room-set-4.jpg';
 import roomSet5 from './room-presets/room-set-5.jpg';
 
-// import Rug from '../rug/rug';
-// import Rug from '../rug/rug-with-background';
 import Rug from '../rug/rug-new-new';
 import RugCorner from '../rug/rug-corner';
 

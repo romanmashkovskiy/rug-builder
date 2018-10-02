@@ -13,7 +13,7 @@
     -ms-flex-align: center;
     align-items: center;
     z-index: 9999;
-    height: 499px;
+    min-height: 499px;
     width: 532px;
     border: 1px solid #E9E9E9;
     background-color: #FFFFFF;
@@ -91,6 +91,19 @@
     z-index: 9999;
 }
 
+.login-error-message {
+    min-height: 48px;
+    width: 390px;
+    color: #FF5555;
+    font-family: Open Sans, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.7px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 26px;
+}
+
 .login-button {
     height: 61px;
     width: 390px;
@@ -113,6 +126,7 @@
     line-height: 35px;
     text-align: center;
     cursor: pointer;
+    margin-bottom: 18px;
 }
 
 

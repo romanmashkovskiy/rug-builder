@@ -29,7 +29,8 @@ class LoginModal extends Component {
         this.state = {
             email: '',
             password: '',
-            orderFreeSwatchSamples: false
+            orderFreeSwatchSamples: false,
+            loginError: false
         };
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
@@ -79,6 +80,13 @@ class LoginModal extends Component {
                     }}>
                         Order Free Swatch Samples?
                     </div>
+                    {this.state.loginError &&
+                        <div className="login-error-message">
+                            Sorry your email or password was incorrect.
+                            Please try again or click forgotten password
+                        </div>
+
+                    }
                     <button
                         className="login-button login-button-A5"
                         onClick={() => {
@@ -89,6 +97,7 @@ class LoginModal extends Component {
                                 )
                                     .then((result) => {
                                         ls('curUser', result);
+                                        this.setState({loginError: false});
                                         if (this.state.orderFreeSwatchSamples) {
                                             return this.props.orderSamples(
                                                 ls('curUser').user_id,
@@ -106,6 +115,7 @@ class LoginModal extends Component {
                                         }
                                     })
                                     .catch(error => {
+                                        this.setState({loginError: true});
                                         console.log(error);
                                     })
                             }

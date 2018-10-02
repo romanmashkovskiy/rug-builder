@@ -29,5 +29,7 @@
         top: 293px;
     }
 
-    
+    .login-error-message {
+        width: 80% !important;
+    }
 }

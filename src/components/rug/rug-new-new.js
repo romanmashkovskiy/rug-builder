@@ -37,8 +37,8 @@ class Rug extends Component {
             1000
         );
 
-        var axesHelper = new THREE.AxesHelper(200);
-        this.scene.add(axesHelper);
+        // var axesHelper = new THREE.AxesHelper(200);
+        // this.scene.add(axesHelper);
 
         this.camera.position.x = -120;
         this.camera.position.y = 146.97868270469004;
