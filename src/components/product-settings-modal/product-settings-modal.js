@@ -48,7 +48,7 @@ class StartModal extends Component {
                 <div className="cover-div"/>
                 <div className="modal">
                     <div className="header-mobile">
-                        <img src={headerMobile} alt="headerMobile" />
+                        {/*<img src={headerMobile} alt="headerMobile" />*/}
                     </div>
                     <div className="logo">
                         <img src={logo} alt="logo"/>
